@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台灣工具站 — 健康計算 × 財務試算 免費工具</title>
+<meta name="description" content="免費台灣生活工具：BMI、TDEE、飲水量、睡眠建議、房貸試算、勞保退休金、所得稅計算，另附每日健康與財經新聞。">
+<meta name="keywords" content="BMI計算,房貸試算,所得稅,勞保退休金,TDEE,飲水量,睡眠建議,台灣工具">
+<style>
+:root{
+  --green:#3B6D11;--green-light:#EAF3DE;
+  --navy:#0C2D6B;--navy-light:#E8EDF8;
+  --amber:#854F0B;--amber-light:#FAEEDA;
+  --red:#A32D2D;--red-light:#FCEBEB;
+  --teal:#0F6E56;--teal-light:#E1F5EE;
+  --blue:#185FA5;--blue-light:#E6F1FB;
+  --gray-50:#F5F6F8;--gray-100:#EAECF0;
+  --text:#0F1923;--muted:#4A5568;--hint:#8896A5;
+  --border:#D1D9E0;--border-light:#E8ECF0;
+  --radius:10px;--radius-sm:6px;
+  --white:#fff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* ── Header ── */
+header{background:var(--text);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:800px;margin:0 auto;height:52px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:16px;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-icon{font-size:18px}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.15);color:#fff;padding:3px 10px;border-radius:20px;font-weight:600}
+
+/* ── Category bar ── */
+.cat-bar{background:var(--white);border-bottom:2px solid var(--gray-100);padding:0 1.5rem;position:sticky;top:52px;z-index:200}
+.cat-inner{max-width:800px;margin:0 auto;display:flex;gap:0}
+.cat-btn{flex:1;height:48px;font-size:14px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.cat-btn:hover{color:var(--text)}
+.cat-btn.active-health{color:var(--green);border-bottom-color:var(--green)}
+.cat-btn.active-finance{color:var(--navy);border-bottom-color:var(--navy)}
+
+/* ── Sub tab bar ── */
+.tab-bar{background:var(--gray-50);border-bottom:1px solid var(--border-light);padding:0 1.5rem;position:sticky;top:100px;z-index:190}
+.tab-inner{max-width:800px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:40px;font-size:12px;font-weight:500;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{font-weight:600}
+.tab-btn.active.h{color:var(--green);border-bottom-color:var(--green)}
+.tab-btn.active.f{color:var(--navy);border-bottom-color:var(--navy)}
+
+/* ── Main ── */
+.wrap{max-width:800px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.cat-section{display:none}.cat-section.active{display:block}
+.panel{display:none}.panel.active{display:block}
+
+/* ── Ad slot ── */
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--border);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+/* ── Tool card ── */
+.tool-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:16px;font-weight:700;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+
+/* ── Form ── */
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.field input,.field select{height:40px;padding:0 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none}
+#cat-health .field input:focus,#cat-health .field select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(59,109,17,.1)}
+#cat-finance .field input:focus,#cat-finance .field select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(12,45,107,.1)}
+.calc-btn{width:100%;height:42px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;letter-spacing:.02em;transition:opacity .15s,transform .1s;color:var(--white)}
+#cat-health .calc-btn{background:var(--green)}
+#cat-finance .calc-btn{background:var(--navy)}
+.calc-btn:hover{opacity:.85}
+.calc-btn:active{transform:scale(.99)}
+
+/* ── Result ── */
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:700;line-height:1}
+#cat-health .result-number{color:var(--green)}
+#cat-finance .result-number{color:var(--navy)}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 12px;border-radius:20px;margin-bottom:.85rem}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-yellow{background:var(--amber-light);color:var(--amber)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.tag-blue{background:var(--blue-light);color:var(--blue)}
+.tag-navy{background:var(--navy-light);color:var(--navy)}
+.tag-teal{background:var(--teal-light);color:var(--teal)}
+.tag-amber{background:var(--amber-light);color:var(--amber)}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:11px;color:var(--hint);font-weight:600;margin-bottom:2px}
+.result-cell .val{font-size:15px;font-weight:700;color:var(--text)}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--teal)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border-light)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border-light)}
+
+/* 房貸攤還表 */
+.amort-toggle{font-size:13px;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:4px;margin-top:.75rem;font-weight:600;background:none;border:none;font-family:inherit;padding:0}
+.amort-table-wrap{display:none;margin-top:.75rem;overflow-x:auto}
+.amort-table-wrap.show{display:block}
+.amort-table{width:100%;border-collapse:collapse;font-size:12px}
+.amort-table th{background:var(--navy-light);color:var(--navy);font-weight:600;padding:7px 10px;text-align:right;white-space:nowrap}
+.amort-table th:first-child{text-align:left}
+.amort-table td{padding:6px 10px;border-bottom:1px solid var(--border-light);text-align:right;color:var(--text)}
+.amort-table td:first-child{text-align:left;color:var(--muted)}
+
+/* ── News ── */
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:16px;font-weight:700}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:6px 14px;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:20px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:box-shadow .15s}
+.news-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.news-card-inner{display:flex;gap:12px;align-items:flex-start}
+.news-num-h{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--green-light);color:var(--green);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-num-f{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--navy-light);color:var(--navy);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src-h{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-bottom:5px;background:var(--green-light);color:var(--green)}
+.news-src-f{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-bottom:5px;background:var(--navy-light);color:var(--navy)}
+.news-headline{font-size:14px;font-weight:600;line-height:1.5;margin-bottom:4px;color:var(--text)}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:13px}
+
+/* ── Footer ── */
+footer{background:var(--text);padding:1.5rem;text-align:center}
+footer p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.8}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 10px;font-size:11px}
+  .cat-btn{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="#"><span class="logo-icon">🇹🇼</span>台灣工具站</a>
+    <span class="hdr-tag">免費工具</span>
+  </div>
+</header>
+
+<!-- 大分類 -->
+<div class="cat-bar">
+  <div class="cat-inner">
+    <button class="cat-btn active-health" onclick="switchCat('health')" id="cat-btn-health">🌿 生活健康</button>
+    <button class="cat-btn" onclick="switchCat('finance')" id="cat-btn-finance">💰 財務試算</button>
+  </div>
+</div>
+
+<!-- 子分頁 -->
+<div class="tab-bar" id="tabs-health">
+  <div class="tab-inner">
+    <button class="tab-btn active h" onclick="switchTab('h','hnews')"  id="tab-hnews">📰 健康新聞</button>
+    <button class="tab-btn h" onclick="switchTab('h','bmi')"    id="tab-bmi">⚖️ BMI</button>
+    <button class="tab-btn h" onclick="switchTab('h','tdee')"   id="tab-tdee">🔥 每日熱量</button>
+    <button class="tab-btn h" onclick="switchTab('h','water')"  id="tab-water">💧 飲水量</button>
+    <button class="tab-btn h" onclick="switchTab('h','age')"    id="tab-age">🎂 年齡</button>
+    <button class="tab-btn h" onclick="switchTab('h','sleep')"  id="tab-sleep">🌙 睡眠</button>
+  </div>
+</div>
+<div class="tab-bar" id="tabs-finance" style="display:none">
+  <div class="tab-inner">
+    <button class="tab-btn active f" onclick="switchTab('f','fnews')"    id="tab-fnews">📈 財經新聞</button>
+    <button class="tab-btn f" onclick="switchTab('f','mortgage')" id="tab-mortgage">🏠 房貸試算</button>
+    <button class="tab-btn f" onclick="switchTab('f','labins')"   id="tab-labins">👴 勞保退休金</button>
+    <button class="tab-btn f" onclick="switchTab('f','tax')"      id="tab-tax">📋 所得稅</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ════════════ 健康分類 ════════════ -->
+<div class="cat-section active" id="cat-health">
+
+  <!-- 健康新聞 -->
+  <div class="panel active" id="panel-hnews">
+    <div class="news-header">
+      <div><div class="news-title">每日健康焦點</div><div class="news-meta" id="hnews-date">載入中...</div></div>
+      <button class="refresh-btn" onclick="loadHealthNews()" id="hrefresh-btn"><span id="hrefresh-icon">↻</span> 重新整理</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div id="hnews-container" style="margin-top:1.25rem"></div>
+    <div class="ad-slot" style="margin-top:1rem"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有健康疑慮請諮詢醫師。</p>
+  </div>
+
+  <!-- BMI -->
+  <div class="panel" id="panel-bmi">
+    <div class="tool-card"><div class="card-head"><h2>BMI 身體質量指數計算機</h2><p>依台灣衛福部標準（18.5–24 為正常範圍），計算體重狀態與理想體重範圍</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>身高（公分）</label><input type="number" id="bmi-h" placeholder="例：170" inputmode="decimal"></div>
+        <div class="field"><label>體重（公斤）</label><input type="number" id="bmi-w" placeholder="例：65" inputmode="decimal"></div>
+        <div class="field"><label>性別</label><select id="bmi-sex"><option value="m">男性</option><option value="f">女性</option></select></div>
+        <div class="field"><label>年齡</label><input type="number" id="bmi-age" placeholder="例：30" inputmode="numeric"></div>
+      </div>
+      <button class="calc-btn" onclick="calcBMI()">計算 BMI</button>
+      <div class="result" id="bmi-result">
+        <div class="result-top"><div class="result-number" id="bmi-num">—</div><div class="result-unit">BMI</div></div>
+        <span class="tag" id="bmi-tag"></span>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">理想體重範圍</div><div class="val" id="bmi-ideal">—</div></div>
+          <div class="result-cell"><div class="lbl">與理想值差距</div><div class="val" id="bmi-diff">—</div></div>
+        </div>
+        <div class="result-note" id="bmi-note"></div>
+        <div class="result-disclaimer">僅供參考。如有健康疑慮請諮詢醫師。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- TDEE -->
+  <div class="panel" id="panel-tdee">
+    <div class="tool-card"><div class="card-head"><h2>TDEE 每日熱量消耗計算機</h2><p>以 Mifflin-St Jeor 公式計算基礎代謝率，依活動量算出每日總消耗</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>身高（公分）</label><input type="number" id="tdee-h" placeholder="例：170" inputmode="decimal"></div>
+        <div class="field"><label>體重（公斤）</label><input type="number" id="tdee-w" placeholder="例：65" inputmode="decimal"></div>
+        <div class="field"><label>年齡</label><input type="number" id="tdee-age" placeholder="例：30" inputmode="numeric"></div>
+        <div class="field"><label>性別</label><select id="tdee-sex"><option value="m">男性</option><option value="f">女性</option></select></div>
+      </div>
+      <div class="fields one"><div class="field"><label>每週活動量</label><select id="tdee-act"><option value="1.2">久坐 — 辦公室、幾乎不運動</option><option value="1.375">輕度 — 每週運動 1–2 天</option><option value="1.55" selected>中度 — 每週運動 3–5 天</option><option value="1.725">高度 — 每週運動 6–7 天</option><option value="1.9">極高 — 體力勞動或每天訓練</option></select></div></div>
+      <button class="calc-btn" onclick="calcTDEE()">計算每日熱量</button>
+      <div class="result" id="tdee-result">
+        <div class="result-top"><div class="result-number" id="tdee-num">—</div><div class="result-unit">大卡 / 天</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">基礎代謝率 BMR</div><div class="val" id="tdee-bmr">—</div></div>
+          <div class="result-cell"><div class="lbl">蛋白質建議</div><div class="val" id="tdee-protein">—</div></div>
+          <div class="result-cell"><div class="lbl">減脂目標攝取</div><div class="val" id="tdee-cut">—</div></div>
+          <div class="result-cell"><div class="lbl">增肌目標攝取</div><div class="val" id="tdee-bulk">—</div></div>
+        </div>
+        <div class="result-note" id="tdee-note"></div>
+        <div class="result-disclaimer">僅供參考。如有健康疑慮請諮詢醫師。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- Water -->
+  <div class="panel" id="panel-water">
+    <div class="tool-card"><div class="card-head"><h2>每日建議飲水量計算機</h2><p>依體重、運動量與台灣氣候計算每天應攝取的水分</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>體重（公斤）</label><input type="number" id="w-weight" placeholder="例：65" inputmode="decimal"></div>
+        <div class="field"><label>今日運動時間</label><select id="w-sport"><option value="0">沒有運動</option><option value="30">約 30 分鐘</option><option value="60">約 1 小時</option><option value="90">超過 1.5 小時</option></select></div>
+      </div>
+      <div class="fields one"><div class="field"><label>天氣 / 環境</label><select id="w-climate"><option value="0">室內冷氣</option><option value="200">一般室外</option><option value="400">炎熱潮濕（台灣夏天）</option></select></div></div>
+      <button class="calc-btn" onclick="calcWater()">計算飲水量</button>
+      <div class="result" id="water-result">
+        <div class="result-top"><div class="result-number" id="water-num">—</div><div class="result-unit">公升 / 天</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">約幾杯水（250ml）</div><div class="val" id="water-cups">—</div></div>
+          <div class="result-cell"><div class="lbl">每小時建議喝</div><div class="val" id="water-hourly">—</div></div>
+        </div>
+        <div class="result-note" id="water-note"></div>
+        <div class="result-disclaimer">僅供參考。如有健康疑慮請諮詢醫師。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- Age -->
+  <div class="panel" id="panel-age">
+    <div class="tool-card"><div class="card-head"><h2>實際年齡計算機</h2><p>精確計算今天幾歲幾個月幾天，附生肖、星座與下次生日倒數</p></div>
+    <div class="card-body">
+      <div class="fields one"><div class="field"><label>出生日期</label><input type="date" id="bday"></div></div>
+      <button class="calc-btn" onclick="calcAge()">計算年齡</button>
+      <div class="result" id="age-result">
+        <div class="result-top"><div class="result-number" id="age-num">—</div><div class="result-unit">歲</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">精確年齡</div><div class="val" id="age-exact">—</div></div>
+          <div class="result-cell"><div class="lbl">下次生日倒數</div><div class="val" id="age-countdown">—</div></div>
+          <div class="result-cell"><div class="lbl">生肖</div><div class="val" id="age-zodiac">—</div></div>
+          <div class="result-cell"><div class="lbl">星座</div><div class="val" id="age-star">—</div></div>
+        </div>
+        <div class="result-note" id="age-note"></div>
+        <div class="result-disclaimer">僅供參考。如有健康疑慮請諮詢醫師。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- Sleep -->
+  <div class="panel" id="panel-sleep">
+    <div class="tool-card"><div class="card-head"><h2>睡眠時間建議計算機</h2><p>依年齡計算建議睡眠時數，以 90 分鐘週期反推最佳就寢時間</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>年齡</label><input type="number" id="s-age" placeholder="例：30" inputmode="numeric"></div>
+        <div class="field"><label>預計起床時間</label><input type="time" id="s-wake" value="07:00"></div>
+      </div>
+      <button class="calc-btn" onclick="calcSleep()">計算睡眠建議</button>
+      <div class="result" id="sleep-result">
+        <div class="result-top"><div class="result-number" id="sleep-num">—</div><div class="result-unit">小時（建議）</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">建議就寢時間</div><div class="val" id="sleep-bed">—</div></div>
+          <div class="result-cell"><div class="lbl">睡眠週期數</div><div class="val" id="sleep-cycle">—</div></div>
+        </div>
+        <div class="result-note" id="sleep-note"></div>
+        <div class="result-disclaimer">僅供參考。如有健康疑慮請諮詢醫師。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+</div><!-- /cat-health -->
+
+<!-- ════════════ 財務分類 ════════════ -->
+<div class="cat-section" id="cat-finance">
+
+  <!-- 財經新聞 -->
+  <div class="panel active" id="panel-fnews">
+    <div class="news-header">
+      <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="fnews-date">載入中...</div></div>
+      <button class="refresh-btn" onclick="loadFinanceNews()" id="frefresh-btn"><span id="frefresh-icon">↻</span> 重新整理</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div id="fnews-container" style="margin-top:1.25rem"></div>
+    <div class="ad-slot" style="margin-top:1rem"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有財務疑慮請諮詢專業人員。</p>
+  </div>
+
+  <!-- 房貸 -->
+  <div class="panel" id="panel-mortgage">
+    <div class="tool-card"><div class="card-head"><h2>房貸試算計算機</h2><p>依貸款金額、利率、年限計算每月還款金額，附完整攤還明細表</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>貸款金額（萬元）</label><input type="number" id="m-amount" placeholder="例：800" inputmode="decimal"></div>
+        <div class="field"><label>年利率（%）</label><input type="number" id="m-rate" placeholder="例：2.06" step="0.01" value="2.06" inputmode="decimal"></div>
+        <div class="field"><label>貸款年限</label><select id="m-years"><option value="10">10 年</option><option value="15">15 年</option><option value="20" selected>20 年</option><option value="25">25 年</option><option value="30">30 年</option></select></div>
+        <div class="field"><label>還款方式</label><select id="m-type"><option value="equal_payment" selected>本利均攤（每月固定）</option><option value="equal_principal">本金均攤（遞減式）</option></select></div>
+      </div>
+      <button class="calc-btn" onclick="calcMortgage()">試算房貸</button>
+      <div class="result" id="mortgage-result">
+        <div class="result-top"><div class="result-number" id="m-monthly">—</div><div class="result-unit">元 / 月（首月）</div></div>
+        <span class="tag tag-navy" id="m-tag"></span>
+        <div class="result-grid" style="grid-template-columns:1fr 1fr 1fr">
+          <div class="result-cell"><div class="lbl">貸款總金額</div><div class="val" id="m-total-loan">—</div></div>
+          <div class="result-cell"><div class="lbl">總利息支出</div><div class="val red" id="m-total-interest">—</div></div>
+          <div class="result-cell"><div class="lbl">實際總還款</div><div class="val" id="m-total-pay">—</div></div>
+        </div>
+        <button class="amort-toggle" onclick="toggleAmort()">▶ 展開攤還明細表（前 12 個月）</button>
+        <div class="amort-table-wrap" id="amort-wrap">
+          <table class="amort-table"><thead><tr><th>月份</th><th>月付金</th><th>本金</th><th>利息</th><th>剩餘本金</th></tr></thead><tbody id="amort-body"></tbody></table>
+        </div>
+        <div class="result-note" id="m-note"></div>
+        <div class="result-disclaimer">試算結果僅供參考，實際利率與費用依各銀行規定為準。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- 勞保 -->
+  <div class="panel" id="panel-labins">
+    <div class="tool-card"><div class="card-head"><h2>勞保退休金試算</h2><p>依勞工保險條例及勞退新制試算每月可領退休金，含勞保老年給付與勞退帳戶</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>目前年齡</label><input type="number" id="l-age" placeholder="例：35" inputmode="numeric"></div>
+        <div class="field"><label>預計退休年齡</label><select id="l-retire-age"><option value="60">60 歲</option><option value="62">62 歲</option><option value="63">63 歲</option><option value="65" selected>65 歲（完整請領）</option></select></div>
+        <div class="field"><label>目前月薪（元）</label><input type="number" id="l-salary" placeholder="例：40000" inputmode="numeric"></div>
+        <div class="field"><label>已投保年資（年）</label><input type="number" id="l-years" placeholder="例：5" inputmode="numeric"></div>
+        <div class="field"><label>勞退自提比例</label><select id="l-self"><option value="0" selected>0%（不自提）</option><option value="1">1%</option><option value="2">2%</option><option value="3">3%</option><option value="4">4%</option><option value="5">5%</option><option value="6">6%（最高）</option></select></div>
+        <div class="field"><label>預估薪資年增率（%）</label><input type="number" id="l-growth" placeholder="例：2" value="2" inputmode="decimal"></div>
+      </div>
+      <button class="calc-btn" onclick="calcLabIns()">試算退休金</button>
+      <div class="result" id="labins-result">
+        <div class="result-top"><div class="result-number" id="l-monthly">—</div><div class="result-unit">元 / 月（預估）</div></div>
+        <span class="tag tag-teal" id="l-tag"></span>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">勞保老年給付（月領）</div><div class="val green" id="l-labor">—</div></div>
+          <div class="result-cell"><div class="lbl">勞退帳戶（月領）</div><div class="val green" id="l-pension">—</div></div>
+          <div class="result-cell"><div class="lbl">退休時帳戶總額</div><div class="val" id="l-total">—</div></div>
+          <div class="result-cell"><div class="lbl">距退休還有</div><div class="val" id="l-remaining">—</div></div>
+        </div>
+        <div class="result-note" id="l-note"></div>
+        <div class="result-disclaimer">試算結果僅供參考，詳細試算請至勞保局官網或撥打 1955。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- 所得稅 -->
+  <div class="panel" id="panel-tax">
+    <div class="tool-card"><div class="card-head"><h2>個人綜合所得稅試算</h2><p>依 113 年台灣所得稅法試算應繳稅額，含標準扣除額與免稅額</p></div>
+    <div class="card-body">
+      <div class="fields">
+        <div class="field"><label>年薪收入（元）</label><input type="number" id="t-income" placeholder="例：600000" inputmode="numeric"></div>
+        <div class="field"><label>申報狀態</label><select id="t-status"><option value="single">單身</option><option value="married">已婚（合併申報）</option></select></div>
+        <div class="field"><label>受扶養親屬人數</label><select id="t-dependents"><option value="0">0 人</option><option value="1">1 人</option><option value="2">2 人</option><option value="3">3 人</option><option value="4">4 人以上</option></select></div>
+        <div class="field"><label>扣除額方式</label><select id="t-deduct" onchange="toggleItemized()"><option value="standard">標準扣除額</option><option value="itemized">列舉扣除額</option></select></div>
+      </div>
+      <div class="fields one" id="itemized-row" style="display:none"><div class="field"><label>列舉扣除額合計（元）</label><input type="number" id="t-itemized" placeholder="例：200000" inputmode="numeric"></div></div>
+      <button class="calc-btn" onclick="calcTax()">試算所得稅</button>
+      <div class="result" id="tax-result">
+        <div class="result-top"><div class="result-number" id="t-tax">—</div><div class="result-unit">元（應繳稅額）</div></div>
+        <span class="tag tag-amber" id="t-tag"></span>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">綜合所得淨額</div><div class="val" id="t-net">—</div></div>
+          <div class="result-cell"><div class="lbl">適用稅率</div><div class="val" id="t-rate">—</div></div>
+          <div class="result-cell"><div class="lbl">各項扣除合計</div><div class="val" id="t-deductions">—</div></div>
+          <div class="result-cell"><div class="lbl">實際稅負率</div><div class="val" id="t-eff-rate">—</div></div>
+        </div>
+        <div class="result-note" id="t-note"></div>
+        <div class="result-disclaimer">依 113 年度稅率試算，僅供參考。實際稅額依財政部申報結果為準。</div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+</div><!-- /cat-finance -->
+</div><!-- /wrap -->
+
+<footer>
+  <p>台灣工具站 &nbsp;·&nbsp; 僅供參考，不構成醫療或財務建議<br>
+  <a href="#">隱私權政策</a> &nbsp;·&nbsp; <a href="#">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div><div class="skel-line mid"></div></div>`;
+let hnewsLoaded=false, fnewsLoaded=false, amortData=[];
+let currentCat='health';
+
+/* ══ 大分類切換 ══ */
+function switchCat(cat){
+  currentCat=cat;
+  document.querySelectorAll('.cat-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('cat-'+cat).classList.add('active');
+  document.getElementById('tabs-health').style.display=cat==='health'?'block':'none';
+  document.getElementById('tabs-finance').style.display=cat==='finance'?'block':'none';
+  document.getElementById('cat-btn-health').className='cat-btn'+(cat==='health'?' active-health':'');
+  document.getElementById('cat-btn-finance').className='cat-btn'+(cat==='finance'?' active-finance':'');
+  if(cat==='finance'&&!fnewsLoaded) loadFinanceNews();
+}
+
+/* ══ 子分頁切換 ══ */
+function switchTab(cat,id){
+  const prefix=cat==='h'?'panel-':'panel-';
+  document.querySelectorAll('#cat-'+( cat==='h'?'health':'finance')+' .panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll(cat==='h'?'#tabs-health .tab-btn':'#tabs-finance .tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='hnews'&&!hnewsLoaded) loadHealthNews();
+  if(id==='fnews'&&!fnewsLoaded) loadFinanceNews();
+}
+
+/* ══ 健康新聞 ══ */
+async function loadHealthNews(){
+  const btn=document.getElementById('hrefresh-btn');
+  const icon=document.getElementById('hrefresh-icon');
+  const container=document.getElementById('hnews-container');
+  btn.disabled=true; icon.className='spin'; icon.textContent='↻';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  const today=new Date();
+  document.getElementById('hnews-date').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric',weekday:'long'})+' 更新';
+  await fetchRSS('https://heho.com.tw/feed','hnews-container','Heho 健康','news-num-h','news-src-h');
+  hnewsLoaded=true;
+  btn.disabled=false; icon.className=''; icon.textContent='↻';
+}
+
+/* ══ 財經新聞 ══ */
+async function loadFinanceNews(){
+  const btn=document.getElementById('frefresh-btn');
+  const icon=document.getElementById('frefresh-icon');
+  const container=document.getElementById('fnews-container');
+  btn.disabled=true; icon.className='spin'; icon.textContent='↻';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  const today=new Date();
+  document.getElementById('fnews-date').textContent=today.toLocaleDateString('zh-TW',{year:'numeric',month:'long',day:'numeric',weekday:'long'})+' 更新';
+  await fetchRSS('https://feeds.feedburner.com/rsscna/finance','fnews-container','中央社財經','news-num-f','news-src-f');
+  fnewsLoaded=true;
+  btn.disabled=false; icon.className=''; icon.textContent='↻';
+}
+
+async function fetchRSS(rssUrl,containerId,sourceName,numClass,tagClass){
+  const container=document.getElementById(containerId);
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(rssUrl)}`);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rawText=await res.text();
+    const xml=new DOMParser().parseFromString(rawText,'application/xml');
+
+    // 相容各種 RSS 格式：querySelector 和 getElementsByTagName 雙重保險
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length) items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length) throw new Error('no items');
+
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      // title
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      // description
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||descEl?.innerHTML||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      // pubDate
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      // link — 中央社 RSS 的 link 是 text node，不是屬性
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl){
+        // 有些 RSS link 是 text，有些是 nextSibling text node
+        link=linkEl.textContent?.trim()||linkEl.getAttribute('href')||'#';
+        if(!link||link==='#'){
+          // fallback: 找 link 的 nextSibling
+          let node=linkEl.nextSibling;
+          while(node){
+            if(node.nodeType===3&&node.textContent.trim().startsWith('http')){
+              link=node.textContent.trim(); break;
+            }
+            node=node.nextSibling;
+          }
+        }
+      }
+      // 再 fallback 用 guid
+      if(!link||link==='#'){
+        const guid=item.querySelector('guid')||item.getElementsByTagName('guid')[0];
+        if(guid?.getAttribute('isPermaLink')!=='false') link=guid?.textContent?.trim()||'#';
+      }
+
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner">
+          <div class="${numClass}">${i+1}</div>
+          <div class="news-content">
+            <span class="${tagClass}">${sourceName}</span>
+            <div class="news-headline">${title}</div>
+            ${desc?`<div class="news-summary">${desc}...</div>`:''}
+            ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}
+          </div>
+        </div>
+      </div>`;
+    });
+    container.innerHTML=html+'</div>';
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+}
+
+/* ══ BMI ══ */
+function calcBMI(){
+  const h=parseFloat(document.getElementById('bmi-h').value);
+  const w=parseFloat(document.getElementById('bmi-w').value);
+  if(!h||!w||h<100||w<20){alert('請輸入有效的身高與體重');return;}
+  const bmi=w/Math.pow(h/100,2);
+  document.getElementById('bmi-num').textContent=bmi.toFixed(1);
+  const tag=document.getElementById('bmi-tag');
+  let cat,cls;
+  if(bmi<18.5){cat='體重過輕';cls='tag-blue';}
+  else if(bmi<24){cat='體重正常 ✓';cls='tag-green';}
+  else if(bmi<27){cat='體重過重';cls='tag-yellow';}
+  else if(bmi<30){cat='輕度肥胖';cls='tag-red';}
+  else{cat='中重度肥胖';cls='tag-red';}
+  tag.textContent=cat; tag.className='tag '+cls;
+  const hm=h/100;
+  const lo=(18.5*hm*hm).toFixed(1),hi=(23.9*hm*hm).toFixed(1);
+  document.getElementById('bmi-ideal').textContent=lo+'–'+hi+' kg';
+  const diff=(w-(parseFloat(lo)+parseFloat(hi))/2).toFixed(1);
+  document.getElementById('bmi-diff').textContent=(diff>0?'+':'')+diff+' kg';
+  const notes={'tag-blue':'體重過輕可能影響免疫力與骨質密度。建議增加蛋白質攝取（每公斤 1.2–1.6g），搭配重量訓練。','tag-green':'體重在健康範圍內。維持均衡飲食與每週 150 分鐘中等強度運動即可。','tag-yellow':'體重略高。建議每天減少 300–500 大卡攝取，搭配有氧運動，每週可安全減重約 0.3–0.5 公斤。','tag-red':'體重偏高，建議諮詢醫師或營養師制定安全的減重計畫。'};
+  document.getElementById('bmi-note').textContent=notes[cls];
+  document.getElementById('bmi-result').classList.add('show');
+}
+
+/* ══ TDEE ══ */
+function calcTDEE(){
+  const h=parseFloat(document.getElementById('tdee-h').value);
+  const w=parseFloat(document.getElementById('tdee-w').value);
+  const age=parseFloat(document.getElementById('tdee-age').value);
+  const sex=document.getElementById('tdee-sex').value;
+  const act=parseFloat(document.getElementById('tdee-act').value);
+  if(!h||!w||!age){alert('請填寫所有欄位');return;}
+  const bmr=sex==='m'?(10*w)+(6.25*h)-(5*age)+5:(10*w)+(6.25*h)-(5*age)-161;
+  const tdee=Math.round(bmr*act);
+  document.getElementById('tdee-num').textContent=tdee.toLocaleString();
+  document.getElementById('tdee-bmr').textContent=Math.round(bmr).toLocaleString()+' kcal';
+  document.getElementById('tdee-cut').textContent=Math.round(tdee*0.8).toLocaleString()+' kcal';
+  document.getElementById('tdee-bulk').textContent=Math.round(tdee*1.1).toLocaleString()+' kcal';
+  document.getElementById('tdee-protein').textContent=Math.round(w*1.6)+'–'+Math.round(w*2.0)+' g';
+  document.getElementById('tdee-note').textContent='減脂建議攝取 TDEE × 80%（每日赤字約 '+Math.round(tdee*0.2).toLocaleString()+' 大卡），每週可減約 0.3–0.5 kg。增肌建議攝取 TDEE × 110%，搭配重量訓練。';
+  document.getElementById('tdee-result').classList.add('show');
+}
+
+/* ══ Water ══ */
+function calcWater(){
+  const w=parseFloat(document.getElementById('w-weight').value);
+  if(!w||w<20){alert('請輸入有效體重');return;}
+  const sport=parseInt(document.getElementById('w-sport').value);
+  const climate=parseInt(document.getElementById('w-climate').value);
+  const total=Math.round(w*35)+(sport*10)+climate;
+  document.getElementById('water-num').textContent=(total/1000).toFixed(1);
+  document.getElementById('water-cups').textContent=Math.round(total/250)+' 杯';
+  document.getElementById('water-hourly').textContent=(Math.round(total/16/10)*10)+' ml';
+  document.getElementById('water-note').textContent='建議分散飲用：起床後、每餐前 30 分鐘、運動前中後各補充。若尿液呈深黃色代表需增加水分攝取。';
+  document.getElementById('water-result').classList.add('show');
+}
+
+/* ══ Age ══ */
+function calcAge(){
+  const bdVal=document.getElementById('bday').value;
+  if(!bdVal){alert('請選擇出生日期');return;}
+  const b=new Date(bdVal),n=new Date();
+  if(b>n){alert('出生日期不能是未來日期');return;}
+  let yrs=n.getFullYear()-b.getFullYear(),mos=n.getMonth()-b.getMonth(),days=n.getDate()-b.getDate();
+  if(days<0){mos--;days+=30;} if(mos<0){yrs--;mos+=12;}
+  document.getElementById('age-num').textContent=yrs;
+  document.getElementById('age-exact').textContent=yrs+' 歲 '+mos+' 月 '+days+' 天';
+  document.getElementById('age-zodiac').textContent=['鼠','牛','虎','兔','龍','蛇','馬','羊','猴','雞','狗','豬'][((b.getFullYear()-4)%12+12)%12];
+  const sc=[20,19,21,20,21,21,23,23,23,23,22,22];
+  const sn=['摩羯座','水瓶座','雙魚座','牡羊座','金牛座','雙子座','巨蟹座','獅子座','處女座','天秤座','天蠍座','射手座'];
+  const m=b.getMonth(),d=b.getDate();
+  document.getElementById('age-star').textContent=d>=sc[m]?sn[(m+1)%12]:sn[m];
+  const next=new Date(n.getFullYear(),b.getMonth(),b.getDate());
+  if(next<=n) next.setFullYear(n.getFullYear()+1);
+  document.getElementById('age-countdown').textContent=Math.ceil((next-n)/86400000)+' 天後';
+  document.getElementById('age-note').textContent='你已經活了 '+Math.floor((n-b)/86400000).toLocaleString()+' 天。下次生日：'+next.getFullYear()+' 年 '+(next.getMonth()+1)+' 月 '+next.getDate()+' 日。';
+  document.getElementById('age-result').classList.add('show');
+}
+
+/* ══ Sleep ══ */
+function calcSleep(){
+  const age=parseInt(document.getElementById('s-age').value);
+  const wake=document.getElementById('s-wake').value;
+  if(!age||!wake){alert('請填寫年齡與起床時間');return;}
+  const table=[[2,11,14],[5,10,13],[13,9,11],[17,8,10],[64,7,9],[120,7,8]];
+  let recMin=7,recMax=9;
+  for(const[maxAge,mn,mx]of table){if(age<=maxAge){recMin=mn;recMax=mx;break;}}
+  const cycles=Math.round((recMin+recMax)/2/1.5);
+  const[wh,wm]=wake.split(':').map(Number);
+  const bedMins=(((wh*60+wm)-cycles*90)%1440+1440)%1440;
+  const bh=Math.floor(bedMins/60),bm=bedMins%60;
+  const fmt=t=>(t<10?'0':'')+t;
+  document.getElementById('sleep-num').textContent=recMin+'–'+recMax;
+  document.getElementById('sleep-bed').textContent=fmt(bh)+':'+fmt(bm);
+  document.getElementById('sleep-cycle').textContent=cycles+' 個週期';
+  document.getElementById('sleep-note').textContent='每個睡眠週期約 90 分鐘。在週期結束時自然醒來精神最好。建議：睡前 1 小時關閉螢幕、保持室溫 18–22°C。';
+  document.getElementById('sleep-result').classList.add('show');
+}
+
+/* ══ 房貸 ══ */
+function calcMortgage(){
+  const amount=parseFloat(document.getElementById('m-amount').value)*10000;
+  const rate=parseFloat(document.getElementById('m-rate').value)/100/12;
+  const years=parseInt(document.getElementById('m-years').value);
+  const type=document.getElementById('m-type').value;
+  if(!amount||!rate||!years){alert('請填寫所有欄位');return;}
+  const n=years*12; amortData=[]; let totalInterest=0,balance=amount;
+  if(type==='equal_payment'){
+    const monthly=amount*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+    for(let i=1;i<=n;i++){const interest=balance*rate;const principal=monthly-interest;balance-=principal;totalInterest+=interest;amortData.push({month:i,payment:monthly,principal,interest,balance:Math.max(0,balance)});}
+    document.getElementById('m-monthly').textContent=Math.round(monthly).toLocaleString();
+    document.getElementById('m-tag').textContent='本利均攤 · 每月固定 '+Math.round(monthly).toLocaleString()+' 元';
+  }else{
+    const principalPerMonth=amount/n;
+    for(let i=1;i<=n;i++){const interest=balance*rate;const payment=principalPerMonth+interest;balance-=principalPerMonth;totalInterest+=interest;amortData.push({month:i,payment,principal:principalPerMonth,interest,balance:Math.max(0,balance)});}
+    document.getElementById('m-monthly').textContent=Math.round(amortData[0].payment).toLocaleString();
+    document.getElementById('m-tag').textContent='本金均攤 · 首月 '+Math.round(amortData[0].payment).toLocaleString()+' 元，逐月遞減';
+  }
+  document.getElementById('m-total-loan').textContent=(amount/10000).toLocaleString()+' 萬';
+  document.getElementById('m-total-interest').textContent=Math.round(totalInterest/10000).toLocaleString()+' 萬';
+  document.getElementById('m-total-pay').textContent=Math.round((amount+totalInterest)/10000).toLocaleString()+' 萬';
+  document.getElementById('m-note').textContent=`貸款 ${(amount/10000).toLocaleString()} 萬，年利率 ${document.getElementById('m-rate').value}%，${years} 年期，總利息約 ${Math.round(totalInterest/10000).toLocaleString()} 萬（佔本金 ${(totalInterest/amount*100).toFixed(1)}%）。`;
+  document.getElementById('amort-body').innerHTML=amortData.slice(0,12).map(r=>`<tr><td>第 ${r.month} 期</td><td>${Math.round(r.payment).toLocaleString()}</td><td>${Math.round(r.principal).toLocaleString()}</td><td>${Math.round(r.interest).toLocaleString()}</td><td>${Math.round(r.balance).toLocaleString()}</td></tr>`).join('');
+  document.getElementById('mortgage-result').classList.add('show');
+}
+function toggleAmort(){
+  const wrap=document.getElementById('amort-wrap');
+  const show=wrap.classList.toggle('show');
+  document.querySelector('.amort-toggle').textContent=(show?'▼':'▶')+' '+(show?'收合':'展開')+'攤還明細表（前 12 個月）';
+}
+
+/* ══ 勞保退休金 ══ */
+function calcLabIns(){
+  const age=parseInt(document.getElementById('l-age').value);
+  const retireAge=parseInt(document.getElementById('l-retire-age').value);
+  const salary=parseFloat(document.getElementById('l-salary').value);
+  const existingYears=parseFloat(document.getElementById('l-years').value)||0;
+  const selfRate=parseFloat(document.getElementById('l-self').value)/100;
+  const growthRate=parseFloat(document.getElementById('l-growth').value||2)/100;
+  if(!age||!salary){alert('請填寫年齡與月薪');return;}
+  if(age>=retireAge){alert('目前年齡不能大於退休年齡');return;}
+  const yearsLeft=retireAge-age;
+  const totalYears=existingYears+yearsLeft;
+  const avgSalary=salary*Math.pow(1+growthRate,yearsLeft/2);
+  const insuredSalary=Math.min(avgSalary,45800);
+  const laborMonthly=Math.round(insuredSalary*totalYears*0.0155);
+  let pensionTotal=0,currentSalary=salary;
+  for(let y=0;y<yearsLeft;y++){pensionTotal+=currentSalary*12*(0.06+selfRate);currentSalary*=(1+growthRate);}
+  const pensionFV=pensionTotal*Math.pow(1.03,yearsLeft/2);
+  const pensionMonthly=Math.round(pensionFV/240);
+  const totalMonthly=laborMonthly+pensionMonthly;
+  let level,cls;
+  if(totalMonthly<20000){level='偏低，建議增加自提';cls='tag-amber';}
+  else if(totalMonthly<35000){level='一般水準';cls='tag-navy';}
+  else{level='良好，退休生活有保障';cls='tag-teal';}
+  document.getElementById('l-monthly').textContent=totalMonthly.toLocaleString();
+  document.getElementById('l-tag').textContent=level;
+  document.getElementById('l-tag').className='tag '+cls;
+  document.getElementById('l-labor').textContent=laborMonthly.toLocaleString()+' 元';
+  document.getElementById('l-pension').textContent=pensionMonthly.toLocaleString()+' 元';
+  document.getElementById('l-total').textContent=Math.round(pensionFV/10000).toLocaleString()+' 萬元';
+  document.getElementById('l-remaining').textContent=yearsLeft+' 年';
+  document.getElementById('l-note').textContent=`預估退休後每月合計可領約 ${totalMonthly.toLocaleString()} 元。${selfRate>0?'自提 '+selfRate*100+'% 可節省所得稅並提升退休保障。':'建議考慮自提 2–6%，可享稅賦優惠。'}`;
+  document.getElementById('labins-result').classList.add('show');
+}
+
+/* ══ 所得稅 ══ */
+function toggleItemized(){
+  document.getElementById('itemized-row').style.display=document.getElementById('t-deduct').value==='itemized'?'grid':'none';
+}
+function calcTax(){
+  const income=parseFloat(document.getElementById('t-income').value);
+  const status=document.getElementById('t-status').value;
+  const deps=parseInt(document.getElementById('t-dependents').value);
+  const deductType=document.getElementById('t-deduct').value;
+  if(!income){alert('請輸入年薪收入');return;}
+  const exemption=92000;
+  const persons=status==='married'?2:1;
+  const totalExemption=exemption*(persons+deps);
+  const standardDeduct=status==='married'?262000:131000;
+  const salaryDeduct=Math.min(income,218000);
+  let deduct=deductType==='itemized'?Math.max(parseFloat(document.getElementById('t-itemized').value)||0,standardDeduct):standardDeduct;
+  const totalDeductions=totalExemption+deduct+salaryDeduct;
+  const netIncome=Math.max(0,income-totalDeductions);
+  const brackets=[{limit:560000,rate:0.05,less:0},{limit:1260000,rate:0.12,less:39200},{limit:2520000,rate:0.20,less:140000},{limit:4720000,rate:0.30,less:392000},{limit:9420000,rate:0.40,less:864000},{limit:Infinity,rate:0.45,less:1335000}];
+  let tax=0,rate=0;
+  for(const b of brackets){if(netIncome<=b.limit){tax=Math.max(0,Math.round(netIncome*b.rate-b.less));rate=b.rate;break;}}
+  const effRate=income>0?(tax/income*100).toFixed(2):0;
+  let level,cls;
+  if(tax===0){level='免稅';cls='tag-teal';}
+  else if(rate<=0.12){level='適用 '+rate*100+'% 稅率';cls='tag-navy';}
+  else{level='適用 '+rate*100+'% 稅率';cls='tag-amber';}
+  document.getElementById('t-tax').textContent=tax.toLocaleString();
+  document.getElementById('t-tag').textContent=level;
+  document.getElementById('t-tag').className='tag '+cls;
+  document.getElementById('t-net').textContent=netIncome.toLocaleString()+' 元';
+  document.getElementById('t-rate').textContent=(rate*100)+'%';
+  document.getElementById('t-deductions').textContent=totalDeductions.toLocaleString()+' 元';
+  document.getElementById('t-eff-rate').textContent=effRate+'%';
+  document.getElementById('t-note').textContent=`年收入 ${income.toLocaleString()} 元，各項扣除合計 ${totalDeductions.toLocaleString()} 元，綜合所得淨額 ${netIncome.toLocaleString()} 元，實際稅負率 ${effRate}%。`;
+  document.getElementById('tax-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadHealthNews());
+</script>
+</body>
+</html>
