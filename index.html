@@ -278,6 +278,33 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "信用卡回饋計算機",
+      "url": "https://thecalcbox.github.io/#creditcard",
+      "description": "輸入各類消費金額與回饋率，計算每月現金回饋與年度實際回饋金額，協助選擇最划算信用卡組合。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "健保費試算計算機",
+      "url": "https://thecalcbox.github.io/#nhitax",
+      "description": "依全民健康保險法（113年費率5.17%）計算個人每月健保費，含一般保費與補充保費試算。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "加班費計算機（台灣勞基法）",
+      "url": "https://thecalcbox.github.io/#overtime",
+      "description": "依勞動基準法第24條計算平日、休息日、國定假日加班費，支援補休換算。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
     }
   ]
 }
@@ -313,6 +340,21 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       "@type": "Question",
       "name": "勞退自提有什麼好處？",
       "acceptedAnswer": { "@type": "Answer", "text": "勞退自提金額不計入當年度薪資所得，可減少綜合所得稅。自提最高 6%，帳戶本金與收益全歸個人，是台灣最划算的節稅兼退休儲蓄工具之一。" }
+    },
+    {
+      "@type": "Question",
+      "name": "台灣信用卡現金回饋率一般是多少？",
+      "acceptedAnswer": { "@type": "Answer", "text": "台灣信用卡現金回饋率依消費類別不同：餐飲類通常 1–5%，網路購物 1–3%，超市加油 1–2%，其他消費 0.5–1%。部分特定卡別在特定通路可達 6–10%。注意每月或每季回饋上限，超過上限後回饋率可能降低。" }
+    },
+    {
+      "@type": "Question",
+      "name": "台灣健保費怎麼計算？",
+      "acceptedAnswer": { "@type": "Answer", "text": "113年健保費率為5.17%。受雇者個人負擔30%（費率1.551%），計算公式：月投保金額 × 1.551% × （1 + 眷屬人數，最多3口）。眷屬每增加1口，個人保費增加1倍基本保費。補充保費費率2.11%，適用於薪資外收入如獎金、股利、租金。" }
+    },
+    {
+      "@type": "Question",
+      "name": "加班費怎麼計算？台灣勞基法規定",
+      "acceptedAnswer": { "@type": "Answer", "text": "依勞動基準法第24條：平日加班前2小時給1.34倍工資，第3小時起給1.67倍。休息日加班前8小時給1.34倍，第9小時起給1.67倍（最少計4小時）。國定假日出勤給2倍工資。時薪基準 = 月薪 ÷ 30 ÷ 8。" }
     }
   ]
 }
@@ -353,6 +395,9 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
     <button class="tab-btn f" onclick="switchTab('f','mortgage')" id="tab-mortgage">🏠 房貸試算</button>
     <button class="tab-btn f" onclick="switchTab('f','labins')"   id="tab-labins">👴 勞保退休金</button>
     <button class="tab-btn f" onclick="switchTab('f','tax')"      id="tab-tax">📋 所得稅</button>
+    <button class="tab-btn f" onclick="switchTab('f','creditcard')" id="tab-creditcard">💳 信用卡回饋</button>
+    <button class="tab-btn f" onclick="switchTab('f','nhitax')"     id="tab-nhitax">🏥 健保費</button>
+    <button class="tab-btn f" onclick="switchTab('f','overtime')"   id="tab-overtime">⏰ 加班費</button>
   </div>
 </div>
 
@@ -691,6 +736,185 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         </div>
       </div>
       <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+
+  <!-- 信用卡回饋 -->
+  <div class="panel" id="panel-creditcard">
+    <div class="tool-card"><div class="card-head">
+      <h2>信用卡回饋計算機</h2>
+      <p>輸入消費金額與各類別回饋率，計算每月現金回饋、點數或里程，找出最划算的刷卡組合</p>
+    </div><div class="card-body">
+      <div class="fields">
+        <div class="field"><label>餐飲消費（元/月）</label><input type="number" id="cc-food" placeholder="例：5000" inputmode="numeric"></div>
+        <div class="field"><label>餐飲回饋率（%）</label><input type="number" id="cc-food-rate" placeholder="例：5" step="0.1" value="3" inputmode="decimal"></div>
+        <div class="field"><label>網購消費（元/月）</label><input type="number" id="cc-online" placeholder="例：3000" inputmode="numeric"></div>
+        <div class="field"><label>網購回饋率（%）</label><input type="number" id="cc-online-rate" placeholder="例：3" step="0.1" value="2" inputmode="decimal"></div>
+        <div class="field"><label>超市/加油（元/月）</label><input type="number" id="cc-super" placeholder="例：4000" inputmode="numeric"></div>
+        <div class="field"><label>超市/加油回饋率（%）</label><input type="number" id="cc-super-rate" placeholder="例：2" step="0.1" value="1" inputmode="decimal"></div>
+        <div class="field"><label>其他消費（元/月）</label><input type="number" id="cc-other" placeholder="例：2000" inputmode="numeric"></div>
+        <div class="field"><label>其他回饋率（%）</label><input type="number" id="cc-other-rate" placeholder="例：1" step="0.1" value="0.5" inputmode="decimal"></div>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>年費（元/年，0表示免年費）</label><input type="number" id="cc-annual" placeholder="例：0 或 2000" value="0" inputmode="numeric"></div>
+      </div>
+      <button class="calc-btn" onclick="calcCreditCard()">計算回饋</button>
+      <div class="result" id="creditcard-result">
+        <div class="result-top"><div class="result-number" id="cc-monthly-reward">—</div><div class="result-unit">元 / 月（現金回饋）</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">年度總回饋</div><div class="val green" id="cc-yearly">—</div></div>
+          <div class="result-cell"><div class="lbl">扣除年費後</div><div class="val" id="cc-net">—</div></div>
+          <div class="result-cell"><div class="lbl">實際回饋率</div><div class="val" id="cc-eff-rate">—</div></div>
+          <div class="result-cell"><div class="lbl">月總消費</div><div class="val" id="cc-total-spend">—</div></div>
+        </div>
+        <div class="result-note" id="cc-note"></div>
+        <div class="result-disclaimer">僅供參考。實際回饋依各銀行規定、回饋上限與排除項目而異，請以各銀行官網為準。</div>
+      </div>
+      <div class="seo-box">
+        <h3>台灣信用卡回饋怎麼算？</h3>
+        <p>台灣信用卡回饋主要分三種：現金回饋（直接折抵帳單）、點數回饋（累積後兌換商品或現金）、航空里程（兌換機票）。現金回饋最直覺，一般餐飲回饋率 1–5%，網購 1–3%，部分卡別可達 6%。</p>
+        <p>選卡重點：針對主要消費類別選擇最高回饋率的卡，並注意每月回饋上限（如每月最高回饋 500 元）。有年費的卡若回饋超過年費才划算，年費通常 NT$1,500–3,000。</p>
+        <div class="seo-faq">
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：現金回饋和點數哪個比較好？</div><div class="seo-faq-a">A：現金回饋最彈性，直接折抵帳單；點數需要累積兌換，若能高效兌換航空里程，價值可達現金的 2–3 倍。日常消費建議選現金回饋，出行需求多再考慮里程卡。</div></div>
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：信用卡年費值得付嗎？</div><div class="seo-faq-a">A：若年回饋金額 > 年費，就值得。以年費 2,000 元、月消費 5 萬元的 3% 回饋卡為例，年回饋 18,000 元，遠超年費，非常划算。</div></div>
+        </div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- 健保費試算 -->
+  <div class="panel" id="panel-nhitax">
+    <div class="tool-card"><div class="card-head">
+      <h2>健保費試算計算機</h2>
+      <p>依全民健康保險法計算個人每月應繳健保費，含一般保費與補充保費</p>
+    </div><div class="card-body">
+      <div class="fields">
+        <div class="field"><label>投保身分</label>
+          <select id="nhi-type" onchange="toggleNHI()">
+            <option value="employee">受雇者（上班族）</option>
+            <option value="employer">雇主/自營業主</option>
+            <option value="farmer">農漁民/榮民</option>
+            <option value="low">低收入戶</option>
+          </select>
+        </div>
+        <div class="field"><label>月投保金額（元）</label>
+          <select id="nhi-salary">
+            <option value="27470">27,470（基本工資）</option>
+            <option value="28800">28,800</option>
+            <option value="30300">30,300</option>
+            <option value="33300">33,300</option>
+            <option value="36300">36,300</option>
+            <option value="40100">40,100</option>
+            <option value="43900">43,900</option>
+            <option value="45800" selected>45,800</option>
+            <option value="48200">48,200</option>
+            <option value="53000">53,000</option>
+            <option value="57800">57,800</option>
+            <option value="63800">63,800</option>
+            <option value="72800">72,800</option>
+            <option value="87600">87,600</option>
+            <option value="110600">110,600</option>
+            <option value="182000">182,000（上限）</option>
+          </select>
+        </div>
+        <div class="field"><label>眷屬人數</label>
+          <select id="nhi-dep">
+            <option value="0">0 人（本人）</option>
+            <option value="1">1 人</option>
+            <option value="2">2 人</option>
+            <option value="3">3 人以上（上限3口）</option>
+          </select>
+        </div>
+        <div class="field"><label>補充保費來源</label>
+          <select id="nhi-extra-type">
+            <option value="none">無（薪資外無其他收入）</option>
+            <option value="bonus">年終/獎金</option>
+            <option value="stock">股利收入</option>
+            <option value="rent">租金收入</option>
+          </select>
+        </div>
+      </div>
+      <div class="fields one" id="nhi-extra-row" style="display:none">
+        <div class="field"><label>金額（元）</label><input type="number" id="nhi-extra-amount" placeholder="例：50000" inputmode="numeric"></div>
+      </div>
+      <button class="calc-btn" onclick="calcNHI()">試算健保費</button>
+      <div class="result" id="nhitax-result">
+        <div class="result-top"><div class="result-number" id="nhi-monthly">—</div><div class="result-unit">元 / 月</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">一般保費（個人負擔）</div><div class="val" id="nhi-basic">—</div></div>
+          <div class="result-cell"><div class="lbl">雇主負擔</div><div class="val" id="nhi-employer">—</div></div>
+          <div class="result-cell"><div class="lbl">政府補助</div><div class="val" id="nhi-gov">—</div></div>
+          <div class="result-cell"><div class="lbl">補充保費</div><div class="val" id="nhi-supplement">—</div></div>
+        </div>
+        <div class="result-note" id="nhi-note"></div>
+        <div class="result-disclaimer">依 113 年度費率試算（費率 5.17%）。實際金額依健保署公告為準，如有疑問請洽健保署或撥打 0800-030-598。</div>
+      </div>
+      <div class="seo-box">
+        <h3>台灣健保費怎麼計算？</h3>
+        <p>全民健保費率自 113 年 1 月起調整為 5.17%。受雇者一般保費由個人、雇主、政府三方共同負擔：個人負擔 30%（費率 1.551%）、雇主負擔 60%（費率 3.102%）、政府補助 10%（費率 0.517%）。眷屬最多計算 3 口，每增加一口眷屬，個人保費等比增加。</p>
+        <p>補充保費（費率 2.11%）適用於薪資外的額外所得，包含：單次獎金超過投保金額 4 倍的部分、股利、租金、執行業務收入、兼職薪資等。</p>
+        <div class="seo-faq">
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：健保費是從薪水直接扣嗎？</div><div class="seo-faq-a">A：是的，受雇者由雇主代扣個人保費後從薪資中扣除，雇主另外負擔 60% 部分。自行繳費的加保者（如第二類、第三類）則需自行繳納。</div></div>
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：年終獎金要繳補充保費嗎？</div><div class="seo-faq-a">A：是的，若單次獎金超過投保金額 4 倍，超過部分需扣取 2.11% 補充保費。例如投保金額 45,800 元，4 倍為 183,200 元，年終若超過此金額才需繳補充保費。</div></div>
+        </div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    </div></div>
+  </div>
+
+  <!-- 加班費計算機 -->
+  <div class="panel" id="panel-overtime">
+    <div class="tool-card"><div class="card-head">
+      <h2>加班費計算機（台灣勞基法）</h2>
+      <p>依台灣勞動基準法第 24 條計算延長工時加班費，支援平日、假日、國定假日三種情境</p>
+    </div><div class="card-body">
+      <div class="fields">
+        <div class="field"><label>月薪（元）</label><input type="number" id="ot-salary" placeholder="例：40000" inputmode="numeric"></div>
+        <div class="field"><label>每月工作天數</label>
+          <select id="ot-workdays">
+            <option value="21">21 天（一般）</option>
+            <option value="22">22 天</option>
+            <option value="20">20 天</option>
+          </select>
+        </div>
+      </div>
+      <div class="fields">
+        <div class="field"><label>平日加班（前2小時）</label><input type="number" id="ot-weekday-2" placeholder="小時數" value="0" inputmode="decimal"></div>
+        <div class="field"><label>平日加班（第3小時起）</label><input type="number" id="ot-weekday-3" placeholder="小時數" value="0" inputmode="decimal"></div>
+        <div class="field"><label>休息日加班（前8小時）</label><input type="number" id="ot-rest-8" placeholder="小時數" value="0" inputmode="decimal"></div>
+        <div class="field"><label>休息日加班（第9小時起）</label><input type="number" id="ot-rest-9" placeholder="小時數" value="0" inputmode="decimal"></div>
+        <div class="field"><label>國定假日加班（小時）</label><input type="number" id="ot-holiday" placeholder="小時數" value="0" inputmode="decimal"></div>
+        <div class="field"><label>加班類型</label>
+          <select id="ot-type">
+            <option value="pay">給加班費</option>
+            <option value="leave">補休（不計費）</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcOvertime()">計算加班費</button>
+      <div class="result" id="overtime-result">
+        <div class="result-top"><div class="result-number" id="ot-total">—</div><div class="result-unit">元（本月加班費）</div></div>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">時薪基準</div><div class="val" id="ot-hourly">—</div></div>
+          <div class="result-cell"><div class="lbl">平日加班費</div><div class="val" id="ot-weekday-pay">—</div></div>
+          <div class="result-cell"><div class="lbl">休息日加班費</div><div class="val" id="ot-rest-pay">—</div></div>
+          <div class="result-cell"><div class="lbl">國定假日加班費</div><div class="val" id="ot-holiday-pay">—</div></div>
+        </div>
+        <div class="result-note" id="ot-note"></div>
+        <div class="result-disclaimer">依勞動基準法第 24 條計算，僅供參考。實際加班費依雇主規定與勞動契約為準。如有爭議請洽各縣市勞工局或撥打 1955。</div>
+      </div>
+      <div class="seo-box">
+        <h3>台灣加班費怎麼算？勞基法規定一次看懂</h3>
+        <p>依勞動基準法第 24 條，延長工作時間（加班）費率如下：平日加班前 2 小時，每小時給 1.34 倍工資；第 3 小時起給 1.67 倍工資。休息日加班前 8 小時給 1.34 倍，第 9 小時起給 1.67 倍，且不論是否出勤都算 4 小時。國定假日出勤給雙倍工資（2 倍）。</p>
+        <p>時薪計算基準：月薪 ÷ 30 ÷ 8（日薪再除以 8 小時），例如月薪 40,000 元，時薪基準為 40,000 ÷ 30 ÷ 8 = 166.67 元。</p>
+        <div class="seo-faq">
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：加班可以改成補休嗎？</div><div class="seo-faq-a">A：可以，但須勞資雙方協議。補休應在一定期限內使用，期滿未休者雇主應發給加班費。補休時數與加班時數等量換算（1 小時加班 = 1 小時補休）。</div></div>
+          <div class="seo-faq-item"><div class="seo-faq-q">Q：加班費要繳所得稅嗎？</div><div class="seo-faq-a">A：要。加班費屬於薪資所得，併入年度綜合所得申報。但每月加班費在法定限額內（超時工資部分）可享薪資所得特別扣除額保護。</div></div>
+        </div>
+      </div>
+      <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     </div></div>
   </div>
 
@@ -1053,6 +1277,90 @@ function shareResult(toolId, label) {
     document.body.removeChild(ta);
     alert('已複製！可貼到 LINE、Facebook 分享');
   }
+}
+
+
+/* ══ 信用卡回饋 ══ */
+function calcCreditCard(){
+  const food=parseFloat(document.getElementById('cc-food').value)||0;
+  const foodR=parseFloat(document.getElementById('cc-food-rate').value)||0;
+  const online=parseFloat(document.getElementById('cc-online').value)||0;
+  const onlineR=parseFloat(document.getElementById('cc-online-rate').value)||0;
+  const super_=parseFloat(document.getElementById('cc-super').value)||0;
+  const superR=parseFloat(document.getElementById('cc-super-rate').value)||0;
+  const other=parseFloat(document.getElementById('cc-other').value)||0;
+  const otherR=parseFloat(document.getElementById('cc-other-rate').value)||0;
+  const annual=parseFloat(document.getElementById('cc-annual').value)||0;
+  const totalSpend=food+online+super_+other;
+  if(!totalSpend){alert('請至少填入一項消費金額');return;}
+  const monthlyReward=food*foodR/100+online*onlineR/100+super_*superR/100+other*otherR/100;
+  const yearlyReward=monthlyReward*12;
+  const netReward=yearlyReward-annual;
+  const effRate=totalSpend>0?(monthlyReward/totalSpend*100).toFixed(2):0;
+  document.getElementById('cc-monthly-reward').textContent=Math.round(monthlyReward).toLocaleString();
+  document.getElementById('cc-yearly').textContent=Math.round(yearlyReward).toLocaleString()+' 元';
+  document.getElementById('cc-net').textContent=Math.round(netReward).toLocaleString()+' 元';
+  document.getElementById('cc-eff-rate').textContent=effRate+'%';
+  document.getElementById('cc-total-spend').textContent=totalSpend.toLocaleString()+' 元';
+  document.getElementById('cc-note').textContent='月總消費 '+totalSpend.toLocaleString()+' 元，平均回饋率 '+effRate+'%，年回饋 '+Math.round(yearlyReward).toLocaleString()+' 元'+(annual>0?'，扣除年費 '+annual.toLocaleString()+' 元後，實得 '+Math.round(netReward).toLocaleString()+' 元':'，無年費全數入袋')+'。';
+  document.getElementById('creditcard-result').classList.add('show');
+}
+
+/* ══ 健保費 ══ */
+document.getElementById('nhi-extra-type').addEventListener('change',function(){
+  document.getElementById('nhi-extra-row').style.display=this.value==='none'?'none':'grid';
+});
+function toggleNHI(){}
+function calcNHI(){
+  const type=document.getElementById('nhi-type').value;
+  const salary=parseFloat(document.getElementById('nhi-salary').value);
+  const dep=parseInt(document.getElementById('nhi-dep').value);
+  const extraType=document.getElementById('nhi-extra-type').value;
+  const extraAmount=parseFloat(document.getElementById('nhi-extra-amount').value)||0;
+  const rate=0.0517;
+  const depCount=Math.min(dep,3);
+  let personalRatio=0.30,employerRatio=0.60,govRatio=0.10;
+  if(type==='employer'){personalRatio=1.0;employerRatio=0;govRatio=0;}
+  else if(type==='farmer'){personalRatio=0.30;employerRatio=0;govRatio=0.70;}
+  else if(type==='low'){personalRatio=0;employerRatio=0;govRatio=1.0;}
+  const totalPremium=salary*rate*(1+depCount);
+  const personalPay=Math.round(totalPremium*personalRatio);
+  const employerPay=Math.round(totalPremium*employerRatio);
+  const govPay=Math.round(totalPremium*govRatio);
+  let supplement=0;
+  if(extraType!=='none'&&extraAmount>0){supplement=Math.round(extraAmount*0.0211);}
+  const total=personalPay+supplement;
+  document.getElementById('nhi-monthly').textContent=total.toLocaleString();
+  document.getElementById('nhi-basic').textContent=personalPay.toLocaleString()+' 元';
+  document.getElementById('nhi-employer').textContent=employerPay.toLocaleString()+' 元';
+  document.getElementById('nhi-gov').textContent=govPay.toLocaleString()+' 元';
+  document.getElementById('nhi-supplement').textContent=supplement>0?supplement.toLocaleString()+' 元':'無';
+  document.getElementById('nhi-note').textContent='投保金額 '+salary.toLocaleString()+' 元，費率 5.17%，眷屬 '+depCount+' 口。個人每月負擔 '+personalPay.toLocaleString()+' 元'+(supplement>0?'，另有補充保費 '+supplement.toLocaleString()+' 元':'')+'。';
+  document.getElementById('nhitax-result').classList.add('show');
+}
+
+/* ══ 加班費 ══ */
+function calcOvertime(){
+  const salary=parseFloat(document.getElementById('ot-salary').value);
+  const workdays=parseInt(document.getElementById('ot-workdays').value);
+  if(!salary){alert('請輸入月薪');return;}
+  const hourly=salary/workdays/8;
+  const wd2=parseFloat(document.getElementById('ot-weekday-2').value)||0;
+  const wd3=parseFloat(document.getElementById('ot-weekday-3').value)||0;
+  const rest8=parseFloat(document.getElementById('ot-rest-8').value)||0;
+  const rest9=parseFloat(document.getElementById('ot-rest-9').value)||0;
+  const holiday=parseFloat(document.getElementById('ot-holiday').value)||0;
+  const wdPay=Math.round(wd2*hourly*1.34+wd3*hourly*1.67);
+  const restPay=rest8>0||rest9>0?Math.round(Math.max(rest8,4)*hourly*1.34+rest9*hourly*1.67):0;
+  const holPay=Math.round(holiday*hourly*2);
+  const total=wdPay+restPay+holPay;
+  document.getElementById('ot-total').textContent=total.toLocaleString();
+  document.getElementById('ot-hourly').textContent=hourly.toFixed(1)+' 元/時';
+  document.getElementById('ot-weekday-pay').textContent=wdPay.toLocaleString()+' 元';
+  document.getElementById('ot-rest-pay').textContent=restPay.toLocaleString()+' 元';
+  document.getElementById('ot-holiday-pay').textContent=holPay.toLocaleString()+' 元';
+  document.getElementById('ot-note').textContent='時薪基準 '+hourly.toFixed(1)+' 元（月薪 '+salary.toLocaleString()+' ÷ '+workdays+' 天 ÷ 8 小時）。本月加班費合計 '+total.toLocaleString()+' 元。如選擇補休則不計算加班費，由雙方另行協議。';
+  document.getElementById('overtime-result').classList.add('show');
 }
 
 window.addEventListener('load',()=>loadHealthNews());
