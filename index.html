@@ -115,6 +115,17 @@ header{background:var(--text);padding:0 1.5rem;position:sticky;top:0;z-index:300
 .amort-table td{padding:6px 10px;border-bottom:1px solid var(--border-light);text-align:right;color:var(--text)}
 .amort-table td:first-child{text-align:left;color:var(--muted)}
 
+
+/* ── Daily Tips ── */
+.tips-box{background:linear-gradient(135deg,var(--green-light),#F0F9E8);border:1px solid #97C459;border-radius:var(--radius);padding:1.1rem 1.25rem;margin-bottom:1.25rem;display:flex;gap:14px;align-items:flex-start}
+.tips-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.tips-content{}
+.tips-label{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.tips-text{font-size:14px;font-weight:600;color:var(--text);line-height:1.55;margin-bottom:4px}
+.tips-sub{font-size:12px;color:var(--muted);line-height:1.6}
+.tips-box-finance{background:linear-gradient(135deg,var(--navy-light),#EDF2FF);border-color:#7B96D4}
+.tips-label-finance{color:var(--navy)}
+
 /* ── News ── */
 .news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
 .news-title{font-size:16px;font-weight:700}
@@ -152,6 +163,12 @@ header{background:var(--text);padding:0 1.5rem;position:sticky;top:0;z-index:300
 .seo-faq-q{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
 .seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
 
+
+/* ── Share Button ── */
+.share-btn{display:flex;align-items:center;gap:6px;margin-top:10px;padding:8px 14px;font-size:12px;font-weight:600;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;width:fit-content}
+.share-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-light)}
+.share-copied{border-color:var(--green)!important;color:var(--green)!important;background:var(--green-light)!important}
+
 /* ── Footer ── */
 footer{background:var(--text);padding:1.5rem;text-align:center}
 footer p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.8}
@@ -166,6 +183,141 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
   .cat-btn{font-size:13px}
 }
 </style>
+
+<!-- Open Graph -->
+<meta property="og:title" content="CalcBox 台灣工具站 — 免費健康計算 × 財務試算">
+<meta property="og:description" content="BMI、TDEE、飲水量、睡眠建議、房貸試算、勞保退休金、所得稅，8個免費工具加上每日即時新聞。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thecalcbox.github.io/">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CalcBox 台灣工具站 — 免費健康計算 × 財務試算">
+<meta name="twitter:description" content="BMI、TDEE、飲水量、睡眠建議、房貸試算、勞保退休金、所得稅，8個免費工具加上每日即時新聞。">
+
+<!-- Schema: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CalcBox 台灣工具站",
+  "url": "https://thecalcbox.github.io/",
+  "description": "台灣免費生活工具：健康計算（BMI、TDEE、飲水量、睡眠）與財務試算（房貸、勞保退休金、所得稅），每日即時健康與財經新聞。",
+  "inLanguage": "zh-TW",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://thecalcbox.github.io/",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Schema: WebApplication Collection -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "BMI 身體質量指數計算機",
+      "url": "https://thecalcbox.github.io/#bmi",
+      "description": "依台灣衛福部標準計算 BMI，BMI 18.5–24 為健康範圍，並給出理想體重範圍建議。",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "TDEE 每日熱量消耗計算機",
+      "url": "https://thecalcbox.github.io/#tdee",
+      "description": "以 Mifflin-St Jeor 公式計算每日總熱量消耗，附減脂與增肌目標建議。",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "每日建議飲水量計算機",
+      "url": "https://thecalcbox.github.io/#water",
+      "description": "依體重、運動量與台灣氣候計算每天建議飲水量（公升）。",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "睡眠時間建議計算機",
+      "url": "https://thecalcbox.github.io/#sleep",
+      "description": "依年齡與起床時間，以 90 分鐘睡眠週期反推最佳就寢時刻。",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "房貸試算計算機",
+      "url": "https://thecalcbox.github.io/#mortgage",
+      "description": "台灣房貸月付金試算，支援本利均攤與本金均攤，附完整攤還明細表。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "勞保退休金試算",
+      "url": "https://thecalcbox.github.io/#labins",
+      "description": "依勞工保險條例與勞退新制試算退休後每月可領金額，含自提比例計算。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "個人綜合所得稅試算",
+      "url": "https://thecalcbox.github.io/#tax",
+      "description": "依 113 年度台灣所得稅法試算應繳稅額，含標準扣除額、免稅額與薪資扣除額。",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TWD" }
+    }
+  ]
+}
+</script>
+
+<!-- Schema: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "台灣 BMI 正常範圍是多少？",
+      "acceptedAnswer": { "@type": "Answer", "text": "依台灣衛生福利部標準，BMI 18.5–23.9 為健康體重，低於 18.5 為體重過輕，24–26.9 為體重過重，27 以上為肥胖。" }
+    },
+    {
+      "@type": "Question",
+      "name": "TDEE 是什麼意思？",
+      "acceptedAnswer": { "@type": "Answer", "text": "TDEE（Total Daily Energy Expenditure）是每日總熱量消耗，包含基礎代謝率（BMR）加上活動所消耗的熱量。想減重需攝取低於 TDEE 的熱量，想增肌則需高於 TDEE。" }
+    },
+    {
+      "@type": "Question",
+      "name": "成人每天應該喝多少水？",
+      "acceptedAnswer": { "@type": "Answer", "text": "台灣衛福部建議成人每天飲水量約為體重（公斤）× 30–35 毫升。以體重 60 公斤為例，每天應喝約 1,800–2,100 毫升（約 7–8 杯）。" }
+    },
+    {
+      "@type": "Question",
+      "name": "台灣房貸利率大概多少？",
+      "acceptedAnswer": { "@type": "Answer", "text": "台灣目前房貸利率約在 1.8–2.5% 之間，依銀行、貸款金額與個人信用評分而有所不同。建議多比較銀行方案，利率差 0.1% 在 20 年間可省下數萬元利息。" }
+    },
+    {
+      "@type": "Question",
+      "name": "勞退自提有什麼好處？",
+      "acceptedAnswer": { "@type": "Answer", "text": "勞退自提金額不計入當年度薪資所得，可減少綜合所得稅。自提最高 6%，帳戶本金與收益全歸個人，是台灣最划算的節稅兼退休儲蓄工具之一。" }
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 
@@ -215,6 +367,15 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       <div><div class="news-title">每日健康焦點</div><div class="news-meta" id="hnews-date">載入中...</div></div>
       <button class="refresh-btn" onclick="loadHealthNews()" id="hrefresh-btn"><span id="hrefresh-icon">↻</span> 重新整理</button>
     </div>
+
+    <div class="tips-box">
+      <div class="tips-icon">💧</div>
+      <div class="tips-content">
+        <div class="tips-label">今日健康知識</div>
+        <div class="tips-text">早上起床先喝一杯水</div>
+        <div class="tips-sub">睡眠期間身體持續流失水分，起床後喝 250ml 溫水有助於啟動代謝、促進腸胃蠕動。</div>
+      </div>
+    </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div id="hnews-container" style="margin-top:1.25rem"></div>
     <div class="ad-slot" style="margin-top:1rem"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="1002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -232,7 +393,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="field"><label>年齡</label><input type="number" id="bmi-age" placeholder="例：30" inputmode="numeric"></div>
       </div>
       <button class="calc-btn" onclick="calcBMI()">計算 BMI</button>
-      <div class="result" id="bmi-result">
+      <div class="result" id="bmi-result" data-tool="bmi">
         <div class="result-top"><div class="result-number" id="bmi-num">—</div><div class="result-unit">BMI</div></div>
         <span class="tag" id="bmi-tag"></span>
         <div class="result-grid">
@@ -269,7 +430,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       </div>
       <div class="fields one"><div class="field"><label>每週活動量</label><select id="tdee-act"><option value="1.2">久坐 — 辦公室、幾乎不運動</option><option value="1.375">輕度 — 每週運動 1–2 天</option><option value="1.55" selected>中度 — 每週運動 3–5 天</option><option value="1.725">高度 — 每週運動 6–7 天</option><option value="1.9">極高 — 體力勞動或每天訓練</option></select></div></div>
       <button class="calc-btn" onclick="calcTDEE()">計算每日熱量</button>
-      <div class="result" id="tdee-result">
+      <div class="result" id="tdee-result" data-tool="tdee">
         <div class="result-top"><div class="result-number" id="tdee-num">—</div><div class="result-unit">大卡 / 天</div></div>
         <div class="result-grid">
           <div class="result-cell"><div class="lbl">基礎代謝率 BMR</div><div class="val" id="tdee-bmr">—</div></div>
@@ -304,7 +465,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       </div>
       <div class="fields one"><div class="field"><label>天氣 / 環境</label><select id="w-climate"><option value="0">室內冷氣</option><option value="200">一般室外</option><option value="400">炎熱潮濕（台灣夏天）</option></select></div></div>
       <button class="calc-btn" onclick="calcWater()">計算飲水量</button>
-      <div class="result" id="water-result">
+      <div class="result" id="water-result" data-tool="water">
         <div class="result-top"><div class="result-number" id="water-num">—</div><div class="result-unit">公升 / 天</div></div>
         <div class="result-grid">
           <div class="result-cell"><div class="lbl">約幾杯水（250ml）</div><div class="val" id="water-cups">—</div></div>
@@ -367,7 +528,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="field"><label>預計起床時間</label><input type="time" id="s-wake" value="07:00"></div>
       </div>
       <button class="calc-btn" onclick="calcSleep()">計算睡眠建議</button>
-      <div class="result" id="sleep-result">
+      <div class="result" id="sleep-result" data-tool="sleep">
         <div class="result-top"><div class="result-number" id="sleep-num">—</div><div class="result-unit">小時（建議）</div></div>
         <div class="result-grid">
           <div class="result-cell"><div class="lbl">建議就寢時間</div><div class="val" id="sleep-bed">—</div></div>
@@ -401,6 +562,15 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="fnews-date">載入中...</div></div>
       <button class="refresh-btn" onclick="loadFinanceNews()" id="frefresh-btn"><span id="frefresh-icon">↻</span> 重新整理</button>
     </div>
+
+    <div class="tips-box tips-box-finance">
+      <div class="tips-icon">📈</div>
+      <div class="tips-content">
+        <div class="tips-label tips-label-finance">今日財務知識</div>
+        <div class="tips-text">緊急預備金要準備 6 個月支出</div>
+        <div class="tips-sub">理財基礎：在開始投資前，先存好 3–6 個月生活費的緊急備用金，放在活存或貨幣市場基金。</div>
+      </div>
+    </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div id="fnews-container" style="margin-top:1.25rem"></div>
     <div class="ad-slot" style="margin-top:1rem"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="2002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -418,7 +588,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="field"><label>還款方式</label><select id="m-type"><option value="equal_payment" selected>本利均攤（每月固定）</option><option value="equal_principal">本金均攤（遞減式）</option></select></div>
       </div>
       <button class="calc-btn" onclick="calcMortgage()">試算房貸</button>
-      <div class="result" id="mortgage-result">
+      <div class="result" id="mortgage-result" data-tool="mortgage">
         <div class="result-top"><div class="result-number" id="m-monthly">—</div><div class="result-unit">元 / 月（首月）</div></div>
         <span class="tag tag-navy" id="m-tag"></span>
         <div class="result-grid" style="grid-template-columns:1fr 1fr 1fr">
@@ -460,7 +630,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
         <div class="field"><label>預估薪資年增率（%）</label><input type="number" id="l-growth" placeholder="例：2" value="2" inputmode="decimal"></div>
       </div>
       <button class="calc-btn" onclick="calcLabIns()">試算退休金</button>
-      <div class="result" id="labins-result">
+      <div class="result" id="labins-result" data-tool="labins">
         <div class="result-top"><div class="result-number" id="l-monthly">—</div><div class="result-unit">元 / 月（預估）</div></div>
         <span class="tag tag-teal" id="l-tag"></span>
         <div class="result-grid">
@@ -498,7 +668,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none}
       </div>
       <div class="fields one" id="itemized-row" style="display:none"><div class="field"><label>列舉扣除額合計（元）</label><input type="number" id="t-itemized" placeholder="例：200000" inputmode="numeric"></div></div>
       <button class="calc-btn" onclick="calcTax()">試算所得稅</button>
-      <div class="result" id="tax-result">
+      <div class="result" id="tax-result" data-tool="tax">
         <div class="result-top"><div class="result-number" id="t-tax">—</div><div class="result-unit">元（應繳稅額）</div></div>
         <span class="tag tag-amber" id="t-tag"></span>
         <div class="result-grid">
@@ -857,6 +1027,32 @@ function calcTax(){
   document.getElementById('t-eff-rate').textContent=effRate+'%';
   document.getElementById('t-note').textContent=`年收入 ${income.toLocaleString()} 元，各項扣除合計 ${totalDeductions.toLocaleString()} 元，綜合所得淨額 ${netIncome.toLocaleString()} 元，實際稅負率 ${effRate}%。`;
   document.getElementById('tax-result').classList.add('show');
+}
+
+
+/* ══ Share Result ══ */
+function shareResult(toolId, label) {
+  const resultEl = document.querySelector(`[data-tool="${toolId}"]`);
+  if (!resultEl) return;
+  const number = resultEl.querySelector('.result-number')?.textContent || '';
+  const unit = resultEl.querySelector('.result-unit')?.textContent || '';
+  const tag = resultEl.querySelector('.tag')?.textContent || '';
+  const text = `我的${label}：${number} ${unit}${tag ? ' (' + tag + ')' : ''}\n免費計算工具 → https://thecalcbox.github.io`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.target.closest('.share-btn');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ 已複製！';
+      btn.classList.add('share-copied');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('share-copied'); }, 2000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('已複製！可貼到 LINE、Facebook 分享');
+  }
 }
 
 window.addEventListener('load',()=>loadHealthNews());
