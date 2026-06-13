@@ -657,6 +657,19 @@ function switchTab(id){
 }
 
 /* ═══════════ 電源設計工具 ═══════════ */
+// rAF throttle：連續觸發（滑桿拖動）時合併到下一幀只畫一次
+function rafThrottle(fn){
+  let scheduled = false;
+  return function(){
+    if(scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(()=>{ scheduled = false; fn(); });
+  };
+}
+const drawLLC = rafThrottle(drawLLCImpl);
+const drawCurrent = rafThrottle(drawCurrentImpl);
+const calcFaraday = rafThrottle(calcFaradayImpl);
+
 function psuSub(sub){
   document.querySelectorAll('.psu-sub').forEach(b=>b.classList.toggle('active', b.dataset.sub===sub));
   document.querySelectorAll('.psu-block').forEach(b=>b.classList.remove('active'));
@@ -671,15 +684,18 @@ function psuSub(sub){
 // 固定繪圖座標系（700×420 或 700×360），CSS 負責縮放顯示，不依賴 clientWidth
 function setupCanvas(cv){
   const dpr = Math.max(1, window.devicePixelRatio || 1);
-  // 內部繪圖尺寸固定，從 attribute 取得（HTML 已設 width/height）
   const W = parseInt(cv.getAttribute('width')) || 700;
   const H = parseInt(cv.getAttribute('height')) || 420;
-  // 實際像素 = 邏輯尺寸 × dpr（高解析度）
-  cv.width = W * dpr;
-  cv.height = H * dpr;
-  // CSS 顯示尺寸由 .chart-box canvas { width:100%; height:auto } 控制，這裡不設 style
+  const needW = Math.round(W * dpr), needH = Math.round(H * dpr);
   const ctx = cv.getContext('2d');
+  // 只在實際像素尺寸需要改變時才重設（重設 cv.width 會清空畫布且耗效能）
+  if(cv.width !== needW || cv.height !== needH){
+    cv.width = needW;
+    cv.height = needH;
+  }
+  // 每次都重置 transform 並清空（用邏輯座標）
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, W, H);
   return { ctx, W, H };
 }
 
@@ -693,7 +709,7 @@ function llcGain(fn, Ln, Q){
   return den>0 ? num/den : 0;
 }
 
-function drawLLC(){
+function drawLLCImpl(){
   const cv = document.getElementById('llc-chart');
   if(!cv) return;
   const Lr = parseFloat(document.getElementById('p-lr').value)*1e-6;
@@ -712,7 +728,6 @@ function drawLLC(){
   document.getElementById('ro-ln').textContent = Ln.toFixed(2);
 
   const {ctx,W,H} = setupCanvas(cv);
-  ctx.clearRect(0,0,W,H);
   const padL=52, padR=16, padT=20, padB=44;
   const plotW=W-padL-padR, plotH=H-padT-padB;
   const fnMin=0.3, fnMax=2.0, gMin=0, gMax=2.2;
@@ -767,7 +782,7 @@ function drawLLC(){
 }
 
 // 諧振 / 激磁電流波形
-function drawCurrent(){
+function drawCurrentImpl(){
   const cv=document.getElementById('cur-chart');
   if(!cv) return;
   const Vin=parseFloat(document.getElementById('c-vin').value);
@@ -799,7 +814,6 @@ function drawCurrent(){
   document.getElementById('ro-ipri').textContent = Ipri_rms.toFixed(2)+' A';
 
   const {ctx,W,H}=setupCanvas(cv);
-  ctx.clearRect(0,0,W,H);
   const padL=50,padR=16,padT=20,padB=42;
   const plotW=W-padL-padR, plotH=H-padT-padB;
   const Imax=Math.max(Ilr_pk,Ilm_peak)*1.25;
@@ -837,7 +851,7 @@ function drawCurrent(){
 }
 
 // 法拉第匝數
-function calcFaraday(){
+function calcFaradayImpl(){
   const V=parseFloat(document.getElementById('f-v').value);
   const D=parseFloat(document.getElementById('f-d').value);
   const f=parseFloat(document.getElementById('f-freq').value)*1e3;
@@ -856,7 +870,6 @@ function calcFaraday(){
   const cv=document.getElementById('far-chart');
   if(!cv) return;
   const {ctx,W,H}=setupCanvas(cv);
-  ctx.clearRect(0,0,W,H);
   const padL=50,padR=16,padT=20,padB=44;
   const plotW=W-padL-padR,plotH=H-padT-padB;
   const fMin=20e3,fMax=300e3;
