@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>單位換算工具｜坪數、長度、重量、溫度、容量換算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/convert/">
+<meta name="description" content="免費單位換算：坪↔平方公尺、台斤公斤、攝氏華氏、毫升量杯，台灣常用單位一站換算，附每日即時新聞。">
+<meta name="keywords" content="坪數換算,台斤換算,溫度換算,單位換算,平方公尺換坪">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="單位換算工具｜坪數、長度、重量、溫度、容量換算 — CalcBox">
+<meta property="og:description" content="免費單位換算：坪↔平方公尺、台斤公斤、攝氏華氏、毫升量杯，台灣常用單位一站換算，附每日即時新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/convert/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/convert.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="單位換算｜坪數、台斤、溫度、容量換算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/convert.png">
+<meta name="twitter:title" content="單位換算工具｜坪數、長度、重量、溫度、容量換算 — CalcBox">
+<meta name="twitter:description" content="免費單位換算：坪↔平方公尺、台斤公斤、攝氏華氏、毫升量杯，台灣常用單位一站換算，附每日即時新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"坪數換算","url":"https://thecalcbox.github.io/convert/#ping","description":"坪與平方公尺互換，1坪=3.30579平方公尺，附公設比說明。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"長度換算","url":"https://thecalcbox.github.io/convert/#length","description":"公分、公尺、英吋、英尺、台尺互換。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"重量換算","url":"https://thecalcbox.github.io/convert/#weight","description":"公斤、台斤、兩、磅、盎司互換。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"溫度換算","url":"https://thecalcbox.github.io/convert/#temp","description":"攝氏、華氏、克耳文互換。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"容量換算","url":"https://thecalcbox.github.io/convert/#volume","description":"毫升、公升、量杯、加侖互換。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"1坪等於幾平方公尺？","acceptedAnswer":{"@type":"Answer","text":"1坪＝3.30579平方公尺，約等於2帖榻榻米的大小。"}},
+{"@type":"Question","name":"1台斤是幾公克？","acceptedAnswer":{"@type":"Answer","text":"1台斤＝600公克＝16兩，1兩＝37.5公克。1公斤約等於1.67台斤。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#6B4423;--accent-light:#F6EEE3;--accent-mid:#8A5A2B;
+  --sub:#8A5A2B;--sub-light:#F6EEE3;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(138,90,43,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"單位換算工具","item":"https://thecalcbox.github.io/convert/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 單位換算</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping">🏠 坪數換算</button>
+    <button class="tab-btn" onclick="switchTab('length')" id="tab-length">📏 長度</button>
+    <button class="tab-btn" onclick="switchTab('weight')" id="tab-weight">⚖️ 重量</button>
+    <button class="tab-btn" onclick="switchTab('temp')" id="tab-temp">🌡️ 溫度</button>
+    <button class="tab-btn" onclick="switchTab('volume')" id="tab-volume">🧴 容量</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">單位換算工具</h1>
+<p class="page-lead">免費單位換算：坪↔平方公尺、台斤公斤、攝氏華氏、毫升量杯，台灣常用單位一站換算，附每日即時新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日焦點新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9301" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9302" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+
+<!-- 坪數 -->
+<div class="panel" id="panel-ping">
+  <div class="tool-card"><div class="card-head">
+    <h2>坪數換算（坪 ↔ 平方公尺）</h2><p>台灣房屋面積單位互換：1 坪 = 3.30579 平方公尺</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>數值</label><input type="number" id="pg-val" placeholder="例：30" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>單位</label><select id="pg-unit"><option value="ping">坪 → 平方公尺</option><option value="m2">平方公尺 → 坪</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcPing()">換算</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9310" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ping-result">
+      <div class="result-top"><div class="result-number" id="pg-out">—</div><div class="result-unit" id="pg-out-unit">—</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">平方公尺</div><div class="val" id="pg-m2">—</div></div>
+        <div class="result-cell"><div class="lbl">坪</div><div class="val" id="pg-ping">—</div></div>
+        <div class="result-cell"><div class="lbl">平方英尺</div><div class="val" id="pg-sqft">—</div></div>
+        <div class="result-cell"><div class="lbl">日本帖（榻榻米）</div><div class="val" id="pg-jo">—</div></div>
+      </div>
+      <div class="result-note" id="pg-note"></div>
+      <div class="result-disclaimer">1 坪＝3.30579 ㎡＝約 2 帖榻榻米＝35.58 平方英尺。</div>
+    </div>
+    <div class="seo-box">
+      <h3>坪數小知識</h3>
+      <p>「坪」源自日治時期，1 坪＝6 尺 × 6 尺＝3.30579 平方公尺，約兩張榻榻米。權狀坪數含公設，「室內實坪」通常是權狀的 65–75%（公設比 25–35%）。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：30 坪的房子實際多大？</div><div class="seo-faq-a">A：權狀 30 坪 ≈ 99 ㎡，扣 30% 公設後室內約 21 坪（69 ㎡），約為三房兩廳格局。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9303" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 長度 -->
+<div class="panel" id="panel-length">
+  <div class="tool-card"><div class="card-head">
+    <h2>長度換算</h2><p>公制、英制、台制單位互換</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>數值</label><input type="number" id="ln-val" placeholder="例：100" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>原始單位</label>
+        <select id="ln-unit"><option value="cm">公分 cm</option><option value="m" selected>公尺 m</option><option value="km">公里 km</option><option value="inch">英吋 in</option><option value="ft">英尺 ft</option><option value="mile">英里 mile</option><option value="taichi">台尺</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcLen()">換算長度</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9311" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="length-result">
+      <div class="result-grid" id="ln-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="result-note" id="ln-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>常用換算</h3>
+      <p>1 英吋＝2.54 公分、1 英尺＝30.48 公分、1 英里＝1.609 公里、1 台尺＝30.3 公分。買電視的「吋」指螢幕對角線英吋，55 吋約 140 公分。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9304" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 重量 -->
+<div class="panel" id="panel-weight">
+  <div class="tool-card"><div class="card-head">
+    <h2>重量換算</h2><p>公斤、台斤、磅、盎司互換 — 買菜買肉必備</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>數值</label><input type="number" id="wt-val" placeholder="例：1" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>原始單位</label>
+        <select id="wt-unit"><option value="kg" selected>公斤 kg</option><option value="g">公克 g</option><option value="taijin">台斤</option><option value="liang">兩（台兩）</option><option value="lb">磅 lb</option><option value="oz">盎司 oz</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcWt()">換算重量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9312" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="weight-result">
+      <div class="result-grid" id="wt-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="result-note" id="wt-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>台斤怎麼換算？</h3>
+      <p>1 台斤＝600 公克＝16 兩；1 兩＝37.5 公克。傳統市場用台斤、超市用公斤，1 公斤 ≈ 1.67 台斤。健身界常用磅：1 磅＝454 公克。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：市場一斤和超市一公斤哪個多？</div><div class="seo-faq-a">A：1 公斤（1000g）比 1 台斤（600g）多。市場喊價「一斤 50」換算成公斤價是 83 元，比價時要先統一單位。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9305" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 溫度 -->
+<div class="panel" id="panel-temp">
+  <div class="tool-card"><div class="card-head">
+    <h2>溫度換算</h2><p>攝氏、華氏、克耳文互換</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>數值</label><input type="number" id="tp-val" placeholder="例：25" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>原始單位</label><select id="tp-unit"><option value="C" selected>攝氏 °C</option><option value="F">華氏 °F</option><option value="K">克耳文 K</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcTp()">換算溫度</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9313" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="temp-result">
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">攝氏 °C</div><div class="val" id="tp-c">—</div></div>
+        <div class="result-cell"><div class="lbl">華氏 °F</div><div class="val" id="tp-f">—</div></div>
+        <div class="result-cell"><div class="lbl">克耳文 K</div><div class="val" id="tp-k">—</div></div>
+      </div>
+      <div class="result-note" id="tp-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>快速心算法</h3>
+      <p>°F ≈ °C×2＋30（粗估）。常用對照：人體 37°C＝98.6°F、台灣夏天 35°C＝95°F、美國食譜烤箱 350°F＝177°C、水沸點 100°C＝212°F。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9306" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 容量 -->
+<div class="panel" id="panel-volume">
+  <div class="tool-card"><div class="card-head">
+    <h2>容量換算</h2><p>毫升、公升、量杯、加侖互換 — 下廚與海淘必備</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>數值</label><input type="number" id="vl-val" placeholder="例：500" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>原始單位</label>
+        <select id="vl-unit"><option value="ml" selected>毫升 ml</option><option value="l">公升 L</option><option value="cup">量杯（240ml）</option><option value="tbsp">大匙（15ml）</option><option value="tsp">小匙（5ml）</option><option value="floz">液量盎司 fl oz</option><option value="gal">美制加侖 gal</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcVl()">換算容量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9314" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="volume-result">
+      <div class="result-grid" id="vl-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="result-note" id="vl-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>常用容量對照</h3>
+      <p>1 量杯＝240ml＝16 大匙、1 大匙＝15ml＝3 小匙、1 美制加侖＝3.785 公升、1 液量盎司＝29.57ml。日本食譜的 1 杯＝200ml，與台美 240ml 不同。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9307" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：CNS 國家度量衡標準　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/construction/" style="--rc:#6A1B9A;--rs:#F3E5F5">
+      <div class="related-card-body">
+        <div class="related-card-name">建築裝潢</div>
+        <div class="related-card-tags"><span>油漆用量</span><span>磁磚試算</span><span>混凝土配比</span><span>樓梯尺寸</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/bill/" style="--rc:#E65100;--rs:#FFF3E0">
+      <div class="related-card-body">
+        <div class="related-card-name">生活費用</div>
+        <div class="related-card-tags"><span>電費試算</span><span>油耗計算</span><span>停車費</span><span>分帳</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/logistics/" style="--rc:#4E342E;--rs:#EFEBE9">
+      <div class="related-card-body">
+        <div class="related-card-name">物流運費</div>
+        <div class="related-card-tags"><span>材積重</span><span>CBM換算</span><span>台灣運費</span><span>貨櫃裝載</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 單位換算 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/date/">日期時間</a> · <a href="/loan/">貸款試算</a> · <a href="/health/">健康計算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcPing(){
+  const v=parseFloat(document.getElementById('pg-val').value);
+  if(!v){alert('請輸入數值');return;}
+  const isPing=document.getElementById('pg-unit').value==='ping';
+  const m2=isPing?v*3.30579:v;
+  const ping=m2/3.30579;
+  document.getElementById('pg-out').textContent=isPing?m2.toFixed(2):ping.toFixed(2);
+  document.getElementById('pg-out-unit').textContent=isPing?'平方公尺':'坪';
+  document.getElementById('pg-m2').textContent=m2.toFixed(2)+' ㎡';
+  document.getElementById('pg-ping').textContent=ping.toFixed(2)+' 坪';
+  document.getElementById('pg-sqft').textContent=(m2*10.7639).toFixed(1)+' ft²';
+  document.getElementById('pg-jo').textContent=(ping*2).toFixed(1)+' 帖';
+  document.getElementById('pg-note').textContent=`${v} ${isPing?'坪':'㎡'} ＝ ${isPing?m2.toFixed(2)+' 平方公尺':ping.toFixed(2)+' 坪'}。若為權狀坪數，扣30%公設後室內約 ${(ping*0.7).toFixed(1)} 坪。`;
+  document.getElementById('ping-result').classList.add('show');
+}
+function calcLen(){
+  const v=parseFloat(document.getElementById('ln-val').value);
+  if(!v){alert('請輸入數值');return;}
+  const toM={cm:0.01,m:1,km:1000,inch:0.0254,ft:0.3048,mile:1609.34,taichi:0.303};
+  const u=document.getElementById('ln-unit').value;
+  const m=v*toM[u];
+  const out=[['公分',m*100,'cm'],['公尺',m,'m'],['公里',m/1000,'km'],['英吋',m/0.0254,'in'],['英尺',m/0.3048,'ft'],['台尺',m/0.303,'台尺']];
+  document.getElementById('ln-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${val<0.01?val.toExponential(2):val>=10000?val.toLocaleString(undefined,{maximumFractionDigits:0}):parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
+  document.getElementById('ln-note').textContent=`已將 ${v} ${u} 換算為各常用長度單位。`;
+  document.getElementById('length-result').classList.add('show');
+}
+function calcWt(){
+  const v=parseFloat(document.getElementById('wt-val').value);
+  if(!v){alert('請輸入數值');return;}
+  const toG={kg:1000,g:1,taijin:600,liang:37.5,lb:453.592,oz:28.3495};
+  const u=document.getElementById('wt-unit').value;
+  const g=v*toG[u];
+  const out=[['公克',g,'g'],['公斤',g/1000,'kg'],['台斤',g/600,'台斤'],['兩',g/37.5,'兩'],['磅',g/453.592,'lb'],['盎司',g/28.3495,'oz']];
+  document.getElementById('wt-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
+  document.getElementById('wt-note').textContent=`已將 ${v} ${u} 換算為各常用重量單位。市場買菜記住：1 台斤＝600 公克＝16 兩。`;
+  document.getElementById('weight-result').classList.add('show');
+}
+function calcTp(){
+  const v=parseFloat(document.getElementById('tp-val').value);
+  if(isNaN(v)){alert('請輸入數值');return;}
+  const u=document.getElementById('tp-unit').value;
+  let c;
+  if(u==='C')c=v;else if(u==='F')c=(v-32)*5/9;else c=v-273.15;
+  document.getElementById('tp-c').textContent=c.toFixed(1)+'°C';
+  document.getElementById('tp-f').textContent=(c*9/5+32).toFixed(1)+'°F';
+  document.getElementById('tp-k').textContent=(c+273.15).toFixed(1)+' K';
+  let desc='';
+  if(c>=100)desc='水已沸騰';else if(c>=37.5)desc='發燒等級';else if(c>=30)desc='炎熱天氣';else if(c>=20)desc='舒適室溫';else if(c>=10)desc='涼爽';else if(c>0)desc='寒冷';else desc='冰點以下';
+  document.getElementById('tp-note').textContent=`${v}°${u} ＝ ${c.toFixed(1)}°C（${desc}）。心算：°F ≈ °C×2＋30。`;
+  document.getElementById('temp-result').classList.add('show');
+}
+function calcVl(){
+  const v=parseFloat(document.getElementById('vl-val').value);
+  if(!v){alert('請輸入數值');return;}
+  const toMl={ml:1,l:1000,cup:240,tbsp:15,tsp:5,floz:29.5735,gal:3785.41};
+  const u=document.getElementById('vl-unit').value;
+  const ml=v*toMl[u];
+  const out=[['毫升',ml,'ml'],['公升',ml/1000,'L'],['量杯',ml/240,'杯'],['大匙',ml/15,'匙'],['液量盎司',ml/29.5735,'fl oz'],['美制加侖',ml/3785.41,'gal']];
+  document.getElementById('vl-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
+  document.getElementById('vl-note').textContent=`已將 ${v} ${u} 換算為各常用容量單位。注意日本食譜 1 杯＝200ml。`;
+  document.getElementById('volume-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

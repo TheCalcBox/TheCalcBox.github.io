@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>2026行事曆｜連假計算、農曆換算、上班天數 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/calendar/">
+<meta name="description" content="2026年台灣行事曆：國定假日、補班日、連假計算、農曆換算、上班天數計算，台灣年度最熱搜工具。">
+<meta name="keywords" content="2026行事曆,2026連假,補班日,農曆換算,上班天數計算">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="2026行事曆｜連假計算、農曆換算、上班天數 — CalcBox">
+<meta property="og:description" content="2026年台灣行事曆：國定假日、補班日、連假計算、農曆換算、上班天數計算，台灣年度最熱搜工具。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/calendar/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/calendar.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="行事曆工具｜2026連假、農曆換算、上班天數">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/calendar.png">
+<meta name="twitter:title" content="2026行事曆｜連假計算、農曆換算、上班天數 — CalcBox">
+<meta name="twitter:description" content="2026年台灣行事曆：國定假日、補班日、連假計算、農曆換算、上班天數計算，台灣年度最熱搜工具。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"2026行事曆","url":"https://thecalcbox.github.io/calendar/#cal2026","description":"2026年台灣國定假日與補班日行事曆。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"連假天數計算","url":"https://thecalcbox.github.io/calendar/#holiday","description":"搭配請假日數計算2026年最長連假。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"農曆換算","url":"https://thecalcbox.github.io/calendar/#lunar","description":"國曆轉農曆換算，含干支年、節氣。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"年度上班天數計算","url":"https://thecalcbox.github.io/calendar/#workcount","description":"計算2026年指定期間實際上班天數。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"2026年補班日有哪幾天？","acceptedAnswer":{"@type":"Answer","text":"2026年補班日為2月7日（週六）與10月3日（週六），共2天。"}},
+{"@type":"Question","name":"2026年春節幾號放假？","acceptedAnswer":{"@type":"Answer","text":"2026年春節連假從1月26日（除夕）至2月3日，共9天。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#2D6CB5;--accent-light:#EAF1F9;--accent-mid:#3A7FCC;
+  --sub:#2D6CB5;--sub-light:#EAF1F9;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(45,108,181,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"2026行事曆工具","item":"https://thecalcbox.github.io/calendar/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 行事曆工具</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+    <button class="tab-btn" onclick="switchTab('cal2026')" id="tab-cal2026">🗓️ 2026行事曆</button>
+    <button class="tab-btn" onclick="switchTab('holiday')" id="tab-holiday">🎌 連假查詢</button>
+    <button class="tab-btn" onclick="switchTab('lunar')" id="tab-lunar">🌙 農曆換算</button>
+    <button class="tab-btn" onclick="switchTab('workcount')" id="tab-workcount">💼 上班天計算</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">2026行事曆工具</h1>
+<p class="page-lead">2026年台灣行事曆：國定假日、補班日、連假計算、農曆換算、上班天數計算，台灣年度最熱搜工具。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日焦點新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9501" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9502" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+
+<!-- 2026 行事曆 -->
+<div class="panel" id="panel-cal2026">
+  <div class="tool-card"><div class="card-head">
+    <h2>2026 年行事曆</h2>
+    <p>2026 年台灣國定假日、補班日一覽，點擊月份快速跳轉</p>
+  </div><div class="card-body">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem" id="month-nav"></div>
+    <div id="cal-body"></div>
+    <div class="seo-box" style="margin-top:1rem">
+      <h3>2026 年連假總整理</h3>
+      <p>2026 年主要連假：春節（1/26 起 9 天連假）、228 連假（2/26–3/2）、清明連假（4/3–6）、端午（6/19–21）、中秋（9/24–27）、國慶（10/8–11）、元旦連假（12/31–2027/1/3）。</p>
+      <div class="seo-faq-q">Q：2026 補班日有哪幾天？</div>
+      <div class="seo-faq-a">A：2026 補班日：2/7（週六補班）、10/3（週六補班）。補班日上班/上課，勞工若未出勤雇主須補給休假。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9503" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 連假查詢 -->
+<div class="panel" id="panel-holiday">
+  <div class="tool-card"><div class="card-head">
+    <h2>連假天數計算</h2>
+    <p>輸入請假日數，算出搭配國定假日後的最長連假</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>請假日數（天）</label>
+        <select id="hd-leave"><option value="0">不請假</option><option value="1">1天</option><option value="2">2天</option><option value="3">3天</option><option value="4">4天</option><option value="5">5天</option></select></div>
+      <div class="field"><label>請假月份</label>
+        <select id="hd-month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcHoliday()">查詢連假</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9510" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="holiday-result">
+      <div class="result-top"><div class="result-number" id="hd-days">—</div><div class="result-unit">天連假</div></div>
+      <span class="tag" id="hd-tag"></span>
+      <div id="hd-list" style="margin-top:.75rem"></div>
+      <div class="result-note" id="hd-note"></div>
+    </div>
+    <div class="seo-box" style="margin-top:1rem">
+      <h3>2026 年連假規劃建議</h3>
+      <p>搭配假期最有效率的請假時機：春節前後（1月底）、清明前後（3月底–4月初）、端午（6月中）、中秋國慶（9–10月）。請假2天可變7天連假的機會最多在這些時間點。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9504" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 農曆換算 -->
+<div class="panel" id="panel-lunar">
+  <div class="tool-card"><div class="card-head">
+    <h2>農曆 ↔ 國曆換算</h2>
+    <p>查詢今天農曆日期，或輸入農曆日期換算對應國曆</p>
+  </div><div class="card-body">
+    <div id="today-lunar" style="background:var(--accent-light);border-radius:var(--radius-sm);padding:1rem;margin-bottom:1rem;text-align:center">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px">今天農曆</div>
+      <div style="font-size:22px;font-weight:800;color:var(--accent-mid)" id="lunar-today">計算中...</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px" id="lunar-gz"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>國曆日期 → 農曆</label><input type="date" id="ln-solar" value="2026-01-01"></div>
+    </div>
+    <button class="calc-btn" onclick="calcLunar()">換算農曆</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9511" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="lunar-result">
+      <div class="result-top"><div class="result-number" id="ln-out" style="font-size:26px">—</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">農曆月日</div><div class="val" id="ln-date">—</div></div>
+        <div class="result-cell"><div class="lbl">干支年</div><div class="val" id="ln-gz">—</div></div>
+        <div class="result-cell"><div class="lbl">節氣</div><div class="val" id="ln-term">—</div></div>
+      </div>
+      <div class="result-note" id="ln-note"></div>
+      <div class="result-disclaimer">農曆採簡化演算法，精確日期以中央氣象署或萬年曆為準。</div>
+    </div>
+    <div class="seo-box" style="margin-top:1rem">
+      <h3>農曆是什麼？</h3>
+      <p>農曆（舊曆）是以月相為基礎的曆法，約每 2–3 年加閏月使曆法與季節同步。重要節日如春節、端午、中秋均依農曆計算。2026 年農曆為丙午年（馬年）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9505" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 上班天計算 -->
+<div class="panel" id="panel-workcount">
+  <div class="tool-card"><div class="card-head">
+    <h2>年度上班天數計算</h2>
+    <p>計算 2026 年指定期間的實際上班天數（含補班日，排除國定假日與週末）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>開始日期</label><input type="date" id="wc-start" value="2026-01-01"></div>
+      <div class="field"><label>結束日期</label><input type="date" id="wc-end" value="2026-12-31"></div>
+    </div>
+    <button class="calc-btn" onclick="calcWorkCount()">計算上班天數</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9512" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="workcount-result">
+      <div class="result-top"><div class="result-number" id="wc-days">—</div><div class="result-unit">天（實際上班日）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">日曆天數</div><div class="val" id="wc-cal">—</div></div>
+        <div class="result-cell"><div class="lbl">週末天數</div><div class="val red" id="wc-wknd">—</div></div>
+        <div class="result-cell"><div class="lbl">國定假日</div><div class="val red" id="wc-hol">—</div></div>
+        <div class="result-cell"><div class="lbl">補班日（加回）</div><div class="val green" id="wc-comp">—</div></div>
+      </div>
+      <div class="result-note" id="wc-note"></div>
+      <div class="result-disclaimer">依行政院人事行政總處 2026 年行事曆計算。</div>
+    </div>
+    <div class="seo-box" style="margin-top:1rem">
+      <h3>2026 年上班天數</h3>
+      <p>2026 年全年上班天數約 251 天（依人事行政總處公告，含 2 個補班日）。勞工依勞基法每週正常工時 40 小時，每月平均約 21 個工作天。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9506" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：行政院人事行政總處 2026 年辦公日曆表　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/date/" style="--rc:#3E8E9C;--rs:#E7F3F5">
+      <div class="related-card-body">
+        <div class="related-card-name">日期時間</div>
+        <div class="related-card-tags"><span>年齡計算</span><span>工作天</span><span>相隔天數</span><span>倒數日</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">稅務薪資</div>
+        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/fx/" style="--rc:#1B6B4A;--rs:#E4F4EE">
+      <div class="related-card-body">
+        <div class="related-card-name">即時匯率</div>
+        <div class="related-card-tags"><span>台幣換日幣</span><span>台幣換美金</span><span>港幣</span><span>走勢圖</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 行事曆工具 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/date/">日期時間</a> · <a href="/tax/">稅務薪資</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+// ── 2026 行事曆資料 ──
+const HOLIDAYS_2026 = {
+  '2026-01-01':'元旦',
+  '2026-01-26':'農曆除夕',
+  '2026-01-27':'春節初一',
+  '2026-01-28':'春節初二',
+  '2026-01-29':'春節初三',
+  '2026-01-30':'彈性放假',
+  '2026-02-03':'彈性放假',
+  '2026-02-07':'補班',
+  '2026-02-26':'228紀念日',
+  '2026-02-27':'彈性放假',
+  '2026-03-02':'彈性放假',
+  '2026-04-03':'兒童節',
+  '2026-04-04':'清明節',
+  '2026-04-05':'彈性放假',
+  '2026-04-06':'彈性放假',
+  '2026-05-01':'勞動節',
+  '2026-06-19':'端午節',
+  '2026-06-20':'彈性放假',
+  '2026-06-21':'彈性放假',
+  '2026-09-24':'中秋節',
+  '2026-09-25':'彈性放假',
+  '2026-09-27':'彈性放假',
+  '2026-10-03':'補班',
+  '2026-10-09':'國慶日',
+  '2026-10-10':'彈性放假',
+  '2026-10-11':'彈性放假',
+  '2026-12-31':'彈性放假',
+  '2027-01-01':'元旦',
+  '2027-01-02':'彈性放假',
+  '2027-01-03':'彈性放假',
+};
+const MAKEUP = ['2026-02-07','2026-10-03'];
+const MONTH_NAMES = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+
+function renderCalendar(){
+  const nav = document.getElementById('month-nav');
+  const body = document.getElementById('cal-body');
+  nav.innerHTML = MONTH_NAMES.map((m,i) =>
+    `<button onclick="scrollToMonth(${i+1})" style="font-size:12px;padding:5px 12px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;font-family:inherit;font-weight:600;color:var(--muted)">${m}</button>`
+  ).join('');
+  let html = '';
+  for(let mo = 1; mo <= 12; mo++){
+    html += `<div id="month-${mo}" style="margin-bottom:1.5rem">
+      <div style="font-size:15px;font-weight:800;margin-bottom:8px;color:var(--accent-mid)">${2026}年 ${MONTH_NAMES[mo-1]}</div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center">
+        ${['日','一','二','三','四','五','六'].map(d=>`<div style="font-size:10px;font-weight:700;color:var(--hint);padding:4px 0">${d}</div>`).join('')}`;
+    const firstDay = new Date(2026, mo-1, 1).getDay();
+    const daysInMonth = new Date(2026, mo, 0).getDate();
+    for(let i=0;i<firstDay;i++) html += '<div></div>';
+    for(let d=1;d<=daysInMonth;d++){
+      const dateStr = `2026-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isSun = (firstDay+d-1)%7===0, isSat = (firstDay+d-1)%7===6;
+      const isHol = HOLIDAYS_2026[dateStr] && HOLIDAYS_2026[dateStr]!=='補班';
+      const isMakeup = MAKEUP.includes(dateStr);
+      const today = new Date().toISOString().split('T')[0]===dateStr;
+      let bg='', color='var(--text)', title='';
+      if(today){bg='var(--accent-mid)';color='#fff';}
+      else if(isMakeup){bg='#FDF3DD';color='#C58A12';}
+      else if(isHol){bg='#FFEBEE';color='#C62828';}
+      else if(isSun){color='#C62828';}
+      else if(isSat){color='#1565C0';}
+      if(HOLIDAYS_2026[dateStr]) title = HOLIDAYS_2026[dateStr];
+      html += `<div title="${title}" style="padding:5px 2px;border-radius:6px;font-size:13px;font-weight:${today||isHol||isMakeup?700:400};background:${bg};color:${color};cursor:${title?'help':'default'};position:relative">
+        ${d}${title?`<div style="font-size:8px;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;color:${color};opacity:.8">${title}</div>`:''}
+      </div>`;
+    }
+    html += '</div></div>';
+  }
+  body.innerHTML = html;
+}
+function scrollToMonth(m){ document.getElementById('month-'+m)?.scrollIntoView({behavior:'smooth',block:'start'}); }
+
+// ── 連假查詢 ──
+const LONG_HOLIDAYS_2026 = [
+  {name:'元旦連假',start:'2025-12-31',end:'2026-01-02',days:3},
+  {name:'春節連假',start:'2026-01-26',end:'2026-02-03',days:9},
+  {name:'228連假',start:'2026-02-26',end:'2026-03-02',days:5},
+  {name:'兒童節清明連假',start:'2026-04-03',end:'2026-04-06',days:4},
+  {name:'勞動節',start:'2026-05-01',end:'2026-05-01',days:1},
+  {name:'端午連假',start:'2026-06-19',end:'2026-06-21',days:3},
+  {name:'中秋連假',start:'2026-09-24',end:'2026-09-27',days:4},
+  {name:'國慶連假',start:'2026-10-09',end:'2026-10-11',days:3},
+  {name:'元旦連假（跨年）',start:'2026-12-31',end:'2027-01-03',days:4},
+];
+function calcHoliday(){
+  const leave = parseInt(document.getElementById('hd-leave').value);
+  const month = parseInt(document.getElementById('hd-month').value);
+  const relevant = LONG_HOLIDAYS_2026.filter(h => new Date(h.start).getMonth()+1 === month || (leave>0&&Math.abs(new Date(h.start).getMonth()+1-month)<=1));
+  let best = {name:'本月無特別連假',days:leave+2,tip:'搭配週末可有 '+(leave+2)+' 天假期'};
+  for(const h of relevant){
+    const total = h.days + leave;
+    if(total > best.days) best = {name:h.name,days:total,tip:`${h.name}（${h.days}天）＋請假${leave}天＝共${total}天`};
+  }
+  document.getElementById('hd-days').textContent = best.days;
+  document.getElementById('hd-tag').textContent = best.name;
+  document.getElementById('hd-note').textContent = best.tip;
+  document.getElementById('hd-list').innerHTML = relevant.map(h=>
+    `<div style="padding:8px 12px;background:var(--gray-50);border-radius:6px;margin-bottom:6px;font-size:13px"><strong>${h.name}</strong>：${h.start.slice(5)} – ${h.end.slice(5)}（${h.days}天）</div>`
+  ).join('') || '<div style="font-size:13px;color:var(--muted)">本月無國定連假</div>';
+  document.getElementById('holiday-result').classList.add('show');
+}
+
+// ── 農曆換算（簡化演算法） ──
+const LUNAR_INFO = [
+  [2026,0x04AE53,1,0x0],
+  [2027,0x0A5748,0,0x0],
+];
+const LUNAR_MONTHS = ['正','二','三','四','五','六','七','八','九','十','十一','十二'];
+const LUNAR_DAYS_NAME = ['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+const GAN = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const ZHI = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const ZHI_ANIMAL = ['鼠','牛','虎','兔','龍','蛇','馬','羊','猴','雞','狗','豬'];
+const SOLAR_TERMS = ['小寒','大寒','立春','雨水','驚蟄','春分','清明','穀雨','立夏','小滿','芒種','夏至','小暑','大暑','立秋','處暑','白露','秋分','寒露','霜降','立冬','小雪','大雪','冬至'];
+// 簡化節氣查詢
+function getSolarTerm(month, day){
+  const terms = {
+    1:[[6,'小寒'],[20,'大寒']],2:[[4,'立春'],[19,'雨水']],
+    3:[[6,'驚蟄'],[21,'春分']],4:[[5,'清明'],[20,'穀雨']],
+    5:[[6,'立夏'],[21,'小滿']],6:[[6,'芒種'],[21,'夏至']],
+    7:[[7,'小暑'],[23,'大暑']],8:[[7,'立秋'],[23,'處暑']],
+    9:[[8,'白露'],[23,'秋分']],10:[[8,'寒露'],[23,'霜降']],
+    11:[[7,'立冬'],[22,'小雪']],12:[[7,'大雪'],[22,'冬至']]
+  };
+  const t = terms[month];
+  for(const [d,name] of t){ if(day===d) return name; }
+  return '';
+}
+// 簡化農曆轉換（2026年重點月份）
+const SOLAR_TO_LUNAR_2026 = {};
+// 2026春節=1/27，1/27=農曆正月初一
+function buildLunarMap(){
+  // 2026 農曆月份起始國曆日期（簡化）
+  const months2026 = [
+    [2026,1,27],[2026,2,25],[2026,3,27],[2026,4,25],[2026,5,25],
+    [2026,6,23],[2026,7,23],[2026,8,21],[2026,9,20],[2026,10,19],
+    [2026,11,18],[2026,12,17],
+  ];
+  months2026.forEach(([y,m,d],idx)=>{
+    for(let day=0;day<30;day++){
+      const dt = new Date(y,m-1,d+day);
+      const key = dt.toISOString().split('T')[0];
+      SOLAR_TO_LUNAR_2026[key] = {month:idx+1, day:day+1};
+    }
+  });
+}
+buildLunarMap();
+function getLunar(dateStr){
+  if(SOLAR_TO_LUNAR_2026[dateStr]) return SOLAR_TO_LUNAR_2026[dateStr];
+  const d = new Date(dateStr);
+  const year = d.getFullYear();
+  const approxMonth = Math.max(1,Math.min(12,d.getMonth()-0));
+  return {month:approxMonth, day:1, approx:true};
+}
+function calcLunar(){
+  const v = document.getElementById('ln-solar').value;
+  if(!v){alert('請選擇日期');return;}
+  const info = getLunar(v);
+  const d = new Date(v);
+  const year = d.getFullYear();
+  const ganIdx = (year-4)%10, zhiIdx = (year-4)%12;
+  const gz = GAN[ganIdx]+ZHI[zhiIdx]+'年（'+ZHI_ANIMAL[zhiIdx]+'年）';
+  const lunarStr = `農曆 ${LUNAR_MONTHS[info.month-1]}月${LUNAR_DAYS_NAME[info.day-1]}`;
+  const term = getSolarTerm(d.getMonth()+1, d.getDate());
+  document.getElementById('ln-out').textContent = lunarStr;
+  document.getElementById('ln-date').textContent = `${LUNAR_MONTHS[info.month-1]}月${LUNAR_DAYS_NAME[info.day-1]}`;
+  document.getElementById('ln-gz').textContent = gz;
+  document.getElementById('ln-term').textContent = term || '無';
+  document.getElementById('ln-note').textContent = `國曆 ${v} 對應${lunarStr}，${gz}${term?'，是'+term+'節氣':''}。${info.approx?'（近似值，精確日期請查萬年曆）':''}`;
+  document.getElementById('lunar-result').classList.add('show');
+}
+function showTodayLunar(){
+  const today = new Date().toISOString().split('T')[0];
+  const info = getLunar(today);
+  const d = new Date();
+  const year = d.getFullYear();
+  const ganIdx=(year-4)%10, zhiIdx=(year-4)%12;
+  const gz = GAN[ganIdx]+ZHI[zhiIdx]+'年 '+ZHI_ANIMAL[zhiIdx]+'年';
+  document.getElementById('lunar-today').textContent =
+    `農曆 ${LUNAR_MONTHS[info.month-1]}月${LUNAR_DAYS_NAME[info.day-1]}`;
+  document.getElementById('lunar-gz').textContent = gz;
+}
+
+// ── 上班天計算 ──
+const HOLIDAY_DATES_SET = new Set(Object.keys(HOLIDAYS_2026).filter(d=>HOLIDAYS_2026[d]!=='補班'));
+const MAKEUP_SET = new Set(MAKEUP);
+function calcWorkCount(){
+  const s = document.getElementById('wc-start').value;
+  const e = document.getElementById('wc-end').value;
+  if(!s||!e){alert('請選擇日期');return;}
+  const start = new Date(s), end = new Date(e);
+  if(start>end){alert('開始日期需早於結束');return;}
+  let work=0,wknd=0,hol=0,comp=0,cal=0;
+  for(let d=new Date(start);d<=end;d.setDate(d.getDate()+1)){
+    cal++;
+    const ds = d.toISOString().split('T')[0];
+    const dow = d.getDay();
+    if(MAKEUP_SET.has(ds)){work++;comp++;}
+    else if(dow===0||dow===6){wknd++;}
+    else if(HOLIDAY_DATES_SET.has(ds)){hol++;}
+    else work++;
+  }
+  document.getElementById('wc-days').textContent=work;
+  document.getElementById('wc-cal').textContent=cal+' 天';
+  document.getElementById('wc-wknd').textContent=wknd+' 天';
+  document.getElementById('wc-hol').textContent=hol+' 天';
+  document.getElementById('wc-comp').textContent=comp+' 天';
+  document.getElementById('wc-note').textContent=`${s} 至 ${e}，日曆天 ${cal} 天中，實際上班 ${work} 天（含補班 ${comp} 天）、週末 ${wknd} 天、國定假日 ${hol} 天。`;
+  document.getElementById('workcount-result').classList.add('show');
+}
+
+renderCalendar();
+showTodayLunar();
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

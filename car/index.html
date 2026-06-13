@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>汽機車計算機｜牌照稅、燃料稅、強制險、過戶費用、折舊試算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/car/">
+<meta name="description" content="免費汽機車計算工具：2026牌照稅查詢、燃料費試算、強制險保費估算、二手車過戶費用、汽車折舊殘值計算。">
+<meta name="keywords" content="牌照稅試算,燃料費計算,強制險保費,汽車過戶費用,汽車折舊,養車費用">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="汽機車計算機｜牌照稅、燃料稅、強制險、過戶費用、折舊試算 — CalcBox">
+<meta property="og:description" content="免費汽機車計算工具：2026牌照稅查詢、燃料費試算、強制險保費估算、二手車過戶費用、汽車折舊殘值計算。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/car/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/car.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="汽機車｜牌照稅、燃料稅、強制險試算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/car.png">
+<meta name="twitter:title" content="汽機車計算機｜牌照稅、燃料稅、強制險、過戶費用、折舊試算 — CalcBox">
+<meta name="twitter:description" content="免費汽機車計算工具：2026牌照稅查詢、燃料費試算、強制險保費估算、二手車過戶費用、汽車折舊殘值計算。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"汽車牌照稅試算","url":"https://thecalcbox.github.io/car/#tax","description":"2026年汽車牌照稅依排氣量查詢。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"燃料費試算","url":"https://thecalcbox.github.io/car/#fuel_tax","description":"依排氣量查詢年度燃料費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"強制險保費估算","url":"https://thecalcbox.github.io/car/#insurance","description":"依車種估算強制汽車責任險保費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"汽車過戶費用試算","url":"https://thecalcbox.github.io/car/#transfer","description":"估算二手車過戶監理規費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"汽車折舊試算","url":"https://thecalcbox.github.io/car/#depreciation","description":"估算愛車市場殘值與每月折舊成本。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"2026年牌照稅1800cc要繳多少？","acceptedAnswer":{"@type":"Answer","text":"1201–1800cc自用小客車牌照稅為7,120元，每年4月1日至30日繳納。電動車免徵。"}},
+{"@type":"Question","name":"汽車過戶費用需要多少？","acceptedAnswer":{"@type":"Answer","text":"自用小客車過戶基本規費約400元登記費+450元驗車費，需換牌另加1,200元，合計約850–2,050元，委託代辦另計1,000–3,000元。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#1565C0;--accent-light:#E3F2FD;--accent-mid:#1976D2;
+  --sub:#1976D2;--sub-light:#E3F2FD;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(25,118,210,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"汽機車計算機","item":"https://thecalcbox.github.io/car/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 汽機車</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('tax')" id="tab-tax">🚗 牌照稅</button>
+    <button class="tab-btn" onclick="switchTab('fuel_tax')" id="tab-fuel_tax">⛽ 燃料稅</button>
+    <button class="tab-btn" onclick="switchTab('insurance')" id="tab-insurance">🛡️ 強制險</button>
+    <button class="tab-btn" onclick="switchTab('transfer')" id="tab-transfer">📋 過戶費用</button>
+    <button class="tab-btn" onclick="switchTab('depreciation')" id="tab-depreciation">📉 折舊試算</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">汽機車計算機</h1>
+<p class="page-lead">免費汽機車計算工具：2026牌照稅查詢、燃料費試算、強制險保費估算、二手車過戶費用、汽車折舊殘值計算。</p>
+
+
+<!-- 牌照稅 -->
+<div class="panel active" id="panel-tax">
+  <div class="tool-card"><div class="card-head">
+    <h2>汽車牌照稅試算</h2>
+    <p>依排氣量查詢 2026 年牌照稅金額（每年 4 月繳納）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>車輛類別</label>
+        <select id="lt-type" onchange="toggleCarType()"><option value="car" selected>自用小客車</option><option value="pickup">自用小貨車</option><option value="moto">重型機車</option><option value="ev">電動車（免徵）</option></select></div>
+      <div class="field"><label>排氣量（cc）</label>
+        <select id="lt-cc" style="display:block">
+          <option value="600">600cc 以下</option>
+          <option value="1200">601–1200cc</option>
+          <option value="1800" selected>1201–1800cc</option>
+          <option value="2400">1801–2400cc</option>
+          <option value="3000">2401–3000cc</option>
+          <option value="3600">3001–3600cc</option>
+          <option value="4200">3601–4200cc</option>
+          <option value="4800">4201–4800cc</option>
+          <option value="5400">4801–5400cc</option>
+          <option value="9999">5401cc 以上</option>
+        </select></div>
+    </div>
+    <div class="fields" id="lt-period-row">
+      <div class="field"><label>繳費期數</label>
+        <select id="lt-period"><option value="1" selected>全年（每年4月）</option><option value="2">半年（4月+10月）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcLicenseTax()">查詢牌照稅</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9650" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="tax-result">
+      <div class="result-top"><div class="result-number" id="lt-amount">—</div><div class="result-unit">元 / 年</div></div>
+      <span class="tag" id="lt-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每次繳納</div><div class="val" id="lt-each">—</div></div>
+        <div class="result-cell"><div class="lbl">月均稅負</div><div class="val" id="lt-monthly">—</div></div>
+      </div>
+      <div class="result-note" id="lt-note"></div>
+      <div class="result-disclaimer">依 2026 年公路監理費率。電動車免徵牌照稅。4 月底前未繳可申請分期，逾期加徵滯納金。</div>
+    </div>
+    <div class="seo-box">
+      <h3>2026 牌照稅費率一覽</h3>
+      <p>自用小客車：600cc以下 1,620元、601–1200cc 4,320元、1201–1800cc 7,120元、1801–2400cc 11,230元、2401–3000cc 15,210元、3001cc以上依排量遞增（最高 117,000元）。電動車免徵。</p>
+      <div class="seo-faq-q">Q：牌照稅逾期繳納怎麼辦？</div>
+      <div class="seo-faq-a">A：逾期 30 天內加徵 5% 滯納金，超過 30 天加徵 15%。可向公路監理所申請延期繳納（最長 3 個月），繳費時間為每年 4 月 1 日至 30 日。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 燃料稅 -->
+<div class="panel" id="panel-fuel_tax">
+  <div class="tool-card"><div class="card-head">
+    <h2>燃料費（使用牌照稅）試算</h2>
+    <p>依排氣量查詢每年燃料費金額（每年 7 月隨強制險繳納）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>車輛類別</label>
+        <select id="ft-type"><option value="car" selected>自用小客車</option><option value="moto_small">輕型機車（150cc以下）</option><option value="moto_big">重型機車（150cc以上）</option><option value="ev">電動車（減半）</option></select></div>
+      <div class="field"><label>排氣量（cc）</label>
+        <select id="ft-cc">
+          <option value="600">600cc 以下</option>
+          <option value="1200">601–1200cc</option>
+          <option value="1800" selected>1201–1800cc</option>
+          <option value="2400">1801–2400cc</option>
+          <option value="3000">2401–3000cc</option>
+          <option value="4999">3001cc 以上</option>
+        </select></div>
+    </div>
+    <button class="calc-btn" onclick="calcFuelTax()">查詢燃料費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9651" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="fuel_tax-result">
+      <div class="result-top"><div class="result-number" id="ft-amount">—</div><div class="result-unit">元 / 年</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">月均燃料費</div><div class="val" id="ft-monthly">—</div></div>
+        <div class="result-cell"><div class="lbl">繳納時間</div><div class="val" id="ft-when">7月（隨強制險）</div></div>
+      </div>
+      <div class="result-note" id="ft-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>燃料費 vs 牌照稅</h3>
+      <p>牌照稅每年 4 月繳、燃料費每年 7 月隨強制險一起繳。兩者加起來就是養車的基本稅費。1800cc 小客車合計約 7,120（牌照）+ 4,800（燃料）= 11,920 元/年。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 強制險 -->
+<div class="panel" id="panel-insurance">
+  <div class="tool-card"><div class="card-head">
+    <h2>強制汽車責任險估算</h2>
+    <p>依車種估算強制險保費，含費率折扣說明</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>車輛類別</label>
+        <select id="ins-type"><option value="car_new" selected>自用小客車（新車/無事故）</option><option value="car_old">自用小客車（有肇事）</option><option value="moto_small">輕型機車</option><option value="moto_big">重型機車</option><option value="truck">自用小貨車</option></select></div>
+      <div class="field"><label>車齡（年）</label>
+        <select id="ins-age"><option value="0" selected>新車 0–3年</option><option value="3">4–6年</option><option value="6">7–9年</option><option value="9">10年以上</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcInsurance()">估算保費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9652" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="insurance-result">
+      <div class="result-top"><div class="result-number" id="ins-amount">—</div><div class="result-unit">元 / 年（強制險）</div></div>
+      <span class="tag" id="ins-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">死亡最高理賠</div><div class="val green" id="ins-death">220 萬元</div></div>
+        <div class="result-cell"><div class="lbl">殘廢最高理賠</div><div class="val green" id="ins-disable">220 萬元</div></div>
+        <div class="result-cell"><div class="lbl">傷害醫療</div><div class="val green" id="ins-medical">最高 20 萬元</div></div>
+      </div>
+      <div class="result-note" id="ins-note"></div>
+      <div class="result-disclaimer">強制險為法定最低保障，建議同時投保第三人責任險（任意險）以獲得更完整保障。實際保費以各保險公司報價為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>強制險保障範圍</h3>
+      <p>強制汽車責任險保障：傷亡補償（死亡/完全殘廢 220 萬）、殘廢給付（依等級）、傷害醫療（最高 20 萬）。注意：強制險不賠自身傷亡，也不賠財損，需另購任意險補足。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 過戶費用 -->
+<div class="panel" id="panel-transfer">
+  <div class="tool-card"><div class="card-head">
+    <h2>汽車過戶費用試算</h2>
+    <p>估算二手車過戶的各項規費：過戶費、牌照稅補繳、監理費</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>車輛類別</label>
+        <select id="tr-type"><option value="car" selected>自用小客車</option><option value="moto">機車</option></select></div>
+      <div class="field"><label>排氣量</label>
+        <select id="tr-cc"><option value="1200">1200cc 以下</option><option value="1800" selected>1201–1800cc</option><option value="2400">1801–2400cc</option><option value="3000">2401cc 以上</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>過戶月份</label>
+        <select id="tr-month"><option value="1">1月</option><option value="2">2月</option><option value="3">3月</option><option value="4">4月</option><option value="5">5月</option><option value="6">6月</option><option value="7">7月</option><option value="8">8月</option><option value="9">9月</option><option value="10">10月</option><option value="11">11月</option><option value="12">12月</option></select></div>
+      <div class="field"><label>是否同時辦理換牌</label>
+        <select id="tr-newplate"><option value="0" selected>否（保留原車牌）</option><option value="1">是（申請新車牌）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcTransfer()">估算過戶費用</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9653" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="transfer-result">
+      <div class="result-top"><div class="result-number" id="tr-total">—</div><div class="result-unit">元（過戶總費用估算）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">過戶登記費</div><div class="val" id="tr-reg">—</div></div>
+        <div class="result-cell"><div class="lbl">驗車費（如需）</div><div class="val" id="tr-inspect">—</div></div>
+        <div class="result-cell"><div class="lbl">換牌費用</div><div class="val" id="tr-plate">—</div></div>
+        <div class="result-cell"><div class="lbl">牌照稅未繳補繳</div><div class="val red" id="tr-taxtip">—</div></div>
+      </div>
+      <div class="result-note" id="tr-note"></div>
+      <div class="result-disclaimer">以上為監理所規費估算，實際費用以各地監理所公告為準。代辦費用另計（約 1,000–3,000 元）。</div>
+    </div>
+    <div class="seo-box">
+      <h3>二手車過戶流程</h3>
+      <p>①買賣雙方攜帶身分證、印章、行照到監理所 ②繳交過戶費 ③驗車（若有需要）④領取新行照。線上預約監理服務可省等待時間：監理服務網 （www.mvdis.gov.tw）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 折舊 -->
+<div class="panel" id="panel-depreciation">
+  <div class="tool-card"><div class="card-head">
+    <h2>汽車折舊試算</h2>
+    <p>估算愛車目前的市場剩餘價值（直線折舊法 + 行情調整）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>購車價格（萬元）</label><input type="number" id="dp-price" placeholder="例：100" inputmode="decimal"></div>
+      <div class="field"><label>車齡（年）</label><input type="number" id="dp-age" placeholder="例：3" step="0.5" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>品牌類型</label>
+        <select id="dp-brand"><option value="0.15" selected>日系（折舊較慢）</option><option value="0.18">德系豪華</option><option value="0.20">美系/韓系</option><option value="0.25">其他品牌</option><option value="0.12">電動車（Tesla等）</option></select></div>
+      <div class="field"><label>每年行駛里程（公里）</label>
+        <select id="dp-km"><option value="0">不影響（理論值）</option><option value="10000">約1萬公里（低里程）</option><option value="15000" selected>約1.5萬公里（正常）</option><option value="25000">約2.5萬公里（偏高）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcDepreciation()">試算殘值</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9654" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="depreciation-result">
+      <div class="result-top"><div class="result-number" id="dp-value">—</div><div class="result-unit">萬元（估算市場價值）</div></div>
+      <span class="tag" id="dp-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">折舊率</div><div class="val red" id="dp-rate">—</div></div>
+        <div class="result-cell"><div class="lbl">已折舊金額</div><div class="val red" id="dp-lost">—</div></div>
+        <div class="result-cell"><div class="lbl">每年折舊</div><div class="val" id="dp-yearly">—</div></div>
+        <div class="result-cell"><div class="lbl">每月折舊</div><div class="val" id="dp-monthly">—</div></div>
+      </div>
+      <div class="result-note" id="dp-note"></div>
+      <div class="result-disclaimer">市場殘值受車況、里程、顏色、區域行情影響，本工具為粗略估算，實際請詢問中古車商。</div>
+    </div>
+    <div class="seo-box">
+      <h3>買車還是租車划算？</h3>
+      <p>計算養車「沉沒成本」：折舊+牌照稅+燃料稅+保險+保養+停車 ≈ 自用轎車每月約 6,000–15,000 元不等。里程低（每月 &lt;800 公里）的都市族，租車或搭計程車可能更划算。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：財政部使用牌照稅法、交通部燃料費費額表　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD">
+      <div class="related-card-body">
+        <div class="related-card-name">貸款試算</div>
+        <div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/bill/" style="--rc:#E65100;--rs:#FFF3E0">
+      <div class="related-card-body">
+        <div class="related-card-name">生活費用</div>
+        <div class="related-card-tags"><span>電費試算</span><span>油耗計算</span><span>停車費</span><span>分帳</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">稅務薪資</div>
+        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 汽機車 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/bill/">生活費用</a> · <a href="/loan/">貸款試算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+// 牌照稅費率
+const LICENSE_TAX = {
+  car:{600:1620,1200:4320,1800:7120,2400:11230,3000:15210,3600:28220,4200:46080,4800:69690,5400:98730,9999:117000},
+  pickup:{600:1620,1200:2160,1800:2700},
+  moto:{9999:900},
+  ev:{9999:0}
+};
+const FUEL_TAX = {
+  car:{600:1620,1200:2160,1800:4800,2400:6180,3000:8640,4999:11220},
+  moto_small:{9999:585},
+  moto_big:{9999:900},
+  ev:{9999:2400} // 減半
+};
+
+function getLicenseAmt(type, cc){
+  const tbl=LICENSE_TAX[type]||LICENSE_TAX.car;
+  const levels=Object.keys(tbl).map(Number).sort((a,b)=>a-b);
+  for(const lv of levels) if(parseInt(cc)<=lv) return tbl[lv];
+  return tbl[levels[levels.length-1]];
+}
+function getFuelAmt(type, cc){
+  const tbl=FUEL_TAX[type]||FUEL_TAX.car;
+  const levels=Object.keys(tbl).map(Number).sort((a,b)=>a-b);
+  for(const lv of levels) if(parseInt(cc)<=lv) return tbl[lv];
+  return tbl[levels[levels.length-1]];
+}
+
+function calcLicenseTax(){
+  const type=document.getElementById('lt-type').value;
+  const cc=document.getElementById('lt-cc').value;
+  const period=parseInt(document.getElementById('lt-period').value);
+  const amt=getLicenseAmt(type,cc);
+  document.getElementById('lt-amount').textContent=fmt(amt);
+  document.getElementById('lt-tag').textContent=type==='ev'?'電動車免徵':'每年4月繳納';
+  document.getElementById('lt-each').textContent=period===1?fmt(amt)+' 元':fmt(Math.ceil(amt/2))+' 元 × 2次';
+  document.getElementById('lt-monthly').textContent=fmt(Math.round(amt/12))+' 元';
+  document.getElementById('lt-note').textContent=`${cc}cc 以下${type==='car'?'自用小客車':'車輛'}年繳牌照稅 ${fmt(amt)} 元，每月平均 ${fmt(Math.round(amt/12))} 元。繳費期間為每年 4 月 1–30 日。`;
+  document.getElementById('tax-result').classList.add('show');
+}
+function calcFuelTax(){
+  const type=document.getElementById('ft-type').value;
+  const cc=document.getElementById('ft-cc').value;
+  const amt=getFuelAmt(type,cc);
+  const final=type==='ev'?Math.round(amt*0.5):amt;
+  document.getElementById('ft-amount').textContent=fmt(final);
+  document.getElementById('ft-monthly').textContent=fmt(Math.round(final/12))+' 元';
+  document.getElementById('ft-when').textContent='每年7月（隨強制險）';
+  document.getElementById('ft-note').textContent=`${cc}cc ${type==='ev'?'電動車（減半）':''}燃料費 ${fmt(final)} 元/年，每年 7 月與強制險一起繳納。`;
+  document.getElementById('fuel_tax-result').classList.add('show');
+}
+function calcInsurance(){
+  const type=document.getElementById('ins-type').value;
+  const age=parseInt(document.getElementById('ins-age').value);
+  const baseRates={car_new:4348,car_old:6000,moto_small:1020,moto_big:1736,truck:3000};
+  const ageAdj=[0,-200,-400,-600];
+  let amt=(baseRates[type]||4348)+(ageAdj[Math.min(age/3|0,3)]||0);
+  if(age>=9)amt=Math.round(amt*0.9);
+  document.getElementById('ins-amount').textContent=fmt(amt);
+  document.getElementById('ins-tag').textContent='每年7月繳納';
+  document.getElementById('ins-note').textContent=`強制險估算保費約 ${fmt(amt)} 元/年。若有肇事紀錄保費較高；連續多年無肇事可享折扣。建議至少再投保 300–500 萬第三人責任險。`;
+  document.getElementById('insurance-result').classList.add('show');
+}
+function calcTransfer(){
+  const type=document.getElementById('tr-type').value;
+  const cc=document.getElementById('tr-cc').value;
+  const newplate=parseInt(document.getElementById('tr-newplate').value);
+  const month=parseInt(document.getElementById('tr-month').value);
+  const reg=type==='car'?400:150;
+  const inspect=type==='car'?450:0;
+  const plate=newplate?(type==='car'?1200:500):0;
+  const total=reg+inspect+plate;
+  // 牌照稅提醒
+  const taxMonth=4;
+  const taxtip=month<=4?'注意4月須繳牌照稅':'本月無牌照稅問題';
+  document.getElementById('tr-total').textContent=fmt(total);
+  document.getElementById('tr-reg').textContent=fmt(reg)+' 元';
+  document.getElementById('tr-inspect').textContent=inspect?fmt(inspect)+' 元':'不需要';
+  document.getElementById('tr-plate').textContent=newplate?fmt(plate)+' 元':'不換牌';
+  document.getElementById('tr-taxtip').textContent=taxtip;
+  document.getElementById('tr-note').textContent=`過戶基本規費約 ${fmt(total)} 元${newplate?'（含換牌費）':''}。如委託代辦另需代辦費 1,000–3,000 元。`;
+  document.getElementById('transfer-result').classList.add('show');
+}
+function calcDepreciation(){
+  const price=parseFloat(document.getElementById('dp-price').value)||0;
+  const age=parseFloat(document.getElementById('dp-age').value)||0;
+  const rate=parseFloat(document.getElementById('dp-brand').value);
+  const km=parseInt(document.getElementById('dp-km').value)||0;
+  if(!price||!age){alert('請填寫購車價格與車齡');return;}
+  // 每年折舊率（遞減法近似）
+  let remain=1;
+  for(let i=0;i<age;i++) remain*=(1-rate);
+  // 里程調整
+  const kmAdj=km>20000?0.95:km<10000?1.05:1;
+  const value=price*remain*kmAdj;
+  const lost=price-value;
+  const yearlyDep=lost/age;
+  document.getElementById('dp-value').textContent=value.toFixed(1);
+  document.getElementById('dp-tag').textContent=`車齡 ${age} 年 · 折舊 ${(lost/price*100).toFixed(0)}%`;
+  document.getElementById('dp-rate').textContent=(lost/price*100).toFixed(0)+'%';
+  document.getElementById('dp-lost').textContent=lost.toFixed(1)+' 萬';
+  document.getElementById('dp-yearly').textContent=yearlyDep.toFixed(1)+' 萬/年';
+  document.getElementById('dp-monthly').textContent=(yearlyDep/12*10000/10000).toFixed(2)+' 萬/月（'+fmt(Math.round(yearlyDep/12*10000))+' 元）';
+  document.getElementById('dp-note').textContent=`購價 ${price} 萬，車齡 ${age} 年，估算殘值約 ${value.toFixed(1)} 萬（折舊 ${(lost/price*100).toFixed(0)}%），每月折舊成本約 ${fmt(Math.round(yearlyDep/12*10000))} 元。`;
+  document.getElementById('depreciation-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>
