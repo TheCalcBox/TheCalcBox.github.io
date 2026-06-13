@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>投資試算工具｜股利、報酬率、ETF、定存比較、FIRE計算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/invest/">
+<meta name="description" content="免費投資試算：股利配息計算、年化報酬率CAGR、ETF定期定額、定存vs投資比較、FIRE財務自由計算，附每日財經新聞。">
+<meta name="keywords" content="股利試算,ETF試算,投資報酬率,FIRE計算,定存比較,財務自由">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="投資試算工具｜股利、報酬率、ETF、定存比較、FIRE計算 — CalcBox">
+<meta property="og:description" content="免費投資試算：股利配息計算、年化報酬率CAGR、ETF定期定額、定存vs投資比較、FIRE財務自由計算，附每日財經新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/invest/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/invest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="投資試算｜股利、ETF定期定額、FIRE試算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/invest.png">
+<meta name="twitter:title" content="投資試算工具｜股利、報酬率、ETF、定存比較、FIRE計算 — CalcBox">
+<meta name="twitter:description" content="免費投資試算：股利配息計算、年化報酬率CAGR、ETF定期定額、定存vs投資比較、FIRE財務自由計算，附每日財經新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"股利試算","url":"https://thecalcbox.github.io/invest/#dividend","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"投資報酬率計算","url":"https://thecalcbox.github.io/invest/#roi","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"ETF定期定額試算","url":"https://thecalcbox.github.io/invest/#etf","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"定存vs投資比較","url":"https://thecalcbox.github.io/invest/#deposit","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"FIRE財務自由計算","url":"https://thecalcbox.github.io/invest/#fire","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#1A5C2A;--accent-light:#E8F5E9;--accent-mid:#2E7D32;
+  --sub:#C58A12;--sub-light:#FDF3DD;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(46,125,50,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+.guide-links{max-width:820px;margin:1.2rem auto 0;padding:0 1.25rem;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.guide-links a{font-size:12.5px;font-weight:700;color:#9A6A0C;background:#FBEED3;border:1px solid #E8D5A8;text-decoration:none;padding:7px 16px;border-radius:99px;transition:transform .15s}
+.guide-links a:hover{transform:translateY(-1px)}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"投資試算工具","item":"https://thecalcbox.github.io/invest/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 投資試算</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📈 財經新聞</button>
+    <button class="tab-btn" onclick="switchTab('dividend')" id="tab-dividend">💰 股利試算</button>
+    <button class="tab-btn" onclick="switchTab('roi')" id="tab-roi">📊 報酬率</button>
+    <button class="tab-btn" onclick="switchTab('etf')" id="tab-etf">📦 ETF試算</button>
+    <button class="tab-btn" onclick="switchTab('deposit')" id="tab-deposit">🏦 定存vs投資</button>
+    <button class="tab-btn" onclick="switchTab('fire')" id="tab-fire">🔥 FIRE計算</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">投資試算工具</h1>
+<p class="page-lead">免費投資試算：股利配息計算、年化報酬率CAGR、ETF定期定額、定存vs投資比較、FIRE財務自由計算，附每日財經新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9801" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9802" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">投資有風險，本工具僅供試算參考，不構成投資建議。</p>
+</div>
+
+<!-- 股利試算 -->
+<div class="panel" id="panel-dividend">
+  <div class="tool-card"><div class="card-head">
+    <h2>股利 / 配息試算</h2>
+    <p>計算持股股利收入，含二代健保補充保費與所得稅試算</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>持股張數</label><input type="number" id="dv-shares" placeholder="例：10" inputmode="decimal"></div>
+      <div class="field"><label>每股股利（元）</label><input type="number" id="dv-dps" placeholder="例：3.5" step="0.01" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>股票現價（元）</label><input type="number" id="dv-price" placeholder="例：80" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>所得稅率</label>
+        <select id="dv-taxrate"><option value="0">5%（年所得低）</option><option value="0.12" selected>12%</option><option value="0.2">20%</option><option value="0.3">30%</option><option value="0.4">40%</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcDividend()">試算股利</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9830" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="dividend-result">
+      <div class="result-top"><div class="result-number" id="dv-net">—</div><div class="result-unit">元（稅後股利）</div></div>
+      <span class="tag" id="dv-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">股利總額</div><div class="val" id="dv-gross">—</div></div>
+        <div class="result-cell"><div class="lbl">二代健保 2.11%</div><div class="val red" id="dv-nhi">—</div></div>
+        <div class="result-cell"><div class="lbl">所得稅影響</div><div class="val red" id="dv-tax">—</div></div>
+        <div class="result-cell"><div class="lbl">殖利率</div><div class="val green" id="dv-yield">—</div></div>
+      </div>
+      <div class="result-note" id="dv-note"></div>
+      <div class="result-disclaimer">股利所得可選「合併計稅」或「分離課稅（28%）」，以較低者為準。二代健保超過2萬才扣。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣股利課稅說明</h3>
+      <p>股利可選「合併計稅（含股利所得計入綜所稅，享8.5%可抵稅額，上限8萬）」或「分離課稅（28%）」。一般受薪族股利不多時合併計稅通常較有利；股利收入高者選分離課稅。二代健保：單次發放超過2萬元須扣2.11%。</p>
+      <div class="seo-faq-q">Q：殖利率多高算好？</div>
+      <div class="seo-faq-a">A：一般認為台股殖利率 4–6% 以上且獲利穩定為合理目標。高殖利率若伴隨本業衰退則有「價差侵蝕殖利率」的風險，須綜合評估。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9803" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 報酬率 -->
+<div class="panel" id="panel-roi">
+  <div class="tool-card"><div class="card-head">
+    <h2>投資報酬率計算</h2>
+    <p>計算 ROI、年化報酬率（CAGR），比較不同投資的真實績效</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>買入成本（元）</label><input type="number" id="ri-cost" placeholder="例：100000" inputmode="numeric"></div>
+      <div class="field"><label>目前市值（元）</label><input type="number" id="ri-value" placeholder="例：135000" inputmode="numeric"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>持有時間（年）</label><input type="number" id="ri-years" step="0.5" value="3" inputmode="decimal"></div>
+      <div class="field"><label>期間累積股利（元）</label><input type="number" id="ri-div" value="0" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcROI()">計算報酬率</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9831" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="roi-result">
+      <div class="result-top"><div class="result-number" id="ri-cagr">—</div><div class="result-unit">% 年化報酬（CAGR）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">總報酬率</div><div class="val" id="ri-total">—</div></div>
+        <div class="result-cell"><div class="lbl">含股利總報酬</div><div class="val green" id="ri-total-div">—</div></div>
+        <div class="result-cell"><div class="lbl">含股利年化</div><div class="val green" id="ri-cagr-div">—</div></div>
+        <div class="result-cell"><div class="lbl">資本損益</div><div class="val" id="ri-gain">—</div></div>
+      </div>
+      <div class="result-note" id="ri-note"></div>
+      <div class="result-disclaimer">年化報酬率（CAGR）是將總報酬換算為每年複利的等效報酬，排除時間因素影響。</div>
+    </div>
+    <div class="seo-box">
+      <h3>CAGR 是什麼？</h3>
+      <p>CAGR（Compound Annual Growth Rate）年化複合成長率：將總報酬換算成「每年若干%」的複利成長速率，用來比較不同時間長度的投資績效。3年漲 35% 的 CAGR ≈ 10.6%，而非簡單地除以 3 年的 11.7%。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9804" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- ETF試算 -->
+<div class="panel" id="panel-etf">
+  <div class="tool-card"><div class="card-head">
+    <h2>ETF 定期定額試算</h2>
+    <p>模擬每月固定買進 ETF 的長期累積，含配息再投入效果</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月投入（元）</label><input type="number" id="et-monthly" placeholder="例：10000" inputmode="numeric"></div>
+      <div class="field"><label>預估年化報酬率（%）</label><input type="number" id="et-rate" step="0.1" value="8" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>投資年期</label>
+        <select id="et-years"><option value="10">10年</option><option value="20" selected>20年</option><option value="30">30年</option></select></div>
+      <div class="field"><label>參考ETF</label>
+        <select id="et-ref"><option value="8">0050（歷史約7–10%）</option><option value="7">00878（歷史約6–8%）</option><option value="10">QQQ（歷史約10–12%）</option><option value="7">SP500（歷史約8–10%）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcETF()">試算ETF累積</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9832" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="etf-result">
+      <div class="result-top"><div class="result-number" id="et-final">—</div><div class="result-unit">萬元（期末資產）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">總投入</div><div class="val" id="et-in">—</div></div>
+        <div class="result-cell"><div class="lbl">投資收益</div><div class="val green" id="et-gain">—</div></div>
+        <div class="result-cell"><div class="lbl">收益佔比</div><div class="val" id="et-pct">—</div></div>
+        <div class="result-cell"><div class="lbl">等效月收入（4%法則）</div><div class="val" id="et-income">—</div></div>
+      </div>
+      <div class="result-note" id="et-note"></div>
+      <div class="result-disclaimer">試算假設報酬率固定，實際市場有波動。過去績效不代表未來。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣熱門ETF年化報酬參考</h3>
+      <p>0050（元大台灣50）歷史年化約 8–10%；00878（國泰永續高股息）約 6–8%；006208（富邦台灣50）與 0050 相近。長期持有複利效果顯著，費用率低的寬基 ETF 是多數投資人的核心配置。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9805" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 定存vs投資 -->
+<div class="panel" id="panel-deposit">
+  <div class="tool-card"><div class="card-head">
+    <h2>定存 vs 投資比較</h2>
+    <p>同一筆資金，定存與長期投資的 20 年後差距有多大？</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>初始本金（萬元）</label><input type="number" id="dp-principal" placeholder="例：100" inputmode="decimal"></div>
+      <div class="field"><label>年期</label>
+        <select id="dp-years"><option value="10">10年</option><option value="20" selected>20年</option><option value="30">30年</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>定存利率（%）</label><input type="number" id="dp-deposit" step="0.01" value="1.6" inputmode="decimal"></div>
+      <div class="field"><label>投資年化報酬（%）</label><input type="number" id="dp-invest" step="0.1" value="8" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcDeposit()">比較差距</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9833" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="deposit-result">
+      <div class="result-top"><div class="result-number" id="dp-diff">—</div><div class="result-unit">萬元（差距）</div></div>
+      <span class="tag" id="dp-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">定存終值</div><div class="val" id="dp-dep-end">—</div></div>
+        <div class="result-cell"><div class="lbl">投資終值</div><div class="val green" id="dp-inv-end">—</div></div>
+        <div class="result-cell"><div class="lbl">投資倍數</div><div class="val" id="dp-x">—</div></div>
+      </div>
+      <div class="result-note" id="dp-note"></div>
+      <div class="result-disclaimer">試算未計通膨。投資有風險，請依個人風險承受能力配置資金。</div>
+    </div>
+    <div class="seo-box">
+      <h3>定存利率 vs 通膨率</h3>
+      <p>台灣現行定存利率約 1.6–2%，但通膨率長期約 2%，定存實際購買力可能持平甚至略降。長期投資寬基股票指數歷史年化約 7–10%（含通膨），遠高於定存，但需承受短期波動。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9806" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- FIRE計算 -->
+<div class="panel" id="panel-fire">
+  <div class="tool-card"><div class="card-head">
+    <h2>FIRE 財務自由計算</h2>
+    <p>Financial Independence, Retire Early — 算出你距離財務自由還有多遠</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月支出（元）</label><input type="number" id="fi-spend" placeholder="例：60000" inputmode="numeric"></div>
+      <div class="field"><label>目前淨資產（萬元）</label><input type="number" id="fi-assets" value="0" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>每月可投入（元）</label><input type="number" id="fi-save" placeholder="例：30000" inputmode="numeric"></div>
+      <div class="field"><label>預估投資年化（%）</label><input type="number" id="fi-rate" value="7" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcFIRE()">計算FIRE</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9834" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="fire-result">
+      <div class="result-top"><div class="result-number" id="fi-target">—</div><div class="result-unit">萬元（FIRE目標）</div></div>
+      <span class="tag" id="fi-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">達成年數</div><div class="val" id="fi-years">—</div></div>
+        <div class="result-cell"><div class="lbl">儲蓄率</div><div class="val" id="fi-saverate">—</div></div>
+        <div class="result-cell"><div class="lbl">月被動收入（4%）</div><div class="val green" id="fi-passive">—</div></div>
+      </div>
+      <div class="result-note" id="fi-note"></div>
+      <div class="result-disclaimer">依4%法則，退休後每年提領資產4%。實際需視通膨與市場表現調整。</div>
+    </div>
+    <div class="seo-box">
+      <h3>FIRE是什麼？</h3>
+      <p>FIRE（Financial Independence, Retire Early）：累積足夠資產，靠投資組合的每年 4% 提領支應生活費，無需工作。目標金額 = 年支出 × 25。儲蓄率越高，達成 FIRE 所需時間越短，與收入高低關係反而有限。</p>
+      <div class="seo-faq-q">Q：FIRE 一定要很有錢才能做？</div>
+      <div class="seo-faq-a">A：不是。關鍵在「支出控制」與「投資報酬」。月收 5 萬、儲蓄率 50%，約 16–20 年可達 FIRE；月收 10 萬、儲蓄率 20%，反而要更久。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9807" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<div class="guide-links"><a href="/guide/prepay-vs-invest/">📖 提前還款 vs 投資哪個划算</a></div>
+<p class="source-note"><b>資料來源</b>：財政部股利課稅規定、金管會公告　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/retire/" style="--rc:#6A4FB5;--rs:#EFEAF9">
+      <div class="related-card-body">
+        <div class="related-card-name">退休理財</div>
+        <div class="related-card-tags"><span>勞保退休金</span><span>複利計算</span><span>4%法則</span><span>定期定額</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/fx/" style="--rc:#1B6B4A;--rs:#E4F4EE">
+      <div class="related-card-body">
+        <div class="related-card-name">即時匯率</div>
+        <div class="related-card-tags"><span>台幣換日幣</span><span>台幣換美金</span><span>港幣</span><span>走勢圖</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">稅務薪資</div>
+        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 投資試算 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/retire/">退休理財</a> · <a href="/loan/">貸款試算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/finance')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社財經</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcDividend(){
+  const shares=(parseFloat(document.getElementById('dv-shares').value)||0)*1000;
+  const dps=parseFloat(document.getElementById('dv-dps').value)||0;
+  const price=parseFloat(document.getElementById('dv-price').value)||0;
+  if(!shares||!dps){alert('請填寫張數與每股股利');return;}
+  const gross=shares*dps;
+  const nhiBase=Math.max(0,gross-20000);
+  const nhi=Math.round(nhiBase*0.0211);
+  const taxRate=parseFloat(document.getElementById('dv-taxrate').value);
+  const taxImpact=Math.round(gross*taxRate);
+  const net=gross-nhi-taxImpact;
+  const yld=price>0?((dps/price)*100).toFixed(2):'—';
+  document.getElementById('dv-net').textContent=fmt(net);
+  document.getElementById('dv-tag').textContent=shares/1000+'張 · 每股 '+dps+' 元';
+  document.getElementById('dv-gross').textContent=fmt(gross)+' 元';
+  document.getElementById('dv-nhi').textContent=nhiBase>0?fmt(nhi)+' 元':'未達門檻';
+  document.getElementById('dv-tax').textContent=taxRate>0?fmt(taxImpact)+' 元（'+Math.round(taxRate*100)+'%）':'—';
+  document.getElementById('dv-yield').textContent=price>0?yld+'%':'請填股價';
+  document.getElementById('dv-note').textContent=`${shares/1000}張 × ${dps}元/股 = 股利總額 ${fmt(gross)} 元，扣二代健保 ${nhiBase>0?fmt(nhi):0} 元後約 ${fmt(net)} 元（未含所得稅申報多退少補）。`;
+  document.getElementById('dividend-result').classList.add('show');
+}
+function calcROI(){
+  const cost=parseFloat(document.getElementById('ri-cost').value)||0;
+  const val=parseFloat(document.getElementById('ri-value').value)||0;
+  const years=parseFloat(document.getElementById('ri-years').value)||1;
+  const div=parseFloat(document.getElementById('ri-div').value)||0;
+  if(!cost||!val){alert('請填寫成本與市值');return;}
+  const gain=val-cost;
+  const totalRoi=((gain/cost)*100).toFixed(2);
+  const totalWithDiv=(((gain+div)/cost)*100).toFixed(2);
+  const cagr=((Math.pow(val/cost,1/years)-1)*100).toFixed(2);
+  const cagrDiv=((Math.pow((val+div)/cost,1/years)-1)*100).toFixed(2);
+  document.getElementById('ri-cagr').textContent=cagr;
+  document.getElementById('ri-total').textContent=(gain>=0?'+':'')+totalRoi+'%';
+  document.getElementById('ri-total-div').textContent=(parseFloat(totalWithDiv)>=0?'+':'')+totalWithDiv+'%';
+  document.getElementById('ri-cagr-div').textContent=cagrDiv+'%/年';
+  document.getElementById('ri-gain').textContent=(gain>=0?'+':'')+fmt(gain)+' 元';
+  document.getElementById('ri-note').textContent=`持有 ${years} 年，買入 ${fmt(cost)} 元 → 現值 ${fmt(val)} 元，資本損益 ${fmt(gain)} 元，年化報酬 ${cagr}%${div>0?`，含股利 ${fmt(div)} 元後年化 ${cagrDiv}%`:''}。`;
+  document.getElementById('roi-result').classList.add('show');
+}
+function calcETF(){
+  const m=parseFloat(document.getElementById('et-monthly').value)||0;
+  if(!m){alert('請輸入每月投入');return;}
+  const r=parseFloat(document.getElementById('et-rate').value)/100/12;
+  const y=parseInt(document.getElementById('et-years').value);
+  const n=y*12;
+  const fv=m*((Math.pow(1+r,n)-1)/r);
+  const totalIn=m*n;
+  const gain=fv-totalIn;
+  const income=fv*0.04/12;
+  document.getElementById('et-final').textContent=(fv/10000).toFixed(1);
+  document.getElementById('et-in').textContent=fmt(totalIn)+' 元';
+  document.getElementById('et-gain').textContent=fmt(gain)+' 元';
+  document.getElementById('et-pct').textContent=(gain/fv*100).toFixed(0)+'%';
+  document.getElementById('et-income').textContent=fmt(Math.round(income))+' 元/月';
+  document.getElementById('et-note').textContent=`每月投入 ${fmt(m)} 元，年化報酬 ${document.getElementById('et-rate').value}%，${y}年後累積 ${(fv/10000).toFixed(1)} 萬元，其中投資收益佔 ${(gain/fv*100).toFixed(0)}%。依4%法則可支撐每月被動收入約 ${fmt(Math.round(income))} 元。`;
+  document.getElementById('etf-result').classList.add('show');
+}
+function calcDeposit(){
+  const p=(parseFloat(document.getElementById('dp-principal').value)||0)*10000;
+  if(!p){alert('請輸入本金');return;}
+  const y=parseInt(document.getElementById('dp-years').value);
+  const dr=parseFloat(document.getElementById('dp-deposit').value)/100;
+  const ir=parseFloat(document.getElementById('dp-invest').value)/100;
+  const depEnd=p*Math.pow(1+dr,y);
+  const invEnd=p*Math.pow(1+ir,y);
+  const diff=invEnd-depEnd;
+  document.getElementById('dp-diff').textContent=((diff)/10000).toFixed(1);
+  document.getElementById('dp-tag').textContent=y+'年後差距 '+((invEnd/depEnd).toFixed(1))+'倍';
+  document.getElementById('dp-dep-end').textContent=(depEnd/10000).toFixed(1)+' 萬';
+  document.getElementById('dp-inv-end').textContent=(invEnd/10000).toFixed(1)+' 萬';
+  document.getElementById('dp-x').textContent=(invEnd/depEnd).toFixed(2)+' 倍';
+  document.getElementById('dp-note').textContent=`${p/10000} 萬元，定存 ${(dr*100).toFixed(1)}% 後 ${y} 年變 ${(depEnd/10000).toFixed(1)} 萬；投資年化 ${(ir*100).toFixed(1)}% 後變 ${(invEnd/10000).toFixed(1)} 萬，差距 ${(diff/10000).toFixed(1)} 萬元（${(invEnd/depEnd).toFixed(2)} 倍）。`;
+  document.getElementById('deposit-result').classList.add('show');
+}
+function calcFIRE(){
+  const spend=parseFloat(document.getElementById('fi-spend').value)||0;
+  const assets=(parseFloat(document.getElementById('fi-assets').value)||0)*10000;
+  const save=parseFloat(document.getElementById('fi-save').value)||0;
+  const r=parseFloat(document.getElementById('fi-rate').value)/100;
+  if(!spend){alert('請填寫每月支出');return;}
+  const target=spend*12*25;
+  const mr=r/12,income=(spend+save)*12;
+  const saveRate=income>0?(save/(spend+save)*100).toFixed(0):'—';
+  let years=0,val=assets;
+  while(val<target&&years<100){val=val*(1+r/12)+save;years+=1/12;}
+  document.getElementById('fi-target').textContent=(target/10000).toFixed(0);
+  document.getElementById('fi-tag').textContent=years<100?('約 '+years.toFixed(1)+' 年後達成'):'百年內無法達成，請調整支出或儲蓄';
+  document.getElementById('fi-years').textContent=years<100?years.toFixed(1)+' 年':'100年+';
+  document.getElementById('fi-saverate').textContent=saveRate+'%';
+  document.getElementById('fi-passive').textContent=fmt(Math.round(target*0.04/12))+' 元/月';
+  document.getElementById('fi-note').textContent=`月支出 ${fmt(spend)} 元，FIRE目標（25倍年支出）= ${(target/10000).toFixed(0)} 萬元。現有資產 ${(assets/10000).toFixed(0)} 萬，每月投入 ${fmt(save)} 元，年化 ${document.getElementById('fi-rate').value}%，預計約 ${years<100?years.toFixed(1):'100+'} 年達成財務自由。`;
+  document.getElementById('fire-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

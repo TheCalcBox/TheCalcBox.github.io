@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>物流運費計算機｜材積重、CBM、台灣運費、報關費用、貨櫃裝載 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/logistics/">
+<meta name="description" content="免費物流計算工具：材積重/CBM計算、台灣宅配運費估算（黑貓/郵局）、進口報關費用、棧板堆疊、貨櫃裝載量計算。">
+<meta name="keywords" content="材積重計算,CBM計算,台灣運費,報關費用,貨櫃裝載,棧板計算">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="物流運費計算機｜材積重、CBM、台灣運費、報關費用、貨櫃裝載 — CalcBox">
+<meta property="og:description" content="免費物流計算工具：材積重/CBM計算、台灣宅配運費估算（黑貓/郵局）、進口報關費用、棧板堆疊、貨櫃裝載量計算。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/logistics/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/logistics.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="物流運費｜材積重、CBM換算、貨櫃裝載">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/logistics.png">
+<meta name="twitter:title" content="物流運費計算機｜材積重、CBM、台灣運費、報關費用、貨櫃裝載 — CalcBox">
+<meta name="twitter:description" content="免費物流計算工具：材積重/CBM計算、台灣宅配運費估算（黑貓/郵局）、進口報關費用、棧板堆疊、貨櫃裝載量計算。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"材積重CBM計算機","url":"https://thecalcbox.github.io/logistics/#cbm","description":"計算材積重量與CBM立方公尺，比較材積重與實際重量。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"台灣運費估算","url":"https://thecalcbox.github.io/logistics/#freight","description":"估算黑貓、郵局等宅配及超商取貨運費。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"進口報關費用估算","url":"https://thecalcbox.github.io/logistics/#customs","description":"估算台灣進口關稅、營業稅與免稅門檻。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"貨櫃裝載計算","url":"https://thecalcbox.github.io/logistics/#container","description":"估算20GP/40GP/40HQ貨櫃裝載箱數與利用率。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#4E342E;--accent-light:#EFEBE9;--accent-mid:#6D4C41;
+  --sub:#6D4C41;--sub-light:#EFEBE9;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(109,76,65,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"物流運費計算機","item":"https://thecalcbox.github.io/logistics/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 物流運費</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('cbm')" id="tab-cbm">📦 材積重/CBM</button>
+    <button class="tab-btn" onclick="switchTab('freight')" id="tab-freight">🚚 台灣運費</button>
+    <button class="tab-btn" onclick="switchTab('customs')" id="tab-customs">🛃 報關費用</button>
+    <button class="tab-btn" onclick="switchTab('pallet')" id="tab-pallet">🏭 棧板堆疊</button>
+    <button class="tab-btn" onclick="switchTab('container')" id="tab-container">🚢 貨櫃裝載</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">物流運費計算機</h1>
+<p class="page-lead">免費物流計算工具：材積重/CBM計算、台灣宅配運費估算（黑貓/郵局）、進口報關費用、棧板堆疊、貨櫃裝載量計算。</p>
+
+
+<!-- CBM材積重 -->
+<div class="panel active" id="panel-cbm">
+  <div class="tool-card"><div class="card-head">
+    <h2>材積重 / CBM 計算機</h2>
+    <p>計算材積重量、立方公尺（CBM），比較材積重與實際重量取較大值</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>長（公分）</label><input type="number" id="cb-l" placeholder="例：60" inputmode="decimal"></div>
+      <div class="field"><label>寬（公分）</label><input type="number" id="cb-w" placeholder="例：40" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>高（公分）</label><input type="number" id="cb-h" placeholder="例：30" inputmode="decimal"></div>
+      <div class="field"><label>實際重量（公斤）</label><input type="number" id="cb-wt" placeholder="例：5" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>件數</label><input type="number" id="cb-qty" value="1" inputmode="numeric"></div>
+      <div class="field"><label>材積計費係數</label>
+        <select id="cb-factor"><option value="6000" selected>6000（國際快遞/空運）</option><option value="5000">5000（部分快遞）</option><option value="4000">4000（海運LCL）</option><option value="3000">3000（陸運）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcCBM()">計算材積重</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9620" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="cbm-result">
+      <div class="result-top"><div class="result-number" id="cb-chargeable">—</div><div class="result-unit">kg（計費重量）</div></div>
+      <span class="tag" id="cb-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">材積重（單件）</div><div class="val" id="cb-vol-wt">—</div></div>
+        <div class="result-cell"><div class="lbl">CBM（立方公尺）</div><div class="val" id="cb-cbm">—</div></div>
+        <div class="result-cell"><div class="lbl">實際總重</div><div class="val" id="cb-actual">—</div></div>
+        <div class="result-cell"><div class="lbl">計費總重</div><div class="val" id="cb-total">—</div></div>
+      </div>
+      <div class="result-note" id="cb-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>材積重計算說明</h3>
+      <p>材積重 = 長×寬×高(cm) ÷ 係數。國際快遞（FedEx/DHL/UPS）通常除以 5000 或 6000。計費重取「材積重」與「實際重」兩者較大值。大包裝輕貨（如保麗龍）常以材積重計費，比實際重貴很多。</p>
+      <div class="seo-faq-q">Q：空運和海運材積重係數不同嗎？</div>
+      <div class="seo-faq-a">A：空運通常 6000（即 1 CBM = 167kg），部分快遞用 5000。海運 LCL（併櫃）通常以 CBM 計費，1 CBM = 1 計費噸（約 1000kg），取較大值。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9601" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 台灣運費 -->
+<div class="panel" id="panel-freight">
+  <div class="tool-card"><div class="card-head">
+    <h2>台灣國內運費估算</h2>
+    <p>估算黑貓、郵局、嘉里大榮等主要宅配/貨運費用</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>重量（公斤）</label><input type="number" id="fr-wt" placeholder="例：5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>最長邊（公分）</label><input type="number" id="fr-size" placeholder="例：60" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>配送型態</label>
+        <select id="fr-type"><option value="home" selected>宅配到府</option><option value="store">超商取貨</option><option value="freight">貨運（重貨）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcFreight()">估算運費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9621" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="freight-result">
+      <div class="result-top"><div class="result-number" id="fr-out">—</div><div class="result-unit">元（估算）</div></div>
+      <div class="result-grid" id="fr-grid"></div>
+      <div class="result-note" id="fr-note"></div>
+      <div class="result-disclaimer">各業者實際費率依合約與促銷方案而定，以官網或業務報價為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣主要宅配費率參考</h3>
+      <p>黑貓宅急便：10kg 以內約 130–160 元，超商取貨約 60–80 元。郵局包裹：依重量分段，10kg 約 100–200 元。嘉里大榮：適合 30kg 以上重貨，按材積重計費。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9602" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 報關費用 -->
+<div class="panel" id="panel-customs">
+  <div class="tool-card"><div class="card-head">
+    <h2>台灣進口報關費用估算</h2>
+    <p>估算進口關稅、營業稅與貨物稅（一般商品）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>貨物申報價值（美元 USD）</label><input type="number" id="cu-value" placeholder="例：200" inputmode="decimal"></div>
+      <div class="field"><label>關稅稅率（%）</label><input type="number" id="cu-tariff" value="5" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>運費（美元）</label><input type="number" id="cu-freight" value="20" inputmode="decimal"></div>
+      <div class="field"><label>USD/TWD 匯率</label><input type="number" id="cu-rate" value="32" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcCustoms()">估算關稅</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9622" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="customs-result">
+      <div class="result-top"><div class="result-number" id="cu-total">—</div><div class="result-unit">元（總稅費）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">完稅價格 CIF</div><div class="val" id="cu-cif">—</div></div>
+        <div class="result-cell"><div class="lbl">關稅</div><div class="val red" id="cu-duty">—</div></div>
+        <div class="result-cell"><div class="lbl">營業稅（5%）</div><div class="val red" id="cu-vat">—</div></div>
+        <div class="result-cell"><div class="lbl">最終到手成本</div><div class="val" id="cu-final">—</div></div>
+      </div>
+      <div class="result-note" id="cu-note"></div>
+      <div class="result-disclaimer">低於 2,000 元完稅價值免稅（郵包）。實際關稅稅率依HS Code及協定稅率，以海關公告為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣進口免稅門檻</h3>
+      <p>郵包：完稅價格（CIF）2,000 元以下免稅免徵營業稅（每日限1件）。快遞：完稅價格 2,000 元以下免稅。超過門檻需繳：關稅 + 5% 營業稅，部分商品另有貨物稅。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9603" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 棧板堆疊 -->
+<div class="panel" id="panel-pallet">
+  <div class="tool-card"><div class="card-head">
+    <h2>棧板堆疊 / 裝箱計算</h2>
+    <p>計算紙箱在標準棧板上的擺放數量與利用率</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>棧板規格</label>
+        <select id="pl-type"><option value="1200x1000" selected>標準棧板 120×100cm</option><option value="1200x800">歐規棧板 120×80cm</option><option value="1100x1100">日規棧板 110×110cm</option></select></div>
+      <div class="field"><label>棧板允許高度（cm）</label><input type="number" id="pl-maxh" value="180" inputmode="numeric"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>紙箱長（cm）</label><input type="number" id="pl-bl" placeholder="例：40" inputmode="decimal"></div>
+      <div class="field"><label>紙箱寬（cm）</label><input type="number" id="pl-bw" placeholder="例：30" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>紙箱高（cm）</label><input type="number" id="pl-bh" placeholder="例：25" inputmode="decimal"></div>
+      <div class="field"><label>單箱重量（kg）</label><input type="number" id="pl-bwt" placeholder="例：10" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPallet()">計算堆疊</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9623" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="pallet-result">
+      <div class="result-top"><div class="result-number" id="pl-total">—</div><div class="result-unit">箱（每棧板）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每層箱數</div><div class="val" id="pl-per-layer">—</div></div>
+        <div class="result-cell"><div class="lbl">堆疊層數</div><div class="val" id="pl-layers">—</div></div>
+        <div class="result-cell"><div class="lbl">棧板總重</div><div class="val" id="pl-weight">—</div></div>
+        <div class="result-cell"><div class="lbl">空間利用率</div><div class="val" id="pl-util">—</div></div>
+      </div>
+      <div class="result-note" id="pl-note"></div>
+      <div class="result-disclaimer">實際擺放需考慮紙箱強度、貨物特性與叉車操作需求。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9604" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 貨櫃裝載 -->
+<div class="panel" id="panel-container">
+  <div class="tool-card"><div class="card-head">
+    <h2>貨櫃裝載計算</h2>
+    <p>估算 20GP/40GP/40HQ 貨櫃的裝載箱數與利用率</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>貨櫃類型</label>
+        <select id="ct-type"><option value="20gp" selected>20GP（內尺寸 590×235×239cm）</option><option value="40gp">40GP（內尺寸 1200×235×239cm）</option><option value="40hq">40HQ（內尺寸 1200×235×269cm）</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>紙箱長（cm）</label><input type="number" id="ct-l" placeholder="60" inputmode="decimal"></div>
+      <div class="field"><label>紙箱寬（cm）</label><input type="number" id="ct-w" placeholder="40" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>紙箱高（cm）</label><input type="number" id="ct-h" placeholder="30" inputmode="decimal"></div>
+      <div class="field"><label>單箱重量（kg）</label><input type="number" id="ct-wt" placeholder="10" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcContainer()">計算裝載量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9624" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="container-result">
+      <div class="result-top"><div class="result-number" id="ct-boxes">—</div><div class="result-unit">箱（估算最大裝載）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">貨物總重</div><div class="val" id="ct-weight">—</div></div>
+        <div class="result-cell"><div class="lbl">貨物總CBM</div><div class="val" id="ct-cbm">—</div></div>
+        <div class="result-cell"><div class="lbl">容積利用率</div><div class="val" id="ct-vol-util">—</div></div>
+        <div class="result-cell"><div class="lbl">重量利用率</div><div class="val" id="ct-wt-util">—</div></div>
+      </div>
+      <div class="result-note" id="ct-note"></div>
+      <div class="result-disclaimer">實際裝載量因紙箱尺寸組合、貨物強度與裝貨方式略有差異，建議預留 10–15% 緩衝。</div>
+    </div>
+    <div class="seo-box">
+      <h3>標準貨櫃規格</h3>
+      <p>20GP：內容積約 33 CBM，最大載重 21,700 kg。40GP：內容積約 67 CBM，最大載重 26,500 kg。40HQ（高櫃）：內容積約 76 CBM，適合輕泡貨。選擇貨櫃需同時考量容積與重量限制。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9605" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9606" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9607" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：IATA 材積重計算標準、海運 CBM 慣例　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/convert/" style="--rc:#8A5A2B;--rs:#F6EEE3">
+      <div class="related-card-body">
+        <div class="related-card-name">單位換算</div>
+        <div class="related-card-tags"><span>坪數換算</span><span>台斤換算</span><span>溫度換算</span><span>容量換算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/construction/" style="--rc:#6A1B9A;--rs:#F3E5F5">
+      <div class="related-card-body">
+        <div class="related-card-name">建築裝潢</div>
+        <div class="related-card-tags"><span>油漆用量</span><span>磁磚試算</span><span>混凝土配比</span><span>樓梯尺寸</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/electronics/" style="--rc:#1565C0;--rs:#E3F0FC">
+      <div class="related-card-body">
+        <div class="related-card-name">電子電路</div>
+        <div class="related-card-tags"><span>歐姆定律</span><span>LED限流</span><span>dB換算</span><span>電阻分壓</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 物流運費 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/convert/">單位換算</a> · <a href="/tax/">稅務薪資</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcCBM(){
+  const l=parseFloat(document.getElementById('cb-l').value);
+  const w=parseFloat(document.getElementById('cb-w').value);
+  const h=parseFloat(document.getElementById('cb-h').value);
+  const wt=parseFloat(document.getElementById('cb-wt').value)||0;
+  const qty=parseInt(document.getElementById('cb-qty').value)||1;
+  const factor=parseInt(document.getElementById('cb-factor').value);
+  if(!l||!w||!h){alert('請填寫長寬高');return;}
+  const cbm=l*w*h/1000000;
+  const volWt=l*w*h/factor;
+  const chargeable=Math.max(volWt,wt||0);
+  const totalCharge=chargeable*qty;
+  document.getElementById('cb-chargeable').textContent=chargeable.toFixed(2);
+  document.getElementById('cb-tag').textContent=wt&&volWt>wt?'材積重＞實際重，依材積計費':'實際重＞材積重，依實際計費';
+  document.getElementById('cb-vol-wt').textContent=volWt.toFixed(3)+' kg';
+  document.getElementById('cb-cbm').textContent=(cbm*qty).toFixed(4)+' CBM';
+  document.getElementById('cb-actual').textContent=wt?fmt(wt*qty)+' kg':'未填';
+  document.getElementById('cb-total').textContent=fmt(totalCharge)+' kg';
+  document.getElementById('cb-note').textContent=`${l}×${w}×${h}cm ÷ ${factor} = 材積重 ${volWt.toFixed(3)}kg${wt?`，實際重 ${wt}kg，計費重 ${chargeable.toFixed(3)}kg`:''}。${qty>1?`×${qty}件 = 計費總重 ${totalCharge.toFixed(2)}kg`:''}`;
+  document.getElementById('cbm-result').classList.add('show');
+}
+function calcFreight(){
+  const wt=parseFloat(document.getElementById('fr-wt').value)||0;
+  const size=parseFloat(document.getElementById('fr-size').value)||0;
+  const type=document.getElementById('fr-type').value;
+  let rates=[],note='';
+  if(type==='home'){
+    const tcat=wt<=5?'5kg以下':wt<=10?'10kg以下':wt<=20?'20kg以下':'重貨';
+    const catmap={'5kg以下':{黑貓宅急便:130,郵局包裹:100,嘉里大榮:150},'10kg以下':{黑貓宅急便:155,郵局包裹:135,嘉里大榮:180},'20kg以下':{黑貓宅急便:220,郵局包裹:185,嘉里大榮:230},'重貨':{黑貓宅急便:350,郵局包裹:280,嘉里大榮:300}};
+    rates=Object.entries(catmap[tcat]||catmap['重貨']);
+    note=`宅配到府 ${tcat}，以下為各業者估算費用（不含偏遠加收）`;
+  }else if(type==='store'){
+    rates=[['黑貓超商取貨',65],['7-11 超取',60],['全家 超取',60],['萊爾富 超取',55]];
+    note='超商取貨費用（需寄件至超商）';
+  }else{
+    const kg=Math.max(wt,1);
+    const base=Math.round(200+kg*12);
+    rates=[['嘉里大榮',base],['新竹貨運',Math.round(base*0.95)],['台灣宅配通',Math.round(base*1.1)]];
+    note=`重貨運送（${wt}kg），以下為估算費用`;
+  }
+  const min=Math.min(...rates.map(r=>r[1]));
+  document.getElementById('fr-out').textContent=min;
+  document.getElementById('fr-grid').innerHTML=rates.map(([n,p])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${fmt(p)} 元</div></div>`).join('');
+  document.getElementById('fr-note').textContent=note+'。實際費率依各業者合約與促銷方案，建議直接洽業者確認。';
+  document.getElementById('freight-result').classList.add('show');
+}
+function calcCustoms(){
+  const val=parseFloat(document.getElementById('cu-value').value)||0;
+  const tariff=parseFloat(document.getElementById('cu-tariff').value)/100;
+  const freight=parseFloat(document.getElementById('cu-freight').value)||0;
+  const rate=parseFloat(document.getElementById('cu-rate').value)||32;
+  if(!val){alert('請輸入申報價值');return;}
+  const cif=(val+freight)*rate;
+  const duty=Math.round(cif*tariff);
+  const vat=Math.round((cif+duty)*0.05);
+  const total=duty+vat;
+  const final=Math.round(val*rate)+total;
+  document.getElementById('cu-total').textContent=fmt(total);
+  document.getElementById('cu-cif').textContent=fmt(Math.round(cif))+' 元';
+  document.getElementById('cu-duty').textContent=fmt(duty)+' 元';
+  document.getElementById('cu-vat').textContent=fmt(vat)+' 元';
+  document.getElementById('cu-final').textContent=fmt(final)+' 元';
+  document.getElementById('cu-note').textContent=`完稅價格 ${fmt(Math.round(cif))} 元${cif<2000?' → 低於 2,000 元免稅門檻，一般可免稅':''}，關稅 ${fmt(duty)} 元 + 營業稅 ${fmt(vat)} 元 = 稅費合計 ${fmt(total)} 元。`;
+  document.getElementById('customs-result').classList.add('show');
+}
+function calcPallet(){
+  const typeVal=document.getElementById('pl-type').value;
+  const [pw,pd]=typeVal.split('x').map(Number);
+  const maxH=parseInt(document.getElementById('pl-maxh').value)||180;
+  const bl=parseFloat(document.getElementById('pl-bl').value);
+  const bw=parseFloat(document.getElementById('pl-bw').value);
+  const bh=parseFloat(document.getElementById('pl-bh').value);
+  const bwt=parseFloat(document.getElementById('pl-bwt').value)||0;
+  if(!bl||!bw||!bh){alert('請填寫紙箱尺寸');return;}
+  // 計算每層最多擺幾箱（嘗試兩種方向）
+  const perL1=Math.floor(pw/bl)*Math.floor(pd/bw);
+  const perL2=Math.floor(pw/bw)*Math.floor(pd/bl);
+  const perLayer=Math.max(perL1,perL2);
+  const layers=Math.floor((maxH-15)/bh); // 15cm棧板高度
+  const total=perLayer*layers;
+  const totalWt=total*bwt;
+  const boxVol=bl*bw*bh/1e6;
+  const palletVol=pw*pd*(maxH-15)/1e6;
+  const util=boxVol*total/palletVol*100;
+  document.getElementById('pl-total').textContent=total;
+  document.getElementById('pl-per-layer').textContent=perLayer+' 箱';
+  document.getElementById('pl-layers').textContent=layers+' 層';
+  document.getElementById('pl-weight').textContent=bwt?fmt(Math.round(totalWt))+' kg':'未填重量';
+  document.getElementById('pl-util').textContent=util.toFixed(1)+'%';
+  document.getElementById('pl-note').textContent=`棧板 ${pw}×${pd}cm，每層 ${perLayer} 箱 × ${layers} 層 = ${total} 箱。${bwt?`總重約 ${fmt(Math.round(totalWt))}kg。`:''}空間利用率 ${util.toFixed(1)}%。`;
+  document.getElementById('pallet-result').classList.add('show');
+}
+function calcContainer(){
+  const types={
+    '20gp':{l:590,w:235,h:239,maxWt:21700},
+    '40gp':{l:1200,w:235,h:239,maxWt:26500},
+    '40hq':{l:1200,w:235,h:269,maxWt:26500}
+  };
+  const c=types[document.getElementById('ct-type').value];
+  const bl=parseFloat(document.getElementById('ct-l').value);
+  const bw=parseFloat(document.getElementById('ct-w').value);
+  const bh=parseFloat(document.getElementById('ct-h').value);
+  const bwt=parseFloat(document.getElementById('ct-wt').value)||0;
+  if(!bl||!bw||!bh){alert('請填寫紙箱尺寸');return;}
+  const nx=Math.floor(c.l/bl),ny=Math.floor(c.w/bw),nz=Math.floor(c.h/bh);
+  const nx2=Math.floor(c.l/bw),ny2=Math.floor(c.w/bl);
+  const perLayer=Math.max(nx*ny,nx2*ny2);
+  const layers=nz;
+  const total=perLayer*layers;
+  const totalWt=total*bwt;
+  const totalCbm=bl*bw*bh/1e6*total;
+  const containerCbm=c.l*c.w*c.h/1e6;
+  const volUtil=totalCbm/containerCbm*100;
+  const wtUtil=bwt?(totalWt/c.maxWt*100).toFixed(1)+'%':'—';
+  const limited=bwt&&totalWt>c.maxWt?'⚠ 超過最大載重！請減少箱數':null;
+  document.getElementById('ct-boxes').textContent=total;
+  document.getElementById('ct-weight').textContent=bwt?fmt(Math.round(totalWt))+' kg':'未填';
+  document.getElementById('ct-cbm').textContent=totalCbm.toFixed(2)+' CBM';
+  document.getElementById('ct-vol-util').textContent=volUtil.toFixed(1)+'%';
+  document.getElementById('ct-wt-util').textContent=wtUtil;
+  document.getElementById('ct-note').textContent=`${document.getElementById('ct-type').value.toUpperCase()} 貨櫃（容積 ${containerCbm.toFixed(0)} CBM），可裝 ${total} 箱${bwt?`，總重 ${fmt(Math.round(totalWt))}kg`:''}，容積利用率 ${volUtil.toFixed(1)}%。${limited?limited:''}`;
+  document.getElementById('container-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

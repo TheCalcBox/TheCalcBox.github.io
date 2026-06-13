@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>貸款試算工具｜房貸、車貸、信貸、學貸免費計算機 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/loan/">
+<meta name="description" content="免費台灣貸款試算：房貸月付金、車貸、信用貸款、就學貸款、提前還款比較，附完整攤還明細表與每日財經新聞。">
+<meta name="keywords" content="房貸試算,車貸計算,信貸利率試算,學貸試算,提前還款,貸款計算機">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="貸款試算工具｜房貸、車貸、信貸免費計算機 — CalcBox">
+<meta property="og:description" content="房貸、車貸、信貸、學貸月付金一次算清，附攤還表與提前還款比較。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/loan/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/loan.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="貸款試算｜房貸、車貸、信貸APR、攤還表">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/loan.png">
+<meta name="twitter:title" content="貸款試算工具｜房貸、車貸、信貸、學貸免費計算機 — CalcBox">
+<meta name="twitter:description" content="免費台灣貸款試算：房貸月付金、車貸、信用貸款、就學貸款、提前還款比較，附完整攤還明細表與每日財經新聞。">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type":"WebApplication","name":"房貸試算計算機","url":"https://thecalcbox.github.io/loan/#mortgage","description":"台灣房貸月付金試算，支援本利均攤與本金均攤，附完整攤還明細表。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+    {"@type":"WebApplication","name":"車貸試算計算機","url":"https://thecalcbox.github.io/loan/#carloan","description":"汽車貸款月付金與總利息試算，支援新車與中古車利率。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+    {"@type":"WebApplication","name":"信用貸款試算","url":"https://thecalcbox.github.io/loan/#personal","description":"個人信貸月付金試算，含開辦費與總費用年百分率（APR）估算。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+    {"@type":"WebApplication","name":"就學貸款試算","url":"https://thecalcbox.github.io/loan/#studentloan","description":"台灣就學貸款還款試算，依教育部利率計算畢業後月付金。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+    {"@type":"WebApplication","name":"提前還款比較計算機","url":"https://thecalcbox.github.io/loan/#prepay","description":"比較提前還款可省下的利息與縮短的年限。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"台灣房貸利率大概多少？","acceptedAnswer":{"@type":"Answer","text":"台灣目前房貸利率約在 1.8–2.5% 之間，依銀行、貸款成數與個人信用評分而異。首購族可申請新青安貸款，利率更優惠。"}},
+    {"@type":"Question","name":"車貸利率比房貸高多少？","acceptedAnswer":{"@type":"Answer","text":"台灣新車貸款利率約 3–6%，中古車約 6–12%，遠高於房貸。因為汽車折舊快、擔保價值低，銀行風險較高。"}},
+    {"@type":"Question","name":"信貸的總費用年百分率（APR）是什麼？","acceptedAnswer":{"@type":"Answer","text":"APR 是把利率加上開辦費等所有費用換算成的年化成本，是比較信貸真實成本的唯一標準。法規要求銀行必須揭露，比較信貸時看 APR 而非表面利率。"}},
+    {"@type":"Question","name":"提前還款划算嗎？","acceptedAnswer":{"@type":"Answer","text":"取決於貸款利率與資金機會成本。若房貸利率 2.2%，而你的投資報酬率穩定高於此，資金投入投資更划算；若無投資管道，提前還款等於穩賺貸款利率的無風險報酬。注意部分銀行有提前清償違約金（通常綁約 1–3 年）。"}}
+  ]
+}
+</script>
+
+<style>
+:root{
+  --navy:#1B3A5C;--navy-light:#EAF1F9;--navy-mid:#2D6CB5;
+  --gold:#C58A12;--gold-light:#FDF3DD;--gold-mid:#F5B83D;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+
+/* ── Header ── */
+header{background:var(--navy);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:var(--gold-mid);color:var(--navy);padding:3px 11px;border-radius:20px;font-weight:800}
+
+/* ── Tab bar ── */
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 15px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--navy-mid);border-bottom-color:var(--navy-mid)}
+
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+
+/* ── Tool card ── */
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(45,108,181,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--navy-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--navy-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--navy-light);color:var(--navy-mid)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* 攤還表 */
+.amort-toggle{font-size:11px;color:var(--navy-mid);cursor:pointer;margin-top:.75rem;font-weight:700;background:none;border:none;font-family:inherit;padding:0;text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;gap:4px}
+.amort-wrap{display:none;margin-top:.75rem;overflow-x:auto}
+.amort-wrap.show{display:block}
+.amort-table{width:100%;border-collapse:collapse;font-size:12px}
+.amort-table th{background:var(--navy-light);color:var(--navy-mid);font-weight:700;padding:7px 10px;text-align:right;white-space:nowrap;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.amort-table th:first-child{text-align:left}
+.amort-table td{padding:6px 10px;border-bottom:1px solid var(--border-light);text-align:right}
+.amort-table td:first-child{text-align:left;color:var(--muted)}
+
+/* ── News ── */
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--navy);color:var(--navy)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--navy-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--gold-light);color:var(--gold);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--gold-light);color:var(--gold);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+
+/* ── SEO ── */
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* ── Ad ── */
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+
+/* ── Footer ── */
+footer{background:var(--navy);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.6);text-decoration:none}
+
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+.guide-links{max-width:820px;margin:1.2rem auto 0;padding:0 1.25rem;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.guide-links a{font-size:12.5px;font-weight:700;color:#9A6A0C;background:#FBEED3;border:1px solid #E8D5A8;text-decoration:none;padding:7px 16px;border-radius:99px;transition:transform .15s}
+.guide-links a:hover{transform:translateY(-1px)}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"貸款試算工具","item":"https://thecalcbox.github.io/loan/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 貸款試算</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📈 財經新聞</button>
+    <button class="tab-btn" onclick="switchTab('mortgage')" id="tab-mortgage">🏠 房貸</button>
+    <button class="tab-btn" onclick="switchTab('carloan')" id="tab-carloan">🚗 車貸</button>
+    <button class="tab-btn" onclick="switchTab('personal')" id="tab-personal">💳 信貸</button>
+    <button class="tab-btn" onclick="switchTab('studentloan')" id="tab-studentloan">🎓 學貸</button>
+    <button class="tab-btn" onclick="switchTab('prepay')" id="tab-prepay">⚡ 提前還款</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">貸款試算工具</h1>
+<p class="page-lead">免費台灣貸款試算：房貸月付金、車貸、信用貸款、就學貸款、提前還款比較，附完整攤還明細表與每日財經新聞。</p>
+
+
+<!-- ══ 財經新聞 ══ -->
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有財務疑慮請諮詢專業人員。</p>
+</div>
+
+<!-- ══ 房貸 ══ -->
+<div class="panel" id="panel-mortgage">
+  <div class="tool-card"><div class="card-head">
+    <h2>房貸試算計算機</h2>
+    <p>台灣房貸月付金試算，支援本利均攤與本金均攤，附首年攤還明細表</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>房屋總價（萬元）</label><input type="number" id="m-price" placeholder="例：1200" inputmode="numeric"></div>
+      <div class="field"><label>頭期款（萬元）</label><input type="number" id="m-down" placeholder="例：240" inputmode="numeric"></div>
+      <div class="field"><label>年利率（%）</label><input type="number" id="m-rate" step="0.01" value="2.2" inputmode="decimal"></div>
+      <div class="field"><label>貸款年期</label>
+        <select id="m-years"><option value="20">20 年</option><option value="30" selected>30 年</option><option value="40">40 年</option></select>
+      </div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>還款方式</label>
+        <select id="m-method"><option value="annuity" selected>本利均攤（每月固定）</option><option value="principal">本金均攤（逐月遞減）</option></select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcMortgage()">計算房貸</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="mortgage-result">
+      <div class="result-top"><div class="result-number" id="m-monthly">—</div><div class="result-unit">元 / 月</div></div>
+      <span class="tag" id="m-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">貸款金額</div><div class="val" id="m-loan">—</div></div>
+        <div class="result-cell"><div class="lbl">總利息</div><div class="val red" id="m-interest">—</div></div>
+        <div class="result-cell"><div class="lbl">本利總計</div><div class="val" id="m-total">—</div></div>
+      </div>
+      <button class="amort-toggle" onclick="toggleAmort()">▶ 顯示首年攤還明細</button>
+      <div class="amort-wrap" id="amort-wrap">
+        <table class="amort-table"><thead><tr><th>期數</th><th>月付金</th><th>本金</th><th>利息</th><th>剩餘本金</th></tr></thead><tbody id="amort-body"></tbody></table>
+      </div>
+      <div class="result-note" id="m-note"></div>
+      <div class="result-disclaimer">試算僅供參考，不含火險、地震險等費用。實際核貸條件依各銀行規定。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣房貸試算說明</h3>
+      <p>台灣目前房貸利率約 1.8–2.5%，首購族可申請新青安優惠貸款。本利均攤每月金額固定、好規劃；本金均攤首月較高但總利息較少。一般建議月付金不超過家庭月收入 30–40%。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：寬限期是什麼？</div>
+        <div class="seo-faq-a">A：寬限期內只繳利息不還本金，通常 2–5 年。月付壓力小，但寬限期後月付金大增，且總利息更多，適合短期資金周轉需求者。</div>
+        <div class="seo-faq-q">Q：貸款成數最高幾成？</div>
+        <div class="seo-faq-a">A：一般自住最高 8 成，新青安最高 8 成且有利息補貼。第二戶以上受央行信用管制，成數較低。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- ══ 車貸 ══ -->
+<div class="panel" id="panel-carloan">
+  <div class="tool-card"><div class="card-head">
+    <h2>車貸試算計算機</h2>
+    <p>新車、中古車貸款月付金試算，附總利息與利率比較參考</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>車價（萬元）</label><input type="number" id="c-price" placeholder="例：80" inputmode="numeric"></div>
+      <div class="field"><label>頭期款（萬元）</label><input type="number" id="c-down" placeholder="例：20" value="0" inputmode="numeric"></div>
+      <div class="field"><label>車輛類型</label>
+        <select id="c-type" onchange="suggestCarRate()"><option value="new">新車（利率約 3–6%）</option><option value="used">中古車（利率約 6–12%）</option></select>
+      </div>
+      <div class="field"><label>年利率（%）</label><input type="number" id="c-rate" step="0.01" value="4.5" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>貸款期數</label>
+        <select id="c-months"><option value="36">36 期（3年）</option><option value="48">48 期（4年）</option><option value="60" selected>60 期（5年）</option><option value="72">72 期（6年）</option></select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcCarLoan()">計算車貸</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="carloan-result">
+      <div class="result-top"><div class="result-number" id="c-monthly">—</div><div class="result-unit">元 / 月</div></div>
+      <span class="tag" id="c-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">貸款金額</div><div class="val" id="c-loan">—</div></div>
+        <div class="result-cell"><div class="lbl">總利息</div><div class="val red" id="c-interest">—</div></div>
+        <div class="result-cell"><div class="lbl">本利總計</div><div class="val" id="c-total">—</div></div>
+      </div>
+      <div class="result-note" id="c-note"></div>
+      <div class="result-disclaimer">試算僅供參考。車商零利率方案常以車價折讓換取，總成本需整體比較。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣車貸利率與注意事項</h3>
+      <p>新車貸款利率約 3–6%，中古車因殘值風險較高約 6–12%。車商常見「零利率」方案通常已將利息含入車價，現金購車反而可談折讓，建議比較總支出而非只看利率。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：車貸最長可以貸幾年？</div>
+        <div class="seo-faq-a">A：新車最長可貸 6–7 年，中古車一般 3–5 年（依車齡，車齡＋貸款年限通常不能超過 10–12 年）。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- ══ 信貸 ══ -->
+<div class="panel" id="panel-personal">
+  <div class="tool-card"><div class="card-head">
+    <h2>信用貸款試算</h2>
+    <p>個人信貸月付金試算，含開辦費，估算總費用年百分率（APR）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>貸款金額（萬元）</label><input type="number" id="p-amount" placeholder="例：50" inputmode="numeric"></div>
+      <div class="field"><label>年利率（%）</label><input type="number" id="p-rate" step="0.01" value="5.5" inputmode="decimal"></div>
+      <div class="field"><label>貸款期數</label>
+        <select id="p-months"><option value="36">36 期（3年）</option><option value="60" selected>60 期（5年）</option><option value="84">84 期（7年）</option></select>
+      </div>
+      <div class="field"><label>開辦費（元）</label><input type="number" id="p-fee" value="5000" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPersonal()">計算信貸</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="personal-result">
+      <div class="result-top"><div class="result-number" id="p-monthly">—</div><div class="result-unit">元 / 月</div></div>
+      <span class="tag" id="p-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">總利息</div><div class="val red" id="p-interest">—</div></div>
+        <div class="result-cell"><div class="lbl">含開辦費總成本</div><div class="val red" id="p-totalcost">—</div></div>
+        <div class="result-cell"><div class="lbl">估算 APR</div><div class="val" id="p-apr">—</div></div>
+      </div>
+      <div class="result-note" id="p-note"></div>
+      <div class="result-disclaimer">APR 為近似估算。實際利率依個人信用評分核定，請以銀行核貸通知為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>信貸怎麼比較才不吃虧？</h3>
+      <p>比較信貸唯一標準是「總費用年百分率（APR）」，它把利率＋開辦費＋帳管費全部換算成年化成本。表面利率 3% 但開辦費 9,000 元的方案，APR 可能比利率 4% 免開辦費的方案更貴。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：信貸額度最高多少？</div>
+        <div class="seo-faq-a">A：受金管會 DBR 22 倍規範：無擔保債務總額不得超過月薪 22 倍。月薪 5 萬最高約可貸 110 萬（需扣除既有信用卡循環與其他信貸）。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- ══ 學貸 ══ -->
+<div class="panel" id="panel-studentloan">
+  <div class="tool-card"><div class="card-head">
+    <h2>就學貸款試算</h2>
+    <p>台灣就學貸款還款試算，依目前利率約 1.525% 計算畢業後月付金</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>貸款總額（萬元）</label><input type="number" id="s-amount" placeholder="例：40" inputmode="numeric"></div>
+      <div class="field"><label>年利率（%）</label><input type="number" id="s-rate" step="0.001" value="1.525" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>還款年期（每借一學期可還一年，最長依規定）</label>
+        <select id="s-years"><option value="4">4 年</option><option value="8" selected>8 年</option><option value="12">12 年</option><option value="16">16 年</option></select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcStudent()">計算學貸</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="studentloan-result">
+      <div class="result-top"><div class="result-number" id="s-monthly">—</div><div class="result-unit">元 / 月</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">總利息</div><div class="val red" id="s-interest">—</div></div>
+        <div class="result-cell"><div class="lbl">本利總計</div><div class="val" id="s-total">—</div></div>
+        <div class="result-cell"><div class="lbl">還款年期</div><div class="val" id="s-period">—</div></div>
+      </div>
+      <div class="result-note" id="s-note"></div>
+      <div class="result-disclaimer">依台灣銀行就學貸款現行利率試算。低收入戶就學期間利息由政府全額補貼。</div>
+    </div>
+    <div class="seo-box">
+      <h3>就學貸款還款規定</h3>
+      <p>學貸於畢業（或退伍）滿一年後開始還款，每借一學期可分一年攤還。目前利率約 1.525%，是市面上最低的貸款。若月收入未達 4 萬元可申請緩繳，最多 8 次。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：學貸需要提前還清嗎？</div>
+        <div class="seo-faq-a">A：學貸利率僅約 1.5%，是所有貸款中最便宜的資金。若有理財規劃，資金用於投資或緊急預備金通常比提前還學貸更有效益。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- ══ 提前還款 ══ -->
+<div class="panel" id="panel-prepay">
+  <div class="tool-card"><div class="card-head">
+    <h2>提前還款比較計算機</h2>
+    <p>比較提前部分還款可省下的利息與縮短的年限，幫你判斷值不值得</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>目前貸款餘額（萬元）</label><input type="number" id="pp-balance" placeholder="例：800" inputmode="numeric"></div>
+      <div class="field"><label>年利率（%）</label><input type="number" id="pp-rate" step="0.01" value="2.2" inputmode="decimal"></div>
+      <div class="field"><label>剩餘年期</label>
+        <select id="pp-years"><option value="15">15 年</option><option value="20" selected>20 年</option><option value="25">25 年</option><option value="30">30 年</option></select>
+      </div>
+      <div class="field"><label>提前還款金額（萬元）</label><input type="number" id="pp-extra" placeholder="例：100" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPrepay()">比較提前還款</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="prepay-result">
+      <div class="result-top"><div class="result-number" id="pp-saved">—</div><div class="result-unit">元（可省利息）</div></div>
+      <span class="tag" id="pp-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">原總利息</div><div class="val red" id="pp-orig-int">—</div></div>
+        <div class="result-cell"><div class="lbl">還款後總利息</div><div class="val" id="pp-new-int">—</div></div>
+        <div class="result-cell"><div class="lbl">原月付金</div><div class="val" id="pp-orig-pay">—</div></div>
+        <div class="result-cell"><div class="lbl">新月付金</div><div class="val green" id="pp-new-pay">—</div></div>
+      </div>
+      <div class="result-note" id="pp-note"></div>
+      <div class="result-disclaimer">以維持原年期、降低月付金方式計算。部分銀行綁約期內提前清償需付違約金。</div>
+    </div>
+    <div class="seo-box">
+      <h3>提前還款划算嗎？</h3>
+      <p>提前還款等於穩賺貸款利率的無風險報酬。若房貸利率 2.2%，而你的閒置資金沒有更好去處，提前還款合理；若投資報酬率穩定高於利率，資金投入投資更有效益。注意綁約期（通常 1–3 年）內清償可能有違約金。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：提前還款選「縮短年限」還是「降低月付」？</div>
+        <div class="seo-faq-a">A：縮短年限省的總利息較多；降低月付則改善每月現金流。若收入穩定選縮年限，若想增加生活餘裕選降月付。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+</div><!-- /wrap -->
+
+
+<div class="guide-links"><a href="/guide/buy-vs-rent/">📖 買房 vs 租屋完整比較</a><a href="/guide/prepay-vs-invest/">📖 提前還款 vs 投資哪個划算</a></div>
+<p class="source-note"><b>資料來源</b>：中央銀行公告利率、各銀行牌告房貸利率　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">稅務薪資</div>
+        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/property/" style="--rc:#546E7A;--rs:#ECEFF1">
+      <div class="related-card-body">
+        <div class="related-card-name">房產試算</div>
+        <div class="related-card-tags"><span>房屋稅</span><span>地價稅</span><span>租售比</span><span>實坪計算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/retire/" style="--rc:#6A4FB5;--rs:#EFEAF9">
+      <div class="related-card-body">
+        <div class="related-card-name">退休理財</div>
+        <div class="related-card-tags"><span>勞保退休金</span><span>複利計算</span><span>4%法則</span><span>定期定額</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 貸款試算 · 僅供參考，實際條件依各銀行核定<br>
+  <a href="/">🧮 回工具目錄</a> · <a href="/tax/">稅務薪資</a> · <a href="/retire/">退休理財</a> · <a href="/health/">健康計算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false, amortData=[];
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+/* ══ 財經新聞 ══ */
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/finance')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社財經</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+const fmt=v=>Math.round(v).toLocaleString();
+
+/* ══ 房貸 ══ */
+function calcMortgage(){
+  const price=parseFloat(document.getElementById('m-price').value)*10000;
+  const down=(parseFloat(document.getElementById('m-down').value)||0)*10000;
+  const rate=parseFloat(document.getElementById('m-rate').value)/100/12;
+  const years=parseInt(document.getElementById('m-years').value);
+  const method=document.getElementById('m-method').value;
+  if(!price||!rate){alert('請填寫房價與利率');return;}
+  const loan=price-down;
+  if(loan<=0){alert('頭期款不能大於房價');return;}
+  const n=years*12;
+  let monthly,totalInterest=0;amortData=[];
+  if(method==='annuity'){
+    monthly=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+    let bal=loan;
+    for(let i=1;i<=n;i++){const int_=bal*rate;const pr=monthly-int_;bal-=pr;totalInterest+=int_;
+      if(i<=12)amortData.push({m:i,pay:monthly,pr,int:int_,bal:Math.max(0,bal)});}
+  }else{
+    const prMonthly=loan/n;let bal=loan;
+    for(let i=1;i<=n;i++){const int_=bal*rate;const pay=prMonthly+int_;bal-=prMonthly;totalInterest+=int_;
+      if(i===1)monthly=pay;
+      if(i<=12)amortData.push({m:i,pay,pr:prMonthly,int:int_,bal:Math.max(0,bal)});}
+  }
+  document.getElementById('m-monthly').textContent=fmt(monthly);
+  document.getElementById('m-tag').textContent=years+'年期 · '+document.getElementById('m-rate').value+'% · '+(method==='annuity'?'本利均攤':'本金均攤（首月）');
+  document.getElementById('m-loan').textContent=fmt(loan)+' 元';
+  document.getElementById('m-interest').textContent=fmt(totalInterest)+' 元';
+  document.getElementById('m-total').textContent=fmt(loan+totalInterest)+' 元';
+  document.getElementById('m-note').textContent=`貸款 ${fmt(loan)} 元，${years} 年共付利息 ${fmt(totalInterest)} 元（約佔貸款額 ${(totalInterest/loan*100).toFixed(0)}%）。`;
+  document.getElementById('amort-body').innerHTML=amortData.map(r=>`<tr><td>第${r.m}期</td><td>${fmt(r.pay)}</td><td>${fmt(r.pr)}</td><td>${fmt(r.int)}</td><td>${fmt(r.bal)}</td></tr>`).join('');
+  document.getElementById('mortgage-result').classList.add('show');
+}
+function toggleAmort(){
+  const w=document.getElementById('amort-wrap');
+  const show=w.classList.toggle('show');
+  document.querySelector('.amort-toggle').textContent=(show?'▼ 隱藏':'▶ 顯示')+'首年攤還明細';
+}
+
+/* ══ 車貸 ══ */
+function suggestCarRate(){
+  document.getElementById('c-rate').value=document.getElementById('c-type').value==='new'?'4.5':'8.5';
+}
+function calcCarLoan(){
+  const price=parseFloat(document.getElementById('c-price').value)*10000;
+  const down=(parseFloat(document.getElementById('c-down').value)||0)*10000;
+  const rate=parseFloat(document.getElementById('c-rate').value)/100/12;
+  const n=parseInt(document.getElementById('c-months').value);
+  if(!price||!rate){alert('請填寫車價與利率');return;}
+  const loan=price-down;
+  if(loan<=0){alert('頭期款不能大於車價');return;}
+  const monthly=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+  const totalInterest=monthly*n-loan;
+  document.getElementById('c-monthly').textContent=fmt(monthly);
+  document.getElementById('c-tag').textContent=n+'期 · '+document.getElementById('c-rate').value+'%';
+  document.getElementById('c-loan').textContent=fmt(loan)+' 元';
+  document.getElementById('c-interest').textContent=fmt(totalInterest)+' 元';
+  document.getElementById('c-total').textContent=fmt(loan+totalInterest)+' 元';
+  document.getElementById('c-note').textContent=`貸款 ${fmt(loan)} 元分 ${n} 期，總利息 ${fmt(totalInterest)} 元。提醒：車商「零利率」方案常以放棄車價折讓交換，建議比較現金價與貸款總支出。`;
+  document.getElementById('carloan-result').classList.add('show');
+}
+
+/* ══ 信貸 ══ */
+function calcPersonal(){
+  const amount=parseFloat(document.getElementById('p-amount').value)*10000;
+  const rate=parseFloat(document.getElementById('p-rate').value)/100/12;
+  const n=parseInt(document.getElementById('p-months').value);
+  const fee=parseFloat(document.getElementById('p-fee').value)||0;
+  if(!amount||!rate){alert('請填寫金額與利率');return;}
+  const monthly=amount*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+  const totalInterest=monthly*n-amount;
+  const totalCost=totalInterest+fee;
+  // APR 近似：把開辦費攤入後反推年化
+  const effLoan=amount-fee;
+  let lo=0,hi=0.5;
+  for(let k=0;k<60;k++){
+    const mid=(lo+hi)/2,mr=mid/12;
+    const pay=effLoan*mr*Math.pow(1+mr,n)/(Math.pow(1+mr,n)-1);
+    if(pay<monthly)lo=mid;else hi=mid;
+  }
+  const apr=((lo+hi)/2*100).toFixed(2);
+  document.getElementById('p-monthly').textContent=fmt(monthly);
+  document.getElementById('p-tag').textContent=n+'期 · 表面利率 '+document.getElementById('p-rate').value+'%';
+  document.getElementById('p-interest').textContent=fmt(totalInterest)+' 元';
+  document.getElementById('p-totalcost').textContent=fmt(totalCost)+' 元';
+  document.getElementById('p-apr').textContent=apr+'%';
+  document.getElementById('p-note').textContent=`月付 ${fmt(monthly)} 元 × ${n} 期。含開辦費 ${fmt(fee)} 元後，估算總費用年百分率（APR）約 ${apr}%。比較不同銀行方案時請以 APR 為準。`;
+  document.getElementById('personal-result').classList.add('show');
+}
+
+/* ══ 學貸 ══ */
+function calcStudent(){
+  const amount=parseFloat(document.getElementById('s-amount').value)*10000;
+  const rate=parseFloat(document.getElementById('s-rate').value)/100/12;
+  const years=parseInt(document.getElementById('s-years').value);
+  if(!amount||!rate){alert('請填寫金額');return;}
+  const n=years*12;
+  const monthly=amount*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+  const totalInterest=monthly*n-amount;
+  document.getElementById('s-monthly').textContent=fmt(monthly);
+  document.getElementById('s-interest').textContent=fmt(totalInterest)+' 元';
+  document.getElementById('s-total').textContent=fmt(amount+totalInterest)+' 元';
+  document.getElementById('s-period').textContent=years+' 年（'+n+'期）';
+  document.getElementById('s-note').textContent=`學貸 ${fmt(amount)} 元分 ${years} 年攤還，月付 ${fmt(monthly)} 元，總利息僅 ${fmt(totalInterest)} 元——學貸是市面利率最低的貸款，無需急著提前清償。`;
+  document.getElementById('studentloan-result').classList.add('show');
+}
+
+/* ══ 提前還款 ══ */
+function calcPrepay(){
+  const balance=parseFloat(document.getElementById('pp-balance').value)*10000;
+  const rate=parseFloat(document.getElementById('pp-rate').value)/100/12;
+  const years=parseInt(document.getElementById('pp-years').value);
+  const extra=(parseFloat(document.getElementById('pp-extra').value)||0)*10000;
+  if(!balance||!rate||!extra){alert('請填寫所有欄位');return;}
+  if(extra>=balance){alert('提前還款金額需小於貸款餘額');return;}
+  const n=years*12;
+  const origPay=balance*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+  const origInt=origPay*n-balance;
+  const newBal=balance-extra;
+  const newPay=newBal*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
+  const newInt=newPay*n-newBal;
+  const saved=origInt-newInt;
+  document.getElementById('pp-saved').textContent=fmt(saved);
+  document.getElementById('pp-tag').textContent='提前還 '+fmt(extra)+' 元 · 維持 '+years+' 年期';
+  document.getElementById('pp-orig-int').textContent=fmt(origInt)+' 元';
+  document.getElementById('pp-new-int').textContent=fmt(newInt)+' 元';
+  document.getElementById('pp-orig-pay').textContent=fmt(origPay)+' 元';
+  document.getElementById('pp-new-pay').textContent=fmt(newPay)+' 元';
+  const roi=(saved/extra*100).toFixed(1);
+  document.getElementById('pp-note').textContent=`提前還款 ${fmt(extra)} 元，未來 ${years} 年共省利息 ${fmt(saved)} 元（相當於這筆資金 ${roi}% 的總報酬）。月付金由 ${fmt(origPay)} 降至 ${fmt(newPay)} 元。`;
+  document.getElementById('prepay-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

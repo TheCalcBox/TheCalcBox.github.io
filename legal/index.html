@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>法律合約計算機｜民法利息、違約金、訴訟費用、勞資爭議 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/legal/">
+<meta name="description" content="免費法律計算工具：民法利息（年利率5%）、違約金試算、民事訴訟費用、勞資爭議金額、租賃押金計算。不構成法律建議，僅供參考。">
+<meta name="keywords" content="民法利息計算,違約金計算,訴訟費用,勞資爭議,押金計算,法律計算機">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="法律合約計算機｜民法利息、違約金、訴訟費用、勞資爭議 — CalcBox">
+<meta property="og:description" content="免費法律計算工具：民法利息（年利率5%）、違約金試算、民事訴訟費用、勞資爭議金額、租賃押金計算。不構成法律建議，僅供參考。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/legal/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/legal.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="法律合約｜違約金、訴訟費用、民法利息">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/legal.png">
+<meta name="twitter:title" content="法律合約計算機｜民法利息、違約金、訴訟費用、勞資爭議 — CalcBox">
+<meta name="twitter:description" content="免費法律計算工具：民法利息（年利率5%）、違約金試算、民事訴訟費用、勞資爭議金額、租賃押金計算。不構成法律建議，僅供參考。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"民法利息計算機","url":"https://thecalcbox.github.io/legal/#interest","description":"依民法年利率5%計算利息，支援自訂利率。","applicationCategory":"LegalService","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"違約金試算","url":"https://thecalcbox.github.io/legal/#penalty","description":"計算合約違約金及法院酌減估算。","applicationCategory":"LegalService","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"民事訴訟費用試算","url":"https://thecalcbox.github.io/legal/#lawsuit","description":"依民事訴訟費用法試算裁判費。","applicationCategory":"LegalService","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"勞資爭議金額試算","url":"https://thecalcbox.github.io/legal/#labor","description":"計算積欠薪資、資遣費、預告工資等勞資爭議金額。","applicationCategory":"LegalService","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"租賃合約計算","url":"https://thecalcbox.github.io/legal/#rent","description":"押金、提前解約違約金、租期計算。","applicationCategory":"LegalService","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"民法法定利率是多少？","acceptedAnswer":{"@type":"Answer","text":"民法第203條規定法定年利率為5%。約定利率不得超過16%（消費借貸），超過部分無效。"}},
+{"@type":"Question","name":"訴訟費用怎麼算？","acceptedAnswer":{"@type":"Answer","text":"民事財產訴訟裁判費：10萬以下1%、10–100萬超額0.9%、100萬以上超額0.8%，最低1,000元。勞動訴訟減半徵收。"}},
+{"@type":"Question","name":"有法律扶助可以申請嗎？","acceptedAnswer":{"@type":"Answer","text":"符合資力條件可向法律扶助基金會申請，電話412-8518（市話）或(02)412-8518（手機），提供免費或減費法律服務。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#4A0072;--accent-light:#F3E5F5;--accent-mid:#7B1FA2;
+  --sub:#7B1FA2;--sub-light:#F3E5F5;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(123,31,162,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"法律合約計算機","item":"https://thecalcbox.github.io/legal/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 法律合約</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('interest')" id="tab-interest">💰 民法利息</button>
+    <button class="tab-btn" onclick="switchTab('penalty')" id="tab-penalty">⚖️ 違約金</button>
+    <button class="tab-btn" onclick="switchTab('lawsuit')" id="tab-lawsuit">🏛️ 訴訟費用</button>
+    <button class="tab-btn" onclick="switchTab('labor')" id="tab-labor">👷 勞資爭議</button>
+    <button class="tab-btn" onclick="switchTab('rent')" id="tab-rent">🏠 租賃計算</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">法律合約計算機</h1>
+<p class="page-lead">免費法律計算工具：民法利息（年利率5%）、違約金試算、民事訴訟費用、勞資爭議金額、租賃押金計算。不構成法律建議，僅供參考。</p>
+
+
+<!-- 民法利息 -->
+<div class="panel active" id="panel-interest">
+  <div class="tool-card"><div class="card-head">
+    <h2>民法利息計算機</h2>
+    <p>依民法第203條試算利息，法定年利率 5%，逾期違約另計</p>
+  </div><div class="card-body">
+    <div style="background:#E3F2FD;border-left:4px solid #1565C0;border-radius:6px;padding:10px 14px;margin-bottom:1rem;font-size:12px;color:#0D3464">
+      ℹ️ 本工具為法律計算參考，不構成法律建議。實際訴訟請諮詢律師。
+    </div>
+    <div class="fields">
+      <div class="field"><label>本金（元）</label><input type="number" id="it-principal" placeholder="例：500000" inputmode="numeric"></div>
+      <div class="field"><label>年利率（%）</label>
+        <select id="it-rate"><option value="5" selected>5%（民法法定利率）</option><option value="3">3%（低利率協議）</option><option value="10">10%（最高約定上限）</option><option value="16">16%（消費借貸最高）</option><option value="custom">自訂</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>起算日期</label><input type="date" id="it-start"></div>
+      <div class="field"><label>計算至</label><input type="date" id="it-end"></div>
+    </div>
+    <div id="it-custom-row" class="fields one" style="display:none">
+      <div class="field"><label>自訂年利率（%）</label><input type="number" id="it-custom" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcInterest()">計算利息</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9910" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="interest-result">
+      <div class="result-top"><div class="result-number" id="it-interest">—</div><div class="result-unit">元（利息）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">計息天數</div><div class="val" id="it-days">—</div></div>
+        <div class="result-cell"><div class="lbl">每日利息</div><div class="val" id="it-daily">—</div></div>
+        <div class="result-cell"><div class="lbl">本利合計</div><div class="val" id="it-total">—</div></div>
+        <div class="result-cell"><div class="lbl">實際年利率</div><div class="val" id="it-rate-out">—</div></div>
+      </div>
+      <div class="result-note" id="it-note"></div>
+      <div class="result-disclaimer">民法利息採單利計算。實際訴訟請求需由律師確認計算基準日與適用利率。</div>
+    </div>
+    <div class="seo-box">
+      <h3>民法利率規定</h3>
+      <p>民法第203條：法定利率年息5%。第205條：約定利率不得超過年利率16%（消費借貸），超過部分無效。票據法：發票日後以年利率6%計算。遲延利息：債務人給付遲延，債權人得請求年利率5%的遲延利息。</p>
+      <div class="seo-faq-q">Q：地下錢莊高利貸可以不還嗎？</div>
+      <div class="seo-faq-a">A：超過年利率16%的利息約定無效，但本金仍需返還。若以暴力手段討債，另涉刑事責任。建議向法律扶助基金會（412-8518）尋求協助。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9901" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 違約金 -->
+<div class="panel" id="panel-penalty">
+  <div class="tool-card"><div class="card-head">
+    <h2>違約金試算</h2>
+    <p>計算合約違約金，並估算法院酌減後的可能金額</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>違約金類型</label>
+        <select id="pn-type"><option value="fixed" selected>固定金額</option><option value="pct">按金額比例</option><option value="daily">按日計罰</option></select></div>
+      <div class="field"><label>合約金額（元）</label><input type="number" id="pn-contract" placeholder="例：1000000" inputmode="numeric"></div>
+    </div>
+    <div class="fields" id="pn-fixed-row">
+      <div class="field"><label>違約金金額（元）</label><input type="number" id="pn-fixed" placeholder="例：100000" inputmode="numeric"></div>
+    </div>
+    <div class="fields" id="pn-pct-row" style="display:none">
+      <div class="field"><label>違約金比例（%）</label><input type="number" id="pn-pct" value="10" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields" id="pn-daily-row" style="display:none">
+      <div class="field"><label>每日罰款（元）</label><input type="number" id="pn-daily-amt" placeholder="例：1000" inputmode="numeric"></div>
+      <div class="field"><label>違約天數</label><input type="number" id="pn-days" placeholder="例：30" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPenalty()">試算違約金</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9911" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="penalty-result">
+      <div class="result-top"><div class="result-number" id="pn-total">—</div><div class="result-unit">元（違約金）</div></div>
+      <span class="tag" id="pn-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">違約金/合約額比</div><div class="val" id="pn-ratio">—</div></div>
+        <div class="result-cell"><div class="lbl">法院酌減估算（保守）</div><div class="val" id="pn-reduce">—</div></div>
+      </div>
+      <div class="result-note" id="pn-note"></div>
+      <div class="result-disclaimer">民法第252條：違約金過高時，法院得酌減至相當數額。實際金額由法院依個案判斷。</div>
+    </div>
+    <div class="seo-box">
+      <h3>違約金被酌減的條件</h3>
+      <p>民法第252條：約定違約金過高者，法院得酌減。法院通常考量：①實際損害程度②違約情節輕重③違約金佔合約金額比例。一般違約金超過合約金額10–20%且實際損害較小時，法院較可能酌減。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9902" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 訴訟費用 -->
+<div class="panel" id="panel-lawsuit">
+  <div class="tool-card"><div class="card-head">
+    <h2>民事訴訟費用試算</h2>
+    <p>依民事訴訟費用法試算裁判費，評估訴訟是否划算</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>訴訟類型</label>
+        <select id="ls-type"><option value="civil" selected>財產訴訟（依訴訟標的金額）</option><option value="family">家事訴訟（定額）</option><option value="labor">勞動訴訟（減半徵收）</option></select></div>
+      <div class="field"><label>訴訟標的金額（元）</label><input type="number" id="ls-amount" placeholder="例：500000" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcLawsuit()">試算訴訟費用</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9912" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="lawsuit-result">
+      <div class="result-top"><div class="result-number" id="ls-fee">—</div><div class="result-unit">元（第一審裁判費）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">第一審裁判費</div><div class="val" id="ls-1st">—</div></div>
+        <div class="result-cell"><div class="lbl">第二審（1.5倍）</div><div class="val" id="ls-2nd">—</div></div>
+        <div class="result-cell"><div class="lbl">第三審（2倍）</div><div class="val" id="ls-3rd">—</div></div>
+        <div class="result-cell"><div class="lbl">律師費估算</div><div class="val" id="ls-lawyer">—</div></div>
+      </div>
+      <div class="result-note" id="ls-note"></div>
+      <div class="result-disclaimer">裁判費依民事訴訟費用法第77-13條試算，實際費用以法院核定為準。律師費為粗估，依委任律師個案報價而異。</div>
+    </div>
+    <div class="seo-box">
+      <h3>訴訟前先算划不划算</h3>
+      <p>裁判費公式（財產訴訟）：10萬以下1%、10–100萬超額部分0.9%、100萬以上超額0.8%（最低1,000元）。加上律師費、時間成本，建議索賠金額至少超過總費用的3–5倍才適合訴訟，否則可考慮調解（免費）或仲裁。</p>
+      <div class="seo-faq-q">Q：有法律扶助可以免費打官司嗎？</div>
+      <div class="seo-faq-a">A：符合資力條件（每月收入低於一定標準）可向法律扶助基金會申請免費或減費法律扶助，電話 412-8518（市話）或 (02)412-8518（手機）。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9903" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 勞資爭議 -->
+<div class="panel" id="panel-labor">
+  <div class="tool-card"><div class="card-head">
+    <h2>勞資爭議金額試算</h2>
+    <p>計算常見勞資爭議項目：積欠薪資、加班費、資遣費、預告工資</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>月薪（元）</label><input type="number" id="ld-salary" placeholder="例：40000" inputmode="numeric"></div>
+      <div class="field"><label>服務年資（年）</label><input type="number" id="ld-years" step="0.5" placeholder="例：3" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>積欠薪資月數</label><input type="number" id="ld-wage-m" value="0" inputmode="numeric"></div>
+      <div class="field"><label>積欠加班費（元，已知）</label><input type="number" id="ld-ot" value="0" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcLabor()">試算爭議金額</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9913" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="labor-result">
+      <div class="result-top"><div class="result-number" id="ld-total">—</div><div class="result-unit">元（爭議總金額）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">積欠薪資</div><div class="val red" id="ld-wage">—</div></div>
+        <div class="result-cell"><div class="lbl">資遣費</div><div class="val red" id="ld-sev">—</div></div>
+        <div class="result-cell"><div class="lbl">預告工資</div><div class="val red" id="ld-notice">—</div></div>
+        <div class="result-cell"><div class="lbl">積欠加班費</div><div class="val red" id="ld-ot-out">—</div></div>
+      </div>
+      <div class="result-note" id="ld-note"></div>
+      <div class="result-disclaimer">如有勞資爭議，建議先向地方勞工局申請調解（免費），再考慮提起勞動訴訟。勞動訴訟裁判費減半徵收。</div>
+    </div>
+    <div class="seo-box">
+      <h3>勞資爭議如何處理？</h3>
+      <p>步驟：①撥打 1955 勞工諮詢專線了解權益 ②向縣市勞工局申請勞資爭議調解（免費，成立率約60%）③調解不成可提起勞動訴訟（裁判費減半）④情節嚴重可向勞動部檢舉。保留證據：薪資單、出勤紀錄、通訊紀錄。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9904" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 租賃計算 -->
+<div class="panel" id="panel-rent">
+  <div class="tool-card"><div class="card-head">
+    <h2>租賃合約計算</h2>
+    <p>押金、提前解約違約金、房租漲幅試算</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月租金（元）</label><input type="number" id="rt-rent" placeholder="例：20000" inputmode="numeric"></div>
+      <div class="field"><label>押金月數（法定上限2個月）</label>
+        <select id="rt-deposit"><option value="1">1個月</option><option value="2" selected>2個月</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>租約總月數</label><input type="number" id="rt-total-m" value="12" inputmode="numeric"></div>
+      <div class="field"><label>已租月數（提前解約）</label><input type="number" id="rt-done-m" value="6" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcRent()">計算租賃</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9914" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="rent-result">
+      <div class="result-top"><div class="result-number" id="rt-deposit-amt">—</div><div class="result-unit">元（押金）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">剩餘租期</div><div class="val" id="rt-remain">—</div></div>
+        <div class="result-cell"><div class="lbl">提前解約違約金估算</div><div class="val red" id="rt-penalty">—</div></div>
+        <div class="result-cell"><div class="lbl">總租金支出</div><div class="val" id="rt-paid">—</div></div>
+        <div class="result-cell"><div class="lbl">押金返還</div><div class="val green" id="rt-refund">—</div></div>
+      </div>
+      <div class="result-note" id="rt-note"></div>
+      <div class="result-disclaimer">押金上限依土地法第99條為2個月租金。提前解約違約金依合約約定，法院得酌減。</div>
+    </div>
+    <div class="seo-box">
+      <h3>租屋注意事項</h3>
+      <p>押金依法上限2個月。提前解約違約金常見約定：賠償剩餘租期1–2個月租金，或沒收押金。房東不得任意沒收全部押金，需扣除實際損害後返還。租賃期滿若未簽新約，視為不定期租約，雙方均可終止。</p>
+      <div class="seo-faq-q">Q：房東可以隨時漲租嗎？</div>
+      <div class="seo-faq-a">A：定期租約期間房東不得片面漲租。期滿換約才能重新議定租金。不定期租約房東欲漲租，須提前通知並經租客同意。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9905" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9906" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9907" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供，僅供參考，不構成法律建議。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：民法第 203 條、民事訴訟法裁判費徵收標準　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/hr/" style="--rc:#2E7D32;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">人資 HR</div>
+        <div class="related-card-tags"><span>資遣費計算</span><span>年資換算</span><span>人力成本</span><span>特休試算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD">
+      <div class="related-card-body">
+        <div class="related-card-name">貸款試算</div>
+        <div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/property/" style="--rc:#546E7A;--rs:#ECEFF1">
+      <div class="related-card-body">
+        <div class="related-card-name">房產試算</div>
+        <div class="related-card-tags"><span>房屋稅</span><span>地價稅</span><span>租售比</span><span>實坪計算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 法律合約 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/tax/">稅務薪資</a> · <a href="/hr/">人資HR</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+document.getElementById('it-rate').addEventListener('change',function(){
+  document.getElementById('it-custom-row').style.display=this.value==='custom'?'grid':'none';
+});
+document.getElementById('pn-type').addEventListener('change',function(){
+  document.getElementById('pn-fixed-row').style.display=this.value==='fixed'?'grid':'none';
+  document.getElementById('pn-pct-row').style.display=this.value==='pct'?'grid':'none';
+  document.getElementById('pn-daily-row').style.display=this.value==='daily'?'grid':'none';
+});
+
+function calcInterest(){
+  const principal=parseFloat(document.getElementById('it-principal').value);
+  const s=document.getElementById('it-start').value;
+  const e=document.getElementById('it-end').value;
+  if(!principal||!s||!e){alert('請填寫完整');return;}
+  let rate=parseFloat(document.getElementById('it-rate').value);
+  if(isNaN(rate))rate=parseFloat(document.getElementById('it-custom').value)||5;
+  const days=Math.floor((new Date(e)-new Date(s))/86400000);
+  if(days<=0){alert('結束日期需晚於起算日期');return;}
+  const interest=principal*(rate/100)*(days/365);
+  const daily=principal*(rate/100)/365;
+  document.getElementById('it-interest').textContent=fmt(Math.round(interest));
+  document.getElementById('it-days').textContent=days.toLocaleString()+' 天';
+  document.getElementById('it-daily').textContent=daily.toFixed(2)+' 元';
+  document.getElementById('it-total').textContent=fmt(Math.round(principal+interest))+' 元';
+  document.getElementById('it-rate-out').textContent=rate+'%';
+  document.getElementById('it-note').textContent=`本金 ${fmt(principal)} 元，年利率 ${rate}%，計息 ${days} 天，利息 ${fmt(Math.round(interest))} 元，本利合計 ${fmt(Math.round(principal+interest))} 元。`;
+  document.getElementById('interest-result').classList.add('show');
+}
+function calcPenalty(){
+  const type=document.getElementById('pn-type').value;
+  const contract=parseFloat(document.getElementById('pn-contract').value)||0;
+  let total=0;
+  if(type==='fixed'){total=parseFloat(document.getElementById('pn-fixed').value)||0;}
+  else if(type==='pct'){total=contract*(parseFloat(document.getElementById('pn-pct').value)||0)/100;}
+  else{total=(parseFloat(document.getElementById('pn-daily-amt').value)||0)*(parseInt(document.getElementById('pn-days').value)||0);}
+  if(!total){alert('請填寫違約金相關資料');return;}
+  const ratio=contract?((total/contract)*100).toFixed(1)+'%':'—';
+  const reduced=Math.round(total*0.5);
+  const tag=contract&&total/contract>0.2?'⚠ 可能被法院酌減':'比例合理';
+  document.getElementById('pn-total').textContent=fmt(Math.round(total));
+  document.getElementById('pn-tag').textContent=tag;
+  document.getElementById('pn-ratio').textContent=ratio;
+  document.getElementById('pn-reduce').textContent=fmt(reduced)+' 元（約5折）';
+  document.getElementById('pn-note').textContent=`違約金 ${fmt(Math.round(total))} 元${contract?`（合約金額的 ${ratio}）`:''}。${contract&&total/contract>0.2?'超過合約金額20%，依民法第252條，法院可能酌減，保守估計約 '+fmt(reduced)+' 元。':'比例合理，法院酌減機率較低。'}`;
+  document.getElementById('penalty-result').classList.add('show');
+}
+function calcLawsuit(){
+  const type=document.getElementById('ls-type').value;
+  const amount=parseFloat(document.getElementById('ls-amount').value)||0;
+  if(!amount){alert('請輸入訴訟標的金額');return;}
+  let fee=0;
+  if(type==='family'){fee=3000;}
+  else{
+    // 民事訴訟費用法第77-13條
+    if(amount<=100000)fee=amount*0.01;
+    else if(amount<=1000000)fee=1000+(amount-100000)*0.009;
+    else fee=9100+(amount-1000000)*0.008;
+    fee=Math.max(1000,fee);
+    if(type==='labor')fee=fee/2;
+  }
+  fee=Math.round(fee);
+  const lawyer=Math.round(Math.min(Math.max(amount*0.1,30000),300000));
+  document.getElementById('ls-fee').textContent=fmt(fee);
+  document.getElementById('ls-1st').textContent=fmt(fee)+' 元';
+  document.getElementById('ls-2nd').textContent=fmt(Math.round(fee*1.5))+' 元';
+  document.getElementById('ls-3rd').textContent=fmt(fee*2)+' 元';
+  document.getElementById('ls-lawyer').textContent=fmt(lawyer)+' 元起（估）';
+  document.getElementById('ls-note').textContent=`訴訟標的 ${fmt(amount)} 元，第一審裁判費約 ${fmt(fee)} 元${type==='labor'?'（勞動訴訟減半）':''}，律師費另估約 ${fmt(lawyer)} 元，總成本約 ${fmt(fee+lawyer)} 元以上。訴訟前可先試算是否划算。`;
+  document.getElementById('lawsuit-result').classList.add('show');
+}
+function calcLabor(){
+  const salary=parseFloat(document.getElementById('ld-salary').value)||0;
+  const years=parseFloat(document.getElementById('ld-years').value)||0;
+  const wageM=parseInt(document.getElementById('ld-wage-m').value)||0;
+  const ot=parseFloat(document.getElementById('ld-ot').value)||0;
+  if(!salary){alert('請輸入月薪');return;}
+  const wage=salary*wageM;
+  // 資遣費（新制）
+  const sev=Math.min(years,6)*salary;
+  // 預告工資（依年資）
+  let noticeDays=0;
+  if(years>=3)noticeDays=30;
+  else if(years>=1)noticeDays=20;
+  else if(years>=0.25)noticeDays=10;
+  const notice=Math.round(salary/30*noticeDays);
+  const total=wage+Math.round(sev)+notice+ot;
+  document.getElementById('ld-total').textContent=fmt(total);
+  document.getElementById('ld-wage').textContent=fmt(wage)+' 元';
+  document.getElementById('ld-sev').textContent=fmt(Math.round(sev))+' 元';
+  document.getElementById('ld-notice').textContent=fmt(notice)+' 元（'+noticeDays+'天）';
+  document.getElementById('ld-ot-out').textContent=ot>0?fmt(ot)+' 元':'未填';
+  document.getElementById('ld-note').textContent=`積欠薪資 ${fmt(wage)}、資遣費 ${fmt(Math.round(sev))}、預告工資 ${fmt(notice)}${ot>0?`、加班費 ${fmt(ot)}`:''}，爭議總金額約 ${fmt(total)} 元。建議先撥打 1955 申請調解。`;
+  document.getElementById('labor-result').classList.add('show');
+}
+function calcRent(){
+  const rent=parseFloat(document.getElementById('rt-rent').value)||0;
+  const depositM=parseInt(document.getElementById('rt-deposit').value);
+  const totalM=parseInt(document.getElementById('rt-total-m').value)||12;
+  const doneM=parseInt(document.getElementById('rt-done-m').value)||0;
+  if(!rent){alert('請輸入租金');return;}
+  const deposit=rent*depositM;
+  const remain=Math.max(0,totalM-doneM);
+  const penalty=Math.round(rent*Math.min(2,remain));
+  const paid=rent*doneM;
+  document.getElementById('rt-deposit-amt').textContent=fmt(deposit);
+  document.getElementById('rt-remain').textContent=remain+' 個月';
+  document.getElementById('rt-penalty').textContent=fmt(penalty)+' 元（估，依合約）';
+  document.getElementById('rt-paid').textContent=fmt(paid)+' 元';
+  document.getElementById('rt-refund').textContent=fmt(deposit)+' 元（扣損害後）';
+  document.getElementById('rt-note').textContent=`月租 ${fmt(rent)} 元，押金 ${depositM} 個月（${fmt(deposit)} 元）。租 ${doneM} 個月後提前解約，剩餘 ${remain} 個月，違約金通常約 1–2 個月租金（估 ${fmt(penalty)} 元）。`;
+  document.getElementById('rent-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

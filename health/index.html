@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/health/">
+<meta name="description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
+<meta name="keywords" content="BMI計算,TDEE計算,體脂率計算,理想體重,飲水量,睡眠計算">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox">
+<meta property="og:description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/health/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/health.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="健康計算｜BMI、TDEE、體脂率、理想體重">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/health.png">
+<meta name="twitter:title" content="健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox">
+<meta name="twitter:description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"BMI 計算機","url":"https://thecalcbox.github.io/health/#bmi","description":"依台灣衛福部標準計算BMI與健康體重範圍。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"TDEE 每日熱量計算","url":"https://thecalcbox.github.io/health/#tdee","description":"Mifflin-St Jeor公式計算每日熱量消耗，附減脂增肌建議。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"體脂率估算","url":"https://thecalcbox.github.io/health/#bodyfat","description":"美國海軍圍度公式估算體脂率，免體脂計。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"理想體重計算","url":"https://thecalcbox.github.io/health/#ideal","description":"BMI 22法與Devine公式計算理想體重區間。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"每日飲水量計算","url":"https://thecalcbox.github.io/health/#water","description":"依體重、運動量與台灣氣候計算建議飲水量。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"睡眠時間計算","url":"https://thecalcbox.github.io/health/#sleep","description":"90分鐘睡眠週期反推最佳就寢時刻。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"台灣BMI正常範圍是多少？","acceptedAnswer":{"@type":"Answer","text":"依衛福部標準，BMI 18.5–23.9為健康體重，24–26.9過重，27以上肥胖。"}},
+{"@type":"Question","name":"體脂率多少算正常？","acceptedAnswer":{"@type":"Answer","text":"男性健康範圍約14–23%、女性17–27%。男性超過25%、女性超過30%屬肥胖。"}},
+{"@type":"Question","name":"每天該喝多少水？","acceptedAnswer":{"@type":"Answer","text":"衛福部建議每日飲水量為體重(公斤)×30–35毫升，60公斤約1800–2100毫升。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#1B5E20;--accent-light:#E8F5E9;--accent-mid:#2E7D32;
+  --sub:#2E7D32;--sub-light:#E8F5E9;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(46,125,50,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"健康計算工具","item":"https://thecalcbox.github.io/health/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 健康計算</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📰 健康新聞</button>
+    <button class="tab-btn" onclick="switchTab('bmi')" id="tab-bmi">⚖️ BMI</button>
+    <button class="tab-btn" onclick="switchTab('tdee')" id="tab-tdee">🔥 每日熱量</button>
+    <button class="tab-btn" onclick="switchTab('bodyfat')" id="tab-bodyfat">📏 體脂率</button>
+    <button class="tab-btn" onclick="switchTab('ideal')" id="tab-ideal">🎯 理想體重</button>
+    <button class="tab-btn" onclick="switchTab('water')" id="tab-water">💧 飲水量</button>
+    <button class="tab-btn" onclick="switchTab('sleep')" id="tab-sleep">🌙 睡眠</button>
+    <button class="tab-btn" onclick="switchTab('whr')" id="tab-whr">📏 腰臀比</button>
+    <button class="tab-btn" onclick="switchTab('heartrate')" id="tab-heartrate">❤️ 心率區間</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">健康計算工具</h1>
+<p class="page-lead">免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日健康焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有健康疑慮請諮詢醫師。</p>
+</div>
+
+<!-- BMI -->
+<div class="panel" id="panel-bmi">
+  <div class="tool-card"><div class="card-head">
+    <h2>BMI 身體質量指數</h2><p>依台灣衛福部標準：18.5–23.9 為健康體重</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>身高（公分）</label><input type="number" id="b-h" placeholder="例：170" inputmode="decimal"></div>
+      <div class="field"><label>體重（公斤）</label><input type="number" id="b-w" placeholder="例：65" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBMI()">計算 BMI</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bmi-result">
+      <div class="result-top"><div class="result-number" id="b-num">—</div><div class="result-unit">BMI</div></div>
+      <span class="tag" id="b-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">健康體重範圍</div><div class="val" id="b-range">—</div></div>
+        <div class="result-cell"><div class="lbl">距離標準中值</div><div class="val" id="b-diff">—</div></div>
+      </div>
+      <div class="result-note" id="b-note"></div>
+      <div class="result-disclaimer">僅供參考，請諮詢醫師取得個人化建議。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣 BMI 標準</h3>
+      <p>衛福部標準：低於 18.5 過輕、18.5–23.9 健康、24–26.9 過重、27 以上肥胖。亞洲標準較 WHO（25 為界）嚴格，因相同 BMI 下亞洲人體脂率較高。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：BMI 正常但肚子大？</div><div class="seo-faq-a">A：BMI 不反映脂肪分布。腰圍男 ≥90cm、女 ≥80cm 即有代謝症候群風險，建議同時量腰圍。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- TDEE -->
+<div class="panel" id="panel-tdee">
+  <div class="tool-card"><div class="card-head">
+    <h2>TDEE 每日熱量消耗</h2><p>Mifflin-St Jeor 公式，附減脂與增肌建議攝取量</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>身高（公分）</label><input type="number" id="td-h" placeholder="170" inputmode="decimal"></div>
+      <div class="field"><label>體重（公斤）</label><input type="number" id="td-w" placeholder="65" inputmode="decimal"></div>
+      <div class="field"><label>年齡</label><input type="number" id="td-age" placeholder="30" inputmode="numeric"></div>
+      <div class="field"><label>性別</label><select id="td-sex"><option value="m">男</option><option value="f">女</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>活動量</label>
+        <select id="td-act"><option value="1.2">久坐（幾乎不運動）</option><option value="1.375">輕度（週1–2次）</option><option value="1.55" selected>中度（週3–5次）</option><option value="1.725">高度（週6–7次）</option><option value="1.9">超高（勞力工作/職業運動）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcTDEE()">計算每日熱量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="tdee-result">
+      <div class="result-top"><div class="result-number" id="td-num">—</div><div class="result-unit">大卡 / 天</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">基礎代謝 BMR</div><div class="val" id="td-bmr">—</div></div>
+        <div class="result-cell"><div class="lbl">減脂建議</div><div class="val green" id="td-cut">—</div></div>
+        <div class="result-cell"><div class="lbl">增肌建議</div><div class="val" id="td-bulk">—</div></div>
+        <div class="result-cell"><div class="lbl">每日蛋白質</div><div class="val" id="td-protein">—</div></div>
+      </div>
+      <div class="result-note" id="td-note"></div>
+      <div class="result-disclaimer">僅供參考，飲食規劃請諮詢營養師。</div>
+    </div>
+    <div class="seo-box">
+      <h3>TDEE 是什麼？</h3>
+      <p>TDEE＝基礎代謝（BMR）×活動係數，是每天總熱量消耗。減脂：攝取 TDEE−500 大卡（每週約減 0.5kg）；增肌：TDEE＋300 大卡＋重訓。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：減脂吃多少不掉肌肉？</div><div class="seo-faq-a">A：熱量不低於 TDEE×75%，蛋白質每公斤體重 1.6–2.0g，搭配阻力訓練。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 體脂率 -->
+<div class="panel" id="panel-bodyfat">
+  <div class="tool-card"><div class="card-head">
+    <h2>體脂率估算（美國海軍公式）</h2><p>用皮尺量腰圍、頸圍即可估算，免體脂計</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>性別</label><select id="bf-sex" onchange="document.getElementById('bf-hip-row').style.display=this.value==='f'?'flex':'none'"><option value="m">男</option><option value="f">女</option></select></div>
+      <div class="field"><label>身高（公分）</label><input type="number" id="bf-h" placeholder="170" inputmode="decimal"></div>
+      <div class="field"><label>腰圍（公分，肚臍高度）</label><input type="number" id="bf-waist" placeholder="85" inputmode="decimal"></div>
+      <div class="field"><label>頸圍（公分）</label><input type="number" id="bf-neck" placeholder="38" inputmode="decimal"></div>
+      <div class="field" id="bf-hip-row" style="display:none"><label>臀圍（公分，女性）</label><input type="number" id="bf-hip" placeholder="95" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBF()">估算體脂率</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bodyfat-result">
+      <div class="result-top"><div class="result-number" id="bf-num">—</div><div class="result-unit">% 體脂率</div></div>
+      <span class="tag" id="bf-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">脂肪重量（估）</div><div class="val" id="bf-fat">—</div></div>
+        <div class="result-cell"><div class="lbl">健康參考範圍</div><div class="val" id="bf-range">—</div></div>
+      </div>
+      <div class="result-note" id="bf-note"></div>
+      <div class="result-disclaimer">圍度估算有±3–4%誤差，精確值需DEXA等儀器測量。</div>
+    </div>
+    <div class="seo-box">
+      <h3>體脂率健康標準</h3>
+      <p>男性健康範圍約 14–23%、女性 17–27%（年齡越大標準略寬）。男性 >25%、女性 >30% 屬肥胖。體脂率比 BMI 更能反映身體組成，健身者尤其適用。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：家用體脂計準嗎？</div><div class="seo-faq-a">A：生物電阻式體脂計受含水量影響大，建議固定每天同一時間（早起空腹）測量看趨勢，不要糾結單次數值。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 理想體重 -->
+<div class="panel" id="panel-ideal">
+  <div class="tool-card"><div class="card-head">
+    <h2>理想體重計算</h2><p>同時以 BMI 22 法、Devine 公式計算，給你合理目標區間</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>身高（公分）</label><input type="number" id="iw-h" placeholder="170" inputmode="decimal"></div>
+      <div class="field"><label>性別</label><select id="iw-sex"><option value="m">男</option><option value="f">女</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcIdeal()">計算理想體重</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ideal-result">
+      <div class="result-top"><div class="result-number" id="iw-num">—</div><div class="result-unit">公斤（BMI 22 法）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">健康區間（BMI 18.5–24）</div><div class="val" id="iw-range">—</div></div>
+        <div class="result-cell"><div class="lbl">Devine 公式</div><div class="val" id="iw-devine">—</div></div>
+      </div>
+      <div class="result-note" id="iw-note"></div>
+      <div class="result-disclaimer">理想體重為統計參考值，肌肉量高者可高於此數值。</div>
+    </div>
+    <div class="seo-box">
+      <h3>理想體重怎麼算？</h3>
+      <p>台灣常用「BMI 22 法」：身高(m)² × 22。例：170cm → 1.7²×22 ≈ 63.6kg。健康區間為 BMI 18.5–24 對應的體重範圍，在區間內都屬正常。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 飲水量 -->
+<div class="panel" id="panel-water">
+  <div class="tool-card"><div class="card-head">
+    <h2>每日飲水量計算</h2><p>依體重、運動量與天氣計算建議飲水量</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>體重（公斤）</label><input type="number" id="w-w" placeholder="65" inputmode="decimal"></div>
+      <div class="field"><label>運動時間</label><select id="w-sport"><option value="0">不運動</option><option value="350">約30分鐘</option><option value="700">約1小時</option><option value="1000">1.5小時以上</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>環境</label><select id="w-env"><option value="0">冷氣房/室內</option><option value="250">一般戶外</option><option value="500">炎熱潮濕（台灣夏天戶外）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcWater()">計算飲水量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="water-result">
+      <div class="result-top"><div class="result-number" id="w-num">—</div><div class="result-unit">毫升 / 天</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">約等於（700ml瓶）</div><div class="val" id="w-bottle">—</div></div>
+        <div class="result-cell"><div class="lbl">約等於（240ml杯）</div><div class="val" id="w-cup">—</div></div>
+      </div>
+      <div class="result-note" id="w-note"></div>
+      <div class="result-disclaimer">腎臟病、心衰竭患者請依醫囑控制飲水量。</div>
+    </div>
+    <div class="seo-box">
+      <h3>每天該喝多少水？</h3>
+      <p>衛福部建議：體重(kg)×30–35ml。60kg 約 1,800–2,100ml。判斷方法：尿液淡黃為理想。腎臟每小時最多處理約 800ml，請分散飲用。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 睡眠 -->
+
+<!-- 腰臀比 -->
+<div class="panel" id="panel-whr">
+  <div class="tool-card"><div class="card-head">
+    <h2>腰臀比（WHR）計算</h2>
+    <p>比 BMI 更能反映腹部脂肪風險，WHO 標準男 ≤0.90、女 ≤0.85</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>腰圍（公分，肚臍高度）</label><input type="number" id="whr-waist" placeholder="例：80" inputmode="decimal"></div>
+      <div class="field"><label>臀圍（公分，最寬處）</label><input type="number" id="whr-hip" placeholder="例：95" inputmode="decimal"></div>
+    </div>
+    <div class="fields one"><div class="field"><label>性別</label><select id="whr-sex"><option value="m" selected>男</option><option value="f">女</option></select></div></div>
+    <button class="calc-btn" onclick="calcWHR()">計算腰臀比</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8015" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="whr-result">
+      <div class="result-top"><div class="result-number" id="whr-out">—</div><div class="result-unit">腰臀比（WHR）</div></div>
+      <span class="tag" id="whr-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">腰圍</div><div class="val" id="whr-w">—</div></div>
+        <div class="result-cell"><div class="lbl">健康標準</div><div class="val" id="whr-std">—</div></div>
+      </div>
+      <div class="result-note" id="whr-note"></div>
+      <div class="result-disclaimer">WHO 標準：男性 ≤0.90、女性 ≤0.85。超標代表腹部脂肪過多，代謝症候群風險增加。</div>
+    </div>
+    <div class="seo-box">
+      <h3>腰臀比 vs BMI</h3>
+      <p>BMI 看整體體重，WHR 看脂肪分布。「蘋果型」（腰粗臀窄）比「梨型」（腰細臀大）有更高的心血管疾病風險。腰圍男 ≥90cm、女 ≥80cm 即需注意，即使 BMI 正常也可能是「隱性肥胖」。</p>
+    </div>
+  </div></div>
+</div>
+
+<!-- 最大心率 / 運動心率區間 -->
+<div class="panel" id="panel-heartrate">
+  <div class="tool-card"><div class="card-head">
+    <h2>運動心率區間計算</h2>
+    <p>依年齡計算最大心率，找出燃脂、有氧、無氧的最佳訓練區間</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>年齡</label><input type="number" id="hr-age" placeholder="例：30" inputmode="numeric"></div>
+      <div class="field"><label>靜息心率（每分鐘，選填）</label><input type="number" id="hr-rest" placeholder="例：65" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcHeartRate()">計算心率區間</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8016" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="heartrate-result">
+      <div class="result-top"><div class="result-number" id="hr-max">—</div><div class="result-unit">bpm（最大心率）</div></div>
+      <div id="hr-zones" style="margin-top:.75rem;display:flex;flex-direction:column;gap:6px"></div>
+      <div class="result-note" id="hr-note"></div>
+      <div class="result-disclaimer">最大心率公式：220 - 年齡（Tanaka 法）。實際最大心率因個人體能而異，運動時如有不適請立即停止。</div>
+    </div>
+    <div class="seo-box">
+      <h3>各心率區間效果</h3>
+      <p>Zone 1（50–60%）：暖身恢復。Zone 2（60–70%）：燃脂效率最高。Zone 3（70–80%）：有氧耐力提升。Zone 4（80–90%）：無氧閾值訓練。Zone 5（90–100%）：最高強度衝刺。</p>
+    </div>
+  </div></div>
+</div>
+
+<div class="panel" id="panel-sleep">
+  <div class="tool-card"><div class="card-head">
+    <h2>睡眠時間計算</h2><p>以 90 分鐘睡眠週期反推最佳就寢時刻</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>年齡</label><input type="number" id="sl-age" placeholder="30" inputmode="numeric"></div>
+      <div class="field"><label>起床時間</label><input type="time" id="sl-wake" value="07:00"></div>
+    </div>
+    <button class="calc-btn" onclick="calcSleep()">計算就寢時間</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8017" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="sleep-result">
+      <div class="result-top"><div class="result-number" id="sl-num">—</div><div class="result-unit">小時（建議睡眠）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">最佳就寢時刻</div><div class="val green" id="sl-bed">—</div></div>
+        <div class="result-cell"><div class="lbl">睡眠週期</div><div class="val" id="sl-cycle">—</div></div>
+      </div>
+      <div class="result-note" id="sl-note"></div>
+      <div class="result-disclaimer">長期睡眠困擾請諮詢醫師。</div>
+    </div>
+    <div class="seo-box">
+      <h3>睡幾小時才夠？</h3>
+      <p>成人建議 7–9 小時。睡眠以 90 分鐘為一週期，在週期結束時醒來最清爽。睡前 1 小時遠離螢幕、室溫 18–22°C、咖啡因睡前 6 小時停止。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：衛福部國民健康署 BMI 標準、WHO 計算公式　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/nutrition/" style="--rc:#388E3C;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">營養飲食</div>
+        <div class="related-card-tags"><span>熱量赤字</span><span>巨量營養素</span><span>食物熱量</span><span>含糖量</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/baby/" style="--rc:#C2356B;--rs:#FBEAF1">
+      <div class="related-card-body">
+        <div class="related-card-name">孕產育兒</div>
+        <div class="related-card-tags"><span>預產期</span><span>排卵期</span><span>懷孕週數</span><span>育兒津貼</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/medical/" style="--rc:#C62828;--rs:#FFEBEE">
+      <div class="related-card-body">
+        <div class="related-card-name">醫療護理</div>
+        <div class="related-card-tags"><span>藥物劑量</span><span>GFR腎功能</span><span>血壓分級</span><span>點滴滴速</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 健康計算 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/baby/">孕產育兒</a> · <a href="/tax/">稅務薪資</a> · <a href="/loan/">貸款試算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://heho.com.tw/feed/')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">Heho健康</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcBMI(){
+  const h=parseFloat(document.getElementById('b-h').value)/100;
+  const w=parseFloat(document.getElementById('b-w').value);
+  if(!h||!w){alert('請輸入身高體重');return;}
+  const bmi=w/(h*h);
+  document.getElementById('b-num').textContent=bmi.toFixed(1);
+  const t=document.getElementById('b-tag');
+  let cat,cls;
+  if(bmi<18.5){cat='體重過輕';cls='tag';}
+  else if(bmi<24){cat='健康體重 ✓';cls='tag tag-green';}
+  else if(bmi<27){cat='體重過重';cls='tag';}
+  else{cat='肥胖';cls='tag tag-red';}
+  t.textContent=cat;t.className=cls;
+  const lo=(18.5*h*h).toFixed(1),hi=(23.9*h*h).toFixed(1);
+  document.getElementById('b-range').textContent=lo+'–'+hi+' kg';
+  const mid=(parseFloat(lo)+parseFloat(hi))/2;
+  const d=(w-mid).toFixed(1);
+  document.getElementById('b-diff').textContent=(d>0?'+':'')+d+' kg';
+  document.getElementById('b-note').textContent=`BMI ${bmi.toFixed(1)}，健康體重範圍 ${lo}–${hi} 公斤。`;
+  document.getElementById('bmi-result').classList.add('show');
+}
+function calcTDEE(){
+  const h=parseFloat(document.getElementById('td-h').value);
+  const w=parseFloat(document.getElementById('td-w').value);
+  const age=parseFloat(document.getElementById('td-age').value);
+  const sex=document.getElementById('td-sex').value;
+  const act=parseFloat(document.getElementById('td-act').value);
+  if(!h||!w||!age){alert('請填寫完整');return;}
+  const bmr=sex==='m'?(10*w)+(6.25*h)-(5*age)+5:(10*w)+(6.25*h)-(5*age)-161;
+  const tdee=Math.round(bmr*act);
+  document.getElementById('td-num').textContent=tdee.toLocaleString();
+  document.getElementById('td-bmr').textContent=Math.round(bmr).toLocaleString()+' 大卡';
+  document.getElementById('td-cut').textContent=Math.round(tdee-500).toLocaleString()+' 大卡';
+  document.getElementById('td-bulk').textContent=Math.round(tdee+300).toLocaleString()+' 大卡';
+  document.getElementById('td-protein').textContent=Math.round(w*1.6)+'–'+Math.round(w*2)+' g';
+  document.getElementById('td-note').textContent=`每日消耗約 ${tdee.toLocaleString()} 大卡。減脂攝取 ${(tdee-500).toLocaleString()}、增肌 ${(tdee+300).toLocaleString()} 大卡，蛋白質 ${Math.round(w*1.6)}g 以上。`;
+  document.getElementById('tdee-result').classList.add('show');
+}
+function calcBF(){
+  const sex=document.getElementById('bf-sex').value;
+  const h=parseFloat(document.getElementById('bf-h').value);
+  const waist=parseFloat(document.getElementById('bf-waist').value);
+  const neck=parseFloat(document.getElementById('bf-neck').value);
+  if(!h||!waist||!neck){alert('請填寫完整');return;}
+  let bf;
+  if(sex==='m'){
+    bf=495/(1.0324-0.19077*Math.log10(waist-neck)+0.15456*Math.log10(h))-450;
+  }else{
+    const hip=parseFloat(document.getElementById('bf-hip').value);
+    if(!hip){alert('女性請填寫臀圍');return;}
+    bf=495/(1.29579-0.35004*Math.log10(waist+hip-neck)+0.22100*Math.log10(h))-450;
+  }
+  bf=Math.max(3,Math.min(60,bf));
+  document.getElementById('bf-num').textContent=bf.toFixed(1);
+  const healthy=sex==='m'?[14,23]:[17,27];
+  const t=document.getElementById('bf-tag');
+  if(bf<healthy[0]){t.textContent='偏低';t.className='tag';}
+  else if(bf<=healthy[1]){t.textContent='健康範圍 ✓';t.className='tag tag-green';}
+  else if(bf<=healthy[1]+5){t.textContent='偏高';t.className='tag';}
+  else{t.textContent='過高';t.className='tag tag-red';}
+  document.getElementById('bf-range').textContent=healthy[0]+'–'+healthy[1]+'%';
+  document.getElementById('bf-fat').textContent='輸入體重後可估';
+  document.getElementById('bf-note').textContent=`估算體脂率 ${bf.toFixed(1)}%（${sex==='m'?'男':'女'}性健康範圍 ${healthy[0]}–${healthy[1]}%）。圍度法誤差約±3–4%，建議追蹤趨勢。`;
+  document.getElementById('bodyfat-result').classList.add('show');
+}
+function calcIdeal(){
+  const h=parseFloat(document.getElementById('iw-h').value);
+  const sex=document.getElementById('iw-sex').value;
+  if(!h){alert('請輸入身高');return;}
+  const m=h/100;
+  const ideal=(22*m*m).toFixed(1);
+  const lo=(18.5*m*m).toFixed(1),hi=(24*m*m).toFixed(1);
+  const devine=sex==='m'?(50+0.9*(h-152)).toFixed(1):(45.5+0.9*(h-152)).toFixed(1);
+  document.getElementById('iw-num').textContent=ideal;
+  document.getElementById('iw-range').textContent=lo+'–'+hi+' kg';
+  document.getElementById('iw-devine').textContent=devine+' kg';
+  document.getElementById('iw-note').textContent=`身高 ${h}cm 的理想體重約 ${ideal} 公斤（BMI 22），健康區間 ${lo}–${hi} 公斤，在區間內皆屬正常。`;
+  document.getElementById('ideal-result').classList.add('show');
+}
+function calcWater(){
+  const w=parseFloat(document.getElementById('w-w').value);
+  if(!w){alert('請輸入體重');return;}
+  const total=Math.round(w*33+parseInt(document.getElementById('w-sport').value)+parseInt(document.getElementById('w-env').value));
+  document.getElementById('w-num').textContent=total.toLocaleString();
+  document.getElementById('w-bottle').textContent=(total/700).toFixed(1)+' 瓶';
+  document.getElementById('w-cup').textContent=Math.round(total/240)+' 杯';
+  document.getElementById('w-note').textContent=`每天建議 ${total.toLocaleString()}ml，請分散飲用，起床、三餐前、運動前後各一杯。尿液淡黃色代表水分充足。`;
+  document.getElementById('water-result').classList.add('show');
+}
+function calcSleep(){
+  const age=parseInt(document.getElementById('sl-age').value);
+  const wake=document.getElementById('sl-wake').value;
+  if(!age||!wake){alert('請填寫完整');return;}
+  const tbl=[[2,11,14],[5,10,13],[13,9,11],[17,8,10],[64,7,9],[120,7,8]];
+  let mn=7,mx=9;
+  for(const[a,l,h]of tbl){if(age<=a){mn=l;mx=h;break;}}
+  const cycles=Math.round((mn+mx)/2/1.5);
+  const[wh,wm]=wake.split(':').map(Number);
+  const bed=(((wh*60+wm)-cycles*90)%1440+1440)%1440;
+  const bh=Math.floor(bed/60),bm=bed%60;
+  document.getElementById('sl-num').textContent=mn+'–'+mx;
+  document.getElementById('sl-bed').textContent=String(bh).padStart(2,'0')+':'+String(bm).padStart(2,'0');
+  document.getElementById('sl-cycle').textContent=cycles+' 個週期（每90分鐘）';
+  document.getElementById('sl-note').textContent=`建議睡 ${mn}–${mx} 小時。依 ${wake} 起床，最佳就寢時刻為 ${String(bh).padStart(2,'0')}:${String(bm).padStart(2,'0')}，剛好完成 ${cycles} 個完整睡眠週期。`;
+  document.getElementById('sleep-result').classList.add('show');
+}
+
+
+function calcWHR(){
+  const waist=parseFloat(document.getElementById('whr-waist').value);
+  const hip=parseFloat(document.getElementById('whr-hip').value);
+  const sex=document.getElementById('whr-sex').value;
+  if(!waist||!hip){alert('請填寫腰圍與臀圍');return;}
+  const whr=(waist/hip).toFixed(2);
+  const std=sex==='m'?0.90:0.85;
+  const ok=parseFloat(whr)<=std;
+  document.getElementById('whr-out').textContent=whr;
+  document.getElementById('whr-tag').textContent=ok?'✓ 正常範圍':'⚠ 超標，腹部脂肪偏多';
+  document.getElementById('whr-tag').className=ok?'tag tag-green':'tag tag-red';
+  document.getElementById('whr-w').textContent=waist+' cm';
+  document.getElementById('whr-std').textContent='≤'+std+'（'+( sex==='m'?'男':'女')+'）';
+  document.getElementById('whr-note').textContent=`腰圍 ${waist}cm ÷ 臀圍 ${hip}cm = WHR ${whr}，${ok?'在 WHO 建議範圍內':'超過 WHO 建議值 '+std+'，建議增加有氧運動減少腹部脂肪'}。`;
+  document.getElementById('whr-result').classList.add('show');
+}
+function calcHeartRate(){
+  const age=parseInt(document.getElementById('hr-age').value);
+  const rest=parseInt(document.getElementById('hr-rest').value)||60;
+  if(!age){alert('請輸入年齡');return;}
+  const max=208-0.7*age; // Tanaka公式
+  const hrr=max-rest; // 心率儲備
+  const zones=[
+    {name:'Zone 1 暖身',pct:[50,60],color:'#4CAF50',desc:'輕鬆活動，恢復訓練'},
+    {name:'Zone 2 燃脂',pct:[60,70],color:'#8BC34A',desc:'燃脂效率最高，建議長時間有氧'},
+    {name:'Zone 3 有氧',pct:[70,80],color:'#FFC107',desc:'有氧耐力提升，日常訓練主區間'},
+    {name:'Zone 4 無氧',pct:[80,90],color:'#FF9800',desc:'提升無氧閾值，間歇訓練'},
+    {name:'Zone 5 衝刺',pct:[90,100],color:'#F44336',desc:'最大強度，短時間衝刺'}
+  ];
+  document.getElementById('hr-max').textContent=Math.round(max);
+  document.getElementById('hr-zones').innerHTML=zones.map(z=>{
+    const lo=Math.round(rest+hrr*z.pct[0]/100);
+    const hi=Math.round(rest+hrr*z.pct[1]/100);
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:#F8F9FA;border-left:4px solid ${z.color}">
+      <div style="flex:1">
+        <div style="font-size:12px;font-weight:700;color:#1a1a2e">${z.name}</div>
+        <div style="font-size:11px;color:#5A6E84;margin-top:1px">${z.desc}</div>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:${z.color};white-space:nowrap">${lo}–${hi} bpm</div>
+    </div>`;
+  }).join('');
+  document.getElementById('hr-note').textContent=`最大心率 ${Math.round(max)} bpm（Tanaka公式），心率儲備 ${Math.round(hrr)} bpm。燃脂區間 ${Math.round(rest+hrr*0.6)}–${Math.round(rest+hrr*0.7)} bpm，有氧區間 ${Math.round(rest+hrr*0.7)}–${Math.round(rest+hrr*0.8)} bpm。`;
+  document.getElementById('heartrate-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>
