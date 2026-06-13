@@ -14,7 +14,8 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/icons/tools-white/convert.png">
+<meta name="apple-mobile-web-app-title" content="單位換算">
 <meta name="theme-color" content="#1B3A5C">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <title>單位換算工具｜坪數、長度、重量、溫度、容量換算 — CalcBox</title>
@@ -219,6 +220,9 @@ footer a:hover{color:#F3C969!important}
 .ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
 .ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
 .ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+
+.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
+.tab-btn span{display:inline-block}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"單位換算工具","item":"https://thecalcbox.github.io/convert/"}]}</script>
@@ -234,12 +238,12 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
-    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping">🏠 坪數換算</button>
-    <button class="tab-btn" onclick="switchTab('length')" id="tab-length">📏 長度</button>
-    <button class="tab-btn" onclick="switchTab('weight')" id="tab-weight">⚖️ 重量</button>
-    <button class="tab-btn" onclick="switchTab('temp')" id="tab-temp">🌡️ 溫度</button>
-    <button class="tab-btn" onclick="switchTab('volume')" id="tab-volume">🧴 容量</button>
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
+    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/><path d="M9 21.5v-8h6v8"/></svg><span>坪數換算</span></button>
+    <button class="tab-btn" onclick="switchTab('length')" id="tab-length"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1" transform="rotate(0 12 12)"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="11"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg><span>長度</span></button>
+    <button class="tab-btn" onclick="switchTab('weight')" id="tab-weight"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="20"/><path d="M5 7h14"/><path d="M5 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L5 7z"/><path d="M19 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L19 7z"/><path d="M8 21h8"/></svg><span>重量</span></button>
+    <button class="tab-btn" onclick="switchTab('temp')" id="tab-temp"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a2 2 0 0 0-2 2v9a4 4 0 1 0 4 0V5a2 2 0 0 0-2-2Z"/><line x1="12" y1="9" x2="12" y2="15"/></svg><span>溫度</span></button>
+    <button class="tab-btn" onclick="switchTab('volume')" id="tab-volume"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3H9z"/><rect x="7" y="6" width="10" height="15" rx="2"/><line x1="7" y1="12" x2="17" y2="12"/></svg><span>容量</span></button>
   </div>
 </div>
 
@@ -445,41 +449,52 @@ async function loadNews(){
   const btn=document.getElementById('refresh-btn');
   const icon=document.getElementById('refresh-icon');
   const container=document.getElementById('news-container');
-  btn.disabled=true;icon.className='spin';
+  if(btn)btn.disabled=true;
+  if(icon)icon.className='spin';
   container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  try{
-    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-    let items=Array.from(xml.querySelectorAll('item'));
-    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-    items=items.slice(0,8);
-    if(!items.length)throw new Error('no items');
-    let html='<div class="news-list">';
-    items.forEach((item,i)=>{
-      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      let link='#';
-      const linkEl=item.getElementsByTagName('link')[0];
-      if(linkEl)link=linkEl.textContent?.trim()||'#';
-      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-        <div class="news-card-inner"><div class="news-num">${i+1}</div>
-        <div class="news-content"><span class="news-src">中央社</span>
-        <div class="news-headline">${title}</div>
-        ${desc?`<div class="news-summary">${desc}...</div>`:''}
-        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-    });
-    container.innerHTML=html+'</div>';
-    newsLoaded=true;
-  }catch(e){
-    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  const nd=document.getElementById('news-date');
+  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  const FEEDS=['https://feeds.feedburner.com/rsscna/lifehealth','https://feeds.feedburner.com/rsscna/social','https://news.ltn.com.tw/rss/life.xml'];
+  let loaded=false;
+  for(const feedUrl of FEEDS){
+    try{
+      const ctrl=new AbortController();
+      const timer=setTimeout(()=>ctrl.abort(),7000);
+      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
+      clearTimeout(timer);
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+      let items=Array.from(xml.querySelectorAll('item'));
+      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+      items=items.slice(0,8);
+      if(!items.length)throw new Error('no items');
+      let html='<div class="news-list">';
+      items.forEach((item,i)=>{
+        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+        let link='#';
+        const linkEl=item.getElementsByTagName('link')[0];
+        if(linkEl)link=linkEl.textContent?.trim()||'#';
+        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+          <div class="news-card-inner"><div class="news-num">${i+1}</div>
+          <div class="news-content"><span class="news-src">中央社</span>
+          <div class="news-headline">${title}</div>
+          ${desc?`<div class="news-summary">${desc}...</div>`:''}
+          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+      });
+      container.innerHTML=html+'</div>';
+      newsLoaded=true;loaded=true;break;
+    }catch(e){ /* 換下一個來源 */ }
   }
-  btn.disabled=false;icon.className='';
+  if(!loaded){
+    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
+  }
+  if(btn)btn.disabled=false;
+  if(icon)icon.className='';
 }
 
 
