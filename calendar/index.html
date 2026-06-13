@@ -423,41 +423,52 @@ async function loadNews(){
   const btn=document.getElementById('refresh-btn');
   const icon=document.getElementById('refresh-icon');
   const container=document.getElementById('news-container');
-  btn.disabled=true;icon.className='spin';
+  if(btn)btn.disabled=true;
+  if(icon)icon.className='spin';
   container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  try{
-    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-    let items=Array.from(xml.querySelectorAll('item'));
-    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-    items=items.slice(0,8);
-    if(!items.length)throw new Error('no items');
-    let html='<div class="news-list">';
-    items.forEach((item,i)=>{
-      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      let link='#';
-      const linkEl=item.getElementsByTagName('link')[0];
-      if(linkEl)link=linkEl.textContent?.trim()||'#';
-      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-        <div class="news-card-inner"><div class="news-num">${i+1}</div>
-        <div class="news-content"><span class="news-src">中央社</span>
-        <div class="news-headline">${title}</div>
-        ${desc?`<div class="news-summary">${desc}...</div>`:''}
-        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-    });
-    container.innerHTML=html+'</div>';
-    newsLoaded=true;
-  }catch(e){
-    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  const nd=document.getElementById('news-date');
+  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  const FEEDS=['https://feeds.feedburner.com/rsscna/lifehealth','https://feeds.feedburner.com/rsscna/social','https://news.ltn.com.tw/rss/life.xml'];
+  let loaded=false;
+  for(const feedUrl of FEEDS){
+    try{
+      const ctrl=new AbortController();
+      const timer=setTimeout(()=>ctrl.abort(),7000);
+      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
+      clearTimeout(timer);
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+      let items=Array.from(xml.querySelectorAll('item'));
+      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+      items=items.slice(0,8);
+      if(!items.length)throw new Error('no items');
+      let html='<div class="news-list">';
+      items.forEach((item,i)=>{
+        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+        let link='#';
+        const linkEl=item.getElementsByTagName('link')[0];
+        if(linkEl)link=linkEl.textContent?.trim()||'#';
+        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+          <div class="news-card-inner"><div class="news-num">${i+1}</div>
+          <div class="news-content"><span class="news-src">中央社</span>
+          <div class="news-headline">${title}</div>
+          ${desc?`<div class="news-summary">${desc}...</div>`:''}
+          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+      });
+      container.innerHTML=html+'</div>';
+      newsLoaded=true;loaded=true;break;
+    }catch(e){ /* 換下一個來源 */ }
   }
-  btn.disabled=false;icon.className='';
+  if(!loaded){
+    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
+  }
+  if(btn)btn.disabled=false;
+  if(icon)icon.className='';
 }
 
 
