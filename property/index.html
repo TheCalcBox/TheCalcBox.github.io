@@ -14,7 +14,8 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/icons/tools-white/property.png">
+<meta name="apple-mobile-web-app-title" content="房產試算">
 <meta name="theme-color" content="#1B3A5C">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <title>房產試算工具｜房屋稅、地價稅、租售比、公設比、買房負擔 — CalcBox</title>
@@ -217,6 +218,9 @@ footer a:hover{color:#F3C969!important}
 .ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
 .ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
 .ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+
+.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
+.tab-btn span{display:inline-block}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"房產試算工具","item":"https://thecalcbox.github.io/property/"}]}</script>
@@ -232,12 +236,12 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📈 財經新聞</button>
-    <button class="tab-btn" onclick="switchTab('realtax')" id="tab-realtax">🏠 房屋稅</button>
-    <button class="tab-btn" onclick="switchTab('landtax')" id="tab-landtax">🌿 地價稅</button>
-    <button class="tab-btn" onclick="switchTab('ratio')" id="tab-ratio">📐 租售比</button>
-    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping">📏 實坪計算</button>
-    <button class="tab-btn" onclick="switchTab('afford')" id="tab-afford">💰 買房負擔</button>
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>財經新聞</span></button>
+    <button class="tab-btn" onclick="switchTab('realtax')" id="tab-realtax"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/><path d="M9 21.5v-8h6v8"/></svg><span>房屋稅</span></button>
+    <button class="tab-btn" onclick="switchTab('landtax')" id="tab-landtax"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20c0-6 3-11 9-13-1 7-4 11-9 13Z"/><path d="M11 20c0-4-2-7-6-8"/></svg><span>地價稅</span></button>
+    <button class="tab-btn" onclick="switchTab('ratio')" id="tab-ratio"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M3 3l18 18"/><path d="M8 17v-3M11 17v-6"/></svg><span>租售比</span></button>
+    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1" transform="rotate(0 12 12)"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="11"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg><span>實坪計算</span></button>
+    <button class="tab-btn" onclick="switchTab('afford')" id="tab-afford"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 11v6M9.5 12.5h5M9.5 15.5h5"/><path d="M7 7l2-3h6l2 3"/></svg><span>買房負擔</span></button>
   </div>
 </div>
 
@@ -490,41 +494,52 @@ async function loadNews(){
   const btn=document.getElementById('refresh-btn');
   const icon=document.getElementById('refresh-icon');
   const container=document.getElementById('news-container');
-  btn.disabled=true;icon.className='spin';
+  if(btn)btn.disabled=true;
+  if(icon)icon.className='spin';
   container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  try{
-    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/finance')}`);
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-    let items=Array.from(xml.querySelectorAll('item'));
-    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-    items=items.slice(0,8);
-    if(!items.length)throw new Error('no items');
-    let html='<div class="news-list">';
-    items.forEach((item,i)=>{
-      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      let link='#';
-      const linkEl=item.getElementsByTagName('link')[0];
-      if(linkEl)link=linkEl.textContent?.trim()||'#';
-      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-        <div class="news-card-inner"><div class="news-num">${i+1}</div>
-        <div class="news-content"><span class="news-src">中央社財經</span>
-        <div class="news-headline">${title}</div>
-        ${desc?`<div class="news-summary">${desc}...</div>`:''}
-        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-    });
-    container.innerHTML=html+'</div>';
-    newsLoaded=true;
-  }catch(e){
-    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  const nd=document.getElementById('news-date');
+  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  const FEEDS=['https://feeds.feedburner.com/rsscna/finance','https://news.ltn.com.tw/rss/business.xml'];
+  let loaded=false;
+  for(const feedUrl of FEEDS){
+    try{
+      const ctrl=new AbortController();
+      const timer=setTimeout(()=>ctrl.abort(),7000);
+      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
+      clearTimeout(timer);
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+      let items=Array.from(xml.querySelectorAll('item'));
+      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+      items=items.slice(0,8);
+      if(!items.length)throw new Error('no items');
+      let html='<div class="news-list">';
+      items.forEach((item,i)=>{
+        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+        let link='#';
+        const linkEl=item.getElementsByTagName('link')[0];
+        if(linkEl)link=linkEl.textContent?.trim()||'#';
+        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+          <div class="news-card-inner"><div class="news-num">${i+1}</div>
+          <div class="news-content"><span class="news-src">中央社</span>
+          <div class="news-headline">${title}</div>
+          ${desc?`<div class="news-summary">${desc}...</div>`:''}
+          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+      });
+      container.innerHTML=html+'</div>';
+      newsLoaded=true;loaded=true;break;
+    }catch(e){ /* 換下一個來源 */ }
   }
-  btn.disabled=false;icon.className='';
+  if(!loaded){
+    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
+  }
+  if(btn)btn.disabled=false;
+  if(icon)icon.className='';
 }
 
 

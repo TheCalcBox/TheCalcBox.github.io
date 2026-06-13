@@ -14,7 +14,8 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/icons/tools-white/medical.png">
+<meta name="apple-mobile-web-app-title" content="醫療護理">
 <meta name="theme-color" content="#1B3A5C">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <title>醫療護理計算機｜藥物劑量、GFR腎功能、血壓分級、點滴滴速 — CalcBox</title>
@@ -212,6 +213,9 @@ footer a:hover{color:#F3C969!important}
 .ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
 .ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
 .ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+
+.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
+.tab-btn span{display:inline-block}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"醫療護理計算機","item":"https://thecalcbox.github.io/medical/"}]}</script>
@@ -227,13 +231,13 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('dose')" id="tab-dose">💊 藥物劑量</button>
-    <button class="tab-btn" onclick="switchTab('gfr')" id="tab-gfr">🫘 GFR腎功能</button>
-    <button class="tab-btn" onclick="switchTab('bsa')" id="tab-bsa">📐 體表面積</button>
-    <button class="tab-btn" onclick="switchTab('bp')" id="tab-bp">❤️ 血壓分級</button>
+    <button class="tab-btn active" onclick="switchTab('dose')" id="tab-dose"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="8" rx="4" transform="rotate(45 12 12)"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span>藥物劑量</span></button>
+    <button class="tab-btn" onclick="switchTab('gfr')" id="tab-gfr"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c4 0 8 3 8 8s-4 8-8 8c2-3 2-5 2-8s0-5-2-8Z"/></svg><span>GFR腎功能</span></button>
+    <button class="tab-btn" onclick="switchTab('bsa')" id="tab-bsa"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M3 3l18 18"/><path d="M8 17v-3M11 17v-6"/></svg><span>體表面積</span></button>
+    <button class="tab-btn" onclick="switchTab('bp')" id="tab-bp"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 22l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/></svg><span>血壓分級</span></button>
     <button class="tab-btn" onclick="switchTab('bmi_c')" id="tab-bmi_c">⚖️ BMI臨床</button>
-    <button class="tab-btn" onclick="switchTab('drip')" id="tab-drip">💧 點滴滴速</button>
-    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 健康新聞</button>
+    <button class="tab-btn" onclick="switchTab('drip')" id="tab-drip"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg><span>點滴滴速</span></button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>健康新聞</span></button>
   </div>
 </div>
 
@@ -510,41 +514,52 @@ async function loadNews(){
   const btn=document.getElementById('refresh-btn');
   const icon=document.getElementById('refresh-icon');
   const container=document.getElementById('news-container');
-  btn.disabled=true;icon.className='spin';
+  if(btn)btn.disabled=true;
+  if(icon)icon.className='spin';
   container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  try{
-    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://heho.com.tw/feed/')}`);
-    if(!res.ok)throw new Error('HTTP '+res.status);
-    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-    let items=Array.from(xml.querySelectorAll('item'));
-    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-    items=items.slice(0,8);
-    if(!items.length)throw new Error('no items');
-    let html='<div class="news-list">';
-    items.forEach((item,i)=>{
-      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-      let link='#';
-      const linkEl=item.getElementsByTagName('link')[0];
-      if(linkEl)link=linkEl.textContent?.trim()||'#';
-      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-        <div class="news-card-inner"><div class="news-num">${i+1}</div>
-        <div class="news-content"><span class="news-src">Heho健康</span>
-        <div class="news-headline">${title}</div>
-        ${desc?`<div class="news-summary">${desc}...</div>`:''}
-        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-    });
-    container.innerHTML=html+'</div>';
-    newsLoaded=true;
-  }catch(e){
-    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  const nd=document.getElementById('news-date');
+  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  const FEEDS=['https://heho.com.tw/feed/','https://feeds.feedburner.com/rsscna/lifehealth'];
+  let loaded=false;
+  for(const feedUrl of FEEDS){
+    try{
+      const ctrl=new AbortController();
+      const timer=setTimeout(()=>ctrl.abort(),7000);
+      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
+      clearTimeout(timer);
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+      let items=Array.from(xml.querySelectorAll('item'));
+      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+      items=items.slice(0,8);
+      if(!items.length)throw new Error('no items');
+      let html='<div class="news-list">';
+      items.forEach((item,i)=>{
+        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+        let link='#';
+        const linkEl=item.getElementsByTagName('link')[0];
+        if(linkEl)link=linkEl.textContent?.trim()||'#';
+        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+          <div class="news-card-inner"><div class="news-num">${i+1}</div>
+          <div class="news-content"><span class="news-src">Heho健康</span>
+          <div class="news-headline">${title}</div>
+          ${desc?`<div class="news-summary">${desc}...</div>`:''}
+          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+      });
+      container.innerHTML=html+'</div>';
+      newsLoaded=true;loaded=true;break;
+    }catch(e){ /* 換下一個來源 */ }
   }
-  btn.disabled=false;icon.className='';
+  if(!loaded){
+    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
+  }
+  if(btn)btn.disabled=false;
+  if(icon)icon.className='';
 }
 
 
