@@ -14,7 +14,8 @@
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="/icons/tools-white/fx.png">
+<meta name="apple-mobile-web-app-title" content="即時匯率">
 <meta name="theme-color" content="#1B3A5C">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <title>即時匯率換算｜台幣、美元、日幣、港幣、歐元、人民幣 — CalcBox</title>
@@ -251,6 +252,9 @@ footer a:hover{color:#F3C969!important}
 .cf-load{width:100%;margin-top:10px;height:38px;background:none;border:1px dashed var(--border);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
 .cf-load:hover{border-color:var(--accent);color:var(--accent)}
 @media(max-width:400px){.cf-row{grid-template-columns:1fr}}
+
+.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
+.tab-btn span{display:inline-block}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"即時匯率換算","item":"https://thecalcbox.github.io/fx/"}]}</script>
@@ -267,9 +271,9 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('converter')" id="tab-converter">💱 換算計算機</button>
-    <button class="tab-btn" onclick="switchTab('board')" id="tab-board">📊 匯率看板</button>
-    <button class="tab-btn" onclick="switchTab('chart')" id="tab-chart">📈 走勢圖</button>
+    <button class="tab-btn active" onclick="switchTab('converter')" id="tab-converter"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h13l-3-3M21 16H8l3 3"/></svg><span>換算計算機</span></button>
+    <button class="tab-btn" onclick="switchTab('board')" id="tab-board"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg><span>匯率看板</span></button>
+    <button class="tab-btn" onclick="switchTab('chart')" id="tab-chart"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>走勢圖</span></button>
   </div>
 </div>
 
