@@ -668,15 +668,19 @@ function psuSub(sub){
   });
 }
 
-// 高解析度 canvas 設定
+// 固定繪圖座標系（700×420 或 700×360），CSS 負責縮放顯示，不依賴 clientWidth
 function setupCanvas(cv){
-  const dpr = window.devicePixelRatio || 1;
-  const cssW = cv.clientWidth || 700, cssH = parseInt(cv.getAttribute('height'));
-  cv.width = cssW * dpr; cv.height = cssH * dpr;
-  cv.style.height = cssH + 'px';
+  const dpr = Math.max(1, window.devicePixelRatio || 1);
+  // 內部繪圖尺寸固定，從 attribute 取得（HTML 已設 width/height）
+  const W = parseInt(cv.getAttribute('width')) || 700;
+  const H = parseInt(cv.getAttribute('height')) || 420;
+  // 實際像素 = 邏輯尺寸 × dpr（高解析度）
+  cv.width = W * dpr;
+  cv.height = H * dpr;
+  // CSS 顯示尺寸由 .chart-box canvas { width:100%; height:auto } 控制，這裡不設 style
   const ctx = cv.getContext('2d');
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  return {ctx, W:cssW, H:cssH};
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx, W, H };
 }
 
 // LLC FHA 增益公式
@@ -691,7 +695,7 @@ function llcGain(fn, Ln, Q){
 
 function drawLLC(){
   const cv = document.getElementById('llc-chart');
-  if(!cv || !cv.clientWidth) return;
+  if(!cv) return;
   const Lr = parseFloat(document.getElementById('p-lr').value)*1e-6;
   const Cr = parseFloat(document.getElementById('p-cr').value)*1e-9;
   const Lm = parseFloat(document.getElementById('p-lm').value)*1e-6;
@@ -765,7 +769,7 @@ function drawLLC(){
 // 諧振 / 激磁電流波形
 function drawCurrent(){
   const cv=document.getElementById('cur-chart');
-  if(!cv||!cv.clientWidth) return;
+  if(!cv) return;
   const Vin=parseFloat(document.getElementById('c-vin').value);
   const fs=parseFloat(document.getElementById('c-fs').value)*1e3;
   const Lr=parseFloat(document.getElementById('c-lr').value)*1e-6;
@@ -850,7 +854,7 @@ function calcFaraday(){
 
   // 匝數 vs 頻率曲線
   const cv=document.getElementById('far-chart');
-  if(!cv||!cv.clientWidth) return;
+  if(!cv) return;
   const {ctx,W,H}=setupCanvas(cv);
   ctx.clearRect(0,0,W,H);
   const padL=50,padR=16,padT=20,padB=44;
@@ -878,11 +882,15 @@ function calcFaraday(){
     ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(Np.toFixed(0)+'匝 @'+(f/1000).toFixed(0)+'k',X(f),Y(Np)-10);}
 }
 
+let psuResizeTimer;
 window.addEventListener('resize', ()=>{
-  if(document.getElementById('panel-psu')?.classList.contains('active')){
-    const sub=document.querySelector('.psu-sub.active')?.dataset.sub;
-    if(sub==='llc')drawLLC();else if(sub==='current')drawCurrent();else if(sub==='faraday')calcFaraday();
-  }
+  clearTimeout(psuResizeTimer);
+  psuResizeTimer = setTimeout(()=>{
+    if(document.getElementById('panel-psu')?.classList.contains('active')){
+      const sub=document.querySelector('.psu-sub.active')?.dataset.sub;
+      if(sub==='llc')drawLLC();else if(sub==='current')drawCurrent();else if(sub==='faraday')calcFaraday();
+    }
+  }, 200);
 });
 
 async function loadNews(){
