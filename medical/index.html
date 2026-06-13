@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>醫療護理計算機｜藥物劑量、GFR腎功能、血壓分級、點滴滴速 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/medical/">
+<meta name="description" content="免費醫療護理計算工具：藥物劑量(mg/kg)、eGFR腎功能(CKD-EPI)、體表面積BSA、血壓分級、BMI臨床版、點滴滴速計算。">
+<meta name="keywords" content="藥物劑量計算,GFR腎功能,eGFR計算,血壓分級,體表面積BSA,點滴滴速">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="醫療護理計算機｜藥物劑量、GFR腎功能、血壓分級、點滴滴速 — CalcBox">
+<meta property="og:description" content="免費醫療護理計算工具：藥物劑量(mg/kg)、eGFR腎功能(CKD-EPI)、體表面積BSA、血壓分級、BMI臨床版、點滴滴速計算。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/medical/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/medical.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="醫療護理｜藥物劑量、GFR腎功能、滴速計算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/medical.png">
+<meta name="twitter:title" content="醫療護理計算機｜藥物劑量、GFR腎功能、血壓分級、點滴滴速 — CalcBox">
+<meta name="twitter:description" content="免費醫療護理計算工具：藥物劑量(mg/kg)、eGFR腎功能(CKD-EPI)、體表面積BSA、血壓分級、BMI臨床版、點滴滴速計算。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"藥物劑量計算機","url":"https://thecalcbox.github.io/medical/#dose","description":"依體重計算藥物用量，支援mg/kg與mcg/kg/min。","applicationCategory":"MedicalWebPage","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"eGFR腎功能計算","url":"https://thecalcbox.github.io/medical/#gfr","description":"CKD-EPI公式估算腎絲球過濾率與CKD分期。","applicationCategory":"MedicalWebPage","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"血壓分級評估","url":"https://thecalcbox.github.io/medical/#bp","description":"依台灣高血壓指引評估血壓等級。","applicationCategory":"MedicalWebPage","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"點滴滴速計算","url":"https://thecalcbox.github.io/medical/#drip","description":"計算靜脈點滴每分鐘滴數與每小時輸注速率。","applicationCategory":"MedicalWebPage","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#B71C1C;--accent-light:#FFEBEE;--accent-mid:#C62828;
+  --sub:#C62828;--sub-light:#FFEBEE;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(198,40,40,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"醫療護理計算機","item":"https://thecalcbox.github.io/medical/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 醫療護理</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('dose')" id="tab-dose">💊 藥物劑量</button>
+    <button class="tab-btn" onclick="switchTab('gfr')" id="tab-gfr">🫘 GFR腎功能</button>
+    <button class="tab-btn" onclick="switchTab('bsa')" id="tab-bsa">📐 體表面積</button>
+    <button class="tab-btn" onclick="switchTab('bp')" id="tab-bp">❤️ 血壓分級</button>
+    <button class="tab-btn" onclick="switchTab('bmi_c')" id="tab-bmi_c">⚖️ BMI臨床</button>
+    <button class="tab-btn" onclick="switchTab('drip')" id="tab-drip">💧 點滴滴速</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 健康新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">醫療護理計算機</h1>
+<p class="page-lead">免費醫療護理計算工具：藥物劑量(mg/kg)、eGFR腎功能(CKD-EPI)、體表面積BSA、血壓分級、BMI臨床版、點滴滴速計算。</p>
+
+
+<!-- 藥物劑量 -->
+<div class="panel active" id="panel-dose">
+  <div class="tool-card"><div class="card-head">
+    <h2>藥物劑量計算機</h2>
+    <p>依體重計算藥物用量，支援 mg/kg 與 mcg/kg/min 計算</p>
+  </div><div class="card-body">
+    <div style="background:#FFF8E1;border-left:4px solid #F9A825;border-radius:6px;padding:10px 14px;margin-bottom:1rem;font-size:12px;color:#6D4C00">
+      ⚠️ 本工具僅供醫護人員學習參考，實際用藥請依醫師處方與藥典規定，勿自行調整劑量。
+    </div>
+    <div class="fields">
+      <div class="field"><label>病人體重（公斤）</label><input type="number" id="ds-weight" placeholder="例：70" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>劑量單位</label>
+        <select id="ds-unit"><option value="mg_kg" selected>mg/kg（每公斤毫克）</option><option value="mcg_kg_min">mcg/kg/min（靜脈持續）</option><option value="mg_m2">mg/m²（每平方公尺）</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>處方劑量</label><input type="number" id="ds-dose" placeholder="例：5" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>藥物濃度（mg/mL，靜脈用）</label><input type="number" id="ds-conc" placeholder="例：2" step="0.01" value="1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcDose()">計算劑量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9520" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="dose-result">
+      <div class="result-top"><div class="result-number" id="ds-total">—</div><div class="result-unit" id="ds-total-unit">mg</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">所需藥液量</div><div class="val" id="ds-vol">—</div></div>
+        <div class="result-cell"><div class="lbl">每小時輸注速率</div><div class="val" id="ds-rate">—</div></div>
+      </div>
+      <div class="result-note" id="ds-note"></div>
+      <div class="result-disclaimer">計算結果僅供護理計算練習，實際給藥請依醫師醫囑與機構規範執行。</div>
+    </div>
+    <div class="seo-box">
+      <h3>藥物劑量計算原則</h3>
+      <p>小兒與腫瘤用藥常採體重計算（mg/kg），化療藥物多用體表面積（mg/m²），加護病房血管活性藥物用 mcg/kg/min。計算後建議雙重核對（double check）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9501" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- GFR 腎功能 -->
+<div class="panel" id="panel-gfr">
+  <div class="tool-card"><div class="card-head">
+    <h2>eGFR 腎功能估算（CKD-EPI 公式）</h2>
+    <p>依血清肌酸酐估算腎絲球過濾率，評估慢性腎臟病分期</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>血清肌酸酐 Cr（mg/dL）</label><input type="number" id="gf-cr" placeholder="例：1.2" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>年齡</label><input type="number" id="gf-age" placeholder="例：55" inputmode="numeric"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>性別</label>
+        <select id="gf-sex"><option value="m" selected>男性</option><option value="f">女性</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcGFR()">估算 eGFR</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9521" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="gfr-result">
+      <div class="result-top"><div class="result-number" id="gf-out">—</div><div class="result-unit">mL/min/1.73m²</div></div>
+      <span class="tag" id="gf-stage"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">CKD 分期</div><div class="val" id="gf-ckd">—</div></div>
+        <div class="result-cell"><div class="lbl">腎功能評估</div><div class="val" id="gf-desc">—</div></div>
+      </div>
+      <div class="result-note" id="gf-note"></div>
+      <div class="result-disclaimer">eGFR 為估算值，診斷 CKD 需至少連續 3 個月兩次異常，請就醫由腎臟科醫師評估。</div>
+    </div>
+    <div class="seo-box">
+      <h3>CKD 分期對照</h3>
+      <p>G1：eGFR≥90（正常/高）、G2：60–89（輕度下降）、G3a：45–59、G3b：30–44（中度）、G4：15–29（重度）、G5：＜15（腎衰竭）。台灣 CKD 患者逾 200 萬人，定期追蹤腎功能很重要。</p>
+      <div class="seo-faq-q">Q：腎功能多少需要注意？</div>
+      <div class="seo-faq-a">A：eGFR 低於 60 即為 CKD G3 以上，建議就醫追蹤；低於 30（G4）應積極準備透析治療；低於 15（G5）需要透析或腎臟移植。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9502" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 體表面積 -->
+<div class="panel" id="panel-bsa">
+  <div class="tool-card"><div class="card-head">
+    <h2>體表面積 BSA 計算</h2>
+    <p>同時計算 Mosteller、Du Bois、Haycock 三種公式</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>身高（公分）</label><input type="number" id="bs-h" placeholder="170" inputmode="decimal"></div>
+      <div class="field"><label>體重（公斤）</label><input type="number" id="bs-w" placeholder="65" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBSA()">計算體表面積</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9522" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bsa-result">
+      <div class="result-top"><div class="result-number" id="bs-mos">—</div><div class="result-unit">m²（Mosteller）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">Mosteller</div><div class="val" id="bs-m">—</div></div>
+        <div class="result-cell"><div class="lbl">Du Bois</div><div class="val" id="bs-d">—</div></div>
+        <div class="result-cell"><div class="lbl">Haycock</div><div class="val" id="bs-h2">—</div></div>
+        <div class="result-cell"><div class="lbl">平均值</div><div class="val" id="bs-avg">—</div></div>
+      </div>
+      <div class="result-note" id="bs-note"></div>
+      <div class="result-disclaimer">化療劑量以 BSA 計算，各公式結果略有差異，以就診醫院採用公式為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>體表面積用途</h3>
+      <p>BSA 主要用於計算化療藥物劑量（mg/m²），比單純體重計算更準確。成人平均 BSA 約 1.7–1.9 m²。兒科常用 Haycock 公式；Mosteller 最常用（計算簡單）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9503" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 血壓分級 -->
+<div class="panel" id="panel-bp">
+  <div class="tool-card"><div class="card-head">
+    <h2>血壓分級評估</h2>
+    <p>依 2018 台灣高血壓指引評估血壓等級，附生活建議</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>收縮壓（mmHg）</label><input type="number" id="bp-sys" placeholder="例：130" inputmode="numeric"></div>
+      <div class="field"><label>舒張壓（mmHg）</label><input type="number" id="bp-dia" placeholder="例：85" inputmode="numeric"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>量測情境</label>
+        <select id="bp-ctx"><option value="clinic" selected>診間量測</option><option value="home">居家量測</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcBP()">評估血壓</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9523" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bp-result">
+      <div class="result-top"><div class="result-number" id="bp-class" style="font-size:26px">—</div></div>
+      <span class="tag" id="bp-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">脈壓差</div><div class="val" id="bp-pulse">—</div></div>
+        <div class="result-cell"><div class="lbl">平均動脈壓 MAP</div><div class="val" id="bp-map">—</div></div>
+      </div>
+      <div class="result-note" id="bp-note"></div>
+      <div class="result-disclaimer">血壓診斷需多次量測，單次數值僅供參考，請就醫確診。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣血壓分類標準（2018年指引）</h3>
+      <p>正常：收縮壓＜120 且舒張壓＜80。偏高：120–129 且＜80。第一期高血壓：130–139 或 80–89。第二期高血壓：≥140 或 ≥90。居家血壓標準比診間低 5mmHg（正常＜130/80）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9504" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- BMI 臨床版 -->
+<div class="panel" id="panel-bmi_c">
+  <div class="tool-card"><div class="card-head">
+    <h2>BMI 臨床評估版</h2>
+    <p>依台灣衛福部標準評估 BMI，並計算理想體重、體重差距與用藥劑量參考體重</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>身高（公分）</label><input type="number" id="bm-h" placeholder="170" inputmode="decimal"></div>
+      <div class="field"><label>體重（公斤）</label><input type="number" id="bm-w" placeholder="75" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>性別</label><select id="bm-sex"><option value="m" selected>男性</option><option value="f">女性</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcBMIclin()">臨床評估</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9524" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bmi_c-result">
+      <div class="result-top"><div class="result-number" id="bm-bmi">—</div><div class="result-unit">BMI</div></div>
+      <span class="tag" id="bm-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">理想體重 IBW（Devine）</div><div class="val" id="bm-ibw">—</div></div>
+        <div class="result-cell"><div class="lbl">調整體重 ABW</div><div class="val" id="bm-abw">—</div></div>
+        <div class="result-cell"><div class="lbl">體表面積 BSA</div><div class="val" id="bm-bsa">—</div></div>
+        <div class="result-cell"><div class="lbl">健康體重範圍</div><div class="val" id="bm-range">—</div></div>
+      </div>
+      <div class="result-note" id="bm-note"></div>
+      <div class="result-disclaimer">IBW/ABW 用於藥物劑量計算（如 Vancomycin），臨床應用請依醫院規範。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9505" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 點滴滴速 -->
+<div class="panel" id="panel-drip">
+  <div class="tool-card"><div class="card-head">
+    <h2>靜脈點滴滴速計算</h2>
+    <p>計算每分鐘滴數（gtt/min）或每小時輸注速率（mL/hr）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>輸注總量（mL）</label><input type="number" id="dr-vol" placeholder="例：500" inputmode="numeric"></div>
+      <div class="field"><label>輸注時間（小時）</label><input type="number" id="dr-hrs" placeholder="例：8" step="0.5" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>點滴套組滴係數（gtt/mL）</label>
+        <select id="dr-drop"><option value="15">15 gtt/mL（一般成人套組）</option><option value="20" selected>20 gtt/mL（一般套組）</option><option value="60">60 gtt/mL（小兒/精密套組）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcDrip()">計算滴速</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9525" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="drip-result">
+      <div class="result-top"><div class="result-number" id="dr-gtt">—</div><div class="result-unit">gtt/min（滴/分）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每小時輸注速率</div><div class="val" id="dr-rate">—</div></div>
+        <div class="result-cell"><div class="lbl">每分鐘輸注量</div><div class="val" id="dr-mlmin">—</div></div>
+      </div>
+      <div class="result-note" id="dr-note"></div>
+      <div class="result-disclaimer">實際輸注請使用輸液幫浦，手動計算滴速僅供學習，臨床須依醫囑確認。</div>
+    </div>
+    <div class="seo-box">
+      <h3>滴速計算公式</h3>
+      <p>gtt/min = 總量(mL) × 滴係數(gtt/mL) ÷ 總時間(min)。例：500mL × 20gtt/mL ÷ 480min（8h）= 20.8 gtt/min ≈ 21 gtt/min。現代臨床多使用電子輸液幫浦，精確度更高。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9506" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日健康新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9507" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9508" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">健康資訊由 Heho 健康提供，僅供參考，請諮詢醫師。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：KDIGO 腎功能指引、台灣高血壓治療指引　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/health/" style="--rc:#0FA47A;--rs:#E4F4EE">
+      <div class="related-card-body">
+        <div class="related-card-name">健康計算</div>
+        <div class="related-card-tags"><span>BMI</span><span>每日熱量TDEE</span><span>體脂率</span><span>理想體重</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/nutrition/" style="--rc:#388E3C;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">營養飲食</div>
+        <div class="related-card-tags"><span>熱量赤字</span><span>巨量營養素</span><span>食物熱量</span><span>含糖量</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/baby/" style="--rc:#C2356B;--rs:#FBEAF1">
+      <div class="related-card-body">
+        <div class="related-card-name">孕產育兒</div>
+        <div class="related-card-tags"><span>預產期</span><span>排卵期</span><span>懷孕週數</span><span>育兒津貼</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 醫療護理 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/health/">健康計算</a> · <a href="/baby/">孕產育兒</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://heho.com.tw/feed/')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">Heho健康</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcDose(){
+  const w=parseFloat(document.getElementById('ds-weight').value);
+  const unit=document.getElementById('ds-unit').value;
+  const dose=parseFloat(document.getElementById('ds-dose').value);
+  const conc=parseFloat(document.getElementById('ds-conc').value)||1;
+  if(!w||!dose){alert('請填寫體重與劑量');return;}
+  let total,totalUnit,volUnit='mL';
+  if(unit==='mg_kg'){total=w*dose;totalUnit='mg';}
+  else if(unit==='mcg_kg_min'){total=w*dose;totalUnit='mcg/min';}
+  else{total=dose;totalUnit='mg（需先計算BSA）';}
+  const vol=unit==='mcg_kg_min'?total/conc/1000*60:total/conc;
+  document.getElementById('ds-total').textContent=total.toFixed(2);
+  document.getElementById('ds-total-unit').textContent=totalUnit;
+  document.getElementById('ds-vol').textContent=unit==='mcg_kg_min'?(vol).toFixed(1)+' mL/hr':vol.toFixed(2)+' mL';
+  document.getElementById('ds-rate').textContent=unit==='mcg_kg_min'?(vol).toFixed(1)+' mL/hr':'—';
+  document.getElementById('ds-note').textContent=`體重 ${w}kg，劑量 ${dose}${unit==='mg_kg'?'mg/kg':unit==='mcg_kg_min'?'mcg/kg/min':'mg/m²'}，總量 ${total.toFixed(2)} ${totalUnit.split('（')[0]}${conc>0?`，藥液濃度 ${conc}mg/mL → 需 ${vol.toFixed(2)}mL`:''}。`;
+  document.getElementById('dose-result').classList.add('show');
+}
+function calcGFR(){
+  const cr=parseFloat(document.getElementById('gf-cr').value);
+  const age=parseFloat(document.getElementById('gf-age').value);
+  const sex=document.getElementById('gf-sex').value;
+  if(!cr||!age){alert('請填寫完整');return;}
+  let egfr;
+  if(sex==='f'){
+    const k=0.7,a=-0.241;
+    const ratio=cr/k;
+    egfr=142*Math.pow(Math.min(ratio,1),a)*Math.pow(Math.max(ratio,1),-1.200)*Math.pow(0.9938,age)*1.012;
+  }else{
+    const k=0.9,a=-0.302;
+    const ratio=cr/k;
+    egfr=142*Math.pow(Math.min(ratio,1),a)*Math.pow(Math.max(ratio,1),-1.200)*Math.pow(0.9938,age);
+  }
+  egfr=Math.round(egfr);
+  let stage,desc,cls='tag';
+  if(egfr>=90){stage='G1';desc='正常或偏高';}
+  else if(egfr>=60){stage='G2';desc='輕度下降';}
+  else if(egfr>=45){stage='G3a';desc='輕中度下降';cls='tag';}
+  else if(egfr>=30){stage='G3b';desc='中重度下降';cls='tag tag-red';}
+  else if(egfr>=15){stage='G4';desc='重度下降，需積極準備透析';cls='tag tag-red';}
+  else{stage='G5';desc='腎衰竭，需透析或移植';cls='tag tag-red';}
+  document.getElementById('gf-out').textContent=egfr;
+  document.getElementById('gf-stage').textContent='CKD '+stage;
+  document.getElementById('gf-stage').className=cls;
+  document.getElementById('gf-ckd').textContent='CKD '+stage;
+  document.getElementById('gf-desc').textContent=desc;
+  document.getElementById('gf-note').textContent=`eGFR ${egfr} mL/min/1.73m²，CKD ${stage}（${desc}）。${egfr<60?'建議就醫追蹤腎功能，限制蛋白質攝取。':'維持健康生活習慣，定期追蹤。'}`;
+  document.getElementById('gfr-result').classList.add('show');
+}
+function calcBSA(){
+  const h=parseFloat(document.getElementById('bs-h').value);
+  const w=parseFloat(document.getElementById('bs-w').value);
+  if(!h||!w){alert('請輸入身高體重');return;}
+  const mosteller=Math.sqrt(h*w/3600);
+  const dubois=0.007184*Math.pow(h,0.725)*Math.pow(w,0.425);
+  const haycock=0.024265*Math.pow(h,0.3964)*Math.pow(w,0.5378);
+  const avg=(mosteller+dubois+haycock)/3;
+  document.getElementById('bs-mos').textContent=mosteller.toFixed(3);
+  document.getElementById('bs-m').textContent=mosteller.toFixed(3)+' m²';
+  document.getElementById('bs-d').textContent=dubois.toFixed(3)+' m²';
+  document.getElementById('bs-h2').textContent=haycock.toFixed(3)+' m²';
+  document.getElementById('bs-avg').textContent=avg.toFixed(3)+' m²';
+  document.getElementById('bs-note').textContent=`身高 ${h}cm / 體重 ${w}kg → BSA：Mosteller ${mosteller.toFixed(3)}，Du Bois ${dubois.toFixed(3)}，Haycock ${haycock.toFixed(3)} m²，平均 ${avg.toFixed(3)} m²。`;
+  document.getElementById('bsa-result').classList.add('show');
+}
+function calcBP(){
+  const sys=parseInt(document.getElementById('bp-sys').value);
+  const dia=parseInt(document.getElementById('bp-dia').value);
+  const ctx=document.getElementById('bp-ctx').value;
+  if(!sys||!dia){alert('請輸入收縮壓與舒張壓');return;}
+  const adj=ctx==='home'?5:0;
+  const s=sys+adj,d=dia+adj;
+  let cls,note,tagCls='tag';
+  if(s<120&&d<80){cls='正常血壓';note='血壓理想，維持健康生活習慣。';}
+  else if(s<130&&d<80){cls='血壓偏高';note='血壓偏高，建議調整飲食、增加運動，定期監測。';}
+  else if(s<140||d<90){cls='第一期高血壓';note='建議改善生活型態，視情況開始藥物治療，請就醫評估。';tagCls='tag';}
+  else{cls='第二期高血壓';note='需立即就醫，通常需要藥物治療。持續≥180/120 mmHg為高血壓急症。';tagCls='tag tag-red';}
+  const pulse=sys-dia;
+  const map=Math.round(dia+(sys-dia)/3);
+  document.getElementById('bp-class').textContent=cls;
+  document.getElementById('bp-tag').textContent=ctx==='home'?'居家量測標準':'診間量測標準';
+  document.getElementById('bp-tag').className='tag';
+  document.getElementById('bp-pulse').textContent=pulse+' mmHg';
+  document.getElementById('bp-map').textContent=map+' mmHg';
+  document.getElementById('bp-note').textContent=`${sys}/${dia} mmHg（${ctx==='home'?'居家':'診間'}）→ ${cls}。${note}`;
+  document.getElementById('bp-result').classList.add('show');
+}
+function calcBMIclin(){
+  const h=parseFloat(document.getElementById('bm-h').value);
+  const w=parseFloat(document.getElementById('bm-w').value);
+  const sex=document.getElementById('bm-sex').value;
+  if(!h||!w){alert('請輸入身高體重');return;}
+  const m=h/100;
+  const bmi=w/(m*m);
+  let cat,cls='tag';
+  if(bmi<18.5){cat='體重過輕';}
+  else if(bmi<24){cat='健康體重';cls='tag tag-green';}
+  else if(bmi<27){cat='體重過重';}
+  else{cat='肥胖';cls='tag tag-red';}
+  const ibw=sex==='m'?50+0.9*(h-152):45.5+0.9*(h-152);
+  const abw=ibw+(w-ibw)*0.4;
+  const bsa=Math.sqrt(h*w/3600);
+  const lo=(18.5*m*m).toFixed(1),hi=(23.9*m*m).toFixed(1);
+  document.getElementById('bm-bmi').textContent=bmi.toFixed(1);
+  document.getElementById('bm-tag').textContent=cat;
+  document.getElementById('bm-tag').className=cls;
+  document.getElementById('bm-ibw').textContent=ibw.toFixed(1)+' kg';
+  document.getElementById('bm-abw').textContent=w>ibw?abw.toFixed(1)+' kg':'同IBW';
+  document.getElementById('bm-bsa').textContent=bsa.toFixed(3)+' m²';
+  document.getElementById('bm-range').textContent=lo+'–'+hi+' kg';
+  document.getElementById('bm-note').textContent=`BMI ${bmi.toFixed(1)}（${cat}），IBW ${ibw.toFixed(1)}kg，${w>ibw?`ABW ${abw.toFixed(1)}kg（肥胖時藥物劑量參考），`:''}BSA ${bsa.toFixed(3)}m²。`;
+  document.getElementById('bmi_c-result').classList.add('show');
+}
+function calcDrip(){
+  const vol=parseFloat(document.getElementById('dr-vol').value);
+  const hrs=parseFloat(document.getElementById('dr-hrs').value);
+  const drop=parseInt(document.getElementById('dr-drop').value);
+  if(!vol||!hrs){alert('請填寫完整');return;}
+  const totalMin=hrs*60;
+  const gtt=vol*drop/totalMin;
+  const rate=vol/hrs;
+  const mlmin=vol/totalMin;
+  document.getElementById('dr-gtt').textContent=Math.round(gtt);
+  document.getElementById('dr-rate').textContent=rate.toFixed(1)+' mL/hr';
+  document.getElementById('dr-mlmin').textContent=mlmin.toFixed(2)+' mL/min';
+  document.getElementById('dr-note').textContent=`${vol}mL ÷ ${totalMin}min × ${drop}gtt/mL = ${gtt.toFixed(1)} gtt/min（約 ${Math.round(gtt)} 滴/分）。每小時輸注 ${rate.toFixed(1)}mL。`;
+  document.getElementById('drip-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

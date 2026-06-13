@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>稅務薪資計算機｜所得稅、健保費、勞保、加班費試算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/tax/">
+<meta name="description" content="免費台灣稅務薪資工具：綜合所得稅、健保費、勞保費、加班費、年終獎金實領、月薪時薪換算、信用卡回饋，附每日財經新聞。">
+<meta name="keywords" content="所得稅試算,健保費計算,勞保費,加班費計算,年終獎金,月薪換時薪">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="稅務薪資計算機｜所得稅、健保費、勞保、加班費試算 — CalcBox">
+<meta property="og:description" content="免費台灣稅務薪資工具：綜合所得稅、健保費、勞保費、加班費、年終獎金實領、月薪時薪換算、信用卡回饋，附每日財經新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/tax/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/tax.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="稅務薪資｜所得稅、加班費、年終獎金">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/tax.png">
+<meta name="twitter:title" content="稅務薪資計算機｜所得稅、健保費、勞保、加班費試算 — CalcBox">
+<meta name="twitter:description" content="免費台灣稅務薪資工具：綜合所得稅、健保費、勞保費、加班費、年終獎金實領、月薪時薪換算、信用卡回饋，附每日財經新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"綜合所得稅試算","url":"https://thecalcbox.github.io/tax/#tax","description":"113年度台灣綜合所得稅試算，含免稅額、標準扣除額、薪資特別扣除額與勞退自提節稅。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"健保費試算","url":"https://thecalcbox.github.io/tax/#nhi","description":"113年費率5.17%健保費試算，含眷屬與二代健保補充保費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"勞保費試算","url":"https://thecalcbox.github.io/tax/#labor","description":"勞保費率12%自付額試算，含勞退雇提6%。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"加班費計算機","url":"https://thecalcbox.github.io/tax/#overtime","description":"依勞基法第24條計算平日、休息日、國定假日加班費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"年終獎金試算","url":"https://thecalcbox.github.io/tax/#bonus","description":"年終獎金實領試算，含5%預扣稅款與2.11%二代健保補充保費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"月薪時薪換算","url":"https://thecalcbox.github.io/tax/#hourly","description":"月薪與時薪互換，附基本工資比較。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"年薪多少以下不用繳所得稅？","acceptedAnswer":{"@type":"Answer","text":"單身上班族年薪約44.6萬元以下（免稅額9.7萬＋標準扣除額13.1萬＋薪資特別扣除額21.8萬）應納稅額為0。"}},
+{"@type":"Question","name":"年終獎金會被扣多少？","acceptedAnswer":{"@type":"Answer","text":"單次超過88,501元預扣5%所得稅（報稅多退少補）；超過月投保金額4倍的部分另扣2.11%二代健保補充保費。"}},
+{"@type":"Question","name":"加班費怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"依勞基法第24條：平日前2小時1.34倍、第3小時起1.67倍；國定假日出勤2倍。時薪基準為月薪÷30÷8。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#1B4A72;--accent-light:#EAF1F9;--accent-mid:#2D6CB5;
+  --sub:#C58A12;--sub-light:#FDF3DD;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(45,108,181,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"稅務薪資計算機","item":"https://thecalcbox.github.io/tax/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 稅務薪資</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📈 財經新聞</button>
+    <button class="tab-btn" onclick="switchTab('tax')" id="tab-tax">📋 所得稅</button>
+    <button class="tab-btn" onclick="switchTab('nhi')" id="tab-nhi">🏥 健保費</button>
+    <button class="tab-btn" onclick="switchTab('labor')" id="tab-labor">🛡️ 勞保費</button>
+    <button class="tab-btn" onclick="switchTab('overtime')" id="tab-overtime">⏰ 加班費</button>
+    <button class="tab-btn" onclick="switchTab('bonus')" id="tab-bonus">🧧 年終獎金</button>
+    <button class="tab-btn" onclick="switchTab('hourly')" id="tab-hourly">💱 月薪時薪</button>
+    <button class="tab-btn" onclick="switchTab('creditcard')" id="tab-creditcard">💳 卡回饋</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">稅務薪資計算機</h1>
+<p class="page-lead">免費台灣稅務薪資工具：綜合所得稅、健保費、勞保費、加班費、年終獎金實領、月薪時薪換算、信用卡回饋，附每日財經新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有財務疑慮請諮詢專業人員。</p>
+</div>
+
+<!-- 所得稅 -->
+<div class="panel" id="panel-tax">
+  <div class="tool-card"><div class="card-head">
+    <h2>綜合所得稅試算</h2><p>依 113 年度稅率級距試算應納稅額，含免稅額、標準扣除額與薪資特別扣除額</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>年薪總額（萬元）</label><input type="number" id="t-income" placeholder="例：80" inputmode="decimal"></div>
+      <div class="field"><label>申報身分</label><select id="t-status"><option value="single">單身</option><option value="married">已婚（合併申報）</option></select></div>
+      <div class="field"><label>扶養親屬人數</label><select id="t-dep"><option value="0">0 人</option><option value="1">1 人</option><option value="2">2 人</option><option value="3">3 人</option></select></div>
+      <div class="field"><label>勞退自提（%）</label><select id="t-pension"><option value="0">不自提</option><option value="3">3%</option><option value="6">6%</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcTax()">試算所得稅</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="tax-result">
+      <div class="result-top"><div class="result-number" id="t-amount">—</div><div class="result-unit">元 / 年</div></div>
+      <span class="tag" id="t-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">綜合所得淨額</div><div class="val" id="t-net">—</div></div>
+        <div class="result-cell"><div class="lbl">適用稅率</div><div class="val" id="t-rate">—</div></div>
+        <div class="result-cell"><div class="lbl">有效稅率</div><div class="val" id="t-eff">—</div></div>
+        <div class="result-cell"><div class="lbl">月均稅負</div><div class="val red" id="t-monthly">—</div></div>
+      </div>
+      <div class="result-note" id="t-note"></div>
+      <div class="result-disclaimer">依 113 年度稅制簡化試算，未含列舉扣除等項目，實際以財政部核定為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>台灣綜合所得稅級距（113 年度）</h3>
+      <p>稅率級距：淨額 59 萬以下 5%、59–133 萬 12%、133–266 萬 20%、266–498 萬 30%、498 萬以上 40%。免稅額每人 9.7 萬，標準扣除額單身 13.1 萬（已婚 26.2 萬），薪資特別扣除額每人 21.8 萬。</p>
+      <div class="seo-faq">
+        <div class="seo-faq-q">Q：年薪多少以下免繳稅？</div>
+        <div class="seo-faq-a">A：單身上班族約 44.6 萬以下（9.7+13.1+21.8 萬）應納稅額為 0。雙薪四口之家約 123 萬以下免稅。</div>
+        <div class="seo-faq-q">Q：勞退自提可以節稅多少？</div>
+        <div class="seo-faq-a">A：自提金額不計入所得。月薪 6 萬自提 6%（4,320 元/月）、稅率 12% 者，每年省稅約 6,220 元。</div>
+      </div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 健保費 -->
+<div class="panel" id="panel-nhi">
+  <div class="tool-card"><div class="card-head">
+    <h2>健保費試算</h2><p>113 年費率 5.17%，計算受雇者每月自付健保費與補充保費</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>月投保金額（元）</label>
+        <select id="n-salary"><option value="27470">27,470</option><option value="30300">30,300</option><option value="36300">36,300</option><option value="40100">40,100</option><option value="45800" selected>45,800</option><option value="53000">53,000</option><option value="63800">63,800</option><option value="87600">87,600</option><option value="110600">110,600</option><option value="182000">182,000（上限）</option></select></div>
+      <div class="field"><label>眷屬人數（最多計3口）</label><select id="n-dep"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>單次獎金（元，超過投保額4倍部分課2.11%補充保費）</label><input type="number" id="n-bonus" value="0" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcNHI()">試算健保費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="nhi-result">
+      <div class="result-top"><div class="result-number" id="n-monthly">—</div><div class="result-unit">元 / 月</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">個人負擔（30%）</div><div class="val" id="n-self">—</div></div>
+        <div class="result-cell"><div class="lbl">雇主負擔（60%）</div><div class="val" id="n-emp">—</div></div>
+        <div class="result-cell"><div class="lbl">政府補助（10%）</div><div class="val" id="n-gov">—</div></div>
+        <div class="result-cell"><div class="lbl">補充保費</div><div class="val red" id="n-extra">—</div></div>
+      </div>
+      <div class="result-note" id="n-note"></div>
+      <div class="result-disclaimer">依 113 年費率 5.17% 試算，實際以健保署公告為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>健保費怎麼算？</h3>
+      <p>受雇者個人負擔＝月投保金額 × 5.17% × 30% ×（1＋眷屬數）。獎金超過投保金額 4 倍的部分需扣 2.11% 補充保費。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：眷屬掛在誰名下比較省？</div><div class="seo-faq-a">A：掛在投保金額較低的一方名下保費較低，且每人最多計 3 口眷屬，第 4 口起免費。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 勞保費 -->
+<div class="panel" id="panel-labor">
+  <div class="tool-card"><div class="card-head">
+    <h2>勞保費試算</h2><p>114 年勞保費率 12%（含就業保險 1%），計算每月自付勞保費</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>月投保薪資（元）</label>
+        <select id="l-salary"><option value="27470">27,470（基本工資）</option><option value="30300">30,300</option><option value="33300">33,300</option><option value="36300">36,300</option><option value="40100">40,100</option><option value="43900">43,900</option><option value="45800" selected>45,800（上限）</option></select></div>
+      <div class="field"><label>身分</label><select id="l-type"><option value="emp">一般受雇勞工</option><option value="union">職業工會會員</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcLabor()">試算勞保費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="labor-result">
+      <div class="result-top"><div class="result-number" id="l-monthly">—</div><div class="result-unit">元 / 月（自付）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">勞保自付</div><div class="val" id="l-self">—</div></div>
+        <div class="result-cell"><div class="lbl">雇主負擔</div><div class="val" id="l-emp">—</div></div>
+        <div class="result-cell"><div class="lbl">勞退雇提 6%</div><div class="val green" id="l-pension">—</div></div>
+      </div>
+      <div class="result-note" id="l-note"></div>
+      <div class="result-disclaimer">受雇勞工負擔 20%、雇主 70%、政府 10%；職業工會會員自付 60%。</div>
+    </div>
+    <div class="seo-box">
+      <h3>勞保費分擔比例</h3>
+      <p>一般受雇勞工：個人 20%、雇主 70%、政府 10%。雇主另須提繳薪資 6% 進勞退專戶（不從你薪水扣）。投保薪資上限 45,800 元。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：勞保被高薪低報怎麼辦？</div><div class="seo-faq-a">A:高薪低報影響未來老年給付與職災給付額度，可向勞保局檢舉（電話 1955），雇主可處 4 倍罰鍰。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 加班費 -->
+<div class="panel" id="panel-overtime">
+  <div class="tool-card"><div class="card-head">
+    <h2>加班費計算機</h2><p>依勞基法第 24 條：平日前 2 小時 1.34 倍、第 3 小時起 1.67 倍、國定假日 2 倍</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>月薪（元）</label><input type="number" id="o-salary" placeholder="例：40000" inputmode="numeric"></div>
+      <div class="field"><label>平日加班（前2小時）</label><input type="number" id="o-h2" value="0" inputmode="decimal"></div>
+      <div class="field"><label>平日加班（第3小時起）</label><input type="number" id="o-h3" value="0" inputmode="decimal"></div>
+      <div class="field"><label>休息日加班（小時）</label><input type="number" id="o-rest" value="0" inputmode="decimal"></div>
+      <div class="field"><label>國定假日加班（小時）</label><input type="number" id="o-hol" value="0" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcOT()">計算加班費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="overtime-result">
+      <div class="result-top"><div class="result-number" id="o-total">—</div><div class="result-unit">元（本月加班費）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">時薪基準</div><div class="val" id="o-hourly">—</div></div>
+        <div class="result-cell"><div class="lbl">平日加班費</div><div class="val" id="o-wd">—</div></div>
+        <div class="result-cell"><div class="lbl">休息日加班費</div><div class="val" id="o-rd">—</div></div>
+        <div class="result-cell"><div class="lbl">國定假日</div><div class="val" id="o-hd">—</div></div>
+      </div>
+      <div class="result-note" id="o-note"></div>
+      <div class="result-disclaimer">時薪基準＝月薪÷30÷8。爭議請洽 1955 勞工諮詢專線。</div>
+    </div>
+    <div class="seo-box">
+      <h3>加班費費率一覽</h3>
+      <p>平日：前 2 小時 ×1.34、第 3 小時起 ×1.67（每日上限 4 小時）。休息日：前 2 小時 ×1.34、後續 ×1.67。國定假日出勤：加發一日工資（即 2 倍）。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：加班換補休划算嗎？</div><div class="seo-faq-a">A：補休是 1:1 換（加班 1 小時換休 1 小時），等於放棄加成倍率，純以金錢計算領加班費較划算。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 年終獎金 -->
+<div class="panel" id="panel-bonus">
+  <div class="tool-card"><div class="card-head">
+    <h2>年終獎金試算</h2><p>計算年終實領金額：扣繳稅款（單次超過 88,501 元預扣 5%）與二代健保補充保費</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>年終獎金（元）</label><input type="number" id="b-amount" placeholder="例：120000" inputmode="numeric"></div>
+      <div class="field"><label>月投保金額（元）</label>
+        <select id="b-insured"><option value="36300">36,300</option><option value="45800" selected>45,800</option><option value="53000">53,000</option><option value="87600">87,600</option><option value="182000">182,000</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcBonus()">試算實領</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="bonus-result">
+      <div class="result-top"><div class="result-number" id="b-net">—</div><div class="result-unit">元（實領）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">預扣所得稅 5%</div><div class="val red" id="b-tax">—</div></div>
+        <div class="result-cell"><div class="lbl">二代健保 2.11%</div><div class="val red" id="b-nhi">—</div></div>
+        <div class="result-cell"><div class="lbl">總扣款</div><div class="val red" id="b-deduct">—</div></div>
+      </div>
+      <div class="result-note" id="b-note"></div>
+      <div class="result-disclaimer">預扣稅款於隔年報稅多退少補；補充保費課於超過投保金額 4 倍的部分。</div>
+    </div>
+    <div class="seo-box">
+      <h3>年終獎金要被扣多少？</h3>
+      <p>兩種扣款：①單次給付超過 88,501 元，公司須預扣 5% 所得稅（報稅時多退少補）。②超過「月投保金額 × 4 倍」的部分扣 2.11% 二代健保補充保費（此筆不退）。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：年終分次發可以避稅嗎？</div><div class="seo-faq-a">A：分次發放各次若低於 88,501 元可避開「預扣」，但所得稅總額不變（報稅時合併計算）；補充保費以單次給付計算，分次發放確實可能降低。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 月薪時薪 -->
+<div class="panel" id="panel-hourly">
+  <div class="tool-card"><div class="card-head">
+    <h2>月薪 ↔ 時薪換算</h2><p>依勞基法每月 240 小時基準換算，並比對 114 年基本工資（月薪 28,590 / 時薪 190）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>換算方向</label><select id="h-dir"><option value="m2h">月薪 → 時薪</option><option value="h2m">時薪 → 月薪</option></select></div>
+      <div class="field"><label>金額（元）</label><input type="number" id="h-amount" placeholder="例：40000" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcHourly()">換算</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7015" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="hourly-result">
+      <div class="result-top"><div class="result-number" id="h-out">—</div><div class="result-unit" id="h-unit">元</div></div>
+      <span class="tag" id="h-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">日薪（8小時）</div><div class="val" id="h-daily">—</div></div>
+        <div class="result-cell"><div class="lbl">年薪（12個月）</div><div class="val" id="h-yearly">—</div></div>
+        <div class="result-cell"><div class="lbl">vs 基本工資</div><div class="val" id="h-vs">—</div></div>
+      </div>
+      <div class="result-note" id="h-note"></div>
+      <div class="result-disclaimer">以每月 30 日、每日 8 小時（240 小時）計算。</div>
+    </div>
+    <div class="seo-box">
+      <h3>月薪換時薪怎麼算？</h3>
+      <p>法定算法：月薪 ÷ 30 ÷ 8。月薪 40,000 元時薪約 166.7 元。114 年基本工資為月薪 28,590 元、時薪 190 元，注意時薪制基本工資高於月薪制換算值，因時薪人員無帶薪例假日。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 信用卡回饋 -->
+<div class="panel" id="panel-creditcard">
+  <div class="tool-card"><div class="card-head">
+    <h2>信用卡回饋計算機</h2><p>輸入各類消費與回饋率，計算年度實得回饋並評估年費是否划算</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月總消費（元）</label><input type="number" id="cc-spend" placeholder="例：30000" inputmode="numeric"></div>
+      <div class="field"><label>平均回饋率（%）</label><input type="number" id="cc-rate" step="0.1" value="2" inputmode="decimal"></div>
+      <div class="field"><label>每月回饋上限（元，0＝無上限）</label><input type="number" id="cc-cap" value="0" inputmode="numeric"></div>
+      <div class="field"><label>年費（元）</label><input type="number" id="cc-fee" value="0" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcCC()">計算回饋</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7016" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="creditcard-result">
+      <div class="result-top"><div class="result-number" id="cc-yearly">—</div><div class="result-unit">元 / 年（淨回饋）</div></div>
+      <span class="tag" id="cc-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每月回饋</div><div class="val green" id="cc-monthly">—</div></div>
+        <div class="result-cell"><div class="lbl">年度總回饋</div><div class="val" id="cc-gross">—</div></div>
+        <div class="result-cell"><div class="lbl">實際回饋率</div><div class="val" id="cc-eff">—</div></div>
+      </div>
+      <div class="result-note" id="cc-note"></div>
+      <div class="result-disclaimer">實際回饋依各銀行活動條款、排除項目而異。</div>
+    </div>
+    <div class="seo-box">
+      <h3>信用卡回饋怎麼挑？</h3>
+      <p>重點看三件事：①主要消費類別的回饋率（而非最高回饋率）②每月/每季回饋上限 ③年費門檻。年回饋＞年費才值得辦有年費的卡。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：現金回饋和點數哪個好？</div><div class="seo-faq-a">A：現金回饋直接折抵帳單最單純；點數若高效兌換里程價值可達 2–3 倍，但需要研究兌換管道。懶人選現金，玩家選點數。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7009" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：財政部 2025 年度綜合所得稅課稅級距、勞動部基本工資公告　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD">
+      <div class="related-card-body">
+        <div class="related-card-name">貸款試算</div>
+        <div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/retire/" style="--rc:#6A4FB5;--rs:#EFEAF9">
+      <div class="related-card-body">
+        <div class="related-card-name">退休理財</div>
+        <div class="related-card-tags"><span>勞保退休金</span><span>複利計算</span><span>4%法則</span><span>定期定額</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/hr/" style="--rc:#2E7D32;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">人資 HR</div>
+        <div class="related-card-tags"><span>資遣費計算</span><span>年資換算</span><span>人力成本</span><span>特休試算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 稅務薪資 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/loan/">貸款試算</a> · <a href="/retire/">退休理財</a> · <a href="/health/">健康計算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/finance')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社財經</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+/* 所得稅 */
+function calcTax(){
+  const income=(parseFloat(document.getElementById('t-income').value)||0)*10000;
+  if(!income){alert('請輸入年薪');return;}
+  const married=document.getElementById('t-status').value==='married';
+  const dep=parseInt(document.getElementById('t-dep').value);
+  const pensionPct=parseFloat(document.getElementById('t-pension').value)/100;
+  const pension=Math.min(income*pensionPct,108000);
+  const persons=(married?2:1)+dep;
+  const exempt=97000*persons;
+  const std=married?262000:131000;
+  const salaryDed=218000*(married?2:1);
+  const net=Math.max(0,income-pension-exempt-std-Math.min(salaryDed,income));
+  const brk=[[590000,.05,0],[1330000,.12,41300],[2660000,.20,147700],[4980000,.30,413700],[Infinity,.40,911700]];
+  let tax=0,rate=0;
+  for(const[lim,r,d]of brk){if(net<=lim){tax=Math.max(0,Math.round(net*r-d));rate=r;break;}}
+  document.getElementById('t-amount').textContent=fmt(tax);
+  document.getElementById('t-tag').textContent=(rate*100)+'% 級距'+(pension>0?' · 勞退自提節稅中':'');
+  document.getElementById('t-net').textContent=fmt(net)+' 元';
+  document.getElementById('t-rate').textContent=(rate*100)+'%';
+  document.getElementById('t-eff').textContent=income>0?(tax/income*100).toFixed(1)+'%':'0%';
+  document.getElementById('t-monthly').textContent=fmt(tax/12)+' 元';
+  document.getElementById('t-note').textContent=`年薪 ${fmt(income)} 元，扣除免稅額與各項扣除額後淨額 ${fmt(net)} 元，應納稅額 ${fmt(tax)} 元（有效稅率 ${(tax/income*100).toFixed(1)}%）。`;
+  document.getElementById('tax-result').classList.add('show');
+}
+/* 健保費 */
+function calcNHI(){
+  const s=parseFloat(document.getElementById('n-salary').value);
+  const dep=Math.min(3,parseInt(document.getElementById('n-dep').value));
+  const bonus=parseFloat(document.getElementById('n-bonus').value)||0;
+  const total=s*0.0517*(1+dep);
+  const self=Math.round(total*0.3),emp=Math.round(total*0.6),gov=Math.round(total*0.1);
+  const extra=Math.max(0,bonus-s*4)>0?Math.round((bonus-s*4)*0.0211):0;
+  document.getElementById('n-monthly').textContent=fmt(self);
+  document.getElementById('n-self').textContent=fmt(self)+' 元';
+  document.getElementById('n-emp').textContent=fmt(emp)+' 元';
+  document.getElementById('n-gov').textContent=fmt(gov)+' 元';
+  document.getElementById('n-extra').textContent=extra>0?fmt(extra)+' 元':'無';
+  document.getElementById('n-note').textContent=`投保金額 ${fmt(s)} 元、眷屬 ${dep} 口，每月自付 ${fmt(self)} 元。${extra>0?`本次獎金超過投保額4倍部分需扣補充保費 ${fmt(extra)} 元。`:''}`;
+  document.getElementById('nhi-result').classList.add('show');
+}
+/* 勞保費 */
+function calcLabor(){
+  const s=parseFloat(document.getElementById('l-salary').value);
+  const type=document.getElementById('l-type').value;
+  const total=s*0.12;
+  const selfRatio=type==='emp'?0.2:0.6;
+  const self=Math.round(total*selfRatio);
+  const emp=type==='emp'?Math.round(total*0.7):0;
+  const pension=Math.round(s*0.06);
+  document.getElementById('l-monthly').textContent=fmt(self);
+  document.getElementById('l-self').textContent=fmt(self)+' 元';
+  document.getElementById('l-emp').textContent=type==='emp'?fmt(emp)+' 元':'—';
+  document.getElementById('l-pension').textContent=type==='emp'?fmt(pension)+' 元':'—';
+  document.getElementById('l-note').textContent=`投保薪資 ${fmt(s)} 元，每月自付勞保費 ${fmt(self)} 元${type==='emp'?`，雇主另提繳勞退 ${fmt(pension)} 元進你的個人專戶`:''}。`;
+  document.getElementById('labor-result').classList.add('show');
+}
+/* 加班費 */
+function calcOT(){
+  const s=parseFloat(document.getElementById('o-salary').value);
+  if(!s){alert('請輸入月薪');return;}
+  const hr=s/30/8;
+  const h2=parseFloat(document.getElementById('o-h2').value)||0;
+  const h3=parseFloat(document.getElementById('o-h3').value)||0;
+  const rest=parseFloat(document.getElementById('o-rest').value)||0;
+  const hol=parseFloat(document.getElementById('o-hol').value)||0;
+  const wd=Math.round(h2*hr*1.34+h3*hr*1.67);
+  const rd=rest>0?Math.round(Math.min(rest,2)*hr*1.34+Math.max(0,rest-2)*hr*1.67):0;
+  const hd=Math.round(hol*hr*2);
+  const total=wd+rd+hd;
+  document.getElementById('o-total').textContent=fmt(total);
+  document.getElementById('o-hourly').textContent=hr.toFixed(1)+' 元';
+  document.getElementById('o-wd').textContent=fmt(wd)+' 元';
+  document.getElementById('o-rd').textContent=fmt(rd)+' 元';
+  document.getElementById('o-hd').textContent=fmt(hd)+' 元';
+  document.getElementById('o-note').textContent=`時薪基準 ${hr.toFixed(1)} 元（${fmt(s)}÷30÷8），本月加班費合計 ${fmt(total)} 元。`;
+  document.getElementById('overtime-result').classList.add('show');
+}
+/* 年終 */
+function calcBonus(){
+  const b=parseFloat(document.getElementById('b-amount').value);
+  if(!b){alert('請輸入年終金額');return;}
+  const ins=parseFloat(document.getElementById('b-insured').value);
+  const tax=b>88501?Math.round(b*0.05):0;
+  const nhi=Math.max(0,b-ins*4)>0?Math.round((b-ins*4)*0.0211):0;
+  const net=b-tax-nhi;
+  document.getElementById('b-net').textContent=fmt(net);
+  document.getElementById('b-tax').textContent=tax>0?fmt(tax)+' 元':'未達門檻';
+  document.getElementById('b-nhi').textContent=nhi>0?fmt(nhi)+' 元':'未達門檻';
+  document.getElementById('b-deduct').textContent=fmt(tax+nhi)+' 元';
+  document.getElementById('b-note').textContent=`年終 ${fmt(b)} 元，${tax>0?`預扣所得稅 ${fmt(tax)} 元（報稅多退少補）`:'未達預扣門檻 88,501 元'}${nhi>0?`、二代健保 ${fmt(nhi)} 元`:''}，實領 ${fmt(net)} 元。`;
+  document.getElementById('bonus-result').classList.add('show');
+}
+/* 月薪時薪 */
+function calcHourly(){
+  const dir=document.getElementById('h-dir').value;
+  const a=parseFloat(document.getElementById('h-amount').value);
+  if(!a){alert('請輸入金額');return;}
+  let monthly,hourly;
+  if(dir==='m2h'){monthly=a;hourly=a/240;}else{hourly=a;monthly=a*240;}
+  document.getElementById('h-out').textContent=dir==='m2h'?hourly.toFixed(1):fmt(monthly);
+  document.getElementById('h-unit').textContent=dir==='m2h'?'元 / 時':'元 / 月';
+  document.getElementById('h-tag').textContent=dir==='m2h'?`月薪 ${fmt(monthly)} 元`:`時薪 ${hourly} 元`;
+  document.getElementById('h-daily').textContent=fmt(hourly*8)+' 元';
+  document.getElementById('h-yearly').textContent=fmt(monthly*12)+' 元';
+  const vs=((monthly/28590-1)*100).toFixed(0);
+  document.getElementById('h-vs').textContent=(vs>=0?'+':'')+vs+'%';
+  document.getElementById('h-note').textContent=`時薪 ${hourly.toFixed(1)} 元、日薪 ${fmt(hourly*8)} 元、年薪 ${fmt(monthly*12)} 元，相當於基本工資的 ${(monthly/28590).toFixed(2)} 倍。`;
+  document.getElementById('hourly-result').classList.add('show');
+}
+/* 卡回饋 */
+function calcCC(){
+  const spend=parseFloat(document.getElementById('cc-spend').value);
+  if(!spend){alert('請輸入消費金額');return;}
+  const rate=parseFloat(document.getElementById('cc-rate').value)/100;
+  const cap=parseFloat(document.getElementById('cc-cap').value)||0;
+  const fee=parseFloat(document.getElementById('cc-fee').value)||0;
+  let monthly=spend*rate;
+  if(cap>0)monthly=Math.min(monthly,cap);
+  const gross=monthly*12,net=gross-fee;
+  document.getElementById('cc-yearly').textContent=fmt(net);
+  document.getElementById('cc-tag').textContent=net>=0?(fee>0?'已扣年費 '+fmt(fee)+' 元':'免年費全數入袋'):'⚠ 回饋不敵年費';
+  document.getElementById('cc-monthly').textContent=fmt(monthly)+' 元';
+  document.getElementById('cc-gross').textContent=fmt(gross)+' 元';
+  document.getElementById('cc-eff').textContent=(monthly/spend*100).toFixed(2)+'%';
+  document.getElementById('cc-note').textContent=`月消費 ${fmt(spend)} 元、回饋率 ${(rate*100)}%${cap>0?`（每月上限 ${fmt(cap)} 元）`:''}，年回饋 ${fmt(gross)} 元${fee>0?`，扣年費後淨得 ${fmt(net)} 元`:''}。`;
+  document.getElementById('creditcard-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

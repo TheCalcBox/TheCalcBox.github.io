@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>房產試算工具｜房屋稅、地價稅、租售比、公設比、買房負擔 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/property/">
+<meta name="description" content="免費台灣房產計算機：房屋稅試算、地價稅、租售比、公設比實坪換算、買房負擔能力，附每日財經新聞。">
+<meta name="keywords" content="房屋稅試算,地價稅,租售比,公設比,買房負擔,實坪計算">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="房產試算工具｜房屋稅、地價稅、租售比、公設比、買房負擔 — CalcBox">
+<meta property="og:description" content="免費台灣房產計算機：房屋稅試算、地價稅、租售比、公設比實坪換算、買房負擔能力，附每日財經新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/property/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/property.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="房產試算｜房屋稅、地價稅、租售比、實坪">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/property.png">
+<meta name="twitter:title" content="房產試算工具｜房屋稅、地價稅、租售比、公設比、買房負擔 — CalcBox">
+<meta name="twitter:description" content="免費台灣房產計算機：房屋稅試算、地價稅、租售比、公設比實坪換算、買房負擔能力，附每日財經新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"房屋稅試算","url":"https://thecalcbox.github.io/property/#realtax","description":"依評定現值試算房屋稅。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"地價稅試算","url":"https://thecalcbox.github.io/property/#landtax","description":"依申報地價試算地價稅。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"租售比計算","url":"https://thecalcbox.github.io/property/#ratio","description":"買房vs租房資金效益與回收年限。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"室內實坪計算","url":"https://thecalcbox.github.io/property/#ping","description":"依公設比計算室內實際可用坪數。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"買房負擔能力試算","url":"https://thecalcbox.github.io/property/#afford","description":"依收入推算可負擔房價與頭期款需求。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#37474F;--accent-light:#ECEFF1;--accent-mid:#546E7A;
+  --sub:#546E7A;--sub-light:#ECEFF1;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(84,110,122,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+.guide-links{max-width:820px;margin:1.2rem auto 0;padding:0 1.25rem;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.guide-links a{font-size:12.5px;font-weight:700;color:#9A6A0C;background:#FBEED3;border:1px solid #E8D5A8;text-decoration:none;padding:7px 16px;border-radius:99px;transition:transform .15s}
+.guide-links a:hover{transform:translateY(-1px)}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"房產試算工具","item":"https://thecalcbox.github.io/property/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 房產試算</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📈 財經新聞</button>
+    <button class="tab-btn" onclick="switchTab('realtax')" id="tab-realtax">🏠 房屋稅</button>
+    <button class="tab-btn" onclick="switchTab('landtax')" id="tab-landtax">🌿 地價稅</button>
+    <button class="tab-btn" onclick="switchTab('ratio')" id="tab-ratio">📐 租售比</button>
+    <button class="tab-btn" onclick="switchTab('ping')" id="tab-ping">📏 實坪計算</button>
+    <button class="tab-btn" onclick="switchTab('afford')" id="tab-afford">💰 買房負擔</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">房產試算工具</h1>
+<p class="page-lead">免費台灣房產計算機：房屋稅試算、地價稅、租售比、公設比實坪換算、買房負擔能力，附每日財經新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9701" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9702" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考，不構成財務建議。</p>
+</div>
+
+<!-- 房屋稅 -->
+<div class="panel" id="panel-realtax">
+  <div class="tool-card"><div class="card-head">
+    <h2>房屋稅試算</h2>
+    <p>依房屋評定現值與用途稅率估算每年房屋稅</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>房屋評定現值（萬元）</label><input type="number" id="rt-value" placeholder="例：200" inputmode="decimal"></div>
+      <div class="field"><label>使用類別</label>
+        <select id="rt-type"><option value="0.012" selected>自住（1.2%）</option><option value="0.024">非自住出租（2.4%）</option><option value="0.036">非自住其他（3.6%）</option><option value="0.015">商業用（1.5–3%）</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>所在縣市（折減率）</label>
+        <select id="rt-city"><option value="1">台北市（1.00）</option><option value="0.9" selected>新北市（0.90）</option><option value="0.85">桃園市（0.85）</option><option value="0.8">台中市（0.80）</option><option value="0.75">台南市（0.75）</option><option value="0.7">高雄市（0.70）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcRealTax()">試算房屋稅</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9720" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="realtax-result">
+      <div class="result-top"><div class="result-number" id="rt-out">—</div><div class="result-unit">元 / 年</div></div>
+      <span class="tag" id="rt-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">月均稅負</div><div class="val" id="rt-monthly">—</div></div>
+        <div class="result-cell"><div class="lbl">稅率</div><div class="val" id="rt-rate">—</div></div>
+      </div>
+      <div class="result-note" id="rt-note"></div>
+      <div class="result-disclaimer">試算為粗估，實際依各地房屋評定現值與稅率為準，5月繳納。</div>
+    </div>
+    <div class="seo-box">
+      <h3>房屋稅怎麼計算？</h3>
+      <p>公式：房屋稅＝房屋評定現值×稅率。評定現值通常遠低於市價（台北市約市價 10–20%）。自住稅率 1.2%，非自住出租 2.4–3.6%。每年 5 月繳納（可分期）。</p>
+      <div class="seo-faq-q">Q：如何降低房屋稅？</div>
+      <div class="seo-faq-a">A：申報自住稅率需符合「本人、配偶或直系親屬實際居住」，且全國合計不超過 3 戶。非自住出租的稅率是自住的 2–3 倍，稅負差距很大。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9703" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 地價稅 -->
+<div class="panel" id="panel-landtax">
+  <div class="tool-card"><div class="card-head">
+    <h2>地價稅試算</h2>
+    <p>依申報地價與累進稅率估算每年地價稅</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>土地公告現值（萬元）</label><input type="number" id="lt-value" placeholder="例：500" inputmode="decimal"></div>
+      <div class="field"><label>面積（坪）</label><input type="number" id="lt-area" placeholder="例：30" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>土地用途</label>
+        <select id="lt-type"><option value="home" selected>自用住宅用地（2‰）</option><option value="general">一般用地（累進 10‰起）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcLandTax()">試算地價稅</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9721" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="landtax-result">
+      <div class="result-top"><div class="result-number" id="lt-out">—</div><div class="result-unit">元 / 年</div></div>
+      <span class="tag" id="lt-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">地價估算</div><div class="val" id="lt-landval">—</div></div>
+        <div class="result-cell"><div class="lbl">月均稅負</div><div class="val" id="lt-monthly">—</div></div>
+      </div>
+      <div class="result-note" id="lt-note"></div>
+      <div class="result-disclaimer">地價稅每年 11 月底繳納（可分期）。實際以稅捐稽徵處核定稅單為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>地價稅說明</h3>
+      <p>自用住宅用地稅率 2‰，是最低稅率。申報期限每年 9 月 22 日前，未申報適用一般稅率（最低 10‰）。一般用地採累進，面積越大稅率越高。11 月底繳納。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9704" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 租售比 -->
+<div class="panel" id="panel-ratio">
+  <div class="tool-card"><div class="card-head">
+    <h2>租售比 / 房價租金比</h2>
+    <p>評估買房 vs 租房的資金效益，計算回收年限</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>房屋售價（萬元）</label><input type="number" id="rr-price" placeholder="例：1500" inputmode="decimal"></div>
+      <div class="field"><label>每月租金（元）</label><input type="number" id="rr-rent" placeholder="例：25000" inputmode="numeric"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>年租金增長率（%）</label><input type="number" id="rr-rentgrow" value="2" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>年房價增長率（%）</label><input type="number" id="rr-pricegrow" value="3" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcRatio()">試算租售比</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9722" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ratio-result">
+      <div class="result-top"><div class="result-number" id="rr-years">—</div><div class="result-unit">年（租金回收售價）</div></div>
+      <span class="tag" id="rr-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">年租金</div><div class="val" id="rr-yearly">—</div></div>
+        <div class="result-cell"><div class="lbl">房價租金比</div><div class="val" id="rr-ratio">—</div></div>
+        <div class="result-cell"><div class="lbl">年租金報酬率</div><div class="val" id="rr-yield">—</div></div>
+      </div>
+      <div class="result-note" id="rr-note"></div>
+      <div class="result-disclaimer">未含持有成本（房屋稅、地價稅、管理費）與資金機會成本，僅供參考。</div>
+    </div>
+    <div class="seo-box">
+      <h3>租售比怎麼看？</h3>
+      <p>「租售比」即多少年租金等於房價。國際合理標準約 15–25 年（年報酬 4–7%）。台北市目前約 60–80 年（年報酬 1.3–1.7%），遠低於合理水準，顯示買房需考量更多非財務因素。</p>
+      <div class="seo-faq-q">Q：台灣租房 vs 買房哪個划算？</div>
+      <div class="seo-faq-a">A：純財務角度：台灣租金報酬率約 1.5–2%，低於房貸利率，加上購屋機會成本，租屋+投資在多數情況下財務效益較高。但自住安全感與生活品質需一併考量。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9705" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 實坪計算 -->
+<div class="panel" id="panel-ping">
+  <div class="tool-card"><div class="card-head">
+    <h2>室內實坪計算（公設比）</h2>
+    <p>輸入權狀坪數與公設比，算出室內實際可用坪數</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>權狀坪數（坪）</label><input type="number" id="pp-total" placeholder="例：35" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>公設比（%）</label>
+        <select id="pp-ratio"><option value="15">15%（透天、公寓）</option><option value="25" selected>25%（一般大樓）</option><option value="30">30%（現代大樓）</option><option value="35">35%（高公設豪宅）</option><option value="custom">自訂</option></select></div>
+    </div>
+    <div id="pp-custom-row" class="fields one" style="display:none">
+      <div class="field"><label>自訂公設比（%）</label><input type="number" id="pp-custom" step="0.1" placeholder="例：32" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPing()">計算實坪</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9723" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ping-result">
+      <div class="result-top"><div class="result-number" id="pp-real">—</div><div class="result-unit">坪（室內實坪）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">權狀坪數</div><div class="val" id="pp-total-out">—</div></div>
+        <div class="result-cell"><div class="lbl">公設坪數</div><div class="val red" id="pp-public">—</div></div>
+        <div class="result-cell"><div class="lbl">平方公尺</div><div class="val" id="pp-m2">—</div></div>
+        <div class="result-cell"><div class="lbl">每坪單價→實坪單價</div><div class="val" id="pp-price-tip">—</div></div>
+      </div>
+      <div class="result-note" id="pp-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>公設比是什麼？</h3>
+      <p>公設包含大廳、電梯、樓梯間、機房等，是住戶共同持有的面積。公設比越高，室內實坪越少。一般大樓約 25–35%，意謂 30 坪的房子室內只有 19.5–22.5 坪。比較房價時應用「實坪單價」而非「權狀單價」。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9706" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 買房負擔 -->
+<div class="panel" id="panel-afford">
+  <div class="tool-card"><div class="card-head">
+    <h2>買房負擔能力試算</h2>
+    <p>依收入推算可負擔房價，或依房價反推頭期款需求</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月家庭收入（元）</label><input type="number" id="af-income" placeholder="例：100000" inputmode="numeric"></div>
+      <div class="field"><label>月付比例上限（%）</label>
+        <select id="af-pct"><option value="30">30%（保守）</option><option value="35" selected>35%（一般）</option><option value="40">40%（積極）</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>貸款利率（%）</label><input type="number" id="af-rate" value="2.2" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>貸款年期</label><select id="af-years"><option value="20">20年</option><option value="30" selected>30年</option><option value="40">40年</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcAfford()">試算買房負擔</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9724" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="afford-result">
+      <div class="result-top"><div class="result-number" id="af-price">—</div><div class="result-unit">萬元（可負擔房價）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每月可負擔房貸</div><div class="val" id="af-monthly">—</div></div>
+        <div class="result-cell"><div class="lbl">可貸款金額</div><div class="val" id="af-loan">—</div></div>
+        <div class="result-cell"><div class="lbl">建議頭期款（2成）</div><div class="val red" id="af-down">—</div></div>
+      </div>
+      <div class="result-note" id="af-note"></div>
+      <div class="result-disclaimer">房貸負擔比建議不超過家庭收入 35%，含房屋稅、管理費後更高，請預留緩衝。</div>
+    </div>
+    <div class="seo-box">
+      <h3>買房「幾倍所得」合理？</h3>
+      <p>國際「房價所得比」合理值約 5–8 倍（年收入）。台北市目前約 16 倍，新北 12 倍，桃竹苗 8–10 倍，中南部 6–8 倍。貸款負擔比超過 35% 財務壓力偏大，超過 40% 屬高風險。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9707" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<div class="guide-links"><a href="/guide/buy-vs-rent/">📖 買房 vs 租屋完整比較</a></div>
+<p class="source-note"><b>資料來源</b>：財政部房屋稅條例、各縣市地方稅務局　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD">
+      <div class="related-card-body">
+        <div class="related-card-name">貸款試算</div>
+        <div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">稅務薪資</div>
+        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/bill/" style="--rc:#E65100;--rs:#FFF3E0">
+      <div class="related-card-body">
+        <div class="related-card-name">生活費用</div>
+        <div class="related-card-tags"><span>電費試算</span><span>油耗計算</span><span>停車費</span><span>分帳</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 房產試算 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/loan/">貸款試算</a> · <a href="/convert/">單位換算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/finance')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社財經</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcRealTax(){
+  const v=(parseFloat(document.getElementById('rt-value').value)||0)*10000;
+  const rate=parseFloat(document.getElementById('rt-type').value);
+  const city=parseFloat(document.getElementById('rt-city').value);
+  if(!v){alert('請輸入評定現值');return;}
+  const tax=Math.round(v*rate*city);
+  document.getElementById('rt-out').textContent=fmt(tax);
+  document.getElementById('rt-tag').textContent='稅率 '+(rate*100)+'%';
+  document.getElementById('rt-monthly').textContent=fmt(Math.round(tax/12))+' 元';
+  document.getElementById('rt-rate').textContent=(rate*100)+'%';
+  document.getElementById('rt-note').textContent=`評定現值 ${fmt(v)} 元 × ${(rate*100)}% × 折減率 ${city} = 每年房屋稅約 ${fmt(tax)} 元。`;
+  document.getElementById('realtax-result').classList.add('show');
+}
+function calcLandTax(){
+  const val=(parseFloat(document.getElementById('lt-value').value)||0)*10000;
+  const area=parseFloat(document.getElementById('lt-area').value)||0;
+  const type=document.getElementById('lt-type').value;
+  if(!val){alert('請輸入公告現值');return;}
+  const taxBase=val*area*3.30579; // 估算土地價值
+  let rate,label;
+  if(type==='home'){rate=0.002;label='自用住宅 2‰';}
+  else{rate=0.01;label='一般用地 10‰起';}
+  const tax=Math.round(val*rate);
+  document.getElementById('lt-out').textContent=fmt(tax);
+  document.getElementById('lt-tag').textContent=label;
+  document.getElementById('lt-landval').textContent=fmt(val)+' 元';
+  document.getElementById('lt-monthly').textContent=fmt(Math.round(tax/12))+' 元';
+  document.getElementById('lt-note').textContent=`申報地價 ${fmt(val)} 元，${label}，每年地價稅約 ${fmt(tax)} 元，11月底繳納。`;
+  document.getElementById('landtax-result').classList.add('show');
+}
+function calcRatio(){
+  const price=(parseFloat(document.getElementById('rr-price').value)||0)*10000;
+  const rent=parseFloat(document.getElementById('rr-rent').value)||0;
+  if(!price||!rent){alert('請填寫售價與租金');return;}
+  const yearly=rent*12;
+  const years=(price/yearly).toFixed(1);
+  const yield_=(yearly/price*100).toFixed(2);
+  const tag=parseFloat(yield_)>=3?'租金報酬尚可':'租金報酬偏低';
+  document.getElementById('rr-years').textContent=years;
+  document.getElementById('rr-tag').textContent=tag;
+  document.getElementById('rr-yearly').textContent=fmt(yearly)+' 元';
+  document.getElementById('rr-ratio').textContent=years+' 年';
+  document.getElementById('rr-yield').textContent=yield_+'%';
+  document.getElementById('rr-note').textContent=`售價 ${fmt(price)} 元，年租金 ${fmt(yearly)} 元，租金回收年限 ${years} 年，年租金報酬率 ${yield_}%。${parseFloat(yield_)<2?'低於定存利率，買房需考量房價增值預期。':''}`;
+  document.getElementById('ratio-result').classList.add('show');
+}
+function calcPing(){
+  const total=parseFloat(document.getElementById('pp-total').value)||0;
+  if(!total){alert('請輸入坪數');return;}
+  let ratio=parseFloat(document.getElementById('pp-ratio').value);
+  if(isNaN(ratio)){ratio=parseFloat(document.getElementById('pp-custom').value)||25;}
+  document.getElementById('pp-custom-row').style.display=
+    document.getElementById('pp-ratio').value==='custom'?'grid':'none';
+  const real=(total*(1-ratio/100)).toFixed(1);
+  const pub=(total*ratio/100).toFixed(1);
+  const m2=(parseFloat(real)*3.30579).toFixed(1);
+  document.getElementById('pp-real').textContent=real;
+  document.getElementById('pp-total-out').textContent=total+' 坪';
+  document.getElementById('pp-public').textContent=pub+' 坪（'+ratio+'%）';
+  document.getElementById('pp-m2').textContent=m2+' ㎡';
+  document.getElementById('pp-price-tip').textContent='×'+((1/(1-ratio/100)).toFixed(2))+'倍';
+  document.getElementById('pp-note').textContent=`權狀 ${total} 坪，公設比 ${ratio}%，室內實坪 ${real} 坪（${m2}㎡）。每坪售價需乘以 ${(1/(1-ratio/100)).toFixed(2)} 才是實坪單價。`;
+  document.getElementById('ping-result').classList.add('show');
+}
+function calcAfford(){
+  const income=parseFloat(document.getElementById('af-income').value)||0;
+  if(!income){alert('請輸入家庭月收入');return;}
+  const pct=parseFloat(document.getElementById('af-pct').value)/100;
+  const r=parseFloat(document.getElementById('af-rate').value)/100/12;
+  const n=parseInt(document.getElementById('af-years').value)*12;
+  const maxMonthly=income*pct;
+  const loan=maxMonthly/r*(1-Math.pow(1+r,-n));
+  const totalPrice=loan/0.8;
+  const down=totalPrice*0.2;
+  document.getElementById('af-price').textContent=(totalPrice/10000).toFixed(0);
+  document.getElementById('af-monthly').textContent=fmt(maxMonthly)+' 元';
+  document.getElementById('af-loan').textContent=fmt(Math.round(loan))+' 元';
+  document.getElementById('af-down').textContent=fmt(Math.round(down))+' 元';
+  document.getElementById('af-note').textContent=`月收 ${fmt(income)} 元的 ${(pct*100)}% 為 ${fmt(maxMonthly)} 元，${n/12}年期 ${(parseFloat(document.getElementById('af-rate').value))}% 利率，可貸約 ${(loan/10000).toFixed(0)} 萬，含頭期款（2成）最高可承擔房價約 ${(totalPrice/10000).toFixed(0)} 萬元。`;
+  document.getElementById('afford-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>
