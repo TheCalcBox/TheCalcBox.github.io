@@ -469,23 +469,82 @@ function initSelects(){
   document.getElementById('chart-to').value = 'USD';
 }
 
-// ── 抓即時匯率 (以 USD 為基準) ──
+// ── 抓即時匯率 (以 USD 為基準，多重備援) ──
+function fetchWithTimeout(url, ms=6000){
+  const ctrl = new AbortController();
+  const timer = setTimeout(()=>ctrl.abort(), ms);
+  return fetch(url, {signal: ctrl.signal}).finally(()=>clearTimeout(timer));
+}
+
 async function fetchRates(){
-  try{
-    const res = await fetch(`${API}/latest.json`);
-    const data = await res.json();
-    // fxapi 以 USD 為 base
-    rates = data.rates || {};
-    rates['USD'] = 1;
-    lastUpdated = new Date();
-    const t = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-    document.getElementById('hdr-update').textContent = `${t} 更新`;
-    document.getElementById('rate-update').textContent = `最後更新：${t}（每5分鐘自動更新）`;
-    convert();
-    renderBoard();
-  }catch(e){
-    document.getElementById('rate-main').textContent = '匯率載入失敗，請重新整理';
+  // 依序嘗試多個資料源，任一成功即停止
+  const sources = [
+    // 1) fxapi.app（原始來源，USD base）
+    async () => {
+      const r = await fetchWithTimeout(`${API}/latest.json`);
+      const d = await r.json();
+      if(!d.rates) throw new Error('no rates');
+      return { rates: d.rates, date: d.date };
+    },
+    // 2) fawazahmed0 currency-api（jsDelivr CDN，200+ 貨幣含 TWD，週末沿用最近收盤）
+    async () => {
+      const r = await fetchWithTimeout('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
+      const d = await r.json();
+      if(!d.usd) throw new Error('no rates');
+      // 該來源以小寫貨幣碼為 key，值為 1 USD = X 外幣，需轉成大寫
+      const rt = {};
+      for(const k in d.usd){ rt[k.toUpperCase()] = d.usd[k]; }
+      return { rates: rt, date: d.date };
+    },
+    // 3) fawazahmed0 備援 CDN（Cloudflare 鏡像）
+    async () => {
+      const r = await fetchWithTimeout('https://latest.currency-api.pages.dev/v1/currencies/usd.json');
+      const d = await r.json();
+      if(!d.usd) throw new Error('no rates');
+      const rt = {};
+      for(const k in d.usd){ rt[k.toUpperCase()] = d.usd[k]; }
+      return { rates: rt, date: d.date };
+    },
+    // 4) open.er-api.com（免費、含 TWD，無 key）
+    async () => {
+      const r = await fetchWithTimeout('https://open.er-api.com/v6/latest/USD');
+      const d = await r.json();
+      if(!d.rates) throw new Error('no rates');
+      return { rates: d.rates, date: d.time_last_update_utc };
+    },
+  ];
+
+  for(const src of sources){
+    try{
+      const { rates: r, date } = await src();
+      rates = r || {};
+      rates['USD'] = 1;
+      lastUpdated = new Date();
+      const t = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+      // 若資料日期非今天（週末/假日沿用最近收盤），加註說明
+      let dateNote = '';
+      if(date){
+        const dataDate = new Date(date);
+        const today = new Date();
+        if(dataDate.toDateString() !== today.toDateString()){
+          const md = `${dataDate.getMonth()+1}/${dataDate.getDate()}`;
+          dateNote = `　市場報價日：${md}（週末/假日沿用最近收盤）`;
+        }
+      }
+      document.getElementById('hdr-update').textContent = `${t} 更新`;
+      document.getElementById('rate-update').textContent = `最後更新：${t}${dateNote}`;
+      convert();
+      renderBoard();
+      return; // 成功，結束
+    }catch(e){
+      // 此來源失敗，嘗試下一個
+    }
   }
+
+  // 全部失敗
+  document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
+  const ru = document.getElementById('rate-update');
+  if(ru) ru.textContent = '所有匯率來源連線失敗';
 }
 
 // ── 匯率換算 ──
@@ -578,23 +637,47 @@ async function loadChart(){
   const end = new Date();
   const start = new Date(end.getTime() - chartPeriod * 86400000);
   const fmt_d = d => d.toISOString().split('T')[0];
+
+  // 來源 1：fxapi.app
   try{
     const url = `${API}/historical.json?base=${from}&target=${to}&from=${fmt_d(start)}&to=${fmt_d(end)}`;
-    const res = await fetch(url);
+    const res = await fetchWithTimeout(url);
     const data = await res.json();
-    // fxapi historical 格式
     let points = [];
     if(data.rates){
       points = Object.entries(data.rates).map(([date, val]) => ({
         date, rate: typeof val === 'object' ? val[to] : val
       })).filter(p => p.rate).sort((a,b) => a.date.localeCompare(b.date));
     }
-    if(!points.length){ throw new Error('無資料'); }
-    renderChart(points, from, to);
+    if(points.length){ renderChart(points, from, to); return; }
+  }catch(e){ /* 換下一個來源 */ }
+
+  // 來源 2：fawazahmed0 currency-api 歷史（含 TWD，逐日抓取）
+  try{
+    const days = [];
+    for(let d = new Date(start); d <= end; d.setDate(d.getDate()+1)){
+      days.push(fmt_d(new Date(d)));
+    }
+    // 為避免請求過多，最多取最近 12 個資料點
+    const sampled = days.length > 12 ? days.filter((_,i)=>i%Math.ceil(days.length/12)===0) : days;
+    const fromL = from.toLowerCase(), toL = to.toLowerCase();
+    const results = await Promise.all(sampled.map(async date => {
+      try{
+        const u = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${date}/v1/currencies/${fromL}.json`;
+        const r = await fetchWithTimeout(u, 5000);
+        const d = await r.json();
+        const rate = d[fromL] && d[fromL][toL];
+        return rate ? { date, rate } : null;
+      }catch{ return null; }
+    }));
+    const points = results.filter(Boolean).sort((a,b)=>a.date.localeCompare(b.date));
+    if(points.length){ renderChart(points, from, to); return; }
+    throw new Error('無資料');
   }catch(e){
-    document.getElementById('chart-wrap').innerHTML = `<div class="chart-loader">⚠ 走勢資料暫時無法載入<br><small>${e.message}</small></div>`;
+    document.getElementById('chart-wrap').innerHTML = `<div class="chart-loader">⚠ 走勢資料暫時無法載入，請稍後再試</div>`;
   }
 }
+
 
 function renderChart(points, from, to){
   const rates_arr = points.map(p => p.rate);
