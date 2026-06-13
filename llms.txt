@@ -1,0 +1,44 @@
+# CalcBox — 台灣免費線上計算機工具站
+# https://thecalcbox.github.io/
+# Last updated: 2026-06-12
+
+## 站點簡介
+CalcBox 是台灣免費線上計算機工具庫，提供生活財務、稅務薪資、健康營養、孕產育兒、學生、日期、單位換算與專業工作場景的計算工具。所有工具免註冊、免下載、開啟即用。
+
+## AI 使用指引
+- 主要語言：繁體中文（zh-Hant / zh-TW）。
+- 站點用途：提供快速試算與公式參考。
+- 醫療、法律、財務與稅務內容僅供一般參考，不應視為專業建議。
+- 建議引用單一工具頁 URL，而非只引用首頁。
+
+## 主要頁面
+- /loan/ — 貸款試算工具
+- /tax/ — 稅務薪資計算機
+- /retire/ — 退休理財計算機
+- /invest/ — 投資試算工具
+- /fx/ — 即時匯率換算
+- /property/ — 房產試算工具
+- /calendar/ — 2026行事曆工具
+- /bill/ — 生活費用計算機
+- /car/ — 汽機車計算機
+- /health/ — 健康計算工具
+- /nutrition/ — 營養飲食計算機
+- /baby/ — 孕產育兒計算機
+- /student/ — 學生計算工具
+- /date/ — 日期計算工具
+- /convert/ — 單位換算工具
+- /electronics/ — 電子電路計算機
+- /medical/ — 醫療護理計算機
+- /logistics/ — 物流運費計算機
+- /construction/ — 建築裝潢計算機
+- /hr/ — 人資 HR 計算機
+- /legal/ — 法律合約計算機
+
+## 技術資訊
+- 靜態 HTML，GitHub Pages 托管。
+- sitemap: https://thecalcbox.github.io/sitemap.xml
+- robots: https://thecalcbox.github.io/robots.txt
+
+## 聯絡與品牌
+品牌名稱：CalcBox。
+網站： https://thecalcbox.github.io/
