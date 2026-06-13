@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>建築裝潢計算機｜油漆用量、磁磚試算、混凝土、樓梯尺寸 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/construction/">
+<meta name="description" content="免費建築裝潢計算工具：油漆用量、磁磚片數（含損耗）、混凝土配比、壁紙計算、樓梯尺寸（符合建築規則）、室內面積換算。">
+<meta name="keywords" content="油漆用量計算,磁磚計算,混凝土配比,樓梯尺寸,室內面積計算,裝潢計算機">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="建築裝潢計算機｜油漆用量、磁磚試算、混凝土、樓梯尺寸 — CalcBox">
+<meta property="og:description" content="免費建築裝潢計算工具：油漆用量、磁磚片數（含損耗）、混凝土配比、壁紙計算、樓梯尺寸（符合建築規則）、室內面積換算。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/construction/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/construction.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="建築裝潢｜油漆、磁磚、混凝土用量試算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/construction.png">
+<meta name="twitter:title" content="建築裝潢計算機｜油漆用量、磁磚試算、混凝土、樓梯尺寸 — CalcBox">
+<meta name="twitter:description" content="免費建築裝潢計算工具：油漆用量、磁磚片數（含損耗）、混凝土配比、壁紙計算、樓梯尺寸（符合建築規則）、室內面積換算。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"油漆用量計算機","url":"https://thecalcbox.github.io/construction/#paint","description":"依牆面面積計算油漆需求，含多層塗佈與損耗。","applicationCategory":"HomeAndConstructionBusiness","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"磁磚用量計算機","url":"https://thecalcbox.github.io/construction/#tile","description":"依鋪設面積與磁磚尺寸計算所需片數含損耗。","applicationCategory":"HomeAndConstructionBusiness","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"樓梯尺寸計算","url":"https://thecalcbox.github.io/construction/#stair","description":"計算合適踏步尺寸並驗證是否符合建築技術規則。","applicationCategory":"HomeAndConstructionBusiness","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#4A148C;--accent-light:#F3E5F5;--accent-mid:#6A1B9A;
+  --sub:#6A1B9A;--sub-light:#F3E5F5;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(106,27,154,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"建築裝潢計算機","item":"https://thecalcbox.github.io/construction/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 建築裝潢</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('paint')" id="tab-paint">🎨 油漆用量</button>
+    <button class="tab-btn" onclick="switchTab('tile')" id="tab-tile">🧱 磁磚試算</button>
+    <button class="tab-btn" onclick="switchTab('concrete')" id="tab-concrete">🏗️ 混凝土</button>
+    <button class="tab-btn" onclick="switchTab('wallpaper')" id="tab-wallpaper">📜 壁紙計算</button>
+    <button class="tab-btn" onclick="switchTab('stair')" id="tab-stair">🪜 樓梯尺寸</button>
+    <button class="tab-btn" onclick="switchTab('area')" id="tab-area">📐 室內面積</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">建築裝潢計算機</h1>
+<p class="page-lead">免費建築裝潢計算工具：油漆用量、磁磚片數（含損耗）、混凝土配比、壁紙計算、樓梯尺寸（符合建築規則）、室內面積換算。</p>
+
+
+<!-- 油漆用量 -->
+<div class="panel active" id="panel-paint">
+  <div class="tool-card"><div class="card-head">
+    <h2>油漆用量計算機</h2>
+    <p>依牆面面積計算油漆需求量，含扣除門窗與多層塗佈</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>房間長（公尺）</label><input type="number" id="pt-l" step="0.1" placeholder="例：5" inputmode="decimal"></div>
+      <div class="field"><label>房間寬（公尺）</label><input type="number" id="pt-w" step="0.1" placeholder="例：4" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>天花板高（公尺）</label><input type="number" id="pt-h" step="0.1" value="3" inputmode="decimal"></div>
+      <div class="field"><label>門窗數量（每扇約2m²）</label><input type="number" id="pt-win" value="2" inputmode="numeric"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>塗佈層數</label><select id="pt-coats"><option value="1">1層</option><option value="2" selected>2層</option><option value="3">3層</option></select></div>
+      <div class="field"><label>油漆覆蓋率（m²/L）</label><input type="number" id="pt-cov" value="10" step="0.5" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPaint()">計算用量</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9710" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="paint-result">
+      <div class="result-top"><div class="result-number" id="pt-liters">—</div><div class="result-unit">公升（建議購買）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">淨塗裝面積</div><div class="val" id="pt-area">—</div></div>
+        <div class="result-cell"><div class="lbl">含天花板面積</div><div class="val" id="pt-total">—</div></div>
+        <div class="result-cell"><div class="lbl">理論用量</div><div class="val" id="pt-theory">—</div></div>
+        <div class="result-cell"><div class="lbl">建議購買（+10%）</div><div class="val" id="pt-buy">—</div></div>
+      </div>
+      <div class="result-note" id="pt-note"></div>
+      <div class="result-disclaimer">實際用量因牆面粗糙度、施工方式略有差異，建議多備10%。</div>
+    </div>
+    <div class="seo-box">
+      <h3>油漆選購指南</h3>
+      <p>一般室內乳膠漆覆蓋率約 8–12 m²/L（含底漆）。底漆通常較薄，面漆每層需確保均勻覆蓋。舊牆重新粉刷通常 2 層面漆，新牆建議先上底漆再上 2 層面漆。購買時選擇稍多避免色差補漆問題。</p>
+      <div class="seo-faq-q">Q：油漆一桶幾公升？</div>
+      <div class="seo-faq-a">A：台灣常見包裝：1 加侖（約 3.78L）、5 加侖（18.9L）。建議計算需求量後選最接近的規格，避免浪費。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9701" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 磁磚 -->
+<div class="panel" id="panel-tile">
+  <div class="tool-card"><div class="card-head">
+    <h2>磁磚用量計算機</h2>
+    <p>依鋪設面積與磁磚尺寸計算所需片數，含損耗</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>鋪設面積（m²）</label><input type="number" id="tl-area" placeholder="例：20" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>磁磚長（公分）</label><input type="number" id="tl-l" placeholder="例：60" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>磁磚寬（公分）</label><input type="number" id="tl-w" placeholder="例：60" inputmode="decimal"></div>
+      <div class="field"><label>損耗率（%）</label>
+        <select id="tl-waste"><option value="5">5%（簡單直鋪）</option><option value="10" selected>10%（一般情況）</option><option value="15">15%（斜鋪/複雜空間）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcTile()">計算磁磚</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9711" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="tile-result">
+      <div class="result-top"><div class="result-number" id="tl-pcs">—</div><div class="result-unit">片（建議購買）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">淨需求片數</div><div class="val" id="tl-net">—</div></div>
+        <div class="result-cell"><div class="lbl">每片面積</div><div class="val" id="tl-one">—</div></div>
+        <div class="result-cell"><div class="lbl">損耗片數</div><div class="val red" id="tl-waste-n">—</div></div>
+        <div class="result-cell"><div class="lbl">約需幾箱</div><div class="val" id="tl-boxes">—</div></div>
+      </div>
+      <div class="result-note" id="tl-note"></div>
+      <div class="result-disclaimer">實際購買建議洽磁磚供應商確認每箱片數，選擇相同批號避免色差。</div>
+    </div>
+    <div class="seo-box">
+      <h3>磁磚選購注意事項</h3>
+      <p>同一色號需從同一批號購買，避免色差。斜鋪（45度）損耗比直鋪多 10–15%。縫隙大小建議：地磚 3–5mm，牆磚 1–3mm。60×60cm 磁磚一箱通常 4–6 片（1.44–2.16 m²）。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9702" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 混凝土 -->
+<div class="panel" id="panel-concrete">
+  <div class="tool-card"><div class="card-head">
+    <h2>混凝土配比計算</h2>
+    <p>計算所需水泥、砂石、水的用量（體積法）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>澆置體積（m³）</label><input type="number" id="cc-vol" placeholder="例：1" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>強度等級</label>
+        <select id="cc-grade"><option value="1:2:3">1:2:3（一般結構用，約140kgf/cm²）</option><option value="1:1.5:3" selected>1:1.5:3（較強，約200kgf/cm²）</option><option value="1:1:2">1:1:2（高強，約280kgf/cm²）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcConcrete()">計算配比</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9712" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="concrete-result">
+      <div class="result-top"><div class="result-number" id="cc-cement">—</div><div class="result-unit">包水泥（50kg/包）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">水泥用量</div><div class="val" id="cc-c">—</div></div>
+        <div class="result-cell"><div class="lbl">砂用量</div><div class="val" id="cc-s">—</div></div>
+        <div class="result-cell"><div class="lbl">粗骨材用量</div><div class="val" id="cc-g">—</div></div>
+        <div class="result-cell"><div class="lbl">用水量</div><div class="val" id="cc-w">—</div></div>
+      </div>
+      <div class="result-note" id="cc-note"></div>
+      <div class="result-disclaimer">配比為體積比估算，實際工程應依設計強度與骨材比重調整，結構工程需由技師設計。</div>
+    </div>
+    <div class="seo-box">
+      <h3>混凝土配比說明</h3>
+      <p>常用配比「1:2:3」代表水泥:細骨材(砂):粗骨材(石)的體積比。水灰比約 0.5–0.6（越低強度越高）。自拌混凝土適合小工程修補，大型結構應使用預拌混凝土並委由結構技師設計。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9703" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 壁紙 -->
+<div class="panel" id="panel-wallpaper">
+  <div class="tool-card"><div class="card-head">
+    <h2>壁紙 / 壁布用量計算</h2>
+    <p>依牆面尺寸與壁紙規格計算所需捲數</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>牆面寬度（公尺，合計）</label><input type="number" id="wp-w" step="0.1" placeholder="例：14" inputmode="decimal"></div>
+      <div class="field"><label>牆面高度（公尺）</label><input type="number" id="wp-h" step="0.1" value="2.7" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>壁紙每捲長度（公尺）</label><input type="number" id="wp-roll" value="10" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>壁紙寬度（公分）</label><input type="number" id="wp-width" value="53" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>花紋對花循環（公分，無花填0）</label><input type="number" id="wp-repeat" value="0" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcWallpaper()">計算壁紙</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9713" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="wallpaper-result">
+      <div class="result-top"><div class="result-number" id="wp-rolls">—</div><div class="result-unit">捲（建議購買）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">牆面面積</div><div class="val" id="wp-area">—</div></div>
+        <div class="result-cell"><div class="lbl">每捲可貼面積</div><div class="val" id="wp-per-roll">—</div></div>
+      </div>
+      <div class="result-note" id="wp-note"></div>
+      <div class="result-disclaimer">有對花圖案損耗較多，建議多備1–2捲，同批號補購色差較小。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9704" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 樓梯 -->
+<div class="panel" id="panel-stair">
+  <div class="tool-card"><div class="card-head">
+    <h2>樓梯尺寸計算</h2>
+    <p>依樓高與空間計算合適踏步尺寸（符合建築技術規則）</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>樓高（公分）</label><input type="number" id="st-height" placeholder="例：300" inputmode="decimal"></div>
+      <div class="field"><label>可用水平距離（公分）</label><input type="number" id="st-run" placeholder="例：360" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>使用情境</label>
+        <select id="st-type"><option value="home" selected>住宅內部樓梯</option><option value="public">公共建築樓梯</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcStair()">計算樓梯</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9714" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="stair-result">
+      <div class="result-top"><div class="result-number" id="st-steps">—</div><div class="result-unit">級（建議階數）</div></div>
+      <span class="tag" id="st-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">踢面高 R</div><div class="val" id="st-r">—</div></div>
+        <div class="result-cell"><div class="lbl">踏面深 T</div><div class="val" id="st-t">—</div></div>
+        <div class="result-cell"><div class="lbl">舒適度公式 2R+T</div><div class="val" id="st-formula">—</div></div>
+        <div class="result-cell"><div class="lbl">坡度角度</div><div class="val" id="st-angle">—</div></div>
+      </div>
+      <div class="result-note" id="st-note"></div>
+      <div class="result-disclaimer">依建築技術規則：住宅樓梯踢面不超過20cm、踏面不小於21cm。實際施工需由建築師設計確認。</div>
+    </div>
+    <div class="seo-box">
+      <h3>樓梯舒適度公式</h3>
+      <p>舒適度公式：2R + T = 60–65cm（R=踢面高，T=踏面深）。台灣住宅常見：踢面 17–19cm、踏面 25–28cm。舒適角度約 30–35 度。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9705" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 室內面積 -->
+<div class="panel" id="panel-area">
+  <div class="tool-card"><div class="card-head">
+    <h2>室內面積計算機</h2>
+    <p>計算各種形狀的室內面積（矩形、L形、三角形）</p>
+  </div><div class="card-body">
+    <div class="fields one">
+      <div class="field"><label>房間形狀</label>
+        <select id="ar-shape" onchange="toggleAreaShape()"><option value="rect" selected>矩形</option><option value="lshape">L形</option><option value="triangle">三角形</option></select></div>
+    </div>
+    <div id="ar-rect">
+      <div class="fields">
+        <div class="field"><label>長（公尺）</label><input type="number" id="ar-l" step="0.1" placeholder="例：5" inputmode="decimal"></div>
+        <div class="field"><label>寬（公尺）</label><input type="number" id="ar-w" step="0.1" placeholder="例：4" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div id="ar-lshape" style="display:none">
+      <div class="fields">
+        <div class="field"><label>長邊長 A（m）</label><input type="number" id="ar-la" step="0.1" placeholder="7" inputmode="decimal"></div>
+        <div class="field"><label>長邊寬 B（m）</label><input type="number" id="ar-lb" step="0.1" placeholder="4" inputmode="decimal"></div>
+      </div>
+      <div class="fields">
+        <div class="field"><label>短邊長 C（m）</label><input type="number" id="ar-lc" step="0.1" placeholder="3" inputmode="decimal"></div>
+        <div class="field"><label>短邊寬 D（m）</label><input type="number" id="ar-ld" step="0.1" placeholder="3" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div id="ar-triangle" style="display:none">
+      <div class="fields">
+        <div class="field"><label>底邊（公尺）</label><input type="number" id="ar-tb" step="0.1" placeholder="5" inputmode="decimal"></div>
+        <div class="field"><label>高（公尺）</label><input type="number" id="ar-th" step="0.1" placeholder="4" inputmode="decimal"></div>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcArea()">計算面積</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9715" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="area-result">
+      <div class="result-top"><div class="result-number" id="ar-m2">—</div><div class="result-unit">m²（平方公尺）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">坪數</div><div class="val" id="ar-ping">—</div></div>
+      </div>
+      <div class="result-note" id="ar-note"></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9706" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9707" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9708" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：營建業通用施工估算慣例　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/property/" style="--rc:#546E7A;--rs:#ECEFF1">
+      <div class="related-card-body">
+        <div class="related-card-name">房產試算</div>
+        <div class="related-card-tags"><span>房屋稅</span><span>地價稅</span><span>租售比</span><span>實坪計算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/convert/" style="--rc:#8A5A2B;--rs:#F6EEE3">
+      <div class="related-card-body">
+        <div class="related-card-name">單位換算</div>
+        <div class="related-card-tags"><span>坪數換算</span><span>台斤換算</span><span>溫度換算</span><span>容量換算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/logistics/" style="--rc:#4E342E;--rs:#EFEBE9">
+      <div class="related-card-body">
+        <div class="related-card-name">物流運費</div>
+        <div class="related-card-tags"><span>材積重</span><span>CBM換算</span><span>台灣運費</span><span>貨櫃裝載</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 建築裝潢 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/property/">房產試算</a> · <a href="/convert/">單位換算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcPaint(){
+  const l=parseFloat(document.getElementById('pt-l').value);
+  const w=parseFloat(document.getElementById('pt-w').value);
+  const h=parseFloat(document.getElementById('pt-h').value)||3;
+  const wins=parseInt(document.getElementById('pt-win').value)||0;
+  const coats=parseInt(document.getElementById('pt-coats').value);
+  const cov=parseFloat(document.getElementById('pt-cov').value)||10;
+  if(!l||!w){alert('請填寫房間尺寸');return;}
+  const walls=2*(l+w)*h;
+  const ceiling=l*w;
+  const winArea=wins*2;
+  const net=walls+ceiling-winArea;
+  const theory=net*coats/cov;
+  const buy=Math.ceil(theory*1.1*10)/10;
+  document.getElementById('pt-liters').textContent=buy.toFixed(1);
+  document.getElementById('pt-area').textContent=net.toFixed(1)+' m²';
+  document.getElementById('pt-total').textContent=(walls+ceiling).toFixed(1)+' m²';
+  document.getElementById('pt-theory').textContent=theory.toFixed(2)+' L';
+  document.getElementById('pt-buy').textContent=buy.toFixed(1)+' L';
+  document.getElementById('pt-note').textContent=`牆面+天花板 ${(walls+ceiling).toFixed(1)}m²，扣門窗 ${winArea}m² = 淨面積 ${net.toFixed(1)}m²，塗 ${coats} 層，理論用量 ${theory.toFixed(2)}L，建議購買 ${buy.toFixed(1)}L（含10%損耗）。`;
+  document.getElementById('paint-result').classList.add('show');
+}
+function calcTile(){
+  const area=parseFloat(document.getElementById('tl-area').value);
+  const l=parseFloat(document.getElementById('tl-l').value);
+  const w=parseFloat(document.getElementById('tl-w').value);
+  const waste=parseFloat(document.getElementById('tl-waste').value)/100;
+  if(!area||!l||!w){alert('請填寫完整');return;}
+  const oneArea=l*w/10000;
+  const net=Math.ceil(area/oneArea);
+  const wasteN=Math.ceil(net*waste);
+  const total=net+wasteN;
+  const boxes=Math.ceil(total/6);
+  document.getElementById('tl-pcs').textContent=total;
+  document.getElementById('tl-net').textContent=net+' 片';
+  document.getElementById('tl-one').textContent=oneArea.toFixed(4)+' m²';
+  document.getElementById('tl-waste-n').textContent=wasteN+' 片';
+  document.getElementById('tl-boxes').textContent='約 '+boxes+' 箱（以每箱6片估算）';
+  document.getElementById('tl-note').textContent=`面積 ${area}m²，${l}×${w}cm 磁磚每片 ${oneArea.toFixed(4)}m²，淨需 ${net} 片，含${(waste*100).toFixed(0)}%損耗需購 ${total} 片（約 ${boxes} 箱）。`;
+  document.getElementById('tile-result').classList.add('show');
+}
+function calcConcrete(){
+  const vol=parseFloat(document.getElementById('cc-vol').value)||0;
+  if(!vol){alert('請輸入體積');return;}
+  const ratioMap={'1:2:3':[1,2,3,0.55],'1:1.5:3':[1,1.5,3,0.5],'1:1:2':[1,1,2,0.45]};
+  const g=document.getElementById('cc-grade').value;
+  const [rc,rs,rg,wc]=ratioMap[g];
+  const total=rc+rs+rg;
+  // 1m³混凝土約需水泥 300kg（以1:2:3為例）
+  const cementKg=Math.round(vol*300*rc/total*(1.5/rg));
+  const sandT=(cementKg*rs*1.6/1000).toFixed(2);
+  const gravelT=(cementKg*rg*1.6/1000).toFixed(2);
+  const waterL=Math.round(cementKg*wc);
+  const bags=Math.ceil(cementKg/50);
+  document.getElementById('cc-cement').textContent=bags;
+  document.getElementById('cc-c').textContent=cementKg+' kg（'+bags+'包）';
+  document.getElementById('cc-s').textContent=sandT+' 噸（細砂）';
+  document.getElementById('cc-g').textContent=gravelT+' 噸（碎石）';
+  document.getElementById('cc-w').textContent=waterL+' 公升';
+  document.getElementById('cc-note').textContent=`配比 ${g}，${vol}m³ 混凝土需水泥 ${cementKg}kg（${bags}包）、砂 ${sandT}噸、碎石 ${gravelT}噸、水 ${waterL}L。`;
+  document.getElementById('concrete-result').classList.add('show');
+}
+function calcWallpaper(){
+  const wallW=parseFloat(document.getElementById('wp-w').value);
+  const wallH=parseFloat(document.getElementById('wp-h').value)||2.7;
+  const rollL=parseFloat(document.getElementById('wp-roll').value)||10;
+  const wpW=parseFloat(document.getElementById('wp-width').value)||53;
+  const repeat=parseFloat(document.getElementById('wp-repeat').value)||0;
+  if(!wallW){alert('請填寫牆面寬度');return;}
+  const area=wallW*wallH;
+  const stripsPerRoll=Math.floor(rollL/wallH);
+  const repeatExtra=repeat>0?Math.ceil(wallH/repeat)*repeat-wallH:0;
+  const adjustedH=wallH+repeatExtra;
+  const stripsAdjusted=Math.floor(rollL/adjustedH);
+  const wallWidthM=wpW/100;
+  const totalStrips=Math.ceil(wallW/wallWidthM);
+  const rolls=Math.ceil(totalStrips/(repeat>0?stripsAdjusted:stripsPerRoll))*1.1;
+  const buyRolls=Math.ceil(rolls);
+  const perRoll=(wpW/100)*rollL;
+  document.getElementById('wp-rolls').textContent=buyRolls;
+  document.getElementById('wp-area').textContent=area.toFixed(1)+' m²';
+  document.getElementById('wp-per-roll').textContent=perRoll.toFixed(2)+' m²';
+  document.getElementById('wp-note').textContent=`牆面 ${wallW}m × ${wallH}m = ${area.toFixed(1)}m²，壁紙寬 ${wpW}cm × 長 ${rollL}m，每捲可貼 ${perRoll.toFixed(2)}m²，建議購買 ${buyRolls} 捲${repeat>0?'（含對花損耗）':'（含10%損耗）'}。`;
+  document.getElementById('wallpaper-result').classList.add('show');
+}
+function calcStair(){
+  const h=parseFloat(document.getElementById('st-height').value);
+  const run=parseFloat(document.getElementById('st-run').value);
+  const type=document.getElementById('st-type').value;
+  if(!h||!run){alert('請填寫樓高與水平距離');return;}
+  const maxR=type==='home'?20:18;
+  const minT=type==='home'?21:26;
+  // 找最適階數
+  let bestSteps=Math.round(h/18),bestR=0,bestT=0,bestScore=999;
+  for(let n=Math.floor(h/maxR);n<=Math.ceil(h/14);n++){
+    const r=h/n;
+    const t=run/n;
+    const formula=2*r+t;
+    const score=Math.abs(formula-62.5);
+    if(r<=maxR&&t>=minT&&score<bestScore){bestScore=score;bestSteps=n;bestR=r;bestT=t;}
+  }
+  if(!bestR){bestSteps=Math.round(h/18);bestR=h/bestSteps;bestT=run/bestSteps;}
+  const formula=(2*bestR+bestT).toFixed(1);
+  const angle=(Math.atan(bestR/bestT)*180/Math.PI).toFixed(1);
+  const ok=bestR<=maxR&&bestT>=minT;
+  document.getElementById('st-steps').textContent=bestSteps;
+  document.getElementById('st-tag').textContent=ok?'符合規範 ✓':'⚠ 請調整階數';
+  document.getElementById('st-tag').className=ok?'tag tag-green':'tag tag-red';
+  document.getElementById('st-r').textContent=bestR.toFixed(1)+' cm';
+  document.getElementById('st-t').textContent=bestT.toFixed(1)+' cm';
+  document.getElementById('st-formula').textContent=formula+' cm（建議60–65）';
+  document.getElementById('st-angle').textContent=angle+'°';
+  document.getElementById('st-note').textContent=`樓高 ${h}cm ÷ ${bestSteps}階 = 踢面 ${bestR.toFixed(1)}cm，踏面 ${bestT.toFixed(1)}cm，舒適度公式 ${formula}cm（建議 60–65cm），坡度角 ${angle}°。`;
+  document.getElementById('stair-result').classList.add('show');
+}
+function toggleAreaShape(){
+  const s=document.getElementById('ar-shape').value;
+  ['rect','lshape','triangle'].forEach(id=>{
+    document.getElementById('ar-'+id).style.display=id===s?'block':'none';
+  });
+}
+function calcArea(){
+  const s=document.getElementById('ar-shape').value;
+  let m2=0,note='';
+  if(s==='rect'){
+    const l=parseFloat(document.getElementById('ar-l').value)||0;
+    const w=parseFloat(document.getElementById('ar-w').value)||0;
+    m2=l*w;note=`${l}m × ${w}m = ${m2.toFixed(2)}m²`;
+  }else if(s==='lshape'){
+    const a=parseFloat(document.getElementById('ar-la').value)||0;
+    const b=parseFloat(document.getElementById('ar-lb').value)||0;
+    const c=parseFloat(document.getElementById('ar-lc').value)||0;
+    const d=parseFloat(document.getElementById('ar-ld').value)||0;
+    m2=a*b-c*d;note=`L形：${a}×${b} - ${c}×${d} = ${m2.toFixed(2)}m²`;
+  }else{
+    const tb=parseFloat(document.getElementById('ar-tb').value)||0;
+    const th=parseFloat(document.getElementById('ar-th').value)||0;
+    m2=tb*th/2;note=`三角形：${tb}m × ${th}m ÷ 2 = ${m2.toFixed(2)}m²`;
+  }
+  if(!m2){alert('請填寫尺寸');return;}
+  const ping=(m2/3.30579).toFixed(2);
+  document.getElementById('ar-m2').textContent=m2.toFixed(2);
+  document.getElementById('ar-ping').textContent=ping+' 坪';
+  document.getElementById('ar-note').textContent=note+'，等於 '+ping+' 坪。';
+  document.getElementById('area-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>
