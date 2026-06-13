@@ -235,6 +235,22 @@ footer a:hover{color:#F3C969!important}
 .ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
 .ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
 .ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+.custom-fx{background:#fff;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1rem;overflow:hidden}
+.custom-fx summary{padding:13px 16px;font-size:13.5px;font-weight:700;color:var(--accent);cursor:pointer;list-style:none;user-select:none;display:flex;align-items:center;gap:6px}
+.custom-fx summary::-webkit-details-marker{display:none}
+.custom-fx summary::after{content:'＋';margin-left:auto;font-size:16px;color:var(--muted);font-weight:400}
+.custom-fx[open] summary::after{content:'－'}
+.custom-fx[open] summary{border-bottom:1px solid var(--border)}
+.custom-fx-body{padding:14px 16px}
+.custom-fx-hint{font-size:11.5px;color:var(--muted);line-height:1.7;margin-bottom:12px}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.cf-field label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.cf-field input{width:100%;height:42px;padding:0 12px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-family:inherit;color:var(--text)}
+.cf-field input:focus{outline:none;border-color:var(--accent)}
+.cf-result{background:var(--accent-light);color:var(--accent);font-size:15px;font-weight:700;text-align:center;padding:13px;border-radius:8px;line-height:1.5;word-break:break-all}
+.cf-load{width:100%;margin-top:10px;height:38px;background:none;border:1px dashed var(--border);border-radius:8px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+.cf-load:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:400px){.cf-row{grid-template-columns:1fr}}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"即時匯率換算","item":"https://thecalcbox.github.io/fx/"}]}</script>
@@ -279,7 +295,7 @@ footer a:hover{color:#F3C969!important}
       <button class="swap-btn" onclick="swapCurrency()">⇄</button>
       <div class="fx-field">
         <label>換算結果</label>
-        <input type="number" id="cv-result" readonly style="background:var(--gray-50);color:var(--accent-mid)">
+        <input type="text" id="cv-result" readonly inputmode="decimal" style="background:var(--gray-50);color:var(--accent-mid)">
         <select id="cv-to" onchange="convert()" style="margin-top:6px">
           <!-- 動態填入 -->
         </select>
@@ -300,6 +316,26 @@ footer a:hover{color:#F3C969!important}
     </div>
 
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <!-- 自訂匯率換算 -->
+    <details class="custom-fx">
+      <summary>✏️ 自訂匯率換算（銀行牌告、私下交易適用）</summary>
+      <div class="custom-fx-body">
+        <p class="custom-fx-hint">若你有特定匯率（如銀行牌告價、與親友約定價），可在此自行輸入計算，不受市場中間價影響。</p>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label>金額</label>
+            <input type="number" id="cf-amount" value="1000" inputmode="decimal" oninput="calcCustom()">
+          </div>
+          <div class="cf-field">
+            <label>自訂匯率（1 單位 = ？）</label>
+            <input type="number" id="cf-rate" placeholder="例：32.5" inputmode="decimal" oninput="calcCustom()">
+          </div>
+        </div>
+        <div class="cf-result" id="cf-result">輸入金額與匯率即可換算</div>
+        <button class="cf-load" onclick="loadMarketRate()">↻ 帶入目前市場匯率</button>
+      </div>
+    </details>
 
     <!-- 快速換算 -->
     <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase">快速換算參考</div>
@@ -452,7 +488,18 @@ const CURRENCIES = {
 const API = 'https://fxapi.app/api';
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
-const fmt = (v, d=2) => v >= 1 ? parseFloat(v.toFixed(d)).toLocaleString() : v.toFixed(4);
+const fmt = (v, d=2) => {
+  if(v == null || isNaN(v)) return '—';
+  const abs = Math.abs(v);
+  // 極大數值（≥10000）取整數，避免小數雜訊
+  if(abs >= 10000) return Math.round(v).toLocaleString();
+  // 一般數值保留 2 位
+  if(abs >= 1) return parseFloat(v.toFixed(d)).toLocaleString();
+  // 極小數值（<1）保留 4 位有效位
+  if(abs >= 0.0001) return v.toFixed(4);
+  // 超小數值用有效位數表示，避免顯示 0.0000
+  return v.toPrecision(2);
+};
 
 // ── 初始化選單 ──
 function initSelects(){
@@ -574,6 +621,27 @@ function convert(){
   renderQuick(from, to, rate);
   // 走勢圖標題
   document.getElementById('chart-title').textContent = `${from} → ${to} 走勢`;
+}
+
+// ── 自訂匯率換算 ──
+function calcCustom(){
+  const amt = parseFloat(document.getElementById('cf-amount').value);
+  const rate = parseFloat(document.getElementById('cf-rate').value);
+  const el = document.getElementById('cf-result');
+  if(!amt || !rate){ el.textContent = '輸入金額與匯率即可換算'; return; }
+  const result = amt * rate;
+  el.textContent = `${fmt(amt)} × ${fmt(rate,4)} = ${fmt(result)}`;
+}
+
+function loadMarketRate(){
+  // 帶入主換算器目前的市場匯率
+  const from = document.getElementById('cv-from').value;
+  const to = document.getElementById('cv-to').value;
+  const rate = getRate(from, to);
+  if(rate){
+    document.getElementById('cf-rate').value = parseFloat(rate.toFixed(6));
+    calcCustom();
+  }
 }
 
 function swapCurrency(){
