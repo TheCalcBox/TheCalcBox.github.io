@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0E2A47">
+<meta name="robots" content="index,follow,max-snippet:-1">
+<title>提前還房貸 vs 拿去投資：哪個划算？｜CalcBox 比較指南</title>
+<link rel="canonical" href="https://thecalcbox.github.io/guide/prepay-vs-invest/">
+<meta name="description" content="提前還房貸還是投資？用房貸利率與市場報酬比較數學期望值，分析保證報酬、流動性、心理價值與台灣違約金規定。">
+<meta property="og:title" content="提前還房貸 vs 拿去投資：哪個划算？">
+<meta property="og:description" content="提前還房貸還是投資？用房貸利率與市場報酬比較數學期望值，分析保證報酬、流動性、心理價值與台灣違約金規定。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thecalcbox.github.io/guide/prepay-vs-invest/">
+<meta property="og:locale" content="zh_TW">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "提前還房貸 vs 拿去投資：哪個划算？", "description": "提前還房貸還是投資？用房貸利率與市場報酬比較數學期望值，分析保證報酬、流動性、心理價值與台灣違約金規定。", "datePublished": "2026-06-12", "dateModified": "2026-06-12", "author": {"@type": "Organization", "name": "CalcBox"}, "publisher": {"@type": "Organization", "name": "CalcBox"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "CalcBox", "item": "https://thecalcbox.github.io/"}, {"@type": "ListItem", "position": 2, "name": "比較指南", "item": "https://thecalcbox.github.io/guide/"}, {"@type": "ListItem", "position": 3, "name": "提前還款 vs 投資", "item": "https://thecalcbox.github.io/guide/prepay-vs-invest/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "提前還房貸有違約金嗎？", "acceptedAnswer": {"@type": "Answer", "text": "多數台灣房貸有 1–3 年綁約期，期間提前清償（部分或全部）需付貸款餘額 0.5–1% 的違約金。綁約期滿後通常免費，請先查閱你的貸款合約。"}}, {"@type": "Question", "name": "提前還款是縮短年限好還是降低月付好？", "acceptedAnswer": {"@type": "Answer", "text": "縮短年限省下的總利息較多，適合收入穩定者；降低月付則增加每月現金流彈性，適合收入波動者。多數銀行兩種都可選。"}}, {"@type": "Question", "name": "房貸利息可以抵稅嗎？", "acceptedAnswer": {"@type": "Answer", "text": "台灣自用住宅購屋借款利息可列舉扣除，每戶每年上限 30 萬元，但需先減除儲蓄投資特別扣除額。提前還款會減少利息，也會減少這項扣除。"}}, {"@type": "Question", "name": "全部拿去投資、完全不提前還款可以嗎？", "acceptedAnswer": {"@type": "Answer", "text": "數學上若投資報酬穩定高於房貸利率即划算，但前提是有緊急預備金、能承受市場波動、且投資紀律已被自己驗證過。對多數人而言，分配比例比全壓單邊更穩健。"}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0E2A47;--ink-soft:#5A6E84;--paper:#F6F8FB;--line:#E3E9F0;--gold:#C28A1A;--gold-soft:#FBEED3;--gold-text:#B07A14;--green:#2E7D32;--red:#C62828}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.9}
+header{background:var(--ink);position:sticky;top:0;z-index:100}
+.hdr{max-width:780px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#1E456E,#0E2A47);border:1.5px solid rgba(243,201,105,.25);color:#F3C969;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;padding:5px 13px;border-radius:8px;border:1px solid rgba(255,255,255,.22)}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
+main{max-width:780px;margin:0 auto;padding:2.2rem 1.25rem 3rem}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--gold-deep,#9A6A0C);background:var(--gold-soft);display:inline-block;padding:4px 12px;border-radius:99px;margin-bottom:.8rem}
+h1{font-size:clamp(22px,4vw,30px);font-weight:900;line-height:1.35;margin-bottom:.5rem}
+.dateline{font-size:12px;color:#9AA9BA;margin-bottom:1.8rem}
+h2{font-size:18px;font-weight:900;margin:2.2rem 0 .8rem;padding-left:.8rem;border-left:4px solid var(--gold)}
+h3{font-size:15px;font-weight:800;margin:1.4rem 0 .5rem}
+p{font-size:14.5px;color:#33475C;margin-bottom:1rem}
+ul,ol{padding-left:1.4rem;margin-bottom:1rem}
+li{font-size:14.5px;color:#33475C;margin-bottom:.4rem}
+a{color:var(--gold-text)}
+strong{color:var(--ink)}
+table{width:100%;border-collapse:collapse;margin:1rem 0 1.4rem;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(14,42,71,.06)}
+th{background:var(--ink);color:#fff;font-weight:700;padding:10px 12px;text-align:left;font-size:13px}
+td{padding:10px 12px;border-bottom:1px solid var(--line);color:#33475C;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.good{color:var(--green);font-weight:700}
+td.bad{color:var(--red);font-weight:700}
+.callout{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0;font-size:14px}
+.callout b{color:var(--ink)}
+.tool-cta{display:block;background:linear-gradient(115deg,var(--gold-soft),#fff 60%);border:1.5px solid var(--gold);border-radius:14px;padding:1.1rem 1.4rem;margin:1.4rem 0;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.tool-cta:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(194,138,26,.4)}
+.tool-cta b{display:block;font-size:15px;color:var(--ink);margin-bottom:2px}
+.tool-cta span{font-size:12.5px;color:var(--ink-soft)}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem 1.3rem;margin-bottom:.8rem}
+.faq-item .q{font-size:14.5px;font-weight:800;margin-bottom:.4rem}
+.faq-item .a{font-size:13.5px;color:#33475C;margin:0}
+.source-note{margin:2rem 0 0;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+footer{background:var(--ink);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:2;margin:0}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+footer a:hover{color:#F3C969}
+@media(max-width:560px){main{padding:1.6rem 1rem 2.2rem}table{font-size:12px}th,td{padding:8px 8px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 比較指南</span></a>
+    <a class="back-btn" href="/">‹ 所有工具</a>
+  </div>
+</header>
+<main>
+<span class="kicker">比較指南</span>
+<h1>提前還房貸 vs 拿去投資：哪個划算？</h1>
+<p class="dateline">2026 年 6 月 12 日 · 閱讀時間約 5 分鐘</p>
+
+<p>手上多了一筆錢——年終獎金、股票獲利了結、或是長輩贈與——該拿去提前還房貸，還是投入市場？這題的數學其實很簡單，難的是風險與心理。</p>
+
+<h2>數學上的分水嶺：你的房貸利率</h2>
+<p>提前還款的「報酬率」就是你的房貸利率，而且是<strong>保證、免稅、零風險</strong>的報酬。比較基準如下：</p>
+
+<table>
+<tr><th>選項</th><th>預期年化報酬</th><th>風險</th><th>流動性</th></tr>
+<tr><td>提前還房貸（利率 2.06%）</td><td>2.06% <strong>保證</strong></td><td class="good">零</td><td class="bad">低（錢進房子拿不回）</td></tr>
+<tr><td>台股 ETF（0050 類）</td><td>歷史年化約 7–9%</td><td class="bad">高（可能單年 -30%）</td><td class="good">高</td></tr>
+<tr><td>美股大盤（S&P 500）</td><td>歷史年化約 8–10%</td><td class="bad">高＋匯率風險</td><td class="good">高</td></tr>
+<tr><td>台幣定存</td><td>約 1.6–1.8%</td><td class="good">零</td><td>中（解約損失利息）</td></tr>
+<tr><td>債券 ETF</td><td>約 3–4.5%</td><td>中</td><td class="good">高</td></tr>
+</table>
+
+<p>結論很直白：<strong>長期投資大盤的期望報酬遠高於 2% 的房貸利率</strong>。但「期望」兩個字藏著魔鬼——市場可能連續幾年下跌，而你的房貸利息每個月照扣。</p>
+
+<h2>提前還款的隱藏價值</h2>
+<ul>
+<li><strong>心理自由</strong>：無貸一身輕不是玩笑話，負債歸零對生活決策（轉職、創業、退休）的影響是真實的</li>
+<li><strong>保證報酬</strong>：2% 保證報酬在市場大跌年份就是最好的投資</li>
+<li><strong>降低家庭風險</strong>：收入中斷時，低月付＝更長的生存跑道</li>
+</ul>
+
+<h2>投資的隱藏價值</h2>
+<ul>
+<li><strong>複利時間</strong>：30 歲投入的 100 萬和 45 歲投入的 100 萬，到 65 歲差距超過一倍</li>
+<li><strong>流動性</strong>：緊急時 ETF 三天變現，房子裡的錢要增貸才拿得出來（還要付利率）</li>
+<li><strong>通膨對沖</strong>：房貸是固定債務，通膨會默默幫你稀釋它——欠的錢越久越「便宜」</li>
+</ul>
+
+<div class="callout"><b>實用的折衷方案：</b>不必二選一。常見的穩健做法是「先確保 6 個月緊急預備金 → 投資與還款各半」，或「利率低於 2.5% 時偏投資、市場高檔疑慮時偏還款」。重點是兩條路都在累積淨資產，沒有絕對的錯。</div>
+
+<h2>三個先問自己的問題</h2>
+<ol>
+<li><strong>我有 6 個月生活費的緊急預備金嗎？</strong>沒有 → 兩個都先別做，先存預備金</li>
+<li><strong>市場下跌 30% 我會恐慌賣出嗎？</strong>會 → 提前還款的保證報酬更適合你</li>
+<li><strong>我的房貸有提前清償違約金嗎？</strong>多數台灣房貸綁約 1–3 年，期間提前還款需付 0.5–1% 違約金，先確認再行動</li>
+</ol>
+
+<a class="tool-cta" href="/loan/"><b>🏦 算出提前還款能省多少利息 →</b><span>房貸試算器：比較提前還款前後的總利息差異</span></a>
+<a class="tool-cta" href="/invest/"><b>📈 算出同筆錢投資的複利終值 →</b><span>投資試算器：定期定額與單筆投入的長期報酬模擬</span></a>
+<a class="tool-cta" href="/retire/"><b>🎯 看看哪條路更快達成退休目標 →</b><span>退休試算器：4% 法則回推你需要的退休資產</span></a>
+<h2>常見問題</h2>
+<div class="faq-item"><p class="q">Q：提前還房貸有違約金嗎？</p><p class="a">A：多數台灣房貸有 1–3 年綁約期，期間提前清償（部分或全部）需付貸款餘額 0.5–1% 的違約金。綁約期滿後通常免費，請先查閱你的貸款合約。</p></div><div class="faq-item"><p class="q">Q：提前還款是縮短年限好還是降低月付好？</p><p class="a">A：縮短年限省下的總利息較多，適合收入穩定者；降低月付則增加每月現金流彈性，適合收入波動者。多數銀行兩種都可選。</p></div><div class="faq-item"><p class="q">Q：房貸利息可以抵稅嗎？</p><p class="a">A：台灣自用住宅購屋借款利息可列舉扣除，每戶每年上限 30 萬元，但需先減除儲蓄投資特別扣除額。提前還款會減少利息，也會減少這項扣除。</p></div><div class="faq-item"><p class="q">Q：全部拿去投資、完全不提前還款可以嗎？</p><p class="a">A：數學上若投資報酬穩定高於房貸利率即划算，但前提是有緊急預備金、能承受市場波動、且投資紀律已被自己驗證過。對多數人而言，分配比例比全壓單邊更穩健。</p></div>
+<p class="source-note"><b>相關工具</b>：<a href="/loan/">房貸試算</a> · <a href="/invest/">投資試算</a> · <a href="/retire/">退休試算</a><br>本文僅供參考，不構成投資或財務建議｜最後更新：2026-06-12</p>
+</main>
+<footer>
+  <p>CalcBox 工具站 · 所有內容僅供參考<br>
+  <a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a> · <a href="/">回工具目錄</a></p>
+</footer>
+</body>
+</html>

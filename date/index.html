@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>日期計算工具｜年齡、相隔天數、工作天、倒數日計算 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/date/">
+<meta name="description" content="免費日期計算機：年齡實歲虛歲、兩日期相隔天數、工作天計算、紀念日倒數、生肖星座查詢，附每日即時新聞。">
+<meta name="keywords" content="年齡計算,天數計算,工作天計算,倒數日,生肖查詢,星座查詢">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="日期計算工具｜年齡、相隔天數、工作天、倒數日計算 — CalcBox">
+<meta property="og:description" content="免費日期計算機：年齡實歲虛歲、兩日期相隔天數、工作天計算、紀念日倒數、生肖星座查詢，附每日即時新聞。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/date/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/date.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="日期時間｜年齡計算、工作天、倒數日">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/date.png">
+<meta name="twitter:title" content="日期計算工具｜年齡、相隔天數、工作天、倒數日計算 — CalcBox">
+<meta name="twitter:description" content="免費日期計算機：年齡實歲虛歲、兩日期相隔天數、工作天計算、紀念日倒數、生肖星座查詢，附每日即時新聞。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"年齡計算機","url":"https://thecalcbox.github.io/date/#age","description":"精確計算實歲與虛歲，附生日倒數。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"日期相隔天數計算","url":"https://thecalcbox.github.io/date/#between","description":"計算兩日期相差天數、週數、月數。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"工作天計算","url":"https://thecalcbox.github.io/date/#workdays","description":"排除週末計算工作天數，或推算第N個工作天日期。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"紀念日倒數","url":"https://thecalcbox.github.io/date/#countdown","description":"計算距離目標日期的倒數天數。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"生肖星座查詢","url":"https://thecalcbox.github.io/date/#zodiac","description":"輸入生日查詢星座與生肖。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"實歲和虛歲差在哪？","acceptedAnswer":{"@type":"Answer","text":"實歲過生日才加一歲，法律與勞健保使用；虛歲出生即一歲、過農曆年再加一歲，通常比實歲大1–2歲。"}},
+{"@type":"Question","name":"工作天怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"工作天為排除週六日的日曆天。「7個工作天」即跳過週末往後數7天，國定假日需另外扣除。"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#246B77;--accent-light:#E7F3F5;--accent-mid:#3E8E9C;
+  --sub:#3E8E9C;--sub-light:#E7F3F5;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(62,142,156,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"日期計算工具","item":"https://thecalcbox.github.io/date/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 日期時間</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news">📰 即時新聞</button>
+    <button class="tab-btn" onclick="switchTab('age')" id="tab-age">🎂 年齡計算</button>
+    <button class="tab-btn" onclick="switchTab('between')" id="tab-between">📐 相隔天數</button>
+    <button class="tab-btn" onclick="switchTab('workdays')" id="tab-workdays">💼 工作天</button>
+    <button class="tab-btn" onclick="switchTab('countdown')" id="tab-countdown">⏳ 倒數日</button>
+    <button class="tab-btn" onclick="switchTab('zodiac')" id="tab-zodiac">🐉 生肖星座</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">日期計算工具</h1>
+<p class="page-lead">免費日期計算機：年齡實歲虛歲、兩日期相隔天數、工作天計算、紀念日倒數、生肖星座查詢，附每日即時新聞。</p>
+
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日焦點新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9202" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+
+<!-- 年齡 -->
+<div class="panel" id="panel-age">
+  <div class="tool-card"><div class="card-head">
+    <h2>年齡計算機</h2><p>精確計算實歲至年月日，附下次生日倒數</p>
+  </div><div class="card-body">
+    <div class="fields one"><div class="field"><label>出生日期</label><input type="date" id="a-bday"></div></div>
+    <button class="calc-btn" onclick="calcAge()">計算年齡</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9210" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="age-result">
+      <div class="result-top"><div class="result-number" id="a-num">—</div><div class="result-unit">歲（實歲）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">精確年齡</div><div class="val" id="a-exact">—</div></div>
+        <div class="result-cell"><div class="lbl">下次生日</div><div class="val" id="a-next">—</div></div>
+        <div class="result-cell"><div class="lbl">已活天數</div><div class="val" id="a-days">—</div></div>
+        <div class="result-cell"><div class="lbl">虛歲</div><div class="val" id="a-nominal">—</div></div>
+      </div>
+      <div class="result-note" id="a-note"></div>
+      <div class="result-disclaimer">實歲依足歲計算，與戶籍法律定義一致。</div>
+    </div>
+    <div class="seo-box">
+      <h3>實歲與虛歲差在哪？</h3>
+      <p>實歲（足歲）：過了生日才加一歲，法律文件、勞健保皆用實歲。虛歲：出生即一歲、過農曆年加一歲，傳統民俗使用。虛歲通常比實歲大 1–2 歲。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9203" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 相隔天數 -->
+<div class="panel" id="panel-between">
+  <div class="tool-card"><div class="card-head">
+    <h2>日期相隔天數</h2><p>計算兩個日期之間相差幾天、幾週、幾個月</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>開始日期</label><input type="date" id="bt-start"></div>
+      <div class="field"><label>結束日期</label><input type="date" id="bt-end"></div>
+    </div>
+    <button class="calc-btn" onclick="calcBetween()">計算相隔</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9211" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="between-result">
+      <div class="result-top"><div class="result-number" id="bt-days">—</div><div class="result-unit">天</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">相當於週數</div><div class="val" id="bt-weeks">—</div></div>
+        <div class="result-cell"><div class="lbl">相當於月數</div><div class="val" id="bt-months">—</div></div>
+        <div class="result-cell"><div class="lbl">相當於年數</div><div class="val" id="bt-years">—</div></div>
+      </div>
+      <div class="result-note" id="bt-note"></div>
+      <div class="result-disclaimer">天數含頭不含尾；如需含尾請自行加一天。</div>
+    </div>
+    <div class="seo-box">
+      <h3>常見用途</h3>
+      <p>計算合約天數、住院天數、租期、出國天數、交往紀念日、專案工期。注意「含頭含尾」與「含頭不含尾」差一天，法律期間計算多採「始日不算入」。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9204" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 工作天 -->
+<div class="panel" id="panel-workdays">
+  <div class="tool-card"><div class="card-head">
+    <h2>工作天計算</h2><p>排除週六日，計算兩日期間的工作天數，或從今天起算第 N 個工作天</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>模式</label><select id="wd-mode" onchange="document.getElementById('wd-row-a').style.display=this.value==='between'?'grid':'none';document.getElementById('wd-row-b').style.display=this.value==='after'?'grid':'none'"><option value="between">兩日期間的工作天</option><option value="after">N 個工作天後是哪天</option></select></div>
+    </div>
+    <div class="fields" id="wd-row-a">
+      <div class="field"><label>開始日期</label><input type="date" id="wd-start"></div>
+      <div class="field"><label>結束日期</label><input type="date" id="wd-end"></div>
+    </div>
+    <div class="fields" id="wd-row-b" style="display:none">
+      <div class="field"><label>起算日期</label><input type="date" id="wd-from"></div>
+      <div class="field"><label>工作天數</label><input type="number" id="wd-n" placeholder="例：7" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcWD()">計算工作天</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9212" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="workdays-result">
+      <div class="result-top"><div class="result-number" id="wd-out" style="font-size:30px">—</div><div class="result-unit" id="wd-unit">個工作天</div></div>
+      <div class="result-note" id="wd-note"></div>
+      <div class="result-disclaimer">僅排除週六日，未含國定假日與補班日，重要期限請對照人事行政局行事曆。</div>
+    </div>
+    <div class="seo-box">
+      <h3>工作天怎麼算？</h3>
+      <p>工作天＝排除週六、週日的日曆天。公文「7 個工作天」即跳過週末往後數 7 天。本工具未含國定假日，遇連假請自行扣除。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9205" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 倒數日 -->
+<div class="panel" id="panel-countdown">
+  <div class="tool-card"><div class="card-head">
+    <h2>紀念日 / 目標倒數</h2><p>距離重要日子還有幾天？已經過了幾天？</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>目標日期</label><input type="date" id="cd-date"></div>
+      <div class="field"><label>事件名稱（選填）</label><input type="text" id="cd-name" placeholder="例：結婚紀念日"></div>
+    </div>
+    <button class="calc-btn" onclick="calcCD()">計算倒數</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9213" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="countdown-result">
+      <div class="result-top"><div class="result-number" id="cd-num">—</div><div class="result-unit" id="cd-unit">天</div></div>
+      <span class="tag" id="cd-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">相當於</div><div class="val" id="cd-weeks">—</div></div>
+        <div class="result-cell"><div class="lbl">當天星期</div><div class="val" id="cd-dow">—</div></div>
+      </div>
+      <div class="result-note" id="cd-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>倒數日小技巧</h3>
+      <p>考試、簽證到期、合約截止、寶寶滿月百日、交往週年——把大目標換算成「還剩 N 天」最有實感。建議搭配手機行事曆設定提醒。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9206" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 生肖星座 -->
+<div class="panel" id="panel-zodiac">
+  <div class="tool-card"><div class="card-head">
+    <h2>生肖星座查詢</h2><p>輸入生日查詢西洋星座與生肖（生肖以國曆年近似）</p>
+  </div><div class="card-body">
+    <div class="fields one"><div class="field"><label>出生日期</label><input type="date" id="z-bday"></div></div>
+    <button class="calc-btn" onclick="calcZodiac()">查詢</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9214" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="zodiac-result">
+      <div class="result-top"><div class="result-number" id="z-star" style="font-size:30px">—</div><div class="result-unit">星座</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">生肖</div><div class="val" id="z-animal">—</div></div>
+        <div class="result-cell"><div class="lbl">星座區間</div><div class="val" id="z-range">—</div></div>
+        <div class="result-cell"><div class="lbl">星座元素</div><div class="val" id="z-element">—</div></div>
+      </div>
+      <div class="result-note" id="z-note"></div>
+      <div class="result-disclaimer">生肖以農曆年為界，1–2 月出生者請以當年春節日期確認。</div>
+    </div>
+    <div class="seo-box">
+      <h3>十二星座日期一覽</h3>
+      <p>牡羊 3/21–4/19、金牛 4/20–5/20、雙子 5/21–6/21、巨蟹 6/22–7/22、獅子 7/23–8/22、處女 8/23–9/22、天秤 9/23–10/23、天蠍 10/24–11/22、射手 11/23–12/21、摩羯 12/22–1/19、水瓶 1/20–2/18、雙魚 2/19–3/20。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9207" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：行政院人事行政總處行事曆　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/calendar/" style="--rc:#3A7FCC;--rs:#EAF1F9">
+      <div class="related-card-body">
+        <div class="related-card-name">行事曆工具</div>
+        <div class="related-card-tags"><span>2026行事曆</span><span>連假計算</span><span>農曆換算</span><span>上班天數</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/baby/" style="--rc:#C2356B;--rs:#FBEAF1">
+      <div class="related-card-body">
+        <div class="related-card-name">孕產育兒</div>
+        <div class="related-card-tags"><span>預產期</span><span>排卵期</span><span>懷孕週數</span><span>育兒津貼</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/student/" style="--rc:#3949AB;--rs:#E8EAF6">
+      <div class="related-card-body">
+        <div class="related-card-name">學生工具</div>
+        <div class="related-card-tags"><span>GPA計算</span><span>加權平均</span><span>成績換算</span><span>讀書計畫</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 日期時間 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/baby/">孕產育兒</a> · <a href="/convert/">單位換算</a> · <a href="/health/">健康計算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+const DAY=86400000;
+const DOW=['日','一','二','三','四','五','六'];
+function calcAge(){
+  const v=document.getElementById('a-bday').value;
+  if(!v){alert('請選擇生日');return;}
+  const b=new Date(v),n=new Date();
+  if(b>n){alert('生日不能是未來');return;}
+  let y=n.getFullYear()-b.getFullYear(),m=n.getMonth()-b.getMonth(),d=n.getDate()-b.getDate();
+  if(d<0){m--;d+=30;}if(m<0){y--;m+=12;}
+  const days=Math.floor((n-b)/DAY);
+  const next=new Date(n.getFullYear(),b.getMonth(),b.getDate());
+  if(next<=n)next.setFullYear(n.getFullYear()+1);
+  document.getElementById('a-num').textContent=y;
+  document.getElementById('a-exact').textContent=y+'歲'+m+'月'+d+'天';
+  document.getElementById('a-next').textContent=Math.ceil((next-n)/DAY)+' 天後';
+  document.getElementById('a-days').textContent=days.toLocaleString()+' 天';
+  document.getElementById('a-nominal').textContent=(n.getFullYear()-b.getFullYear()+1)+' 歲';
+  document.getElementById('a-note').textContent=`實歲 ${y} 歲 ${m} 個月 ${d} 天，已度過 ${days.toLocaleString()} 天。下次生日 ${next.toLocaleDateString('zh-TW')}。`;
+  document.getElementById('age-result').classList.add('show');
+}
+function calcBetween(){
+  const s=document.getElementById('bt-start').value,e=document.getElementById('bt-end').value;
+  if(!s||!e){alert('請選擇兩個日期');return;}
+  const d1=new Date(s),d2=new Date(e);
+  const days=Math.abs(Math.round((d2-d1)/DAY));
+  document.getElementById('bt-days').textContent=days.toLocaleString();
+  document.getElementById('bt-weeks').textContent=(days/7).toFixed(1)+' 週';
+  document.getElementById('bt-months').textContent=(days/30.44).toFixed(1)+' 個月';
+  document.getElementById('bt-years').textContent=(days/365.25).toFixed(2)+' 年';
+  document.getElementById('bt-note').textContent=`${s} 至 ${e} 相隔 ${days.toLocaleString()} 天（約 ${(days/7).toFixed(1)} 週、${(days/30.44).toFixed(1)} 個月）。`;
+  document.getElementById('between-result').classList.add('show');
+}
+function isWD(d){const x=d.getDay();return x!==0&&x!==6;}
+function calcWD(){
+  const mode=document.getElementById('wd-mode').value;
+  if(mode==='between'){
+    const s=document.getElementById('wd-start').value,e=document.getElementById('wd-end').value;
+    if(!s||!e){alert('請選擇日期');return;}
+    let d=new Date(s);const end=new Date(e);let cnt=0;
+    if(d>end){alert('開始日期需早於結束');return;}
+    while(d<=end){if(isWD(d))cnt++;d=new Date(d.getTime()+DAY);}
+    document.getElementById('wd-out').textContent=cnt;
+    document.getElementById('wd-unit').textContent='個工作天';
+    document.getElementById('wd-note').textContent=`${s} 至 ${e}（含首尾）共 ${cnt} 個工作天（已排除週六日，未含國定假日）。`;
+  }else{
+    const f=document.getElementById('wd-from').value;
+    const n=parseInt(document.getElementById('wd-n').value);
+    if(!f||!n){alert('請填寫完整');return;}
+    let d=new Date(f),cnt=0;
+    while(cnt<n){d=new Date(d.getTime()+DAY);if(isWD(d))cnt++;}
+    document.getElementById('wd-out').textContent=d.toLocaleDateString('zh-TW');
+    document.getElementById('wd-unit').textContent='（星期'+DOW[d.getDay()]+'）';
+    document.getElementById('wd-note').textContent=`自 ${f} 起算第 ${n} 個工作天為 ${d.toLocaleDateString('zh-TW')}（星期${DOW[d.getDay()]}）。`;
+  }
+  document.getElementById('workdays-result').classList.add('show');
+}
+function calcCD(){
+  const v=document.getElementById('cd-date').value;
+  if(!v){alert('請選擇日期');return;}
+  const name=document.getElementById('cd-name').value||'目標日';
+  const t=new Date(v),n=new Date();n.setHours(0,0,0,0);t.setHours(0,0,0,0);
+  const diff=Math.round((t-n)/DAY);
+  const tag=document.getElementById('cd-tag');
+  document.getElementById('cd-num').textContent=Math.abs(diff);
+  if(diff>0){document.getElementById('cd-unit').textContent='天後';tag.textContent='⏳ 倒數中';tag.className='tag';}
+  else if(diff===0){document.getElementById('cd-unit').textContent='就是今天！';tag.textContent='🎉 就是今天';tag.className='tag tag-green';}
+  else{document.getElementById('cd-unit').textContent='天前';tag.textContent='已經過了';tag.className='tag';}
+  document.getElementById('cd-weeks').textContent=(Math.abs(diff)/7).toFixed(1)+' 週';
+  document.getElementById('cd-dow').textContent='星期'+DOW[t.getDay()];
+  document.getElementById('cd-note').textContent=diff>0?`距離「${name}」（${v}，星期${DOW[t.getDay()]}）還有 ${diff} 天。`:diff===0?`今天就是「${name}」！`:`「${name}」已過 ${Math.abs(diff)} 天。`;
+  document.getElementById('countdown-result').classList.add('show');
+}
+function calcZodiac(){
+  const v=document.getElementById('z-bday').value;
+  if(!v){alert('請選擇生日');return;}
+  const b=new Date(v);
+  const m=b.getMonth()+1,d=b.getDate();
+  const stars=[['摩羯',1,19,'土象'],['水瓶',2,18,'風象'],['雙魚',3,20,'水象'],['牡羊',4,19,'火象'],['金牛',5,20,'土象'],['雙子',6,21,'風象'],['巨蟹',7,22,'水象'],['獅子',8,22,'火象'],['處女',9,22,'土象'],['天秤',10,23,'風象'],['天蠍',11,22,'水象'],['射手',12,21,'火象'],['摩羯',12,31,'土象']];
+  let star='摩羯',elem='土象';
+  for(const[s,sm,sd,el]of stars){if(m<sm||(m===sm&&d<=sd)){star=s;elem=el;break;}}
+  const animals=['猴','雞','狗','豬','鼠','牛','虎','兔','龍','蛇','馬','羊'];
+  const animal=animals[b.getFullYear()%12];
+  document.getElementById('z-star').textContent=star+'座';
+  document.getElementById('z-animal').textContent='屬'+animal;
+  const ranges={'摩羯':'12/22–1/19','水瓶':'1/20–2/18','雙魚':'2/19–3/20','牡羊':'3/21–4/19','金牛':'4/20–5/20','雙子':'5/21–6/21','巨蟹':'6/22–7/22','獅子':'7/23–8/22','處女':'8/23–9/22','天秤':'9/23–10/23','天蠍':'10/24–11/22','射手':'11/23–12/21'};
+  document.getElementById('z-range').textContent=ranges[star];
+  document.getElementById('z-element').textContent=elem;
+  document.getElementById('z-note').textContent=`${v} 出生：${star}座（${elem}星座）、生肖屬${animal}。1–2月出生者生肖請以當年春節日期為界確認。`;
+  document.getElementById('zodiac-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>

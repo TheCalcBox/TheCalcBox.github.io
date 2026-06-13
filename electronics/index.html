@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#1B3A5C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>電子電路計算機｜歐姆定律、LED限流、dB換算、RC電路 — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.github.io/electronics/">
+<meta name="description" content="免費電子電路計算工具：歐姆定律、電阻分壓、LED限流電阻（自動匹配E24標準值）、電功率、dB分貝換算、RC電容充放電。">
+<meta name="keywords" content="歐姆定律計算,LED限流電阻,dB換算,電阻分壓,RC電路,電功率計算">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="電子電路計算機｜歐姆定律、LED限流、dB換算、RC電路 — CalcBox">
+<meta property="og:description" content="免費電子電路計算工具：歐姆定律、電阻分壓、LED限流電阻（自動匹配E24標準值）、電功率、dB分貝換算、RC電容充放電。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.github.io/electronics/">
+<meta property="og:image" content="https://thecalcbox.github.io/og/electronics.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="電子電路｜歐姆定律、LED限流、dB換算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.github.io/og/electronics.png">
+<meta name="twitter:title" content="電子電路計算機｜歐姆定律、LED限流、dB換算、RC電路 — CalcBox">
+<meta name="twitter:description" content="免費電子電路計算工具：歐姆定律、電阻分壓、LED限流電阻（自動匹配E24標準值）、電功率、dB分貝換算、RC電容充放電。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"歐姆定律計算機","url":"https://thecalcbox.github.io/electronics/#ohm","description":"V=IR，輸入任兩值自動計算第三值及功率。","applicationCategory":"EngineeringApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"LED限流電阻計算機","url":"https://thecalcbox.github.io/electronics/#led","description":"依電源電壓、LED正向電壓與目標電流計算限流電阻，自動匹配E24標準阻值。","applicationCategory":"EngineeringApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"dB分貝換算","url":"https://thecalcbox.github.io/electronics/#db","description":"電壓/功率比值與dB互換，含常用對照表。","applicationCategory":"EngineeringApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"RC電容充放電計算","url":"https://thecalcbox.github.io/electronics/#capacitor","description":"計算RC時間常數τ、充放電時間與截止頻率。","applicationCategory":"EngineeringApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<style>
+:root{
+  --accent:#1565C0;--accent-light:#E3F0FC;--accent-mid:#1976D2;
+  --sub:#1976D2;--sub-light:#E3F0FC;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(25,118,210,.1)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.news-title{font-size:17px;font-weight:800}
+.news-meta{font-size:12px;color:var(--hint)}
+.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
+.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.news-list{display:flex;flex-direction:column;gap:10px}
+.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
+.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
+.news-card-inner{display:flex;gap:14px;align-items:flex-start}
+.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.news-content{flex:1;min-width:0}
+.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
+.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
+.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
+.news-date{font-size:11px;color:var(--hint);margin-top:5px}
+.news-skeleton{display:flex;flex-direction:column;gap:10px}
+.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
+.skel-line.short{width:35%}.skel-line.mid{width:65%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
+.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
+.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
+.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
+.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
+.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+
+/* ── 回到主頁按鈕 ── */
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+
+/* ── Brand unification ── */
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+
+/* ── 相關工具 ── */
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card-sub{white-space:normal}
+}
+
+/* ── 資料來源標註 ── */
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+
+/* ── 按鈕下方廣告位 ── */
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+</style>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"電子電路計算機","item":"https://thecalcbox.github.io/electronics/"}]}</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 電子電路</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('ohm')" id="tab-ohm">⚡ 歐姆定律</button>
+    <button class="tab-btn" onclick="switchTab('divider')" id="tab-divider">🔀 電阻分壓</button>
+    <button class="tab-btn" onclick="switchTab('led')" id="tab-led">💡 LED限流</button>
+    <button class="tab-btn" onclick="switchTab('power')" id="tab-power">🔋 功率計算</button>
+    <button class="tab-btn" onclick="switchTab('db')" id="tab-db">📊 dB換算</button>
+    <button class="tab-btn" onclick="switchTab('capacitor')" id="tab-capacitor">🌀 電容充放</button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news">📰 科技新聞</button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">電子電路計算機</h1>
+<p class="page-lead">免費電子電路計算工具：歐姆定律、電阻分壓、LED限流電阻（自動匹配E24標準值）、電功率、dB分貝換算、RC電容充放電。</p>
+
+
+<!-- 歐姆定律 -->
+<div class="panel active" id="panel-ohm">
+  <div class="tool-card"><div class="card-head">
+    <h2>歐姆定律計算機</h2>
+    <p>V = I × R，輸入任意兩個已知值，自動計算第三個</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>電壓 V（伏特，留空自動計算）</label><input type="number" id="oh-v" step="0.01" placeholder="例：12" inputmode="decimal"></div>
+      <div class="field"><label>電流 I（毫安培 mA）</label><input type="number" id="oh-i" step="0.1" placeholder="例：100" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>電阻 R（歐姆 Ω，留空自動計算）</label><input type="number" id="oh-r" step="0.1" placeholder="例：120" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcOhm()">計算</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ohm-result">
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">電壓 V</div><div class="val" id="oh-rv">—</div></div>
+        <div class="result-cell"><div class="lbl">電流 I</div><div class="val" id="oh-ri">—</div></div>
+        <div class="result-cell"><div class="lbl">電阻 R</div><div class="val" id="oh-rr">—</div></div>
+        <div class="result-cell"><div class="lbl">消耗功率 P</div><div class="val" id="oh-rp">—</div></div>
+      </div>
+      <div class="result-note" id="oh-note"></div>
+    </div>
+    <div class="seo-box">
+      <h3>歐姆定律說明</h3>
+      <p>V（伏特）= I（安培）× R（歐姆）。功率 P = V × I = I²R = V²/R。電子電路設計最基礎的公式，適用於線性電阻元件。</p>
+      <div class="seo-faq-q">Q：歐姆定律適用於所有元件嗎？</div>
+      <div class="seo-faq-a">A：歐姆定律只適用於「線性電阻」（Ohmic conductor）。二極體、LED、電晶體等非線性元件的 V-I 關係不遵從歐姆定律，需用其他模型分析。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9401" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 電阻分壓 -->
+<div class="panel" id="panel-divider">
+  <div class="tool-card"><div class="card-head">
+    <h2>電阻分壓計算機</h2>
+    <p>兩電阻串聯分壓：Vout = Vin × R2 / (R1 + R2)</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>輸入電壓 Vin（V）</label><input type="number" id="dv-vin" value="5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>R1（Ω，上方電阻）</label><input type="number" id="dv-r1" placeholder="例：10000" inputmode="numeric"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>R2（Ω，下方電阻，接地端）</label><input type="number" id="dv-r2" placeholder="例：10000" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcDivider()">計算分壓</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9411" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="divider-result">
+      <div class="result-top"><div class="result-number" id="dv-vout">—</div><div class="result-unit">V（輸出電壓 Vout）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">分壓比例</div><div class="val" id="dv-ratio">—</div></div>
+        <div class="result-cell"><div class="lbl">總電阻</div><div class="val" id="dv-total">—</div></div>
+        <div class="result-cell"><div class="lbl">電路電流</div><div class="val" id="dv-curr">—</div></div>
+        <div class="result-cell"><div class="lbl">R1 消耗功率</div><div class="val" id="dv-p1">—</div></div>
+      </div>
+      <div class="result-note" id="dv-note"></div>
+      <div class="result-disclaimer">分壓器假設負載阻抗遠大於 R2，否則實際輸出電壓會偏低。</div>
+    </div>
+    <div class="seo-box">
+      <h3>電阻分壓應用</h3>
+      <p>分壓電路廣泛用於：感測器訊號調整、ADC 輸入電壓匹配、邏輯電平轉換（5V→3.3V）。實際使用時，負載阻抗至少應為 R2 的 10 倍以上，否則需用運算放大器做緩衝。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9402" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- LED限流 -->
+<div class="panel" id="panel-led">
+  <div class="tool-card"><div class="card-head">
+    <h2>LED 限流電阻計算機</h2>
+    <p>依電源電壓、LED 正向電壓與目標電流計算限流電阻值</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>電源電壓 Vs（V）</label><input type="number" id="ld-vs" value="5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>LED 正向電壓 Vf（V）</label>
+        <select id="ld-vf"><option value="1.8">紅色 LED（約 1.8V）</option><option value="2.0">黃/橙色（約 2.0V）</option><option value="2.1" selected>綠色（約 2.1V）</option><option value="3.3">藍/白色（約 3.3V）</option><option value="3.4">純白 LED（約 3.4V）</option><option value="custom">自訂</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>目標電流 If（mA）</label><input type="number" id="ld-if" value="10" step="1" inputmode="decimal"></div>
+      <div class="field"><label>LED 並聯數量</label><input type="number" id="ld-n" value="1" min="1" max="20" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcLED()">計算限流電阻</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9412" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="led-result">
+      <div class="result-top"><div class="result-number" id="ld-r">—</div><div class="result-unit">Ω（計算值）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">建議標準阻值</div><div class="val" id="ld-std">—</div></div>
+        <div class="result-cell"><div class="lbl">實際電流（用標準值）</div><div class="val" id="ld-ia">—</div></div>
+        <div class="result-cell"><div class="lbl">電阻消耗功率</div><div class="val" id="ld-pw">—</div></div>
+        <div class="result-cell"><div class="lbl">建議電阻瓦數</div><div class="val" id="ld-watt">—</div></div>
+      </div>
+      <div class="result-note" id="ld-note"></div>
+      <div class="result-disclaimer">實際 LED Vf 因廠牌批次略有差異，電流建議不超過額定值的 80%。</div>
+    </div>
+    <div class="seo-box">
+      <h3>LED 限流電阻公式</h3>
+      <p>R = (Vs - Vf) / If。例：5V 電源、3.3V 藍色 LED、10mA → R = (5-3.3)/0.01 = 170Ω，選標準值 180Ω。功率 = (Vs-Vf) × If，建議選用 2 倍以上額定功率的電阻。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9403" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 功率計算 -->
+<div class="panel" id="panel-power">
+  <div class="tool-card"><div class="card-head">
+    <h2>電功率計算機</h2>
+    <p>P = VI = I²R = V²/R，支援直流與交流功率因數計算</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>計算類型</label>
+        <select id="pw-type"><option value="dc" selected>直流（DC）</option><option value="ac">交流（AC）含功率因數</option></select></div>
+      <div class="field"><label>電壓（V）</label><input type="number" id="pw-v" placeholder="例：220" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>電流（A）</label><input type="number" id="pw-i" placeholder="例：2" step="0.01" inputmode="decimal"></div>
+      <div class="field"><label>功率因數 PF（僅交流，0–1）</label><input type="number" id="pw-pf" value="0.9" step="0.01" min="0" max="1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcPower()">計算功率</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9413" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="power-result">
+      <div class="result-top"><div class="result-number" id="pw-real">—</div><div class="result-unit">W（實功率）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">視在功率 VA</div><div class="val" id="pw-va">—</div></div>
+        <div class="result-cell"><div class="lbl">每日用電（8h）</div><div class="val" id="pw-daily">—</div></div>
+        <div class="result-cell"><div class="lbl">每月電費估算</div><div class="val" id="pw-cost">—</div></div>
+        <div class="result-cell"><div class="lbl">度/小時</div><div class="val" id="pw-kwh">—</div></div>
+      </div>
+      <div class="result-note" id="pw-note"></div>
+      <div class="result-disclaimer">電費以台電非夏月住宅前120度 1.63元/度估算，僅供參考。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9404" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- dB換算 -->
+<div class="panel" id="panel-db">
+  <div class="tool-card"><div class="card-head">
+    <h2>dB 分貝換算</h2>
+    <p>電壓/功率比值 ↔ dB，音頻工程、RF、訊號處理必備</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>換算方向</label>
+        <select id="db-dir"><option value="to_db">比值 → dB</option><option value="from_db">dB → 比值</option></select></div>
+      <div class="field"><label>類型</label>
+        <select id="db-type"><option value="power" selected>功率（20log₁₀ 或 10log₁₀）</option><option value="voltage">電壓/電流（20log₁₀）</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>數值</label><input type="number" id="db-val" placeholder="例：2（比值）或 6（dB）" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcDB()">換算</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9414" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="db-result">
+      <div class="result-top"><div class="result-number" id="db-out">—</div><div class="result-unit" id="db-unit">dB</div></div>
+      <div class="result-note" id="db-note"></div>
+    </div>
+    <div style="margin-top:1rem;overflow-x:auto">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">常用 dB 對照表</div>
+      <table style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead><tr style="background:var(--accent-light)"><th style="padding:7px 10px;text-align:left;font-size:10px">dB</th><th style="padding:7px 10px;font-size:10px">功率比</th><th style="padding:7px 10px;font-size:10px">電壓比</th><th style="padding:7px 10px;text-align:left;font-size:10px">說明</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:6px 10px">-3 dB</td><td style="padding:6px 10px;text-align:center">0.5×</td><td style="padding:6px 10px;text-align:center">0.707×</td><td style="padding:6px 10px">半功率點、截止頻率</td></tr>
+          <tr style="background:var(--gray-50)"><td style="padding:6px 10px">0 dB</td><td style="padding:6px 10px;text-align:center">1×</td><td style="padding:6px 10px;text-align:center">1×</td><td style="padding:6px 10px">無增益衰減</td></tr>
+          <tr><td style="padding:6px 10px">+3 dB</td><td style="padding:6px 10px;text-align:center">2×</td><td style="padding:6px 10px;text-align:center">1.41×</td><td style="padding:6px 10px">功率加倍</td></tr>
+          <tr style="background:var(--gray-50)"><td style="padding:6px 10px">+6 dB</td><td style="padding:6px 10px;text-align:center">4×</td><td style="padding:6px 10px;text-align:center">2×</td><td style="padding:6px 10px">電壓加倍</td></tr>
+          <tr><td style="padding:6px 10px">+10 dB</td><td style="padding:6px 10px;text-align:center">10×</td><td style="padding:6px 10px;text-align:center">3.16×</td><td style="padding:6px 10px">功率10倍</td></tr>
+          <tr style="background:var(--gray-50)"><td style="padding:6px 10px">+20 dB</td><td style="padding:6px 10px;text-align:center">100×</td><td style="padding:6px 10px;text-align:center">10×</td><td style="padding:6px 10px">電壓10倍</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9405" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<!-- 電容充放電 -->
+<div class="panel" id="panel-capacitor">
+  <div class="tool-card"><div class="card-head">
+    <h2>RC 電容充放電計算</h2>
+    <p>計算 RC 電路時間常數 τ、充放電時間與電壓</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>電阻 R（Ω）</label><input type="number" id="cap-r" placeholder="例：10000" inputmode="numeric"></div>
+      <div class="field"><label>電容 C（μF 微法拉）</label><input type="number" id="cap-c" placeholder="例：100" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>電源電壓 Vs（V）</label><input type="number" id="cap-vs" value="5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>目標電壓百分比（%）</label>
+        <select id="cap-pct"><option value="63.2">63.2%（1τ）</option><option value="86.5">86.5%（2τ）</option><option value="95">95%（3τ）</option><option value="98.2">98.2%（4τ）</option><option value="99.3" selected>99.3%（5τ，視為充滿）</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcCap()">計算充電時間</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9415" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="cap-result">
+      <div class="result-top"><div class="result-number" id="cap-tau">—</div><div class="result-unit">ms（時間常數 τ）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">充至目標時間</div><div class="val" id="cap-time">—</div></div>
+        <div class="result-cell"><div class="lbl">目標電壓</div><div class="val" id="cap-vtgt">—</div></div>
+        <div class="result-cell"><div class="lbl">截止頻率 fc</div><div class="val" id="cap-fc">—</div></div>
+      </div>
+      <div class="result-note" id="cap-note"></div>
+      <div class="result-disclaimer">τ = R × C，充電至 5τ（99.3%）視為充滿。</div>
+    </div>
+    <div class="seo-box">
+      <h3>RC 時間常數應用</h3>
+      <p>τ = R × C（秒），是 RC 電路的基本特性。廣泛應用於：濾波電路（截止頻率 fc = 1/(2πRC)）、防彈跳電路、A/D 轉換取樣、定時電路。充電至 63.2% 需 1τ，充至 99.3% 需 5τ。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9406" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+<div class="panel active" id="panel-news">
+  <div class="news-header">
+    <div><div class="news-title">每日科技新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  </div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9407" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <div id="news-container" style="margin-top:1.25rem"></div>
+  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9408" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">新聞內容由中央社提供。</p>
+</div>
+</div>
+
+
+<p class="source-note"><b>資料來源</b>：標準電學公式（歐姆定律、分貝定義）　<b>公式最後核對</b>：2026-06-12</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/convert/" style="--rc:#8A5A2B;--rs:#F6EEE3">
+      <div class="related-card-body">
+        <div class="related-card-name">單位換算</div>
+        <div class="related-card-tags"><span>坪數換算</span><span>台斤換算</span><span>溫度換算</span><span>容量換算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/construction/" style="--rc:#6A1B9A;--rs:#F3E5F5">
+      <div class="related-card-body">
+        <div class="related-card-name">建築裝潢</div>
+        <div class="related-card-tags"><span>油漆用量</span><span>磁磚試算</span><span>混凝土配比</span><span>樓梯尺寸</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/logistics/" style="--rc:#4E342E;--rs:#EFEBE9">
+      <div class="related-card-body">
+        <div class="related-card-name">物流運費</div>
+        <div class="related-card-tags"><span>材積重</span><span>CBM換算</span><span>台灣運費</span><span>貨櫃裝載</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 電子電路 · 計算結果僅供參考<br>
+  <a href="/">回工具目錄</a> · <a href="/convert/">單位換算</a> · <a href="/student/">學生工具</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
+const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
+let newsLoaded=false;
+const fmt=v=>Math.round(v).toLocaleString();
+
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='news'&&!newsLoaded) loadNews();
+}
+
+async function loadNews(){
+  const btn=document.getElementById('refresh-btn');
+  const icon=document.getElementById('refresh-icon');
+  const container=document.getElementById('news-container');
+  btn.disabled=true;icon.className='spin';
+  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
+  document.getElementById('news-date').textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
+  try{
+    const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent('https://feeds.feedburner.com/rsscna/mainpage')}`);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
+    let items=Array.from(xml.querySelectorAll('item'));
+    if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
+    items=items.slice(0,8);
+    if(!items.length)throw new Error('no items');
+    let html='<div class="news-list">';
+    items.forEach((item,i)=>{
+      const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
+      const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
+      const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
+      const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
+      const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
+      let link='#';
+      const linkEl=item.getElementsByTagName('link')[0];
+      if(linkEl)link=linkEl.textContent?.trim()||'#';
+      if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
+      html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
+        <div class="news-card-inner"><div class="news-num">${i+1}</div>
+        <div class="news-content"><span class="news-src">中央社</span>
+        <div class="news-headline">${title}</div>
+        ${desc?`<div class="news-summary">${desc}...</div>`:''}
+        ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
+    });
+    container.innerHTML=html+'</div>';
+    newsLoaded=true;
+  }catch(e){
+    container.innerHTML=`<div class="news-error">📡 新聞載入失敗，請按重新整理再試<br><small>${e.message}</small></div>`;
+  }
+  btn.disabled=false;icon.className='';
+}
+
+
+function calcOhm(){
+  const v=parseFloat(document.getElementById('oh-v').value)||null;
+  const i_ma=parseFloat(document.getElementById('oh-i').value)||null;
+  const r=parseFloat(document.getElementById('oh-r').value)||null;
+  const i=i_ma?i_ma/1000:null;
+  let rv,ri,rr,rp;
+  if(v&&i){rv=v;ri=i;rr=v/i;rp=v*i;}
+  else if(v&&r){rv=v;rr=r;ri=v/r;rp=v*ri;}
+  else if(i&&r){ri=i;rr=r;rv=i*r;rp=rv*i;}
+  else{alert('請填寫任意兩個已知值');return;}
+  document.getElementById('oh-rv').textContent=rv.toFixed(3)+' V';
+  document.getElementById('oh-ri').textContent=(ri*1000).toFixed(3)+' mA';
+  document.getElementById('oh-rr').textContent=rr>=1000?(rr/1000).toFixed(2)+' kΩ':rr.toFixed(2)+' Ω';
+  document.getElementById('oh-rp').textContent=rp>=1?(rp).toFixed(3)+' W':(rp*1000).toFixed(2)+' mW';
+  document.getElementById('oh-note').textContent=`V=${rv.toFixed(3)}V，I=${(ri*1000).toFixed(3)}mA，R=${rr.toFixed(1)}Ω，功率 P=${rp>=1?rp.toFixed(3)+'W':(rp*1000).toFixed(2)+'mW'}。`;
+  document.getElementById('ohm-result').classList.add('show');
+}
+function calcDivider(){
+  const vin=parseFloat(document.getElementById('dv-vin').value);
+  const r1=parseFloat(document.getElementById('dv-r1').value);
+  const r2=parseFloat(document.getElementById('dv-r2').value);
+  if(!vin||!r1||!r2){alert('請填寫完整');return;}
+  const vout=vin*r2/(r1+r2);
+  const total=r1+r2;
+  const curr=vin/total*1000;
+  const p1=(vin-vout)*(vin-vout)/r1*1000;
+  document.getElementById('dv-vout').textContent=vout.toFixed(3);
+  document.getElementById('dv-ratio').textContent=(r2/(r1+r2)*100).toFixed(1)+'%';
+  document.getElementById('dv-total').textContent=total>=1000?(total/1000).toFixed(2)+' kΩ':total+' Ω';
+  document.getElementById('dv-curr').textContent=curr.toFixed(3)+' mA';
+  document.getElementById('dv-p1').textContent=p1.toFixed(2)+' mW';
+  document.getElementById('dv-note').textContent=`Vin ${vin}V，R1 ${r1}Ω / R2 ${r2}Ω → Vout = ${vout.toFixed(3)}V（分壓比 ${(vout/vin*100).toFixed(1)}%），電路電流 ${curr.toFixed(3)}mA。`;
+  document.getElementById('divider-result').classList.add('show');
+}
+function calcLED(){
+  const vs=parseFloat(document.getElementById('ld-vs').value);
+  let vf=parseFloat(document.getElementById('ld-vf').value);
+  if(isNaN(vf))vf=parseFloat(document.getElementById('ld-vf').value)||2.1;
+  const ifma=parseFloat(document.getElementById('ld-if').value)||10;
+  const n=parseInt(document.getElementById('ld-n').value)||1;
+  if(!vs||vs<=vf){alert('電源電壓必須大於 LED 正向電壓');return;}
+  const r=(vs-vf)/(ifma/1000);
+  // E24 標準阻值
+  const e24=[1.0,1.1,1.2,1.3,1.5,1.6,1.8,2.0,2.2,2.4,2.7,3.0,3.3,3.6,3.9,4.3,4.7,5.1,5.6,6.2,6.8,7.5,8.2,9.1];
+  function nearest(r){let best=1e9,rv=r;const decades=[1,10,100,1000,10000,100000];for(const d of decades)for(const e of e24){const v=e*d;if(Math.abs(v-r)<Math.abs(best-r)){best=v-r;rv=v;}}return rv;}
+  const rstd=nearest(r);
+  const ia=(vs-vf)/rstd*1000;
+  const pw=(vs-vf)*ia/1000;
+  const watt=pw<0.05?'1/8 W':pw<0.1?'1/4 W':pw<0.2?'1/4 W':pw<0.4?'1/2 W':'1 W';
+  document.getElementById('ld-r').textContent=r.toFixed(1);
+  document.getElementById('ld-std').textContent=rstd>=1000?(rstd/1000).toFixed(1)+'kΩ':rstd+'Ω';
+  document.getElementById('ld-ia').textContent=ia.toFixed(1)+' mA';
+  document.getElementById('ld-pw').textContent=pw.toFixed(3)+' W';
+  document.getElementById('ld-watt').textContent=watt+' 以上';
+  document.getElementById('ld-note').textContent=`(${vs}V - ${vf}V) / ${ifma}mA = ${r.toFixed(1)}Ω，選最近 E24 標準值 ${rstd}Ω，實際電流 ${ia.toFixed(1)}mA，電阻消耗 ${pw.toFixed(3)}W，建議使用 ${watt} 電阻。`;
+  document.getElementById('led-result').classList.add('show');
+}
+function calcPower(){
+  const v=parseFloat(document.getElementById('pw-v').value);
+  const i=parseFloat(document.getElementById('pw-i').value);
+  const type=document.getElementById('pw-type').value;
+  const pf=parseFloat(document.getElementById('pw-pf').value)||1;
+  if(!v||!i){alert('請填寫電壓與電流');return;}
+  const va=v*i;
+  const real=type==='ac'?va*pf:va;
+  const kwh=real/1000;
+  const daily=(kwh*8).toFixed(3);
+  const cost=(kwh*8*30*1.63).toFixed(0);
+  document.getElementById('pw-real').textContent=real.toFixed(2);
+  document.getElementById('pw-va').textContent=va.toFixed(2)+' VA';
+  document.getElementById('pw-daily').textContent=daily+' 度';
+  document.getElementById('pw-cost').textContent=fmt(parseInt(cost))+' 元/月';
+  document.getElementById('pw-kwh').textContent=kwh.toFixed(4)+' kWh';
+  document.getElementById('pw-note').textContent=`${v}V × ${i}A${type==='ac'?' × PF '+pf:''} = 實功率 ${real.toFixed(2)}W，每日（8小時）耗電 ${daily} 度，每月電費約 ${fmt(parseInt(cost))} 元。`;
+  document.getElementById('power-result').classList.add('show');
+}
+function calcDB(){
+  const dir=document.getElementById('db-dir').value;
+  const type=document.getElementById('db-type').value;
+  const val=parseFloat(document.getElementById('db-val').value);
+  if(isNaN(val)){alert('請輸入數值');return;}
+  let result,note;
+  if(dir==='to_db'){
+    if(val<=0){alert('比值必須大於0');return;}
+    result=type==='voltage'?20*Math.log10(val):10*Math.log10(val);
+    note=`比值 ${val} → ${result.toFixed(3)} dB（${type==='voltage'?'電壓':'功率'}）`;
+  }else{
+    const ratio=type==='voltage'?Math.pow(10,val/20):Math.pow(10,val/10);
+    result=ratio;
+    note=`${val} dB → 比值 ${ratio.toFixed(4)}（${type==='voltage'?'電壓':'功率'}）`;
+  }
+  document.getElementById('db-out').textContent=dir==='to_db'?result.toFixed(3):result.toFixed(4);
+  document.getElementById('db-unit').textContent=dir==='to_db'?'dB':'（比值）';
+  document.getElementById('db-note').textContent=note;
+  document.getElementById('db-result').classList.add('show');
+}
+function calcCap(){
+  const r=parseFloat(document.getElementById('cap-r').value);
+  const c=parseFloat(document.getElementById('cap-c').value)*1e-6;
+  const vs=parseFloat(document.getElementById('cap-vs').value);
+  const pct=parseFloat(document.getElementById('cap-pct').value)/100;
+  if(!r||!c||!vs){alert('請填寫完整');return;}
+  const tau=r*c;
+  const tauMs=tau*1000;
+  const n=-Math.log(1-pct);
+  const t=n*tau*1000;
+  const vtgt=vs*pct;
+  const fc=1/(2*Math.PI*r*c);
+  document.getElementById('cap-tau').textContent=tauMs>=1?tauMs.toFixed(2):(tauMs*1000).toFixed(2);
+  if(tauMs<1)document.querySelector('#cap-result .result-unit').textContent='μs（時間常數 τ）';
+  document.getElementById('cap-time').textContent=t>=1?t.toFixed(2)+' ms':(t*1000).toFixed(2)+' μs';
+  document.getElementById('cap-vtgt').textContent=vtgt.toFixed(3)+' V';
+  document.getElementById('cap-fc').textContent=fc>=1000?(fc/1000).toFixed(2)+' kHz':fc.toFixed(2)+' Hz';
+  document.getElementById('cap-note').textContent=`τ = ${r}Ω × ${c*1e6}μF = ${tauMs.toFixed(3)}ms，充至 ${(pct*100).toFixed(1)}%（${vtgt.toFixed(2)}V）需 ${t.toFixed(2)}ms，截止頻率 ${fc.toFixed(2)}Hz。`;
+  document.getElementById('cap-result').classList.add('show');
+}
+
+window.addEventListener('load',()=>loadNews());
+</script>
+
+<script>
+/* GA4 事件追蹤：calculate / copy_result */
+document.addEventListener('click', function(e){
+  if (typeof gtag !== 'function') return;
+  var btn = e.target.closest('button, .calc-btn, [onclick]');
+  if (!btn) return;
+  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
+  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
+  var label = (btn.textContent || '').trim().slice(0, 30);
+  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
+    gtag('event', 'calculate', { tool: tool, button_label: label });
+  } else if (/copy/i.test(oc)) {
+    gtag('event', 'copy_result', { tool: tool });
+  }
+});
+</script>
+</body>
+</html>
