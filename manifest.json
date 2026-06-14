@@ -1,0 +1,16 @@
+{
+  "name": "CalcBox 工具站",
+  "short_name": "CalcBox",
+  "description": "115+ 免費生活計算工具：房貸、稅務、匯率、健康、退休一站算到底。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E2A47",
+  "theme_color": "#0E2A47",
+  "lang": "zh-TW",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
