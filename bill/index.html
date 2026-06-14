@@ -218,6 +218,49 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+/* ── 電費圖表 ── */
+.elec-chart-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;margin:1rem 0}
+.elec-chart-wrap canvas{width:100%;height:auto;display:block}
+.mb-chart-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;margin:1rem 0}
+.mb-chart-wrap canvas{width:100%;height:auto;display:block}
+/* ── 旅遊分帳 ── */
+.trip-step{margin-bottom:1.3rem}
+.trip-step-label{font-size:13px;font-weight:800;color:var(--text);margin-bottom:.6rem}
+.trip-people-pick{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.8rem}
+.trip-people-pick button{width:40px;height:40px;border:1.5px solid var(--border);background:var(--white);border-radius:10px;font-size:15px;font-weight:700;font-family:inherit;color:var(--muted);cursor:pointer;transition:all .15s}
+.trip-people-pick button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.trip-members{display:flex;gap:6px;flex-wrap:wrap}
+.trip-names-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%}
+.trip-name-item{display:flex;align-items:center;gap:7px;background:var(--gray-50,#F6F8FB);border-radius:9px;padding:6px 9px}
+.trip-name-badge{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--accent-light);color:var(--accent-mid);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.trip-name-input{flex:1;min-width:0;height:32px;border:1.5px solid var(--border);border-radius:7px;padding:0 8px;font-size:13px;font-family:inherit;color:var(--text);background:#fff}
+.trip-name-input:focus{outline:none;border-color:var(--accent-mid)}
+@media(max-width:380px){.trip-names-grid{grid-template-columns:1fr}}
+.trip-member-chip{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-light);color:var(--accent-mid);font-weight:800;font-size:14px}
+.trip-expenses{display:flex;flex-direction:column;gap:10px;margin-bottom:.8rem}
+.trip-exp{background:var(--gray-50,#F6F8FB);border:1px solid var(--border);border-radius:12px;padding:12px}
+.trip-exp-row1{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-bottom:10px;align-items:end}
+.trip-exp-field label{display:block;font-size:10.5px;font-weight:600;color:var(--muted);margin-bottom:3px}
+.trip-exp-field input,.trip-exp-field select{width:100%;height:38px;padding:0 9px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:var(--text);background:#fff}
+.trip-exp-del{width:34px;height:38px;border:none;background:var(--red-light);color:var(--red);border-radius:8px;font-size:18px;cursor:pointer;line-height:1}
+.trip-exp-shared-label{font-size:10.5px;font-weight:600;color:var(--muted);margin-bottom:5px}
+.trip-exp-shared{display:flex;gap:5px;flex-wrap:wrap}
+.trip-exp-shared .sh{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--border);background:#fff;font-size:13px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .12s}
+.trip-exp-shared .sh.on{background:var(--accent-mid);color:#fff;border-color:var(--accent-mid)}
+.trip-add-btn{width:100%;height:42px;border:1.5px dashed var(--accent-mid);background:var(--accent-light);color:var(--accent);border-radius:10px;font-size:13.5px;font-weight:700;font-family:inherit;cursor:pointer}
+.trip-chart-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px;margin:1rem 0}
+.trip-chart-wrap canvas{width:100%;height:auto;display:block}
+.trip-balance{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
+.trip-bal-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--gray-50,#F6F8FB);border-radius:8px;font-size:13.5px}
+.trip-bal-row .who{font-weight:800;color:var(--text)}
+.trip-bal-row .amt-pos{color:var(--green);font-weight:800}
+.trip-bal-row .amt-neg{color:var(--red);font-weight:800}
+.trip-bal-row .amt-zero{color:var(--hint);font-weight:600}
+.trip-transfers-label{font-size:13px;font-weight:800;color:var(--text);margin:.4rem 0 .6rem}
+.trip-transfers{display:flex;flex-direction:column;gap:7px;margin-bottom:1rem}
+.trip-tr{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--accent-light);border-radius:10px;font-size:14px;font-weight:700;color:var(--text)}
+.trip-tr .arrow{color:var(--accent);font-size:16px}
+.trip-tr .tr-amt{margin-left:auto;color:var(--accent);font-weight:800}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"生活費用計算機","item":"https://thecalcbox.github.io/bill/"}]}</script>
@@ -235,9 +278,10 @@ footer a:hover{color:#F3C969!important}
   <div class="tab-inner">
     <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
     <button class="tab-btn" onclick="switchTab('electric')" id="tab-electric"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>電費</span></button>
+    <button class="tab-btn" onclick="switchTab('mobile')" id="tab-mobile"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span>手機費</span></button>
+    <button class="tab-btn" onclick="switchTab('trip')" id="tab-trip"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 7l2 13h14l2-13M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>旅遊分帳</span></button>
     <button class="tab-btn" onclick="switchTab('fuel')" id="tab-fuel"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 12h10"/><path d="M16 8l2 2v7a2 2 0 0 0 2 2 2 2 0 0 0 2-2v-9l-3-3"/></svg><span>油耗</span></button>
     <button class="tab-btn" onclick="switchTab('parking')" id="tab-parking"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 16V8h3a2.5 2.5 0 0 1 0 5H9"/></svg><span>停車費</span></button>
-    <button class="tab-btn" onclick="switchTab('mobile')" id="tab-mobile"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span>手機費</span></button>
     <button class="tab-btn" onclick="switchTab('discount')" id="tab-discount"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>折扣試算</span></button>
     <button class="tab-btn" onclick="switchTab('split')" id="tab-split"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8a2 2 0 0 0 2 2v8M5 3v6M9 3v6M19 3c-1.5 0-3 2-3 5s1 4 3 4v9"/></svg><span>分帳計算</span></button>
   </div>
@@ -263,10 +307,10 @@ footer a:hover{color:#F3C969!important}
 <div class="panel" id="panel-electric">
   <div class="tool-card"><div class="card-head">
     <h2>台電電費試算</h2>
-    <p>依台電 114 年夏月/非夏月累進費率試算每月電費</p>
+    <p>依台電累進費率試算每期（兩個月）電費</p>
   </div><div class="card-body">
     <div class="fields">
-      <div class="field"><label>本月用電度數（度）</label><input type="number" id="el-kwh" placeholder="例：300" inputmode="numeric"></div>
+      <div class="field"><label>本期用電度數（兩個月總度數）</label><input type="number" id="el-kwh" placeholder="例：600" inputmode="numeric"></div>
       <div class="field"><label>計費月份</label>
         <select id="el-season"><option value="summer">夏月（6–9月）</option><option value="nonsummer" selected>非夏月（其餘月份）</option></select></div>
     </div>
@@ -277,18 +321,19 @@ footer a:hover{color:#F3C969!important}
     <button class="calc-btn" onclick="calcElec()">試算電費</button>
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9610" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="electric-result">
-      <div class="result-top"><div class="result-number" id="el-bill">—</div><div class="result-unit">元 / 月</div></div>
+      <div class="result-top"><div class="result-number" id="el-bill">—</div><div class="result-unit">元 / 期（兩個月）</div></div>
       <span class="tag" id="el-tag"></span>
       <div class="result-grid">
         <div class="result-cell"><div class="lbl">每度均價</div><div class="val" id="el-avg">—</div></div>
         <div class="result-cell"><div class="lbl">適用級距</div><div class="val" id="el-tier">—</div></div>
       </div>
       <div class="result-note" id="el-note"></div>
-      <div class="result-disclaimer">依台電 114 年費率試算（含基本電費），不含租屋加成，實際以帳單為準。</div>
+      <div class="elec-chart-wrap"><canvas id="elec-chart" width="700" height="300"></canvas></div>
+      <div class="result-disclaimer">依台電 2025/10/1 起累進費率試算（單月、無基本電費），實際以帳單為準。</div>
     </div>
     <div class="seo-box">
       <h3>台灣電費怎麼算？</h3>
-      <p>台電採累進費率：用越多、每度越貴。一般家庭（非夏月）：前 120 度 1.63 元/度、121–330 度 2.38 元/度、331–500 度 3.52 元/度、501–700 度 4.80 元/度、701 度以上 5.66 元/度。夏月（6–9月）費率稍高。</p>
+      <p>台電採累進費率：用越多、每度越貴。一般家庭（非夏月，2025/10 起）：前 120 度 1.78 元/度、121–330 度 2.26 元/度、331–500 度 3.13 元/度、501–700 度 4.24 元/度、701–1000 度 5.27 元/度、1001 度以上 7.03 元/度。夏月（6–9月）費率較高。累進電價無基本電費；台電帳單為兩個月一期。</p>
       <div class="seo-faq-q">Q：如何降低電費？</div>
       <div class="seo-faq-a">A：冷氣設 26°C、使用節能標章電器、尖峰時段（9–24時）少用高耗電設備，可有效降低落入高費率區間的用電量。</div>
     </div>
@@ -393,6 +438,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">差異</div><div class="val" id="mb-diff">—</div></div>
       </div>
       <div class="result-note" id="mb-note"></div>
+      <div class="mb-chart-wrap"><canvas id="mb-chart" width="700" height="320"></canvas></div>
       <div class="result-disclaimer">自購方案以同期最低預付卡資費約 199 元/月估算。</div>
     </div>
     <div class="seo-box">
@@ -458,10 +504,51 @@ footer a:hover{color:#F3C969!important}
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9608" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
 </div>
+
+<div class="panel" id="panel-trip">
+  <div class="tool-card"><div class="card-head">
+    <h2>旅遊分帳結算</h2>
+    <p>多人、多筆消費、誰代墊都能算，自動算出最簡轉帳方案</p>
+  </div><div class="card-body">
+
+    <div class="trip-step">
+      <div class="trip-step-label">① 選擇人數</div>
+      <div class="trip-people-pick" id="trip-people-pick">
+        <button onclick="setTripPeople(2)">2</button>
+        <button onclick="setTripPeople(3)">3</button>
+        <button class="active" onclick="setTripPeople(4)">4</button>
+        <button onclick="setTripPeople(5)">5</button>
+        <button onclick="setTripPeople(6)">6</button>
+        <button onclick="setTripPeople(7)">7</button>
+        <button onclick="setTripPeople(8)">8</button>
+      </div>
+      <div class="trip-members" id="trip-members"></div>
+    </div>
+
+    <div class="trip-step">
+      <div class="trip-step-label">② 新增每筆消費</div>
+      <div class="trip-expenses" id="trip-expenses"></div>
+      <button class="trip-add-btn" onclick="addTripExpense()">＋ 新增一筆消費</button>
+    </div>
+
+    <button class="calc-btn" onclick="calcTrip()">計算結算</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9617" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="trip-result">
+      <div class="result-top"><div class="result-number" id="trip-total">—</div><div class="result-unit">元 · 總支出</div></div>
+      <div class="trip-chart-wrap"><canvas id="trip-chart" width="700" height="300"></canvas></div>
+      <div class="trip-balance" id="trip-balance"></div>
+      <div class="trip-transfers-label">💸 最簡轉帳方案</div>
+      <div class="trip-transfers" id="trip-transfers"></div>
+      <div class="result-note" id="trip-note"></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9618" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
 </div>
 
 
-<p class="source-note"><b>資料來源</b>：台灣電力公司電價表、中油牌告油價　<b>公式最後核對</b>：2026-06-12</p>
+<p class="source-note"><b>資料來源</b>：台灣電力公司電價表、中油牌告油價　<b>公式最後核對</b>：2026-06-14</p>
 <div class="related-wrap">
   <p class="related-label">你可能也需要</p>
   <div class="related-grid">
@@ -509,6 +596,274 @@ function switchTab(id){
   panel.classList.add('active');
   tab.classList.add('active');
   if(id==='news'&&!newsLoaded) loadNews();
+  if(id==='trip'&&!tripInited){ initTrip(); tripInited=true; }
+}
+
+// 電費累進級距視覺化
+function drawElecChart(kwh, season, rates){
+  const cv=document.getElementById('elec-chart');
+  if(!cv) return;
+  const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));
+  const W=parseInt(cv.getAttribute('width')), H=parseInt(cv.getAttribute('height'));
+  if(cv.width!==W*dpr||cv.height!==H*dpr){cv.width=W*dpr;cv.height=H*dpr;}
+  const ctx=cv.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  // 計算各級距花費
+  const tierLabels=['~120','121~330','331~500','501~700','701~1000','1001~'];
+  const segs=[]; let prev=0;
+  for(let i=0;i<rates.length;i++){
+    const limit=rates[i][0], rate=rates[i][1];
+    if(kwh>prev){
+      const chunk=Math.min(kwh,limit)-prev;
+      segs.push({label:tierLabels[i], cost:chunk*rate, kwh:chunk, rate});
+      prev=limit;
+    } else break;
+    if(kwh<=limit) break;
+  }
+
+  const padL=48,padR=16,padT=24,padB=46;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxCost=Math.max(...segs.map(s=>s.cost),1)*1.18;
+  const Y=v=>padT+plotH-(v/maxCost)*plotH;
+
+  // Y軸格線
+  ctx.strokeStyle='#EAEEF3';ctx.lineWidth=1;ctx.fillStyle='#9AA9BA';ctx.font='10px sans-serif';ctx.textAlign='right';
+  const yStep=Math.max(50,Math.ceil(maxCost/4/50)*50);
+  for(let v=0;v<=maxCost;v+=yStep){
+    ctx.beginPath();ctx.moveTo(padL,Y(v));ctx.lineTo(W-padR,Y(v));ctx.stroke();
+    ctx.fillText(Math.round(v),padL-5,Y(v)+3);
+  }
+
+  // 各級距長條（顏色由淺到深，越貴越深）
+  const colors=['#FFE0B2','#FFCC80','#FFA726','#FB8C00','#EF6C00','#E65100'];
+  const n=segs.length, gap=plotW/n, bw=Math.min(56,gap*0.62);
+  segs.forEach((s,i)=>{
+    const cx=padL+gap*i+gap/2;
+    const y=Y(s.cost), h=padT+plotH-y;
+    ctx.fillStyle=colors[i];
+    ctx.fillRect(cx-bw/2,y,bw,h);
+    // 金額
+    ctx.fillStyle='#16212E';ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+    ctx.fillText(Math.round(s.cost),cx,y-5);
+    // 級距標籤
+    ctx.fillStyle='#5A6E84';ctx.font='10px sans-serif';
+    ctx.fillText(s.label,cx,H-padB+16);
+    // 費率
+    ctx.fillStyle='#98A4B3';ctx.font='9px sans-serif';
+    ctx.fillText(s.rate+'元',cx,H-padB+30);
+  });
+  // 標題
+  ctx.fillStyle='#16212E';ctx.font='bold 11px sans-serif';ctx.textAlign='left';
+  ctx.fillText('每月平均各級距電費分布（度數區間）',padL,14);
+}
+
+/* ═══ 旅遊分帳 ═══ */
+let tripPeople = 4;
+let tripExpenses = [];
+let tripInited = false;
+let tripExpSeq = 0;
+let tripNames = []; // 自訂名稱，空字串則用 A/B/C...
+
+function memberName(i){
+  return (tripNames[i] && tripNames[i].trim()) ? tripNames[i].trim() : String.fromCharCode(65+i);
+}
+
+function updTripName(i, val){ tripNames[i]=val; }
+
+function setTripPeople(n){
+  tripPeople = n;
+  document.querySelectorAll('#trip-people-pick button').forEach(b=>{
+    b.classList.toggle('active', parseInt(b.textContent)===n);
+  });
+  renderTripMembers();
+  // 既有消費的付款人/分攤對象若超出範圍，重新渲染修正
+  tripExpenses.forEach(e=>{
+    if(e.payer>=n) e.payer=0;
+    e.shared = e.shared.filter(s=>s<n);
+    if(!e.shared.length) e.shared=[...Array(n).keys()];
+  });
+  renderTripExpenses();
+}
+
+function renderTripMembers(){
+  let h='<div class="trip-names-grid">';
+  for(let i=0;i<tripPeople;i++){
+    const ph=String.fromCharCode(65+i);
+    const val=(tripNames[i]||'').replace(/"/g,'&quot;');
+    h+=`<div class="trip-name-item"><span class="trip-name-badge">${ph}</span><input type="text" class="trip-name-input" value="${val}" placeholder="${ph}（可改名）" oninput="updTripName(${i},this.value);renderTripExpenses()" maxlength="6"></div>`;
+  }
+  h+='</div>';
+  document.getElementById('trip-members').innerHTML=h;
+}
+
+function initTrip(){
+  renderTripMembers();
+  if(!tripExpenses.length){
+    // 預設帶兩筆範例引導
+    tripExpenses=[
+      {id:++tripExpSeq, name:'吃飯', payer:0, amount:'', shared:[...Array(tripPeople).keys()]},
+      {id:++tripExpSeq, name:'點心', payer:1, amount:'', shared:[...Array(tripPeople).keys()]},
+    ];
+  }
+  renderTripExpenses();
+}
+
+function addTripExpense(){
+  tripExpenses.push({id:++tripExpSeq, name:'', payer:0, amount:'', shared:[...Array(tripPeople).keys()]});
+  renderTripExpenses();
+}
+
+function delTripExpense(id){
+  tripExpenses = tripExpenses.filter(e=>e.id!==id);
+  renderTripExpenses();
+}
+
+function renderTripExpenses(){
+  const box=document.getElementById('trip-expenses');
+  box.innerHTML = tripExpenses.map(e=>{
+    let payerOpts='';
+    for(let i=0;i<tripPeople;i++) payerOpts+=`<option value="${i}" ${e.payer===i?'selected':''}>${memberName(i)}</option>`;
+    let shBtns='';
+    for(let i=0;i<tripPeople;i++) shBtns+=`<button class="sh ${e.shared.includes(i)?'on':''}" onclick="toggleShared(${e.id},${i})">${memberName(i)}</button>`;
+    return `<div class="trip-exp">
+      <div class="trip-exp-row1">
+        <div class="trip-exp-field"><label>品項</label><input type="text" value="${e.name}" placeholder="如：晚餐" oninput="updTrip(${e.id},'name',this.value)"></div>
+        <div class="trip-exp-field"><label>金額</label><input type="number" value="${e.amount}" placeholder="0" inputmode="numeric" oninput="updTrip(${e.id},'amount',this.value)"></div>
+        <button class="trip-exp-del" onclick="delTripExpense(${e.id})" title="刪除">×</button>
+      </div>
+      <div class="trip-exp-field"><label>誰付的</label>
+        <select onchange="updTrip(${e.id},'payer',parseInt(this.value))">${payerOpts}</select></div>
+      <div style="margin-top:8px">
+        <div class="trip-exp-shared-label">誰要分攤（點選參與者）</div>
+        <div class="trip-exp-shared">${shBtns}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updTrip(id,field,val){
+  const e=tripExpenses.find(x=>x.id===id);
+  if(e) e[field]=val;
+}
+
+function toggleShared(id,i){
+  const e=tripExpenses.find(x=>x.id===id);
+  if(!e) return;
+  if(e.shared.includes(i)) e.shared=e.shared.filter(s=>s!==i);
+  else e.shared.push(i);
+  renderTripExpenses();
+}
+
+function calcTrip(){
+  const valid = tripExpenses.filter(e=>parseFloat(e.amount)>0 && e.shared.length>0);
+  if(!valid.length){ alert('請至少新增一筆有金額且有分攤對象的消費'); return; }
+
+  const balance = Array(tripPeople).fill(0); // 正=該收回, 負=該付
+  let totalSpent = 0;
+  valid.forEach(e=>{
+    const amt=parseFloat(e.amount);
+    totalSpent+=amt;
+    const share=amt/e.shared.length;
+    balance[e.payer]+=amt;
+    e.shared.forEach(s=>balance[s]-=share);
+  });
+
+  // 最簡轉帳（貪婪法）
+  const creditors=[], debtors=[];
+  balance.forEach((v,i)=>{ if(v>0.01)creditors.push([i,v]); else if(v<-0.01)debtors.push([i,-v]); });
+  creditors.sort((a,b)=>b[1]-a[1]); debtors.sort((a,b)=>b[1]-a[1]);
+  const transfers=[];
+  let ci=0,di=0;
+  const cr=creditors.map(x=>[...x]), db=debtors.map(x=>[...x]);
+  while(di<db.length && ci<cr.length){
+    const pay=Math.min(db[di][1],cr[ci][1]);
+    transfers.push([db[di][0],cr[ci][0],Math.round(pay)]);
+    db[di][1]-=pay; cr[ci][1]-=pay;
+    if(db[di][1]<0.01)di++;
+    if(cr[ci][1]<0.01)ci++;
+  }
+
+  // 輸出
+  document.getElementById('trip-total').textContent=fmt(Math.round(totalSpent));
+  // 每人收支
+  let balH='';
+  balance.forEach((v,i)=>{
+    const r=Math.round(v);
+    let cls,txt;
+    if(r>0){cls='amt-pos';txt='應收回 '+fmt(r)+' 元';}
+    else if(r<0){cls='amt-neg';txt='應付出 '+fmt(-r)+' 元';}
+    else{cls='amt-zero';txt='已結清';}
+    balH+=`<div class="trip-bal-row"><span class="who">${memberName(i)}</span><span class="${cls}">${txt}</span></div>`;
+  });
+  document.getElementById('trip-balance').innerHTML=balH;
+
+  // 轉帳方案
+  let trH='';
+  if(transfers.length){
+    transfers.forEach(([f,t,a])=>{
+      trH+=`<div class="trip-tr"><span>${memberName(f)}</span><span class="arrow">→</span><span>${memberName(t)}</span><span class="tr-amt">${fmt(a)} 元</span></div>`;
+    });
+  }else{
+    trH='<div class="trip-tr">大家都結清了，無需轉帳 🎉</div>';
+  }
+  document.getElementById('trip-transfers').innerHTML=trH;
+
+  const perAvg = Math.round(totalSpent/tripPeople);
+  document.getElementById('trip-note').textContent=`共 ${valid.length} 筆消費、總支出 ${fmt(Math.round(totalSpent))} 元，${tripPeople} 人平均每人約 ${fmt(perAvg)} 元（依實際分攤可能不同）。轉帳方案已最佳化為最少筆數。`;
+
+  document.getElementById('trip-result').classList.add('show');
+  requestAnimationFrame(()=>drawTripChart(balance));
+}
+
+function drawTripChart(balance){
+  const cv=document.getElementById('trip-chart');
+  if(!cv) return;
+  const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));
+  const W=parseInt(cv.getAttribute('width')), H=parseInt(cv.getAttribute('height'));
+  if(cv.width!==W*dpr||cv.height!==H*dpr){cv.width=W*dpr;cv.height=H*dpr;}
+  const ctx=cv.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  const padL=44,padR=16,padT=20,padB=40;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxAbs=Math.max(...balance.map(v=>Math.abs(v)),1)*1.15;
+  const zeroY=padT+plotH/2;
+  const Y=v=>zeroY-(v/maxAbs)*(plotH/2);
+
+  // 零線
+  ctx.strokeStyle='#C8D2DE';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(padL,zeroY);ctx.lineTo(W-padR,zeroY);ctx.stroke();
+  // Y軸刻度
+  ctx.fillStyle='#9AA9BA';ctx.font='10px sans-serif';ctx.textAlign='right';
+  ctx.fillText('+'+Math.round(maxAbs),padL-5,Y(maxAbs)+4);
+  ctx.fillText('0',padL-5,zeroY+4);
+  ctx.fillText('-'+Math.round(maxAbs),padL-5,Y(-maxAbs)+4);
+
+  // 長條
+  const n=balance.length;
+  const bw=Math.min(48, plotW/n*0.6);
+  const gap=plotW/n;
+  balance.forEach((v,i)=>{
+    const cx=padL+gap*i+gap/2;
+    const y=Y(v), h=Math.abs(zeroY-y);
+    ctx.fillStyle = v>=0 ? '#2E7D32' : '#C62828';
+    if(v>=0) ctx.fillRect(cx-bw/2,y,bw,h);
+    else ctx.fillRect(cx-bw/2,zeroY,bw,h);
+    // 名稱
+    ctx.fillStyle='#16212E';ctx.font='bold 12px sans-serif';ctx.textAlign='center';
+    ctx.fillText(memberName(i),cx,H-padB+18);
+    // 金額
+    ctx.fillStyle = v>=0?'#2E7D32':'#C62828';ctx.font='bold 10px sans-serif';
+    const r=Math.round(v);
+    ctx.fillText((r>0?'+':'')+r, cx, v>=0?y-4:y+h+12);
+  });
+  // 圖例
+  ctx.textAlign='left';ctx.font='11px sans-serif';
+  ctx.fillStyle='#2E7D32';ctx.fillText('■ 應收回',padL,12);
+  ctx.fillStyle='#C62828';ctx.fillText('■ 應付出',padL+70,12);
 }
 
 async function loadNews(){
@@ -564,31 +919,35 @@ async function loadNews(){
 }
 
 
-// 電費累進費率（台電114年，住宅）
+// 電費累進費率（台電 2025/10/1 起實施，住宅非時間電價）
 const ELEC_RATE = {
   house:{
-    summer:[[120,2.18],[330,3.32],[500,4.60],[700,5.98],[1000,7.24],[Infinity,8.14]],
-    nonsummer:[[120,1.63],[330,2.38],[500,3.52],[700,4.80],[1000,5.66],[Infinity,6.41]]
+    summer:[[120,1.78],[330,2.55],[500,3.80],[700,5.14],[1000,6.44],[Infinity,8.86]],
+    nonsummer:[[120,1.78],[330,2.26],[500,3.13],[700,4.24],[1000,5.27],[Infinity,7.03]]
   }
 };
 function calcElec(){
-  const kwh=parseFloat(document.getElementById('el-kwh').value);
-  if(!kwh){alert('請輸入度數');return;}
+  const totalKwh=parseFloat(document.getElementById('el-kwh').value);
+  if(!totalKwh){alert('請輸入度數');return;}
   const season=document.getElementById('el-season').value;
   const rates=ELEC_RATE.house[season];
-  let cost=0,prev=0,tier='';
+  // 台電帳單兩個月一期：總度數÷2換算每月，依每月級距計費，再×2回一期
+  const monthlyKwh=totalKwh/2;
+  let monthCost=0,prev=0,tier='';
   for(const[limit,rate]of rates){
-    if(kwh>prev){const chunk=Math.min(kwh,limit)-prev;cost+=chunk*rate;tier=rate+' 元/度';prev=limit;}
-    if(kwh<=limit)break;
+    if(monthlyKwh>prev){const chunk=Math.min(monthlyKwh,limit)-prev;monthCost+=chunk*rate;tier=rate+' 元/度';prev=limit;}
+    if(monthlyKwh<=limit)break;
   }
-  const basic=75; // 基本電費
-  const total=Math.round(cost+basic);
-  document.getElementById('el-bill').textContent=fmt(total);
-  document.getElementById('el-tag').textContent=(season==='summer'?'夏月費率':'非夏月費率')+' · 用電 '+kwh+' 度';
-  document.getElementById('el-avg').textContent=(total/kwh).toFixed(2)+' 元/度';
+  // 累進電價（非時間電價）無基本電費
+  const periodTotal=Math.round(monthCost*2);
+  const monthTotal=Math.round(monthCost);
+  document.getElementById('el-bill').textContent=fmt(periodTotal);
+  document.getElementById('el-tag').textContent=(season==='summer'?'夏月費率':'非夏月費率')+' · 本期 '+totalKwh+' 度（每月約 '+Math.round(monthlyKwh)+' 度）';
+  document.getElementById('el-avg').textContent=(periodTotal/totalKwh).toFixed(2)+' 元/度';
   document.getElementById('el-tier').textContent=tier;
-  document.getElementById('el-note').textContent=`用電 ${kwh} 度，電費約 ${fmt(total)} 元（含基本電費 75 元）。平均每度 ${(total/kwh).toFixed(2)} 元。`;
+  document.getElementById('el-note').textContent=`本期（兩個月）用電 ${totalKwh} 度，電費約 ${fmt(periodTotal)} 元；平均每月約 ${Math.round(monthlyKwh)} 度、${fmt(monthTotal)} 元。每度均價 ${(periodTotal/totalKwh).toFixed(2)} 元。台電以每月平均度數套用累進級距計費。`;
   document.getElementById('electric-result').classList.add('show');
+  drawElecChart(monthlyKwh, season, rates);
 }
 // 油費
 const FUEL_PRICES={92:30.5,95:32.0,98:34.5,diesel:26.0};
@@ -656,6 +1015,69 @@ function calcMobile(){
   document.getElementById('mb-diff').textContent=(diff>0?'+':'')+fmt(diff)+' 元';
   document.getElementById('mb-note').textContent=`綁約 ${period} 個月總費 ${fmt(totalC)} 元（月租 ${fmt(plan)}×${period}＋手機 ${fmt(contract)}），自購方案約 ${fmt(totalF)} 元。${diff>0?'自購較划算，省約 '+fmt(diff)+' 元':'綁約較划算，省約 '+fmt(Math.abs(diff))+' 元'}。`;
   document.getElementById('mobile-result').classList.add('show');
+  requestAnimationFrame(()=>drawMobileChart(plan, contract, retail, period));
+}
+
+// 手機費綁約vs自購累積花費對比（雙線折線+交叉點）
+function drawMobileChart(plan, contract, retail, period){
+  const cv=document.getElementById('mb-chart');
+  if(!cv) return;
+  const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));
+  const W=parseInt(cv.getAttribute('width')), H=parseInt(cv.getAttribute('height'));
+  if(cv.width!==W*dpr||cv.height!==H*dpr){cv.width=W*dpr;cv.height=H*dpr;}
+  const ctx=cv.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,W,H);
+
+  const padL=52,padR=16,padT=24,padB=44;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  // 各月累積：綁約=手機0期已付contract+每月plan；自購=retail+每月199
+  const contractAt=m=>contract+plan*m;
+  const retailAt=m=>retail+199*m;
+  const maxY=Math.max(contractAt(period), retailAt(period))*1.1;
+  const X=m=>padL+(m/period)*plotW;
+  const Y=v=>padT+plotH-(v/maxY)*plotH;
+
+  // 格線+Y軸
+  ctx.strokeStyle='#EAEEF3';ctx.lineWidth=1;ctx.fillStyle='#9AA9BA';ctx.font='10px sans-serif';ctx.textAlign='right';
+  const yStep=Math.max(2000,Math.ceil(maxY/4/2000)*2000);
+  for(let v=0;v<=maxY;v+=yStep){
+    ctx.beginPath();ctx.moveTo(padL,Y(v));ctx.lineTo(W-padR,Y(v));ctx.stroke();
+    ctx.fillText(fmt(Math.round(v)),padL-5,Y(v)+3);
+  }
+  // X軸刻度
+  ctx.textAlign='center';
+  const xStep=Math.max(1,Math.round(period/6));
+  for(let m=0;m<=period;m+=xStep){
+    ctx.fillText(m+'月',X(m),H-padB+16);
+  }
+  ctx.fillText('使用月數',padL+plotW/2,H-6);
+
+  ctx.save();
+  ctx.beginPath();ctx.rect(padL,padT,plotW,plotH);ctx.clip();
+  // 綁約線（橙）
+  ctx.strokeStyle='#E65100';ctx.lineWidth=2.6;ctx.beginPath();
+  for(let m=0;m<=period;m++){const x=X(m),y=Y(contractAt(m));m===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+  ctx.stroke();
+  // 自購線（藍）
+  ctx.strokeStyle='#1976D2';ctx.lineWidth=2.6;ctx.beginPath();
+  for(let m=0;m<=period;m++){const x=X(m),y=Y(retailAt(m));m===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+  ctx.stroke();
+  // 交叉點（綁約與自購相等的月份）：plan*m+contract = 199*m+retail → m=(retail-contract)/(plan-199)
+  if(plan!==199){
+    const cross=(retail-contract)/(plan-199);
+    if(cross>0&&cross<period){
+      const x=X(cross),y=Y(contractAt(cross));
+      ctx.fillStyle='#16212E';ctx.beginPath();ctx.arc(x,y,5,0,7);ctx.fill();
+      ctx.fillStyle='#16212E';ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+      ctx.fillText('交叉 '+cross.toFixed(1)+'月',x,y-10);
+    }
+  }
+  ctx.restore();
+  // 圖例
+  ctx.textAlign='left';ctx.font='12px sans-serif';
+  ctx.fillStyle='#E65100';ctx.fillText('━ 綁約累積',padL,14);
+  ctx.fillStyle='#1976D2';ctx.fillText('━ 自購累積',padL+90,14);
 }
 // 折扣
 function calcDiscount(){
