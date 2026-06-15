@@ -529,6 +529,43 @@ body.shift-active #panel-shift .st-exp-btn svg{
   display:none;
 }
 
+
+
+/* ── 排班表手機版最終修正：月曆格式 + 班別設定不爆版 ── */
+@media(max-width:760px){
+  body.shift-active .st-cal-scroll{display:none!important}
+  body.shift-active .st-cal-list,
+  body.shift-active .st-list-help{display:none!important}
+  body.shift-active .st-cal-month{display:block!important;padding:10px!important;background:#fff!important}
+  body.shift-active .st-cal-dow{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:4px!important;margin-bottom:5px!important}
+  body.shift-active .st-cal-days{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:4px!important}
+  body.shift-active .st-day{min-width:0!important;min-height:52px!important;aspect-ratio:1/1.08!important;border-radius:9px!important;padding:4px 2px!important}
+  body.shift-active .st-day .dn{font-size:11px!important;margin-bottom:3px!important}
+  body.shift-active .st-day .db{font-size:9px!important;line-height:1.15!important;min-width:0!important;white-space:normal!important;word-break:keep-all!important;padding:2px!important}
+
+  #panel-shift .sh-item{
+    display:grid!important;
+    grid-template-columns:28px minmax(0,1fr) 34px!important;
+    grid-template-areas:
+      "color name del"
+      "start start start"
+      "end end end"!important;
+    gap:8px!important;
+    align-items:center!important;
+    margin-bottom:12px!important;
+    padding-bottom:12px!important;
+    border-bottom:1px solid var(--border-light)!important;
+  }
+  #panel-shift .sh-item .sh-color{grid-area:color!important;width:28px!important;height:28px!important}
+  #panel-shift .sh-item > input:nth-child(2){grid-area:name!important;width:100%!important;min-width:0!important}
+  #panel-shift .sh-item > input:nth-child(3){grid-area:start!important;width:100%!important;min-width:0!important;text-align:center!important}
+  #panel-shift .sh-item > input:nth-child(4){grid-area:end!important;width:100%!important;min-width:0!important;text-align:center!important}
+  #panel-shift .sh-item .sh-del{grid-area:del!important;width:34px!important;height:34px!important}
+  #panel-shift .sh-item.no-time{grid-template-areas:"color name del"!important}
+  #panel-shift .sh-item.no-time > input[type="time"]{display:none!important}
+  #panel-shift .sh-item .st-input{height:42px!important;font-size:15px!important;box-sizing:border-box!important}
+}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
@@ -1155,7 +1192,7 @@ function stDelShift(id){
 function stRenderShiftList(){
   const el=document.getElementById('shiftTypeList');
   el.innerHTML=stShifts.map((s,i)=>`
-    <div class="sh-item">
+    <div class="sh-item ${(!s.start&&!s.end)?'no-time':''}">
       <label class="sh-color"><input type="color" value="${s.color}" onchange="stShifts[${i}].color=this.value;stRenderCells();stRenderBulk()"></label>
       <input class="st-input" value="${s.name}" onchange="stShifts[${i}].name=this.value;stRenderCells();stRenderBulk()" placeholder="名稱">
       <input class="st-input" type="time" value="${s.start}" onchange="stShifts[${i}].start=this.value" ${!s.start&&!s.custom?'disabled':''} placeholder="開始">
