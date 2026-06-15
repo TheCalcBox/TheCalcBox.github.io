@@ -391,18 +391,16 @@ html,body{max-width:100%;overflow-x:hidden}
   body.shift-active #panel-shift .card-body{padding-left:.75rem!important;padding-right:.75rem!important}
   .shift-tool{width:100%}
   .shift-tool>div{width:100%;min-width:0}
-  /* 手機不顯示橫向總表，也不使用 7 欄月曆，改成日期直列清單 */
-  .st-cal-scroll,.st-cal-month{display:none!important}
-  .st-cal-list{display:block!important;padding:10px 12px;background:#fff}
-  .st-list-help{font-size:11px;color:var(--hint);line-height:1.6;padding:9px 12px;border-bottom:1px solid var(--border);background:var(--gray-50)}
-  .st-list-row{width:100%;border:1px solid var(--border-light);border-radius:12px;background:#fff;margin-bottom:8px;padding:10px 10px;display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:center;cursor:pointer;box-shadow:0 1px 2px rgba(14,42,71,.03)}
-  .st-list-row:active{background:var(--gray-50)}
-  .st-list-date{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
-  .st-list-date b{font-size:17px;line-height:1;color:var(--text)}
-  .st-list-date span{font-size:11px;color:var(--muted);font-weight:700}
-  .st-list-date.sun span{color:#C0392B}.st-list-date.sat span{color:#1565C0}
-  .st-list-shift{min-height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;line-height:1.2;text-align:center;padding:6px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .st-list-row.is-selected{outline:2px solid var(--accent-mid);outline-offset:-2px;background:var(--accent-light)}
+  /* 手機版與電腦版一致：使用 7 欄月曆格，不再改成日期直列清單 */
+  .st-cal-scroll{display:none!important}
+  .st-cal-month{display:block!important;padding:10px;background:#fff}
+  .st-cal-list,.st-list-help{display:none!important}
+  .st-cal-dow{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:5px}
+  .st-cal-dow span{font-size:10px;padding:3px 0;text-align:center}
+  .st-cal-days{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+  .st-day{min-width:0;min-height:54px;aspect-ratio:1/1.08;border-radius:9px;padding:4px 2px}
+  .st-day .dn{font-size:10px;margin-bottom:3px}
+  .st-day .db{font-size:9px;border-radius:6px;padding:2px;min-width:0;word-break:keep-all}
   .st-cal-nav{position:sticky;top:98px;z-index:20;background:#fff}
   .st-emp-switch{position:sticky;top:150px;z-index:19}
   /* 班別設定在手機改成兩列，時間欄不再擠出畫面 */
@@ -720,7 +718,7 @@ body.shift-active #panel-shift .st-exp-btn svg{
     <h2>多人排班表</h2>
     <p>自訂班別與員工，點格子排班，匯出 ICS 行事曆或 Excel 橫向日曆表</p>
   </div><div class="card-body" style="padding-bottom:0">
-  <div class="st-help"><b>操作方式：</b>電腦版可左右滑動總表並直接點格子排班；手機版會先顯示單人月曆，先切換人員，再點日期選班別。需要一次排多天時，按「多選」後點日期，再點班別批次套用。</div>
+  <div class="st-help"><b>操作方式：</b>電腦版可左右滑動總表並直接點格子排班；手機版與電腦版都使用月曆格排班；先切換人員，再點日期選班別。需要一次排多天時，按「多選」後點日期，再點班別批次套用。</div>
   <div class="shift-tool">
     <!-- 左欄設定 -->
     <div>
@@ -798,7 +796,7 @@ body.shift-active #panel-shift .st-exp-btn svg{
           <div class="st-cal-dow"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
           <div class="st-cal-days" id="stCalDays"></div>
         </div>
-        <div class="st-list-help">手機版改為日期直列清單：先選上方人員，再點日期選班別，不需要左右滑動日期。</div>
+        <div class="st-list-help"></div>
         <div class="st-cal-list" id="stCalList"></div>
       </div>
     </div>
@@ -1082,7 +1080,7 @@ let stShifts = [
   {id:'E', name:'早班', start:'08:00', end:'16:00', color:'#2D6CB5'},
   {id:'M', name:'中班', start:'14:00', end:'22:00', color:'#E07B2A'},
   {id:'N', name:'晚班', start:'22:00', end:'06:00', color:'#7B1FA2'},
-  {id:'R', name:'休假', start:'', end:'', color:'#B0B8C4'},
+  {id:'R', name:'休假', start:'', end:'', color:'#C62828'},
   {id:'X', name:'自填', start:'', end:'', color:'#2E7D32', custom:true},
 ];
 let stEmps = ['員工A','員工B','員工C'];
