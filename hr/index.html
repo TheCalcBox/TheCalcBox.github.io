@@ -382,6 +382,123 @@ body.shift-active .page-lead{max-width:820px}
   .st-day .db{font-size:9px}
 }
 
+
+/* ── 手機排班表修正：避免橫向日期與整頁溢出 ── */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:760px){
+  .wrap,.tool-card,.card-body,.shift-tool,.st-panel,.st-cal-wrap{max-width:100%;min-width:0}
+  body.shift-active #panel-shift .tool-card{overflow:hidden}
+  body.shift-active #panel-shift .card-body{padding-left:.75rem!important;padding-right:.75rem!important}
+  .shift-tool{width:100%}
+  .shift-tool>div{width:100%;min-width:0}
+  /* 手機不顯示橫向總表，也不使用 7 欄月曆，改成日期直列清單 */
+  .st-cal-scroll,.st-cal-month{display:none!important}
+  .st-cal-list{display:block!important;padding:10px 12px;background:#fff}
+  .st-list-help{font-size:11px;color:var(--hint);line-height:1.6;padding:9px 12px;border-bottom:1px solid var(--border);background:var(--gray-50)}
+  .st-list-row{width:100%;border:1px solid var(--border-light);border-radius:12px;background:#fff;margin-bottom:8px;padding:10px 10px;display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:center;cursor:pointer;box-shadow:0 1px 2px rgba(14,42,71,.03)}
+  .st-list-row:active{background:var(--gray-50)}
+  .st-list-date{display:flex;flex-direction:column;gap:2px;align-items:flex-start}
+  .st-list-date b{font-size:17px;line-height:1;color:var(--text)}
+  .st-list-date span{font-size:11px;color:var(--muted);font-weight:700}
+  .st-list-date.sun span{color:#C0392B}.st-list-date.sat span{color:#1565C0}
+  .st-list-shift{min-height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;line-height:1.2;text-align:center;padding:6px 8px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .st-list-row.is-selected{outline:2px solid var(--accent-mid);outline-offset:-2px;background:var(--accent-light)}
+  .st-cal-nav{position:sticky;top:98px;z-index:20;background:#fff}
+  .st-emp-switch{position:sticky;top:150px;z-index:19}
+  /* 班別設定在手機改成兩列，時間欄不再擠出畫面 */
+  .sh-item{grid-template-columns:26px minmax(0,1fr) 30px!important;grid-template-areas:"color name del" ". start end";gap:7px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border-light)}
+  .sh-item .sh-color{grid-area:color;width:24px;height:24px;align-self:center}
+  .sh-item > input:nth-child(2){grid-area:name;width:100%;min-width:0}
+  .sh-item > input:nth-child(3){grid-area:start;width:100%;min-width:0}
+  .sh-item > input:nth-child(4){grid-area:end;width:100%;min-width:0}
+  .sh-item .sh-del{grid-area:del;width:30px;height:30px}
+  .st-input{min-width:0}
+}
+@media(min-width:761px){.st-cal-list,.st-list-help{display:none!important}}
+
+
+/* ── 排班表 v3：電腦也改成月曆格；匯出按鈕左右大按鈕 ── */
+body.shift-active .st-cal-hint{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  padding:10px 18px;
+  border-bottom:1px solid var(--border);
+  background:var(--gray-50);
+}
+body.shift-active .st-cal-hint::before{content:'操作提示：';font-weight:800;color:var(--text)}
+body.shift-active .st-exp-btn{
+  min-height:46px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:800;
+}
+body.shift-active .st-exp-btn svg{width:16px;height:16px}
+
+@media(min-width:761px){
+  body.shift-active .shift-tool{grid-template-columns:minmax(290px,340px) minmax(560px,1fr);align-items:start}
+  body.shift-active .st-cal-scroll{display:none!important}
+  body.shift-active .st-cal-month{display:block!important;padding:18px 22px 22px;background:#fff}
+  body.shift-active .st-cal-list,
+  body.shift-active .st-list-help{display:none!important}
+  body.shift-active .st-cal-nav{padding:16px 24px}
+  body.shift-active .st-cal-nav h3{font-size:22px;letter-spacing:.04em}
+  body.shift-active .st-nav-btn{width:48px;height:48px;border-radius:14px;font-size:28px}
+  body.shift-active .st-emp-switch{padding:14px 22px;gap:10px}
+  body.shift-active .st-emp-chip{height:42px;padding:0 22px;font-size:15px}
+  body.shift-active .st-cal-dow{gap:10px;margin-bottom:10px}
+  body.shift-active .st-cal-dow span{font-size:13px;padding:6px 0}
+  body.shift-active .st-cal-days{gap:10px}
+  body.shift-active .st-day{min-height:86px;border-radius:15px;padding:8px 6px;aspect-ratio:1/1.05;box-shadow:0 1px 2px rgba(14,42,71,.03)}
+  body.shift-active .st-day .dn{font-size:17px;margin-bottom:6px}
+  body.shift-active .st-day .db{font-size:13px;border-radius:10px;padding:6px 4px;min-height:42px}
+}
+
+@media(max-width:760px){
+  body.shift-active .st-export-bar{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:10px!important;margin-top:12px}
+  body.shift-active .st-exp-btn{width:auto!important;min-width:0!important;flex:1 1 0!important;height:54px!important;border-radius:13px!important;font-size:14px!important;line-height:1.2;padding:0 8px}
+  body.shift-active .st-exp-btn svg{width:17px;height:17px}
+}
+@media(max-width:360px){
+  body.shift-active .st-exp-btn{font-size:13px!important;height:50px!important}
+}
+
+
+
+/* ── 排班表 v4 修正：匯出按鈕強制左右大按鈕，手機更好點 ── */
+#panel-shift .st-export-bar,
+body.shift-active #panel-shift .st-export-bar{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+  margin-top:14px!important;
+  width:100%!important;
+}
+#panel-shift .st-exp-btn,
+body.shift-active #panel-shift .st-exp-btn{
+  width:100%!important;
+  min-width:0!important;
+  height:58px!important;
+  min-height:58px!important;
+  border-radius:14px!important;
+  font-size:15px!important;
+  font-weight:900!important;
+  padding:0 10px!important;
+  line-height:1.2!important;
+  -webkit-tap-highlight-color:transparent;
+}
+#panel-shift .st-exp-btn svg,
+body.shift-active #panel-shift .st-exp-btn svg{
+  width:18px!important;
+  height:18px!important;
+}
+@media(max-width:360px){
+  #panel-shift .st-export-bar,
+  body.shift-active #panel-shift .st-export-bar{gap:8px!important}
+  #panel-shift .st-exp-btn,
+  body.shift-active #panel-shift .st-exp-btn{height:54px!important;min-height:54px!important;font-size:13px!important;padding:0 6px!important}
+}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
@@ -675,12 +792,14 @@ body.shift-active .page-lead{max-width:820px}
           <button class="st-nav-btn" onclick="stShiftMonth(1)">›</button>
         </div>
         <div class="st-emp-switch" id="stEmpSwitch"></div>
-        <div class="st-cal-hint">桌機版可左右滑動查看完整月份；按住 Ctrl / Shift 點格子可多選，或按左側「多選」批次指派。</div>
+        <div class="st-cal-hint">電腦與手機都使用月曆格排班：先選人員，再點日期選班別；需要批次排班可按左側「多選」後套用班別。</div>
         <div class="st-cal-scroll"><table class="st-cal-table" id="stCalTable"></table></div>
         <div class="st-cal-month" id="stCalMonth">
           <div class="st-cal-dow"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
           <div class="st-cal-days" id="stCalDays"></div>
         </div>
+        <div class="st-list-help">手機版改為日期直列清單：先選上方人員，再點日期選班別，不需要左右滑動日期。</div>
+        <div class="st-cal-list" id="stCalList"></div>
       </div>
     </div>
   </div>
@@ -1102,7 +1221,13 @@ function stGetDates(){
     return arr;
   }
 }
-function stDs(d){return d.toISOString().slice(0,10);}
+function stDs(d){
+  // 使用本地日期組字串，避免台灣時區 (+08) 被 toISOString() 轉成 UTC 後提前一天。
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
 
 function stShiftMonth(delta){
   if(stPeriodMode==='month'){
@@ -1161,6 +1286,7 @@ function stRender(){
   document.getElementById('stCalTable').innerHTML=th+rows;
   stRenderEmpSwitch();
   stRenderMonthView();
+  stRenderListView();
   stUpdateStats();
 }
 
@@ -1169,7 +1295,7 @@ function stRenderEmpSwitch(){
   if(stActiveEmp>=stEmps.length) stActiveEmp=0;
   const el=document.getElementById('stEmpSwitch');
   el.innerHTML=stEmps.map((e,i)=>`
-    <button class="st-emp-chip ${i===stActiveEmp?'active':''}" onclick="stActiveEmp=${i};stRenderEmpSwitch();stRenderMonthView()">${e}</button>
+    <button class="st-emp-chip ${i===stActiveEmp?'active':''}" onclick="stActiveEmp=${i};stRenderEmpSwitch();stRenderMonthView();stRenderListView()">${e}</button>
   `).join('');
 }
 
@@ -1202,6 +1328,35 @@ function stRenderMonthView(){
   el.innerHTML=html;
 }
 
+
+// 手機日期直列清單：避免日期橫向排列
+function stRenderListView(){
+  const el=document.getElementById('stCalList');
+  if(!el) return;
+  const ei=stActiveEmp;
+  const dows=['日','一','二','三','四','五','六'];
+  let html='';
+  stDates.forEach(d=>{
+    const ds=stDs(d);
+    const key=`${ei}-${ds}`;
+    const dow=d.getDay();
+    const cls=dow===0?'sun':dow===6?'sat':'';
+    const sid=stAssign[key];
+    const ct=stCustomText[key];
+    const sh=stShifts.find(s=>s.id===sid);
+    const selected=stSelCells.has(key)?' is-selected':'';
+    let shiftHtml='';
+    if(ct) shiftHtml=`<div class="st-list-shift" style="background:#E8F5E9;color:#2E7D32">${ct}</div>`;
+    else if(sh) shiftHtml=`<div class="st-list-shift" style="background:${sh.color}20;color:${sh.color}">${sh.name}${sh.start?`　${sh.start}–${sh.end}`:''}</div>`;
+    else shiftHtml=`<div class="st-list-shift" style="background:var(--gray-100);color:var(--hint)">＋ 點此排班</div>`;
+    html+=`<div class="st-list-row${selected}" onclick="stCellTap(${ei},'${ds}',event)">
+      <div class="st-list-date ${cls}"><b>${d.getMonth()+1}/${d.getDate()}</b><span>星期${dows[dow]}</span></div>
+      ${shiftHtml}
+    </div>`;
+  });
+  el.innerHTML=html;
+}
+
 function stRenderCells(){
   stEmps.forEach((emp,ei)=>{
     stDates.forEach(d=>{
@@ -1224,6 +1379,7 @@ function stRenderCells(){
     });
   });
   stRenderMonthView();
+  stRenderListView();
   stUpdateStats();
 }
 
@@ -1255,6 +1411,7 @@ function stToggleCellSel(ei,ds){
   const tdCell=document.getElementById('stc-'+key);
   if(tdCell) tdCell.style.outline=stSelCells.has(key)?'2px solid var(--accent-mid)':'';
   stRenderMonthView();
+  stRenderListView();
 }
 
 // ── Cell click / picker (桌機總表) ──
@@ -1339,7 +1496,7 @@ function stExportICS(){
   const targets = empIdx&&empIdx.trim()!==''
     ? [parseInt(empIdx.trim())-1]
     : stEmps.map((_,i)=>i);
-  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH','CALSCALE:GREGORIAN'];
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH','CALSCALE:GREGORIAN','X-WR-TIMEZONE:Asia/Taipei'];
   const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
   targets.forEach(ei=>{
     if(ei<0||ei>=stEmps.length) return;
