@@ -11,703 +11,866 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ✅ 修正：canonical 改為實際部署域名 -->
+<link rel="canonical" href="https://thecalcbox.github.io/nutrition-score/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/tools-white/nutrition.png">
-<meta name="apple-mobile-web-app-title" content="營養飲食">
-<meta name="theme-color" content="#1B3A5C">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#0E2A47">
+<title>AI 營養分數中心｜Nutrition Score、飲食教練、減脂菜單 — CalcBox</title>
+<meta name="description" content="CalcBox AI 營養分數中心：輸入熱量、蛋白質、糖分、纖維、飲水資料，產生營養分數、AI飲食教練、Nutrition Twin、減脂菜單與30天改善計畫。免費免註冊。">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<title>營養飲食計算機｜熱量赤字、巨量營養素、食物熱量、含糖量 — CalcBox</title>
-<link rel="canonical" href="https://thecalcbox.github.io/nutrition/">
-<meta name="description" content="免費營養計算工具：熱量赤字計算、巨量營養素分配（蛋白質脂肪碳水）、台灣食物熱量查詢、手搖飲料含糖量換算，附每日健康新聞。">
-<meta name="keywords" content="熱量赤字計算,巨量營養素,食物熱量,蛋白質計算,含糖量,減脂計算">
-<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
-<meta property="og:title" content="營養飲食計算機｜熱量赤字、巨量營養素、食物熱量、含糖量 — CalcBox">
-<meta property="og:description" content="免費營養計算工具：熱量赤字計算、巨量營養素分配（蛋白質脂肪碳水）、台灣食物熱量查詢、手搖飲料含糖量換算，附每日健康新聞。">
+<meta property="og:title" content="AI 營養分數中心｜CalcBox">
+<meta property="og:description" content="輸入飲食資料，產生 Nutrition Score、AI Diet Coach、減脂菜單與 30 天改善計畫。">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="CalcBox">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:url" content="https://thecalcbox.github.io/nutrition/">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:url" content="https://thecalcbox.github.io/nutrition-score/">
 <meta property="og:image" content="https://thecalcbox.github.io/og/nutrition.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="營養飲食｜熱量赤字、巨量營養素、含糖量">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://thecalcbox.github.io/og/nutrition.png">
-<meta name="twitter:title" content="營養飲食計算機｜熱量赤字、巨量營養素、食物熱量、含糖量 — CalcBox">
-<meta name="twitter:description" content="免費營養計算工具：熱量赤字計算、巨量營養素分配（蛋白質脂肪碳水）、台灣食物熱量查詢、手搖飲料含糖量換算，附每日健康新聞。">
+
+<!-- Schema: WebApplication + FAQPage（靜態展開，AI Overview 最易擷取） -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"WebApplication","name":"熱量赤字計算機","url":"https://thecalcbox.github.io/nutrition/#deficit","description":"計算每日熱量目標與赤字，設定安全減脂計畫。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"巨量營養素計算","url":"https://thecalcbox.github.io/nutrition/#macro","description":"依熱量目標分配蛋白質脂肪碳水克數。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"食物熱量查詢","url":"https://thecalcbox.github.io/nutrition/#food","description":"台灣常見食物熱量與運動消耗時間計算。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"飲料含糖量計算","url":"https://thecalcbox.github.io/nutrition/#sugar","description":"手搖飲料含糖量換算方糖與熱量。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+  {"@type":"WebApplication","name":"AI 營養分數中心","url":"https://thecalcbox.github.io/nutrition-score/",
+   "applicationCategory":"HealthApplication","operatingSystem":"Web",
+   "description":"輸入每日飲食資料後產生 Nutrition Score、AI Diet Coach、Nutrition Twin、減脂菜單與30天改善計畫。",
+   "offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+  {"@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},
+    {"@type":"ListItem","position":2,"name":"營養飲食","item":"https://thecalcbox.github.io/nutrition/"},
+    {"@type":"ListItem","position":3,"name":"AI 營養分數中心","item":"https://thecalcbox.github.io/nutrition-score/"}
+  ]},
+  {"@type":"FAQPage","mainEntity":[
+    {"@type":"Question","name":"Nutrition Score 營養分數是什麼？",
+     "acceptedAnswer":{"@type":"Answer","text":"Nutrition Score 是依熱量控制、蛋白質、糖分、纖維、飲水與外食頻率估算的飲食品質綜合評分（0–100分）。分數越高代表飲食越均衡，可快速找出最值得改善的營養缺口。"}},
+    {"@type":"Question","name":"減脂一天要吃多少熱量？",
+     "acceptedAnswer":{"@type":"Answer","text":"減脂建議以 TDEE（每日總消耗熱量）為基準，每日製造 300–500 大卡赤字最容易長期維持。例如 TDEE 為 2,400 大卡，每日攝取 1,900–2,100 大卡即可。赤字超過 TDEE 20% 容易導致肌肉流失與代謝下降，不建議極低卡飲食。"}},
+    {"@type":"Question","name":"減脂期蛋白質要吃多少？",
+     "acceptedAnswer":{"@type":"Answer","text":"減脂期建議每日蛋白質達每公斤體重 1.6–2.2g，有助於維持肌肉、增加飽足感、降低復胖風險。例如體重 70kg 的人每日需 112–154g 蛋白質，相當於約 360–500g 雞胸肉的蛋白質量。"}},
+    {"@type":"Question","name":"糖分一天多少算超標？",
+     "acceptedAnswer":{"@type":"Answer","text":"WHO 建議每日游離糖攝取不超過 25g（約 6 顆方糖），最多不超過 50g。一杯 700ml 全糖珍珠奶茶含糖約 88g，遠超建議上限。手搖飲料是台灣最常見的糖分超標來源，建議選無糖或微糖。"}},
+    {"@type":"Question","name":"高蛋白飲食會傷腎嗎？",
+     "acceptedAnswer":{"@type":"Answer","text":"對腎功能正常的健康成人，每日 2.0–2.2g/kg 的高蛋白攝取不會造成腎臟損害（ISSN 2017 聲明）。但有慢性腎臟病（CKD）、糖尿病腎病的患者需嚴格限制蛋白質，應在醫師或腎臟科營養師指導下進行。"}},
+    {"@type":"Question","name":"纖維一天要吃多少？",
+     "acceptedAnswer":{"@type":"Answer","text":"衛福部建議成年男性每日攝取膳食纖維 25–35g，女性 20–30g。台灣人平均僅攝取約 15g，遠低於建議量。增加纖維攝取可改善腸道健康、增加飽足感、穩定血糖，建議多攝取花椰菜、地瓜、燕麥、豆類等高纖食物。"}},
+    {"@type":"Question","name":"Nutrition Twin 是什麼？",
+     "acceptedAnswer":{"@type":"Answer","text":"Nutrition Twin 是現在飲食與理想飲食狀態的對比視覺化工具。比較熱量、蛋白質、糖分、纖維與飲水量，計算「營養完成度」百分比，讓使用者清楚看到距離理想飲食還差多少。"}},
+    {"@type":"Question","name":"減脂可以喝手搖飲嗎？",
+     "acceptedAnswer":{"@type":"Answer","text":"可以，但建議選無糖或微糖（糖分 &lt;5g/杯），並將糖分與熱量納入全天總量管理。全糖珍珠奶茶一杯約含 600–700 大卡與 88g 糖，喝一杯即嚴重超標。若難以戒除，建議先從「全糖改半糖」開始，逐步降低糖量。"}}
+  ]}
 ]}
 </script>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --accent:#2E7D32;--accent-light:#E8F5E9;--accent-mid:#388E3C;
-  --sub:#388E3C;--sub-light:#E8F5E9;
-  --green:#2E7D32;--green-light:#E8F5E9;
-  --red:#C62828;--red-light:#FFEBEE;
-  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
-  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
-  --border:#E3E9F0;--border-light:#F0F3F7;
-  --white:#fff;--radius:12px;--radius-sm:8px;
+  --navy:#0E2A47;--navy2:#173E64;--navy3:#1E6B45;
+  --green:#2E7D32;--green2:#43A047;--green-bg:#E8F5E9;
+  --gold:#F3C969;--gold-deep:#C28A1A;--gold-text:#B07A14;
+  --amber:#F9A825;--amber-bg:#FFF8E1;
+  --red:#C62828;--red-bg:#FFEBEE;
+  --blue:#1565C0;--blue-bg:#E3F2FD;
+  --purple:#7C3AED;--purple-bg:#F5F3FF;
+  --teal:#0FA47A;--teal-bg:#E4F4EE;
+  --text:#16212E;--muted:#5A6E84;--hint:#9CA3AF;
+  --bg:#F3F6FA;--card:#fff;--border:#E5EAF2;
+  --radius:18px;--radius-sm:11px;
+  --shadow:0 4px 24px rgba(14,42,71,.08);--shadow-lg:0 12px 40px rgba(14,42,71,.13);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden}
 html{font-size:16px;scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
-header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
-.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
-.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
-.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
-.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
-.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
-.tab-inner::-webkit-scrollbar{display:none}
-.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
-.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
-.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
-.panel{display:none}.panel.active{display:block}
-.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
-.card-head{padding:1.25rem 1.5rem 0}
-.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
-.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
-.card-body{padding:0 1.5rem 1.5rem}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.fields.one{grid-template-columns:1fr}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
-.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(56,142,60,.1)}
-.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
-.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
-.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
-.result.show{display:block}
-.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
-.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
-.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
-.tag-green{background:var(--green-light);color:var(--green)}
-.tag-red{background:var(--red-light);color:var(--red)}
-.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
-.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
-.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
-.result-cell .val{font-size:15px;font-weight:700}
-.result-cell .val.red{color:var(--red)}
-.result-cell .val.green{color:var(--green)}
-.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
-.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
-.news-title{font-size:17px;font-weight:800}
-.news-meta{font-size:12px;color:var(--hint)}
-.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
-.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
-.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
-.spin{display:inline-block;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.news-list{display:flex;flex-direction:column;gap:10px}
-.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
-.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
-.news-card-inner{display:flex;gap:14px;align-items:flex-start}
-.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.news-content{flex:1;min-width:0}
-.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
-.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
-.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
-.news-date{font-size:11px;color:var(--hint);margin-top:5px}
-.news-skeleton{display:flex;flex-direction:column;gap:10px}
-.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
-.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
-.skel-line.short{width:35%}.skel-line.mid{width:65%}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
-.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
-.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
-.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
-.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
-.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
-.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
-.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
-footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
-footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
-footer a{color:rgba(255,255,255,.92);text-decoration:none}
-@media(max-width:520px){
-  .wrap{padding:1.25rem 1rem 3rem}
-  .fields{grid-template-columns:1fr}
+body{font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,"Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+img,svg{max-width:100%}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── Header ── */
+header{background:var(--navy);color:#fff;padding:0 1.25rem;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.08)}
+.hdr{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:900;font-size:17px}
+.logo-mark{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#1E456E,#0E2A47);border:1.5px solid rgba(243,201,105,.28);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo-trail{font-size:12px;color:rgba(255,255,255,.5);font-weight:400}
+.back-btn{font-size:12px;color:rgba(255,255,255,.88);text-decoration:none;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-weight:600;transition:background .15s}
+.back-btn:hover{background:rgba(255,255,255,.1)}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,#081E34 0%,#0E2A47 45%,#1A5C38 100%);color:#fff;padding:3rem 1.25rem 2.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 360px at 80% 50%,rgba(15,164,122,.1),transparent);pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;position:relative}
+.kicker{display:inline-flex;gap:7px;align-items:center;color:var(--gold);background:rgba(243,201,105,.12);border:1px solid rgba(243,201,105,.25);padding:5px 13px;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:14px;font-family:'Space Grotesk',sans-serif;letter-spacing:.1em}
+.kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.6px;margin-bottom:12px;font-weight:900}
+h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.78);max-width:560px;line-height:1.75}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.hero-chips span{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px}
+
+/* ── SVG Ring (D8 standard) ── */
+.ring-widget{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px 28px;text-align:center;backdrop-filter:blur(8px)}
+.ring-svg-wrap{position:relative;width:160px;height:160px;margin:0 auto 16px}
+.ring-svg{transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:rgba(255,255,255,.1);stroke-width:14}
+.ring-fill{fill:none;stroke:url(#nutrGrad);stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.3,1)}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-score{font-size:42px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:#fff;line-height:1}
+.ring-lbl{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.ring-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ring-cell{background:rgba(255,255,255,.08);border-radius:12px;padding:11px 14px}
+.ring-cell small{display:block;font-size:10px;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.ring-cell strong{font-size:17px;font-weight:800;color:#fff;font-family:'Space Grotesk',sans-serif}
+
+/* ── Ad ── */
+.ad-slot{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px;text-align:center;overflow:hidden}
+.ad-label{font-size:9px;color:var(--hint);letter-spacing:.1em;display:block;padding:3px 0 2px}
+
+/* ── Main layout ── */
+.main{max-width:1100px;margin:0 auto;padding:1.75rem 1.25rem 4rem}
+.layout{display:grid;grid-template-columns:1fr;gap:16px}
+
+/* ── Card ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card-head{padding:1.1rem 1.35rem .8rem;border-bottom:1px solid var(--border)}
+.card-head h2{font-size:16px;font-weight:900;letter-spacing:-.2px;color:var(--navy)}
+.card-head p{font-size:11.5px;color:var(--muted);margin-top:2px}
+.card-body{padding:1.1rem 1.35rem}
+
+/* ── Form ── */
+.form-sticky{position:static}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+label{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+input,select{height:40px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;padding:0 11px;font-size:13.5px;font-family:inherit;color:var(--text);transition:border-color .15s}
+input:focus,select:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3px rgba(67,160,71,.1)}
+.btn-calc{width:100%;height:44px;border:none;border-radius:12px;margin-top:12px;background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;transition:transform .15s,box-shadow .15s}
+.btn-calc:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,42,71,.25)}
+.btn-reset{width:100%;height:38px;border:1.5px solid var(--border);border-radius:10px;margin-top:6px;background:#fff;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* ── Dashboard ── */
+.dash{display:grid;gap:16px;min-width:0}
+
+/* Top metrics */
+.top3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric{border-radius:16px;padding:16px 18px;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow)}
+.metric-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.metric-value{font-size:34px;font-weight:900;font-family:'Space Grotesk',sans-serif;letter-spacing:-1px;line-height:1}
+.metric-value small{font-size:13px;color:var(--muted);font-weight:600}
+.metric-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-top:8px}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-amber{background:var(--amber-bg);color:#92400E}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-blue{background:var(--blue-bg);color:var(--blue)}
+.badge-teal{background:var(--teal-bg);color:var(--teal)}
+
+/* AI summary */
+.ai-intro{background:linear-gradient(135deg,#FFFCF5,#fff);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.1rem 1.35rem;margin-bottom:4px}
+.ai-intro h2{font-size:15px;font-weight:900;color:var(--navy);margin-bottom:6px}
+.ai-intro p{font-size:13.5px;color:#385064;line-height:1.8}
+.ai-summary-card{border-left:4px solid var(--gold);background:linear-gradient(135deg,#FFFCF5,#fff)}
+.ai-text{font-size:13.5px;color:#385064;line-height:1.8}
+
+/* Coach */
+.coach-card{background:linear-gradient(135deg,#081E34,#163E66);border:none;color:#fff}
+.coach-card .card-head{border-bottom:1px solid rgba(255,255,255,.1)}
+.coach-card .card-head h2,.coach-card .card-head p{color:rgba(255,255,255,.9)}
+.coach-card .card-head p{color:rgba(255,255,255,.6)}
+.coach-body{font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.75}
+.coach-tasks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.coach-task{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:13px}
+.coach-task b{display:block;color:#fff;font-size:11px;font-weight:900;letter-spacing:.03em;margin-bottom:4px;text-transform:uppercase}
+.coach-task span{font-size:13px;color:rgba(255,255,255,.78)}
+
+/* ── CHARTS ── */
+
+/* Nutrition Twin */
+.twin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twin-box{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
+.twin-box h3{font-size:11px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.twin-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #F0F4F8;padding:7px 0;font-size:13px}
+.twin-row:first-of-type{border-top:none}
+.twin-row span{color:var(--muted)}
+.twin-row b{font-weight:800;font-family:'Space Grotesk',sans-serif}
+.completion-bar-wrap{margin-top:14px;padding:16px;border-radius:14px;background:linear-gradient(135deg,var(--purple-bg),#fff)}
+.completion-label{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--purple);margin-bottom:8px}
+.completion-track{height:12px;background:rgba(124,58,237,.15);border-radius:99px;overflow:hidden}
+.completion-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),#A78BFA);transition:width .9s cubic-bezier(.2,.7,.3,1)}
+.completion-note{font-size:11px;color:var(--muted);margin-top:6px;text-align:center}
+
+/* Breakdown: hbar + radar side by side */
+.chart-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hbar-list{display:grid;gap:11px}
+.hbar-row{display:grid;gap:4px}
+.hbar-meta{display:flex;justify-content:space-between;align-items:center}
+.hbar-name{font-size:12px;font-weight:700;color:var(--text)}
+.hbar-pct{font-size:12px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:var(--navy)}
+.hbar-track{height:9px;background:#EEF2F7;border-radius:99px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.2,.7,.3,1)}
+.radar-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.radar-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.radar-svg{width:180px;height:180px;max-width:100%}
+
+/* TOP3 improvements */
+.improve-list{display:grid;gap:10px}
+.improve-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 16px}
+.improve-rank{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+.improve-info h3{font-size:13px;font-weight:900;margin-bottom:2px}
+.improve-info p{font-size:11px;color:var(--muted)}
+.improve-bar{height:5px;background:#EEF2F7;border-radius:99px;overflow:hidden;margin-top:6px}
+.improve-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),#7DDFBC)}
+.improve-gain{font-size:13px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:var(--green);background:var(--green-bg);padding:5px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+
+/* Meal plan */
+.meal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meal{background:#F8FAFC;border:1px solid #EEF2F6;border-radius:14px;padding:13px}
+.meal-time{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.meal b{display:block;font-size:13px;font-weight:900;color:var(--navy);margin-bottom:7px}
+.meal ul{margin-left:15px;font-size:12px;color:var(--muted);line-height:1.7}
+.meal small{display:block;font-size:11px;color:var(--teal);font-weight:700;margin-top:7px}
+.meal-total{margin-top:12px;background:var(--green-bg);color:var(--green);border-radius:14px;padding:13px;font-weight:800;text-align:center;font-size:13px}
+
+/* 30-day forecast */
+.forecast-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.forecast{border:1px solid var(--border);border-radius:14px;padding:16px;background:#fff}
+.forecast-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.forecast-big{font-size:26px;font-weight:900;font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px;margin-top:3px;color:var(--navy)}
+
+/* Shopping list */
+.shopping-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shop{background:#F8FAFC;border:1px solid var(--border);border-radius:14px;padding:13px}
+.shop-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.shop b{display:block;font-size:13px;font-weight:900;color:var(--navy);margin-bottom:6px}
+.shop ul{font-size:12px;color:var(--muted);margin-left:15px;line-height:1.75}
+
+/* Roadmap */
+.roadmap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.week{border:1px solid var(--border);border-radius:14px;padding:13px;background:#fff}
+.week-num{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.week-num span{color:var(--navy)}
+.week ul{list-style:none;display:grid;gap:5px}
+.week li{font-size:11.5px;color:var(--text);padding-left:14px;position:relative;line-height:1.5}
+.week li::before{content:'→';position:absolute;left:0;color:var(--gold-deep);font-size:10px;top:1px}
+
+/* FAQ (static - better for AI crawlers) */
+.faq-section{margin-top:4px}
+.faq-section-title{font-size:11px;font-weight:800;color:var(--hint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.faq-list{display:grid;gap:6px}
+.faq-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#FAFBFD}
+.faq-item summary{cursor:pointer;list-style:none;padding:12px 14px;font-size:13px;font-weight:800;color:var(--text);display:flex;justify-content:space-between;align-items:center}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'＋';font-size:14px;color:var(--green2);flex-shrink:0}
+.faq-item[open] summary::after{content:'－'}
+.faq-item[open] summary{color:var(--green2)}
+.faq-ans{padding:0 14px 13px;font-size:13px;color:var(--muted);line-height:1.8;border-top:1px solid #EEF2F6}
+
+/* Related / footer */
+.related-link{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--teal);background:var(--teal-bg);border:1.5px solid rgba(15,164,122,.2);border-radius:12px;padding:12px 18px;font-size:13px;font-weight:800;transition:all .15s}
+.related-link:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.footer-note{font-size:11px;color:var(--hint);text-align:center;margin-top:28px;line-height:1.8}
+footer{background:var(--navy);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.75);line-height:2}
+footer a{color:rgba(255,255,255,.9);text-decoration:none}
+footer a:hover{color:var(--gold)}
+
+/* ── Form sections ── */
+.form-tip{font-size:12px;color:var(--teal);background:var(--teal-bg);border-radius:9px;padding:9px 12px;margin-bottom:14px;font-weight:600;line-height:1.6}
+.form-section-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:14px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.form-hint{font-size:11px;color:var(--hint);margin-bottom:8px;line-height:1.6;padding:0 2px}
+
+/* ── RWD 960px ── */
+  .shopping-grid{grid-template-columns:1fr 1fr}
+  .roadmap{grid-template-columns:1fr 1fr}
+  .coach-tasks{grid-template-columns:1fr 1fr}
+}
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr}
+  .ring-widget{display:none}
+  .form-grid{grid-template-columns:1fr 1fr}
+  .top3{grid-template-columns:repeat(3,1fr)}
+  .chart-wrap,.twin-grid,.forecast-grid{grid-template-columns:1fr 1fr}
+  .meal-grid,.shopping-grid,.roadmap{grid-template-columns:1fr 1fr}
+  .coach-tasks{grid-template-columns:1fr 1fr}
+}
+
+/* ── RWD 600px ── */
+@media(max-width:600px){
+  .hero{padding:1.75rem 1rem 1.5rem}
+  h1{font-size:26px}
+  .main{padding:1.25rem 1rem 3rem}
+  .form-grid{grid-template-columns:1fr 1fr}
+  .top3{grid-template-columns:repeat(3,1fr);gap:8px}
+  .metric{padding:12px 10px}
+  .metric-label{font-size:9px}
+  .metric-value{font-size:26px}
+  .chart-wrap{grid-template-columns:1fr}
+  .twin-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .forecast-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .meal-grid{grid-template-columns:1fr 1fr}
+  .shopping-grid{grid-template-columns:1fr 1fr}
+  .roadmap{grid-template-columns:1fr 1fr;gap:8px}
+  .coach-tasks{grid-template-columns:1fr}
   .card-head,.card-body{padding-left:1rem;padding-right:1rem}
-  .tab-btn{padding:0 11px;font-size:12px}
+  .improve-row{gap:10px;padding:10px 12px}
+  .form-tip{font-size:11px}
 }
-
-.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
-
-/* ── 回到主頁按鈕 ── */
-.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
-  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
-  border-radius:8px;border:1px solid rgba(255,255,255,.22);
-  transition:color .15s,background .15s,border-color .15s}
-.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
-.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
-  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
-.back-btn:hover svg{transform:translateX(-2px)}
-
-/* ── Brand unification ── */
-header{background:#0E2A47!important}
-footer{background:#0E2A47!important}
-footer p{color:rgba(255,255,255,.78)!important}
-footer a{color:rgba(255,255,255,.92)!important}
-footer a:hover{color:#F3C969!important}
-.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
-
-/* ── 相關工具 ── */
-.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
-.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.related-card{
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;
-  background:var(--rs,#F4F6F9);
-  border:1.5px solid transparent;
-  border-left:4px solid var(--rc,#888);
-  border-radius:12px;padding:14px 14px 14px 16px;
-  transition:box-shadow .18s,transform .18s,background .18s;
-  -webkit-tap-highlight-color:transparent;
+@media(max-width:380px){
+  .top3{grid-template-columns:1fr 1fr}
+  .twin-grid,.forecast-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .roadmap{grid-template-columns:1fr}
 }
-.related-card:hover,.related-card:active{
-  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
-  transform:translateY(-2px);
-  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
-}
-.related-card-body{flex:1;min-width:0}
-.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
-.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
-.related-card-tags span{
-  font-size:10px;font-weight:600;
-  color:var(--rc,#555);
-  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
-  padding:2px 7px;border-radius:5px;
-  white-space:nowrap;
-}
-.related-card-go{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  background:var(--rc,#888);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;line-height:1;
-  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
-  transition:transform .18s;
-}
-.related-card:hover .related-card-go{transform:translateX(3px)}
-@media(max-width:560px){
-  .related-grid{grid-template-columns:1fr}
-  .related-card-sub{white-space:normal}
-}
-
-/* ── 資料來源標註 ── */
-.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
-.source-note b{color:#7A8EA0;font-weight:600}
-
-/* ── 按鈕下方廣告位 ── */
-.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
-.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
-.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
-
-.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
-.tab-btn span{display:inline-block}
-</style>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"營養飲食計算機","item":"https://thecalcbox.github.io/nutrition/"}]}</script>
+</style></style>
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 營養飲食</span></a>
-    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+    <a href="/" class="logo">
+      <span class="logo-mark">C</span>CalcBox
+      <span class="logo-trail">/ Nutrition Score</span>
+    </a>
+    <a href="/nutrition/" class="back-btn">← 營養工具</a>
   </div>
 </header>
 
-<div class="tab-bar">
-  <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('deficit')" id="tab-deficit"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 1.5-4 .5 1.5 1.5 2 2 2 .5-2-.5-5 1.5-7Z"/></svg><span>熱量赤字</span></button>
-    <button class="tab-btn" onclick="switchTab('macro')" id="tab-macro"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 6 0 0 1 14 0 5 5 0 0 1-5 5H9a4 4 0 0 1-4-5Z"/><circle cx="9" cy="11" r="1.5"/></svg><span>巨量營養素</span></button>
-    <button class="tab-btn" onclick="switchTab('food')" id="tab-food"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="12" y1="5" x2="12" y2="19"/><line x1="3" y1="12" x2="12" y2="12"/></svg><span>食物熱量</span></button>
-    <button class="tab-btn" onclick="switchTab('protein')" id="tab-protein"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a3 3 0 0 1 6 0c0 2 2 2.5 4 3.5s2 3.5 0 5-5 2-7 1l-4-2"/><path d="M3 13l3-1"/></svg><span>蛋白質需求</span></button>
-    <button class="tab-btn" onclick="switchTab('sugar')" id="tab-sugar"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h12l-1.5 9h-9Z"/><path d="M6 11a4 4 0 0 1 .5-3 3.5 3.5 0 0 1 5-1 3.5 3.5 0 0 1 5 1 4 4 0 0 1 .5 4"/></svg><span>含糖量</span></button>
-    <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>健康新聞</span></button>
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="kicker">AI Nutrition Platform · V2</div>
+      <h1>AI <em>營養分數</em>中心</h1>
+      <p class="hero-desc">把熱量赤字、蛋白質、糖分、纖維與飲水整合成一個 AI 飲食儀表板。輸入一次資料，產生營養分數、AI Diet Coach、Nutrition Twin、減脂菜單與 30 天改善預測。</p>
+      <div class="hero-chips">
+        <span>Nutrition Score</span><span>AI Diet Coach</span><span>Meal Plan</span><span>Shopping List</span><span>30天預測</span>
+      </div>
+    </div>
+    <div class="ring-widget">
+      <div class="ring-svg-wrap">
+        <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160">
+          <defs>
+            <linearGradient id="nutrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F3C969"/>
+              <stop offset="100%" stop-color="#0FA47A"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring-track" cx="80" cy="80" r="66"/>
+          <circle class="ring-fill" id="ringFill" cx="80" cy="80" r="66"
+            stroke-dasharray="414.69" stroke-dashoffset="414.69"/>
+        </svg>
+        <div class="ring-center">
+          <span class="ring-score" id="heroScore">—</span>
+          <span class="ring-lbl">/ 100</span>
+        </div>
+      </div>
+      <div class="ring-meta">
+        <div class="ring-cell"><small>營養等級</small><strong id="heroLevel">—</strong></div>
+        <div class="ring-cell"><small>30天預測</small><strong id="heroForecast">—</strong></div>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="wrap">
-<h1 class="page-h1">營養飲食計算機</h1>
-<p class="page-lead">免費營養計算工具：熱量赤字計算、巨量營養素分配（蛋白質脂肪碳水）、台灣食物熱量查詢、手搖飲料含糖量換算，附每日健康新聞。</p>
+</section>
 
 
-<!-- 熱量赤字 -->
-<div class="panel active" id="panel-deficit">
-  <div class="tool-card"><div class="card-head">
-    <h2>熱量赤字計算機</h2>
-    <p>計算每日應攝取熱量，設定安全赤字，每週穩健減脂</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>身高（公分）</label><input type="number" id="df-h" placeholder="170" inputmode="decimal"></div>
-      <div class="field"><label>體重（公斤）</label><input type="number" id="df-w" placeholder="70" inputmode="decimal"></div>
-    </div>
-    <div class="fields">
-      <div class="field"><label>年齡</label><input type="number" id="df-age" placeholder="30" inputmode="numeric"></div>
-      <div class="field"><label>性別</label><select id="df-sex"><option value="m" selected>男</option><option value="f">女</option></select></div>
-    </div>
-    <div class="fields">
-      <div class="field"><label>活動量</label>
-        <select id="df-act"><option value="1.2">久坐（幾乎不動）</option><option value="1.375">輕度（週1–2次）</option><option value="1.55" selected>中度（週3–5次）</option><option value="1.725">高度（週6–7次）</option></select></div>
-      <div class="field"><label>目標</label>
-        <select id="df-goal"><option value="0.25">慢速減脂（每週-0.25kg）</option><option value="0.5" selected>標準減脂（每週-0.5kg）</option><option value="1">積極減脂（每週-1kg）</option><option value="-0.25">緩慢增肌（每週+0.25kg）</option><option value="-0.5">標準增肌（每週+0.5kg）</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcDeficit()">計算每日熱量目標</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9660" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="deficit-result">
-      <div class="result-top"><div class="result-number" id="df-target">—</div><div class="result-unit">大卡 / 天（目標攝取）</div></div>
-      <span class="tag" id="df-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">基礎代謝 BMR</div><div class="val" id="df-bmr">—</div></div>
-        <div class="result-cell"><div class="lbl">每日消耗 TDEE</div><div class="val" id="df-tdee">—</div></div>
-        <div class="result-cell"><div class="lbl">熱量赤字/盈餘</div><div class="val" id="df-diff">—</div></div>
-        <div class="result-cell"><div class="lbl">預計週達成</div><div class="val green" id="df-weekly">—</div></div>
-      </div>
-      <div class="result-note" id="df-note"></div>
-      <div class="result-disclaimer">每日攝取不建議低於男性 1,500 / 女性 1,200 大卡，以免影響代謝。</div>
-    </div>
-    <div class="seo-box">
-      <h3>什麼是熱量赤字？</h3>
-      <p>熱量赤字 = TDEE（每日總消耗）- 實際攝取。每少 7,700 大卡 ≈ 減少 1 公斤體脂。建議赤字不超過 TDEE 的 20%，避免掉肌肉。減脂同時補充足夠蛋白質（每公斤體重 1.6–2g）是保肌的關鍵。</p>
-      <div class="seo-faq-q">Q：為什麼吃很少還是瘦不下來？</div>
-      <div class="seo-faq-a">A：長期極低卡可能導致代謝率下降（代謝適應），讓 TDEE 降低。建議循環熱量攝取（diet break）、保持重訓，避免連續超過 12 週的持續赤字。</div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
 
-<!-- 巨量營養素 -->
-<div class="panel" id="panel-macro">
-  <div class="tool-card"><div class="card-head">
-    <h2>巨量營養素分配計算</h2>
-    <p>依目標分配蛋白質、脂肪、碳水化合物的每日克數</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>每日熱量目標（大卡）</label><input type="number" id="mc-cal" placeholder="例：1800" inputmode="numeric"></div>
-      <div class="field"><label>體重（公斤，用於蛋白質計算）</label><input type="number" id="mc-w" placeholder="例：65" inputmode="decimal"></div>
-    </div>
-    <div class="fields one">
-      <div class="field"><label>飲食策略</label>
-        <select id="mc-strategy">
-          <option value="balanced" selected>均衡飲食（蛋白30% 脂肪30% 碳水40%）</option>
-          <option value="lowcarb">低醣飲食（蛋白35% 脂肪45% 碳水20%）</option>
-          <option value="highprotein">高蛋白飲食（蛋白40% 脂肪25% 碳水35%）</option>
-          <option value="keto">生酮飲食（蛋白25% 脂肪70% 碳水5%）</option>
-        </select></div>
-    </div>
-    <button class="calc-btn" onclick="calcMacro()">計算巨量營養素</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9661" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="macro-result">
-      <div class="result-top"><div class="result-number" id="mc-protein">—</div><div class="result-unit">g 蛋白質 / 天</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">蛋白質</div><div class="val" id="mc-p">—</div></div>
-        <div class="result-cell"><div class="lbl">脂肪</div><div class="val" id="mc-f">—</div></div>
-        <div class="result-cell"><div class="lbl">碳水化合物</div><div class="val" id="mc-c">—</div></div>
-        <div class="result-cell"><div class="lbl">蛋白質/體重比</div><div class="val" id="mc-ratio">—</div></div>
-      </div>
-      <div class="result-note" id="mc-note"></div>
-    </div>
-    <div class="seo-box">
-      <h3>巨量營養素熱量換算</h3>
-      <p>蛋白質：4 大卡/g、碳水化合物：4 大卡/g、脂肪：9 大卡/g。減脂期建議蛋白質每公斤體重 1.6–2.2g，以保持肌肉量。低醣飲食不等於無醣，腦部每天至少需要 130g 碳水。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
+<main class="main">
 
-<!-- 食物熱量 -->
-<div class="panel" id="panel-food">
-  <div class="tool-card"><div class="card-head">
-    <h2>常見食物熱量查詢</h2>
-    <p>台灣常見食物每份熱量，附運動消耗對比</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>體重（公斤，計算消耗時間）</label><input type="number" id="fd-w" placeholder="65" inputmode="decimal"></div>
-      <div class="field"><label>運動方式</label>
-        <select id="fd-exercise"><option value="2.5">快走（MET 3.5）</option><option value="6" selected>慢跑（MET 7）</option><option value="8">騎腳踏車（MET 9）</option><option value="7">游泳（MET 8）</option><option value="3">瑜珈（MET 4）</option></select></div>
-    </div>
-    <div class="seo-box" style="margin-bottom:1rem">
-      <h3>台灣常見食物熱量一覽</h3>
-      <p>點選食物可快速計算需消耗多久</p>
-    </div>
-    <div id="food-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
-    <div class="result" id="food-result" style="margin-top:1rem">
-      <div class="result-top"><div class="result-number" id="fd-mins">—</div><div class="result-unit">分鐘（需運動消耗）</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">食物熱量</div><div class="val" id="fd-cal">—</div></div>
-        <div class="result-cell"><div class="lbl">每分鐘消耗</div><div class="val" id="fd-per-min">—</div></div>
-      </div>
-      <div class="result-note" id="fd-note"></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-
-<!-- 蛋白質需求 -->
-<div class="panel" id="panel-protein">
-  <div class="tool-card"><div class="card-head">
-    <h2>每日蛋白質需求計算</h2>
-    <p>依體重、目標與活動量計算蛋白質攝取量</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>體重（公斤）</label><input type="number" id="pt-w" placeholder="65" inputmode="decimal"></div>
-      <div class="field"><label>目標</label>
-        <select id="pt-goal">
-          <option value="0.8">一般維持健康（0.8g/kg）</option>
-          <option value="1.2">輕度運動族（1.2g/kg）</option>
-          <option value="1.6" selected>減脂保肌（1.6g/kg）</option>
-          <option value="2.0">增肌訓練（2.0g/kg）</option>
-          <option value="2.4">高強度運動員（2.4g/kg）</option>
-        </select></div>
-    </div>
-    <button class="calc-btn" onclick="calcProtein()">計算蛋白質需求</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9662" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="protein-result">
-      <div class="result-top"><div class="result-number" id="pt-total">—</div><div class="result-unit">g / 天</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">每餐建議量（3餐）</div><div class="val" id="pt-per-meal">—</div></div>
-        <div class="result-cell"><div class="lbl">約等於雞胸肉</div><div class="val" id="pt-chicken">—</div></div>
-        <div class="result-cell"><div class="lbl">約等於雞蛋</div><div class="val" id="pt-egg">—</div></div>
-        <div class="result-cell"><div class="lbl">蛋白質熱量佔比</div><div class="val" id="pt-pct">—</div></div>
-      </div>
-      <div class="result-note" id="pt-note"></div>
-      <div class="result-disclaimer">腎臟病患者高蛋白飲食需在醫師指示下進行。</div>
-    </div>
-    <div class="seo-box">
-      <h3>高蛋白食物來源（每100g蛋白質含量）</h3>
-      <p>雞胸肉 31g · 鮪魚罐頭 26g · 豆腐 8g · 雞蛋 13g · 低脂牛奶 3.5g · 希臘優格 10g · 毛豆 12g。植物性蛋白質需搭配多種來源確保完整胺基酸。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-
-<!-- 含糖量 -->
-<div class="panel" id="panel-sugar">
-  <div class="tool-card"><div class="card-head">
-    <h2>飲料含糖量計算</h2>
-    <p>台灣手搖飲料含糖量試算，換算成方糖數與熱量</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>飲料種類</label>
-        <select id="sg-type">
-          <option value="700,88">珍珠奶茶 700ml 全糖</option>
-          <option value="700,60">珍珠奶茶 700ml 半糖</option>
-          <option value="500,65">鮮奶茶 500ml 全糖</option>
-          <option value="700,105">多多綠 700ml 全糖</option>
-          <option value="500,50">綠茶 500ml 全糖</option>
-          <option value="600,80">可口可樂 600ml</option>
-          <option value="500,53">統一麥香紅茶 500ml</option>
-          <option value="custom">自訂</option>
-        </select></div>
-      <div class="field"><label>杯數</label><input type="number" id="sg-cups" value="1" min="1" inputmode="numeric"></div>
-    </div>
-    <div id="sg-custom-row" class="fields" style="display:none">
-      <div class="field"><label>含糖量（公克）</label><input type="number" id="sg-sugar" placeholder="例：50" inputmode="decimal"></div>
-    </div>
-    <button class="calc-btn" onclick="calcSugar()">計算含糖量</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9663" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="sugar-result">
-      <div class="result-top"><div class="result-number" id="sg-total">—</div><div class="result-unit">g 糖</div></div>
-      <span class="tag" id="sg-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">方糖數（4g/顆）</div><div class="val red" id="sg-cubes">—</div></div>
-        <div class="result-cell"><div class="lbl">熱量</div><div class="val red" id="sg-cal">—</div></div>
-        <div class="result-cell"><div class="lbl">佔每日上限（25g）</div><div class="val" id="sg-pct">—</div></div>
-      </div>
-      <div class="result-note" id="sg-note"></div>
-      <div class="result-disclaimer">WHO 建議每日游離糖攝取不超過總熱量 10%（約 50g），最好低於 5%（25g）。</div>
-    </div>
-    <div class="seo-box">
-      <h3>減少含糖量小技巧</h3>
-      <p>手搖飲料調整建議：半糖 ≈ 減少 40% 的糖、少糖 ≈ 減少 60%、微糖 ≈ 減少 80%。無糖才是真正的 0 糖（但仍有奶精/牛奶的自然糖）。每天超過一杯全糖手搖，幾乎確定超過 WHO 建議上限。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-
-<div class="panel active" id="panel-news">
-  <div class="news-header">
-    <div><div class="news-title">每日健康新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
-    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  <!-- AI Answer static block (AI Overview 擷取用) -->
+  <div class="ai-intro">
+    <h2>怎樣才算飲食健康？</h2>
+    <p>健康飲食不只是熱量低，而是熱量、蛋白質、糖分、纖維與飲水同時平衡。減脂期間建議每日維持 300–500 大卡熱量赤字，蛋白質達每公斤體重 1.6–2.2g，游離糖控制在 25g 以下，膳食纖維達 25–30g，飲水量達體重 × 33ml。</p>
   </div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <div id="news-container" style="margin-top:1.25rem"></div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="A007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">健康資訊由 Heho 健康提供，僅供參考，請諮詢醫師或營養師。</p>
-</div>
-</div>
 
+  <div class="layout">
 
-<p class="source-note"><b>資料來源</b>：衛福部國人膳食營養素參考攝取量、USDA 資料庫　<b>公式最後核對</b>：2026-06-12</p>
-<div class="related-wrap">
-  <p class="related-label">你可能也需要</p>
-  <div class="related-grid">
-    <a class="related-card" href="/health/" style="--rc:#0FA47A;--rs:#E4F4EE">
-      <div class="related-card-body">
-        <div class="related-card-name">健康計算</div>
-        <div class="related-card-tags"><span>BMI</span><span>每日熱量TDEE</span><span>體脂率</span><span>理想體重</span></div>
+    <!-- ── Form ── -->
+    <aside class="card form-sticky">
+      <div class="card-head">
+        <h2>填寫今日飲食資料</h2>
+        <p>請填入今天（或平均一天）吃了什麼，系統自動分析並給出改善建議。</p>
       </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/baby/" style="--rc:#C2356B;--rs:#FBEAF1">
-      <div class="related-card-body">
-        <div class="related-card-name">孕產育兒</div>
-        <div class="related-card-tags"><span>預產期</span><span>排卵期</span><span>懷孕週數</span><span>育兒津貼</span></div>
+      <div class="card-body">
+        <!-- 說明提示 -->
+        <div class="form-tip">📋 填入今天的飲食數字，不知道的欄位可先用預設值，之後再調整。</div>
+
+        <div class="form-section-label">基本資料</div>
+        <div class="form-grid">
+          <div class="field">
+            <label>性別</label>
+            <select id="gender"><option value="m">男</option><option value="f">女</option></select>
+          </div>
+          <div class="field">
+            <label>年齡</label>
+            <input id="age" type="number" value="35" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label>身高（公分）</label>
+            <input id="height" type="number" value="170" placeholder="例：170" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label>體重（公斤）</label>
+            <input id="weight" type="number" value="80" placeholder="例：70" inputmode="decimal">
+          </div>
+        </div>
+
+        <div class="form-section-label">每日熱量</div>
+        <div class="form-hint">💡 不知道 TDEE？先用「體重 × 30」估算，例如 70kg → 填 2100</div>
+        <div class="form-grid">
+          <div class="field">
+            <label>TDEE 每日消耗熱量（大卡）</label>
+            <input id="tdee" type="number" value="2400" placeholder="體重×30 估算" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label>今日實際攝取熱量（大卡）</label>
+            <input id="calories" type="number" value="2300" placeholder="今天吃了多少大卡" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="form-section-label">今日營養素</div>
+        <div class="form-hint">💡 不確定數字？看食品包裝的營養標示，或估算：一個雞蛋約 6g 蛋白質</div>
+        <div class="form-grid">
+          <div class="field">
+            <label>蛋白質（公克）</label>
+            <input id="protein" type="number" value="110" placeholder="雞蛋×顆數+肉類估算" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label>糖分（公克）</label>
+            <input id="sugar" type="number" value="58" placeholder="一杯全糖手搖≈88g" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label>膳食纖維（公克）</label>
+            <input id="fiber" type="number" value="18" placeholder="建議男25g 女20g" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label>飲水量（毫升）</label>
+            <input id="water" type="number" value="2400" placeholder="500ml寶特瓶幾瓶" inputmode="numeric">
+          </div>
+        </div>
+
+        <div class="form-section-label">生活習慣</div>
+        <div class="form-grid">
+          <div class="field">
+            <label>每週外食幾次</label>
+            <input id="eatout" type="number" value="5" placeholder="0–21" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label>每週運動幾次</label>
+            <input id="exercise" type="number" value="2" placeholder="0–7" inputmode="numeric">
+          </div>
+          <div class="field full">
+            <label>我的目標</label>
+            <select id="goal">
+              <option value="fat_loss" selected>減脂（降體脂率）</option>
+              <option value="maintain">維持健康體重</option>
+              <option value="muscle_gain">增肌（增加肌肉量）</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-calc" onclick="calculateAll()">開始分析飲食</button>
+        <button class="btn-reset" onclick="resetDemo()">重設示範資料</button>
       </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/medical/" style="--rc:#C62828;--rs:#FFEBEE">
-      <div class="related-card-body">
-        <div class="related-card-name">醫療護理</div>
-        <div class="related-card-tags"><span>藥物劑量</span><span>GFR腎功能</span><span>血壓分級</span><span>點滴滴速</span></div>
+    </aside>
+
+    <!-- ── Dashboard ── -->
+    <div class="dash">
+
+      <!-- Top 3 metrics -->
+      <div class="top3">
+        <div class="metric">
+          <div class="metric-label">營養分數</div>
+          <div class="metric-value"><span id="score">—</span><small> / 100</small></div>
+          <div class="metric-badge badge-green" id="scoreBadge">計算中</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">飲食完成度</div>
+          <div class="metric-value"><span id="completion">—</span><small>%</small></div>
+          <div class="metric-badge badge-teal">飲食完成度</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">30 天預測</div>
+          <div class="metric-value"><span id="forecastScore">—</span><small> 分</small></div>
+          <div class="metric-badge badge-blue">30天可達</div>
+        </div>
       </div>
-      <div class="related-card-go">›</div>
-    </a>
+
+      <!-- AI Summary -->
+      <div class="card ai-summary-card">
+        <div class="card-head"><h2>🤖 AI 飲食摘要</h2><p>根據您的飲食資料產生的個人化分析。</p></div>
+        <div class="card-body"><p class="ai-text" id="aiSummary">請點擊「產生 AI 營養報告」以產生摘要。</p></div>
+      </div>
+
+      <!-- AI Coach -->
+      <div class="card coach-card">
+        <div class="card-head"><h2>🧑‍💼 AI 飲食教練</h2><p>聚焦今日最值得做的三件事，避免資訊過載。</p></div>
+        <div class="card-body">
+          <p class="coach-body" id="coachText">—</p>
+          <div class="coach-tasks">
+            <div class="coach-task"><b>第一優先</b><span id="task1">—</span></div>
+            <div class="coach-task"><b>第二優先</b><span id="task2">—</span></div>
+            <div class="coach-task"><b>第三優先</b><span id="task3">—</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nutrition Twin -->
+      <div class="card">
+        <div class="card-head"><h2>🔀 飲食對比</h2><p>現在的飲食與理想狀態的對比分析。</p></div>
+        <div class="card-body">
+          <div class="twin-grid">
+            <div class="twin-box"><h3>現在飲食</h3><div id="currentTwin"></div></div>
+            <div class="twin-box"><h3>理想目標</h3><div id="idealTwin"></div></div>
+          </div>
+          <div class="completion-bar-wrap">
+            <div class="completion-label"><span>營養完成度</span><span id="completionPct">—%</span></div>
+            <div class="completion-track"><div class="completion-fill" id="completionBar" style="width:0%"></div></div>
+            <div class="completion-note" id="completionText">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ 廣告位 #2：內容中段 -->
+      <div class="ad-slot">
+        <span class="ad-label">廣告</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7011" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
+
+      <!-- Score Breakdown: hbar + radar -->
+      <div class="card">
+        <div class="card-head"><h2>營養分數拆解</h2><p>五維雷達 × 橫條，快速識別飲食強弱項。</p></div>
+        <div class="card-body">
+          <div class="chart-wrap">
+            <div class="hbar-list" id="scoreBars"></div>
+            <div class="radar-wrap">
+              <div class="radar-title">飲食雷達圖</div>
+              <svg class="radar-svg" viewBox="0 0 200 200" id="radarSvg">
+                <g id="radarGrid" opacity=".18"></g>
+                <g id="radarAxes" stroke="#CBD5E1" stroke-width="1"></g>
+                <polygon id="radarPoly" fill="rgba(15,164,122,.15)" stroke="#0FA47A" stroke-width="2" stroke-linejoin="round" points="100,100"/>
+                <g id="radarLabels" font-size="10" font-family="Noto Sans TC,sans-serif" fill="#6B7280" text-anchor="middle"></g>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOP3 improvements -->
+      <div class="card">
+        <div class="card-head"><h2>TOP 3 改善回報</h2><p>依分數提升幅度排序，聚焦最高回報。</p></div>
+        <div class="card-body"><div class="improve-list" id="topImprove"></div></div>
+      </div>
+
+      <!-- Meal Plan -->
+      <div class="card">
+        <div class="card-head"><h2>🍽️ AI 每日飲食建議</h2><p>依目標產生一天飲食範例，可直接參考執行。</p></div>
+        <div class="card-body">
+          <div class="meal-grid" id="mealPlan"></div>
+          <div class="meal-total" id="mealTotal">—</div>
+        </div>
+      </div>
+
+      <!-- 30-day forecast -->
+      <div class="card">
+        <div class="card-head"><h2>📈 30 天飲食預測</h2><p>假設遵守 AI Diet Coach 建議後的估算結果。</p></div>
+        <div class="card-body">
+          <div class="forecast-grid">
+            <div class="forecast"><div class="forecast-label">Nutrition Score</div><div class="forecast-big" id="scoreForecastText">— → —</div></div>
+            <div class="forecast"><div class="forecast-label">體重預估</div><div class="forecast-big" id="weightForecastText">— → —</div></div>
+            <div class="forecast"><div class="forecast-label">糖分攝取</div><div class="forecast-big" id="sugarForecastText">— → —</div></div>
+            <div class="forecast"><div class="forecast-label">蛋白質攝取</div><div class="forecast-big" id="proteinForecastText">— → —</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopping List -->
+      <div class="card">
+        <div class="card-head"><h2>🛒 本週採購清單</h2><p>本週建議採購清單，直接支援菜單執行。</p></div>
+        <div class="card-body"><div class="shopping-grid" id="shoppingList"></div></div>
+      </div>
+
+      <!-- 30-day roadmap -->
+      <div class="card">
+        <div class="card-head"><h2>📅 四週飲食改善計畫</h2><p>四週分階段，不一次改太多。</p></div>
+        <div class="card-body"><div class="roadmap" id="roadmap"></div></div>
+      </div>
+
+      <!-- FAQ (static for AI crawlers) -->
+      <div class="card">
+        <div class="card-head"><h2>飲食常見問題</h2><p>AI 搜尋常見問題解答，依據衛福部與 WHO 標準。</p></div>
+        <div class="card-body">
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>一天要吃多少蛋白質才夠？</summary>
+              <div class="faq-ans">一般成人建議每公斤體重 0.8–1.2g，減脂或增肌期間可提高至 1.6–2.2g。體重 70kg 的減脂者每日需約 112–154g，相當於約 3–4 個雞胸肉的蛋白質量。建議平均分配到三餐，每餐達 20–40g 可最大化肌肉蛋白質合成。</div>
+            </details>
+            <details class="faq-item">
+              <summary>糖分一天多少算超標？</summary>
+              <div class="faq-ans">WHO 建議每日游離糖最好低於 25g（約 6 顆方糖），最多不超過 50g。一杯 700ml 全糖珍珠奶茶含糖約 88g，遠超建議上限。手搖飲料是台灣最常見的糖分超標來源，建議先從「全糖改半糖或無糖」開始減量。</div>
+            </details>
+            <details class="faq-item">
+              <summary>熱量赤字多少最有效？</summary>
+              <div class="faq-ans">每日 300–500 大卡赤字最容易長期維持，也較能避免肌肉流失與代謝下降。赤字超過 TDEE 的 20% 屬於激進減脂，容易導致疲勞、掉肌肉與溜溜球效應。建議搭配重訓保肌，讓減脂成效更持久。</div>
+            </details>
+            <details class="faq-item">
+              <summary>纖維一天要吃多少？</summary>
+              <div class="faq-ans">衛福部建議成年男性每日膳食纖維 25–35g，女性 20–30g。台灣人平均僅攝取約 15g，不足建議量的一半。高纖食物來源：花椰菜（100g/2.4g）、地瓜（100g/3g）、燕麥（100g/10g）、黑豆（100g/16g）。建議每餐加入至少一份蔬菜。</div>
+            </details>
+            <details class="faq-item">
+              <summary>高蛋白飲食會傷腎嗎？</summary>
+              <div class="faq-ans">對腎功能正常的健康成人，每日 2.0–2.2g/kg 的高蛋白攝取不會造成腎臟損害（ISSN 2017 聲明）。但有慢性腎臟病（CKD）、糖尿病腎病的患者需嚴格限制蛋白質，請在醫師或腎臟科營養師指導下進行，不建議自行採用高蛋白飲食。</div>
+            </details>
+            <details class="faq-item">
+              <summary>減脂可以喝手搖飲嗎？</summary>
+              <div class="faq-ans">可以，但建議選無糖或微糖（糖分 &lt;5g/杯），並將糖分與熱量納入全天總量管理。全糖珍珠奶茶一杯約含 600–700 大卡與 88g 糖，等同一餐的熱量且糖分嚴重超標。若難以完全戒除，建議先從「全糖改半糖」開始，逐步降低糖量依賴。</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ 廣告位 #3：頁尾前 -->
+      <div class="ad-slot">
+        <span class="ad-label">廣告</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="7012" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+      </div>
+
+      <!-- ✅ 下一步工具：只留健康頁面 -->
+      <div style="padding-top:4px">
+        <a class="related-link" href="/health/">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 22l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/><polyline points="6 12 9 12 11 8.5 13 15 14.8 12 18 12"/></svg>
+          前往健康計算工具 →
+        </a>
+      </div>
+
+    </div>
   </div>
-</div>
+
+  <p class="footer-note">Nutrition Score 為飲食管理參考，非醫療診斷。特殊疾病、懷孕、腎臟病、糖尿病或飲食治療需求，請諮詢醫師或營養師。<br>資料來源：衛福部國人膳食營養素參考攝取量（第八版）、WHO 游離糖攝取指引（2015）、ISSN 蛋白質立場聲明（2017）　最後更新：2026-06-15</p>
+</main>
+
 <footer>
-  <p>CalcBox 營養飲食 · 計算結果僅供參考<br>
-  <a href="/">回工具目錄</a> · <a href="/health/">健康計算</a> · <a href="/baby/">孕產育兒</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+  <p>CalcBox Nutrition Score Center · 飲食資料僅在本機計算，不上傳伺服器<br>
+  <a href="/">回工具目錄</a> · <a href="/nutrition/">營養飲食</a> · <a href="/health/">健康計算</a> · <a href="/health-score/">AI 健康分數</a><br>
+  <a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
 </footer>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
-
 <script>
-const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
-const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
-let newsLoaded=false;
-const fmt=v=>Math.round(v).toLocaleString();
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString();
+const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
 
-function switchTab(id){
-  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-  if(id==='news'&&!newsLoaded) loadNews();
+function readProfile(){
+  return{gender:$('gender').value,age:+$('age').value||35,height:+$('height').value||170,
+    weight:+$('weight').value||80,tdee:+$('tdee').value||2400,calories:+$('calories').value||2300,
+    protein:+$('protein').value||110,sugar:+$('sugar').value||58,fiber:+$('fiber').value||18,
+    water:+$('water').value||2400,eatout:+$('eatout').value||5,exercise:+$('exercise').value||2,goal:$('goal').value};
+}
+function saveProfile(p){try{localStorage.setItem('calcboxNutritionProfile',JSON.stringify(p))}catch(e){}}
+function loadProfile(){
+  try{const raw=localStorage.getItem('calcboxNutritionProfile');if(!raw)return;
+    const p=JSON.parse(raw);Object.entries(p).forEach(([k,v])=>{if($(k))$(k).value=v})}catch(e){}
+}
+function getLevel(s){
+  if(s>=90)return{text:'卓越',cls:'badge-green',emoji:'🟢'};
+  if(s>=80)return{text:'良好',cls:'badge-green',emoji:'🟢'};
+  if(s>=70)return{text:'普通',cls:'badge-amber',emoji:'🟡'};
+  if(s>=60)return{text:'需改善',cls:'badge-amber',emoji:'🟠'};
+  return{text:'高風險',cls:'badge-red',emoji:'🔴'};
+}
+function scoreRange(v,lo,hi,mn,mx,full){
+  if(v>=lo&&v<=hi)return full;
+  if(v<lo)return clamp(full*(v-mn)/(lo-mn),0,full);
+  return clamp(full*(mx-v)/(mx-hi),0,full);
+}
+function engine(p){
+  const targetCal=p.goal==='fat_loss'?p.tdee-500:p.goal==='muscle_gain'?p.tdee+250:p.tdee;
+  const proteinTarget=Math.round(p.weight*(p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4));
+  const sugarTarget=25,fiberTarget=p.gender==='m'?30:25,waterTarget=Math.round(p.weight*33);
+  const calorieScore=scoreRange(p.calories,targetCal-150,targetCal+150,targetCal-900,targetCal+900,25);
+  const proteinScore=clamp((p.protein/proteinTarget)*25,0,25);
+  const sugarScore=p.sugar<=25?20:clamp(20-((p.sugar-25)/75)*20,0,20);
+  const fiberScore=clamp((p.fiber/fiberTarget)*15,0,15);
+  const waterScore=clamp((p.water/waterTarget)*10,0,10);
+  const eatoutPenalty=Math.max(0,(p.eatout-3)*1.5);
+  let score=Math.round(calorieScore+proteinScore+sugarScore+fiberScore+waterScore-eatoutPenalty);
+  score=clamp(score,0,100);
+  const forecastScore=clamp(score+(p.sugar>25?5:1)+(p.protein<proteinTarget?4:1)+(p.fiber<fiberTarget?3:1),0,98);
+  const completion=Math.round(clamp(100-(
+    Math.abs(p.calories-targetCal)/900*24+
+    Math.max(0,proteinTarget-p.protein)/proteinTarget*22+
+    Math.max(0,p.sugar-25)/80*24+
+    Math.max(0,fiberTarget-p.fiber)/fiberTarget*16+
+    Math.max(0,waterTarget-p.water)/waterTarget*10),45,98));
+  const breakdown={'熱量控制':Math.round(clamp(calorieScore/25*100,0,100)),'蛋白質':Math.round(clamp(proteinScore/25*100,0,100)),'糖分管理':Math.round(clamp(sugarScore/20*100,0,100)),'纖維攝取':Math.round(clamp(fiberScore/15*100,0,100)),'飲水量':Math.round(clamp(waterScore/10*100,0,100))};
+  const improvements=[
+    {name:`蛋白質 +${Math.max(0,proteinTarget-p.protein)}g`,gain:p.protein<proteinTarget?4:1,reason:'蛋白質不足會降低飽足感與肌肉維持能力。'},
+    {name:`糖分 -${Math.max(0,p.sugar-25)}g`,gain:p.sugar>25?5:1,reason:'糖分管理是最容易快速提升營養分數的項目。'},
+    {name:`纖維 +${Math.max(0,fiberTarget-p.fiber)}g`,gain:p.fiber<fiberTarget?3:1,reason:'纖維有助飽足、腸道健康與血糖穩定。'},
+    {name:'外食減少 2 次',gain:p.eatout>3?3:1,reason:'外食通常油脂、鈉與隱藏熱量較高。'},
+    {name:'飲水達標',gain:p.water<waterTarget?2:0,reason:'飲水有助代謝與食慾控制。'}
+  ].sort((a,b)=>b.gain-a.gain).slice(0,3);
+  return{score,forecastScore,completion,targetCal,proteinTarget,sugarTarget,fiberTarget,waterTarget,breakdown,improvements,level:getLevel(score)};
 }
 
-async function loadNews(){
-  const btn=document.getElementById('refresh-btn');
-  const icon=document.getElementById('refresh-icon');
-  const container=document.getElementById('news-container');
-  if(btn)btn.disabled=true;
-  if(icon)icon.className='spin';
-  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  const nd=document.getElementById('news-date');
-  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  const FEEDS=['https://heho.com.tw/feed/','https://feeds.feedburner.com/rsscna/lifehealth'];
-  let loaded=false;
-  for(const feedUrl of FEEDS){
-    try{
-      const ctrl=new AbortController();
-      const timer=setTimeout(()=>ctrl.abort(),7000);
-      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
-      clearTimeout(timer);
-      if(!res.ok)throw new Error('HTTP '+res.status);
-      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-      let items=Array.from(xml.querySelectorAll('item'));
-      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-      items=items.slice(0,8);
-      if(!items.length)throw new Error('no items');
-      let html='<div class="news-list">';
-      items.forEach((item,i)=>{
-        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-        let link='#';
-        const linkEl=item.getElementsByTagName('link')[0];
-        if(linkEl)link=linkEl.textContent?.trim()||'#';
-        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-          <div class="news-card-inner"><div class="news-num">${i+1}</div>
-          <div class="news-content"><span class="news-src">Heho健康</span>
-          <div class="news-headline">${title}</div>
-          ${desc?`<div class="news-summary">${desc}...</div>`:''}
-          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-      });
-      container.innerHTML=html+'</div>';
-      newsLoaded=true;loaded=true;break;
-    }catch(e){ /* 換下一個來源 */ }
-  }
-  if(!loaded){
-    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
-  }
-  if(btn)btn.disabled=false;
-  if(icon)icon.className='';
+/* Radar */
+function buildRadar(breakdown){
+  const keys=Object.keys(breakdown),vals=Object.values(breakdown);
+  const N=keys.length,cx=100,cy=100,R=72;
+  const angles=keys.map((_,i)=>(2*Math.PI*i/N)-Math.PI/2);
+  const grid=$('radarGrid');grid.innerHTML='';
+  [.25,.5,.75,1].forEach(f=>{
+    const pts=angles.map(a=>`${cx+R*f*Math.cos(a)},${cy+R*f*Math.sin(a)}`).join(' ');
+    const p=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    p.setAttribute('points',pts);p.setAttribute('fill','none');
+    p.setAttribute('stroke','#94A3B8');p.setAttribute('stroke-width','1');
+    grid.appendChild(p);
+  });
+  const axes=$('radarAxes');axes.innerHTML='';
+  angles.forEach(a=>{
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',cx);l.setAttribute('y1',cy);
+    l.setAttribute('x2',cx+R*Math.cos(a));l.setAttribute('y2',cy+R*Math.sin(a));
+    axes.appendChild(l);
+  });
+  $('radarPoly').setAttribute('points',angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' '));
+  const labels=$('radarLabels');labels.innerHTML='';
+  keys.forEach((k,i)=>{
+    const a=angles[i],lx=cx+(R+16)*Math.cos(a),ly=cy+(R+16)*Math.sin(a);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',lx);t.setAttribute('y',ly+4);t.textContent=k;
+    labels.appendChild(t);
+  });
 }
 
+const BAR_COLORS=['#0FA47A','#2563EB','#7C3AED','#F59E0B','#E84393'];
+function twinRow(label,val){return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`}
 
-// 食物熱量資料
-const FOODS = [
-  {name:'珍珠奶茶(700ml)',cal:700,emoji:'🧋'},
-  {name:'雞排便當',cal:900,emoji:'🍱'},
-  {name:'滷肉飯(小)',cal:350,emoji:'🍚'},
-  {name:'雞腿便當',cal:750,emoji:'🍱'},
-  {name:'鹹酥雞(100g)',cal:280,emoji:'🍗'},
-  {name:'麥當勞大麥克',cal:563,emoji:'🍔'},
-  {name:'7-11茶葉蛋',cal:80,emoji:'🥚'},
-  {name:'御飯糰(鮪魚)',cal:200,emoji:'🍙'},
-  {name:'關東煮(一串)',cal:50,emoji:'🍢'},
-  {name:'臭豆腐(份)',cal:350,emoji:'🫘'},
-  {name:'蚵仔麵線',cal:400,emoji:'🍜'},
-  {name:'水煎包(顆)',cal:120,emoji:'🥟'},
-];
+function calculateAll(){
+  const p=readProfile();saveProfile(p);const e=engine(p);
 
-function renderFoodGrid(){
-  const w = parseFloat(document.getElementById('fd-w').value)||65;
-  const met = parseFloat(document.getElementById('fd-exercise').value);
-  const perMin = w * met / 60 * 3.5 * 4.184 / 60; // 每分鐘消耗kcal
-  document.getElementById('food-grid').innerHTML = FOODS.map(f=>
-    `<div onclick="selectFood('${f.name}',${f.cal})" style="background:var(--white);border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--accent-mid)'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="font-size:18px;margin-bottom:2px">${f.emoji}</div>
-      <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px">${f.name}</div>
-      <div style="font-size:11px;color:var(--accent-mid);font-weight:700">${f.cal} 大卡</div>
-    </div>`
-  ).join('');
-}
-function selectFood(name, cal){
-  const w = parseFloat(document.getElementById('fd-w').value)||65;
-  const met = parseFloat(document.getElementById('fd-exercise').value);
-  const perMin = w * (met*1.0) * 3.5 * 4.184 / (200);
-  const mins = Math.round(cal / perMin);
-  document.getElementById('fd-mins').textContent = mins;
-  document.getElementById('fd-cal').textContent = cal + ' 大卡';
-  document.getElementById('fd-per-min').textContent = perMin.toFixed(1) + ' 大卡/分';
-  document.getElementById('fd-note').textContent = `${name}（${cal}大卡）需要運動約 ${mins} 分鐘才能消耗掉。`;
-  document.getElementById('food-result').classList.add('show');
+  // ring (guard: hidden on mobile)
+  const circ=2*Math.PI*66;
+  const rf=$('ringFill');
+  if(rf){rf.style.strokeDashoffset=circ*(1-e.score/100);rf.style.strokeDasharray=circ;}
+
+  // hero
+  $('heroScore').textContent=e.score;
+  $('heroForecast').textContent=e.forecastScore+'分';
+  $('heroLevel').textContent=e.level.text;
+
+  // metrics
+  $('score').textContent=e.score;
+  $('scoreBadge').textContent=`${e.level.emoji} ${e.level.text}`;
+  $('scoreBadge').className='metric-badge '+e.level.cls;
+  $('completion').textContent=e.completion;
+  $('forecastScore').textContent=e.forecastScore;
+
+  // AI summary
+  const topKey=Object.entries(e.breakdown).sort((a,b)=>b[1]-a[1])[0][0];
+  $('aiSummary').innerHTML=`您的 Nutrition Score 為 <b>${e.score}/100</b>，目前最大優勢是 <b>${topKey}</b>，最大改善空間是 <b>${e.improvements[0].name}</b>。若未來 30 天優先改善蛋白質、糖分與纖維，分數有機會提升至 <b>${e.forecastScore} 分</b>。`;
+
+  // coach
+  $('coachText').innerHTML=`AI Diet Coach 建議今天只聚焦三件事：<b>${e.improvements[0].name}</b>、<b>${e.improvements[1].name}</b>、<b>${e.improvements[2].name}</b>。先把最高回報的飲食漏洞補起來。`;
+  $('task1').textContent=e.improvements[0].name;
+  $('task2').textContent=e.improvements[1].name;
+  $('task3').textContent=e.improvements[2].name;
+
+  // twin
+  $('currentTwin').innerHTML=[['熱量',fmt(p.calories)+' kcal'],['蛋白質',p.protein+'g'],['糖分',p.sugar+'g'],['纖維',p.fiber+'g'],['飲水',fmt(p.water)+'ml']].map(r=>twinRow(r[0],r[1])).join('');
+  $('idealTwin').innerHTML=[['熱量',fmt(e.targetCal)+' kcal'],['蛋白質',e.proteinTarget+'g'],['糖分','<25g'],['纖維',e.fiberTarget+'g'],['飲水',fmt(e.waterTarget)+'ml']].map(r=>twinRow(r[0],r[1])).join('');
+  $('completionPct').textContent=e.completion+'%';
+  setTimeout(()=>{$('completionBar').style.width=e.completion+'%'},100);
+  $('completionText').textContent=`營養完成度 ${e.completion}%，距離理想飲食狀態還有 ${100-e.completion}%。`;
+
+  // hbars + radar
+  const entries=Object.entries(e.breakdown);
+  $('scoreBars').innerHTML=entries.map(([k,v],i)=>`
+    <div class="hbar-row">
+      <div class="hbar-meta"><span class="hbar-name">${k}</span><span class="hbar-pct">${v}</span></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${v}%;background:${BAR_COLORS[i%BAR_COLORS.length]}"></div></div>
+    </div>`).join('');
+  buildRadar(e.breakdown);
+
+  // TOP3
+  $('topImprove').innerHTML=e.improvements.map((it,i)=>`
+    <div class="improve-row">
+      <div class="improve-rank">${i+1}</div>
+      <div class="improve-info">
+        <h3>${it.name}</h3><p>${it.reason}</p>
+        <div class="improve-bar"><i style="width:${[75,55,40][i]}%"></i></div>
+      </div>
+      <div class="improve-gain">+${it.gain}分</div>
+    </div>`).join('');
+
+  // meal plan
+  const meals=p.goal==='muscle_gain'?[
+    ['早餐','🌅',['雞蛋 3 顆','燕麥 80g','希臘優格 200g'],'約 520 kcal / P 42g'],
+    ['午餐','☀️',['雞胸肉 220g','糙米飯 1 碗','青菜 2 份'],'約 780 kcal / P 60g'],
+    ['晚餐','🌙',['鮭魚 180g','豆腐半盒','地瓜 1 條'],'約 650 kcal / P 50g'],
+    ['點心','⚡',['乳清蛋白 1 份','地瓜 1 條','堅果少量'],'約 380 kcal / P 30g']
+  ]:[
+    ['早餐','🌅',['雞蛋 2 顆','希臘優格 200g','無糖豆漿'],'約 430 kcal / P 35g'],
+    ['午餐','☀️',['雞胸肉 200g','糙米飯半碗','花椰菜'],'約 650 kcal / P 55g'],
+    ['晚餐','🌙',['鮭魚 160g','豆腐半盒','青菜 2 份'],'約 620 kcal / P 48g'],
+    ['點心','⚡',['乳清 1 份','香蕉 1 根'],'約 220 kcal / P 25g']
+  ];
+  $('mealPlan').innerHTML=meals.map(m=>`
+    <div class="meal">
+      <div class="meal-time">${m[1]} ${m[0]}</div>
+      <b>${m[0]}</b>
+      <ul>${m[2].map(i=>`<li>${i}</li>`).join('')}</ul>
+      <small>${m[3]}</small>
+    </div>`).join('');
+  $('mealTotal').textContent=`總計：約 ${fmt(e.targetCal)} kcal / 蛋白質 ${e.proteinTarget}g / 糖分低於 ${e.sugarTarget}g / 纖維 ${e.fiberTarget}g`;
+
+  // forecast
+  $('scoreForecastText').textContent=`${e.score} → ${e.forecastScore}`;
+  const wL=p.goal==='fat_loss'?2.5:p.goal==='muscle_gain'?-1.0:0.5;
+  $('weightForecastText').textContent=p.goal==='muscle_gain'?`${p.weight} → ${(p.weight+1).toFixed(1)}kg`:`${p.weight} → ${(p.weight-wL).toFixed(1)}kg`;
+  $('sugarForecastText').textContent=`${p.sugar}g → ${Math.min(25,p.sugar)}g`;
+  $('proteinForecastText').textContent=`${p.protein}g → ${e.proteinTarget}g`;
+
+  // shopping
+  $('shoppingList').innerHTML=[
+    ['高蛋白','🥩',['雞胸肉','鮭魚','雞蛋','豆腐','希臘優格']],
+    ['高纖蔬果','🥦',['花椰菜','菠菜','地瓜','燕麥','莓果']],
+    ['低糖替代','🍃',['無糖茶','氣泡水','黑咖啡','無糖豆漿','代糖優格']]
+  ].map(s=>`
+    <div class="shop">
+      <div class="shop-label">${s[1]} ${s[0]}</div>
+      <b>${s[0]}</b>
+      <ul>${s[1].map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  // roadmap
+  $('roadmap').innerHTML=[
+    ['Week 1',['含糖飲料降為無糖或微糖','蛋白質提高到目標的 80%']],
+    ['Week 2',['每天至少 2 份蔬菜','外食減少 1–2 次']],
+    ['Week 3',['蛋白質全面達標','每餐加入高纖食物']],
+    ['Week 4',['重新計算 Nutrition Score','依體重變化微調熱量']]
+  ].map((w,i)=>`
+    <div class="week">
+      <div class="week-num">Week <span>${i+1}</span></div>
+      <ul>${w[1].map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  if(typeof gtag!=='undefined')gtag('event','calculate',{event_category:'nutrition_score',event_label:'score_'+e.score});
 }
 
-function calcDeficit(){
-  const h=parseFloat(document.getElementById('df-h').value);
-  const w=parseFloat(document.getElementById('df-w').value);
-  const age=parseFloat(document.getElementById('df-age').value);
-  const sex=document.getElementById('df-sex').value;
-  const act=parseFloat(document.getElementById('df-act').value);
-  const goal=parseFloat(document.getElementById('df-goal').value);
-  if(!h||!w||!age){alert('請填寫完整');return;}
-  const bmr=sex==='m'?(10*w)+(6.25*h)-(5*age)+5:(10*w)+(6.25*h)-(5*age)-161;
-  const tdee=Math.round(bmr*act);
-  const diff=goal>0?goal*7700/7:Math.abs(goal)*7700/7;
-  const target=goal>0?Math.round(tdee-diff):Math.round(tdee+diff);
-  const minCal=sex==='m'?1500:1200;
-  const safeTarget=Math.max(target,minCal);
-  const weeklyKg=goal>0?-goal:Math.abs(goal);
-  document.getElementById('df-target').textContent=safeTarget.toLocaleString();
-  document.getElementById('df-tag').textContent=goal>0?`每週減 ${goal}kg · 赤字 ${Math.round(diff)} 大卡`:`每週增 ${Math.abs(goal)}kg · 盈餘 ${Math.round(diff)} 大卡`;
-  document.getElementById('df-bmr').textContent=Math.round(bmr).toLocaleString()+' 大卡';
-  document.getElementById('df-tdee').textContent=tdee.toLocaleString()+' 大卡';
-  document.getElementById('df-diff').textContent=(goal>0?'-':'+')+ Math.round(diff)+' 大卡/天';
-  document.getElementById('df-weekly').textContent=(goal>0?'-':'+')+Math.abs(goal)+' kg/週';
-  document.getElementById('df-note').textContent=`TDEE ${tdee.toLocaleString()} 大卡，目標每日攝取 ${safeTarget.toLocaleString()} 大卡${target<minCal?`（已調整至安全下限 ${minCal} 大卡）`:''}，預計每週${goal>0?'減':' 增'} ${Math.abs(goal)} 公斤。`;
-  document.getElementById('deficit-result').classList.add('show');
+function resetDemo(){
+  try{localStorage.removeItem('calcboxNutritionProfile')}catch(e){}
+  const demo={gender:'m',age:35,height:170,weight:80,tdee:2400,calories:2300,protein:110,sugar:58,fiber:18,water:2400,eatout:5,exercise:2,goal:'fat_loss'};
+  Object.entries(demo).forEach(([k,v])=>{if($(k))$(k).value=v});
+  calculateAll();
 }
-function calcMacro(){
-  const cal=parseFloat(document.getElementById('mc-cal').value)||0;
-  const w=parseFloat(document.getElementById('mc-w').value)||0;
-  if(!cal){alert('請輸入熱量目標');return;}
-  const strategies={
-    balanced:{p:0.30,f:0.30,c:0.40},
-    lowcarb:{p:0.35,f:0.45,c:0.20},
-    highprotein:{p:0.40,f:0.25,c:0.35},
-    keto:{p:0.25,f:0.70,c:0.05}
-  };
-  const s=strategies[document.getElementById('mc-strategy').value];
-  const pG=Math.round(cal*s.p/4);
-  const fG=Math.round(cal*s.f/9);
-  const cG=Math.round(cal*s.c/4);
-  document.getElementById('mc-protein').textContent=pG;
-  document.getElementById('mc-p').textContent=pG+'g（'+Math.round(s.p*100)+'%）';
-  document.getElementById('mc-f').textContent=fG+'g（'+Math.round(s.f*100)+'%）';
-  document.getElementById('mc-c').textContent=cG+'g（'+Math.round(s.c*100)+'%）';
-  document.getElementById('mc-ratio').textContent=w>0?(pG/w).toFixed(1)+'g/kg':'需填體重';
-  const warn=w>0&&pG/w<1.2?'⚠ 蛋白質偏低，減脂建議至少 1.6g/kg':'✓ 蛋白質充足';
-  document.getElementById('mc-note').textContent=`每日 ${cal.toLocaleString()} 大卡分配：蛋白質 ${pG}g / 脂肪 ${fG}g / 碳水 ${cG}g。${warn}`;
-  document.getElementById('macro-result').classList.add('show');
-}
-function calcProtein(){
-  const w=parseFloat(document.getElementById('pt-w').value);
-  const ratio=parseFloat(document.getElementById('pt-goal').value);
-  if(!w){alert('請輸入體重');return;}
-  const total=Math.round(w*ratio);
-  const perMeal=Math.round(total/3);
-  const chicken=Math.round(total/0.31);
-  const eggs=Math.round(total/6.3);
-  const calPct=(total*4/2000*100).toFixed(0);
-  document.getElementById('pt-total').textContent=total;
-  document.getElementById('pt-per-meal').textContent=perMeal+'g';
-  document.getElementById('pt-chicken').textContent=chicken+'g（約'+Math.round(chicken/100)+'塊）';
-  document.getElementById('pt-egg').textContent=eggs+'顆';
-  document.getElementById('pt-pct').textContent=calPct+'%（以2000大卡計）';
-  document.getElementById('pt-note').textContent=`體重 ${w}kg，每日需蛋白質 ${total}g（${ratio}g/kg），每餐約 ${perMeal}g，相當於雞胸肉 ${chicken}g 或 ${eggs} 顆雞蛋的蛋白質量。`;
-  document.getElementById('protein-result').classList.add('show');
-}
-function calcSugar(){
-  const sel=document.getElementById('sg-type').value;
-  const cups=parseInt(document.getElementById('sg-cups').value)||1;
-  let sugar;
-  if(sel==='custom'){
-    sugar=parseFloat(document.getElementById('sg-sugar').value)||0;
-    document.getElementById('sg-custom-row').style.display='grid';
-  }else{
-    const parts=sel.split(',');
-    sugar=parseFloat(parts[1]);
-  }
-  if(!sugar){alert('請選擇飲料或輸入含糖量');return;}
-  const total=sugar*cups;
-  const cubes=Math.round(total/4);
-  const cal=Math.round(total*4);
-  const pct=(total/25*100).toFixed(0);
-  const tag=total<=25?'✓ 未超WHO建議':total<=50?'⚠ 超過建議量':'🚨 嚴重超標';
-  document.getElementById('sg-total').textContent=total;
-  document.getElementById('sg-tag').textContent=tag;
-  document.getElementById('sg-tag').className=total<=25?'tag tag-green':total<=50?'tag':'tag tag-red';
-  document.getElementById('sg-cubes').textContent=cubes+' 顆';
-  document.getElementById('sg-cal').textContent=cal+' 大卡';
-  document.getElementById('sg-pct').textContent=pct+'%';
-  document.getElementById('sg-note').textContent=`含糖 ${total}g（${cubes} 顆方糖），提供 ${cal} 大卡純糖熱量，佔 WHO 每日建議上限 25g 的 ${pct}%。`;
-  document.getElementById('sugar-result').classList.add('show');
-}
-document.getElementById('sg-type').addEventListener('change',function(){
-  document.getElementById('sg-custom-row').style.display=this.value==='custom'?'grid':'none';
-});
-// 初始化食物格
-window.addEventListener('DOMContentLoaded',renderFoodGrid);
-document.getElementById('fd-exercise').addEventListener('change',renderFoodGrid);
 
-window.addEventListener('load',()=>loadNews());
-</script>
-
-<script>
-/* GA4 事件追蹤：calculate / copy_result */
-document.addEventListener('click', function(e){
-  if (typeof gtag !== 'function') return;
-  var btn = e.target.closest('button, .calc-btn, [onclick]');
-  if (!btn) return;
-  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
-  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
-  var label = (btn.textContent || '').trim().slice(0, 30);
-  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
-    gtag('event', 'calculate', { tool: tool, button_label: label });
-  } else if (/copy/i.test(oc)) {
-    gtag('event', 'copy_result', { tool: tool });
-  }
-});
+window.addEventListener('load',()=>{loadProfile();calculateAll();});
 </script>
 </body>
 </html>
