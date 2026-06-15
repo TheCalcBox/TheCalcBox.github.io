@@ -97,7 +97,7 @@ header{background:var(--navy);position:sticky;top:0;z-index:50;border-bottom:1px
 
 /* ── Main layout ── */
 .main{max-width:1100px;margin:0 auto;padding:1.75rem 1.25rem 4rem}
-.layout{display:grid;grid-template-columns:360px 1fr;gap:20px;align-items:start}
+.layout{display:grid;grid-template-columns:1fr;gap:16px}
 
 /* ── Card ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -107,10 +107,10 @@ header{background:var(--navy);position:sticky;top:0;z-index:50;border-bottom:1px
 .card-body{padding:1.1rem 1.35rem}
 
 /* ── Input form ── */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
 .field{display:flex;flex-direction:column;gap:4px}
 .field.full{grid-column:1/-1}
-label{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+label{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.02em}
 input,select{height:40px;border:1.5px solid var(--border);border-radius:10px;background:#fff;padding:0 11px;font-size:13.5px;font-family:inherit;color:var(--text);transition:border-color .15s}
 input:focus,select:focus{outline:none;border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(14,42,71,.08)}
 .btn-calc{width:100%;height:44px;border:none;border-radius:12px;margin-top:12px;background:linear-gradient(135deg,var(--navy-mid),var(--navy));color:#fff;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;letter-spacing:.02em;transition:transform .15s,box-shadow .15s}
@@ -199,13 +199,13 @@ input:focus,select:focus{outline:none;border-color:var(--navy-mid);box-shadow:0 
 .completion-note{font-size:11px;color:var(--muted);margin-top:6px;text-align:center}
 
 /* ── Life habits ── */
-.life-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.life-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .life-cell{background:#F9FBFC;border:1px solid var(--border);border-radius:12px;padding:12px 14px}
 .life-cell small{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
 .life-cell b{display:block;font-size:17px;font-weight:900;margin-top:3px;font-family:'Space Grotesk',sans-serif}
 
 /* ── Roadmap ── */
-.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.roadmap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .week{border:1px solid var(--border);border-radius:14px;padding:13px;background:#fff;position:relative}
 .week-num{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
 .week-num span{color:var(--navy)}
@@ -235,16 +235,14 @@ details{background:#fff;border:1px solid var(--border);border-radius:var(--radiu
 summary{cursor:pointer;padding:1rem 1.35rem;font-size:14px;font-weight:800;color:var(--text)}
 summary::-webkit-details-marker{color:var(--gold)}
 
-.form-sticky{position:sticky;top:68px}
+.form-sticky{position:static}
 /* ── RWD ── */
 
 /* Tablet 960px */
 @media(max-width:960px){
   .hero-in{grid-template-columns:1fr}
   .ring-widget{display:none}
-  .layout{grid-template-columns:1fr}
   /* unstick the form on tablet/mobile */
-  .layout > div:first-child .card{position:static !important}
   .top3{grid-template-columns:repeat(3,1fr)}
   .core6{grid-template-columns:repeat(3,1fr)}
   .ability-wrap{grid-template-columns:1fr 1fr}
@@ -258,11 +256,11 @@ summary::-webkit-details-marker{color:var(--gold)}
 /* Mobile 600px */
 @media(max-width:600px){
   .hero{padding:1.5rem 1rem 1.5rem}
+  .form-grid{grid-template-columns:1fr}
   .hero h1{font-size:26px}
   .hero-desc{font-size:13px}
   .main{padding:1rem .85rem 3rem}
   /* form full width, no sticky */
-  .layout > div:first-child .card{position:static !important;top:auto !important}
   /* metrics: 3 across but compact */
   .top3{grid-template-columns:repeat(3,1fr);gap:8px}
   .metric{padding:12px 10px}
@@ -380,35 +378,35 @@ summary::-webkit-details-marker{color:var(--gold)}
             <input type="number" id="age" value="35" min="18" max="90">
           </div>
           <div class="field">
-            <label>身高 (cm)</label>
+            <label>身高（公分）</label>
             <input type="number" id="height" value="170">
           </div>
           <div class="field">
-            <label>體重 (kg)</label>
+            <label>體重（公斤）</label>
             <input type="number" id="weight" value="80">
           </div>
           <div class="field">
-            <label>腰圍 (cm)</label>
+            <label>腰圍（公分）</label>
             <input type="number" id="waist" value="92">
           </div>
           <div class="field">
-            <label>臀圍 (cm)</label>
+            <label>臀圍（公分）</label>
             <input type="number" id="hip" value="100">
           </div>
           <div class="field">
-            <label>體脂率 (%)</label>
+            <label>體脂率（%）</label>
             <input type="number" id="bodyfat" value="31" step="0.1">
           </div>
           <div class="field">
-            <label>睡眠 (hr/晚)</label>
+            <label>睡眠（小時/晚）</label>
             <input type="number" id="sleep" value="6.1" step="0.1" min="3" max="12">
           </div>
           <div class="field">
-            <label>飲水 (ml/天)</label>
+            <label>飲水量（毫升）</label>
             <input type="number" id="water" value="2400" step="100">
           </div>
           <div class="field">
-            <label>運動 (次/週)</label>
+            <label>運動（次/週）</label>
             <input type="number" id="exercise" value="1" min="0" max="7">
           </div>
           <div class="field full">
