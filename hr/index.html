@@ -248,8 +248,14 @@ footer a:hover{color:#F3C969!important}
 .st-cal-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .st-cal-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)}
 .st-cal-nav h3{font-size:13px;font-weight:800}
-.st-nav-btn{width:26px;height:26px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:all .15s}
+.st-nav-btn{width:30px;height:30px;border:1px solid var(--border);border-radius:7px;background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--muted);transition:all .15s}
 .st-nav-btn:hover{border-color:var(--accent-mid);color:var(--accent-mid)}
+/* 員工切換列（手機用，桌機也顯示） */
+.st-emp-switch{display:flex;gap:6px;overflow-x:auto;padding:10px 14px;border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.st-emp-switch::-webkit-scrollbar{display:none}
+.st-emp-chip{flex-shrink:0;height:30px;padding:0 14px;border:1.5px solid var(--border);border-radius:99px;background:var(--white);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);transition:all .15s;white-space:nowrap}
+.st-emp-chip.active{border-color:var(--accent-mid);background:var(--accent-mid);color:#fff}
+/* 桌機：橫向總表 */
 .st-cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .st-cal-table{border-collapse:collapse;width:100%;min-width:520px}
 .st-cal-table th{font-size:9px;font-weight:700;color:var(--muted);padding:5px 3px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;background:var(--gray-50)}
@@ -259,6 +265,22 @@ footer a:hover{color:#F3C969!important}
 .st-badge{font-size:10px;font-weight:700;padding:3px 4px;border-radius:4px;text-align:center;cursor:pointer;display:block;width:100%;border:none;font-family:inherit;transition:opacity .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .st-badge:hover{opacity:.75}
 .st-badge.empty{background:var(--gray-100);color:var(--hint)}
+/* 手機：單人月曆格 */
+.st-cal-month{display:none;padding:8px}
+.st-cal-dow{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px}
+.st-cal-dow span{text-align:center;font-size:10px;font-weight:700;color:var(--muted);padding:2px 0}
+.st-cal-dow span:first-child{color:#C0392B}.st-cal-dow span:last-child{color:#1565C0}
+.st-cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.st-day{aspect-ratio:1/1.15;border:1px solid var(--border-light);border-radius:8px;display:flex;flex-direction:column;align-items:center;padding:3px 1px;cursor:pointer;background:var(--white);transition:background .1s;min-height:46px}
+.st-day.empty-cell{border:none;background:transparent;cursor:default}
+.st-day:not(.empty-cell):active{background:var(--gray-100)}
+.st-day .dn{font-size:10px;font-weight:700;color:var(--muted);line-height:1;margin-bottom:2px}
+.st-day.sun .dn{color:#C0392B}.st-day.sat .dn{color:#1565C0}
+.st-day .db{flex:1;width:100%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;border-radius:5px;line-height:1.1;text-align:center;padding:1px;overflow:hidden}
+@media(max-width:640px){
+  .st-cal-scroll{display:none}
+  .st-cal-month{display:block}
+}
 .st-bulk-bar{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
 .st-bulk-btn{height:24px;padding:0 9px;border:none;border-radius:5px;font-size:10px;font-weight:700;font-family:inherit;cursor:pointer}
 .st-export-bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
@@ -271,11 +293,95 @@ footer a:hover{color:#F3C969!important}
 .st-stat b{font-size:12px;font-weight:700}
 .st-picker{position:fixed;z-index:500;background:var(--white);border:1px solid var(--border);border-radius:9px;box-shadow:0 8px 22px -6px rgba(14,42,71,.2);padding:5px;display:none;flex-direction:column;gap:2px;min-width:108px}
 .st-picker.show{display:flex}
+.st-pick-head{font-size:11px;font-weight:800;color:var(--text);padding:6px 8px 4px;border-bottom:1px solid var(--border-light);margin-bottom:3px}
 .st-pi{height:26px;border:none;border-radius:6px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 8px}
 .st-pi:hover{opacity:.82}
 .st-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+/* 手機：底部彈出 */
+@media(max-width:640px){
+  .st-picker.sheet.show{left:0;right:0;bottom:0;top:auto;width:100%;min-width:0;border-radius:18px 18px 0 0;padding:10px 14px calc(14px + env(safe-area-inset-bottom));gap:5px;box-shadow:0 -6px 24px -6px rgba(14,42,71,.25);animation:stSheetUp .22s ease}
+  .st-picker.sheet .st-pick-head{font-size:13px;padding:4px 4px 8px;text-align:center}
+  .st-picker.sheet .st-pi{height:44px;font-size:14px;border-radius:10px;padding:0 14px}
+  .st-picker.sheet .st-dot{width:9px;height:9px}
+}
+@keyframes stSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .st-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(16px);background:#0E2A47;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;opacity:0;transition:all .3s;pointer-events:none;z-index:600;white-space:nowrap}
 .st-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── 排班表 RWD 強化：桌機工作台 + 手機月曆優先 ── */
+body.shift-active .wrap{max-width:1180px}
+body.shift-active #panel-shift .tool-card{overflow:visible}
+body.shift-active #panel-shift .card-body{padding:0 1.25rem 1.5rem!important}
+body.shift-active .page-h1,
+body.shift-active .page-lead{max-width:820px}
+
+.shift-tool{grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:16px}
+.shift-tool > div{min-width:0}
+.st-cal-wrap{box-shadow:0 8px 24px -18px rgba(14,42,71,.35)}
+.st-cal-scroll{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+.st-cal-table{min-width:920px;table-layout:fixed}
+.st-cal-table th{position:sticky;top:0;z-index:3}
+.st-cal-table td{height:42px}
+.st-cal-table td.emp-name{min-width:92px}
+.st-badge{min-height:31px;line-height:1.15}
+.st-input,.st-ptab,.st-add-btn,.st-bulk-btn,.st-exp-btn,.st-emp-chip,.st-nav-btn{touch-action:manipulation}
+.st-panel{box-shadow:0 1px 3px rgba(14,42,71,.04)}
+.st-pb details{width:100%}
+.st-help{
+  margin:0 0 12px;padding:10px 12px;border-radius:10px;
+  background:#F7FAFC;border:1px solid var(--border);
+  font-size:12px;color:var(--muted);line-height:1.6
+}
+.st-help b{color:var(--text)}
+.st-cal-hint{display:none;font-size:11px;color:var(--hint);padding:8px 14px;border-bottom:1px solid var(--border);background:var(--gray-50)}
+@media(min-width:641px){
+  .st-cal-hint{display:block}
+  .st-cal-month{display:none!important}
+  .st-cal-scroll{display:block!important}
+}
+@media(max-width:760px){
+  body.shift-active .wrap{padding:1rem .75rem 3rem}
+  body.shift-active .page-h1{font-size:20px;margin-bottom:.65rem}
+  body.shift-active .page-lead{font-size:12px;margin-bottom:1rem}
+  body.shift-active #panel-shift .card-head{padding:1rem 1rem 0}
+  body.shift-active #panel-shift .card-body{padding:0 1rem 1rem!important}
+  .shift-tool{display:flex;flex-direction:column;gap:12px}
+  .shift-tool>div:first-child{order:2}
+  .shift-tool>div:nth-child(2){order:1}
+  .st-cal-wrap{border-radius:16px;overflow:hidden}
+  .st-cal-nav{padding:12px 12px}
+  .st-cal-nav h3{font-size:15px}
+  .st-nav-btn{width:38px;height:38px;border-radius:10px;font-size:22px}
+  .st-emp-switch{padding:10px 12px;background:#fff}
+  .st-emp-chip{height:36px;padding:0 16px;font-size:13px}
+  .st-cal-month{padding:10px}
+  .st-cal-days{gap:6px}
+  .st-cal-dow{gap:6px;margin-bottom:6px}
+  .st-day{min-height:56px;border-radius:10px;padding:5px 2px}
+  .st-day .dn{font-size:11px}
+  .st-day .db{font-size:10px;border-radius:7px}
+  .st-panel{border-radius:14px;margin-bottom:10px}
+  .st-ph{padding:13px 14px;font-size:13px}
+  .st-pb{padding:12px 14px}
+  .st-input{height:40px;font-size:14px}
+  .st-add-btn{height:40px;font-size:12px}
+  .st-ptab{height:38px;font-size:12px}
+  .st-bulk-btn{height:32px;padding:0 12px;font-size:11px}
+  .sh-item{grid-template-columns:28px minmax(76px,1fr) 64px 64px 30px;gap:6px;margin-bottom:7px}
+  .sh-color{width:28px;height:28px}
+  .sh-del{width:30px;height:30px;background:var(--gray-100)}
+  .emp-item{gap:8px;margin-bottom:8px}
+  .st-export-bar{flex-direction:column}
+  .st-exp-btn{width:100%;height:44px}
+  .st-stats{gap:7px}
+  .st-stat{font-size:11px;padding:5px 10px}
+}
+@media(max-width:380px){
+  .sh-item{grid-template-columns:26px minmax(68px,1fr) 58px 58px 28px;gap:5px}
+  .st-day{min-height:50px}
+  .st-day .db{font-size:9px}
+}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
@@ -497,6 +603,7 @@ footer a:hover{color:#F3C969!important}
     <h2>多人排班表</h2>
     <p>自訂班別與員工，點格子排班，匯出 ICS 行事曆或 Excel 橫向日曆表</p>
   </div><div class="card-body" style="padding-bottom:0">
+  <div class="st-help"><b>操作方式：</b>電腦版可左右滑動總表並直接點格子排班；手機版會先顯示單人月曆，先切換人員，再點日期選班別。需要一次排多天時，按「多選」後點日期，再點班別批次套用。</div>
   <div class="shift-tool">
     <!-- 左欄設定 -->
     <div>
@@ -507,7 +614,10 @@ footer a:hover{color:#F3C969!important}
           <div class="st-label">名稱 · 開始 · 結束</div>
           <div id="shiftTypeList"></div>
           <button class="st-add-btn" onclick="stAddShift()">＋ 新增班別</button>
-          <div class="st-label" style="margin-top:4px">快速批次指派</div>
+          <div class="st-label" style="margin-top:4px;display:flex;align-items:center;justify-content:space-between">
+            <span>快速批次指派</span>
+            <button id="stSelToggle" onclick="stToggleSelectMode()" style="height:22px;padding:0 9px;border:1px solid var(--border);border-radius:99px;background:#fff;font-size:10px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted)">多選</button>
+          </div>
           <div class="st-bulk-bar" id="stBulkBar"></div>
         </div>
       </div>
@@ -564,7 +674,13 @@ footer a:hover{color:#F3C969!important}
           <h3 id="stCalTitle">—</h3>
           <button class="st-nav-btn" onclick="stShiftMonth(1)">›</button>
         </div>
+        <div class="st-emp-switch" id="stEmpSwitch"></div>
+        <div class="st-cal-hint">桌機版可左右滑動查看完整月份；按住 Ctrl / Shift 點格子可多選，或按左側「多選」批次指派。</div>
         <div class="st-cal-scroll"><table class="st-cal-table" id="stCalTable"></table></div>
+        <div class="st-cal-month" id="stCalMonth">
+          <div class="st-cal-dow"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+          <div class="st-cal-days" id="stCalDays"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -631,6 +747,7 @@ function switchTab(id){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
+  document.body.classList.toggle('shift-active', id==='shift');
   if(id==='news'&&!newsLoaded) loadNews();
 }
 
@@ -856,6 +973,8 @@ let stPeriodMode = 'month';
 let stViewYear, stViewMonth;
 let stDates = [];
 let stSelCells = new Set(); // empIdx-dateStr
+let stActiveEmp = 0; // 手機單人檢視用
+let stSelectMode = false; // 多選模式（手機友善）
 
 (function stInit(){
   const now = new Date();
@@ -904,12 +1023,15 @@ function stRenderBulk(){
   `).join('');
 }
 function stBulkAssign(sid){
-  if(stSelCells.size===0){stToastShow('請先 Ctrl+點選 多個格子');return;}
+  if(stSelCells.size===0){stToastShow('請先點「多選」再點格子');return;}
+  const n=stSelCells.size;
   stSelCells.forEach(key=>{stAssign[key]=sid;});
+  stSelCells.clear();
+  stSelectMode=false;
+  document.getElementById('stSelToggle')?.classList.remove('on');
   stRenderCells();
   stUpdateStats();
-  stSelCells.clear();
-  stToastShow(`已指派 ${stSelCells.size||'選取'} 個格子`);
+  stToastShow(`已指派 ${n} 個格子`);
 }
 
 // ── Employees ──
@@ -921,8 +1043,25 @@ function stAddEmp(){
 function stDelEmp(i){
   if(stEmps.length<=1){stToastShow('至少保留一人');return;}
   stEmps.splice(i,1);
-  // remove assignments
-  Object.keys(stAssign).forEach(k=>{if(k.startsWith(i+'-'))delete stAssign[k];});
+  // 重新對齊員工索引，避免刪除中間人員後排班資料錯位
+  const nextAssign={}, nextCustom={};
+  Object.keys(stAssign).forEach(k=>{
+    const parts=k.split('-');
+    const oldIdx=parseInt(parts[0],10);
+    const date=parts.slice(1).join('-');
+    if(oldIdx<i) nextAssign[oldIdx+'-'+date]=stAssign[k];
+    else if(oldIdx>i) nextAssign[(oldIdx-1)+'-'+date]=stAssign[k];
+  });
+  Object.keys(stCustomText).forEach(k=>{
+    const parts=k.split('-');
+    const oldIdx=parseInt(parts[0],10);
+    const date=parts.slice(1).join('-');
+    if(oldIdx<i) nextCustom[oldIdx+'-'+date]=stCustomText[k];
+    else if(oldIdx>i) nextCustom[(oldIdx-1)+'-'+date]=stCustomText[k];
+  });
+  stAssign=nextAssign;
+  stCustomText=nextCustom;
+  if(stActiveEmp>=stEmps.length) stActiveEmp=stEmps.length-1;
   stRenderEmpList();
   stRender();
 }
@@ -963,7 +1102,7 @@ function stGetDates(){
     return arr;
   }
 }
-const stDs=d=>d.toISOString().slice(0,10);
+function stDs(d){return d.toISOString().slice(0,10);}
 
 function stShiftMonth(delta){
   if(stPeriodMode==='month'){
@@ -1020,7 +1159,47 @@ function stRender(){
   });
 
   document.getElementById('stCalTable').innerHTML=th+rows;
+  stRenderEmpSwitch();
+  stRenderMonthView();
   stUpdateStats();
+}
+
+// 員工切換 chip（手機單人檢視）
+function stRenderEmpSwitch(){
+  if(stActiveEmp>=stEmps.length) stActiveEmp=0;
+  const el=document.getElementById('stEmpSwitch');
+  el.innerHTML=stEmps.map((e,i)=>`
+    <button class="st-emp-chip ${i===stActiveEmp?'active':''}" onclick="stActiveEmp=${i};stRenderEmpSwitch();stRenderMonthView()">${e}</button>
+  `).join('');
+}
+
+// 手機單人月曆
+function stRenderMonthView(){
+  const el=document.getElementById('stCalDays');
+  if(!el) return;
+  const ei=stActiveEmp;
+  let html='';
+  // 月模式才補空格對齊星期
+  if(stPeriodMode==='month' && stDates.length){
+    const firstDow=stDates[0].getDay();
+    for(let i=0;i<firstDow;i++) html+='<div class="st-day empty-cell"></div>';
+  }
+  stDates.forEach(d=>{
+    const ds=stDs(d);
+    const key=`${ei}-${ds}`;
+    const dow=d.getDay();
+    const cls=['st-day',dow===0?'sun':dow===6?'sat':''].filter(Boolean).join(' ');
+    const sel=stSelCells.has(key)?'style="outline:2px solid var(--accent-mid);outline-offset:-1px"':'';
+    const sid=stAssign[key];
+    const ct=stCustomText[key];
+    const sh=stShifts.find(s=>s.id===sid);
+    let inner='';
+    if(ct) inner=`<div class="db" style="background:#E8F5E9;color:#2E7D32">${ct}</div>`;
+    else if(sh) inner=`<div class="db" style="background:${sh.color}20;color:${sh.color}">${sh.name}</div>`;
+    else inner=`<div class="db" style="background:var(--gray-100);color:var(--hint)">＋</div>`;
+    html+=`<div class="${cls}" ${sel} onclick="stCellTap(${ei},'${ds}',event)"><div class="dn">${d.getDate()}</div>${inner}</div>`;
+  });
+  el.innerHTML=html;
 }
 
 function stRenderCells(){
@@ -1044,18 +1223,45 @@ function stRenderCells(){
       cell.innerHTML=badge;
     });
   });
+  stRenderMonthView();
   stUpdateStats();
 }
 
-// ── Cell click / picker ──
+// 手機格子點擊 → 多選模式則選取，否則開選單
+function stCellTap(ei, ds, e){
+  e.stopPropagation();
+  if(stSelectMode){ stToggleCellSel(ei,ds); return; }
+  stShowPicker(ei, ds, e);
+}
+function stToggleSelectMode(){
+  stSelectMode=!stSelectMode;
+  const btn=document.getElementById('stSelToggle');
+  if(stSelectMode){
+    btn.classList.add('on');
+    btn.style.background='var(--accent-mid)';btn.style.color='#fff';btn.style.borderColor='var(--accent-mid)';
+    stToastShow('多選模式：點格子選取，再點班別套用');
+  } else {
+    btn.classList.remove('on');
+    btn.style.background='#fff';btn.style.color='var(--muted)';btn.style.borderColor='var(--border)';
+    stSelCells.clear();
+    stRenderCells();
+  }
+}
+function stToggleCellSel(ei,ds){
+  const key=`${ei}-${ds}`;
+  if(stSelCells.has(key)) stSelCells.delete(key);
+  else stSelCells.add(key);
+  // highlight in both views
+  const tdCell=document.getElementById('stc-'+key);
+  if(tdCell) tdCell.style.outline=stSelCells.has(key)?'2px solid var(--accent-mid)':'';
+  stRenderMonthView();
+}
+
+// ── Cell click / picker (桌機總表) ──
 function stCellClick(ei, ds, e){
   e.stopPropagation();
-  if(e.ctrlKey||e.metaKey||e.shiftKey){
-    const key=`${ei}-${ds}`;
-    if(stSelCells.has(key)) stSelCells.delete(key);
-    else stSelCells.add(key);
-    const cell=document.getElementById('stc-'+key);
-    if(cell) cell.style.outline=stSelCells.has(key)?'2px solid var(--accent-mid)':'';
+  if(stSelectMode||e.ctrlKey||e.metaKey||e.shiftKey){
+    stToggleCellSel(ei,ds);
     return;
   }
   stShowPicker(ei, ds, e);
@@ -1064,16 +1270,33 @@ document.addEventListener('click',()=>document.getElementById('stPicker').classL
 
 function stShowPicker(ei, ds, e){
   const picker=document.getElementById('stPicker');
-  picker.innerHTML=stShifts.map(s=>`
+  const d=new Date(ds+'T00:00:00');
+  const dows=['日','一','二','三','四','五','六'];
+  const head=`<div class="st-pick-head">${stEmps[ei]}　${d.getMonth()+1}/${d.getDate()}（${dows[d.getDay()]}）</div>`;
+  picker.innerHTML=head+stShifts.map(s=>`
     <button class="st-pi" style="background:${s.color}18;color:${s.color}" onclick="stAssignCell(${ei},'${ds}','${s.id}',null)">
-      <span class="st-dot" style="background:${s.color}"></span>${s.name}${s.start?' '+s.start:''}
+      <span class="st-dot" style="background:${s.color}"></span>${s.name}${s.start?' '+s.start+'–'+s.end:''}
     </button>
   `).join('')
   +`<button class="st-pi" style="background:#F0F8FF;color:#1565C0" onclick="stAskCustom(${ei},'${ds}')">✏️ 自填文字</button>`
   +`<button class="st-pi" style="background:#F5F5F5;color:#999" onclick="stAssignCell(${ei},'${ds}',null,null)">✕ 清除</button>`;
-  const rect=e.target.getBoundingClientRect();
-  picker.style.top=(rect.bottom+window.scrollY+4)+'px';
-  picker.style.left=Math.min(rect.left+window.scrollX,window.innerWidth-130)+'px';
+
+  const isMobile=window.matchMedia('(max-width:640px)').matches;
+  if(isMobile){
+    // 底部彈出，免定位煩惱、好點
+    picker.classList.add('sheet');
+    picker.style.top='';picker.style.left='';
+  } else {
+    picker.classList.remove('sheet');
+    const cell=e.target.closest('.st-day,td,.st-badge')||e.target;
+    const rect=cell.getBoundingClientRect();
+    let top=rect.bottom+6, left=rect.left;
+    // 防超出視窗
+    if(left>window.innerWidth-150) left=window.innerWidth-150;
+    if(top>window.innerHeight-220) top=rect.top-220;
+    picker.style.top=top+'px';
+    picker.style.left=Math.max(8,left)+'px';
+  }
   picker.classList.add('show');
   e.stopPropagation();
 }
