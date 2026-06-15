@@ -560,11 +560,37 @@ summary::-webkit-details-marker{color:var(--gold)}
     <!-- Life habits (collapsible) -->
     <details>
       <summary>生活習慣細項（睡眠、飲水、運動、蛋白質）</summary>
-      <div class="life-grid" style="padding:0 1.35rem 1.25rem">
-        <div class="life-cell"><small>睡眠</small><b id="lifeSleep">—</b></div>
-        <div class="life-cell"><small>飲水</small><b id="lifeWater">—</b></div>
-        <div class="life-cell"><small>運動</small><b id="lifeExercise">—</b></div>
-        <div class="life-cell"><small>蛋白質目標</small><b id="lifeProtein">—</b></div>
+      <div class="life-grid" style="padding:0 1.35rem 1.25rem;grid-template-columns:repeat(3,1fr)">
+        <div class="life-cell">
+          <small>睡眠</small>
+          <b id="lifeSleep">—</b>
+          <span id="lifeSleepStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
+        <div class="life-cell">
+          <small>飲水量</small>
+          <b id="lifeWater">—</b>
+          <span id="lifeWaterStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
+        <div class="life-cell">
+          <small>運動頻率</small>
+          <b id="lifeExercise">—</b>
+          <span id="lifeExerciseStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
+        <div class="life-cell">
+          <small>蛋白質目標</small>
+          <b id="lifeProtein">—</b>
+          <span id="lifeProteinStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
+        <div class="life-cell">
+          <small>飲水達標率</small>
+          <b id="lifeWaterPct">—</b>
+          <span id="lifeWaterPctStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
+        <div class="life-cell">
+          <small>活動量係數</small>
+          <b id="lifeActivity">—</b>
+          <span id="lifeActivityStatus" style="display:block;font-size:10px;margin-top:2px"></span>
+        </div>
       </div>
     </details>
 
@@ -1143,11 +1169,43 @@ function calculateAll(){
   setTimeout(()=>{$('completionBar').style.width=e.completion+'%'},100);
   $('completionText').textContent=`健康完成度 ${e.completion}%，距離理想狀態還有 ${100-e.completion}%。`;
 
-  /* 生活習慣 */
-  $('lifeSleep').textContent=p.sleep+'hr';
+  /* 生活習慣：每格含數值 + 評估狀態 */
+  // 睡眠
+  $('lifeSleep').textContent=p.sleep+'hr/晚';
+  $('lifeSleepStatus').textContent=
+    p.sleep<6?'⚠ 嚴重不足':p.sleep<7?'⚠ 略不足':p.sleep<=9?'✓ 正常':'⚠ 過長';
+  $('lifeSleepStatus').style.color=p.sleep>=7&&p.sleep<=9?'var(--teal)':'var(--red)';
+
+  // 飲水
+  const wPct=Math.round(p.water/e.waterTarget*100);
   $('lifeWater').textContent=p.water+'ml';
+  $('lifeWaterStatus').textContent=
+    wPct>=100?'✓ 達標':wPct>=80?`⚠ 達${wPct}%`:`✗ 僅${wPct}%`;
+  $('lifeWaterStatus').style.color=wPct>=100?'var(--teal)':wPct>=80?'var(--gold-deep)':'var(--red)';
+
+  // 運動
   $('lifeExercise').textContent=p.exercise+'次/週';
-  $('lifeProtein').textContent=e.proteinMid+'g（目標）';
+  $('lifeExerciseStatus').textContent=
+    p.exercise===0?'✗ 完全未運動':p.exercise<2?'⚠ 明顯不足':p.exercise<3?'⚠ 略不足':p.exercise<=5?'✓ 達標':'✓ 積極';
+  $('lifeExerciseStatus').style.color=p.exercise>=3?'var(--teal)':p.exercise>=2?'var(--gold-deep)':'var(--red)';
+
+  // 蛋白質目標（用戶沒填蛋白質，顯示計算出的目標與建議）
+  $('lifeProtein').textContent=e.proteinMid+'g';
+  $('lifeProteinStatus').textContent=
+    '建議目標（'+p.weight+'kg×'+
+    (p.goal==='muscle_gain'?'2.1':p.goal==='fat_loss'?'1.8':'1.4')+'g/kg）';
+  $('lifeProteinStatus').style.color='var(--muted)';
+
+  // 飲水達標率
+  $('lifeWaterPct').textContent=wPct+'%';
+  $('lifeWaterPctStatus').textContent='目標 '+e.waterTarget+'ml（體重×33ml）';
+  $('lifeWaterPctStatus').style.color='var(--muted)';
+
+  // 活動量係數
+  const actLabels={'1.2':'久坐','1.375':'輕度活動','1.55':'中度活動','1.725':'高度活動','1.9':'超高度'};
+  $('lifeActivity').textContent=p.activity+'×';
+  $('lifeActivityStatus').textContent=actLabels[String(p.activity)]||'自訂';
+  $('lifeActivityStatus').style.color='var(--muted)';
 
   /* 30天計畫 */
   $('roadmap').innerHTML=e.weeks.map((items,i)=>`
