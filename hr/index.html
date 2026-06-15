@@ -222,6 +222,60 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+
+/* ── 排班表樣式 ── */
+.shift-tool{display:grid;grid-template-columns:256px 1fr;gap:14px;align-items:start}
+@media(max-width:640px){.shift-tool{grid-template-columns:1fr}}
+.st-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.st-ph{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:var(--text)}
+.st-ph svg{width:14px;height:14px;flex-shrink:0;fill:none;stroke:var(--accent-mid);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.st-pb{padding:12px 14px}
+.st-label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.05em;margin-bottom:5px;margin-top:8px}
+.st-input{height:30px;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:0 8px;font-size:12px;font-family:inherit;color:var(--text);background:var(--white);width:100%}
+.st-input:focus{outline:none;border-color:var(--accent-mid)}
+.sh-item{display:grid;grid-template-columns:20px 1fr 50px 50px 20px;gap:3px;align-items:center;margin-bottom:4px}
+.sh-color{width:18px;height:18px;border-radius:4px;border:none;padding:1px;cursor:pointer;background:none}
+.sh-color input[type=color]{width:100%;height:100%;border:none;border-radius:3px;cursor:pointer;padding:0}
+.sh-del{width:18px;height:18px;border:none;background:none;color:var(--muted);cursor:pointer;border-radius:4px;font-size:13px;display:flex;align-items:center;justify-content:center}
+.sh-del:hover{background:#FEE;color:#C00}
+.st-add-btn{width:100%;height:28px;border:1.5px dashed var(--border);border-radius:var(--radius-sm);background:none;font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;margin:4px 0 8px}
+.st-add-btn:hover{border-color:var(--accent-mid);color:var(--accent-mid)}
+.emp-item{display:flex;gap:5px;align-items:center;margin-bottom:4px}
+.emp-item .st-input{flex:1}
+.st-ptabs{display:flex;gap:5px;margin-bottom:8px}
+.st-ptab{flex:1;height:28px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--white);font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;color:var(--muted);transition:all .15s}
+.st-ptab.active{border-color:var(--accent-mid);background:var(--accent-light);color:var(--accent-mid)}
+.st-cal-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.st-cal-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)}
+.st-cal-nav h3{font-size:13px;font-weight:800}
+.st-nav-btn{width:26px;height:26px;border:1px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);transition:all .15s}
+.st-nav-btn:hover{border-color:var(--accent-mid);color:var(--accent-mid)}
+.st-cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.st-cal-table{border-collapse:collapse;width:100%;min-width:520px}
+.st-cal-table th{font-size:9px;font-weight:700;color:var(--muted);padding:5px 3px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;background:var(--gray-50)}
+.st-cal-table th.sun{color:#C0392B}.st-cal-table th.sat{color:#1565C0}
+.st-cal-table td{border:1px solid var(--border-light);padding:2px;min-width:48px;vertical-align:middle}
+.st-cal-table td.emp-name{font-size:11px;font-weight:700;color:var(--text);padding:4px 8px;background:var(--gray-50);white-space:nowrap;position:sticky;left:0;z-index:2;border-right:2px solid var(--border)}
+.st-badge{font-size:10px;font-weight:700;padding:3px 4px;border-radius:4px;text-align:center;cursor:pointer;display:block;width:100%;border:none;font-family:inherit;transition:opacity .1s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.st-badge:hover{opacity:.75}
+.st-badge.empty{background:var(--gray-100);color:var(--hint)}
+.st-bulk-bar{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+.st-bulk-btn{height:24px;padding:0 9px;border:none;border-radius:5px;font-size:10px;font-weight:700;font-family:inherit;cursor:pointer}
+.st-export-bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.st-exp-btn{flex:1;min-width:100px;height:36px;border:none;border-radius:8px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:transform .15s}
+.st-exp-btn:hover{transform:translateY(-2px)}
+.st-exp-btn.ics{background:linear-gradient(135deg,#0E2A47,#1B3A5C);color:#F3C969}
+.st-exp-btn.xlsx{background:linear-gradient(135deg,#1B7843,#2E7D32);color:#fff}
+.st-stats{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.st-stat{background:var(--gray-100);border-radius:6px;padding:3px 9px;font-size:10px;display:flex;align-items:center;gap:4px}
+.st-stat b{font-size:12px;font-weight:700}
+.st-picker{position:fixed;z-index:500;background:var(--white);border:1px solid var(--border);border-radius:9px;box-shadow:0 8px 22px -6px rgba(14,42,71,.2);padding:5px;display:none;flex-direction:column;gap:2px;min-width:108px}
+.st-picker.show{display:flex}
+.st-pi{height:26px;border:none;border-radius:6px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 8px}
+.st-pi:hover{opacity:.82}
+.st-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.st-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(16px);background:#0E2A47;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:600;opacity:0;transition:all .3s;pointer-events:none;z-index:600;white-space:nowrap}
+.st-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
@@ -242,6 +296,7 @@ footer a:hover{color:#F3C969!important}
     <button class="tab-btn" onclick="switchTab('cost')" id="tab-cost"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 11v6M9.5 12.5h5M9.5 15.5h5"/><path d="M7 7l2-3h6l2 3"/></svg><span>人力成本</span></button>
     <button class="tab-btn" onclick="switchTab('recruit')" id="tab-recruit"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>招募成本</span></button>
     <button class="tab-btn" onclick="switchTab('leave')" id="tab-leave"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v9M4 21h16"/></svg><span>特休試算</span></button>
+    <button class="tab-btn" onclick="switchTab('shift')" id="tab-shift"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/></svg><span>排班表</span></button>
     <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>財經新聞</span></button>
   </div>
 </div>
@@ -436,7 +491,88 @@ footer a:hover{color:#F3C969!important}
   </div></div>
 </div>
 
-<div class="panel active" id="panel-news">
+<!-- 排班表 -->
+<div class="panel" id="panel-shift">
+  <div class="tool-card"><div class="card-head">
+    <h2>多人排班表</h2>
+    <p>自訂班別與員工，點格子排班，匯出 ICS 行事曆或 Excel 橫向日曆表</p>
+  </div><div class="card-body" style="padding-bottom:0">
+  <div class="shift-tool">
+    <!-- 左欄設定 -->
+    <div>
+      <!-- 班別 -->
+      <div class="st-panel">
+        <div class="st-ph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>班別設定</div>
+        <div class="st-pb">
+          <div class="st-label">名稱 · 開始 · 結束</div>
+          <div id="shiftTypeList"></div>
+          <button class="st-add-btn" onclick="stAddShift()">＋ 新增班別</button>
+          <div class="st-label" style="margin-top:4px">快速批次指派</div>
+          <div class="st-bulk-bar" id="stBulkBar"></div>
+        </div>
+      </div>
+      <!-- 員工 -->
+      <div class="st-panel">
+        <div class="st-ph"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>員工 / 人員</div>
+        <div class="st-pb">
+          <div id="empList"></div>
+          <button class="st-add-btn" onclick="stAddEmp()">＋ 新增人員</button>
+        </div>
+      </div>
+      <!-- 週期 -->
+      <div class="st-panel">
+        <div class="st-ph"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>排班週期</div>
+        <div class="st-pb">
+          <div class="st-ptabs">
+            <button class="st-ptab active" onclick="stSetPeriod('month',this)">單月</button>
+            <button class="st-ptab" onclick="stSetPeriod('range',this)">自訂區間</button>
+          </div>
+          <div id="stMonthPick">
+            <input type="month" class="st-input" id="stMonthVal" style="margin-bottom:6px">
+          </div>
+          <div id="stRangePick" style="display:none">
+            <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px"><span style="font-size:11px;color:var(--muted);white-space:nowrap">開始</span><input type="date" class="st-input" id="stRangeS"></div>
+            <div style="display:flex;gap:6px;align-items:center"><span style="font-size:11px;color:var(--muted);white-space:nowrap">結束</span><input type="date" class="st-input" id="stRangeE"></div>
+          </div>
+          <button onclick="stRender()" style="width:100%;height:32px;margin-top:8px;border:none;border-radius:8px;background:var(--accent-mid);color:#fff;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer">套用</button>
+        </div>
+      </div>
+      <!-- 匯出 -->
+      <div class="st-panel">
+        <div class="st-ph"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>匯出</div>
+        <div class="st-pb">
+          <div class="st-stats" id="stStats"></div>
+          <div class="st-export-bar">
+            <button class="st-exp-btn ics" onclick="stExportICS()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              ICS 行事曆
+            </button>
+            <button class="st-exp-btn xlsx" onclick="stExportExcel()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Excel 日曆
+            </button>
+          </div>
+          <p style="font-size:10px;color:var(--hint);margin-top:6px">ICS：匯入手機行事曆（可選人）<br>Excel：橫向多人日曆表格</p>
+        </div>
+      </div>
+    </div>
+    <!-- 右欄日曆 -->
+    <div>
+      <div class="st-cal-wrap">
+        <div class="st-cal-nav">
+          <button class="st-nav-btn" onclick="stShiftMonth(-1)">‹</button>
+          <h3 id="stCalTitle">—</h3>
+          <button class="st-nav-btn" onclick="stShiftMonth(1)">›</button>
+        </div>
+        <div class="st-cal-scroll"><table class="st-cal-table" id="stCalTable"></table></div>
+      </div>
+    </div>
+  </div>
+  </div></div>
+  <div class="ad-slot" style="margin:1.25rem 1.5rem 0"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9820" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+</div>
+
+<div class="panel" id="panel-news">
   <div class="news-header">
     <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
     <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
@@ -697,6 +833,355 @@ document.addEventListener('click', function(e){
     gtag('event', 'copy_result', { tool: tool });
   }
 });
+</script>
+<!-- 排班選擇器 -->
+<div class="st-picker" id="stPicker"></div>
+<div class="st-toast" id="stToast"></div>
+
+<script>
+// ══════════════════════════════
+// 排班表工具
+// ══════════════════════════════
+let stShifts = [
+  {id:'E', name:'早班', start:'08:00', end:'16:00', color:'#2D6CB5'},
+  {id:'M', name:'中班', start:'14:00', end:'22:00', color:'#E07B2A'},
+  {id:'N', name:'晚班', start:'22:00', end:'06:00', color:'#7B1FA2'},
+  {id:'R', name:'休假', start:'', end:'', color:'#B0B8C4'},
+  {id:'X', name:'自填', start:'', end:'', color:'#2E7D32', custom:true},
+];
+let stEmps = ['員工A','員工B','員工C'];
+let stAssign = {}; // key: empIdx+'-'+dateStr, val: shiftId or custom text
+let stCustomText = {}; // key: empIdx+'-'+dateStr, val: free text
+let stPeriodMode = 'month';
+let stViewYear, stViewMonth;
+let stDates = [];
+let stSelCells = new Set(); // empIdx-dateStr
+
+(function stInit(){
+  const now = new Date();
+  stViewYear = now.getFullYear();
+  stViewMonth = now.getMonth();
+  document.getElementById('stMonthVal').value = `${stViewYear}-${String(stViewMonth+1).padStart(2,'0')}`;
+  const td = now.toISOString().slice(0,10);
+  document.getElementById('stRangeS').value = td;
+  const ed = new Date(now); ed.setDate(ed.getDate()+27);
+  document.getElementById('stRangeE').value = ed.toISOString().slice(0,10);
+  stRenderShiftList();
+  stRenderEmpList();
+  stRender();
+})();
+
+// ── Shift types ──
+const ST_COLORS = ['#2D6CB5','#E07B2A','#7B1FA2','#0FA47A','#C62828','#C58A12','#1976D2','#388E3C'];
+function stAddShift(){
+  const id='S'+(Date.now()%100000);
+  stShifts.push({id,name:'新班別',start:'09:00',end:'18:00',color:ST_COLORS[stShifts.length%ST_COLORS.length]});
+  stRenderShiftList();
+}
+function stDelShift(id){
+  if(stShifts.length<=1){stToastShow('至少保留一個班別');return;}
+  stShifts=stShifts.filter(s=>s.id!==id);
+  stRenderShiftList();
+  stRenderCells();
+}
+function stRenderShiftList(){
+  const el=document.getElementById('shiftTypeList');
+  el.innerHTML=stShifts.map((s,i)=>`
+    <div class="sh-item">
+      <label class="sh-color"><input type="color" value="${s.color}" onchange="stShifts[${i}].color=this.value;stRenderCells();stRenderBulk()"></label>
+      <input class="st-input" value="${s.name}" onchange="stShifts[${i}].name=this.value;stRenderCells();stRenderBulk()" placeholder="名稱">
+      <input class="st-input" type="time" value="${s.start}" onchange="stShifts[${i}].start=this.value" ${!s.start&&!s.custom?'disabled':''} placeholder="開始">
+      <input class="st-input" type="time" value="${s.end}" onchange="stShifts[${i}].end=this.value" ${!s.end&&!s.custom?'disabled':''} placeholder="結束">
+      <button class="sh-del" onclick="stDelShift('${s.id}')">×</button>
+    </div>
+  `).join('');
+  stRenderBulk();
+}
+function stRenderBulk(){
+  const el=document.getElementById('stBulkBar');
+  el.innerHTML=stShifts.map(s=>`
+    <button class="st-bulk-btn" style="background:${s.color};color:#fff" onclick="stBulkAssign('${s.id}')">${s.name}</button>
+  `).join('');
+}
+function stBulkAssign(sid){
+  if(stSelCells.size===0){stToastShow('請先 Ctrl+點選 多個格子');return;}
+  stSelCells.forEach(key=>{stAssign[key]=sid;});
+  stRenderCells();
+  stUpdateStats();
+  stSelCells.clear();
+  stToastShow(`已指派 ${stSelCells.size||'選取'} 個格子`);
+}
+
+// ── Employees ──
+function stAddEmp(){
+  stEmps.push('員工'+(stEmps.length+1));
+  stRenderEmpList();
+  stRender();
+}
+function stDelEmp(i){
+  if(stEmps.length<=1){stToastShow('至少保留一人');return;}
+  stEmps.splice(i,1);
+  // remove assignments
+  Object.keys(stAssign).forEach(k=>{if(k.startsWith(i+'-'))delete stAssign[k];});
+  stRenderEmpList();
+  stRender();
+}
+function stRenderEmpList(){
+  const el=document.getElementById('empList');
+  el.innerHTML=stEmps.map((e,i)=>`
+    <div class="emp-item">
+      <input class="st-input" value="${e}" onchange="stEmps[${i}]=this.value;stRenderCells()">
+      <button class="sh-del" onclick="stDelEmp(${i})">×</button>
+    </div>
+  `).join('');
+}
+
+// ── Period ──
+function stSetPeriod(mode, btn){
+  stPeriodMode=mode;
+  document.querySelectorAll('.st-ptab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('stMonthPick').style.display=mode==='month'?'':'none';
+  document.getElementById('stRangePick').style.display=mode==='range'?'':'none';
+}
+
+function stGetDates(){
+  if(stPeriodMode==='month'){
+    const y=stViewYear,m=stViewMonth;
+    const days=new Date(y,m+1,0).getDate();
+    const arr=[];
+    for(let d=1;d<=days;d++) arr.push(new Date(y,m,d));
+    return arr;
+  } else {
+    const s=document.getElementById('stRangeS').value;
+    const e=document.getElementById('stRangeE').value;
+    if(!s||!e) return [];
+    const arr=[];
+    let cur=new Date(s+'T00:00:00');
+    const end=new Date(e+'T00:00:00');
+    while(cur<=end&&arr.length<93){arr.push(new Date(cur));cur.setDate(cur.getDate()+1);}
+    return arr;
+  }
+}
+const stDs=d=>d.toISOString().slice(0,10);
+
+function stShiftMonth(delta){
+  if(stPeriodMode==='month'){
+    stViewMonth+=delta;
+    if(stViewMonth<0){stViewMonth=11;stViewYear--;}
+    if(stViewMonth>11){stViewMonth=0;stViewYear++;}
+    document.getElementById('stMonthVal').value=`${stViewYear}-${String(stViewMonth+1).padStart(2,'0')}`;
+    stRender();
+  }
+}
+
+// ── Render ──
+function stRender(){
+  if(stPeriodMode==='month'){
+    const v=document.getElementById('stMonthVal').value;
+    if(v){const[y,m]=v.split('-');stViewYear=+y;stViewMonth=+m-1;}
+  }
+  stDates=stGetDates();
+  stSelCells.clear();
+
+  const title=document.getElementById('stCalTitle');
+  if(stPeriodMode==='month') title.textContent=`${stViewYear} 年 ${stViewMonth+1} 月`;
+  else if(stDates.length) title.textContent=`${stDs(stDates[0])} ～ ${stDs(stDates[stDates.length-1])}`;
+
+  const dows=['日','一','二','三','四','五','六'];
+  let th='<tr><th style="min-width:64px;text-align:left;padding-left:8px">人員</th>';
+  stDates.forEach(d=>{
+    const dow=d.getDay();
+    const cls=dow===0?'sun':dow===6?'sat':'';
+    th+=`<th class="${cls}">${d.getDate()}<br><span style="font-size:8px">${dows[dow]}</span></th>`;
+  });
+  th+='</tr>';
+
+  let rows='';
+  stEmps.forEach((emp,ei)=>{
+    rows+=`<tr><td class="emp-name">${emp}</td>`;
+    stDates.forEach(d=>{
+      const ds=stDs(d);
+      const key=`${ei}-${ds}`;
+      const sid=stAssign[key];
+      const ct=stCustomText[key];
+      const sh=stShifts.find(s=>s.id===sid);
+      let badge;
+      if(ct){
+        badge=`<button class="st-badge" style="background:#E8F5E9;color:#2E7D32" onclick="stCellClick(${ei},'${ds}',event)">${ct}</button>`;
+      } else if(sh){
+        badge=`<button class="st-badge" style="background:${sh.color}20;color:${sh.color}" onclick="stCellClick(${ei},'${ds}',event)">${sh.name}</button>`;
+      } else {
+        badge=`<button class="st-badge empty" onclick="stCellClick(${ei},'${ds}',event)">—</button>`;
+      }
+      rows+=`<td id="stc-${key}">${badge}</td>`;
+    });
+    rows+='</tr>';
+  });
+
+  document.getElementById('stCalTable').innerHTML=th+rows;
+  stUpdateStats();
+}
+
+function stRenderCells(){
+  stEmps.forEach((emp,ei)=>{
+    stDates.forEach(d=>{
+      const ds=stDs(d);
+      const key=`${ei}-${ds}`;
+      const cell=document.getElementById('stc-'+key);
+      if(!cell) return;
+      const sid=stAssign[key];
+      const ct=stCustomText[key];
+      const sh=stShifts.find(s=>s.id===sid);
+      let badge;
+      if(ct){
+        badge=`<button class="st-badge" style="background:#E8F5E9;color:#2E7D32" onclick="stCellClick(${ei},'${ds}',event)">${ct}</button>`;
+      } else if(sh){
+        badge=`<button class="st-badge" style="background:${sh.color}20;color:${sh.color}" onclick="stCellClick(${ei},'${ds}',event)">${sh.name}</button>`;
+      } else {
+        badge=`<button class="st-badge empty" onclick="stCellClick(${ei},'${ds}',event)">—</button>`;
+      }
+      cell.innerHTML=badge;
+    });
+  });
+  stUpdateStats();
+}
+
+// ── Cell click / picker ──
+function stCellClick(ei, ds, e){
+  e.stopPropagation();
+  if(e.ctrlKey||e.metaKey||e.shiftKey){
+    const key=`${ei}-${ds}`;
+    if(stSelCells.has(key)) stSelCells.delete(key);
+    else stSelCells.add(key);
+    const cell=document.getElementById('stc-'+key);
+    if(cell) cell.style.outline=stSelCells.has(key)?'2px solid var(--accent-mid)':'';
+    return;
+  }
+  stShowPicker(ei, ds, e);
+}
+document.addEventListener('click',()=>document.getElementById('stPicker').classList.remove('show'));
+
+function stShowPicker(ei, ds, e){
+  const picker=document.getElementById('stPicker');
+  picker.innerHTML=stShifts.map(s=>`
+    <button class="st-pi" style="background:${s.color}18;color:${s.color}" onclick="stAssignCell(${ei},'${ds}','${s.id}',null)">
+      <span class="st-dot" style="background:${s.color}"></span>${s.name}${s.start?' '+s.start:''}
+    </button>
+  `).join('')
+  +`<button class="st-pi" style="background:#F0F8FF;color:#1565C0" onclick="stAskCustom(${ei},'${ds}')">✏️ 自填文字</button>`
+  +`<button class="st-pi" style="background:#F5F5F5;color:#999" onclick="stAssignCell(${ei},'${ds}',null,null)">✕ 清除</button>`;
+  const rect=e.target.getBoundingClientRect();
+  picker.style.top=(rect.bottom+window.scrollY+4)+'px';
+  picker.style.left=Math.min(rect.left+window.scrollX,window.innerWidth-130)+'px';
+  picker.classList.add('show');
+  e.stopPropagation();
+}
+function stAssignCell(ei, ds, sid, ct){
+  const key=`${ei}-${ds}`;
+  if(sid) stAssign[key]=sid; else delete stAssign[key];
+  delete stCustomText[key];
+  document.getElementById('stPicker').classList.remove('show');
+  stRenderCells();
+}
+function stAskCustom(ei, ds){
+  document.getElementById('stPicker').classList.remove('show');
+  const v=prompt('輸入自訂文字（例：外訓、公差）：','');
+  if(v===null) return;
+  const key=`${ei}-${ds}`;
+  if(v.trim()){
+    stCustomText[key]=v.trim();
+    delete stAssign[key];
+  } else {
+    delete stCustomText[key];
+    delete stAssign[key];
+  }
+  stRenderCells();
+}
+
+// ── Stats ──
+function stUpdateStats(){
+  const counts={};
+  stShifts.forEach(s=>counts[s.id]=0);
+  Object.values(stAssign).forEach(sid=>{if(counts[sid]!==undefined)counts[sid]++;});
+  const el=document.getElementById('stStats');
+  el.innerHTML=stShifts.map(s=>`
+    <div class="st-stat"><b style="color:${s.color}">${counts[s.id]}</b><span>${s.name}</span></div>
+  `).join('');
+}
+
+// ── Export ICS ──
+function stExportICS(){
+  const empIdx=prompt('請輸入要匯出的員工編號（1='+stEmps[0]+'，2='+stEmps[1]+'…，全部留空）：','');
+  const targets = empIdx&&empIdx.trim()!==''
+    ? [parseInt(empIdx.trim())-1]
+    : stEmps.map((_,i)=>i);
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH','CALSCALE:GREGORIAN'];
+  const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+  targets.forEach(ei=>{
+    if(ei<0||ei>=stEmps.length) return;
+    stDates.forEach(d=>{
+      const ds=stDs(d);
+      const key=`${ei}-${ds}`;
+      const sid=stAssign[key];
+      const ct=stCustomText[key];
+      const sh=stShifts.find(s=>s.id===sid);
+      const name=ct?ct:(sh?sh.name:null);
+      if(!name) return;
+      if(sh&&sh.start&&sh.end){
+        const [sh2,sm]=sh.start.split(':');
+        const [eh,em]=sh.end.split(':');
+        const y=ds.slice(0,4),mo=ds.slice(5,7),dd2=ds.slice(8,10);
+        const dtstart=`${y}${mo}${dd2}T${sh2.padStart(2,'0')}${sm.padStart(2,'0')}00`;
+        const nd=new Date(ds+'T00:00:00');
+        if(+sh2>+eh) nd.setDate(nd.getDate()+1);
+        const ny=nd.getFullYear(),nm=String(nd.getMonth()+1).padStart(2,'0'),ndd=String(nd.getDate()).padStart(2,'0');
+        const dtend=`${ny}${nm}${ndd}T${eh.padStart(2,'0')}${em.padStart(2,'0')}00`;
+        lines.push('BEGIN:VEVENT',`UID:${key}@calcbox`,`DTSTAMP:${now}`,`DTSTART:${dtstart}`,`DTEND:${dtend}`,`SUMMARY:${stEmps[ei]} ${name}`,`DESCRIPTION:${sh.start}–${sh.end}`,'END:VEVENT');
+      } else {
+        const dt=ds.replace(/-/g,'');
+        const nd2=new Date(ds+'T00:00:00');nd2.setDate(nd2.getDate()+1);
+        const ndt=stDs(nd2).replace(/-/g,'');
+        lines.push('BEGIN:VEVENT',`UID:${key}@calcbox`,`DTSTAMP:${now}`,`DTSTART;VALUE=DATE:${dt}`,`DTEND;VALUE=DATE:${ndt}`,`SUMMARY:${stEmps[ei]} ${name}`,'END:VEVENT');
+      }
+    });
+  });
+  lines.push('END:VCALENDAR');
+  stDownload('排班表.ics',lines.join('\r\n'),'text/calendar');
+  stToastShow('ICS 已下載，點開檔案即可匯入行事曆');
+}
+
+// ── Export Excel (CSV UTF-8 BOM, calendar layout) ──
+function stExportExcel(){
+  const dows=['日','一','二','三','四','五','六'];
+  // Header row 1: 人員 + dates
+  const r1=['"人員"',...stDates.map(d=>`"${d.getMonth()+1}/${d.getDate()}(${dows[d.getDay()]})"`)];
+  const rows=[r1.join(',')];
+  stEmps.forEach((emp,ei)=>{
+    const row=[`"${emp}"`];
+    stDates.forEach(d=>{
+      const key=`${ei}-${stDs(d)}`;
+      const ct=stCustomText[key];
+      const sh=stShifts.find(s=>s.id===stAssign[key]);
+      const val=ct?ct:(sh?sh.name:'');
+      row.push(`"${val}"`);
+    });
+    rows.push(row.join(','));
+  });
+  stDownload('排班表.csv','\uFEFF'+rows.join('\n'),'text/csv');
+  stToastShow('Excel CSV 已下載，用 Excel 開啟即可');
+}
+
+function stDownload(name,content,type){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type}));
+  a.download=name;a.click();
+}
+function stToastShow(msg){
+  const t=document.getElementById('stToast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);
+}
 </script>
 </body>
 </html>
