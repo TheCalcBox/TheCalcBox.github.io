@@ -11,922 +11,806 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Health Score Center｜健康分數、健康年齡、AI 教練 — CalcBox</title>
+<meta name="description" content="CalcBox AI Health Score Center：輸入身高、體重、腰圍、體脂率、睡眠、飲水與運動資料，產生健康分數、健康年齡、AI教練、本週任務、Health Twin與30天改善計畫。">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<!-- ✅ FIX: canonical 改為實際部署域名 -->
+<link rel="canonical" href="https://thecalcbox.github.io/health-score/">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/tools-white/health.png">
-<meta name="apple-mobile-web-app-title" content="健康計算">
-<meta name="theme-color" content="#1B3A5C">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<title>健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox</title>
-<link rel="canonical" href="https://thecalcbox.github.io/health/">
-<meta name="description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
-<meta name="keywords" content="BMI計算,TDEE計算,體脂率計算,理想體重,飲水量,睡眠計算">
-<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
-<meta property="og:title" content="健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox">
-<meta property="og:description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta property="og:title" content="AI 健康分數中心｜CalcBox">
+<meta property="og:description" content="輸入一次健康資料，立即產生健康分數、健康年齡、AI 教練與 30 天改善計畫。">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="CalcBox">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:url" content="https://thecalcbox.github.io/health/">
+<meta property="og:url" content="https://thecalcbox.github.io/health-score/">
 <meta property="og:image" content="https://thecalcbox.github.io/og/health.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="健康計算｜BMI、TDEE、體脂率、理想體重">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://thecalcbox.github.io/og/health.png">
-<meta name="twitter:title" content="健康計算工具｜BMI、TDEE、體脂率、理想體重免費計算 — CalcBox">
-<meta name="twitter:description" content="免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"WebApplication","name":"BMI 計算機","url":"https://thecalcbox.github.io/health/#bmi","description":"依台灣衛福部標準計算BMI與健康體重範圍。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"TDEE 每日熱量計算","url":"https://thecalcbox.github.io/health/#tdee","description":"Mifflin-St Jeor公式計算每日熱量消耗，附減脂增肌建議。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"體脂率估算","url":"https://thecalcbox.github.io/health/#bodyfat","description":"美國海軍圍度公式估算體脂率，免體脂計。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"理想體重計算","url":"https://thecalcbox.github.io/health/#ideal","description":"BMI 22法與Devine公式計算理想體重區間。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"每日飲水量計算","url":"https://thecalcbox.github.io/health/#water","description":"依體重、運動量與台灣氣候計算建議飲水量。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"睡眠時間計算","url":"https://thecalcbox.github.io/health/#sleep","description":"90分鐘睡眠週期反推最佳就寢時刻。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
-]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"台灣BMI正常範圍是多少？","acceptedAnswer":{"@type":"Answer","text":"依衛福部標準，BMI 18.5–23.9為健康體重，24–26.9過重，27以上肥胖。"}},
-{"@type":"Question","name":"體脂率多少算正常？","acceptedAnswer":{"@type":"Answer","text":"男性健康範圍約14–23%、女性17–27%。男性超過25%、女性超過30%屬肥胖。"}},
-{"@type":"Question","name":"每天該喝多少水？","acceptedAnswer":{"@type":"Answer","text":"衛福部建議每日飲水量為體重(公斤)×30–35毫升，60公斤約1800–2100毫升。"}}
-]}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"AI Health Score Center","url":"https://thecalcbox.github.io/health-score/","applicationCategory":"HealthApplication","operatingSystem":"Web","description":"輸入健康資料後產生健康分數、健康年齡、AI教練與30天改善計畫。","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"健康分數是什麼？","acceptedAnswer":{"@type":"Answer","text":"健康分數是依 BMI、體脂率、腰臀比、蛋白質、睡眠、飲水與運動頻率估算的綜合健康指標，用來快速了解目前健康狀態與改善優先順序。"}},{"@type":"Question","name":"健康年齡怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"健康年齡會根據 BMI、體脂率、睡眠與運動等因素估算。若體脂率偏高、睡眠不足或運動頻率較低，健康年齡可能高於實際年齡。"}},{"@type":"Question","name":"AI 教練會給什麼建議？","acceptedAnswer":{"@type":"Answer","text":"AI 教練會根據目前最大改善空間，提供本週三大任務、最值得改善的指標與30天行動計畫。"}}]}]}</script>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ── Design tokens ── */
 :root{
-  --accent:#1B5E20;--accent-light:#E8F5E9;--accent-mid:#2E7D32;
-  --sub:#2E7D32;--sub-light:#E8F5E9;
-  --green:#2E7D32;--green-light:#E8F5E9;
-  --red:#C62828;--red-light:#FFEBEE;
-  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
-  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
-  --border:#E3E9F0;--border-light:#F0F3F7;
-  --white:#fff;--radius:12px;--radius-sm:8px;
+  --navy:#0E2A47; --navy-mid:#163E66; --navy-light:#1E5080;
+  --gold:#F3C969; --gold-deep:#C28A1A; --gold-text:#B07A14; --gold-soft:#FBF0D3;
+  --teal:#0FA47A; --teal-soft:#E4F4EE;
+  --amber:#F59E0B; --amber-soft:#FEF3C7;
+  --rose:#E84393; --rose-soft:#FCE7F3;
+  --blue:#2563EB; --blue-soft:#EFF6FF;
+  --purple:#7C3AED; --purple-soft:#F5F3FF;
+  --green:#16A34A; --green-soft:#DCFCE7;
+  --red:#DC2626; --red-soft:#FEE2E2;
+  --text:#111827; --muted:#6B7280; --hint:#9CA3AF;
+  --bg:#F3F6FA; --card:#fff; --border:#E5EAF2;
+  --radius:18px; --shadow:0 4px 24px rgba(14,42,71,.08);
+  --shadow-lg:0 12px 40px rgba(14,42,71,.13);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
-header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
-.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
-.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
-.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
-.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
-.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
-.tab-inner::-webkit-scrollbar{display:none}
-.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
-.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
-.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
-.panel{display:none}.panel.active{display:block}
-.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
-.card-head{padding:1.25rem 1.5rem 0}
-.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
-.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
-.card-body{padding:0 1.5rem 1.5rem}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.fields.one{grid-template-columns:1fr}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
-.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(46,125,50,.1)}
-.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
-.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
-.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
-.result.show{display:block}
-.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
-.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
-.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
-.tag-green{background:var(--green-light);color:var(--green)}
-.tag-red{background:var(--red-light);color:var(--red)}
-.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
-.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
-.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
-.result-cell .val{font-size:15px;font-weight:700}
-.result-cell .val.red{color:var(--red)}
-.result-cell .val.green{color:var(--green)}
-.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
-.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
-.news-title{font-size:17px;font-weight:800}
-.news-meta{font-size:12px;color:var(--hint)}
-.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
-.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
-.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
-.spin{display:inline-block;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.news-list{display:flex;flex-direction:column;gap:10px}
-.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
-.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
-.news-card-inner{display:flex;gap:14px;align-items:flex-start}
-.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.news-content{flex:1;min-width:0}
-.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
-.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
-.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
-.news-date{font-size:11px;color:var(--hint);margin-top:5px}
-.news-skeleton{display:flex;flex-direction:column;gap:10px}
-.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
-.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
-.skel-line.short{width:35%}.skel-line.mid{width:65%}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
-.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
-.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
-.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
-.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
-.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
-.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
-.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
-footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
-footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
-footer a{color:rgba(255,255,255,.92);text-decoration:none}
-@media(max-width:520px){
-  .wrap{padding:1.25rem 1rem 3rem}
-  .fields{grid-template-columns:1fr}
-  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
-  .tab-btn{padding:0 11px;font-size:12px}
+*{box-sizing:border-box;margin:0;padding:0}html,body{overflow-x:hidden}img,svg{max-width:100%}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── Header ── */
+header{background:var(--navy);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.08)}
+.hdr{max-width:1100px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+.logo{color:#fff;text-decoration:none;font-weight:900;font-size:17px;display:flex;align-items:center;gap:10px}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#1E456E,#0E2A47);border:1.5px solid rgba(243,201,105,.3);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo-trail{font-size:12px;color:rgba(255,255,255,.5);font-weight:500}
+.back-btn{font-size:12px;color:rgba(255,255,255,.85);text-decoration:none;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 14px;font-weight:600;transition:background .15s}
+.back-btn:hover{background:rgba(255,255,255,.1)}
+
+/* ── Hero ── */
+.hero{
+  background:linear-gradient(135deg,#081E34 0%,#0E2A47 45%,#163E66 100%);
+  color:#fff;padding:3rem 1.25rem 2.5rem;overflow:hidden;position:relative;
+}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 700px 400px at 80% 50%,rgba(194,138,26,.12),transparent);pointer-events:none}
+.hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--gold);background:rgba(243,201,105,.12);border:1px solid rgba(243,201,105,.25);padding:5px 13px;border-radius:999px;margin-bottom:16px;font-family:'Space Grotesk',sans-serif}
+.kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+.hero h1{font-size:clamp(28px,4vw,42px);line-height:1.15;font-weight:900;letter-spacing:-.6px;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.75);max-width:520px;line-height:1.75}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.hero-chips span{font-size:11px;font-weight:700;color:rgba(255,255,255,.9);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px}
+
+/* ── Score Ring (SVG-based, signature element) ── */
+.ring-widget{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px 28px;min-width:240px;text-align:center;backdrop-filter:blur(8px)}
+.ring-svg-wrap{position:relative;width:160px;height:160px;margin:0 auto 16px}
+.ring-svg{transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:rgba(255,255,255,.1);stroke-width:14}
+.ring-fill{fill:none;stroke:url(#scoreGrad);stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.3,1)}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-score{font-size:42px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:#fff;line-height:1}
+.ring-label{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.ring-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ring-cell{background:rgba(255,255,255,.08);border-radius:12px;padding:11px 14px}
+.ring-cell small{display:block;font-size:10px;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.ring-cell strong{font-size:18px;font-weight:800;color:#fff;font-family:'Space Grotesk',sans-serif}
+
+/* ── Ad slot ── */
+.ad-slot{background:#fff;border:1px solid var(--border);border-radius:12px;padding:4px;text-align:center;overflow:hidden}
+.ad-label{font-size:10px;color:var(--hint);padding:4px 0 2px;letter-spacing:.06em}
+
+/* ── Main layout ── */
+.main{max-width:1100px;margin:0 auto;padding:1.75rem 1.25rem 4rem}
+.layout{display:grid;grid-template-columns:360px 1fr;gap:20px;align-items:start}
+
+/* ── Card ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}
+.card-head{padding:1.1rem 1.35rem .8rem;border-bottom:1px solid var(--border)}
+.card-head h2{font-size:16px;font-weight:900;letter-spacing:-.2px}
+.card-head p{font-size:11.5px;color:var(--muted);margin-top:2px}
+.card-body{padding:1.1rem 1.35rem}
+
+/* ── Input form ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+label{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+input,select{height:40px;border:1.5px solid var(--border);border-radius:10px;background:#fff;padding:0 11px;font-size:13.5px;font-family:inherit;color:var(--text);transition:border-color .15s}
+input:focus,select:focus{outline:none;border-color:var(--navy-mid);box-shadow:0 0 0 3px rgba(14,42,71,.08)}
+.btn-calc{width:100%;height:44px;border:none;border-radius:12px;margin-top:12px;background:linear-gradient(135deg,var(--navy-mid),var(--navy));color:#fff;font-size:13.5px;font-weight:900;cursor:pointer;font-family:inherit;letter-spacing:.02em;transition:transform .15s,box-shadow .15s}
+.btn-calc:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,42,71,.25)}
+.btn-reset{width:100%;height:38px;border:1.5px solid var(--border);border-radius:10px;margin-top:6px;background:#fff;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+
+/* ── Dashboard panels ── */
+.dash{display:grid;gap:16px}
+
+/* Top 3 metrics */
+.top3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric{border-radius:16px;padding:16px 18px;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow)}
+.metric-label{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.metric-value{font-size:36px;font-weight:900;font-family:'Space Grotesk',sans-serif;letter-spacing:-1px;line-height:1}
+.metric-value small{font-size:14px;color:var(--muted);font-weight:600}
+.metric-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;margin-top:8px}
+.badge-green{background:var(--green-soft);color:var(--green)}
+.badge-amber{background:var(--amber-soft);color:#92400E}
+.badge-red{background:var(--red-soft);color:var(--red)}
+.badge-blue{background:var(--blue-soft);color:var(--blue)}
+
+/* AI Summary */
+.ai-card{border-left:4px solid var(--gold);background:linear-gradient(135deg,#FFFCF5,#fff)}
+.ai-text{font-size:13.5px;color:#385064;line-height:1.8}
+
+/* Core metrics grid */
+.core6{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.core-item{border:1px solid var(--border);border-radius:14px;padding:13px 15px;background:#fff}
+.core-name{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.core-num{font-size:22px;font-weight:900;font-family:'Space Grotesk',sans-serif;letter-spacing:-.5px}
+.core-desc{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* Coach card */
+.coach-card{background:linear-gradient(135deg,#081E34,#163E66);border:none;color:#fff}
+.coach-card .card-head{border-bottom:1px solid rgba(255,255,255,.1)}
+.coach-card .card-head h2{color:#fff}
+.coach-card .card-head p{color:rgba(255,255,255,.6)}
+.coach-body{font-size:13.5px;color:rgba(255,255,255,.85);line-height:1.75}
+.coach-boxes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.coach-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:13px}
+.coach-box b{display:block;color:#fff;font-size:12px;font-weight:900;letter-spacing:.03em;margin-bottom:4px}
+.coach-box span{font-size:12.5px;color:rgba(255,255,255,.75)}
+
+/* ── CHART: Ability Radar (CSS bars styled as pentagon-inspired) ── */
+.ability-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Horizontal bar chart */
+.hbar-list{display:grid;gap:11px}
+.hbar-row{display:grid;gap:4px}
+.hbar-meta{display:flex;justify-content:space-between;align-items:center}
+.hbar-name{font-size:12px;font-weight:700;color:var(--text)}
+.hbar-pct{font-size:12px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:var(--navy)}
+.hbar-track{height:9px;background:#EEF2F7;border-radius:99px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.2,.7,.3,1)}
+
+/* Radar SVG chart */
+.radar-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.radar-title{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.radar-svg{width:180px;height:180px;max-width:100%}
+
+/* ── TOP3 Improvements: horizontal stacked ── */
+.improve-list{display:grid;gap:10px}
+.improve-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 16px}
+.improve-rank{width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
+.improve-info h3{font-size:13px;font-weight:900;margin-bottom:2px}
+.improve-info p{font-size:11px;color:var(--muted)}
+.improve-bar-wrap{margin-top:6px}
+.improve-bar{height:5px;background:#EEF2F7;border-radius:99px;overflow:hidden;margin-top:4px}
+.improve-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),#7DDFBC)}
+.improve-gain{font-size:13px;font-weight:900;font-family:'Space Grotesk',sans-serif;color:var(--green);background:var(--green-soft);padding:5px 10px;border-radius:999px;white-space:nowrap;flex-shrink:0}
+
+/* ── Health Twin ── */
+.twin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twin-box{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}
+.twin-box h3{font-size:12px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.twin-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #F0F4F8;padding:7px 0;font-size:13px}
+.twin-row:first-of-type{border-top:none}
+.twin-row span{color:var(--muted)}
+.twin-row b{font-weight:800;font-family:'Space Grotesk',sans-serif}
+
+/* Completion bar */
+.completion-bar-wrap{margin-top:14px;padding:16px;border-radius:14px;background:linear-gradient(135deg,var(--purple-soft),#fff)}
+.completion-label{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--purple);margin-bottom:8px}
+.completion-track{height:12px;background:rgba(124,58,237,.15);border-radius:99px;overflow:hidden}
+.completion-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),#A78BFA);transition:width .9s cubic-bezier(.2,.7,.3,1)}
+.completion-note{font-size:11px;color:var(--muted);margin-top:6px;text-align:center}
+
+/* ── Life habits ── */
+.life-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.life-cell{background:#F9FBFC;border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.life-cell small{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.life-cell b{display:block;font-size:17px;font-weight:900;margin-top:3px;font-family:'Space Grotesk',sans-serif}
+
+/* ── Roadmap ── */
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.week{border:1px solid var(--border);border-radius:14px;padding:13px;background:#fff;position:relative}
+.week-num{font-size:10px;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.week-num span{color:var(--navy)}
+.week ul{list-style:none;display:grid;gap:5px}
+.week li{font-size:11.5px;color:var(--text);padding-left:14px;position:relative;line-height:1.5}
+.week li::before{content:'→';position:absolute;left:0;color:var(--gold-deep);font-size:10px;top:1px}
+
+/* ── Related tools ── */
+.related{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.related a{text-decoration:none;color:var(--text);background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px;font-size:12px;font-weight:800;transition:all .15s;text-align:center}
+.related a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--gold);color:var(--gold-text)}
+
+/* ── Footer note ── */
+.footer-note{font-size:11px;color:var(--hint);text-align:center;margin-top:28px;line-height:1.8}
+
+/* ── Tasks ── */
+.task-list{display:grid;gap:10px}
+.task{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:13px 15px}
+.task h3{font-size:13px;font-weight:900}
+.task p{font-size:11px;color:var(--muted);margin-top:2px}
+.task-progress{height:6px;background:#EEF2F7;border-radius:99px;overflow:hidden;margin-top:7px}
+.task-progress i{display:block;height:100%;background:linear-gradient(90deg,#1B5E20,#66BB6A);border-radius:99px}
+.task-pts{font-size:12px;font-weight:900;color:var(--green);background:var(--green-soft);border-radius:999px;padding:5px 10px;white-space:nowrap}
+
+/* ── Details ── */
+details{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+summary{cursor:pointer;padding:1rem 1.35rem;font-size:14px;font-weight:800;color:var(--text)}
+summary::-webkit-details-marker{color:var(--gold)}
+
+.form-sticky{position:sticky;top:68px}
+/* ── RWD ── */
+
+/* Tablet 960px */
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr}
+  .ring-widget{display:none}
+  .layout{grid-template-columns:1fr}
+  /* unstick the form on tablet/mobile */
+  .layout > div:first-child .card{position:static !important}
+  .top3{grid-template-columns:repeat(3,1fr)}
+  .core6{grid-template-columns:repeat(3,1fr)}
+  .ability-wrap{grid-template-columns:1fr 1fr}
+  .twin-grid{grid-template-columns:1fr 1fr}
+  .roadmap{grid-template-columns:1fr 1fr}
+  .related{grid-template-columns:repeat(3,1fr)}
+  .coach-boxes{grid-template-columns:1fr 1fr}
+  .life-grid{grid-template-columns:repeat(4,1fr)}
 }
 
-.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
-
-/* ── 回到主頁按鈕 ── */
-.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
-  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
-  border-radius:8px;border:1px solid rgba(255,255,255,.22);
-  transition:color .15s,background .15s,border-color .15s}
-.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
-.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
-  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
-.back-btn:hover svg{transform:translateX(-2px)}
-
-/* ── Brand unification ── */
-header{background:#0E2A47!important}
-footer{background:#0E2A47!important}
-footer p{color:rgba(255,255,255,.78)!important}
-footer a{color:rgba(255,255,255,.92)!important}
-footer a:hover{color:#F3C969!important}
-.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
-
-/* ── 相關工具 ── */
-.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
-.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.related-card{
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;
-  background:var(--rs,#F4F6F9);
-  border:1.5px solid transparent;
-  border-left:4px solid var(--rc,#888);
-  border-radius:12px;padding:14px 14px 14px 16px;
-  transition:box-shadow .18s,transform .18s,background .18s;
-  -webkit-tap-highlight-color:transparent;
-}
-.related-card:hover,.related-card:active{
-  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
-  transform:translateY(-2px);
-  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
-}
-.related-card-body{flex:1;min-width:0}
-.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
-.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
-.related-card-tags span{
-  font-size:10px;font-weight:600;
-  color:var(--rc,#555);
-  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
-  padding:2px 7px;border-radius:5px;
-  white-space:nowrap;
-}
-.related-card-go{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  background:var(--rc,#888);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;line-height:1;
-  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
-  transition:transform .18s;
-}
-.related-card:hover .related-card-go{transform:translateX(3px)}
-@media(max-width:560px){
-  .related-grid{grid-template-columns:1fr}
-  .related-card-sub{white-space:normal}
+/* Mobile 600px */
+@media(max-width:600px){
+  .hero{padding:1.5rem 1rem 1.5rem}
+  .hero h1{font-size:26px}
+  .hero-desc{font-size:13px}
+  .main{padding:1rem .85rem 3rem}
+  /* form full width, no sticky */
+  .layout > div:first-child .card{position:static !important;top:auto !important}
+  /* metrics: 3 across but compact */
+  .top3{grid-template-columns:repeat(3,1fr);gap:8px}
+  .metric{padding:12px 10px}
+  .metric-label{font-size:9px}
+  .metric-value{font-size:24px}
+  .metric-value small{font-size:11px}
+  .metric-badge{font-size:10px;padding:3px 7px}
+  /* core: 2 col */
+  .core6{grid-template-columns:1fr 1fr;gap:8px}
+  .core-num{font-size:19px}
+  /* ability: stack */
+  .ability-wrap{grid-template-columns:1fr}
+  .radar-wrap{order:-1}
+  /* coach boxes */
+  .coach-boxes{grid-template-columns:1fr}
+  /* twin */
+  .twin-grid{grid-template-columns:1fr 1fr;gap:8px}
+  /* roadmap 2 col */
+  .roadmap{grid-template-columns:1fr 1fr;gap:8px}
+  /* related 2 col */
+  .related{grid-template-columns:1fr 1fr;gap:8px}
+  .related a{font-size:11px;padding:10px 8px}
+  /* life grid 2 col */
+  .life-grid{grid-template-columns:1fr 1fr;gap:8px}
+  /* form */
+  .form-grid{grid-template-columns:1fr 1fr;gap:9px}
+  /* card padding */
+  .card-head{padding:.9rem 1rem .7rem}
+  .card-body{padding:.9rem 1rem}
+  .card-head h2{font-size:14px}
+  /* improve rows */
+  .improve-row{grid-template-columns:auto 1fr auto;gap:10px;padding:10px 12px}
+  .improve-info h3{font-size:12px}
+  /* task */
+  .task{padding:11px 12px}
+  .task h3{font-size:12px}
+  /* summary */
+  .ai-text{font-size:13px}
 }
 
-/* ── 資料來源標註 ── */
-.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
-.source-note b{color:#7A8EA0;font-weight:600}
-
-/* ── 按鈕下方廣告位 ── */
-.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
-.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
-.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
-
-.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
-.tab-btn span{display:inline-block}
-
-
-/* ── AI SEO 結果解讀區塊 ── */
-.ai-advice{margin-top:1rem;display:flex;flex-direction:column;gap:12px}
-.ai-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 15px}
-.ai-box.ai-summary{background:linear-gradient(135deg,#F1F8E9,#FFFFFF);border-left:4px solid var(--accent-mid)}
-.ai-box h3{font-size:14px;font-weight:800;margin-bottom:7px;color:var(--text)}
-.ai-box p{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:6px}
-.ai-box ul{padding-left:1.15rem;margin:6px 0 0}
-.ai-box li{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:2px}
-.ai-box .faq-q{font-size:13px;font-weight:800;color:var(--text);margin-top:10px}.ai-box .faq-a{font-size:13px;color:var(--muted);line-height:1.75;margin-top:3px}
-.ai-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:8px}
-.ai-kpi div{background:var(--gray-50);border:1px solid var(--border-light);border-radius:8px;padding:9px 10px}
-.ai-kpi b{display:block;font-size:11px;color:var(--hint);margin-bottom:2px}.ai-kpi span{font-size:14px;font-weight:800;color:var(--accent-mid)}
-.ai-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ai-tools a{font-size:12px;font-weight:700;text-decoration:none;background:var(--accent-light);color:var(--accent-mid);padding:5px 9px;border-radius:7px}
-@media(max-width:520px){.ai-box{padding:12px}.ai-kpi{grid-template-columns:1fr 1fr}}
-
-
-.ai-seo-box{margin-top:1rem;padding:1rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text);line-height:1.8}
-.ai-seo-box h3{font-size:15px;font-weight:800;margin:1rem 0 .45rem;color:var(--accent-mid)}
-.ai-seo-box h3:first-child{margin-top:0}
-.ai-seo-box p{margin:.35rem 0;color:var(--muted)}
-.ai-seo-box ul{padding-left:1.15rem;margin:.35rem 0;color:var(--muted)}
-.ai-seo-box li{margin:.2rem 0}
-.ai-seo-box .ai-summary{background:var(--accent-light);border-left:4px solid var(--accent-mid);padding:.85rem;border-radius:8px;margin-bottom:.8rem;color:var(--text)}
-.ai-seo-box .mini-table{width:100%;border-collapse:collapse;margin:.5rem 0;background:#fff}
-.ai-seo-box .mini-table th,.ai-seo-box .mini-table td{border:1px solid var(--border);padding:7px 8px;text-align:left;font-size:12px}
-.ai-seo-box .mini-table th{background:var(--gray-100);font-weight:800}
-
+/* Small mobile 380px */
+@media(max-width:380px){
+  .top3{grid-template-columns:1fr;gap:8px}
+  .metric{padding:12px 14px}
+  .metric-value{font-size:30px}
+  .form-grid{grid-template-columns:1fr}
+  .twin-grid{grid-template-columns:1fr}
+  .improve-gain{font-size:12px;padding:4px 8px}
+}
 </style>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"健康計算工具","item":"https://thecalcbox.github.io/health/"}]}</script>
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"蛋白質需求計算器","url":"https://thecalcbox.com/health/#protein","description":"依體重、目標與活動量估算每日蛋白質需求，提供減脂、增肌與維持體態的蛋白質攝取建議。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
-</script>
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 健康計算</span></a>
-    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+    <a class="logo" href="/">
+      <span class="logo-mark">C</span>CalcBox
+      <span class="logo-trail">/ Health Score</span>
+    </a>
+    <a href="/health/" class="back-btn">← 健康工具</a>
   </div>
 </header>
 
-<div class="tab-bar">
-  <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>健康新聞</span></button>
-    <button class="tab-btn" onclick="switchTab('bmi')" id="tab-bmi"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="20"/><path d="M5 7h14"/><path d="M5 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L5 7z"/><path d="M19 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L19 7z"/><path d="M8 21h8"/></svg><span>BMI</span></button>
-    <button class="tab-btn" onclick="switchTab('tdee')" id="tab-tdee"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 1.5-4 .5 1.5 1.5 2 2 2 .5-2-.5-5 1.5-7Z"/></svg><span>每日熱量</span></button>
-    <button class="tab-btn" onclick="switchTab('protein')" id="tab-protein"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c2-5 5-8 8-8s6 3 8 8"/><circle cx="12" cy="7" r="4"/><path d="M8 21h8"/></svg><span>蛋白質</span></button>
-    <button class="tab-btn" onclick="switchTab('bodyfat')" id="tab-bodyfat"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1" transform="rotate(0 12 12)"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="11"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg><span>體脂率</span></button>
-    <button class="tab-btn" onclick="switchTab('ideal')" id="tab-ideal"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>理想體重</span></button>
-    <button class="tab-btn" onclick="switchTab('water')" id="tab-water"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg><span>飲水量</span></button>
-    <button class="tab-btn" onclick="switchTab('sleep')" id="tab-sleep"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8 8 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z"/></svg><span>睡眠</span></button>
-    <button class="tab-btn" onclick="switchTab('whr')" id="tab-whr"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1" transform="rotate(0 12 12)"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="11"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg><span>腰臀比</span></button>
-    <button class="tab-btn" onclick="switchTab('heartrate')" id="tab-heartrate"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 22l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/></svg><span>心率區間</span></button>
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="kicker">AI Health Platform · D8</div>
+      <h1>AI <em>健康分數</em>中心</h1>
+      <p class="hero-desc">輸入一次健康資料，立即產生健康分數、健康年齡、AI 教練、本週任務、Health Twin 與 30 天改善計畫。</p>
+      <div class="hero-chips">
+        <span>健康分數</span><span>健康年齡</span><span>AI Coach</span><span>Health Twin</span><span>TOP3 改善</span>
+      </div>
+    </div>
+    <!-- Score ring widget -->
+    <div class="ring-widget">
+      <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160">
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#F3C969"/>
+            <stop offset="100%" stop-color="#0FA47A"/>
+          </linearGradient>
+        </defs>
+        <circle class="ring-track" cx="80" cy="80" r="66"/>
+        <circle class="ring-fill" id="ringFill" cx="80" cy="80" r="66"
+          stroke-dasharray="414.69" stroke-dashoffset="414.69"/>
+      </svg>
+      <div class="ring-center">
+        <span class="ring-score" id="heroScore">—</span>
+        <span class="ring-label">/ 100</span>
+      </div>
+      <div class="ring-meta" style="margin-top:0">
+        <div class="ring-cell"><small>健康年齡</small><strong id="heroAge">—</strong></div>
+        <div class="ring-cell"><small>狀態</small><strong id="heroLevel">—</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ 廣告位 #1：Hero 下方 高曝光 -->
+<div style="max-width:1100px;margin:16px auto 0;padding:0 1.25rem">
+  <div class="ad-slot">
+    <div class="ad-label">廣告</div>
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-9509448455103495"
+      data-ad-slot="6010"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 </div>
 
-<div class="wrap">
-<h1 class="page-h1">健康計算工具</h1>
-<p class="page-lead">免費健康計算機：BMI、每日熱量TDEE、體脂率估算、理想體重、飲水量、睡眠週期，依台灣衛福部標準，附每日健康新聞。</p>
+<main class="main">
+<div class="layout">
 
-
-<div class="panel active" id="panel-news">
-  <div class="news-header">
-    <div><div class="news-title">每日健康焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
-    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
+  <!-- ── Left: Input Form ── -->
+  <div>
+    <div class="card form-sticky">
+      <div class="card-head"><h2>輸入健康資料</h2><p>資料僅在本機計算，不上傳伺服器。</p></div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>性別</label>
+            <select id="gender"><option value="m">男性</option><option value="f">女性</option></select>
+          </div>
+          <div class="field">
+            <label>年齡</label>
+            <input type="number" id="age" value="35" min="18" max="90">
+          </div>
+          <div class="field">
+            <label>身高 (cm)</label>
+            <input type="number" id="height" value="170">
+          </div>
+          <div class="field">
+            <label>體重 (kg)</label>
+            <input type="number" id="weight" value="80">
+          </div>
+          <div class="field">
+            <label>腰圍 (cm)</label>
+            <input type="number" id="waist" value="92">
+          </div>
+          <div class="field">
+            <label>臀圍 (cm)</label>
+            <input type="number" id="hip" value="100">
+          </div>
+          <div class="field">
+            <label>體脂率 (%)</label>
+            <input type="number" id="bodyfat" value="31" step="0.1">
+          </div>
+          <div class="field">
+            <label>睡眠 (hr/晚)</label>
+            <input type="number" id="sleep" value="6.1" step="0.1" min="3" max="12">
+          </div>
+          <div class="field">
+            <label>飲水 (ml/天)</label>
+            <input type="number" id="water" value="2400" step="100">
+          </div>
+          <div class="field">
+            <label>運動 (次/週)</label>
+            <input type="number" id="exercise" value="1" min="0" max="7">
+          </div>
+          <div class="field full">
+            <label>活動量</label>
+            <select id="activity">
+              <option value="1.2">久坐（幾乎不運動）</option>
+              <option value="1.375">輕度（每週 1-3 次）</option>
+              <option value="1.55" selected>中度（每週 3-5 次）</option>
+              <option value="1.725">高度（每週 6-7 次）</option>
+              <option value="1.9">超高度（體力勞動者）</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>健康目標</label>
+            <select id="goal">
+              <option value="fat_loss" selected>減脂</option>
+              <option value="muscle_gain">增肌</option>
+              <option value="maintain">維持</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-calc" onclick="calculateAll()">計算健康分數</button>
+        <button class="btn-reset" onclick="resetDemo()">重置示範資料</button>
+      </div>
+    </div>
   </div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <div id="news-container" style="margin-top:1.25rem"></div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。如有健康疑慮請諮詢醫師。</p>
-</div>
 
-<!-- BMI -->
-<div class="panel" id="panel-bmi">
-  <div class="tool-card"><div class="card-head">
-    <h2>BMI 身體質量指數</h2><p>依台灣衛福部標準：18.5–23.9 為健康體重</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>身高（公分）</label><input type="number" id="b-h" placeholder="例：170" inputmode="decimal"></div>
-      <div class="field"><label>體重（公斤）</label><input type="number" id="b-w" placeholder="例：65" inputmode="decimal"></div>
-    </div>
-    <button class="calc-btn" onclick="calcBMI()">計算 BMI</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="bmi-result">
-      <div class="result-top"><div class="result-number" id="b-num">—</div><div class="result-unit">BMI</div></div>
-      <span class="tag" id="b-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">健康體重範圍</div><div class="val" id="b-range">—</div></div>
-        <div class="result-cell"><div class="lbl">距離標準中值</div><div class="val" id="b-diff">—</div></div>
+  <!-- ── Right: Dashboard ── -->
+  <div class="dash">
+
+    <!-- Top 3 metrics -->
+    <div class="top3">
+      <div class="metric">
+        <div class="metric-label">Health Score</div>
+        <div class="metric-value"><span id="score">—</span><small> / 100</small></div>
+        <div class="metric-badge badge-amber" id="scoreBadge">計算中</div>
       </div>
-      <div class="result-note" id="b-note"></div>
-      <div class="result-disclaimer">僅供參考，請諮詢醫師取得個人化建議。</div>
-      <div class="ai-advice" id="b-ai"></div>
-    </div>
-    <div class="seo-box">
-      <h3>台灣 BMI 標準</h3>
-      <p>衛福部標準：低於 18.5 過輕、18.5–23.9 健康、24–26.9 過重、27 以上肥胖。亞洲標準較 WHO（25 為界）嚴格，因相同 BMI 下亞洲人體脂率較高。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：BMI 正常但肚子大？</div><div class="seo-faq-a">A：BMI 不反映脂肪分布。腰圍男 ≥90cm、女 ≥80cm 即有代謝症候群風險，建議同時量腰圍。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-
-<!-- TDEE -->
-<div class="panel" id="panel-tdee">
-  <div class="tool-card"><div class="card-head">
-    <h2>TDEE 每日熱量消耗</h2><p>Mifflin-St Jeor 公式，附減脂與增肌建議攝取量</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>身高（公分）</label><input type="number" id="td-h" placeholder="170" inputmode="decimal"></div>
-      <div class="field"><label>體重（公斤）</label><input type="number" id="td-w" placeholder="65" inputmode="decimal"></div>
-      <div class="field"><label>年齡</label><input type="number" id="td-age" placeholder="30" inputmode="numeric"></div>
-      <div class="field"><label>性別</label><select id="td-sex"><option value="m">男</option><option value="f">女</option></select></div>
-    </div>
-    <div class="fields one">
-      <div class="field"><label>活動量</label>
-        <select id="td-act"><option value="1.2">久坐（幾乎不運動）</option><option value="1.375">輕度（週1–2次）</option><option value="1.55" selected>中度（週3–5次）</option><option value="1.725">高度（週6–7次）</option><option value="1.9">超高（勞力工作/職業運動）</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcTDEE()">計算每日熱量</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="tdee-result">
-      <div class="result-top"><div class="result-number" id="td-num">—</div><div class="result-unit">大卡 / 天</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">基礎代謝 BMR</div><div class="val" id="td-bmr">—</div></div>
-        <div class="result-cell"><div class="lbl">減脂建議</div><div class="val green" id="td-cut">—</div></div>
-        <div class="result-cell"><div class="lbl">增肌建議</div><div class="val" id="td-bulk">—</div></div>
-        <div class="result-cell"><div class="lbl">每日蛋白質</div><div class="val" id="td-protein">—</div></div>
+      <div class="metric">
+        <div class="metric-label">健康年齡</div>
+        <div class="metric-value"><span id="healthAge">—</span><small> 歲</small></div>
+        <div class="metric-badge badge-blue" id="ageBadge">—</div>
       </div>
-      <div class="result-note" id="td-note"></div>
-      <div class="result-disclaimer">僅供參考，飲食規劃請諮詢營養師。</div>
-      <div class="ai-advice" id="td-ai"></div>
-    </div>
-    <div class="seo-box">
-      <h3>TDEE 是什麼？</h3>
-      <p>TDEE＝基礎代謝（BMR）×活動係數，是每天總熱量消耗。減脂：攝取 TDEE−500 大卡（每週約減 0.5kg）；增肌：TDEE＋300 大卡＋重訓。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：減脂吃多少不掉肌肉？</div><div class="seo-faq-a">A：熱量不低於 TDEE×75%，蛋白質每公斤體重 1.6–2.0g，搭配阻力訓練。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-
-
-<!-- 蛋白質需求 -->
-<div class="panel" id="panel-protein">
-  <div class="tool-card"><div class="card-head">
-    <h2>蛋白質需求計算器</h2><p>依體重、目標與活動量估算每日蛋白質攝取範圍，適合減脂、增肌與維持體態。</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>體重（公斤）</label><input type="number" id="pr-w" placeholder="例：80" inputmode="decimal"></div>
-      <div class="field"><label>目標</label><select id="pr-goal"><option value="cut">減脂／降低體脂</option><option value="maintain">維持體態</option><option value="bulk">增肌／提升肌肉量</option></select></div>
-      <div class="field"><label>活動量</label><select id="pr-act"><option value="low">低（久坐、少運動）</option><option value="mid" selected>中（每週運動 2–4 次）</option><option value="high">高（每週運動 5 次以上）</option></select></div>
-      <div class="field"><label>飲食型態</label><select id="pr-diet"><option value="normal">一般飲食</option><option value="vegetarian">蛋奶素／植物性為主</option><option value="elder">銀髮或肌少症預防</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcProtein()">計算蛋白質需求</button>
-    <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8018" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="protein-result">
-      <div class="result-top"><div class="result-number" id="pr-num">—</div><div class="result-unit">g / 天</div></div>
-      <span class="tag tag-green" id="pr-tag">每日蛋白質建議</span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">每公斤建議</div><div class="val" id="pr-perkg">—</div></div>
-        <div class="result-cell"><div class="lbl">每餐目標（4餐）</div><div class="val" id="pr-meal">—</div></div>
-        <div class="result-cell"><div class="lbl">雞胸肉約等於</div><div class="val" id="pr-chicken">—</div></div>
-        <div class="result-cell"><div class="lbl">乳清約等於</div><div class="val" id="pr-whey">—</div></div>
+      <div class="metric">
+        <div class="metric-label">健康完成度</div>
+        <div class="metric-value"><span id="completionTop">—</span><small>%</small></div>
+        <div class="metric-badge badge-blue">Health Twin</div>
       </div>
-      <div class="result-note" id="pr-note"></div>
-      <div class="ai-seo-box" id="pr-ai"></div>
-      <div class="result-disclaimer">蛋白質需求會受年齡、腎臟功能、疾病、訓練量與總熱量攝取影響。腎臟病或特殊疾病患者請先諮詢醫師或營養師。</div>
     </div>
-    <div class="seo-box">
-      <h3>一天要吃多少蛋白質？</h3>
-      <p>一般成人可用體重快速估算蛋白質需求：維持體態約每公斤 1.2–1.6g，減脂約 1.6–2.2g，增肌約 1.8–2.4g。若正在減重，足夠蛋白質能增加飽足感、降低肌肉流失風險，並幫助維持基礎代謝率。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：蛋白質一定要靠乳清嗎？</div><div class="seo-faq-a">A：不一定。雞蛋、魚肉、雞肉、豆腐、毛豆、無糖豆漿、希臘優格都能提供蛋白質。乳清只是方便補足缺口的選項。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8009" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
 
-<!-- 體脂率 -->
-<div class="panel" id="panel-bodyfat">
-  <div class="tool-card"><div class="card-head">
-    <h2>體脂率估算（美國海軍公式）</h2><p>用皮尺量腰圍、頸圍即可估算，免體脂計</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>性別</label><select id="bf-sex" onchange="document.getElementById('bf-hip-row').style.display=this.value==='f'?'flex':'none'"><option value="m">男</option><option value="f">女</option></select></div>
-      <div class="field"><label>身高（公分）</label><input type="number" id="bf-h" placeholder="170" inputmode="decimal"></div>
-      <div class="field"><label>腰圍（公分，肚臍高度）</label><input type="number" id="bf-waist" placeholder="85" inputmode="decimal"></div>
-      <div class="field"><label>頸圍（公分）</label><input type="number" id="bf-neck" placeholder="38" inputmode="decimal"></div>
-      <div class="field" id="bf-hip-row" style="display:none"><label>臀圍（公分，女性）</label><input type="number" id="bf-hip" placeholder="95" inputmode="decimal"></div>
+    <!-- AI Summary -->
+    <div class="card ai-card">
+      <div class="card-head"><h2>🤖 AI 健康摘要</h2><p>由 AI 教練根據您的指標產生的個人化分析。</p></div>
+      <div class="card-body"><p class="ai-text" id="aiSummary">請點擊「計算健康分數」以產生摘要。</p></div>
     </div>
-    <button class="calc-btn" onclick="calcBF()">估算體脂率</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="bodyfat-result">
-      <div class="result-top"><div class="result-number" id="bf-num">—</div><div class="result-unit">% 體脂率</div></div>
-      <span class="tag" id="bf-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">脂肪重量（估）</div><div class="val" id="bf-fat">—</div></div>
-        <div class="result-cell"><div class="lbl">健康參考範圍</div><div class="val" id="bf-range">—</div></div>
+
+    <!-- AI Coach -->
+    <div class="card coach-card">
+      <div class="card-head"><h2>今日 AI Coach</h2><p>聚焦今日最重要的任務，避免資訊過載。</p></div>
+      <div class="card-body">
+        <p class="coach-body" id="coachText">—</p>
+        <div class="coach-boxes">
+          <div class="coach-box"><b>今日最重要的一件事</b><span id="todayTask">—</span></div>
+          <div class="coach-box"><b>90 天預測</b><span id="coachForecast">—</span></div>
+        </div>
       </div>
-      <div class="result-note" id="bf-note"></div>
-      <div class="result-disclaimer">圍度估算有±3–4%誤差，精確值需DEXA等儀器測量。</div>
-      <div class="ai-advice" id="bf-ai"></div>
     </div>
-    <div class="seo-box">
-      <h3>體脂率健康標準</h3>
-      <p>男性健康範圍約 14–23%、女性 17–27%（年齡越大標準略寬）。男性 >25%、女性 >30% 屬肥胖。體脂率比 BMI 更能反映身體組成，健身者尤其適用。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：家用體脂計準嗎？</div><div class="seo-faq-a">A：生物電阻式體脂計受含水量影響大，建議固定每天同一時間（早起空腹）測量看趨勢，不要糾結單次數值。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
 
-<!-- 理想體重 -->
-<div class="panel" id="panel-ideal">
-  <div class="tool-card"><div class="card-head">
-    <h2>理想體重計算</h2><p>同時以 BMI 22 法、Devine 公式計算，給你合理目標區間</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>身高（公分）</label><input type="number" id="iw-h" placeholder="170" inputmode="decimal"></div>
-      <div class="field"><label>性別</label><select id="iw-sex"><option value="m">男</option><option value="f">女</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcIdeal()">計算理想體重</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="ideal-result">
-      <div class="result-top"><div class="result-number" id="iw-num">—</div><div class="result-unit">公斤（BMI 22 法）</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">健康區間（BMI 18.5–24）</div><div class="val" id="iw-range">—</div></div>
-        <div class="result-cell"><div class="lbl">Devine 公式</div><div class="val" id="iw-devine">—</div></div>
+    <!-- Core metrics -->
+    <div class="card">
+      <div class="card-head"><h2>核心健康指標</h2><p>身體組成、營養代謝與心血管風險一覽。</p></div>
+      <div class="card-body">
+        <div class="core6">
+          <div class="core-item"><div class="core-name">BMI</div><div class="core-num" id="bmiOut">—</div><div class="core-desc" id="bmiDesc">—</div></div>
+          <div class="core-item"><div class="core-name">體脂率</div><div class="core-num" id="bfOut">—</div><div class="core-desc" id="bfDesc">—</div></div>
+          <div class="core-item"><div class="core-name">每日熱量 TDEE</div><div class="core-num" id="tdeeOut">—</div><div class="core-desc" id="proteinOut">—</div></div>
+          <div class="core-item"><div class="core-name">腰臀比</div><div class="core-num" id="whrOut">—</div><div class="core-desc" id="whrDesc">—</div></div>
+          <div class="core-item"><div class="core-name">減脂熱量</div><div class="core-num" id="cutOut">—</div><div class="core-desc">TDEE − 500 kcal</div></div>
+          <div class="core-item"><div class="core-name">目標體重</div><div class="core-num" id="idealOut">—</div><div class="core-desc">第一階段目標</div></div>
+        </div>
       </div>
-      <div class="result-note" id="iw-note"></div>
-      <div class="result-disclaimer">理想體重為統計參考值，肌肉量高者可高於此數值。</div>
     </div>
-    <div class="seo-box">
-      <h3>理想體重怎麼算？</h3>
-      <p>台灣常用「BMI 22 法」：身高(m)² × 22。例：170cm → 1.7²×22 ≈ 63.6kg。健康區間為 BMI 18.5–24 對應的體重範圍，在區間內都屬正常。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
 
-<!-- 飲水量 -->
-<div class="panel" id="panel-water">
-  <div class="tool-card"><div class="card-head">
-    <h2>每日飲水量計算</h2><p>依體重、運動量與天氣計算建議飲水量</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>體重（公斤）</label><input type="number" id="w-w" placeholder="65" inputmode="decimal"></div>
-      <div class="field"><label>運動時間</label><select id="w-sport"><option value="0">不運動</option><option value="350">約30分鐘</option><option value="700">約1小時</option><option value="1000">1.5小時以上</option></select></div>
+    <!-- ✅ 廣告位 #2：本週任務上方 高滾動深度 -->
+    <div class="ad-slot">
+      <div class="ad-label">廣告</div>
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9509448455103495"
+        data-ad-slot="6011"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
-    <div class="fields one">
-      <div class="field"><label>環境</label><select id="w-env"><option value="0">冷氣房/室內</option><option value="250">一般戶外</option><option value="500">炎熱潮濕（台灣夏天戶外）</option></select></div>
+
+    <!-- Tasks -->
+    <div class="card">
+      <div class="card-head"><h2>🎯 本週三大任務</h2><p>AI Coach 只給三個高回報任務，不讓細項佔滿版面。</p></div>
+      <div class="card-body"><div class="task-list" id="tasks"></div></div>
     </div>
-    <button class="calc-btn" onclick="calcWater()">計算飲水量</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="water-result">
-      <div class="result-top"><div class="result-number" id="w-num">—</div><div class="result-unit">毫升 / 天</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">約等於（700ml瓶）</div><div class="val" id="w-bottle">—</div></div>
-        <div class="result-cell"><div class="lbl">約等於（240ml杯）</div><div class="val" id="w-cup">—</div></div>
+
+    <!-- ── Charts: Ability bars + Radar SVG ── -->
+    <div class="card">
+      <div class="card-head"><h2>健康能力分析</h2><p>五維雷達 × 橫條，快速識別強弱項。</p></div>
+      <div class="card-body">
+        <div class="ability-wrap">
+          <!-- Horizontal bar chart -->
+          <div class="hbar-list" id="abilityBars"></div>
+          <!-- SVG Radar -->
+          <div class="radar-wrap">
+            <div class="radar-title">能力雷達</div>
+            <svg class="radar-svg" viewBox="0 0 200 200" id="radarSvg">
+              <!-- grid rings -->
+              <g id="radarGrid" opacity=".18"></g>
+              <!-- axes -->
+              <g id="radarAxes" stroke="#CBD5E1" stroke-width="1"></g>
+              <!-- data polygon -->
+              <polygon id="radarPoly" fill="rgba(15,164,122,.18)" stroke="#0FA47A" stroke-width="2" stroke-linejoin="round" points="100,100"/>
+              <!-- labels -->
+              <g id="radarLabels" font-size="10" font-family="Noto Sans TC,sans-serif" fill="#6B7280" text-anchor="middle"></g>
+            </svg>
+          </div>
+        </div>
       </div>
-      <div class="result-note" id="w-note"></div>
-      <div class="result-disclaimer">腎臟病、心衰竭患者請依醫囑控制飲水量。</div>
-      <div class="ai-advice" id="w-ai"></div>
     </div>
-    <div class="seo-box">
-      <h3>每天該喝多少水？</h3>
-      <p>衛福部建議：體重(kg)×30–35ml。60kg 約 1,800–2,100ml。判斷方法：尿液淡黃為理想。腎臟每小時最多處理約 800ml，請分散飲用。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
 
-<!-- 睡眠 -->
-
-<!-- 腰臀比 -->
-<div class="panel" id="panel-whr">
-  <div class="tool-card"><div class="card-head">
-    <h2>腰臀比（WHR）計算</h2>
-    <p>比 BMI 更能反映腹部脂肪風險，WHO 標準男 ≤0.90、女 ≤0.85</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>腰圍（公分，肚臍高度）</label><input type="number" id="whr-waist" placeholder="例：80" inputmode="decimal"></div>
-      <div class="field"><label>臀圍（公分，最寬處）</label><input type="number" id="whr-hip" placeholder="例：95" inputmode="decimal"></div>
+    <!-- TOP3 improvements -->
+    <div class="card">
+      <div class="card-head"><h2>TOP 3 改善回報</h2><p>依健康分數提升幅度排序，聚焦最高回報。</p></div>
+      <div class="card-body"><div class="improve-list" id="improveList"></div></div>
     </div>
-    <div class="fields one"><div class="field"><label>性別</label><select id="whr-sex"><option value="m" selected>男</option><option value="f">女</option></select></div></div>
-    <button class="calc-btn" onclick="calcWHR()">計算腰臀比</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8015" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="whr-result">
-      <div class="result-top"><div class="result-number" id="whr-out">—</div><div class="result-unit">腰臀比（WHR）</div></div>
-      <span class="tag" id="whr-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">腰圍</div><div class="val" id="whr-w">—</div></div>
-        <div class="result-cell"><div class="lbl">健康標準</div><div class="val" id="whr-std">—</div></div>
+
+    <!-- Health Twin -->
+    <div class="card">
+      <div class="card-head"><h2>🔥 Health Twin</h2><p>現在的你 vs 理想健康狀態。</p></div>
+      <div class="card-body">
+        <div class="twin-grid">
+          <div class="twin-box"><h3>現在的你</h3><div id="currentTwin"></div></div>
+          <div class="twin-box"><h3>理想的你</h3><div id="idealTwin"></div></div>
+        </div>
+        <div class="completion-bar-wrap">
+          <div class="completion-label"><span>健康完成度</span><span id="completionPct">—%</span></div>
+          <div class="completion-track"><div class="completion-fill" id="completionBar" style="width:0%"></div></div>
+          <div class="completion-note" id="completionText">—</div>
+        </div>
       </div>
-      <div class="result-note" id="whr-note"></div>
-      <div class="result-disclaimer">WHO 標準：男性 ≤0.90、女性 ≤0.85。超標代表腹部脂肪過多，代謝症候群風險增加。</div>
-      <div class="ai-advice" id="whr-ai"></div>
     </div>
-    <div class="seo-box">
-      <h3>腰臀比 vs BMI</h3>
-      <p>BMI 看整體體重，WHR 看脂肪分布。「蘋果型」（腰粗臀窄）比「梨型」（腰細臀大）有更高的心血管疾病風險。腰圍男 ≥90cm、女 ≥80cm 即需注意，即使 BMI 正常也可能是「隱性肥胖」。</p>
-    </div>
-  </div></div>
-</div>
 
-<!-- 最大心率 / 運動心率區間 -->
-<div class="panel" id="panel-heartrate">
-  <div class="tool-card"><div class="card-head">
-    <h2>運動心率區間計算</h2>
-    <p>依年齡計算最大心率，找出燃脂、有氧、無氧的最佳訓練區間</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>年齡</label><input type="number" id="hr-age" placeholder="例：30" inputmode="numeric"></div>
-      <div class="field"><label>靜息心率（每分鐘，選填）</label><input type="number" id="hr-rest" placeholder="例：65" inputmode="numeric"></div>
-    </div>
-    <button class="calc-btn" onclick="calcHeartRate()">計算心率區間</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8016" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="heartrate-result">
-      <div class="result-top"><div class="result-number" id="hr-max">—</div><div class="result-unit">bpm（最大心率）</div></div>
-      <div id="hr-zones" style="margin-top:.75rem;display:flex;flex-direction:column;gap:6px"></div>
-      <div class="result-note" id="hr-note"></div>
-      <div class="result-disclaimer">最大心率公式：220 - 年齡（Tanaka 法）。實際最大心率因個人體能而異，運動時如有不適請立即停止。</div>
-    </div>
-    <div class="seo-box">
-      <h3>各心率區間效果</h3>
-      <p>Zone 1（50–60%）：暖身恢復。Zone 2（60–70%）：燃脂效率最高。Zone 3（70–80%）：有氧耐力提升。Zone 4（80–90%）：無氧閾值訓練。Zone 5（90–100%）：最高強度衝刺。</p>
-    </div>
-  </div></div>
-</div>
+    <!-- Life habits (collapsible) -->
+    <details>
+      <summary>生活習慣細項（睡眠、飲水、運動、蛋白質）</summary>
+      <div class="life-grid" style="padding:0 1.35rem 1.25rem">
+        <div class="life-cell"><small>睡眠</small><b id="lifeSleep">—</b></div>
+        <div class="life-cell"><small>飲水</small><b id="lifeWater">—</b></div>
+        <div class="life-cell"><small>運動</small><b id="lifeExercise">—</b></div>
+        <div class="life-cell"><small>蛋白質目標</small><b id="lifeProtein">—</b></div>
+      </div>
+    </details>
 
-<div class="panel" id="panel-sleep">
-  <div class="tool-card"><div class="card-head">
-    <h2>睡眠時間計算</h2><p>以 90 分鐘睡眠週期反推最佳就寢時刻</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>年齡</label><input type="number" id="sl-age" placeholder="30" inputmode="numeric"></div>
-      <div class="field"><label>起床時間</label><input type="time" id="sl-wake" value="07:00"></div>
+    <!-- 30-day roadmap -->
+    <div class="card">
+      <div class="card-head"><h2>📅 30 天改善計畫</h2><p>漸進式建立習慣，每週聚焦兩個目標。</p></div>
+      <div class="card-body"><div class="roadmap" id="roadmap"></div></div>
     </div>
-    <button class="calc-btn" onclick="calcSleep()">計算就寢時間</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8017" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="sleep-result">
-      <div class="result-top"><div class="result-number" id="sl-num">—</div><div class="result-unit">小時（建議睡眠）</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">最佳就寢時刻</div><div class="val green" id="sl-bed">—</div></div>
-        <div class="result-cell"><div class="lbl">睡眠週期</div><div class="val" id="sl-cycle">—</div></div>
-      </div>
-      <div class="result-note" id="sl-note"></div>
-      <div class="result-disclaimer">長期睡眠困擾請諮詢醫師。</div>
-    </div>
-    <div class="seo-box">
-      <h3>睡幾小時才夠？</h3>
-      <p>成人建議 7–9 小時。睡眠以 90 分鐘為一週期，在週期結束時醒來最清爽。睡前 1 小時遠離螢幕、室溫 18–22°C、咖啡因睡前 6 小時停止。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
-</div>
 
+    <!-- ✅ 廣告位 #3：頁尾前 離開前最後曝光 -->
+    <div class="ad-slot">
+      <div class="ad-label">廣告</div>
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9509448455103495"
+        data-ad-slot="6012"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-<p class="source-note"><b>資料來源</b>：衛福部國民健康署 BMI 標準、WHO 計算公式　<b>公式最後核對</b>：2026-06-12</p>
-<div class="related-wrap">
-  <p class="related-label">你可能也需要</p>
-  <div class="related-grid">
-    <a class="related-card" href="/nutrition/" style="--rc:#388E3C;--rs:#E8F5E9">
-      <div class="related-card-body">
-        <div class="related-card-name">營養飲食</div>
-        <div class="related-card-tags"><span>熱量赤字</span><span>巨量營養素</span><span>食物熱量</span><span>含糖量</span></div>
+    <!-- Related tools -->
+    <div class="card">
+      <div class="card-head"><h2>推薦下一步工具</h2><p>把健康分數中心串回 CalcBox 健康工具生態系。</p></div>
+      <div class="card-body">
+        <div class="related">
+          <a href="/health/#bmi">BMI 計算</a>
+          <a href="/health/#tdee">TDEE 熱量</a>
+          <a href="/health/#bodyfat">體脂率估算</a>
+          <a href="/nutrition/">營養飲食</a>
+          <a href="/health/#water">飲水量</a>
+        </div>
       </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/baby/" style="--rc:#C2356B;--rs:#FBEAF1">
-      <div class="related-card-body">
-        <div class="related-card-name">孕產育兒</div>
-        <div class="related-card-tags"><span>預產期</span><span>排卵期</span><span>懷孕週數</span><span>育兒津貼</span></div>
-      </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/medical/" style="--rc:#C62828;--rs:#FFEBEE">
-      <div class="related-card-body">
-        <div class="related-card-name">醫療護理</div>
-        <div class="related-card-tags"><span>藥物劑量</span><span>GFR腎功能</span><span>血壓分級</span><span>點滴滴速</span></div>
-      </div>
-      <div class="related-card-go">›</div>
-    </a>
+    </div>
+
   </div>
-</div>
-<footer>
-  <p>CalcBox 健康計算 · 計算結果僅供參考<br>
-  <a href="/">回工具目錄</a> · <a href="/baby/">孕產育兒</a> · <a href="/tax/">稅務薪資</a> · <a href="/loan/">貸款試算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
-</footer>
+</div><!-- /layout -->
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+<p class="footer-note">健康分數與健康年齡為健康管理參考，非醫療診斷。若有疾病、用藥或特殊健康狀況，請諮詢醫師或營養師。<br>最後更新：2026-06-15 · <a href="/privacy/" style="color:var(--hint)">隱私權政策</a></p>
+</main>
 
 <script>
-const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
-const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
-let newsLoaded=false;
-const fmt=v=>Math.round(v).toLocaleString();
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString();
 
-function aiTools(items){return '<div class="ai-tools">'+items.map(x=>`<a href="#${x[0]}" onclick="switchTab('${x[0]}')">${x[1]}</a>`).join('')+'</div>';}
-function faqBlock(items){return items.map(x=>`<div class="faq-q">Q：${x[0]}</div><div class="faq-a">A：${x[1]}</div>`).join('');}
-function setAI(id, html){const el=document.getElementById(id);if(el)el.innerHTML=html;}
-function weeksText(kg){if(!kg||kg<=0)return '目前已在建議範圍內，重點是維持飲食、活動量與睡眠品質。';const w05=Math.ceil(kg/0.5), w075=Math.ceil(kg/0.75);return `若以每週減少 0.5 公斤估算，約需 ${w05} 週；若每週減少 0.75 公斤，約需 ${w075} 週。建議以穩定、可持續的速度調整，不建議極端節食。`;}
-
-
-function switchTab(id){
-  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-  if(id==='news'&&!newsLoaded) loadNews();
-}
-
-async function loadNews(){
-  const btn=document.getElementById('refresh-btn');
-  const icon=document.getElementById('refresh-icon');
-  const container=document.getElementById('news-container');
-  if(btn)btn.disabled=true;
-  if(icon)icon.className='spin';
-  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  const nd=document.getElementById('news-date');
-  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  const FEEDS=['https://heho.com.tw/feed/','https://feeds.feedburner.com/rsscna/lifehealth'];
-  let loaded=false;
-  for(const feedUrl of FEEDS){
-    try{
-      const ctrl=new AbortController();
-      const timer=setTimeout(()=>ctrl.abort(),7000);
-      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
-      clearTimeout(timer);
-      if(!res.ok)throw new Error('HTTP '+res.status);
-      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-      let items=Array.from(xml.querySelectorAll('item'));
-      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-      items=items.slice(0,8);
-      if(!items.length)throw new Error('no items');
-      let html='<div class="news-list">';
-      items.forEach((item,i)=>{
-        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-        let link='#';
-        const linkEl=item.getElementsByTagName('link')[0];
-        if(linkEl)link=linkEl.textContent?.trim()||'#';
-        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-          <div class="news-card-inner"><div class="news-num">${i+1}</div>
-          <div class="news-content"><span class="news-src">Heho健康</span>
-          <div class="news-headline">${title}</div>
-          ${desc?`<div class="news-summary">${desc}...</div>`:''}
-          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-      });
-      container.innerHTML=html+'</div>';
-      newsLoaded=true;loaded=true;break;
-    }catch(e){ /* 換下一個來源 */ }
-  }
-  if(!loaded){
-    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
-  }
-  if(btn)btn.disabled=false;
-  if(icon)icon.className='';
+/* ── Calc engine (unchanged logic) ── */
+function readProfile(){return{gender:$('gender').value,age:+$('age').value||35,height:+$('height').value||170,weight:+$('weight').value||80,waist:+$('waist').value||92,hip:+$('hip').value||100,bodyfat:+$('bodyfat').value||31,sleep:+$('sleep').value||6.1,water:+$('water').value||2400,exercise:+$('exercise').value||1,activity:+$('activity').value||1.55,goal:$('goal').value}}
+function saveProfile(p){try{localStorage.setItem('calcboxHealthProfile',JSON.stringify(p))}catch(e){}}
+function loadProfile(){try{const raw=localStorage.getItem('calcboxHealthProfile');if(!raw)return;const p=JSON.parse(raw);Object.entries({gender:p.gender,age:p.age,height:p.height,weight:p.weight,waist:p.waist,hip:p.hip,bodyfat:p.bodyfat,sleep:p.sleep,water:p.water,exercise:p.exercise,activity:p.activity,goal:p.goal}).forEach(([k,v])=>{if($(k)&&v!==undefined&&v!==null)$(k).value=v})}catch(e){}}
+function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
+function scoreLinear(value,goodLow,goodHigh,badLow,badHigh,maxScore){if(value>=goodLow&&value<=goodHigh)return maxScore;if(value<goodLow)return clamp(maxScore*(value-badLow)/(goodLow-badLow),0,maxScore);return clamp(maxScore*(badHigh-value)/(badHigh-goodHigh),0,maxScore)}
+function bmiCategory(bmi){if(bmi<18.5)return'過輕';if(bmi<24)return'健康範圍';if(bmi<27)return'過重';return'肥胖'}
+function getLevel(score){if(score>=90)return{text:'卓越',cls:'badge-green',emoji:'🟢'};if(score>=80)return{text:'良好',cls:'badge-green',emoji:'🟢'};if(score>=70)return{text:'普通',cls:'badge-amber',emoji:'🟡'};if(score>=60)return{text:'需改善',cls:'badge-amber',emoji:'🟠'};return{text:'高風險',cls:'badge-red',emoji:'🔴'}}
+function calculateEngine(p){
+  const h=p.height/100;const bmi=p.weight/(h*h);const whr=p.waist/p.hip;
+  const bmr=p.gender==='m'?10*p.weight+6.25*p.height-5*p.age+5:10*p.weight+6.25*p.height-5*p.age-161;
+  const tdee=Math.round(bmr*p.activity);
+  const proteinMid=Math.round(p.weight*(p.goal==='muscle_gain'?2.1:p.goal==='fat_loss'?2.0:1.4));
+  const proteinLow=Math.round(p.weight*(p.goal==='muscle_gain'?1.8:p.goal==='fat_loss'?1.6:1.2));
+  const idealWeight=Math.round(22*h*h);
+  const targetWeight=p.goal==='fat_loss'?Math.max(idealWeight,Math.round(p.weight*.9)):idealWeight;
+  const bmiScore=bmi>=18.5&&bmi<24?20:scoreLinear(bmi,18.5,24,14,35,20);
+  const bfGoodHigh=p.gender==='m'?23:27;const bfBadHigh=p.gender==='m'?38:42;
+  const bodyFatScore=scoreLinear(p.bodyfat,p.gender==='m'?12:16,bfGoodHigh,6,bfBadHigh,25);
+  const whrStd=p.gender==='m'?.90:.85;
+  const whrScore=whr<=whrStd?15:clamp(15-((whr-whrStd)/.20)*15,0,15);
+  const proteinScore=15;
+  const sleepScore=scoreLinear(p.sleep,7,8.5,4.5,10,10);
+  const waterTarget=Math.round(p.weight*33);
+  const waterScore=clamp((p.water/waterTarget)*5,0,5);
+  const exerciseScore=clamp((p.exercise/3)*10,0,10);
+  const score=Math.round(bmiScore+bodyFatScore+whrScore+proteinScore+sleepScore+waterScore+exerciseScore);
+  const bmiPenalty=bmi>=27?4:bmi>=24?2:bmi<18.5?2:0;
+  const bfPenalty=p.bodyfat>bfGoodHigh+5?4:p.bodyfat>bfGoodHigh?2:0;
+  const sleepPenalty=p.sleep<6.5?2:p.sleep<7?1:0;
+  const whrPenalty=whr>whrStd?2:0;
+  const exerciseBonus=p.exercise>=3?2:p.exercise>=2?1:0;
+  const healthAge=Math.max(18,Math.round(p.age+bmiPenalty+bfPenalty+sleepPenalty+whrPenalty-exerciseBonus));
+  const ability={'體重管理':Math.round(clamp((bmiScore/20)*100,0,100)),'身體組成':Math.round(clamp((bodyFatScore/25)*100,0,100)),'營養攝取':Math.round(clamp((proteinScore/15)*100,0,100)),'生活習慣':Math.round(clamp(((sleepScore+waterScore)/15)*100,0,100)),'運動習慣':Math.round(clamp((exerciseScore/10)*100,0,100))};
+  const improvements=[{name:'體脂率 -3%',gain:p.bodyfat>bfGoodHigh?10:4,reason:'體脂率會直接影響身體組成與代謝風險。'},{name:'運動 +2次/週',gain:p.exercise<3?5:2,reason:'提高運動頻率可改善體脂、腰臀比與心肺能力。'},{name:'睡眠 +1小時',gain:p.sleep<7?4:1,reason:'睡眠提升有助於食慾控制、恢復與壓力管理。'},{name:'腰臀比下降',gain:whr>whrStd?6:2,reason:'腰臀比改善代表腹部脂肪與心血管風險下降。'},{name:'飲水達標',gain:p.water<waterTarget?1:0,reason:'飲水有助於代謝與運動表現，但權重低於體脂與睡眠。'}].sort((a,b)=>b.gain-a.gain).slice(0,3);
+  const completion=Math.round(clamp(100-((Math.max(0,p.weight-targetWeight)/(Math.max(1,p.weight-targetWeight)+8))*22+(Math.max(0,p.bodyfat-(p.gender==='m'?22:26))/12)*28+(Math.max(0,7.5-p.sleep)/3)*18+(Math.max(0,whr-whrStd)/.18)*20),45,96));
+  return{bmi,whr,bmr,tdee,proteinMid,proteinLow,idealWeight,targetWeight,score,healthAge,ability,improvements,completion,waterTarget,cut:tdee-500,level:getLevel(score),bfGoodHigh,whrStd};
 }
 
+/* ── Bar chart colors ── */
+const BAR_COLORS=['#0FA47A','#2563EB','#7C3AED','#F59E0B','#E84393'];
 
-function calcBMI(){
-  const h=parseFloat(document.getElementById('b-h').value)/100;
-  const w=parseFloat(document.getElementById('b-w').value);
-  if(!h||!w){alert('請輸入身高體重');return;}
-  const bmi=w/(h*h);
-  document.getElementById('b-num').textContent=bmi.toFixed(1);
-  const t=document.getElementById('b-tag');
-  let cat,cls;
-  if(bmi<18.5){cat='體重過輕';cls='tag';}
-  else if(bmi<24){cat='健康體重 ✓';cls='tag tag-green';}
-  else if(bmi<27){cat='體重過重';cls='tag';}
-  else{cat='肥胖';cls='tag tag-red';}
-  t.textContent=cat;t.className=cls;
-  const lo=(18.5*h*h).toFixed(1),hi=(23.9*h*h).toFixed(1);
-  document.getElementById('b-range').textContent=lo+'–'+hi+' kg';
-  const mid=(parseFloat(lo)+parseFloat(hi))/2;
-  const d=(w-mid).toFixed(1);
-  document.getElementById('b-diff').textContent=(d>0?'+':'')+d+' kg';
-  document.getElementById('b-note').textContent=`BMI ${bmi.toFixed(1)}，健康體重範圍 ${lo}–${hi} 公斤。`;
-  const needLose=Math.max(0,w-parseFloat(hi));
-  const needGain=Math.max(0,parseFloat(lo)-w);
-  const proteinLo=Math.round(w*1.6), proteinHi=Math.round(w*2.0);
-  const waterLo=Math.round(w*30), waterHi=Math.round(w*35);
-  let interp, diet, exercise, target;
-  if(bmi<18.5){interp='您的 BMI 低於健康範圍，可能代表熱量攝取不足或肌肉量偏低。建議先確認飲食是否規律，並以增加肌肉量與總熱量為優先。';diet=`每日可先增加 300–500 大卡，蛋白質建議 ${proteinLo}–${proteinHi}g，優先選擇雞蛋、豆製品、魚肉、牛奶與全穀類。`;exercise='不建議大量有氧消耗熱量，建議每週 2–3 次阻力訓練，搭配足夠睡眠，讓體重與肌肉量穩定上升。';target=`建議先增加約 ${needGain.toFixed(1)} 公斤，達到健康體重下限 ${lo} 公斤。`;}
-  else if(bmi<24){interp='您的 BMI 位於台灣健康體重範圍。接下來重點不是快速減重，而是維持腰圍、體脂率、飲食品質與規律活動。';diet=`每日蛋白質可抓 ${proteinLo}–${proteinHi}g，飲水量約 ${waterLo.toLocaleString()}–${waterHi.toLocaleString()}ml，避免長期含糖飲料與宵夜。`;exercise='建議每週累積 150–300 分鐘中等強度有氧，並加入 2 次阻力訓練維持肌肉量。';target='目前已在健康體重範圍內，可搭配體脂率與腰臀比確認是否有隱性肥胖。';}
-  else{interp=`您的 BMI 屬於${bmi<27?'過重':'肥胖'}範圍，建議優先降低體脂肪，而不是只追求體重數字。若腰圍或體脂率也偏高，代謝風險會更需要注意。`;diet=`建議每日建立 300–500 大卡熱量赤字，蛋白質 ${proteinLo}–${proteinHi}g，飲水量約 ${waterLo.toLocaleString()}–${waterHi.toLocaleString()}ml。優先減少含糖飲料、油炸、甜點與宵夜。`;exercise='建議從快走、單車、游泳等低衝擊有氧開始，每週 150–300 分鐘，並搭配每週 2–3 次阻力訓練保留肌肉。';target=`健康體重上限約 ${hi} 公斤，目前約需減少 ${needLose.toFixed(1)} 公斤。`;}
-  setAI('b-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>BMI ${bmi.toFixed(1)} 屬於「${cat.replace(' ✓','')}」。${target} 這個結果適合搭配腰圍、體脂率與每日熱量消耗一起判斷，因為 BMI 只能反映身高與體重比例，無法分辨脂肪、肌肉與水分。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>${interp}</p><p>若 BMI 偏高，改善重點通常不是短期快速減重，而是降低腰圍、改善體脂率、建立穩定飲食習慣。若 BMI 正常，也建議觀察腰圍與活動量，因為久坐、壓力與睡眠不足仍可能影響代謝健康。</p></section><section class="ai-box"><h3>飲食建議</h3><p>${diet}</p><ul><li>每餐先安排一份優質蛋白質，再搭配蔬菜與適量全穀澱粉。</li><li>減重時不建議完全不吃澱粉，建議改成減少精製糖、含糖飲料與宵夜。</li><li>外食族可優先選便當去皮肉類、滷味、湯麵少湯、便利商店茶葉蛋與無糖豆漿。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>${exercise}</p><p>剛開始運動的人，建議先追求「每週穩定完成」而不是高強度。快走、腳踏車、游泳與阻力訓練都能幫助增加熱量消耗；阻力訓練還能保留肌肉量，讓減重後比較不容易復胖。</p></section><section class="ai-box"><h3>達標預估</h3><p>${weeksText(needLose)}</p><p>實務上體重不會每天線性下降，前期可能受水分、鹽分、壓力與睡眠影響。建議以 7 日平均體重、腰圍與照片紀錄來判斷趨勢，不要只看單日數字。</p></section><section class="ai-box"><h3>BMI 常見問題</h3>${faqBlock([['BMI 多少算肥胖？','依台灣常用標準，BMI 27 以上屬於肥胖，24–26.9 屬於過重，18.5–23.9 為健康體重範圍。'],['BMI 正常就一定健康嗎？','不一定。BMI 正常但腰圍過高、體脂率偏高或長期久坐，仍可能有代謝風險，建議搭配腰臀比與體脂率一起看。'],['一個月可以降多少 BMI？','較穩定的方式是每週減少約 0.5 公斤左右，BMI 下降速度會依身高與體重而不同，不建議用極端節食快速降低。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['tdee','TDEE 熱量'],['bodyfat','體脂率'],['whr','腰臀比'],['water','飲水量']])}</section>`);
-  document.getElementById('bmi-result').classList.add('show');
-}
-function calcTDEE(){
-  const h=parseFloat(document.getElementById('td-h').value);
-  const w=parseFloat(document.getElementById('td-w').value);
-  const age=parseFloat(document.getElementById('td-age').value);
-  const sex=document.getElementById('td-sex').value;
-  const act=parseFloat(document.getElementById('td-act').value);
-  if(!h||!w||!age){alert('請填寫完整');return;}
-  const bmr=sex==='m'?(10*w)+(6.25*h)-(5*age)+5:(10*w)+(6.25*h)-(5*age)-161;
-  const tdee=Math.round(bmr*act);
-  document.getElementById('td-num').textContent=tdee.toLocaleString();
-  document.getElementById('td-bmr').textContent=Math.round(bmr).toLocaleString()+' 大卡';
-  document.getElementById('td-cut').textContent=Math.round(tdee-500).toLocaleString()+' 大卡';
-  document.getElementById('td-bulk').textContent=Math.round(tdee+300).toLocaleString()+' 大卡';
-  document.getElementById('td-protein').textContent=Math.round(w*1.6)+'–'+Math.round(w*2)+' g';
-  document.getElementById('td-note').textContent=`每日消耗約 ${tdee.toLocaleString()} 大卡。減脂攝取 ${(tdee-500).toLocaleString()}、增肌 ${(tdee+300).toLocaleString()} 大卡，蛋白質 ${Math.round(w*1.6)}g 以上。`;
-  const cut=Math.round(tdee-500), bulk=Math.round(tdee+300), pLo=Math.round(w*1.6), pHi=Math.round(w*2.0);
-  setAI('td-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>您的每日總消耗約 ${tdee.toLocaleString()} 大卡。若目標是減脂，可先抓 ${cut.toLocaleString()} 大卡；若目標是增肌，可抓 ${bulk.toLocaleString()} 大卡。TDEE 適合用來規劃每日熱量、減脂速度與增肌飲食，是飲食控制最核心的基準值。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>TDEE 是維持目前體重所需的每日熱量。體重變化的核心是長期平均攝取量與 TDEE 的差距，而不是單日飲食。</p><p>若連續 2–3 週體重沒有變化，代表實際攝取量可能接近 TDEE；若體重下降太快，則可能赤字過大，容易影響訓練表現、飢餓感與肌肉保留。</p><div class="ai-kpi"><div><b>減脂熱量</b><span>${cut.toLocaleString()} kcal</span></div><div><b>增肌熱量</b><span>${bulk.toLocaleString()} kcal</span></div><div><b>蛋白質</b><span>${pLo}–${pHi}g</span></div></div></section><section class="ai-box"><h3>飲食建議</h3><p>減脂期建議先用 TDEE -300 到 -500 大卡，不要低於基礎代謝太多。每餐安排蛋白質、蔬菜與主食，避免只靠少吃造成肌肉流失。</p><ul><li>減脂：優先控制總熱量，蛋白質抓 ${pLo}–${pHi}g，澱粉集中在白天或訓練前後。</li><li>增肌：先小幅熱量盈餘，不需要暴食；體重每月增加 0.5–1.5 公斤通常較容易控制脂肪增加。</li><li>維持：以 TDEE 為中心上下微調，假日吃多時可用一週平均熱量管理。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>若要減脂，建議每週 2–3 次阻力訓練搭配 Zone 2 有氧。若要增肌，熱量小幅盈餘並逐步增加訓練重量。</p><p>活動量係數容易高估，若平常坐辦公室，即使有運動也可能仍接近輕度活動。建議同時追蹤每日步數、訓練次數與體重變化，再回頭調整熱量。</p></section><section class="ai-box"><h3>達標預估</h3><p>每日 500 大卡赤字約等於每週 0.4–0.6 公斤的減重速度。實際速度會受水分、睡眠、壓力與活動量影響。</p><p>建議每 2 週檢查一次平均體重。如果平均體重完全不變，可每日再減少 100–150 大卡或增加步數；如果下降太快，則可提高 100–200 大卡讓計畫更可持續。</p></section><section class="ai-box"><h3>TDEE 常見問題</h3>${faqBlock([['TDEE 跟 BMR 差在哪？','BMR 是完全休息時的基礎代謝，TDEE 則包含日常活動、運動與消化消耗，因此 TDEE 才是規劃飲食熱量的主要參考。'],['減脂一定要吃到 TDEE 減 500 嗎？','不一定。初學者可先從減少 300 大卡開始，若體重沒有變化再逐步調整，重點是可長期執行。'],['為什麼照 TDEE 吃還是沒瘦？','可能是活動量高估、食物份量低估、週末熱量補回來，或水分波動遮住脂肪下降，建議看 2–3 週平均趨勢。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['bodyfat','體脂率'],['water','飲水量'],['heartrate','心率區間']])}</section>`);
-  document.getElementById('tdee-result').classList.add('show');
-}
-function calcBF(){
-  const sex=document.getElementById('bf-sex').value;
-  const h=parseFloat(document.getElementById('bf-h').value);
-  const waist=parseFloat(document.getElementById('bf-waist').value);
-  const neck=parseFloat(document.getElementById('bf-neck').value);
-  if(!h||!waist||!neck){alert('請填寫完整');return;}
-  let bf;
-  if(sex==='m'){
-    bf=495/(1.0324-0.19077*Math.log10(waist-neck)+0.15456*Math.log10(h))-450;
-  }else{
-    const hip=parseFloat(document.getElementById('bf-hip').value);
-    if(!hip){alert('女性請填寫臀圍');return;}
-    bf=495/(1.29579-0.35004*Math.log10(waist+hip-neck)+0.22100*Math.log10(h))-450;
-  }
-  bf=Math.max(3,Math.min(60,bf));
-  document.getElementById('bf-num').textContent=bf.toFixed(1);
-  const healthy=sex==='m'?[14,23]:[17,27];
-  const t=document.getElementById('bf-tag');
-  if(bf<healthy[0]){t.textContent='偏低';t.className='tag';}
-  else if(bf<=healthy[1]){t.textContent='健康範圍 ✓';t.className='tag tag-green';}
-  else if(bf<=healthy[1]+5){t.textContent='偏高';t.className='tag';}
-  else{t.textContent='過高';t.className='tag tag-red';}
-  document.getElementById('bf-range').textContent=healthy[0]+'–'+healthy[1]+'%';
-  document.getElementById('bf-fat').textContent='輸入體重後可估';
-  document.getElementById('bf-note').textContent=`估算體脂率 ${bf.toFixed(1)}%（${sex==='m'?'男':'女'}性健康範圍 ${healthy[0]}–${healthy[1]}%）。圍度法誤差約±3–4%，建議追蹤趨勢。`;
-  const level=bf<healthy[0]?'偏低':(bf<=healthy[1]?'健康範圍':(bf<=healthy[1]+5?'偏高':'過高'));
-  const bfAdvice=bf<=healthy[1]?'目前體脂率在參考範圍內，建議維持規律訓練與飲食品質。':`體脂率${level}，建議優先建立溫和熱量赤字，搭配阻力訓練降低脂肪並保留肌肉。`;
-  setAI('bf-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>估算體脂率 ${bf.toFixed(1)}%，屬於「${level}」。${bfAdvice} 體脂率適合用來判斷減脂是否真的減到脂肪，而不是只看體重下降。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>體脂率比 BMI 更能反映身體組成。若 BMI 正常但體脂率偏高，仍可能是隱性肥胖；若 BMI 偏高但體脂正常，可能與肌肉量較高有關。</p><p>體脂率偏高時，通常代表脂肪重量比例較高，可能伴隨腰圍增加與胰島素敏感度下降。體脂率偏低則可能影響荷爾蒙、免疫與運動恢復，因此目標應該是健康範圍，而不是越低越好。</p></section><section class="ai-box"><h3>飲食建議</h3><p>體脂偏高時，建議每餐優先補足蛋白質與蔬菜，控制精製澱粉、油炸與含糖飲料。減脂期間不建議完全不吃澱粉，以免影響訓練表現。</p><ul><li>蛋白質：每公斤體重可抓 1.6–2.0g，幫助維持肌肉量。</li><li>碳水化合物：優先選地瓜、糙米、燕麥、全麥與水果，減少手搖飲與甜點。</li><li>脂肪來源：可選堅果、橄欖油、酪梨、魚類，但仍需控制總熱量。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>建議以阻力訓練為核心，每週 2–4 次，搭配每週 150 分鐘以上有氧。只做有氧可能讓體重下降，但肌肉量也容易流失。</p><p>如果目標是降低體脂率，建議把訓練重點放在全身性動作，例如深蹲、硬舉、划船、推舉與核心訓練，再搭配快走或腳踏車。這種方式通常比只做局部腹部運動更有效。</p></section><section class="ai-box"><h3>達標預估</h3><p>建議每 2–4 週追蹤一次腰圍、體重與體脂趨勢，不要用單次數值判斷成敗。圍度公式可能有 ±3–4% 誤差。</p><p>若體重下降但體脂率沒有下降，可能代表肌肉流失或測量誤差；若體重變化不大但腰圍下降、力量維持，通常代表身體組成正在改善。</p></section><section class="ai-box"><h3>體脂率常見問題</h3>${faqBlock([['體脂率比 BMI 準嗎？','體脂率更能反映脂肪比例，但家用體脂計與圍度公式都有誤差，最好用趨勢判斷。'],['體脂率多久量一次？','建議每 2–4 週固定同一時間測量，例如早上起床上廁所後，避免受水分與飲食影響。'],['只做仰臥起坐能降低體脂嗎？','不能局部減脂。降低體脂需要整體熱量赤字、阻力訓練與有氧活動搭配。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['tdee','TDEE 熱量'],['whr','腰臀比'],['heartrate','心率區間']])}</section>`);
-  document.getElementById('bodyfat-result').classList.add('show');
-}
-function calcIdeal(){
-  const h=parseFloat(document.getElementById('iw-h').value);
-  const sex=document.getElementById('iw-sex').value;
-  if(!h){alert('請輸入身高');return;}
-  const m=h/100;
-  const ideal=(22*m*m).toFixed(1);
-  const lo=(18.5*m*m).toFixed(1),hi=(24*m*m).toFixed(1);
-  const devine=sex==='m'?(50+0.9*(h-152)).toFixed(1):(45.5+0.9*(h-152)).toFixed(1);
-  document.getElementById('iw-num').textContent=ideal;
-  document.getElementById('iw-range').textContent=lo+'–'+hi+' kg';
-  document.getElementById('iw-devine').textContent=devine+' kg';
-  document.getElementById('iw-note').textContent=`身高 ${h}cm 的理想體重約 ${ideal} 公斤（BMI 22），健康區間 ${lo}–${hi} 公斤，在區間內皆屬正常。`;
-  document.getElementById('ideal-result').classList.add('show');
-}
-function calcWater(){
-  const w=parseFloat(document.getElementById('w-w').value);
-  if(!w){alert('請輸入體重');return;}
-  const total=Math.round(w*33+parseInt(document.getElementById('w-sport').value)+parseInt(document.getElementById('w-env').value));
-  document.getElementById('w-num').textContent=total.toLocaleString();
-  document.getElementById('w-bottle').textContent=(total/700).toFixed(1)+' 瓶';
-  document.getElementById('w-cup').textContent=Math.round(total/240)+' 杯';
-  document.getElementById('w-note').textContent=`每天建議 ${total.toLocaleString()}ml，請分散飲用，起床、三餐前、運動前後各一杯。尿液淡黃色代表水分充足。`;
-  const cups=Math.round(total/240), bottles=(total/700).toFixed(1);
-  setAI('w-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>今日建議飲水量約 ${total.toLocaleString()}ml，約等於 ${bottles} 瓶 700ml 水或 ${cups} 杯 240ml 杯水。飲水量會隨體重、運動時間、流汗量與天氣改變，建議分散到一整天補充。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>水分需求會受體重、流汗量、環境溫度與運動時間影響。尿液淡黃色通常代表水分較足夠；若顏色偏深，可能需要補水。</p><p>水分不足時，可能影響精神、運動表現、排便與體溫調節。對減脂者來說，足夠飲水也有助於降低把口渴誤判為飢餓的機率。</p></section><section class="ai-box"><h3>飲水時程建議</h3><ul><li>起床後：300ml，補回睡眠期間流失的水分。</li><li>上午與午餐前：各 300ml，避免一整個上午都沒喝水。</li><li>下午：分 2 次補水，久坐上班族可搭配伸展或走動。</li><li>運動前後：依流汗量額外補充，流汗多時可搭配電解質。</li><li>睡前：少量即可，避免一次喝太多影響睡眠品質。</li></ul></section><section class="ai-box"><h3>飲食建議</h3><p>可以透過無糖茶、水果與湯品補充部分水分，但含糖飲料不建議計入主要補水來源。</p><p>若不習慣喝白開水，可以先用無糖氣泡水、檸檬片、冷泡茶或分段提醒改善。高鈉外食、火鍋、燒烤與大量流汗後，通常也需要額外補水。</p></section><section class="ai-box"><h3>風險提醒</h3><p>腎臟病、心衰竭或需限制水分者，請依醫師或營養師建議調整，不要直接套用一般公式。</p><p>短時間大量喝水並不一定更健康，可能造成不適。一般人建議分散飲用，運動大量流汗時除了水分，也要注意鈉與電解質補充。</p></section><section class="ai-box"><h3>飲水量常見問題</h3>${faqBlock([['每天一定要喝 2000ml 嗎？','不一定。飲水量應依體重、運動、流汗量與環境調整，體重較高或戶外活動較多的人通常需要更多。'],['咖啡和茶可以算水分嗎？','無糖茶與咖啡可提供部分水分，但不建議完全取代白開水；含糖飲料則不建議作為主要補水來源。'],['尿液顏色可以判斷水分嗎？','通常淡黃色代表較理想，若長期深黃色可能水分不足，但維生素補充品與藥物也可能影響顏色。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['tdee','TDEE 熱量'],['heartrate','心率區間']])}</section>`);
-  document.getElementById('water-result').classList.add('show');
-}
-function calcSleep(){
-  const age=parseInt(document.getElementById('sl-age').value);
-  const wake=document.getElementById('sl-wake').value;
-  if(!age||!wake){alert('請填寫完整');return;}
-  const tbl=[[2,11,14],[5,10,13],[13,9,11],[17,8,10],[64,7,9],[120,7,8]];
-  let mn=7,mx=9;
-  for(const[a,l,h]of tbl){if(age<=a){mn=l;mx=h;break;}}
-  const cycles=Math.round((mn+mx)/2/1.5);
-  const[wh,wm]=wake.split(':').map(Number);
-  const bed=(((wh*60+wm)-cycles*90)%1440+1440)%1440;
-  const bh=Math.floor(bed/60),bm=bed%60;
-  document.getElementById('sl-num').textContent=mn+'–'+mx;
-  document.getElementById('sl-bed').textContent=String(bh).padStart(2,'0')+':'+String(bm).padStart(2,'0');
-  document.getElementById('sl-cycle').textContent=cycles+' 個週期（每90分鐘）';
-  document.getElementById('sl-note').textContent=`建議睡 ${mn}–${mx} 小時。依 ${wake} 起床，最佳就寢時刻為 ${String(bh).padStart(2,'0')}:${String(bm).padStart(2,'0')}，剛好完成 ${cycles} 個完整睡眠週期。`;
-  document.getElementById('sleep-result').classList.add('show');
+/* ── Radar SVG ── */
+function buildRadar(ability){
+  const keys=Object.keys(ability);const vals=Object.values(ability);
+  const N=keys.length;const cx=100,cy=100,R=72;
+  const angles=keys.map((_,i)=>((2*Math.PI*i)/N)-Math.PI/2);
+
+  // grid
+  const grid=$('radarGrid');grid.innerHTML='';
+  [0.25,0.5,0.75,1].forEach(f=>{
+    const pts=angles.map(a=>`${cx+R*f*Math.cos(a)},${cy+R*f*Math.sin(a)}`).join(' ');
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    poly.setAttribute('points',pts);poly.setAttribute('fill','none');
+    poly.setAttribute('stroke','#94A3B8');poly.setAttribute('stroke-width','1');
+    grid.appendChild(poly);
+  });
+
+  // axes
+  const axes=$('radarAxes');axes.innerHTML='';
+  angles.forEach(a=>{
+    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',cx);line.setAttribute('y1',cy);
+    line.setAttribute('x2',cx+R*Math.cos(a));line.setAttribute('y2',cy+R*Math.sin(a));
+    axes.appendChild(line);
+  });
+
+  // data polygon
+  const pts=angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' ');
+  $('radarPoly').setAttribute('points',pts);
+
+  // labels
+  const labels=$('radarLabels');labels.innerHTML='';
+  keys.forEach((k,i)=>{
+    const a=angles[i];const lx=cx+(R+16)*Math.cos(a);const ly=cy+(R+16)*Math.sin(a);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',lx);t.setAttribute('y',ly+4);t.textContent=k;
+    labels.appendChild(t);
+  });
 }
 
+/* ── Render ── */
+function twinRow(label,val){return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`}
 
-function calcWHR(){
-  const waist=parseFloat(document.getElementById('whr-waist').value);
-  const hip=parseFloat(document.getElementById('whr-hip').value);
-  const sex=document.getElementById('whr-sex').value;
-  if(!waist||!hip){alert('請填寫腰圍與臀圍');return;}
-  const whr=(waist/hip).toFixed(2);
-  const std=sex==='m'?0.90:0.85;
-  const ok=parseFloat(whr)<=std;
-  document.getElementById('whr-out').textContent=whr;
-  document.getElementById('whr-tag').textContent=ok?'✓ 正常範圍':'⚠ 超標，腹部脂肪偏多';
-  document.getElementById('whr-tag').className=ok?'tag tag-green':'tag tag-red';
-  document.getElementById('whr-w').textContent=waist+' cm';
-  document.getElementById('whr-std').textContent='≤'+std+'（'+( sex==='m'?'男':'女')+'）';
-  document.getElementById('whr-note').textContent=`腰圍 ${waist}cm ÷ 臀圍 ${hip}cm = WHR ${whr}，${ok?'在 WHO 建議範圍內':'超過 WHO 建議值 '+std+'，建議增加有氧運動減少腹部脂肪'}。`;
-  const risk=ok?'正常範圍':'腹部脂肪風險偏高';
-  setAI('whr-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>您的腰臀比為 ${whr}，屬於「${risk}」。${ok?'建議持續維持腰圍與運動習慣。':'建議優先降低腰圍，腹部脂肪通常比單純體重更能反映代謝風險。'} 腰臀比能補足 BMI 的不足，特別適合判斷腹部脂肪與脂肪分布。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>腰臀比可評估脂肪分布。即使 BMI 正常，若腰臀比或腰圍偏高，仍可能有較高的代謝症候群與心血管風險。</p><p>腹部脂肪通常比臀腿脂肪更需要注意，因為它與血糖、血脂、血壓與脂肪肝風險較相關。若腰臀比偏高，建議同時檢查腰圍、體脂率與 TDEE，找出飲食與活動量的調整方向。</p></section><section class="ai-box"><h3>飲食建議</h3><p>建議降低含糖飲料、酒精、油炸與精製點心，並提高蛋白質與膳食纖維攝取。腹部脂肪改善通常需要整體熱量控制，而不是局部瘦肚子。</p><ul><li>優先減少液體熱量，例如手搖飲、果汁、酒精與含糖咖啡。</li><li>每餐增加蔬菜、豆類、全穀與高蛋白食物，有助於提高飽足感。</li><li>晚餐過量、宵夜與睡眠不足，常會讓腰圍更難下降。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>建議每週 150–300 分鐘中等強度有氧，搭配核心與全身阻力訓練。仰臥起坐可訓練肌肉，但無法單獨消除腹部脂肪。</p><p>若腰臀比偏高，可從每天增加 2000–3000 步開始，再加入快走、腳踏車或游泳。阻力訓練建議包含下肢、背部與核心，提升整體肌肉量與日常消耗。</p></section><section class="ai-box"><h3>達標預估</h3><p>建議每 2 週量一次腰圍。若飲食與運動穩定，腰圍通常會比體重更早反映改善趨勢。</p><p>測量時請固定在早上、空腹或相同狀態下，腰圍量肚臍附近，臀圍量最寬處。不要因單次數字波動判斷成敗，應看 4–8 週趨勢。</p></section><section class="ai-box"><h3>腰臀比常見問題</h3>${faqBlock([['腰臀比跟腰圍哪個重要？','兩者都重要。腰圍反映腹部脂肪量，腰臀比反映脂肪分布，建議一起參考。'],['瘦子也會腰臀比超標嗎？','會。體重正常但腰圍偏高，可能是隱性肥胖或久坐造成的腹部脂肪堆積。'],['做核心能瘦肚子嗎？','核心訓練可以強化肌肉與姿勢，但降低腹部脂肪仍需要整體熱量控制與有氧活動。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['bodyfat','體脂率'],['tdee','TDEE 熱量'],['heartrate','心率區間']])}</section>`);
-  document.getElementById('whr-result').classList.add('show');
-}
-function calcHeartRate(){
-  const age=parseInt(document.getElementById('hr-age').value);
-  const rest=parseInt(document.getElementById('hr-rest').value)||60;
-  if(!age){alert('請輸入年齡');return;}
-  const max=208-0.7*age; // Tanaka公式
-  const hrr=max-rest; // 心率儲備
-  const zones=[
-    {name:'Zone 1 暖身',pct:[50,60],color:'#4CAF50',desc:'輕鬆活動，恢復訓練'},
-    {name:'Zone 2 燃脂',pct:[60,70],color:'#8BC34A',desc:'燃脂效率最高，建議長時間有氧'},
-    {name:'Zone 3 有氧',pct:[70,80],color:'#FFC107',desc:'有氧耐力提升，日常訓練主區間'},
-    {name:'Zone 4 無氧',pct:[80,90],color:'#FF9800',desc:'提升無氧閾值，間歇訓練'},
-    {name:'Zone 5 衝刺',pct:[90,100],color:'#F44336',desc:'最大強度，短時間衝刺'}
-  ];
-  document.getElementById('hr-max').textContent=Math.round(max);
-  document.getElementById('hr-zones').innerHTML=zones.map(z=>{
-    const lo=Math.round(rest+hrr*z.pct[0]/100);
-    const hi=Math.round(rest+hrr*z.pct[1]/100);
-    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:#F8F9FA;border-left:4px solid ${z.color}">
-      <div style="flex:1">
-        <div style="font-size:12px;font-weight:700;color:#1a1a2e">${z.name}</div>
-        <div style="font-size:11px;color:#5A6E84;margin-top:1px">${z.desc}</div>
+function calculateAll(){
+  const p=readProfile();saveProfile(p);const e=calculateEngine(p);
+
+  // ring gauge animate
+  const circ=2*Math.PI*66;
+  const offset=circ*(1-e.score/100);
+  $('ringFill').style.strokeDashoffset=offset;
+  $('ringFill').style.strokeDasharray=circ;
+
+  // hero
+  $('heroScore').textContent=e.score;
+  $('heroAge').textContent=e.healthAge+'歲';
+  $('heroLevel').textContent=e.level.text;
+
+  // top3
+  $('score').textContent=e.score;
+  $('scoreBadge').textContent=`${e.level.emoji} ${e.level.text}`;
+  $('scoreBadge').className='metric-badge '+e.level.cls;
+  $('healthAge').textContent=e.healthAge;
+  const ageDiff=e.healthAge-p.age;
+  $('ageBadge').textContent=ageDiff>=0?`比實際老 ${ageDiff} 歲`:`比實際年輕 ${Math.abs(ageDiff)} 歲`;
+  $('completionTop').textContent=e.completion;
+
+  // AI summary
+  $('aiSummary').innerHTML=`您的健康分數為 <b>${e.score}/100</b>，健康年齡約 <b>${e.healthAge} 歲</b>。目前最需要關注的是 <b>${e.improvements[0].name}</b>、<b>${e.improvements[1].name}</b> 與 <b>${e.improvements[2].name}</b>。若未來 90 天持續執行 AI Coach 任務，健康分數有機會提升至 <b>${Math.min(98,e.score+14)} 分</b>。`;
+
+  // coach
+  $('coachText').innerHTML=`目前最大的優勢是蛋白質目標明確，建議每日維持約 <b>${e.proteinMid}g</b>。最大的改善空間來自 <b>${e.improvements[0].name}</b>。今天先完成一個高回報任務即可。`;
+  $('todayTask').textContent=e.improvements[0].name.includes('體脂')?'完成 40 分鐘 Zone 2 有氧或快走':e.improvements[0].name.includes('睡眠')?'今晚提早 30 分鐘上床':`補足蛋白質至 ${e.proteinMid}g`;
+  $('coachForecast').textContent=`健康分數有機會提升至 ${Math.min(98,e.score+14)} 分。`;
+
+  // core
+  $('bmiOut').textContent=e.bmi.toFixed(1);$('bmiDesc').textContent='BMI '+bmiCategory(e.bmi);
+  $('bfOut').textContent=p.bodyfat.toFixed(1)+'%';$('bfDesc').textContent=p.bodyfat>e.bfGoodHigh?'偏高，優先改善':'位於合理範圍';
+  $('tdeeOut').textContent=fmt(e.tdee);$('proteinOut').textContent=`蛋白質目標 ${e.proteinMid}g`;
+  $('whrOut').textContent=e.whr.toFixed(2);$('whrDesc').textContent=e.whr>e.whrStd?'腰臀比偏高':'腰臀比正常';
+  $('cutOut').textContent=fmt(e.cut);$('idealOut').textContent=e.targetWeight+'kg';
+
+  // tasks
+  const progStarts=[65,50,40];
+  $('tasks').innerHTML=e.improvements.map((it,i)=>`
+    <div class="task">
+      <div>
+        <h3>${i+1}. ${it.name}</h3>
+        <p>${it.reason}</p>
+        <div class="task-progress"><i style="width:${progStarts[i]}%"></i></div>
       </div>
-      <div style="font-size:14px;font-weight:700;color:${z.color};white-space:nowrap">${lo}–${hi} bpm</div>
-    </div>`;
-  }).join('');
-  document.getElementById('hr-note').textContent=`最大心率 ${Math.round(max)} bpm（Tanaka公式），心率儲備 ${Math.round(hrr)} bpm。燃脂區間 ${Math.round(rest+hrr*0.6)}–${Math.round(rest+hrr*0.7)} bpm，有氧區間 ${Math.round(rest+hrr*0.7)}–${Math.round(rest+hrr*0.8)} bpm。`;
-  document.getElementById('heartrate-result').classList.add('show');
+      <div class="task-pts">+${it.gain}分</div>
+    </div>`).join('');
+
+  // ── Horizontal bars ──
+  const abilityEntries=Object.entries(e.ability);
+  $('abilityBars').innerHTML=abilityEntries.map(([name,val],i)=>`
+    <div class="hbar-row">
+      <div class="hbar-meta"><span class="hbar-name">${name}</span><span class="hbar-pct">${val}</span></div>
+      <div class="hbar-track"><div class="hbar-fill" style="width:${val}%;background:${BAR_COLORS[i%BAR_COLORS.length]}"></div></div>
+    </div>`).join('');
+
+  // ── Radar ──
+  buildRadar(e.ability);
+
+  // TOP3 improvements
+  $('improveList').innerHTML=e.improvements.map((it,i)=>`
+    <div class="improve-row">
+      <div class="improve-rank">${i+1}</div>
+      <div class="improve-info">
+        <h3>${it.name}</h3>
+        <p>${it.reason}</p>
+        <div class="improve-bar"><i style="width:${[75,55,40][i]}%"></i></div>
+      </div>
+      <div class="improve-gain">+${it.gain}分</div>
+    </div>`).join('');
+
+  // twin
+  $('currentTwin').innerHTML=[['體重',p.weight+'kg'],['體脂率',p.bodyfat+'%'],['睡眠',p.sleep+'hr'],['腰臀比',e.whr.toFixed(2)],['健康分數',e.score]].map(r=>twinRow(r[0],r[1])).join('');
+  $('idealTwin').innerHTML=[['體重',e.targetWeight+'kg'],['體脂率',(p.gender==='m'?22:26)+'%'],['睡眠','7.5hr'],['腰臀比','≤'+e.whrStd],['健康分數',Math.min(98,e.score+17)]].map(r=>twinRow(r[0],r[1])).join('');
+  $('completionPct').textContent=e.completion+'%';
+  setTimeout(()=>{ $('completionBar').style.width=e.completion+'%'; },100);
+  $('completionText').textContent=`健康完成度 ${e.completion}%，距離理想健康狀態還有 ${100-e.completion}%。`;
+
+  // life habits
+  $('lifeSleep').textContent=p.sleep+'hr';$('lifeWater').textContent=p.water+'ml';
+  $('lifeExercise').textContent=p.exercise+'次/週';$('lifeProtein').textContent=e.proteinMid+'g';
+
+  // roadmap
+  const weeks=[[`蛋白質達 ${Math.max(e.proteinLow,Math.round(e.proteinMid*.85))}g`,'每日步行 8000 步'],['睡眠達 7 小時','睡前 30 分鐘離線'],['每週運動 2 次','增加一次阻力訓練'],['每週運動 3 次','重新測量腰圍與體重']];
+  $('roadmap').innerHTML=weeks.map((items,i)=>`
+    <div class="week">
+      <div class="week-num">Week <span>${i+1}</span></div>
+      <ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  // GA event
+  if(typeof gtag!=='undefined') gtag('event','calculate',{event_category:'health_score',event_label:'score_'+e.score});
 }
 
-
-function calcProtein(){
-  const w=parseFloat(document.getElementById('pr-w').value);
-  const goal=document.getElementById('pr-goal').value;
-  const act=document.getElementById('pr-act').value;
-  const diet=document.getElementById('pr-diet').value;
-  if(!w){alert('請輸入體重');return;}
-  let lo=1.2, hi=1.6, goalText='維持體態';
-  if(goal==='cut'){lo=1.6;hi=2.2;goalText='減脂／降低體脂';}
-  if(goal==='bulk'){lo=1.8;hi=2.4;goalText='增肌／提升肌肉量';}
-  if(act==='high'){lo+=0.1;hi+=0.1;}
-  if(act==='low' && goal!=='bulk'){lo-=0.1;hi-=0.1;}
-  if(diet==='elder'){lo=Math.max(lo,1.6);hi=Math.max(hi,2.0);}
-  if(diet==='vegetarian'){hi+=0.1;}
-  lo=Math.max(1.0,lo);hi=Math.min(2.6,hi);
-  const low=Math.round(w*lo), high=Math.round(w*hi), mid=Math.round((low+high)/2);
-  document.getElementById('pr-num').textContent=low+'–'+high;
-  document.getElementById('pr-perkg').textContent=lo.toFixed(1)+'–'+hi.toFixed(1)+' g/kg';
-  document.getElementById('pr-meal').textContent=Math.round(low/4)+'–'+Math.round(high/4)+' g';
-  document.getElementById('pr-chicken').textContent=Math.round(mid/23*100)+' g';
-  document.getElementById('pr-whey').textContent=Math.round(mid/25)+' 份';
-  document.getElementById('pr-note').textContent=`以體重 ${w}kg、目標「${goalText}」估算，每日蛋白質建議約 ${low}–${high}g。建議分散到 3–5 餐，每餐約 ${Math.round(low/4)}–${Math.round(high/4)}g，比集中在一餐更容易達成。`;
-  const cutText=goal==='cut'?'減脂期間蛋白質不足時，體重雖然可能下降，但肌肉量也容易一起流失，導致基礎代謝下降與復胖風險提高。':'若目標不是減脂，也仍建議把蛋白質分散到各餐，搭配足夠總熱量與規律訓練，才更容易維持身體組成。';
-  const foodNote=diet==='vegetarian'?'植物性飲食者可優先安排豆腐、毛豆、黃豆、無糖豆漿、天貝、希臘優格與蛋類；由於部分植物性蛋白胺基酸組成不同，建議來源多樣化。':'一般飲食可用雞蛋、雞胸肉、魚肉、海鮮、瘦肉、豆腐、無糖豆漿、希臘優格與乳清蛋白補足。';
-  document.getElementById('pr-ai').innerHTML=`
-    <div class="ai-summary"><strong>AI 蛋白質攝取摘要：</strong>依目前資料估算，您每日建議攝取 ${low}–${high}g 蛋白質；若以中間值 ${mid}g 規劃，約等於每餐 ${Math.round(mid/4)}g。足夠蛋白質可幫助增加飽足感、支持肌肉修復，並在減脂或增肌期間維持較好的身體組成。</div>
-    <h3>AI 營養解讀</h3>
-    <p>您的目標為「${goalText}」，因此建議蛋白質範圍設定在每公斤 ${lo.toFixed(1)}–${hi.toFixed(1)}g。這個範圍比一般最低需求更高，主要是為了支持肌肉修復、訓練恢復與體態維持。${cutText}</p>
-    <h3>如何吃到 ${mid}g 蛋白質？</h3>
-    <table class="mini-table"><tr><th>食物</th><th>常見份量</th><th>約含蛋白質</th></tr><tr><td>雞胸肉</td><td>100g</td><td>23g</td></tr><tr><td>雞蛋</td><td>1 顆</td><td>6g</td></tr><tr><td>豆腐</td><td>100g</td><td>8g</td></tr><tr><td>鮭魚或白肉魚</td><td>100g</td><td>20–22g</td></tr><tr><td>乳清蛋白</td><td>1 份</td><td>約 25g</td></tr></table>
-    <p>${foodNote}</p>
-    <h3>一日分配建議</h3>
-    <p>建議不要把蛋白質集中在晚餐，而是平均分配到早餐、午餐、晚餐與點心。例如目標 ${mid}g 時，可安排早餐 ${Math.round(mid*0.22)}g、午餐 ${Math.round(mid*0.30)}g、晚餐 ${Math.round(mid*0.30)}g、點心 ${Math.round(mid*0.18)}g。這樣比較容易達標，也能提高整天的飽足感。</p>
-    <h3>常見問題</h3>
-    <p><strong>蛋白質吃太多會傷腎嗎？</strong>健康成年人在合理範圍內攝取蛋白質通常沒有問題；但腎臟病、腎功能異常或需限制蛋白質者，應依醫師或營養師建議。</p>
-    <p><strong>減脂一定要喝乳清嗎？</strong>不一定。乳清只是方便補足蛋白質缺口，若日常飲食已能達到 ${low}–${high}g，就不一定需要額外補充。</p>
-    <h3>推薦下一步工具</h3>
-    <ul><li>TDEE 每日熱量計算：確認一天該吃多少熱量</li><li>熱量赤字計算器：設定減脂速度與達標時間</li><li>體脂率估算：判斷減重是否真的減到脂肪</li><li>飲水量計算：搭配高蛋白飲食時更要注意水分</li></ul>
-  `;
-  document.getElementById('protein-result').classList.add('show');
+function resetDemo(){
+  try{localStorage.removeItem('calcboxHealthProfile')}catch(e){}
+  const demo={gender:'m',age:35,height:170,weight:80,waist:92,hip:100,bodyfat:31,sleep:6.1,water:2400,exercise:1,activity:1.55,goal:'fat_loss'};
+  Object.entries(demo).forEach(([k,v])=>{if($(k))$(k).value=v});
+  calculateAll();
 }
 
-window.addEventListener('load',()=>loadNews());
-</script>
-
-<script>
-/* GA4 事件追蹤：calculate / copy_result */
-document.addEventListener('click', function(e){
-  if (typeof gtag !== 'function') return;
-  var btn = e.target.closest('button, .calc-btn, [onclick]');
-  if (!btn) return;
-  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
-  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
-  var label = (btn.textContent || '').trim().slice(0, 30);
-  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
-    gtag('event', 'calculate', { tool: tool, button_label: label });
-  } else if (/copy/i.test(oc)) {
-    gtag('event', 'copy_result', { tool: tool });
-  }
-});
+window.addEventListener('load',()=>{loadProfile();calculateAll()});
 </script>
 </body>
 </html>
