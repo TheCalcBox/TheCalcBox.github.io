@@ -225,6 +225,23 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+
+
+/* ── AI SEO 結果解讀區塊 ── */
+.ai-advice{margin-top:1rem;display:flex;flex-direction:column;gap:12px}
+.ai-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 15px}
+.ai-box.ai-summary{background:linear-gradient(135deg,#F1F8E9,#FFFFFF);border-left:4px solid var(--accent-mid)}
+.ai-box h3{font-size:14px;font-weight:800;margin-bottom:7px;color:var(--text)}
+.ai-box p{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:6px}
+.ai-box ul{padding-left:1.15rem;margin:6px 0 0}
+.ai-box li{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:2px}
+.ai-box .faq-q{font-size:13px;font-weight:800;color:var(--text);margin-top:10px}.ai-box .faq-a{font-size:13px;color:var(--muted);line-height:1.75;margin-top:3px}
+.ai-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:8px}
+.ai-kpi div{background:var(--gray-50);border:1px solid var(--border-light);border-radius:8px;padding:9px 10px}
+.ai-kpi b{display:block;font-size:11px;color:var(--hint);margin-bottom:2px}.ai-kpi span{font-size:14px;font-weight:800;color:var(--accent-mid)}
+.ai-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ai-tools a{font-size:12px;font-weight:700;text-decoration:none;background:var(--accent-light);color:var(--accent-mid);padding:5px 9px;border-radius:7px}
+@media(max-width:520px){.ai-box{padding:12px}.ai-kpi{grid-template-columns:1fr 1fr}}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"健康計算工具","item":"https://thecalcbox.github.io/health/"}]}</script>
@@ -288,6 +305,7 @@ footer a:hover{color:#F3C969!important}
       </div>
       <div class="result-note" id="b-note"></div>
       <div class="result-disclaimer">僅供參考，請諮詢醫師取得個人化建議。</div>
+      <div class="ai-advice" id="b-ai"></div>
     </div>
     <div class="seo-box">
       <h3>台灣 BMI 標準</h3>
@@ -325,6 +343,7 @@ footer a:hover{color:#F3C969!important}
       </div>
       <div class="result-note" id="td-note"></div>
       <div class="result-disclaimer">僅供參考，飲食規劃請諮詢營養師。</div>
+      <div class="ai-advice" id="td-ai"></div>
     </div>
     <div class="seo-box">
       <h3>TDEE 是什麼？</h3>
@@ -358,6 +377,7 @@ footer a:hover{color:#F3C969!important}
       </div>
       <div class="result-note" id="bf-note"></div>
       <div class="result-disclaimer">圍度估算有±3–4%誤差，精確值需DEXA等儀器測量。</div>
+      <div class="ai-advice" id="bf-ai"></div>
     </div>
     <div class="seo-box">
       <h3>體脂率健康標準</h3>
@@ -418,6 +438,7 @@ footer a:hover{color:#F3C969!important}
       </div>
       <div class="result-note" id="w-note"></div>
       <div class="result-disclaimer">腎臟病、心衰竭患者請依醫囑控制飲水量。</div>
+      <div class="ai-advice" id="w-ai"></div>
     </div>
     <div class="seo-box">
       <h3>每天該喝多少水？</h3>
@@ -451,6 +472,7 @@ footer a:hover{color:#F3C969!important}
       </div>
       <div class="result-note" id="whr-note"></div>
       <div class="result-disclaimer">WHO 標準：男性 ≤0.90、女性 ≤0.85。超標代表腹部脂肪過多，代謝症候群風險增加。</div>
+      <div class="ai-advice" id="whr-ai"></div>
     </div>
     <div class="seo-box">
       <h3>腰臀比 vs BMI</h3>
@@ -553,6 +575,12 @@ const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class
 let newsLoaded=false;
 const fmt=v=>Math.round(v).toLocaleString();
 
+function aiTools(items){return '<div class="ai-tools">'+items.map(x=>`<a href="#${x[0]}" onclick="switchTab('${x[0]}')">${x[1]}</a>`).join('')+'</div>';}
+function faqBlock(items){return items.map(x=>`<div class="faq-q">Q：${x[0]}</div><div class="faq-a">A：${x[1]}</div>`).join('');}
+function setAI(id, html){const el=document.getElementById(id);if(el)el.innerHTML=html;}
+function weeksText(kg){if(!kg||kg<=0)return '目前已在建議範圍內，重點是維持飲食、活動量與睡眠品質。';const w05=Math.ceil(kg/0.5), w075=Math.ceil(kg/0.75);return `若以每週減少 0.5 公斤估算，約需 ${w05} 週；若每週減少 0.75 公斤，約需 ${w075} 週。建議以穩定、可持續的速度調整，不建議極端節食。`;}
+
+
 function switchTab(id){
   if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -634,6 +662,15 @@ function calcBMI(){
   const d=(w-mid).toFixed(1);
   document.getElementById('b-diff').textContent=(d>0?'+':'')+d+' kg';
   document.getElementById('b-note').textContent=`BMI ${bmi.toFixed(1)}，健康體重範圍 ${lo}–${hi} 公斤。`;
+  const needLose=Math.max(0,w-parseFloat(hi));
+  const needGain=Math.max(0,parseFloat(lo)-w);
+  const proteinLo=Math.round(w*1.6), proteinHi=Math.round(w*2.0);
+  const waterLo=Math.round(w*30), waterHi=Math.round(w*35);
+  let interp, diet, exercise, target;
+  if(bmi<18.5){interp='您的 BMI 低於健康範圍，可能代表熱量攝取不足或肌肉量偏低。建議先確認飲食是否規律，並以增加肌肉量與總熱量為優先。';diet=`每日可先增加 300–500 大卡，蛋白質建議 ${proteinLo}–${proteinHi}g，優先選擇雞蛋、豆製品、魚肉、牛奶與全穀類。`;exercise='不建議大量有氧消耗熱量，建議每週 2–3 次阻力訓練，搭配足夠睡眠，讓體重與肌肉量穩定上升。';target=`建議先增加約 ${needGain.toFixed(1)} 公斤，達到健康體重下限 ${lo} 公斤。`;}
+  else if(bmi<24){interp='您的 BMI 位於台灣健康體重範圍。接下來重點不是快速減重，而是維持腰圍、體脂率、飲食品質與規律活動。';diet=`每日蛋白質可抓 ${proteinLo}–${proteinHi}g，飲水量約 ${waterLo.toLocaleString()}–${waterHi.toLocaleString()}ml，避免長期含糖飲料與宵夜。`;exercise='建議每週累積 150–300 分鐘中等強度有氧，並加入 2 次阻力訓練維持肌肉量。';target='目前已在健康體重範圍內，可搭配體脂率與腰臀比確認是否有隱性肥胖。';}
+  else{interp=`您的 BMI 屬於${bmi<27?'過重':'肥胖'}範圍，建議優先降低體脂肪，而不是只追求體重數字。若腰圍或體脂率也偏高，代謝風險會更需要注意。`;diet=`建議每日建立 300–500 大卡熱量赤字，蛋白質 ${proteinLo}–${proteinHi}g，飲水量約 ${waterLo.toLocaleString()}–${waterHi.toLocaleString()}ml。優先減少含糖飲料、油炸、甜點與宵夜。`;exercise='建議從快走、單車、游泳等低衝擊有氧開始，每週 150–300 分鐘，並搭配每週 2–3 次阻力訓練保留肌肉。';target=`健康體重上限約 ${hi} 公斤，目前約需減少 ${needLose.toFixed(1)} 公斤。`;}
+  setAI('b-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>BMI ${bmi.toFixed(1)} 屬於「${cat.replace(' ✓','')}」。${target} 這個結果適合搭配腰圍、體脂率與每日熱量消耗一起判斷，因為 BMI 只能反映身高與體重比例，無法分辨脂肪、肌肉與水分。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>${interp}</p><p>若 BMI 偏高，改善重點通常不是短期快速減重，而是降低腰圍、改善體脂率、建立穩定飲食習慣。若 BMI 正常，也建議觀察腰圍與活動量，因為久坐、壓力與睡眠不足仍可能影響代謝健康。</p></section><section class="ai-box"><h3>飲食建議</h3><p>${diet}</p><ul><li>每餐先安排一份優質蛋白質，再搭配蔬菜與適量全穀澱粉。</li><li>減重時不建議完全不吃澱粉，建議改成減少精製糖、含糖飲料與宵夜。</li><li>外食族可優先選便當去皮肉類、滷味、湯麵少湯、便利商店茶葉蛋與無糖豆漿。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>${exercise}</p><p>剛開始運動的人，建議先追求「每週穩定完成」而不是高強度。快走、腳踏車、游泳與阻力訓練都能幫助增加熱量消耗；阻力訓練還能保留肌肉量，讓減重後比較不容易復胖。</p></section><section class="ai-box"><h3>達標預估</h3><p>${weeksText(needLose)}</p><p>實務上體重不會每天線性下降，前期可能受水分、鹽分、壓力與睡眠影響。建議以 7 日平均體重、腰圍與照片紀錄來判斷趨勢，不要只看單日數字。</p></section><section class="ai-box"><h3>BMI 常見問題</h3>${faqBlock([['BMI 多少算肥胖？','依台灣常用標準，BMI 27 以上屬於肥胖，24–26.9 屬於過重，18.5–23.9 為健康體重範圍。'],['BMI 正常就一定健康嗎？','不一定。BMI 正常但腰圍過高、體脂率偏高或長期久坐，仍可能有代謝風險，建議搭配腰臀比與體脂率一起看。'],['一個月可以降多少 BMI？','較穩定的方式是每週減少約 0.5 公斤左右，BMI 下降速度會依身高與體重而不同，不建議用極端節食快速降低。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['tdee','TDEE 熱量'],['bodyfat','體脂率'],['whr','腰臀比'],['water','飲水量']])}</section>`);
   document.getElementById('bmi-result').classList.add('show');
 }
 function calcTDEE(){
@@ -651,6 +688,8 @@ function calcTDEE(){
   document.getElementById('td-bulk').textContent=Math.round(tdee+300).toLocaleString()+' 大卡';
   document.getElementById('td-protein').textContent=Math.round(w*1.6)+'–'+Math.round(w*2)+' g';
   document.getElementById('td-note').textContent=`每日消耗約 ${tdee.toLocaleString()} 大卡。減脂攝取 ${(tdee-500).toLocaleString()}、增肌 ${(tdee+300).toLocaleString()} 大卡，蛋白質 ${Math.round(w*1.6)}g 以上。`;
+  const cut=Math.round(tdee-500), bulk=Math.round(tdee+300), pLo=Math.round(w*1.6), pHi=Math.round(w*2.0);
+  setAI('td-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>您的每日總消耗約 ${tdee.toLocaleString()} 大卡。若目標是減脂，可先抓 ${cut.toLocaleString()} 大卡；若目標是增肌，可抓 ${bulk.toLocaleString()} 大卡。TDEE 適合用來規劃每日熱量、減脂速度與增肌飲食，是飲食控制最核心的基準值。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>TDEE 是維持目前體重所需的每日熱量。體重變化的核心是長期平均攝取量與 TDEE 的差距，而不是單日飲食。</p><p>若連續 2–3 週體重沒有變化，代表實際攝取量可能接近 TDEE；若體重下降太快，則可能赤字過大，容易影響訓練表現、飢餓感與肌肉保留。</p><div class="ai-kpi"><div><b>減脂熱量</b><span>${cut.toLocaleString()} kcal</span></div><div><b>增肌熱量</b><span>${bulk.toLocaleString()} kcal</span></div><div><b>蛋白質</b><span>${pLo}–${pHi}g</span></div></div></section><section class="ai-box"><h3>飲食建議</h3><p>減脂期建議先用 TDEE -300 到 -500 大卡，不要低於基礎代謝太多。每餐安排蛋白質、蔬菜與主食，避免只靠少吃造成肌肉流失。</p><ul><li>減脂：優先控制總熱量，蛋白質抓 ${pLo}–${pHi}g，澱粉集中在白天或訓練前後。</li><li>增肌：先小幅熱量盈餘，不需要暴食；體重每月增加 0.5–1.5 公斤通常較容易控制脂肪增加。</li><li>維持：以 TDEE 為中心上下微調，假日吃多時可用一週平均熱量管理。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>若要減脂，建議每週 2–3 次阻力訓練搭配 Zone 2 有氧。若要增肌，熱量小幅盈餘並逐步增加訓練重量。</p><p>活動量係數容易高估，若平常坐辦公室，即使有運動也可能仍接近輕度活動。建議同時追蹤每日步數、訓練次數與體重變化，再回頭調整熱量。</p></section><section class="ai-box"><h3>達標預估</h3><p>每日 500 大卡赤字約等於每週 0.4–0.6 公斤的減重速度。實際速度會受水分、睡眠、壓力與活動量影響。</p><p>建議每 2 週檢查一次平均體重。如果平均體重完全不變，可每日再減少 100–150 大卡或增加步數；如果下降太快，則可提高 100–200 大卡讓計畫更可持續。</p></section><section class="ai-box"><h3>TDEE 常見問題</h3>${faqBlock([['TDEE 跟 BMR 差在哪？','BMR 是完全休息時的基礎代謝，TDEE 則包含日常活動、運動與消化消耗，因此 TDEE 才是規劃飲食熱量的主要參考。'],['減脂一定要吃到 TDEE 減 500 嗎？','不一定。初學者可先從減少 300 大卡開始，若體重沒有變化再逐步調整，重點是可長期執行。'],['為什麼照 TDEE 吃還是沒瘦？','可能是活動量高估、食物份量低估、週末熱量補回來，或水分波動遮住脂肪下降，建議看 2–3 週平均趨勢。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['bodyfat','體脂率'],['water','飲水量'],['heartrate','心率區間']])}</section>`);
   document.getElementById('tdee-result').classList.add('show');
 }
 function calcBF(){
@@ -678,6 +717,9 @@ function calcBF(){
   document.getElementById('bf-range').textContent=healthy[0]+'–'+healthy[1]+'%';
   document.getElementById('bf-fat').textContent='輸入體重後可估';
   document.getElementById('bf-note').textContent=`估算體脂率 ${bf.toFixed(1)}%（${sex==='m'?'男':'女'}性健康範圍 ${healthy[0]}–${healthy[1]}%）。圍度法誤差約±3–4%，建議追蹤趨勢。`;
+  const level=bf<healthy[0]?'偏低':(bf<=healthy[1]?'健康範圍':(bf<=healthy[1]+5?'偏高':'過高'));
+  const bfAdvice=bf<=healthy[1]?'目前體脂率在參考範圍內，建議維持規律訓練與飲食品質。':`體脂率${level}，建議優先建立溫和熱量赤字，搭配阻力訓練降低脂肪並保留肌肉。`;
+  setAI('bf-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>估算體脂率 ${bf.toFixed(1)}%，屬於「${level}」。${bfAdvice} 體脂率適合用來判斷減脂是否真的減到脂肪，而不是只看體重下降。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>體脂率比 BMI 更能反映身體組成。若 BMI 正常但體脂率偏高，仍可能是隱性肥胖；若 BMI 偏高但體脂正常，可能與肌肉量較高有關。</p><p>體脂率偏高時，通常代表脂肪重量比例較高，可能伴隨腰圍增加與胰島素敏感度下降。體脂率偏低則可能影響荷爾蒙、免疫與運動恢復，因此目標應該是健康範圍，而不是越低越好。</p></section><section class="ai-box"><h3>飲食建議</h3><p>體脂偏高時，建議每餐優先補足蛋白質與蔬菜，控制精製澱粉、油炸與含糖飲料。減脂期間不建議完全不吃澱粉，以免影響訓練表現。</p><ul><li>蛋白質：每公斤體重可抓 1.6–2.0g，幫助維持肌肉量。</li><li>碳水化合物：優先選地瓜、糙米、燕麥、全麥與水果，減少手搖飲與甜點。</li><li>脂肪來源：可選堅果、橄欖油、酪梨、魚類，但仍需控制總熱量。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>建議以阻力訓練為核心，每週 2–4 次，搭配每週 150 分鐘以上有氧。只做有氧可能讓體重下降，但肌肉量也容易流失。</p><p>如果目標是降低體脂率，建議把訓練重點放在全身性動作，例如深蹲、硬舉、划船、推舉與核心訓練，再搭配快走或腳踏車。這種方式通常比只做局部腹部運動更有效。</p></section><section class="ai-box"><h3>達標預估</h3><p>建議每 2–4 週追蹤一次腰圍、體重與體脂趨勢，不要用單次數值判斷成敗。圍度公式可能有 ±3–4% 誤差。</p><p>若體重下降但體脂率沒有下降，可能代表肌肉流失或測量誤差；若體重變化不大但腰圍下降、力量維持，通常代表身體組成正在改善。</p></section><section class="ai-box"><h3>體脂率常見問題</h3>${faqBlock([['體脂率比 BMI 準嗎？','體脂率更能反映脂肪比例，但家用體脂計與圍度公式都有誤差，最好用趨勢判斷。'],['體脂率多久量一次？','建議每 2–4 週固定同一時間測量，例如早上起床上廁所後，避免受水分與飲食影響。'],['只做仰臥起坐能降低體脂嗎？','不能局部減脂。降低體脂需要整體熱量赤字、阻力訓練與有氧活動搭配。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['tdee','TDEE 熱量'],['whr','腰臀比'],['heartrate','心率區間']])}</section>`);
   document.getElementById('bodyfat-result').classList.add('show');
 }
 function calcIdeal(){
@@ -702,6 +744,8 @@ function calcWater(){
   document.getElementById('w-bottle').textContent=(total/700).toFixed(1)+' 瓶';
   document.getElementById('w-cup').textContent=Math.round(total/240)+' 杯';
   document.getElementById('w-note').textContent=`每天建議 ${total.toLocaleString()}ml，請分散飲用，起床、三餐前、運動前後各一杯。尿液淡黃色代表水分充足。`;
+  const cups=Math.round(total/240), bottles=(total/700).toFixed(1);
+  setAI('w-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>今日建議飲水量約 ${total.toLocaleString()}ml，約等於 ${bottles} 瓶 700ml 水或 ${cups} 杯 240ml 杯水。飲水量會隨體重、運動時間、流汗量與天氣改變，建議分散到一整天補充。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>水分需求會受體重、流汗量、環境溫度與運動時間影響。尿液淡黃色通常代表水分較足夠；若顏色偏深，可能需要補水。</p><p>水分不足時，可能影響精神、運動表現、排便與體溫調節。對減脂者來說，足夠飲水也有助於降低把口渴誤判為飢餓的機率。</p></section><section class="ai-box"><h3>飲水時程建議</h3><ul><li>起床後：300ml，補回睡眠期間流失的水分。</li><li>上午與午餐前：各 300ml，避免一整個上午都沒喝水。</li><li>下午：分 2 次補水，久坐上班族可搭配伸展或走動。</li><li>運動前後：依流汗量額外補充，流汗多時可搭配電解質。</li><li>睡前：少量即可，避免一次喝太多影響睡眠品質。</li></ul></section><section class="ai-box"><h3>飲食建議</h3><p>可以透過無糖茶、水果與湯品補充部分水分，但含糖飲料不建議計入主要補水來源。</p><p>若不習慣喝白開水，可以先用無糖氣泡水、檸檬片、冷泡茶或分段提醒改善。高鈉外食、火鍋、燒烤與大量流汗後，通常也需要額外補水。</p></section><section class="ai-box"><h3>風險提醒</h3><p>腎臟病、心衰竭或需限制水分者，請依醫師或營養師建議調整，不要直接套用一般公式。</p><p>短時間大量喝水並不一定更健康，可能造成不適。一般人建議分散飲用，運動大量流汗時除了水分，也要注意鈉與電解質補充。</p></section><section class="ai-box"><h3>飲水量常見問題</h3>${faqBlock([['每天一定要喝 2000ml 嗎？','不一定。飲水量應依體重、運動、流汗量與環境調整，體重較高或戶外活動較多的人通常需要更多。'],['咖啡和茶可以算水分嗎？','無糖茶與咖啡可提供部分水分，但不建議完全取代白開水；含糖飲料則不建議作為主要補水來源。'],['尿液顏色可以判斷水分嗎？','通常淡黃色代表較理想，若長期深黃色可能水分不足，但維生素補充品與藥物也可能影響顏色。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['tdee','TDEE 熱量'],['heartrate','心率區間']])}</section>`);
   document.getElementById('water-result').classList.add('show');
 }
 function calcSleep(){
@@ -737,6 +781,8 @@ function calcWHR(){
   document.getElementById('whr-w').textContent=waist+' cm';
   document.getElementById('whr-std').textContent='≤'+std+'（'+( sex==='m'?'男':'女')+'）';
   document.getElementById('whr-note').textContent=`腰圍 ${waist}cm ÷ 臀圍 ${hip}cm = WHR ${whr}，${ok?'在 WHO 建議範圍內':'超過 WHO 建議值 '+std+'，建議增加有氧運動減少腹部脂肪'}。`;
+  const risk=ok?'正常範圍':'腹部脂肪風險偏高';
+  setAI('whr-ai', `<section class="ai-box ai-summary"><h3>AI 摘要</h3><p>您的腰臀比為 ${whr}，屬於「${risk}」。${ok?'建議持續維持腰圍與運動習慣。':'建議優先降低腰圍，腹部脂肪通常比單純體重更能反映代謝風險。'} 腰臀比能補足 BMI 的不足，特別適合判斷腹部脂肪與脂肪分布。</p></section><section class="ai-box"><h3>AI 健康解讀</h3><p>腰臀比可評估脂肪分布。即使 BMI 正常，若腰臀比或腰圍偏高，仍可能有較高的代謝症候群與心血管風險。</p><p>腹部脂肪通常比臀腿脂肪更需要注意，因為它與血糖、血脂、血壓與脂肪肝風險較相關。若腰臀比偏高，建議同時檢查腰圍、體脂率與 TDEE，找出飲食與活動量的調整方向。</p></section><section class="ai-box"><h3>飲食建議</h3><p>建議降低含糖飲料、酒精、油炸與精製點心，並提高蛋白質與膳食纖維攝取。腹部脂肪改善通常需要整體熱量控制，而不是局部瘦肚子。</p><ul><li>優先減少液體熱量，例如手搖飲、果汁、酒精與含糖咖啡。</li><li>每餐增加蔬菜、豆類、全穀與高蛋白食物，有助於提高飽足感。</li><li>晚餐過量、宵夜與睡眠不足，常會讓腰圍更難下降。</li></ul></section><section class="ai-box"><h3>運動建議</h3><p>建議每週 150–300 分鐘中等強度有氧，搭配核心與全身阻力訓練。仰臥起坐可訓練肌肉，但無法單獨消除腹部脂肪。</p><p>若腰臀比偏高，可從每天增加 2000–3000 步開始，再加入快走、腳踏車或游泳。阻力訓練建議包含下肢、背部與核心，提升整體肌肉量與日常消耗。</p></section><section class="ai-box"><h3>達標預估</h3><p>建議每 2 週量一次腰圍。若飲食與運動穩定，腰圍通常會比體重更早反映改善趨勢。</p><p>測量時請固定在早上、空腹或相同狀態下，腰圍量肚臍附近，臀圍量最寬處。不要因單次數字波動判斷成敗，應看 4–8 週趨勢。</p></section><section class="ai-box"><h3>腰臀比常見問題</h3>${faqBlock([['腰臀比跟腰圍哪個重要？','兩者都重要。腰圍反映腹部脂肪量，腰臀比反映脂肪分布，建議一起參考。'],['瘦子也會腰臀比超標嗎？','會。體重正常但腰圍偏高，可能是隱性肥胖或久坐造成的腹部脂肪堆積。'],['做核心能瘦肚子嗎？','核心訓練可以強化肌肉與姿勢，但降低腹部脂肪仍需要整體熱量控制與有氧活動。']])}</section><section class="ai-box"><h3>推薦下一步工具</h3>${aiTools([['bmi','BMI'],['bodyfat','體脂率'],['tdee','TDEE 熱量'],['heartrate','心率區間']])}</section>`);
   document.getElementById('whr-result').classList.add('show');
 }
 function calcHeartRate(){
