@@ -255,7 +255,10 @@ summary::-webkit-details-marker{color:var(--gold)}
 
 /* Mobile 600px */
 @media(max-width:600px){
-  .hero{padding:1.5rem 1rem 1.5rem}
+  .hero{padding:1.25rem 1rem 1rem}
+  .kicker,.hero-chips,.ring-widget{display:none}
+  .hero-desc{font-size:13px}
+  h1{font-size:22px;letter-spacing:-.3px}
   .form-grid{grid-template-columns:1fr}
   .hero h1{font-size:26px}
   .hero-desc{font-size:13px}
@@ -601,55 +604,398 @@ summary::-webkit-details-marker{color:var(--gold)}
 const $=id=>document.getElementById(id);
 const fmt=n=>Math.round(n).toLocaleString();
 
-/* ── Calc engine (unchanged logic) ── */
-function readProfile(){return{gender:$('gender').value,age:+$('age').value||35,height:+$('height').value||170,weight:+$('weight').value||80,waist:+$('waist').value||92,hip:+$('hip').value||100,bodyfat:+$('bodyfat').value||31,sleep:+$('sleep').value||6.1,water:+$('water').value||2400,exercise:+$('exercise').value||1,activity:+$('activity').value||1.55,goal:$('goal').value}}
-function saveProfile(p){try{localStorage.setItem('calcboxHealthProfile',JSON.stringify(p))}catch(e){}}
-function loadProfile(){try{const raw=localStorage.getItem('calcboxHealthProfile');if(!raw)return;const p=JSON.parse(raw);Object.entries({gender:p.gender,age:p.age,height:p.height,weight:p.weight,waist:p.waist,hip:p.hip,bodyfat:p.bodyfat,sleep:p.sleep,water:p.water,exercise:p.exercise,activity:p.activity,goal:p.goal}).forEach(([k,v])=>{if($(k)&&v!==undefined&&v!==null)$(k).value=v})}catch(e){}}
-function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
-function scoreLinear(value,goodLow,goodHigh,badLow,badHigh,maxScore){if(value>=goodLow&&value<=goodHigh)return maxScore;if(value<goodLow)return clamp(maxScore*(value-badLow)/(goodLow-badLow),0,maxScore);return clamp(maxScore*(badHigh-value)/(badHigh-goodHigh),0,maxScore)}
-function bmiCategory(bmi){if(bmi<18.5)return'過輕';if(bmi<24)return'健康範圍';if(bmi<27)return'過重';return'肥胖'}
-function getLevel(score){if(score>=90)return{text:'卓越',cls:'badge-green',emoji:'🟢'};if(score>=80)return{text:'良好',cls:'badge-green',emoji:'🟢'};if(score>=70)return{text:'普通',cls:'badge-amber',emoji:'🟡'};if(score>=60)return{text:'需改善',cls:'badge-amber',emoji:'🟠'};return{text:'高風險',cls:'badge-red',emoji:'🔴'}}
-function calculateEngine(p){
-  const h=p.height/100;const bmi=p.weight/(h*h);const whr=p.waist/p.hip;
-  const bmr=p.gender==='m'?10*p.weight+6.25*p.height-5*p.age+5:10*p.weight+6.25*p.height-5*p.age-161;
-  const tdee=Math.round(bmr*p.activity);
-  const proteinMid=Math.round(p.weight*(p.goal==='muscle_gain'?2.1:p.goal==='fat_loss'?2.0:1.4));
-  const proteinLow=Math.round(p.weight*(p.goal==='muscle_gain'?1.8:p.goal==='fat_loss'?1.6:1.2));
-  const idealWeight=Math.round(22*h*h);
-  const targetWeight=p.goal==='fat_loss'?Math.max(idealWeight,Math.round(p.weight*.9)):idealWeight;
-  const bmiScore=bmi>=18.5&&bmi<24?20:scoreLinear(bmi,18.5,24,14,35,20);
-  const bfGoodHigh=p.gender==='m'?23:27;const bfBadHigh=p.gender==='m'?38:42;
-  const bodyFatScore=scoreLinear(p.bodyfat,p.gender==='m'?12:16,bfGoodHigh,6,bfBadHigh,25);
-  const whrStd=p.gender==='m'?.90:.85;
-  const whrScore=whr<=whrStd?15:clamp(15-((whr-whrStd)/.20)*15,0,15);
-  const proteinScore=15;
-  const sleepScore=scoreLinear(p.sleep,7,8.5,4.5,10,10);
-  const waterTarget=Math.round(p.weight*33);
-  const waterScore=clamp((p.water/waterTarget)*5,0,5);
-  const exerciseScore=clamp((p.exercise/3)*10,0,10);
-  const score=Math.round(bmiScore+bodyFatScore+whrScore+proteinScore+sleepScore+waterScore+exerciseScore);
-  const bmiPenalty=bmi>=27?4:bmi>=24?2:bmi<18.5?2:0;
-  const bfPenalty=p.bodyfat>bfGoodHigh+5?4:p.bodyfat>bfGoodHigh?2:0;
-  const sleepPenalty=p.sleep<6.5?2:p.sleep<7?1:0;
-  const whrPenalty=whr>whrStd?2:0;
-  const exerciseBonus=p.exercise>=3?2:p.exercise>=2?1:0;
-  const healthAge=Math.max(18,Math.round(p.age+bmiPenalty+bfPenalty+sleepPenalty+whrPenalty-exerciseBonus));
-  const ability={'體重管理':Math.round(clamp((bmiScore/20)*100,0,100)),'身體組成':Math.round(clamp((bodyFatScore/25)*100,0,100)),'營養攝取':Math.round(clamp((proteinScore/15)*100,0,100)),'生活習慣':Math.round(clamp(((sleepScore+waterScore)/15)*100,0,100)),'運動習慣':Math.round(clamp((exerciseScore/10)*100,0,100))};
-  const improvements=[{name:'體脂率 -3%',gain:p.bodyfat>bfGoodHigh?10:4,reason:'體脂率會直接影響身體組成與代謝風險。'},{name:'運動 +2次/週',gain:p.exercise<3?5:2,reason:'提高運動頻率可改善體脂、腰臀比與心肺能力。'},{name:'睡眠 +1小時',gain:p.sleep<7?4:1,reason:'睡眠提升有助於食慾控制、恢復與壓力管理。'},{name:'腰臀比下降',gain:whr>whrStd?6:2,reason:'腰臀比改善代表腹部脂肪與心血管風險下降。'},{name:'飲水達標',gain:p.water<waterTarget?1:0,reason:'飲水有助於代謝與運動表現，但權重低於體脂與睡眠。'}].sort((a,b)=>b.gain-a.gain).slice(0,3);
-  const completion=Math.round(clamp(100-((Math.max(0,p.weight-targetWeight)/(Math.max(1,p.weight-targetWeight)+8))*22+(Math.max(0,p.bodyfat-(p.gender==='m'?22:26))/12)*28+(Math.max(0,7.5-p.sleep)/3)*18+(Math.max(0,whr-whrStd)/.18)*20),45,96));
-  return{bmi,whr,bmr,tdee,proteinMid,proteinLow,idealWeight,targetWeight,score,healthAge,ability,improvements,completion,waterTarget,cut:tdee-500,level:getLevel(score),bfGoodHigh,whrStd};
+/* ══════════════════════════════════════════
+   工具函式
+══════════════════════════════════════════ */
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v))}
+
+// 線性內插分數：在理想區間得滿分，往兩側遞減
+function scoreLinear(val,gLo,gHi,bLo,bHi,max){
+  if(val>=gLo&&val<=gHi)return max;
+  if(val<gLo)return clamp(max*(val-bLo)/(gLo-bLo),0,max);
+  return clamp(max*(bHi-val)/(bHi-gHi),0,max);
 }
 
-/* ── Bar chart colors ── */
+function bmiCategory(bmi){
+  if(bmi<18.5)return'過輕';
+  if(bmi<24)return'健康範圍';
+  if(bmi<27)return'過重';
+  return'肥胖';
+}
+
+function getLevel(score){
+  if(score>=90)return{text:'卓越',cls:'badge-green',emoji:'🟢'};
+  if(score>=80)return{text:'良好',cls:'badge-green',emoji:'🟢'};
+  if(score>=70)return{text:'普通',cls:'badge-amber',emoji:'🟡'};
+  if(score>=60)return{text:'需改善',cls:'badge-amber',emoji:'🟠'};
+  return{text:'高風險',cls:'badge-red',emoji:'🔴'};
+}
+
+/* ══════════════════════════════════════════
+   讀取 / 儲存 Profile
+══════════════════════════════════════════ */
+function readProfile(){
+  return{
+    gender:$('gender').value,
+    age:+$('age').value||35,
+    height:+$('height').value||170,
+    weight:+$('weight').value||70,
+    waist:+$('waist').value||80,
+    hip:+$('hip').value||95,
+    bodyfat:+$('bodyfat').value||20,
+    sleep:+$('sleep').value||7,
+    water:+$('water').value||2000,
+    exercise:+$('exercise').value||2,
+    activity:+$('activity').value||1.55,
+    goal:$('goal').value
+  };
+}
+function saveProfile(p){try{localStorage.setItem('calcboxHealthProfile',JSON.stringify(p))}catch(e){}}
+function loadProfile(){
+  try{
+    const raw=localStorage.getItem('calcboxHealthProfile');
+    if(!raw)return;
+    const p=JSON.parse(raw);
+    Object.entries(p).forEach(([k,v])=>{if($(k)&&v!=null)$(k).value=v});
+  }catch(e){}
+}
+
+/* ══════════════════════════════════════════
+   核心引擎：所有輸出完全由用戶數據驅動
+   參考依據：
+   - 體脂率：ACSM / NSCA 分類標準
+   - BMI：WHO / 衛福部
+   - 蛋白質：ISSN 2017
+   - 睡眠：NSF / AAP
+   - 飲水：衛福部 (體重×33ml)
+══════════════════════════════════════════ */
+function calculateEngine(p){
+  const h=p.height/100;
+  const bmi=+(p.weight/(h*h)).toFixed(1);
+  const whr=+(p.waist/p.hip).toFixed(2);
+  const whrStd=p.gender==='m'?0.90:0.85;
+
+  /* ── 代謝 ── */
+  const bmr=p.gender==='m'
+    ?10*p.weight+6.25*p.height-5*p.age+5
+    :10*p.weight+6.25*p.height-5*p.age-161;
+  const tdee=Math.round(bmr*p.activity);
+
+  /* ── 目標體重 ── */
+  const idealWeight=Math.round(22*h*h);
+  const targetWeight=p.goal==='fat_loss'
+    ?Math.max(idealWeight,Math.round(p.weight*0.9))
+    :p.goal==='muscle_gain'
+    ?Math.round(p.weight*1.05)
+    :idealWeight;
+
+  /* ── 蛋白質需求（依目標） ── */
+  const proteinRatio=p.goal==='muscle_gain'?2.1:p.goal==='fat_loss'?1.8:1.4;
+  const proteinMid=Math.round(p.weight*proteinRatio);
+  const proteinLow=Math.round(p.weight*(proteinRatio-0.3));
+
+  /* ── 飲水目標 ── */
+  const waterTarget=Math.round(p.weight*33);
+
+  /* ══════════════════
+     體脂率分類（ACSM 標準）
+     男：<6 危險低 / 6-13 運動員 / 14-17 健身 / 18-24 可接受 / 25-31 偏高 / >31 肥胖
+     女：<14 危險低 / 14-20 運動員 / 21-24 健身 / 25-31 可接受 / 32-38 偏高 / >38 肥胖
+     ============================
+     簡化為 5 段方便用戶理解：
+     dangerLow / tooLow / good / high / veryHigh
+  ══════════════════ */
+  const BF={
+    m:{dangerLine:6, lowLine:14, goodHigh:24, highLine:31},
+    f:{dangerLine:14,lowLine:21, goodHigh:31, highLine:38}
+  }[p.gender];
+
+  const bfStatus=
+    p.bodyfat<BF.dangerLine ?'dangerLow':
+    p.bodyfat<BF.lowLine    ?'tooLow':
+    p.bodyfat<=BF.goodHigh  ?'good':
+    p.bodyfat<=BF.highLine  ?'high':'veryHigh';
+
+  // 理想體脂目標：過低者往上補、正常者依目標、偏高者往下降
+  const bfIdeal=
+    bfStatus==='dangerLow'|bfStatus==='tooLow'
+      ?(p.gender==='m'?16:23)  // 補到健康中段
+      :p.goal==='muscle_gain'
+      ?(p.gender==='m'?14:21)  // 增肌目標：精瘦
+      :p.goal==='fat_loss'
+      ?(p.gender==='m'?16:23)  // 減脂目標：健康中段
+      :(p.gender==='m'?20:27); // 維持目標：舒適健康
+
+  /* ══════════════════
+     分數計算（7 維，總分 100）
+     BMI 20 / 體脂 20 / 腰臀比 15 /
+     睡眠 15 / 運動 15 / 飲水 10 / 腰圍 5
+  ══════════════════ */
+  const bmiScore=scoreLinear(bmi,18.5,24,14,35,20);
+
+  // 體脂：過低與過高都扣分，運動員範圍給高分
+  const bodyFatScore=
+    p.bodyfat<BF.dangerLine?0:
+    p.bodyfat<BF.lowLine?clamp(20*(p.bodyfat-BF.dangerLine)/(BF.lowLine-BF.dangerLine)*0.6,0,12):
+    scoreLinear(p.bodyfat,BF.lowLine,BF.goodHigh,BF.dangerLine,BF.highLine+10,20);
+
+  const whrScore=whr<=whrStd?15:clamp(15-((whr-whrStd)/0.20)*15,0,15);
+  const sleepScore=scoreLinear(p.sleep,7,9,4,11,15);
+  const exerciseScore=scoreLinear(p.exercise,3,5,0,7,15);
+  const waterScore=clamp((p.water/waterTarget)*10,0,10);
+  const waistStd=p.gender==='m'?90:80;
+  const waistScore=p.waist<=waistStd?5:clamp(5-((p.waist-waistStd)/20)*5,0,5);
+
+  const score=clamp(Math.round(
+    bmiScore+bodyFatScore+whrScore+sleepScore+exerciseScore+waterScore+waistScore
+  ),0,100);
+
+  /* ── 健康年齡 ── */
+  const bmiPenalty=bmi>=30?5:bmi>=27?3:bmi>=25?1:bmi<18.5?2:0;
+  const bfPenalty=
+    bfStatus==='dangerLow'?5:bfStatus==='tooLow'?2:
+    bfStatus==='veryHigh'?5:bfStatus==='high'?2:0;
+  const sleepPenalty=p.sleep<6?4:p.sleep<7?2:p.sleep>9?1:0;
+  const whrPenalty=whr>whrStd+0.15?3:whr>whrStd?1:0;
+  const exerciseBonus=p.exercise>=5?3:p.exercise>=3?2:p.exercise>=2?1:0;
+  const healthAge=Math.max(18,Math.round(
+    p.age+bmiPenalty+bfPenalty+sleepPenalty+whrPenalty-exerciseBonus
+  ));
+
+  /* ── 雷達維度 ── */
+  const ability={
+    '體重管理':Math.round(clamp(bmiScore/20*100,0,100)),
+    '身體組成':Math.round(clamp(bodyFatScore/20*100,0,100)),
+    '睡眠品質':Math.round(clamp(sleepScore/15*100,0,100)),
+    '運動習慣':Math.round(clamp(exerciseScore/15*100,0,100)),
+    '生活習慣':Math.round(clamp((waterScore+waistScore)/15*100,0,100))
+  };
+  const abilityArr=Object.entries(ability).sort((a,b)=>b[1]-a[1]);
+  const topStrength=abilityArr[0][0];
+  const topStrengthScore=abilityArr[0][1];
+  const topWeakness=abilityArr[abilityArr.length-1][0];
+
+  /* ══════════════════════════════════════
+     改善建議：完全基於用戶數值，動態生成
+     每項含：name / gain / reason / action
+  ══════════════════════════════════════ */
+  const pool=[];
+
+  // 1. 體脂率
+  if(bfStatus==='dangerLow'){
+    pool.push({name:`體脂率過低（${p.bodyfat}%）⚠`,gain:10,
+      reason:`您的體脂率 ${p.bodyfat}% 低於安全下限（男性 ${BF.dangerLine}%），過低會影響荷爾蒙、免疫力與骨密度，需要增加。`,
+      action:`每日增加 300–500 大卡，優先來源：堅果 30g、酪梨半顆、橄欖油。目標體脂率：${bfIdeal}%`});
+  }else if(bfStatus==='tooLow'){
+    pool.push({name:`體脂率偏低（${p.bodyfat}%），建議補充`,gain:5,
+      reason:`體脂率 ${p.bodyfat}% 低於健康範圍（男 ${BF.lowLine}–${BF.goodHigh}%），建議適度增加健康脂肪攝取。`,
+      action:`每日增加優質脂肪：堅果一把、深海魚每週2次、酪梨。目標體脂率：${bfIdeal}%`});
+  }else if(bfStatus==='high'){
+    pool.push({name:`體脂率偏高（${p.bodyfat}%），建議改善`,gain:7,
+      reason:`體脂率 ${p.bodyfat}% 超過健康上限（男 ${BF.goodHigh}%），與胰島素阻抗、心血管風險相關。`,
+      action:`每日熱量赤字 300–400 大卡 + 每週3次有氧運動。目標體脂率：${bfIdeal}%`});
+  }else if(bfStatus==='veryHigh'){
+    pool.push({name:`體脂率明顯偏高（${p.bodyfat}%）⚠`,gain:12,
+      reason:`體脂率 ${p.bodyfat}% 大幅超標（男健康上限 ${BF.goodHigh}%），代謝症候群與慢性病風險顯著上升。`,
+      action:`每日熱量控制在 TDEE-500 以內，搭配有氧+阻力訓練。建議先目標 ${bfIdeal}%，可諮詢營養師制定計畫。`});
+  }
+  // 體脂正常：低增益，讓其他問題優先
+
+  // 2. BMI
+  if(bmi<18.5){
+    pool.push({name:`BMI 過輕（${bmi}），需增重`,gain:8,
+      reason:`BMI ${bmi} 低於 18.5，可能影響免疫力、骨骼健康與體力。`,
+      action:`每日增加 300–500 大卡，選擇高蛋白食物（雞肉、蛋、豆腐）搭配複合碳水（糙米、地瓜）。`});
+  }else if(bmi>=27&&bmi<30){
+    pool.push({name:`BMI 過重（${bmi}），建議減重`,gain:6,
+      reason:`BMI ${bmi} 屬過重範圍（25–30），代謝與心血管風險提升，體重每減少 5–10% 健康效益顯著。`,
+      action:`每日製造 300–400 大卡赤字，搭配阻力訓練保留肌肉。目標 BMI：18.5–24`});
+  }else if(bmi>=30){
+    pool.push({name:`BMI 肥胖（${bmi}）⚠，需積極改善`,gain:10,
+      reason:`BMI ${bmi} 達肥胖標準（≥30），第2型糖尿病、心血管疾病風險顯著升高。`,
+      action:`減少精緻澱粉與糖分，每週至少運動4次。建議諮詢醫師或營養師制定個人化計畫。`});
+  }
+
+  // 3. 睡眠
+  if(p.sleep<6){
+    pool.push({name:`睡眠嚴重不足（${p.sleep}小時）⚠`,gain:9,
+      reason:`每晚 ${p.sleep} 小時遠低於建議量（7–9小時），長期睡眠不足顯著提高肥胖、心血管疾病與認知功能下降的風險。`,
+      action:`設定固定就寢時間，先目標 6.5 小時。戒除睡前手機，嘗試睡前伸展或冥想。`});
+  }else if(p.sleep<7){
+    pool.push({name:`睡眠不足（${p.sleep}小時），建議增加`,gain:5,
+      reason:`每晚 ${p.sleep} 小時略低於建議量（7小時），影響食慾控制荷爾蒙（瘦素/飢餓素）與運動恢復效率。`,
+      action:`每天提早 30 分鐘上床，下午2點後避免咖啡因，睡前1小時停用螢幕。`});
+  }else if(p.sleep>9){
+    pool.push({name:`睡眠過長（${p.sleep}小時），需留意`,gain:3,
+      reason:`每晚 ${p.sleep} 小時超過建議上限，長期過長睡眠與慢性疲勞、憂鬱或潛在疾病有關聯。`,
+      action:`維持固定起床時間（即使週末），若長期嗜睡建議諮詢醫師排除潛在原因。`});
+  }
+
+  // 4. 運動
+  if(p.exercise===0){
+    pool.push({name:'完全未運動，立即開始',gain:12,
+      reason:'目前每週運動0次，規律運動是改善所有健康指標（體脂、血壓、睡眠、情緒）最有效的單一行動。',
+      action:'從每週2次快走30分鐘開始，不需要健身房。2週後加入阻力訓練（深蹲、伏地挺身各3組）。'});
+  }else if(p.exercise<2){
+    pool.push({name:`運動量不足（每週${p.exercise}次），建議增加`,gain:8,
+      reason:`每週 ${p.exercise} 次低於建議量（3次以上），心肺功能、代謝率與體脂改善空間大。`,
+      action:`目標每週3次，每次30–45分鐘。建議：有氧（快走、游泳）+ 阻力訓練（深蹲、推舉）交替。`});
+  }else if(p.exercise<3){
+    pool.push({name:`運動略不足（每週${p.exercise}次），再加一次`,gain:4,
+      reason:`每週 ${p.exercise} 次接近但未達理想量（3次以上），多一次阻力訓練可顯著改善肌肉量與代謝。`,
+      action:`在現有基礎增加一次阻力訓練，著重大肌群（腿、背、胸），每次30分鐘即可。`});
+  }
+
+  // 5. 腰臀比
+  if(whr>whrStd+0.10){
+    pool.push({name:`腰臀比明顯偏高（${whr}）`,gain:7,
+      reason:`腰臀比 ${whr} 明顯超過標準（男性≤${whrStd}），腹部脂肪堆積與心血管疾病、代謝症候群高度相關。`,
+      action:`優先減少液態糖分與精緻碳水，每週加入3次以上有氧運動。腹部脂肪通常對熱量控制最敏感。`});
+  }else if(whr>whrStd){
+    pool.push({name:`腰臀比略偏高（${whr}），持續留意`,gain:3,
+      reason:`腰臀比 ${whr} 略超標準（男性≤${whrStd}），早期介入可預防後續心血管風險。`,
+      action:`維持熱量平衡，每週增加一次有氧運動，每月量測腰圍追蹤趨勢。`});
+  }
+
+  // 6. 飲水
+  const waterPct=Math.round(p.water/waterTarget*100);
+  if(p.water<waterTarget*0.5){
+    pool.push({name:`飲水嚴重不足（${waterPct}%）⚠`,gain:5,
+      reason:`每日 ${p.water}ml 僅達建議量 ${waterTarget}ml 的 ${waterPct}%，嚴重脫水影響代謝、腎功能與認知表現。`,
+      action:`每餐前飲水250ml，攜帶水壺記錄。目標：${waterTarget}ml（體重${p.weight}kg × 33ml）`});
+  }else if(p.water<waterTarget*0.8){
+    pool.push({name:`飲水量不足（${waterPct}%），需補充`,gain:3,
+      reason:`每日 ${p.water}ml 低於建議量 ${waterTarget}ml，補足飲水有助代謝效率與食慾控制。`,
+      action:`早上起床先喝300ml，每餐前一杯水。目標：${waterTarget}ml`});
+  }else if(p.water<waterTarget){
+    pool.push({name:`飲水量接近目標（${waterPct}%）`,gain:1,
+      reason:`每日 ${p.water}ml 略低於建議量 ${waterTarget}ml，再稍微補充即可達標。`,
+      action:`每天多補充一杯水（約200ml）即可達標。`});
+  }
+
+  // 依 gain 排序，取前3
+  pool.sort((a,b)=>b.gain-a.gain);
+  const improvements=pool.slice(0,3);
+
+  // 若所有指標都健康
+  if(improvements.length===0){
+    improvements.push(
+      {name:'各項指標均健康，繼續保持',gain:0,reason:'您的體重、體脂、睡眠與運動習慣均在理想範圍。',action:'每3個月重新評估，維持目前習慣。'},
+      {name:'嘗試提升運動強度',gain:0,reason:'在健康基礎上，提升訓練強度可進一步改善心肺與肌肉素質。',action:'加入間歇訓練（HIIT）或增加重量訓練負重。'},
+      {name:'定期健康檢查',gain:0,reason:'即使指標良好，每年健檢可早期發現潛在問題。',action:'安排血脂、血糖、血壓等基礎檢查。'}
+    );
+  }
+  while(improvements.length<3){
+    improvements.push({name:'飲水達標',gain:1,reason:`目標每日 ${waterTarget}ml（體重×33ml）。`,action:`現在喝一杯水。`});
+  }
+
+  /* ══════════════════════════════════════
+     飲食建議：依用戶目標動態生成
+  ══════════════════════════════════════ */
+  const calTarget=p.goal==='fat_loss'
+    ?Math.max(1200,Math.round(tdee-400))
+    :p.goal==='muscle_gain'
+    ?Math.round(tdee+300)
+    :tdee;
+  const dietAdvice={
+    calTarget,
+    summary:p.goal==='fat_loss'
+      ?`減脂期建議每日攝取約 ${calTarget} 大卡（TDEE ${tdee} - 400 大卡赤字），蛋白質達 ${proteinMid}g 以保留肌肉。`
+      :p.goal==='muscle_gain'
+      ?`增肌期建議每日攝取約 ${calTarget} 大卡（TDEE ${tdee} + 300 大卡盈餘），蛋白質達 ${proteinMid}g 以合成肌肉。`
+      :`維持健康建議每日攝取約 ${calTarget} 大卡，蛋白質目標 ${proteinMid}g。`,
+    tips:p.goal==='fat_loss'
+      ?['選擇高蛋白、高纖食物增加飽足感（雞胸肉、豆腐、蔬菜）',
+        '避免液態糖分（手搖飲、果汁、含糖咖啡）',
+        '每餐先吃蛋白質和蔬菜，最後吃澱粉，降低血糖波動']
+      :p.goal==='muscle_gain'
+      ?['每餐確保攝取 30–50g 蛋白質，分散到三餐加點心',
+        '訓練後1小時內補充蛋白質（乳清或雞胸肉）+ 碳水（香蕉、地瓜）',
+        '選擇複合碳水（糙米、燕麥、地瓜）提供訓練能量，避免精緻糖分']
+      :['均衡攝取六大類食物，每天5份蔬果',
+        '選擇原型食物，減少加工食品與精緻糖分',
+        '維持穩定用餐時間，避免暴飲暴食']
+  };
+
+  /* ── 個人化 4 週計畫（依用戶最弱2項決定任務） ── */
+  const weaknesses=pool.slice(0,2).map(x=>x.name);
+  const w1=[],w2=[],w3=[],w4=[];
+  if(p.sleep<7){
+    w1.push('設定固定睡眠時間，目標每晚達到 '+Math.min(8,p.sleep+0.5)+'小時');
+    w2.push('睡前1小時停用手機，嘗試10分鐘伸展放鬆');
+  }else{
+    w1.push(`蛋白質達到每日 ${Math.round(proteinMid*0.8)}g（目標的 80%）`);
+    w2.push(`蛋白質全面達標 ${proteinMid}g，每餐至少 ${Math.round(proteinMid/3)}g`);
+  }
+  if(p.exercise<2){
+    w1.push('每週完成2次快走30分鐘，不需要健身房');
+    w3.push('每週運動增加到3次，加入一次阻力訓練');
+  }else if(p.exercise<3){
+    w2.push('在現有基礎增加1次阻力訓練（深蹲、伏地挺身各3組）');
+    w3.push('每週穩定3次訓練，紀錄重量或距離進步');
+  }else{
+    w3.push('維持每週3次以上，嘗試提升強度或重量');
+  }
+  if(p.water<waterTarget){
+    w1.push(`每天飲水先達到 ${Math.round(waterTarget*0.8)}ml`);
+    w2.push(`飲水達標 ${waterTarget}ml，設定手機提醒`);
+  }
+  w4.push('重新輸入所有數值，比對健康分數是否提升');
+  w4.push('依30天成果調整下一階段目標');
+  const weeks=[
+    (w1.length?w1:['維持目前習慣','每天記錄飲食與運動']).slice(0,2),
+    (w2.length?w2:['評估第一週執行狀況','調整最難執行的習慣']).slice(0,2),
+    (w3.length?w3:['提升其中一項習慣的強度','嘗試新的運動或食譜']).slice(0,2),
+    w4.slice(0,2)
+  ];
+
+  /* ── 完成度（依各指標距理想值） ── */
+  const bfGap=bfStatus==='dangerLow'||bfStatus==='tooLow'
+    ?Math.abs(p.bodyfat-bfIdeal)/10
+    :Math.max(0,p.bodyfat-BF.goodHigh)/12;
+  const weightGap=Math.max(0,p.weight-targetWeight)/(Math.max(1,p.weight-targetWeight)+12);
+  const sleepGap=p.sleep<7?Math.max(0,7-p.sleep)/4:p.sleep>9?0.05:0;
+  const whrGap=Math.max(0,whr-whrStd)/0.25;
+  const waterGap=Math.max(0,(waterTarget-p.water)/waterTarget);
+  const exGap=Math.max(0,(3-p.exercise)/3);
+  const completion=Math.round(clamp(100-(
+    weightGap*16+bfGap*20+sleepGap*16+whrGap*14+waterGap*8+exGap*14
+  ),42,97));
+
+  /* ── 預測分數（改善後） ── */
+  const forecastGain=Math.min(22,improvements.reduce((s,x)=>s+x.gain,0));
+  const forecastScore=Math.min(97,score+forecastGain);
+
+  /* ── 各指標狀態描述（AI 摘要用） ── */
+  const bfStatusDesc={
+    dangerLow:`體脂率 ${p.bodyfat}% 低於安全下限（男性 ${BF.dangerLine}%），需要增加健康脂肪攝取`,
+    tooLow:`體脂率 ${p.bodyfat}% 偏低，建議適度補充優質脂肪`,
+    good:`體脂率 ${p.bodyfat}% 位於健康範圍（男${BF.lowLine}–${BF.goodHigh}%），繼續保持`,
+    high:`體脂率 ${p.bodyfat}% 偏高（建議≤${BF.goodHigh}%），建議透過運動與飲食改善`,
+    veryHigh:`體脂率 ${p.bodyfat}% 明顯超標，優先積極改善`
+  };
+
+  return{
+    bmi,whr,whrStd,bmr,tdee,proteinMid,proteinLow,
+    targetWeight,waterTarget,score,healthAge,
+    ability,topStrength,topStrengthScore,topWeakness,
+    improvements,completion,forecastScore,
+    bfIdeal,bfStatus,bfStatusDesc,
+    bfGoodHigh:BF.goodHigh,bfGoodLow:BF.lowLine,
+    dietAdvice,weeks,
+    level:getLevel(score)
+  };
+}
+
+/* ══════════════════════════════════════════
+   圖表：雷達 SVG
+══════════════════════════════════════════ */
 const BAR_COLORS=['#0FA47A','#2563EB','#7C3AED','#F59E0B','#E84393'];
 
-/* ── Radar SVG ── */
 function buildRadar(ability){
-  const keys=Object.keys(ability);const vals=Object.values(ability);
-  const N=keys.length;const cx=100,cy=100,R=72;
-  const angles=keys.map((_,i)=>((2*Math.PI*i)/N)-Math.PI/2);
-
-  // grid
+  const keys=Object.keys(ability),vals=Object.values(ability);
+  const N=keys.length,cx=100,cy=100,R=72;
+  const angles=keys.map((_,i)=>(2*Math.PI*i/N)-Math.PI/2);
   const grid=$('radarGrid');grid.innerHTML='';
   [0.25,0.5,0.75,1].forEach(f=>{
     const pts=angles.map(a=>`${cx+R*f*Math.cos(a)},${cy+R*f*Math.sin(a)}`).join(' ');
@@ -658,137 +1004,171 @@ function buildRadar(ability){
     poly.setAttribute('stroke','#94A3B8');poly.setAttribute('stroke-width','1');
     grid.appendChild(poly);
   });
-
-  // axes
   const axes=$('radarAxes');axes.innerHTML='';
   angles.forEach(a=>{
-    const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-    line.setAttribute('x1',cx);line.setAttribute('y1',cy);
-    line.setAttribute('x2',cx+R*Math.cos(a));line.setAttribute('y2',cy+R*Math.sin(a));
-    axes.appendChild(line);
+    const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',cx);l.setAttribute('y1',cy);
+    l.setAttribute('x2',cx+R*Math.cos(a));l.setAttribute('y2',cy+R*Math.sin(a));
+    axes.appendChild(l);
   });
-
-  // data polygon
-  const pts=angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' ');
-  $('radarPoly').setAttribute('points',pts);
-
-  // labels
+  $('radarPoly').setAttribute('points',
+    angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' '));
   const labels=$('radarLabels');labels.innerHTML='';
   keys.forEach((k,i)=>{
-    const a=angles[i];const lx=cx+(R+16)*Math.cos(a);const ly=cy+(R+16)*Math.sin(a);
+    const a=angles[i],lx=cx+(R+18)*Math.cos(a),ly=cy+(R+18)*Math.sin(a);
     const t=document.createElementNS('http://www.w3.org/2000/svg','text');
     t.setAttribute('x',lx);t.setAttribute('y',ly+4);t.textContent=k;
     labels.appendChild(t);
   });
 }
 
-/* ── Render ── */
-function twinRow(label,val){return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`}
+/* ══════════════════════════════════════════
+   Render：所有輸出由引擎結果驅動
+══════════════════════════════════════════ */
+function twinRow(label,val){
+  return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`;
+}
 
 function calculateAll(){
-  const p=readProfile();saveProfile(p);const e=calculateEngine(p);
+  const p=readProfile();saveProfile(p);
+  const e=calculateEngine(p);
+  const ageDiff=e.healthAge-p.age;
 
-  // ring gauge animate
-  const circ=2*Math.PI*66;
-  const offset=circ*(1-e.score/100);
-  $('ringFill').style.strokeDashoffset=offset;
-  $('ringFill').style.strokeDasharray=circ;
+  /* Ring gauge */
+  const rf=$('ringFill');
+  if(rf){const c=2*Math.PI*66;rf.style.strokeDasharray=c;rf.style.strokeDashoffset=c*(1-e.score/100);}
 
-  // hero
-  $('heroScore').textContent=e.score;
-  $('heroAge').textContent=e.healthAge+'歲';
-  $('heroLevel').textContent=e.level.text;
+  /* Hero */
+  if($('heroScore'))$('heroScore').textContent=e.score;
+  if($('heroAge'))$('heroAge').textContent=e.healthAge+'歲';
+  if($('heroLevel'))$('heroLevel').textContent=e.level.text;
 
-  // top3
+  /* Top metrics */
   $('score').textContent=e.score;
   $('scoreBadge').textContent=`${e.level.emoji} ${e.level.text}`;
   $('scoreBadge').className='metric-badge '+e.level.cls;
   $('healthAge').textContent=e.healthAge;
-  const ageDiff=e.healthAge-p.age;
-  $('ageBadge').textContent=ageDiff>=0?`比實際老 ${ageDiff} 歲`:`比實際年輕 ${Math.abs(ageDiff)} 歲`;
+  $('ageBadge').textContent=ageDiff>0?`比實際老 ${ageDiff} 歲`:ageDiff<0?`比實際年輕 ${Math.abs(ageDiff)} 歲`:'與實際年齡相符';
   $('completionTop').textContent=e.completion;
 
-  // AI summary
-  $('aiSummary').innerHTML=`您的健康分數為 <b>${e.score}/100</b>，健康年齡約 <b>${e.healthAge} 歲</b>。目前最需要關注的是 <b>${e.improvements[0].name}</b>、<b>${e.improvements[1].name}</b> 與 <b>${e.improvements[2].name}</b>。若未來 90 天持續執行 AI Coach 任務，健康分數有機會提升至 <b>${Math.min(98,e.score+14)} 分</b>。`;
+  /* AI 健康摘要 */
+  const sleepDesc=p.sleep<7
+    ?`睡眠每晚 ${p.sleep} 小時，低於建議量（7–9小時）`
+    :p.sleep>9?`睡眠 ${p.sleep} 小時略多，需留意`
+    :`睡眠 ${p.sleep} 小時，在健康範圍`;
+  const exDesc=p.exercise===0?'目前完全未運動'
+    :p.exercise<3?`每週運動 ${p.exercise} 次，低於建議量（3次以上）`
+    :`每週運動 ${p.exercise} 次，達標`;
+  $('aiSummary').innerHTML=
+    `您的健康分數為 <b>${e.score}/100</b>，健康年齡約 <b>${e.healthAge} 歲</b>`+
+    `（${ageDiff>0?'比實際老'+ageDiff+'歲':ageDiff<0?'比實際年輕'+Math.abs(ageDiff)+'歲':'與實際年齡相符'}）。<br><br>`+
+    `<b>體脂率：</b>${e.bfStatusDesc[e.bfStatus]}。<br>`+
+    `<b>睡眠：</b>${sleepDesc}。<br>`+
+    `<b>運動：</b>${exDesc}。<br><br>`+
+    `目前最強項是 <b>${e.topStrength}</b>（${e.topStrengthScore}分），`+
+    `最需改善的是 <b>${e.topWeakness}</b>。<br>`+
+    `${e.dietAdvice.summary}<br>`+
+    `若持續30天執行以下建議，健康分數有機會提升至 <b>${e.forecastScore} 分</b>。`;
 
-  // coach
-  $('coachText').innerHTML=`目前最大的優勢是蛋白質目標明確，建議每日維持約 <b>${e.proteinMid}g</b>。最大的改善空間來自 <b>${e.improvements[0].name}</b>。今天先完成一個高回報任務即可。`;
-  $('todayTask').textContent=e.improvements[0].name.includes('體脂')?'完成 40 分鐘 Zone 2 有氧或快走':e.improvements[0].name.includes('睡眠')?'今晚提早 30 分鐘上床':`補足蛋白質至 ${e.proteinMid}g`;
-  $('coachForecast').textContent=`健康分數有機會提升至 ${Math.min(98,e.score+14)} 分。`;
+  /* AI Coach */
+  const focus=e.improvements[0];
+  $('coachText').innerHTML=
+    `根據您的數據，目前最高回報的改善是 <b>${focus.name}</b>。${focus.reason} 今天先只完成一件事即可。`;
+  $('todayTask').textContent=focus.action||focus.name;
+  $('coachForecast').textContent=`健康分數預計從 ${e.score} 分提升至 ${e.forecastScore} 分（30天後）。`;
 
-  // core
-  $('bmiOut').textContent=e.bmi.toFixed(1);$('bmiDesc').textContent='BMI '+bmiCategory(e.bmi);
-  $('bfOut').textContent=p.bodyfat.toFixed(1)+'%';$('bfDesc').textContent=p.bodyfat>e.bfGoodHigh?'偏高，優先改善':'位於合理範圍';
-  $('tdeeOut').textContent=fmt(e.tdee);$('proteinOut').textContent=`蛋白質目標 ${e.proteinMid}g`;
-  $('whrOut').textContent=e.whr.toFixed(2);$('whrDesc').textContent=e.whr>e.whrStd?'腰臀比偏高':'腰臀比正常';
-  $('cutOut').textContent=fmt(e.cut);$('idealOut').textContent=e.targetWeight+'kg';
+  /* 核心健康指標 */
+  $('bmiOut').textContent=e.bmi.toFixed(1);
+  $('bmiDesc').textContent='BMI — '+bmiCategory(e.bmi);
+  $('bfOut').textContent=p.bodyfat.toFixed(1)+'%';
+  $('bfDesc').textContent={
+    dangerLow:'⚠ 過低，需增加',tooLow:'略低，建議補充',
+    good:'✓ 健康範圍',high:'偏高，需改善',veryHigh:'⚠ 明顯偏高'
+  }[e.bfStatus]||'';
+  $('tdeeOut').textContent=fmt(e.tdee);
+  $('proteinOut').textContent=`蛋白質目標 ${e.proteinMid}g（${
+    p.goal==='muscle_gain'?'增肌':p.goal==='fat_loss'?'減脂保肌':'維持'}）`;
+  $('whrOut').textContent=e.whr.toFixed(2);
+  $('whrDesc').textContent=e.whr>e.whrStd?`偏高（標準≤${e.whrStd}）`:`正常（標準≤${e.whrStd}）`;
+  $('cutOut').textContent=fmt(e.dietAdvice.calTarget);
+  const cutLabel=p.goal==='muscle_gain'?'每日建議熱量（增肌）':
+    p.goal==='fat_loss'?'每日建議熱量（減脂）':'每日建議熱量（維持）';
+  const cutItem=$('cutOut').closest?.('.core-item');
+  if(cutItem){const cn=cutItem.querySelector('.core-name');if(cn)cn.textContent=cutLabel;}
+  $('idealOut').textContent=e.targetWeight+'kg';
 
-  // tasks
-  const progStarts=[65,50,40];
+  /* 本週三大任務 */
   $('tasks').innerHTML=e.improvements.map((it,i)=>`
     <div class="task">
       <div>
         <h3>${i+1}. ${it.name}</h3>
         <p>${it.reason}</p>
-        <div class="task-progress"><i style="width:${progStarts[i]}%"></i></div>
+        ${it.action?`<p style="margin-top:5px;color:var(--teal);font-size:11.5px;font-weight:700;line-height:1.5">▶ ${it.action}</p>`:''}
+        <div class="task-progress"><i style="width:${[70,50,35][i]}%"></i></div>
       </div>
       <div class="task-pts">+${it.gain}分</div>
     </div>`).join('');
 
-  // ── Horizontal bars ──
-  const abilityEntries=Object.entries(e.ability);
-  $('abilityBars').innerHTML=abilityEntries.map(([name,val],i)=>`
+  /* 橫條圖 + 雷達 */
+  $('abilityBars').innerHTML=Object.entries(e.ability).map(([name,val],i)=>`
     <div class="hbar-row">
       <div class="hbar-meta"><span class="hbar-name">${name}</span><span class="hbar-pct">${val}</span></div>
       <div class="hbar-track"><div class="hbar-fill" style="width:${val}%;background:${BAR_COLORS[i%BAR_COLORS.length]}"></div></div>
     </div>`).join('');
-
-  // ── Radar ──
   buildRadar(e.ability);
 
-  // TOP3 improvements
+  /* TOP3 改善回報 */
   $('improveList').innerHTML=e.improvements.map((it,i)=>`
     <div class="improve-row">
       <div class="improve-rank">${i+1}</div>
       <div class="improve-info">
         <h3>${it.name}</h3>
         <p>${it.reason}</p>
+        ${it.action?`<p style="color:var(--teal);font-size:11.5px;font-weight:700;margin-top:4px;line-height:1.5">▶ ${it.action}</p>`:''}
         <div class="improve-bar"><i style="width:${[75,55,40][i]}%"></i></div>
       </div>
       <div class="improve-gain">+${it.gain}分</div>
     </div>`).join('');
 
-  // twin
-  $('currentTwin').innerHTML=[['體重',p.weight+'kg'],['體脂率',p.bodyfat+'%'],['睡眠',p.sleep+'hr'],['腰臀比',e.whr.toFixed(2)],['健康分數',e.score]].map(r=>twinRow(r[0],r[1])).join('');
-  $('idealTwin').innerHTML=[['體重',e.targetWeight+'kg'],['體脂率',(p.gender==='m'?22:26)+'%'],['睡眠','7.5hr'],['腰臀比','≤'+e.whrStd],['健康分數',Math.min(98,e.score+17)]].map(r=>twinRow(r[0],r[1])).join('');
+  /* Health Twin */
+  $('currentTwin').innerHTML=[
+    ['體重',p.weight+'kg'],['體脂率',p.bodyfat+'%'],
+    ['睡眠',p.sleep+'hr/晚'],['腰臀比',e.whr.toFixed(2)],['健康分數',e.score+'分']
+  ].map(r=>twinRow(r[0],r[1])).join('');
+  $('idealTwin').innerHTML=[
+    ['體重',e.targetWeight+'kg'],['體脂率',e.bfIdeal+'%（目標）'],
+    ['睡眠','7–9hr/晚'],['腰臀比','≤'+e.whrStd],['健康分數',e.forecastScore+'分（30天後）']
+  ].map(r=>twinRow(r[0],r[1])).join('');
   $('completionPct').textContent=e.completion+'%';
-  setTimeout(()=>{ $('completionBar').style.width=e.completion+'%'; },100);
-  $('completionText').textContent=`健康完成度 ${e.completion}%，距離理想健康狀態還有 ${100-e.completion}%。`;
+  setTimeout(()=>{$('completionBar').style.width=e.completion+'%'},100);
+  $('completionText').textContent=`健康完成度 ${e.completion}%，距離理想狀態還有 ${100-e.completion}%。`;
 
-  // life habits
-  $('lifeSleep').textContent=p.sleep+'hr';$('lifeWater').textContent=p.water+'ml';
-  $('lifeExercise').textContent=p.exercise+'次/週';$('lifeProtein').textContent=e.proteinMid+'g';
+  /* 生活習慣 */
+  $('lifeSleep').textContent=p.sleep+'hr';
+  $('lifeWater').textContent=p.water+'ml';
+  $('lifeExercise').textContent=p.exercise+'次/週';
+  $('lifeProtein').textContent=e.proteinMid+'g（目標）';
 
-  // roadmap
-  const weeks=[[`蛋白質達 ${Math.max(e.proteinLow,Math.round(e.proteinMid*.85))}g`,'每日步行 8000 步'],['睡眠達 7 小時','睡前 30 分鐘離線'],['每週運動 2 次','增加一次阻力訓練'],['每週運動 3 次','重新測量腰圍與體重']];
-  $('roadmap').innerHTML=weeks.map((items,i)=>`
+  /* 30天計畫 */
+  $('roadmap').innerHTML=e.weeks.map((items,i)=>`
     <div class="week">
       <div class="week-num">Week <span>${i+1}</span></div>
       <ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>
     </div>`).join('');
 
-  // GA event
-  if(typeof gtag!=='undefined') gtag('event','calculate',{event_category:'health_score',event_label:'score_'+e.score});
+  if(typeof gtag!=='undefined')gtag('event','calculate',{event_category:'health_score',event_label:'score_'+e.score});
 }
 
 function resetDemo(){
   try{localStorage.removeItem('calcboxHealthProfile')}catch(e){}
-  const demo={gender:'m',age:35,height:170,weight:80,waist:92,hip:100,bodyfat:31,sleep:6.1,water:2400,exercise:1,activity:1.55,goal:'fat_loss'};
+  const demo={gender:'m',age:35,height:170,weight:80,waist:92,hip:100,
+    bodyfat:31,sleep:6.1,water:2400,exercise:1,activity:1.55,goal:'fat_loss'};
   Object.entries(demo).forEach(([k,v])=>{if($(k))$(k).value=v});
   calculateAll();
 }
 
-window.addEventListener('load',()=>{loadProfile();calculateAll()});
+window.addEventListener('load',()=>{loadProfile();calculateAll();});
 </script>
+
 </body>
 </html>
