@@ -242,9 +242,25 @@ footer a:hover{color:#F3C969!important}
 .ai-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.ai-tools a{font-size:12px;font-weight:700;text-decoration:none;background:var(--accent-light);color:var(--accent-mid);padding:5px 9px;border-radius:7px}
 @media(max-width:520px){.ai-box{padding:12px}.ai-kpi{grid-template-columns:1fr 1fr}}
 
+
+.ai-seo-box{margin-top:1rem;padding:1rem;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;color:var(--text);line-height:1.8}
+.ai-seo-box h3{font-size:15px;font-weight:800;margin:1rem 0 .45rem;color:var(--accent-mid)}
+.ai-seo-box h3:first-child{margin-top:0}
+.ai-seo-box p{margin:.35rem 0;color:var(--muted)}
+.ai-seo-box ul{padding-left:1.15rem;margin:.35rem 0;color:var(--muted)}
+.ai-seo-box li{margin:.2rem 0}
+.ai-seo-box .ai-summary{background:var(--accent-light);border-left:4px solid var(--accent-mid);padding:.85rem;border-radius:8px;margin-bottom:.8rem;color:var(--text)}
+.ai-seo-box .mini-table{width:100%;border-collapse:collapse;margin:.5rem 0;background:#fff}
+.ai-seo-box .mini-table th,.ai-seo-box .mini-table td{border:1px solid var(--border);padding:7px 8px;text-align:left;font-size:12px}
+.ai-seo-box .mini-table th{background:var(--gray-100);font-weight:800}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"健康計算工具","item":"https://thecalcbox.github.io/health/"}]}</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"蛋白質需求計算器","url":"https://thecalcbox.com/health/#protein","description":"依體重、目標與活動量估算每日蛋白質需求，提供減脂、增肌與維持體態的蛋白質攝取建議。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+</script>
 </head>
 <body>
 
@@ -260,6 +276,7 @@ footer a:hover{color:#F3C969!important}
     <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>健康新聞</span></button>
     <button class="tab-btn" onclick="switchTab('bmi')" id="tab-bmi"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="20"/><path d="M5 7h14"/><path d="M5 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L5 7z"/><path d="M19 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L19 7z"/><path d="M8 21h8"/></svg><span>BMI</span></button>
     <button class="tab-btn" onclick="switchTab('tdee')" id="tab-tdee"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 1.5-4 .5 1.5 1.5 2 2 2 .5-2-.5-5 1.5-7Z"/></svg><span>每日熱量</span></button>
+    <button class="tab-btn" onclick="switchTab('protein')" id="tab-protein"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c2-5 5-8 8-8s6 3 8 8"/><circle cx="12" cy="7" r="4"/><path d="M8 21h8"/></svg><span>蛋白質</span></button>
     <button class="tab-btn" onclick="switchTab('bodyfat')" id="tab-bodyfat"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1" transform="rotate(0 12 12)"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="11"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="11"/></svg><span>體脂率</span></button>
     <button class="tab-btn" onclick="switchTab('ideal')" id="tab-ideal"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>理想體重</span></button>
     <button class="tab-btn" onclick="switchTab('water')" id="tab-water"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg><span>飲水量</span></button>
@@ -351,6 +368,42 @@ footer a:hover{color:#F3C969!important}
       <div class="seo-faq"><div class="seo-faq-q">Q：減脂吃多少不掉肌肉？</div><div class="seo-faq-a">A：熱量不低於 TDEE×75%，蛋白質每公斤體重 1.6–2.0g，搭配阻力訓練。</div></div>
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+</div>
+
+
+<!-- 蛋白質需求 -->
+<div class="panel" id="panel-protein">
+  <div class="tool-card"><div class="card-head">
+    <h2>蛋白質需求計算器</h2><p>依體重、目標與活動量估算每日蛋白質攝取範圍，適合減脂、增肌與維持體態。</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>體重（公斤）</label><input type="number" id="pr-w" placeholder="例：80" inputmode="decimal"></div>
+      <div class="field"><label>目標</label><select id="pr-goal"><option value="cut">減脂／降低體脂</option><option value="maintain">維持體態</option><option value="bulk">增肌／提升肌肉量</option></select></div>
+      <div class="field"><label>活動量</label><select id="pr-act"><option value="low">低（久坐、少運動）</option><option value="mid" selected>中（每週運動 2–4 次）</option><option value="high">高（每週運動 5 次以上）</option></select></div>
+      <div class="field"><label>飲食型態</label><select id="pr-diet"><option value="normal">一般飲食</option><option value="vegetarian">蛋奶素／植物性為主</option><option value="elder">銀髮或肌少症預防</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcProtein()">計算蛋白質需求</button>
+    <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8018" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="protein-result">
+      <div class="result-top"><div class="result-number" id="pr-num">—</div><div class="result-unit">g / 天</div></div>
+      <span class="tag tag-green" id="pr-tag">每日蛋白質建議</span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每公斤建議</div><div class="val" id="pr-perkg">—</div></div>
+        <div class="result-cell"><div class="lbl">每餐目標（4餐）</div><div class="val" id="pr-meal">—</div></div>
+        <div class="result-cell"><div class="lbl">雞胸肉約等於</div><div class="val" id="pr-chicken">—</div></div>
+        <div class="result-cell"><div class="lbl">乳清約等於</div><div class="val" id="pr-whey">—</div></div>
+      </div>
+      <div class="result-note" id="pr-note"></div>
+      <div class="ai-seo-box" id="pr-ai"></div>
+      <div class="result-disclaimer">蛋白質需求會受年齡、腎臟功能、疾病、訓練量與總熱量攝取影響。腎臟病或特殊疾病患者請先諮詢醫師或營養師。</div>
+    </div>
+    <div class="seo-box">
+      <h3>一天要吃多少蛋白質？</h3>
+      <p>一般成人可用體重快速估算蛋白質需求：維持體態約每公斤 1.2–1.6g，減脂約 1.6–2.2g，增肌約 1.8–2.4g。若正在減重，足夠蛋白質能增加飽足感、降低肌肉流失風險，並幫助維持基礎代謝率。</p>
+      <div class="seo-faq"><div class="seo-faq-q">Q：蛋白質一定要靠乳清嗎？</div><div class="seo-faq-a">A：不一定。雞蛋、魚肉、雞肉、豆腐、毛豆、無糖豆漿、希臘優格都能提供蛋白質。乳清只是方便補足缺口的選項。</div></div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="8009" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
 </div>
 
@@ -812,6 +865,48 @@ function calcHeartRate(){
   }).join('');
   document.getElementById('hr-note').textContent=`最大心率 ${Math.round(max)} bpm（Tanaka公式），心率儲備 ${Math.round(hrr)} bpm。燃脂區間 ${Math.round(rest+hrr*0.6)}–${Math.round(rest+hrr*0.7)} bpm，有氧區間 ${Math.round(rest+hrr*0.7)}–${Math.round(rest+hrr*0.8)} bpm。`;
   document.getElementById('heartrate-result').classList.add('show');
+}
+
+
+function calcProtein(){
+  const w=parseFloat(document.getElementById('pr-w').value);
+  const goal=document.getElementById('pr-goal').value;
+  const act=document.getElementById('pr-act').value;
+  const diet=document.getElementById('pr-diet').value;
+  if(!w){alert('請輸入體重');return;}
+  let lo=1.2, hi=1.6, goalText='維持體態';
+  if(goal==='cut'){lo=1.6;hi=2.2;goalText='減脂／降低體脂';}
+  if(goal==='bulk'){lo=1.8;hi=2.4;goalText='增肌／提升肌肉量';}
+  if(act==='high'){lo+=0.1;hi+=0.1;}
+  if(act==='low' && goal!=='bulk'){lo-=0.1;hi-=0.1;}
+  if(diet==='elder'){lo=Math.max(lo,1.6);hi=Math.max(hi,2.0);}
+  if(diet==='vegetarian'){hi+=0.1;}
+  lo=Math.max(1.0,lo);hi=Math.min(2.6,hi);
+  const low=Math.round(w*lo), high=Math.round(w*hi), mid=Math.round((low+high)/2);
+  document.getElementById('pr-num').textContent=low+'–'+high;
+  document.getElementById('pr-perkg').textContent=lo.toFixed(1)+'–'+hi.toFixed(1)+' g/kg';
+  document.getElementById('pr-meal').textContent=Math.round(low/4)+'–'+Math.round(high/4)+' g';
+  document.getElementById('pr-chicken').textContent=Math.round(mid/23*100)+' g';
+  document.getElementById('pr-whey').textContent=Math.round(mid/25)+' 份';
+  document.getElementById('pr-note').textContent=`以體重 ${w}kg、目標「${goalText}」估算，每日蛋白質建議約 ${low}–${high}g。建議分散到 3–5 餐，每餐約 ${Math.round(low/4)}–${Math.round(high/4)}g，比集中在一餐更容易達成。`;
+  const cutText=goal==='cut'?'減脂期間蛋白質不足時，體重雖然可能下降，但肌肉量也容易一起流失，導致基礎代謝下降與復胖風險提高。':'若目標不是減脂，也仍建議把蛋白質分散到各餐，搭配足夠總熱量與規律訓練，才更容易維持身體組成。';
+  const foodNote=diet==='vegetarian'?'植物性飲食者可優先安排豆腐、毛豆、黃豆、無糖豆漿、天貝、希臘優格與蛋類；由於部分植物性蛋白胺基酸組成不同，建議來源多樣化。':'一般飲食可用雞蛋、雞胸肉、魚肉、海鮮、瘦肉、豆腐、無糖豆漿、希臘優格與乳清蛋白補足。';
+  document.getElementById('pr-ai').innerHTML=`
+    <div class="ai-summary"><strong>AI 蛋白質攝取摘要：</strong>依目前資料估算，您每日建議攝取 ${low}–${high}g 蛋白質；若以中間值 ${mid}g 規劃，約等於每餐 ${Math.round(mid/4)}g。足夠蛋白質可幫助增加飽足感、支持肌肉修復，並在減脂或增肌期間維持較好的身體組成。</div>
+    <h3>AI 營養解讀</h3>
+    <p>您的目標為「${goalText}」，因此建議蛋白質範圍設定在每公斤 ${lo.toFixed(1)}–${hi.toFixed(1)}g。這個範圍比一般最低需求更高，主要是為了支持肌肉修復、訓練恢復與體態維持。${cutText}</p>
+    <h3>如何吃到 ${mid}g 蛋白質？</h3>
+    <table class="mini-table"><tr><th>食物</th><th>常見份量</th><th>約含蛋白質</th></tr><tr><td>雞胸肉</td><td>100g</td><td>23g</td></tr><tr><td>雞蛋</td><td>1 顆</td><td>6g</td></tr><tr><td>豆腐</td><td>100g</td><td>8g</td></tr><tr><td>鮭魚或白肉魚</td><td>100g</td><td>20–22g</td></tr><tr><td>乳清蛋白</td><td>1 份</td><td>約 25g</td></tr></table>
+    <p>${foodNote}</p>
+    <h3>一日分配建議</h3>
+    <p>建議不要把蛋白質集中在晚餐，而是平均分配到早餐、午餐、晚餐與點心。例如目標 ${mid}g 時，可安排早餐 ${Math.round(mid*0.22)}g、午餐 ${Math.round(mid*0.30)}g、晚餐 ${Math.round(mid*0.30)}g、點心 ${Math.round(mid*0.18)}g。這樣比較容易達標，也能提高整天的飽足感。</p>
+    <h3>常見問題</h3>
+    <p><strong>蛋白質吃太多會傷腎嗎？</strong>健康成年人在合理範圍內攝取蛋白質通常沒有問題；但腎臟病、腎功能異常或需限制蛋白質者，應依醫師或營養師建議。</p>
+    <p><strong>減脂一定要喝乳清嗎？</strong>不一定。乳清只是方便補足蛋白質缺口，若日常飲食已能達到 ${low}–${high}g，就不一定需要額外補充。</p>
+    <h3>推薦下一步工具</h3>
+    <ul><li>TDEE 每日熱量計算：確認一天該吃多少熱量</li><li>熱量赤字計算器：設定減脂速度與達標時間</li><li>體脂率估算：判斷減重是否真的減到脂肪</li><li>飲水量計算：搭配高蛋白飲食時更要注意水分</li></ul>
+  `;
+  document.getElementById('protein-result').classList.add('show');
 }
 
 window.addEventListener('load',()=>loadNews());
