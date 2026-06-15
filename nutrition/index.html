@@ -668,15 +668,30 @@ const fmt=n=>Math.round(n).toLocaleString();
 const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
 
 function readProfile(){
-  return{gender:$('gender').value,age:+$('age').value||35,height:+$('height').value||170,
-    weight:+$('weight').value||80,tdee:+$('tdee').value||2400,calories:+$('calories').value||2300,
-    protein:+$('protein').value||110,sugar:+$('sugar').value||58,fiber:+$('fiber').value||18,
-    water:+$('water').value||2400,eatout:+$('eatout').value||5,exercise:+$('exercise').value||2,goal:$('goal').value};
+  return{
+    gender:$('gender').value,
+    age:+$('age').value||35,
+    height:+$('height').value||170,
+    weight:+$('weight').value||80,
+    tdee:+$('tdee').value||2400,
+    calories:+$('calories').value||2300,
+    protein:+$('protein').value||110,
+    sugar:+$('sugar').value||58,
+    fiber:+$('fiber').value||18,
+    water:+$('water').value||2400,
+    eatout:+$('eatout').value||5,
+    exercise:+$('exercise').value||2,
+    goal:$('goal').value
+  };
 }
 function saveProfile(p){try{localStorage.setItem('calcboxNutritionProfile',JSON.stringify(p))}catch(e){}}
 function loadProfile(){
-  try{const raw=localStorage.getItem('calcboxNutritionProfile');if(!raw)return;
-    const p=JSON.parse(raw);Object.entries(p).forEach(([k,v])=>{if($(k))$(k).value=v})}catch(e){}
+  try{
+    const raw=localStorage.getItem('calcboxNutritionProfile');
+    if(!raw)return;
+    const p=JSON.parse(raw);
+    Object.entries(p).forEach(([k,v])=>{if($(k)&&v!=null)$(k).value=v});
+  }catch(e){}
 }
 function getLevel(s){
   if(s>=90)return{text:'卓越',cls:'badge-green',emoji:'🟢'};
@@ -690,37 +705,221 @@ function scoreRange(v,lo,hi,mn,mx,full){
   if(v<lo)return clamp(full*(v-mn)/(lo-mn),0,full);
   return clamp(full*(mx-v)/(mx-hi),0,full);
 }
+
+/* ══════════════════════════════════════════
+   核心引擎：所有輸出完全由用戶數據驅動
+   參考依據：
+   - 熱量赤字：ACSM / 衛福部建議
+   - 蛋白質：ISSN 2017 立場聲明
+   - 糖分：WHO 游離糖指引 2015
+   - 纖維：衛福部 DRI 第八版
+   - 飲水：體重×33ml（衛福部建議）
+══════════════════════════════════════════ */
 function engine(p){
-  const targetCal=p.goal==='fat_loss'?p.tdee-500:p.goal==='muscle_gain'?p.tdee+250:p.tdee;
-  const proteinTarget=Math.round(p.weight*(p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4));
-  const sugarTarget=25,fiberTarget=p.gender==='m'?30:25,waterTarget=Math.round(p.weight*33);
+
+  /* ── 目標熱量（依目標與 TDEE） ── */
+  const targetCal=p.goal==='fat_loss'
+    ?Math.max(1200,p.tdee-500)
+    :p.goal==='muscle_gain'
+    ?p.tdee+300
+    :p.tdee;
+  const calDiff=p.calories-targetCal; // 正=超標，負=不足
+
+  /* ── 各營養素目標 ── */
+  const proteinTarget=Math.round(p.weight*(
+    p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4));
+  const sugarLimit=25;        // WHO 建議游離糖上限
+  const fiberTarget=p.gender==='m'?30:25; // 衛福部 DRI
+  const waterTarget=Math.round(p.weight*33);
+
+  /* ── 分數計算（5維，總分100） ── */
+  // 熱量控制（25分）：在目標±150大卡內得滿分
   const calorieScore=scoreRange(p.calories,targetCal-150,targetCal+150,targetCal-900,targetCal+900,25);
+
+  // 蛋白質（25分）：達標得滿分，線性遞減
   const proteinScore=clamp((p.protein/proteinTarget)*25,0,25);
-  const sugarScore=p.sugar<=25?20:clamp(20-((p.sugar-25)/75)*20,0,20);
+
+  // 糖分（20分）：≤25g 滿分，超標線性扣
+  const sugarScore=p.sugar<=sugarLimit?20:clamp(20-((p.sugar-sugarLimit)/75)*20,0,20);
+
+  // 纖維（15分）：達標滿分
   const fiberScore=clamp((p.fiber/fiberTarget)*15,0,15);
+
+  // 飲水（10分）：達標滿分
   const waterScore=clamp((p.water/waterTarget)*10,0,10);
-  const eatoutPenalty=Math.max(0,(p.eatout-3)*1.5);
-  let score=Math.round(calorieScore+proteinScore+sugarScore+fiberScore+waterScore-eatoutPenalty);
-  score=clamp(score,0,100);
-  const forecastScore=clamp(score+(p.sugar>25?5:1)+(p.protein<proteinTarget?4:1)+(p.fiber<fiberTarget?3:1),0,98);
+
+  // 外食懲罰（最多扣10分，避免極端值過大）
+  const eatoutPenalty=clamp((p.eatout-3)*1.5,0,10);
+
+  const score=clamp(Math.round(
+    calorieScore+proteinScore+sugarScore+fiberScore+waterScore-eatoutPenalty
+  ),0,100);
+
+  /* ── 各維度分析 ── */
+  const breakdown={
+    '熱量控制':Math.round(clamp(calorieScore/25*100,0,100)),
+    '蛋白質':Math.round(clamp(proteinScore/25*100,0,100)),
+    '糖分管理':Math.round(clamp(sugarScore/20*100,0,100)),
+    '纖維攝取':Math.round(clamp(fiberScore/15*100,0,100)),
+    '飲水量':Math.round(clamp(waterScore/10*100,0,100))
+  };
+  const breakdownArr=Object.entries(breakdown).sort((a,b)=>b[1]-a[1]);
+  const topStrength=breakdownArr[0][0];
+  const topWeakness=breakdownArr[breakdownArr.length-1][0];
+
+  /* ══════════════════════════════════════
+     改善建議：完全基於用戶數值動態生成
+     每項含：name / gain / reason / action
+     只有真正有問題的項目才進 pool
+  ══════════════════════════════════════ */
+  const pool=[];
+
+  // 1. 熱量
+  const calOver=Math.round(calDiff); // 正=超標，負=不足
+  if(calDiff>300){
+    pool.push({name:`每日熱量超標 ${calOver} 大卡`,gain:7,
+      reason:`今日攝取 ${fmt(p.calories)} 大卡，超過${p.goal==='fat_loss'?'減脂':p.goal==='muscle_gain'?'增肌':'維持'}目標 ${fmt(targetCal)} 大卡 ${calOver} 大卡，長期下去每月可能增加約 ${Math.round(calOver*30/7700*10)/10}kg 體重。`,
+      action:`減少一份主食（約150大卡）或一杯含糖飲料（約300大卡），讓每日攝取接近 ${fmt(targetCal)} 大卡。`});
+  }else if(calDiff<-400&&p.goal!=='fat_loss'){
+    pool.push({name:`每日熱量不足 ${Math.abs(calOver)} 大卡`,gain:5,
+      reason:`今日攝取 ${fmt(p.calories)} 大卡，低於${p.goal==='muscle_gain'?'增肌':'維持'}目標 ${fmt(targetCal)} 大卡，長期熱量不足會影響肌肉維持與代謝。`,
+      action:`在正餐間加一份點心（希臘優格150g + 堅果30g ≈ 250大卡），補足缺口。`});
+  }else if(calDiff<-600&&p.goal==='fat_loss'){
+    pool.push({name:`減脂赤字過大（${Math.abs(calOver)} 大卡）`,gain:4,
+      reason:`今日赤字達 ${Math.abs(calOver)} 大卡，超過建議上限（500大卡），過大赤字會增加肌肉流失與代謝下降的風險。`,
+      action:`適度增加蛋白質攝取（雞胸肉或蛋），讓赤字維持在 300–500 大卡之間。`});
+  }
+
+  // 2. 蛋白質
+  const proteinGap=proteinTarget-p.protein;
+  if(proteinGap>30){
+    pool.push({name:`蛋白質不足（差 ${proteinGap}g）`,gain:8,
+      reason:`今日蛋白質 ${p.protein}g，低於目標 ${proteinTarget}g（體重${p.weight}kg × ${p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4}g/kg）。蛋白質不足會降低飽足感、減少肌肉合成。`,
+      action:`補充 ${Math.ceil(proteinGap/30)} 份高蛋白食物：雞胸肉100g≈31g蛋白、水煮蛋1顆≈6g蛋白、希臘優格200g≈20g蛋白。`});
+  }else if(proteinGap>10){
+    pool.push({name:`蛋白質略不足（差 ${proteinGap}g）`,gain:4,
+      reason:`今日蛋白質 ${p.protein}g，距目標 ${proteinTarget}g 還差 ${proteinGap}g，多一份高蛋白食物即可補足。`,
+      action:`加一份雞蛋（2顆，約12g蛋白）或希臘優格（100g，約10g蛋白）即可達標。`});
+  }else if(p.protein>proteinTarget*1.5){
+    pool.push({name:`蛋白質攝取過高（${p.protein}g）`,gain:2,
+      reason:`今日蛋白質 ${p.protein}g，超過目標 ${proteinTarget}g 的1.5倍。腎功能正常者短期無礙，但長期過高可能增加腎臟負擔。`,
+      action:`可適度降低蛋白質來源份量，將多餘熱量配額分配給蔬菜或優質碳水。`});
+  }
+
+  // 3. 糖分
+  const sugarOver=p.sugar-sugarLimit;
+  if(sugarOver>50){
+    pool.push({name:`糖分嚴重超標（超過 ${sugarOver}g）⚠`,gain:10,
+      reason:`今日糖分 ${p.sugar}g，超過 WHO 建議上限 ${sugarLimit}g 達 ${sugarOver}g（約 ${Math.round(sugarOver/4)} 顆方糖）。長期高糖攝取與肥胖、胰島素阻抗、脂肪肝密切相關。`,
+      action:`立即找出糖分來源：一杯全糖手搖≈88g、含糖咖啡≈30g、果汁≈25g。改選無糖茶或白開水，每週減少2杯含糖飲料。`});
+  }else if(sugarOver>20){
+    pool.push({name:`糖分偏高（超過 ${sugarOver}g）`,gain:7,
+      reason:`今日糖分 ${p.sugar}g，超過 WHO 建議 ${sugarLimit}g 達 ${sugarOver}g（約 ${Math.round(sugarOver/4)} 顆方糖）。`,
+      action:`今天的含糖飲料改為半糖或無糖，點心選擇無加糖版本（無糖優格、原味堅果）。`});
+  }else if(sugarOver>0){
+    pool.push({name:`糖分略超標（超過 ${sugarOver}g）`,gain:3,
+      reason:`今日糖分 ${p.sugar}g，超過 WHO 建議 ${sugarLimit}g，差距不大，稍作調整即可達標。`,
+      action:`明天的飲料選微糖或無糖，可減少 ${sugarOver}g 以上的糖分。`});
+  }
+
+  // 4. 纖維
+  const fiberGap=fiberTarget-p.fiber;
+  if(fiberGap>15){
+    pool.push({name:`纖維嚴重不足（差 ${fiberGap}g）`,gain:6,
+      reason:`今日纖維 ${p.fiber}g，遠低於衛福部建議 ${fiberTarget}g，僅達 ${Math.round(p.fiber/fiberTarget*100)}%。長期纖維不足與便秘、血糖不穩、腸道菌叢失衡相關。`,
+      action:`每餐加入一份蔬菜（花椰菜100g≈2.4g纖維），早餐加燕麥（50g≈5g纖維），下午加一份水果（蘋果≈4g纖維）。`});
+  }else if(fiberGap>5){
+    pool.push({name:`纖維攝取不足（差 ${fiberGap}g）`,gain:4,
+      reason:`今日纖維 ${p.fiber}g，低於建議量 ${fiberTarget}g，差距 ${fiberGap}g。`,
+      action:`加一份蔬菜（青花菜、菠菜）或一顆地瓜（約3g纖維），即可明顯縮小差距。`});
+  }
+
+  // 5. 飲水
+  const waterPct=Math.round(p.water/waterTarget*100);
+  if(waterPct<60){
+    pool.push({name:`飲水嚴重不足（僅達 ${waterPct}%）⚠`,gain:5,
+      reason:`每日 ${p.water}ml 僅達目標 ${waterTarget}ml（體重${p.weight}kg×33ml）的 ${waterPct}%。嚴重脫水影響代謝效率、腎功能與認知表現。`,
+      action:`立刻喝一杯水（300ml），設定每2小時飲水提醒。每日目標：${waterTarget}ml（約 ${Math.ceil(waterTarget/500)} 瓶500ml寶特瓶）。`});
+  }else if(waterPct<85){
+    pool.push({name:`飲水量不足（達 ${waterPct}%）`,gain:3,
+      reason:`每日 ${p.water}ml，距目標 ${waterTarget}ml 還差 ${waterTarget-p.water}ml（約 ${Math.ceil((waterTarget-p.water)/250)} 杯水）。`,
+      action:`在下午和晚餐前各補一杯水（250ml），即可補足缺口。`});
+  }
+
+  // 6. 外食
+  if(p.eatout>7){
+    pool.push({name:`外食頻率極高（${p.eatout}次/週）`,gain:5,
+      reason:`每週外食 ${p.eatout} 次，外食通常含較高油脂、鈉與隱藏熱量，且難以控制糖分與纖維攝取。`,
+      action:`本週嘗試自備午餐2次，選擇以「蔬菜+蛋白質」為主的簡單餐點（地瓜、水煮蛋、燙青菜）。`});
+  }else if(p.eatout>5){
+    pool.push({name:`外食頻率偏高（${p.eatout}次/週）`,gain:3,
+      reason:`每週外食 ${p.eatout} 次，建議控制在5次以內。外食難以精確控制油脂與糖分。`,
+      action:`外食時選擇「燙/烤/蒸」烹調方式，避免勾芡、油炸或含糖醬汁，主動要求少糖少油。`});
+  }
+
+  // 排序，取前3
+  pool.sort((a,b)=>b.gain-a.gain);
+  const improvements=pool.slice(0,3);
+
+  // 若全部指標正常
+  if(improvements.length===0){
+    improvements.push(
+      {name:'各項指標均達標，繼續保持',gain:0,
+       reason:'您今日的熱量、蛋白質、糖分、纖維與飲水均在理想範圍。',
+       action:'每週保持相似的飲食結構，可嘗試增加食物種類的多樣性。'},
+      {name:'提升纖維種類多樣性',gain:0,
+       reason:'不同種類的纖維（水溶性/非水溶性）對腸道菌叢有不同效益。',
+       action:'嘗試增加豆類（黑豆、鷹嘴豆）與莓果（藍莓、草莓）等纖維來源。'},
+      {name:'維持良好外食習慣',gain:0,
+       reason:'已養成健康的飲食模式，外食選擇品質決定長期健康成效。',
+       action:'繼續選擇原型食物為主的餐點，減少加工食品與精緻糖分攝取。'}
+    );
+  }
+  while(improvements.length<3){
+    improvements.push({name:'飲水達標',gain:1,
+      reason:`目標每日 ${waterTarget}ml（體重×33ml）。`,action:'現在喝一杯水。'});
+  }
+
+  /* ── Nutrition Twin 完成度（依各指標缺口計算） ── */
+  const calGap=Math.abs(calDiff)/900;
+  const pGap=Math.max(0,proteinGap)/proteinTarget;
+  const sGap=Math.max(0,sugarOver)/75;
+  const fGap=Math.max(0,fiberGap)/fiberTarget;
+  const wGap=Math.max(0,(waterTarget-p.water)/waterTarget);
+  const eGap=Math.max(0,(p.eatout-3)/7);
   const completion=Math.round(clamp(100-(
-    Math.abs(p.calories-targetCal)/900*24+
-    Math.max(0,proteinTarget-p.protein)/proteinTarget*22+
-    Math.max(0,p.sugar-25)/80*24+
-    Math.max(0,fiberTarget-p.fiber)/fiberTarget*16+
-    Math.max(0,waterTarget-p.water)/waterTarget*10),45,98));
-  const breakdown={'熱量控制':Math.round(clamp(calorieScore/25*100,0,100)),'蛋白質':Math.round(clamp(proteinScore/25*100,0,100)),'糖分管理':Math.round(clamp(sugarScore/20*100,0,100)),'纖維攝取':Math.round(clamp(fiberScore/15*100,0,100)),'飲水量':Math.round(clamp(waterScore/10*100,0,100))};
-  const improvements=[
-    {name:`蛋白質 +${Math.max(0,proteinTarget-p.protein)}g`,gain:p.protein<proteinTarget?4:1,reason:'蛋白質不足會降低飽足感與肌肉維持能力。'},
-    {name:`糖分 -${Math.max(0,p.sugar-25)}g`,gain:p.sugar>25?5:1,reason:'糖分管理是最容易快速提升營養分數的項目。'},
-    {name:`纖維 +${Math.max(0,fiberTarget-p.fiber)}g`,gain:p.fiber<fiberTarget?3:1,reason:'纖維有助飽足、腸道健康與血糖穩定。'},
-    {name:'外食減少 2 次',gain:p.eatout>3?3:1,reason:'外食通常油脂、鈉與隱藏熱量較高。'},
-    {name:'飲水達標',gain:p.water<waterTarget?2:0,reason:'飲水有助代謝與食慾控制。'}
-  ].sort((a,b)=>b.gain-a.gain).slice(0,3);
-  return{score,forecastScore,completion,targetCal,proteinTarget,sugarTarget,fiberTarget,waterTarget,breakdown,improvements,level:getLevel(score)};
+    calGap*22+pGap*22+sGap*22+fGap*16+wGap*10+eGap*8
+  ),42,97));
+
+  /* ── 30天預測分數（依改善空間加總） ── */
+  const forecastGain=Math.min(20,improvements.reduce((s,x)=>s+x.gain,0));
+  const forecastScore=clamp(score+forecastGain,0,97);
+
+  /* ── 30天體重預測（依實際赤字/盈餘計算） ── */
+  const dailyDiff=targetCal-p.calories; // 負=赤字，正=盈餘
+  // 假設改善後能達到目標：減脂赤字500大卡，增肌盈餘300大卡
+  const monthlyKg=p.goal==='fat_loss'
+    ?-(500*30/7700)   // 每月約減 -1.9kg
+    :p.goal==='muscle_gain'
+    ?(300*30/7700)    // 每月約增 +1.2kg
+    :0;
+  const weightForecast=(p.weight+monthlyKg).toFixed(1);
+
+  return{
+    score,forecastScore,completion,
+    targetCal,proteinTarget,sugarLimit,fiberTarget,waterTarget,
+    breakdown,topStrength,topWeakness,
+    improvements,
+    calDiff,proteinGap,sugarOver,fiberGap,waterPct,
+    weightForecast,monthlyKg,
+    level:getLevel(score)
+  };
 }
 
-/* Radar */
+/* ── 圖表：雷達 SVG ── */
+const BAR_COLORS=['#0FA47A','#2563EB','#7C3AED','#F59E0B','#E84393'];
+function twinRow(label,val){return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`}
+
 function buildRadar(breakdown){
   const keys=Object.keys(breakdown),vals=Object.values(breakdown);
   const N=keys.length,cx=100,cy=100,R=72;
@@ -728,138 +927,238 @@ function buildRadar(breakdown){
   const grid=$('radarGrid');grid.innerHTML='';
   [.25,.5,.75,1].forEach(f=>{
     const pts=angles.map(a=>`${cx+R*f*Math.cos(a)},${cy+R*f*Math.sin(a)}`).join(' ');
-    const p=document.createElementNS('http://www.w3.org/2000/svg','polygon');
-    p.setAttribute('points',pts);p.setAttribute('fill','none');
-    p.setAttribute('stroke','#94A3B8');p.setAttribute('stroke-width','1');
-    grid.appendChild(p);
+    const poly=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    poly.setAttribute('points',pts);poly.setAttribute('fill','none');
+    poly.setAttribute('stroke','#94A3B8');poly.setAttribute('stroke-width','1');
+    grid.appendChild(poly);
   });
-  const axes=$('radarAxes');axes.innerHTML='';
+  const ax=$('radarAxes');ax.innerHTML='';
   angles.forEach(a=>{
     const l=document.createElementNS('http://www.w3.org/2000/svg','line');
     l.setAttribute('x1',cx);l.setAttribute('y1',cy);
     l.setAttribute('x2',cx+R*Math.cos(a));l.setAttribute('y2',cy+R*Math.sin(a));
-    axes.appendChild(l);
+    ax.appendChild(l);
   });
-  $('radarPoly').setAttribute('points',angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' '));
-  const labels=$('radarLabels');labels.innerHTML='';
+  $('radarPoly').setAttribute('points',
+    angles.map((a,i)=>{const r=R*(vals[i]/100);return`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`}).join(' '));
+  const lbs=$('radarLabels');lbs.innerHTML='';
   keys.forEach((k,i)=>{
-    const a=angles[i],lx=cx+(R+16)*Math.cos(a),ly=cy+(R+16)*Math.sin(a);
+    const a=angles[i],lx=cx+(R+18)*Math.cos(a),ly=cy+(R+18)*Math.sin(a);
     const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-    t.setAttribute('x',lx);t.setAttribute('y',ly+4);t.textContent=k;
-    labels.appendChild(t);
+    t.setAttribute('x',lx);t.setAttribute('y',ly+4);t.textContent=k;lbs.appendChild(t);
   });
 }
 
-const BAR_COLORS=['#0FA47A','#2563EB','#7C3AED','#F59E0B','#E84393'];
-function twinRow(label,val){return`<div class="twin-row"><span>${label}</span><b>${val}</b></div>`}
-
+/* ══════════════════════════════════════════
+   Render：所有輸出由引擎結果驅動
+══════════════════════════════════════════ */
 function calculateAll(){
-  const p=readProfile();saveProfile(p);const e=engine(p);
+  const p=readProfile();saveProfile(p);
+  const e=engine(p);
 
-  // ring (guard: hidden on mobile)
-  const circ=2*Math.PI*66;
+  /* Ring */
   const rf=$('ringFill');
-  if(rf){rf.style.strokeDashoffset=circ*(1-e.score/100);rf.style.strokeDasharray=circ;}
+  if(rf){const c=2*Math.PI*66;rf.style.strokeDasharray=c;rf.style.strokeDashoffset=c*(1-e.score/100);}
 
-  // hero
-  $('heroScore').textContent=e.score;
-  $('heroForecast').textContent=e.forecastScore+'分';
-  $('heroLevel').textContent=e.level.text;
+  /* Hero */
+  if($('heroScore'))$('heroScore').textContent=e.score;
+  if($('heroForecast'))$('heroForecast').textContent=e.forecastScore+'分';
+  if($('heroLevel'))$('heroLevel').textContent=e.level.text;
 
-  // metrics
+  /* Metrics */
   $('score').textContent=e.score;
   $('scoreBadge').textContent=`${e.level.emoji} ${e.level.text}`;
   $('scoreBadge').className='metric-badge '+e.level.cls;
   $('completion').textContent=e.completion;
   $('forecastScore').textContent=e.forecastScore;
 
-  // AI summary
-  const topKey=Object.entries(e.breakdown).sort((a,b)=>b[1]-a[1])[0][0];
-  $('aiSummary').innerHTML=`您的 Nutrition Score 為 <b>${e.score}/100</b>，目前最大優勢是 <b>${topKey}</b>，最大改善空間是 <b>${e.improvements[0].name}</b>。若未來 30 天優先改善蛋白質、糖分與纖維，分數有機會提升至 <b>${e.forecastScore} 分</b>。`;
+  /* AI 飲食摘要（完全依用戶數值） */
+  const calDesc=Math.abs(e.calDiff)<150?'熱量攝取接近目標'
+    :e.calDiff>0?`熱量超標 ${Math.round(e.calDiff)} 大卡`
+    :`熱量低於目標 ${Math.abs(Math.round(e.calDiff))} 大卡`;
+  const proteinDesc=e.proteinGap>10?`蛋白質不足（差 ${e.proteinGap}g）`
+    :e.proteinGap<-30?`蛋白質偏高（${p.protein}g）`:'蛋白質達標';
+  const sugarDesc=e.sugarOver>0?`糖分超標 ${e.sugarOver}g（是 WHO 建議的 ${Math.round(p.sugar/e.sugarLimit*10)/10} 倍）`
+    :'糖分控制良好';
+  $('aiSummary').innerHTML=
+    `您的 Nutrition Score 為 <b>${e.score}/100</b>，最強項是 <b>${e.topStrength}</b>，最需改善的是 <b>${e.topWeakness}</b>。<br><br>`+
+    `<b>熱量：</b>${calDesc}，目標 ${fmt(e.targetCal)} 大卡。<br>`+
+    `<b>蛋白質：</b>${proteinDesc}，目標 ${e.proteinTarget}g（體重${p.weight}kg×${p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4}g/kg）。<br>`+
+    `<b>糖分：</b>${sugarDesc}。<br>`+
+    `<b>纖維：</b>今日 ${p.fiber}g，目標 ${e.fiberTarget}g（達 ${Math.round(p.fiber/e.fiberTarget*100)}%）。<br><br>`+
+    `若持續30天執行以下建議，分數有機會提升至 <b>${e.forecastScore} 分</b>。`;
 
-  // coach
-  $('coachText').innerHTML=`AI Diet Coach 建議今天只聚焦三件事：<b>${e.improvements[0].name}</b>、<b>${e.improvements[1].name}</b>、<b>${e.improvements[2].name}</b>。先把最高回報的飲食漏洞補起來。`;
+  /* AI Coach */
+  const focus=e.improvements[0];
+  $('coachText').innerHTML=
+    `根據您今日的飲食數據，最高回報的改善是 <b>${focus.name}</b>。${focus.reason} 今天先只完成一件事。`;
   $('task1').textContent=e.improvements[0].name;
   $('task2').textContent=e.improvements[1].name;
   $('task3').textContent=e.improvements[2].name;
 
-  // twin
-  $('currentTwin').innerHTML=[['熱量',fmt(p.calories)+' kcal'],['蛋白質',p.protein+'g'],['糖分',p.sugar+'g'],['纖維',p.fiber+'g'],['飲水',fmt(p.water)+'ml']].map(r=>twinRow(r[0],r[1])).join('');
-  $('idealTwin').innerHTML=[['熱量',fmt(e.targetCal)+' kcal'],['蛋白質',e.proteinTarget+'g'],['糖分','<25g'],['纖維',e.fiberTarget+'g'],['飲水',fmt(e.waterTarget)+'ml']].map(r=>twinRow(r[0],r[1])).join('');
+  /* Nutrition Twin */
+  const calStatus=Math.abs(e.calDiff)<150?'✓':e.calDiff>0?'↑超':'↓低';
+  const pStatus=e.proteinGap>10?`↓差${e.proteinGap}g`:e.proteinGap<0?'✓超標':'✓';
+  const sStatus=e.sugarOver>0?`↑超${e.sugarOver}g`:'✓';
+  const fStatus=e.fiberGap>5?`↓差${Math.round(e.fiberGap)}g`:'✓';
+  $('currentTwin').innerHTML=[
+    ['熱量',`${fmt(p.calories)} kcal ${calStatus}`],
+    ['蛋白質',`${p.protein}g ${pStatus}`],
+    ['糖分',`${p.sugar}g ${sStatus}`],
+    ['纖維',`${p.fiber}g ${fStatus}`],
+    ['飲水',`${fmt(p.water)}ml（${e.waterPct}%）`]
+  ].map(r=>twinRow(r[0],r[1])).join('');
+  $('idealTwin').innerHTML=[
+    ['熱量',`${fmt(e.targetCal)} kcal（${p.goal==='fat_loss'?'TDEE-500':p.goal==='muscle_gain'?'TDEE+300':'TDEE'}）`],
+    ['蛋白質',`${e.proteinTarget}g（體重×${p.goal==='muscle_gain'?2.0:p.goal==='fat_loss'?1.8:1.4}g/kg）`],
+    ['糖分',`< ${e.sugarLimit}g（WHO 建議上限）`],
+    ['纖維',`${e.fiberTarget}g（衛福部 DRI）`],
+    ['飲水',`${fmt(e.waterTarget)}ml（體重×33ml）`]
+  ].map(r=>twinRow(r[0],r[1])).join('');
   $('completionPct').textContent=e.completion+'%';
   setTimeout(()=>{$('completionBar').style.width=e.completion+'%'},100);
   $('completionText').textContent=`營養完成度 ${e.completion}%，距離理想飲食狀態還有 ${100-e.completion}%。`;
 
-  // hbars + radar
-  const entries=Object.entries(e.breakdown);
-  $('scoreBars').innerHTML=entries.map(([k,v],i)=>`
+  /* 橫條圖 + 雷達 */
+  $('scoreBars').innerHTML=Object.entries(e.breakdown).map(([k,v],i)=>`
     <div class="hbar-row">
       <div class="hbar-meta"><span class="hbar-name">${k}</span><span class="hbar-pct">${v}</span></div>
       <div class="hbar-track"><div class="hbar-fill" style="width:${v}%;background:${BAR_COLORS[i%BAR_COLORS.length]}"></div></div>
     </div>`).join('');
   buildRadar(e.breakdown);
 
-  // TOP3
+  /* TOP3 改善回報（含 action） */
   $('topImprove').innerHTML=e.improvements.map((it,i)=>`
     <div class="improve-row">
       <div class="improve-rank">${i+1}</div>
       <div class="improve-info">
-        <h3>${it.name}</h3><p>${it.reason}</p>
+        <h3>${it.name}</h3>
+        <p>${it.reason}</p>
+        ${it.action?`<p style="color:var(--teal);font-size:11.5px;font-weight:700;margin-top:4px;line-height:1.5">▶ ${it.action}</p>`:''}
         <div class="improve-bar"><i style="width:${[75,55,40][i]}%"></i></div>
       </div>
       <div class="improve-gain">+${it.gain}分</div>
     </div>`).join('');
 
-  // meal plan
-  const meals=p.goal==='muscle_gain'?[
-    ['早餐','🌅',['雞蛋 3 顆','燕麥 80g','希臘優格 200g'],'約 520 kcal / P 42g'],
-    ['午餐','☀️',['雞胸肉 220g','糙米飯 1 碗','青菜 2 份'],'約 780 kcal / P 60g'],
-    ['晚餐','🌙',['鮭魚 180g','豆腐半盒','地瓜 1 條'],'約 650 kcal / P 50g'],
-    ['點心','⚡',['乳清蛋白 1 份','地瓜 1 條','堅果少量'],'約 380 kcal / P 30g']
-  ]:[
-    ['早餐','🌅',['雞蛋 2 顆','希臘優格 200g','無糖豆漿'],'約 430 kcal / P 35g'],
-    ['午餐','☀️',['雞胸肉 200g','糙米飯半碗','花椰菜'],'約 650 kcal / P 55g'],
-    ['晚餐','🌙',['鮭魚 160g','豆腐半盒','青菜 2 份'],'約 620 kcal / P 48g'],
-    ['點心','⚡',['乳清 1 份','香蕉 1 根'],'約 220 kcal / P 25g']
+  /* Meal Plan（依目標動態調整份量與說明） */
+  const mealCal=Math.round(e.targetCal/4); // 平均每餐
+  const mealP=Math.round(e.proteinTarget/4);
+  const meals=[
+    {time:'早餐',emoji:'🌅',
+     items:p.goal==='muscle_gain'
+       ?['雞蛋 3 顆（約18g蛋白）','燕麥 80g（約10g蛋白）','希臘優格 200g（約20g蛋白）']
+       :['雞蛋 2 顆（約12g蛋白）','希臘優格 150g（約15g蛋白）','無糖豆漿 250ml'],
+     note:`目標 ${mealCal} kcal / 蛋白質 ${mealP}g`},
+    {time:'午餐',emoji:'☀️',
+     items:p.goal==='muscle_gain'
+       ?['雞胸肉 220g（約68g蛋白）','糙米飯 1 碗（約6g蛋白）','青菜 2 份（＋纖維）']
+       :[`雞胸肉 ${p.goal==='fat_loss'?'180':'160'}g（約${p.goal==='fat_loss'?56:50}g蛋白）`,'糙米飯半碗','花椰菜+菠菜（＋纖維）'],
+     note:`目標 ${mealCal} kcal / 蛋白質 ${mealP}g`},
+    {time:'晚餐',emoji:'🌙',
+     items:p.goal==='muscle_gain'
+       ?['鮭魚 200g（約44g蛋白）','地瓜 1 條（＋纖維）','豆腐半盒（約10g蛋白）']
+       :[`鮭魚 ${p.goal==='fat_loss'?'150':'120'}g（約${p.goal==='fat_loss'?33:26}g蛋白）`,'豆腐半盒','青菜 2 份'],
+     note:`目標 ${mealCal} kcal / 蛋白質 ${mealP}g`},
+    {time:'點心',emoji:'⚡',
+     items:p.goal==='muscle_gain'
+       ?['乳清蛋白 1 份（約25g蛋白）','香蕉 1 根（＋碳水）','堅果 30g（＋優質脂肪）']
+       :e.sugarOver>20
+       ?['無糖茶（取代含糖飲料）','原味堅果 20g','水煮蛋 1 顆']
+       :['無糖希臘優格 100g','藍莓或草莓（＋纖維）'],
+     note:p.goal==='muscle_gain'?`補充訓練後能量`:e.sugarOver>20?'⚠ 避免糖分超標':'低熱量高纖點心'}
   ];
   $('mealPlan').innerHTML=meals.map(m=>`
     <div class="meal">
-      <div class="meal-time">${m[1]} ${m[0]}</div>
-      <b>${m[0]}</b>
-      <ul>${m[2].map(i=>`<li>${i}</li>`).join('')}</ul>
-      <small>${m[3]}</small>
+      <div class="meal-time">${m.emoji} ${m.time}</div>
+      <b>${m.time}</b>
+      <ul>${m.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <small>${m.note}</small>
     </div>`).join('');
-  $('mealTotal').textContent=`總計：約 ${fmt(e.targetCal)} kcal / 蛋白質 ${e.proteinTarget}g / 糖分低於 ${e.sugarTarget}g / 纖維 ${e.fiberTarget}g`;
+  $('mealTotal').textContent=`每日目標：${fmt(e.targetCal)} kcal / 蛋白質 ${e.proteinTarget}g / 糖分<${e.sugarLimit}g / 纖維${e.fiberTarget}g / 飲水${fmt(e.waterTarget)}ml`;
 
-  // forecast
-  $('scoreForecastText').textContent=`${e.score} → ${e.forecastScore}`;
-  const wL=p.goal==='fat_loss'?2.5:p.goal==='muscle_gain'?-1.0:0.5;
-  $('weightForecastText').textContent=p.goal==='muscle_gain'?`${p.weight} → ${(p.weight+1).toFixed(1)}kg`:`${p.weight} → ${(p.weight-wL).toFixed(1)}kg`;
-  $('sugarForecastText').textContent=`${p.sugar}g → ${Math.min(25,p.sugar)}g`;
-  $('proteinForecastText').textContent=`${p.protein}g → ${e.proteinTarget}g`;
+  /* 30天預測（依用戶實際數值） */
+  $('scoreForecastText').textContent=`${e.score} → ${e.forecastScore} 分`;
+  const wDir=e.monthlyKg<0?'↓ 減':e.monthlyKg>0?'↑ 增':'→ 維持';
+  $('weightForecastText').textContent=`${p.weight}kg → ${e.weightForecast}kg（${wDir}${Math.abs(e.monthlyKg).toFixed(1)}kg）`;
+  $('sugarForecastText').textContent=e.sugarOver>0
+    ?`${p.sugar}g → <${e.sugarLimit}g（↓ 減${e.sugarOver}g）`
+    :`${p.sugar}g ✓ 已達標`;
+  $('proteinForecastText').textContent=e.proteinGap>0
+    ?`${p.protein}g → ${e.proteinTarget}g（↑ 增${e.proteinGap}g）`
+    :`${p.protein}g ✓ 已達標`;
 
-  // shopping
-  $('shoppingList').innerHTML=[
-    ['高蛋白','🥩',['雞胸肉','鮭魚','雞蛋','豆腐','希臘優格']],
-    ['高纖蔬果','🥦',['花椰菜','菠菜','地瓜','燕麥','莓果']],
-    ['低糖替代','🍃',['無糖茶','氣泡水','黑咖啡','無糖豆漿','代糖優格']]
-  ].map(s=>`
+  /* 採購清單（依用戶最缺的營養素動態調整優先級） */
+  const shopCategories=[];
+  // 蛋白質不足：高蛋白優先
+  if(e.proteinGap>10){
+    shopCategories.push({label:'高蛋白（優先）',emoji:'🥩',
+      items:['雞胸肉（週補充3次）','雞蛋一盒（12顆）','希臘優格','鮭魚或鮪魚','無糖豆漿']});
+  }
+  // 纖維不足：高纖優先
+  if(e.fiberGap>5){
+    shopCategories.push({label:'高纖蔬果（優先）',emoji:'🥦',
+      items:['花椰菜（每天1份）','菠菜或地瓜葉','燕麥片（早餐用）','地瓜','蘋果或藍莓']});
+  }
+  // 糖超標：低糖替代
+  if(e.sugarOver>0){
+    shopCategories.push({label:'低糖替代飲品',emoji:'🍃',
+      items:['無糖綠茶或烏龍茶','氣泡水（取代手搖）','黑咖啡（無糖）','無糖豆漿','代糖優格']});
+  }
+  // 若都正常，給維持清單
+  if(shopCategories.length===0){
+    shopCategories.push(
+      {label:'均衡蛋白質',emoji:'🥩',items:['雞胸肉','雞蛋','豆腐','鮭魚']},
+      {label:'多色蔬果',emoji:'🥦',items:['花椰菜','菠菜','蘋果','莓果']},
+      {label:'優質脂肪',emoji:'🥑',items:['酪梨','堅果（無調味）','橄欖油']}
+    );
+  }
+  // 補到3類
+  while(shopCategories.length<3){
+    shopCategories.push({label:'補充飲水',emoji:'💧',items:[`目標每日${fmt(e.waterTarget)}ml`,'準備1L水壺','設定飲水提醒']});
+  }
+  $('shoppingList').innerHTML=shopCategories.slice(0,3).map(s=>`
     <div class="shop">
-      <div class="shop-label">${s[1]} ${s[0]}</div>
-      <b>${s[0]}</b>
-      <ul>${s[1].map(i=>`<li>${i}</li>`).join('')}</ul>
+      <div class="shop-label">${s.emoji} ${s.label}</div>
+      <b>${s.label}</b>
+      <ul>${s.items.map(i=>`<li>${i}</li>`).join('')}</ul>
     </div>`).join('');
 
-  // roadmap
-  $('roadmap').innerHTML=[
-    ['Week 1',['含糖飲料降為無糖或微糖','蛋白質提高到目標的 80%']],
-    ['Week 2',['每天至少 2 份蔬菜','外食減少 1–2 次']],
-    ['Week 3',['蛋白質全面達標','每餐加入高纖食物']],
-    ['Week 4',['重新計算 Nutrition Score','依體重變化微調熱量']]
-  ].map((w,i)=>`
+  /* 30天計畫（完全依用戶弱點動態生成） */
+  const w1=[],w2=[],w3=[],w4=[];
+  // Week 1：從最大問題開始
+  if(e.sugarOver>20){
+    w1.push(`含糖飲料全改無糖或微糖（目標糖分<${e.sugarLimit}g）`);
+    w2.push('外出自備無糖茶，避免衝動購買手搖飲');
+  }
+  if(e.proteinGap>20){
+    w1.push(`每餐確保蛋白質來源，目標每餐${Math.round(e.proteinTarget/3)}g`);
+    w2.push(`蛋白質全面達標 ${e.proteinTarget}g/天`);
+  }else if(e.fiberGap>10){
+    w1.push('每餐加一份蔬菜，早餐加燕麥片');
+    w2.push(`纖維達標 ${e.fiberTarget}g：早餐燕麥+午晚各一份蔬菜`);
+  }
+  if(e.waterPct<80){
+    w1.push(`每日飲水先達到 ${Math.round(e.waterTarget*0.8)}ml`);
+    w2.push(`飲水全面達標 ${fmt(e.waterTarget)}ml，設定提醒`);
+  }
+  if(Math.abs(e.calDiff)>300){
+    w3.push(`熱量穩定控制在 ${fmt(e.targetCal)} 大卡（±150大卡）`);
+  }else{
+    w3.push('維持熱量達標，嘗試增加食物種類多樣性');
+  }
+  w3.push('紀錄飲食3天，找出最難控制的隱藏熱量來源');
+  w4.push('重新填入所有數值，比對 Nutrition Score 是否提升');
+  w4.push('依30天成果調整下一階段目標（減脂/增肌/維持）');
+  const weeks=[
+    (w1.length?w1:['維持目前良好習慣','記錄每日飲食']).slice(0,2),
+    (w2.length?w2:['評估第一週執行狀況','調整最難維持的習慣']).slice(0,2),
+    w3.slice(0,2),
+    w4.slice(0,2)
+  ];
+  $('roadmap').innerHTML=weeks.map((items,i)=>`
     <div class="week">
       <div class="week-num">Week <span>${i+1}</span></div>
-      <ul>${w[1].map(x=>`<li>${x}</li>`).join('')}</ul>
+      <ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>
     </div>`).join('');
 
   if(typeof gtag!=='undefined')gtag('event','calculate',{event_category:'nutrition_score',event_label:'score_'+e.score});
@@ -867,12 +1166,14 @@ function calculateAll(){
 
 function resetDemo(){
   try{localStorage.removeItem('calcboxNutritionProfile')}catch(e){}
-  const demo={gender:'m',age:35,height:170,weight:80,tdee:2400,calories:2300,protein:110,sugar:58,fiber:18,water:2400,eatout:5,exercise:2,goal:'fat_loss'};
+  const demo={gender:'m',age:35,height:170,weight:80,tdee:2400,calories:2300,
+    protein:110,sugar:58,fiber:18,water:2400,eatout:5,exercise:2,goal:'fat_loss'};
   Object.entries(demo).forEach(([k,v])=>{if($(k))$(k).value=v});
   calculateAll();
 }
 
 window.addEventListener('load',()=>{loadProfile();calculateAll();});
 </script>
+
 </body>
 </html>
