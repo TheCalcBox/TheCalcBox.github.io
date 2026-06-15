@@ -569,6 +569,7 @@ body.shift-active #panel-shift .st-exp-btn svg{
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
 
@@ -842,10 +843,16 @@ body.shift-active #panel-shift .st-exp-btn svg{
               ICS 行事曆
             </button>
             <button class="st-exp-btn xlsx" onclick="stExportExcel()">
+
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Excel 日曆
             </button>
-          </div>
+          
+<button class="st-exp-btn ics" onclick="stExportICSZip()">
+📦 LINE ZIP
+</button>
+
+</div>
           <p style="font-size:10px;color:var(--hint);margin-top:6px">ICS：匯入手機行事曆（可選人）<br>Excel：橫向多人日曆表格</p>
         </div>
       </div>
@@ -1629,6 +1636,44 @@ function stToastShow(msg){
   t.textContent=msg;t.classList.add('show');
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);
 }
+
+async function stExportICSZip(){
+  const empIdx=prompt('請輸入要匯出的員工編號（1='+stEmps[0]+'，2='+stEmps[1]+'…）：','1');
+  if(!empIdx) return;
+  const ei=parseInt(empIdx)-1;
+  if(ei<0||ei>=stEmps.length){alert('員工編號錯誤');return;}
+
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH'];
+  const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
+
+  stDates.forEach(d=>{
+    const ds=stDs(d);
+    const key=`${ei}-${ds}`;
+    const sid=stAssign[key];
+    const ct=stCustomText[key];
+    const sh=stShifts.find(s=>s.id===sid);
+    const name=ct?ct:(sh?sh.name:null);
+    if(!name) return;
+
+    lines.push('BEGIN:VEVENT');
+    lines.push(`UID:${key}@calcbox`);
+    lines.push(`DTSTAMP:${now}`);
+    lines.push(`SUMMARY:${stEmps[ei]} ${name}`);
+    lines.push('END:VEVENT');
+  });
+
+  lines.push('END:VCALENDAR');
+
+  const zip=new JSZip();
+  zip.file(stEmps[ei]+'_排班表.ics',lines.join('\\r\\n'));
+  const blob=await zip.generateAsync({type:'blob'});
+
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=stEmps[ei]+'_排班表.zip';
+  a.click();
+}
+
 </script>
 </body>
 </html>
