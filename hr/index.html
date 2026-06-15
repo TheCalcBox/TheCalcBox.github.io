@@ -566,6 +566,19 @@ body.shift-active #panel-shift .st-exp-btn svg{
   #panel-shift .sh-item .st-input{height:42px!important;font-size:15px!important;box-sizing:border-box!important}
 }
 
+
+/* 匯出區：三個按鈕手機不爆版 */
+#panel-shift .st-export-bar,
+body.shift-active #panel-shift .st-export-bar{
+  grid-template-columns:repeat(3,1fr)!important;
+}
+@media(max-width:430px){
+  #panel-shift .st-export-bar,
+  body.shift-active #panel-shift .st-export-bar{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
@@ -1568,8 +1581,22 @@ function stUpdateStats(){
 function stExportICS(){
   const empIdx=prompt('請輸入要匯出的員工編號（1='+stEmps[0]+'，2='+stEmps[1]+'…，全部留空）：','');
   const targets = empIdx&&empIdx.trim()!==''
-    ? [parseInt(empIdx.trim())-1]
+    ? [parseInt(empIdx.trim(),10)-1]
     : stEmps.map((_,i)=>i);
+
+  if(targets.some(ei=>ei<0||ei>=stEmps.length)){
+    alert('員工編號錯誤');
+    return;
+  }
+
+  const ics = stBuildICSForTargets(targets);
+  const filename = targets.length===1 ? stEmps[targets[0]]+'_排班表.ics' : '排班表.ics';
+  stDownload(filename, ics, 'text/calendar;charset=utf-8');
+  stToastShow('ICS 已下載，點開檔案即可匯入行事曆');
+}
+
+
+function stBuildICSForTargets(targets){
   const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH','CALSCALE:GREGORIAN','X-WR-TIMEZONE:Asia/Taipei'];
   const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
   targets.forEach(ei=>{
@@ -1582,6 +1609,7 @@ function stExportICS(){
       const sh=stShifts.find(s=>s.id===sid);
       const name=ct?ct:(sh?sh.name:null);
       if(!name) return;
+
       if(sh&&sh.start&&sh.end){
         const [sh2,sm]=sh.start.split(':');
         const [eh,em]=sh.end.split(':');
@@ -1601,9 +1629,45 @@ function stExportICS(){
     });
   });
   lines.push('END:VCALENDAR');
-  stDownload('排班表.ics',lines.join('\r\n'),'text/calendar');
-  stToastShow('ICS 已下載，點開檔案即可匯入行事曆');
+  return lines.join('\r\n');
 }
+
+async function stExportICSZip(){
+  if(typeof JSZip==='undefined'){
+    alert('ZIP 模組尚未載入，請重新整理後再試。');
+    return;
+  }
+
+  const empIdx=prompt('請輸入要匯出的員工編號（1='+stEmps[0]+'，2='+stEmps[1]+'…，全部留空）：','1');
+  const targets = empIdx&&empIdx.trim()!==''
+    ? [parseInt(empIdx.trim(),10)-1]
+    : stEmps.map((_,i)=>i);
+
+  if(targets.some(ei=>ei<0||ei>=stEmps.length)){
+    alert('員工編號錯誤');
+    return;
+  }
+
+  const zip = new JSZip();
+
+  if(targets.length===1){
+    const ei=targets[0];
+    const ics=stBuildICSForTargets([ei]);
+    zip.file(stEmps[ei]+'_排班表.ics', ics);
+    const blob=await zip.generateAsync({type:'blob'});
+    stDownload(stEmps[ei]+'_排班表.zip', blob, 'application/zip');
+  } else {
+    targets.forEach(ei=>{
+      const ics=stBuildICSForTargets([ei]);
+      zip.file(stEmps[ei]+'_排班表.ics', ics);
+    });
+    const blob=await zip.generateAsync({type:'blob'});
+    stDownload('全部人員_排班表.zip', blob, 'application/zip');
+  }
+
+  stToastShow('LINE ZIP 已下載，傳 LINE 前請使用這個 ZIP 檔');
+}
+
 
 // ── Export Excel (CSV UTF-8 BOM, calendar layout) ──
 function stExportExcel(){
@@ -1635,43 +1699,6 @@ function stToastShow(msg){
   const t=document.getElementById('stToast');
   t.textContent=msg;t.classList.add('show');
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);
-}
-
-async function stExportICSZip(){
-  const empIdx=prompt('請輸入要匯出的員工編號（1='+stEmps[0]+'，2='+stEmps[1]+'…）：','1');
-  if(!empIdx) return;
-  const ei=parseInt(empIdx)-1;
-  if(ei<0||ei>=stEmps.length){alert('員工編號錯誤');return;}
-
-  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//CalcBox//Shift//ZH'];
-  const now=new Date().toISOString().replace(/[-:]/g,'').slice(0,15)+'Z';
-
-  stDates.forEach(d=>{
-    const ds=stDs(d);
-    const key=`${ei}-${ds}`;
-    const sid=stAssign[key];
-    const ct=stCustomText[key];
-    const sh=stShifts.find(s=>s.id===sid);
-    const name=ct?ct:(sh?sh.name:null);
-    if(!name) return;
-
-    lines.push('BEGIN:VEVENT');
-    lines.push(`UID:${key}@calcbox`);
-    lines.push(`DTSTAMP:${now}`);
-    lines.push(`SUMMARY:${stEmps[ei]} ${name}`);
-    lines.push('END:VEVENT');
-  });
-
-  lines.push('END:VCALENDAR');
-
-  const zip=new JSZip();
-  zip.file(stEmps[ei]+'_排班表.ics',lines.join('\\r\\n'));
-  const blob=await zip.generateAsync({type:'blob'});
-
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=stEmps[ei]+'_排班表.zip';
-  a.click();
 }
 
 </script>
