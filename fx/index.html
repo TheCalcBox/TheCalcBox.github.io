@@ -255,6 +255,22 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+
+
+/* ── Bank exchange helper ── */
+.bank-best-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin:0 0 1rem;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.bank-best-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:800;color:#0E2A47;margin-bottom:8px}
+.bank-best-main{font-size:13px;color:var(--text);line-height:1.75;margin-bottom:10px}
+.bank-rate-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.bank-rate-cell{background:var(--gray-50);border:1px solid var(--border);border-radius:9px;padding:9px 10px}
+.bank-rate-lbl{font-size:10px;color:var(--hint);font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.bank-rate-val{font-size:14px;font-weight:800;color:var(--accent)}
+.bank-best-note{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:8px}
+.bank-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.bank-link{font-size:12px;font-weight:700;color:#0E2A47;text-decoration:none;background:#FDF3DD;border:1px solid #F3D68F;border-radius:8px;padding:7px 10px}
+.bank-link:hover{background:#F7E4B4}
+@media(max-width:520px){.bank-rate-grid{grid-template-columns:1fr}.bank-links{flex-direction:column}.bank-link{text-align:center}}
+
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"即時匯率換算","item":"https://thecalcbox.github.io/fx/"}]}</script>
@@ -319,6 +335,18 @@ footer a:hover{color:#F3C969!important}
       <div class="result-detail" id="result-detail"></div>
     </div>
 
+    <div class="bank-best-card" id="bank-best-card" style="display:none">
+      <div class="bank-best-title">🏦 換匯成本與優惠銀行提醒</div>
+      <div class="bank-best-main" id="bank-best-main">載入銀行牌告匯率中...</div>
+      <div class="bank-rate-grid" id="bank-rate-grid"></div>
+      <div class="bank-best-note" id="bank-best-note"></div>
+      <div class="bank-links">
+        <a class="bank-link" href="https://www.findrate.tw/" target="_blank" rel="noopener">打開比率網比較多家銀行</a>
+        <a class="bank-link" href="https://www.fintechgo.com.tw/FinInfo/ForexRate/BankRealExRate" target="_blank" rel="noopener">打開理財鴿銀行匯率</a>
+      </div>
+    </div>
+
+
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 
     <!-- 自訂匯率換算 -->
@@ -352,11 +380,11 @@ footer a:hover{color:#F3C969!important}
 
     <div class="seo-box">
       <h3>匯率換算說明</h3>
-      <p>本頁匯率來源為國際市場中間價（Mid-market rate），每 5 分鐘自動更新。實際換匯時銀行收取買賣價差約 1–3%，機場換匯差距更大，建議事先查詢各銀行牌告匯率比較。</p>
+      <p>本頁優先使用臺灣銀行牌告匯率資料，並提供現金／即期買入賣出估算；若台銀資料暫時無法讀取，才會改用國際市場中間價作為備援。實際成交匯率仍以各銀行交易當下公告為準。</p>
       <div class="seo-q">Q：台幣換日幣在哪換最划算？</div>
       <div class="seo-a">A：通常網路銀行或銀行臨櫃優於機場，出發前比較各銀行牌告現鈔匯率。部分銀行帳戶有外幣換匯優惠利率，旅遊族可多加利用。</div>
       <div class="seo-q">Q：中間價和銀行牌告匯率差多少？</div>
-      <div class="seo-a">A：本頁顯示國際市場中間價（最接近真實匯率），銀行買賣現鈔通常比中間價多收 1–3%（約 0.5–1.5 元/美元），此差距即為換匯成本。</div>
+      <div class="seo-a">A：銀行牌告通常分為現金買入、現金賣出、即期買入、即期賣出。你要用台幣買外幣時看「賣出價」；你要把外幣換回台幣時看「買入價」。買入與賣出之間的差距，就是主要換匯成本。</div>
     </div>
   </div>
 
@@ -463,7 +491,7 @@ footer a:hover{color:#F3C969!important}
   </div>
 </div>
 <footer>
-  <p>CalcBox 匯率 · 資料來源：fxapi.app 國際市場中間價，每5分鐘更新，僅供參考<br>
+  <p>CalcBox 匯率 · 優先使用臺灣銀行牌告匯率資料，備援為國際市場中間價，僅供參考<br>
   <a href="/">回工具目錄</a> · <a href="/loan/">貸款試算</a> · <a href="/tax/">稅務薪資</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
 </footer>
 
@@ -492,6 +520,8 @@ const CURRENCIES = {
 const API = 'https://fxapi.app/api';
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
+let bankDetails = null, bankUpdateTime = '', bankSource = '';
+let activeRateSource = 'market';
 const fmt = (v, d=2) => {
   if(v == null || isNaN(v)) return '—';
   const abs = Math.abs(v);
@@ -528,81 +558,155 @@ function fetchWithTimeout(url, ms=6000){
 }
 
 async function fetchRates(){
-  // 依序嘗試多個資料源，任一成功即停止
+  // 先抓臺灣銀行牌告匯率：較符合台灣使用者換匯情境，含現金/即期買入賣出
   const sources = [
-    // 1) fxapi.app（原始來源，USD base）
     async () => {
-      const r = await fetchWithTimeout(`${API}/latest.json`);
+      const r = await fetchWithTimeout('https://cdn.jsdelivr.net/gh/haotool/app@data/public/rates/latest.json');
       const d = await r.json();
-      if(!d.rates) throw new Error('no rates');
-      return { rates: d.rates, date: d.date };
+      if(!d.details) throw new Error('no bank details');
+      return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
     },
-    // 2) fawazahmed0 currency-api（jsDelivr CDN，200+ 貨幣含 TWD，週末沿用最近收盤）
+    async () => {
+      const r = await fetchWithTimeout('https://raw.githubusercontent.com/haotool/app/data/public/rates/latest.json');
+      const d = await r.json();
+      if(!d.details) throw new Error('no bank details');
+      return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
+    },
+    // 備援：國際市場中間價。只在台銀資料暫時無法取得時使用。
     async () => {
       const r = await fetchWithTimeout('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
       const d = await r.json();
-      if(!d.usd) throw new Error('no rates');
-      // 該來源以小寫貨幣碼為 key，值為 1 USD = X 外幣，需轉成大寫
+      if(!d.usd) throw new Error('no market rates');
       const rt = {};
       for(const k in d.usd){ rt[k.toUpperCase()] = d.usd[k]; }
-      return { rates: rt, date: d.date };
+      return { kind:'market', rates:rt, date:d.date, source:'國際市場中間價' };
     },
-    // 3) fawazahmed0 備援 CDN（Cloudflare 鏡像）
-    async () => {
-      const r = await fetchWithTimeout('https://latest.currency-api.pages.dev/v1/currencies/usd.json');
-      const d = await r.json();
-      if(!d.usd) throw new Error('no rates');
-      const rt = {};
-      for(const k in d.usd){ rt[k.toUpperCase()] = d.usd[k]; }
-      return { rates: rt, date: d.date };
-    },
-    // 4) open.er-api.com（免費、含 TWD，無 key）
     async () => {
       const r = await fetchWithTimeout('https://open.er-api.com/v6/latest/USD');
       const d = await r.json();
-      if(!d.rates) throw new Error('no rates');
-      return { rates: d.rates, date: d.time_last_update_utc };
+      if(!d.rates) throw new Error('no market rates');
+      return { kind:'market', rates:d.rates, date:d.time_last_update_utc, source:'國際市場中間價' };
     },
   ];
 
   for(const src of sources){
     try{
-      const { rates: r, date } = await src();
-      rates = r || {};
-      rates['USD'] = 1;
+      const data = await src();
+      activeRateSource = data.kind;
       lastUpdated = new Date();
-      const t = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-      // 若資料日期非今天（週末/假日沿用最近收盤），加註說明
-      let dateNote = '';
-      if(date){
-        const dataDate = new Date(date);
-        const today = new Date();
-        if(dataDate.toDateString() !== today.toDateString()){
-          const md = `${dataDate.getMonth()+1}/${dataDate.getDate()}`;
-          dateNote = `　市場報價日：${md}（週末/假日沿用最近收盤）`;
+      const refreshText = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+
+      if(data.kind === 'bot'){
+        bankDetails = data.details || null;
+        bankUpdateTime = data.updateTime || '';
+        bankSource = data.source || '臺灣銀行牌告匯率';
+        rates = data.rates || {};
+        const sourceText = bankUpdateTime ? `牌告：${bankUpdateTime}` : '牌告時間未提供';
+        document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
+        document.getElementById('rate-update').textContent = `${sourceText}｜本機讀取：${refreshText}`;
+      }else{
+        bankDetails = null;
+        rates = data.rates || {};
+        rates['USD'] = 1;
+        let dateNote = '';
+        if(data.date){
+          const dataDate = new Date(data.date);
+          if(!isNaN(dataDate.getTime())){
+            const today = new Date();
+            if(dataDate.toDateString() !== today.toDateString()){
+              dateNote = `｜市場報價日：${dataDate.getMonth()+1}/${dataDate.getDate()}（假日可能沿用最近收盤）`;
+            }
+          }
         }
+        document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
+        document.getElementById('rate-update').textContent = `資料源：${data.source}｜本機讀取：${refreshText}${dateNote}`;
       }
-      document.getElementById('hdr-update').textContent = `${t} 更新`;
-      document.getElementById('rate-update').textContent = `最後更新：${t}${dateNote}`;
       convert();
       renderBoard();
-      return; // 成功，結束
+      return;
     }catch(e){
       // 此來源失敗，嘗試下一個
     }
   }
 
-  // 全部失敗
   document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
   const ru = document.getElementById('rate-update');
   if(ru) ru.textContent = '所有匯率來源連線失敗';
 }
 
 // ── 匯率換算 ──
+function twdPerUnit(code){
+  if(code === 'TWD') return 1;
+  if(bankDetails && bankDetails[code]){
+    const d = bankDetails[code];
+    const q = (d.spot && d.spot.buy && d.spot.sell) ? d.spot : d.cash;
+    if(q && q.buy && q.sell) return (Number(q.buy) + Number(q.sell)) / 2;
+  }
+  // 備援市場價：原資料為 1 USD = X 外幣，因此 TWD/外幣 = USD/TWD 除以 USD/外幣
+  if(rates[code] && rates['TWD']) return Number(rates['TWD']) / Number(rates[code]);
+  return null;
+}
+
 function getRate(from, to){
-  // USD 為基準換算
-  if(!rates[from] || !rates[to]) return null;
-  return rates[to] / rates[from];
+  const f = twdPerUnit(from);
+  const t = twdPerUnit(to);
+  if(!f || !t) return null;
+  return f / t;
+}
+
+function getBankQuote(code, type='spot'){
+  if(!bankDetails || code === 'TWD') return null;
+  const d = bankDetails[code];
+  if(!d) return null;
+  return d[type] || d.spot || d.cash || null;
+}
+
+function calcBankEstimate(from, to, amt, type='spot'){
+  // 依銀行買入/賣出概念估算：你買外幣看銀行賣出，你賣外幣看銀行買入。
+  if(!bankDetails || !amt) return null;
+  if(from === 'TWD' && to !== 'TWD'){
+    const q = getBankQuote(to, type);
+    if(!q || !q.sell) return null;
+    return { result: amt / Number(q.sell), rate: Number(q.sell), action:`買 ${to}`, rule:'銀行賣出價愈低愈好' };
+  }
+  if(from !== 'TWD' && to === 'TWD'){
+    const q = getBankQuote(from, type);
+    if(!q || !q.buy) return null;
+    return { result: amt * Number(q.buy), rate: Number(q.buy), action:`賣 ${from}`, rule:'銀行買入價愈高愈好' };
+  }
+  if(from !== 'TWD' && to !== 'TWD'){
+    const fq = getBankQuote(from, type), tq = getBankQuote(to, type);
+    if(!fq || !tq || !fq.buy || !tq.sell) return null;
+    const twd = amt * Number(fq.buy);
+    return { result: twd / Number(tq.sell), rate: Number(fq.buy)/Number(tq.sell), action:`${from} 換 ${to}`, rule:'先賣來源外幣、再買目標外幣；實務上可能有雙重價差' };
+  }
+  return null;
+}
+
+function renderBankBest(from, to, amt){
+  const card = document.getElementById('bank-best-card');
+  const main = document.getElementById('bank-best-main');
+  const grid = document.getElementById('bank-rate-grid');
+  const note = document.getElementById('bank-best-note');
+  if(!card || !main || !grid || !note) return;
+  if(!bankDetails || (from === 'TWD' && to === 'TWD')){ card.style.display='none'; return; }
+  const cash = calcBankEstimate(from, to, amt, 'cash');
+  const spot = calcBankEstimate(from, to, amt, 'spot');
+  const targetCode = from === 'TWD' ? to : from;
+  const qCash = getBankQuote(targetCode, 'cash');
+  const qSpot = getBankQuote(targetCode, 'spot');
+  card.style.display='block';
+  const preferred = spot || cash;
+  main.innerHTML = preferred
+    ? `依目前可取得的 <b>臺灣銀行牌告匯率</b> 估算，你這筆是「${preferred.action}」。判斷優惠時請看：<b>${preferred.rule}</b>。`
+    : `目前此幣別缺少完整銀行牌告資料，暫以市場中間價提供參考。`;
+  const rows = [];
+  if(cash) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">現金估算</div><div class="bank-rate-val">${fmt(cash.result)} ${to}</div></div>`);
+  if(spot) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">即期估算</div><div class="bank-rate-val">${fmt(spot.result)} ${to}</div></div>`);
+  if(qCash) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">${targetCode} 現金買/賣</div><div class="bank-rate-val">${fmt(Number(qCash.buy),4)} / ${fmt(Number(qCash.sell),4)}</div></div>`);
+  if(qSpot) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">${targetCode} 即期買/賣</div><div class="bank-rate-val">${fmt(Number(qSpot.buy),4)} / ${fmt(Number(qSpot.sell),4)}</div></div>`);
+  grid.innerHTML = rows.join('');
+  note.innerHTML = `目前此頁已改用台銀牌告匯率作為台灣換匯參考；「哪家銀行最優惠」需要多銀行即時資料。因 GitHub Pages 是靜態前端，直接抓多家銀行容易遇到 CORS/資料格式變動，建議先用下方外部比較連結核對。若之後要自動列出前 3 名，需要接一個後端或可靠多銀行 API。`;
 }
 
 function convert(){
@@ -614,14 +718,15 @@ function convert(){
   const result = amt * rate;
   document.getElementById('cv-result').value = fmt(result);
   document.getElementById('rate-main').textContent =
-    `1 ${from} = ${fmt(rate)} ${to}  ·  1 ${to} = ${fmt(1/rate)} ${from}`;
+    `1 ${from} = ${fmt(rate)} ${to}  ·  1 ${to} = ${fmt(1/rate)} ${from}${bankDetails ? '（台銀買賣中間參考）' : '（市場中間價）'}`;
   document.getElementById('rate-change').style.display = 'none';
   // 結果顯示
   document.getElementById('result-num').textContent = fmt(result) + ' ' + to;
   document.getElementById('result-detail').textContent =
     `${fmt(amt)} ${from}（${CURRENCIES[from]?.name||from}）= ${fmt(result)} ${to}（${CURRENCIES[to]?.name||to}）`;
   document.getElementById('result-big').style.display = 'block';
-  // 快速換算
+  // 銀行牌告估算與快速換算
+  renderBankBest(from, to, amt);
   renderQuick(from, to, rate);
   // 走勢圖標題
   document.getElementById('chart-title').textContent = `${from} → ${to} 走勢`;
