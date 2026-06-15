@@ -339,11 +339,6 @@ footer a:hover{color:#F3C969!important}
       <div class="bank-best-title">🏦 換匯成本與優惠銀行提醒</div>
       <div class="bank-best-main" id="bank-best-main">載入銀行牌告匯率中...</div>
       <div class="bank-rate-grid" id="bank-rate-grid"></div>
-      <div class="bank-best-note" id="bank-best-note"></div>
-      <div class="bank-links">
-        <a class="bank-link" href="https://www.findrate.tw/" target="_blank" rel="noopener">打開比率網比較多家銀行</a>
-        <a class="bank-link" href="https://www.fintechgo.com.tw/FinInfo/ForexRate/BankRealExRate" target="_blank" rel="noopener">打開理財鴿銀行匯率</a>
-      </div>
     </div>
 
 
@@ -687,8 +682,7 @@ function renderBankBest(from, to, amt){
   const card = document.getElementById('bank-best-card');
   const main = document.getElementById('bank-best-main');
   const grid = document.getElementById('bank-rate-grid');
-  const note = document.getElementById('bank-best-note');
-  if(!card || !main || !grid || !note) return;
+  if(!card || !main || !grid) return;
   if(!bankDetails || (from === 'TWD' && to === 'TWD')){ card.style.display='none'; return; }
   const cash = calcBankEstimate(from, to, amt, 'cash');
   const spot = calcBankEstimate(from, to, amt, 'spot');
@@ -706,7 +700,6 @@ function renderBankBest(from, to, amt){
   if(qCash) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">${targetCode} 現金買/賣</div><div class="bank-rate-val">${fmt(Number(qCash.buy),4)} / ${fmt(Number(qCash.sell),4)}</div></div>`);
   if(qSpot) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">${targetCode} 即期買/賣</div><div class="bank-rate-val">${fmt(Number(qSpot.buy),4)} / ${fmt(Number(qSpot.sell),4)}</div></div>`);
   grid.innerHTML = rows.join('');
-  note.innerHTML = `目前此頁已改用台銀牌告匯率作為台灣換匯參考；「哪家銀行最優惠」需要多銀行即時資料。因 GitHub Pages 是靜態前端，直接抓多家銀行容易遇到 CORS/資料格式變動，建議先用下方外部比較連結核對。若之後要自動列出前 3 名，需要接一個後端或可靠多銀行 API。`;
 }
 
 function convert(){
