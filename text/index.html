@@ -551,14 +551,9 @@ function fetchWithTimeout(url, ms=6000){
   const timer = setTimeout(()=>ctrl.abort(), ms);
   const sep = url.includes('?') ? '&' : '?';
   const noCacheUrl = `${url}${sep}_=${Date.now()}`;
-  return fetch(noCacheUrl, {
-    signal: ctrl.signal,
-    cache: 'no-store',
-    headers: {
-      'Cache-Control': 'no-cache',
-      'Pragma': 'no-cache'
-    }
-  }).finally(()=>clearTimeout(timer));
+  // 注意：跨網域資料源不要加 cache:'no-store' 或 Cache-Control header，
+  // 否則 Chrome 會觸發 CORS preflight，導致匯率 API 被擋。
+  return fetch(noCacheUrl, { signal: ctrl.signal }).finally(()=>clearTimeout(timer));
 }
 
 async function fetchRates(){
@@ -567,6 +562,7 @@ async function fetchRates(){
     // 先抓 GitHub raw，避免 CDN 分區快取導致手機與電腦不同步
     async () => {
       const r = await fetchWithTimeout('https://raw.githubusercontent.com/haotool/app/data/public/rates/latest.json');
+      if(!r.ok) throw new Error('bank raw http ' + r.status);
       const d = await r.json();
       if(!d.details) throw new Error('no bank details');
       return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
@@ -574,25 +570,13 @@ async function fetchRates(){
     // jsDelivr 作為第二順位備援
     async () => {
       const r = await fetchWithTimeout('https://cdn.jsdelivr.net/gh/haotool/app@data/public/rates/latest.json');
+      if(!r.ok) throw new Error('bank cdn http ' + r.status);
       const d = await r.json();
       if(!d.details) throw new Error('no bank details');
       return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
     },
-    // 備援：國際市場中間價。只在台銀資料暫時無法取得時使用。
-    async () => {
-      const r = await fetchWithTimeout('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json');
-      const d = await r.json();
-      if(!d.usd) throw new Error('no market rates');
-      const rt = {};
-      for(const k in d.usd){ rt[k.toUpperCase()] = d.usd[k]; }
-      return { kind:'market', rates:rt, date:d.date, source:'國際市場中間價' };
-    },
-    async () => {
-      const r = await fetchWithTimeout('https://open.er-api.com/v6/latest/USD');
-      const d = await r.json();
-      if(!d.rates) throw new Error('no market rates');
-      return { kind:'market', rates:d.rates, date:d.time_last_update_utc, source:'國際市場中間價' };
-    },
+    // 為確保主換算器與匯率看板資料正確，這裡不再用國際市場中間價備援。
+    // 台銀牌告抓不到時，畫面會明確顯示無法載入，而不是顯示不同來源的匯率。
   ];
 
   for(const src of sources){
@@ -632,13 +616,14 @@ async function fetchRates(){
       if(document.getElementById('panel-chart')?.classList.contains('active')) loadChart();
       return;
     }catch(e){
+      console.error('FX bank source failed:', e);
       // 此來源失敗，嘗試下一個
     }
   }
 
   document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
   const ru = document.getElementById('rate-update');
-  if(ru) ru.textContent = '所有匯率來源連線失敗';
+  if(ru) ru.textContent = '台銀牌告資料來源暫時無法連線；為避免顯示錯誤匯率，已停止使用市場中間價備援';
 }
 
 // ── 匯率換算 ──
