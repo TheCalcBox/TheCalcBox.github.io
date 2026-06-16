@@ -513,7 +513,7 @@ const CURRENCIES = {
   CHF:{name:'瑞士法郎',flag:'🇨🇭',en:'CHF'},
 };
 const API = 'https://fxapi.app/api';
-const LOCAL_RATE_URLS = ['/rates/latest.json', './rates/latest.json', '/public/rates/latest.json'];
+const LOCAL_RATE_URL = "https://fx-rates-worker.alonsolu0204.workers.dev/rates/latest.json";
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
 let bankDetails = null, bankUpdateTime = '', bankSource = '';
