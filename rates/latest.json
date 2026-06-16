@@ -1,0 +1,7 @@
+{
+  "source": "臺灣銀行牌告匯率",
+  "updateTime": "尚未產生，請先執行 GitHub Actions：Update FX Rates",
+  "generatedAt": null,
+  "details": {},
+  "rates": {}
+}
