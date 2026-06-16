@@ -486,7 +486,7 @@ footer a:hover{color:#F3C969!important}
   </div>
 </div>
 <footer>
-  <p>CalcBox 匯率 · 優先使用臺灣銀行牌告匯率資料，備援為國際市場中間價，僅供參考<br>
+  <p>CalcBox 匯率 · 使用臺灣銀行牌告匯率資料，透過 Cloudflare Worker 定時同步，僅供參考<br>
   <a href="/">回工具目錄</a> · <a href="/loan/">貸款試算</a> · <a href="/tax/">稅務薪資</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
 </footer>
 
@@ -513,7 +513,8 @@ const CURRENCIES = {
   CHF:{name:'瑞士法郎',flag:'🇨🇭',en:'CHF'},
 };
 const API = 'https://fxapi.app/api';
-const LOCAL_RATE_URL = "https://fx-rates-worker.alonsolu0204.workers.dev/rates/latest.json";
+const LOCAL_RATE_URL = 'https://fx-rates-worker.alonsolu0204.workers.dev/rates/latest.json';
+const LOCAL_RATE_URLS = [LOCAL_RATE_URL];
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
 let bankDetails = null, bankUpdateTime = '', bankSource = '';
@@ -731,7 +732,7 @@ async function fetchRates(){
 
   document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
   const ru = document.getElementById('rate-update');
-  if(ru) ru.textContent = '自家台銀牌告資料 /rates/latest.json 暫時無法讀取；請確認 GitHub Actions 已成功產生 latest.json';
+  if(ru) ru.textContent = 'Cloudflare 台銀牌告資料暫時無法讀取；請確認 Worker /rates/latest.json 可正常開啟';
 }
 
 // ── 匯率換算 ──
