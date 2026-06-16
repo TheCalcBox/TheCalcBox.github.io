@@ -560,10 +560,23 @@ function fetchWithTimeout(url, ms=6000){
 function parseBankQuoteTime(value){
   if(!value) return null;
   const text = String(value).trim();
-  // 支援「2026/06/16 10:07:33」與 ISO 時間
-  const normalized = text.replace(/-/g, '/');
-  const d = new Date(normalized);
-  return isNaN(d.getTime()) ? null : d;
+
+  // iPhone Safari 對 new Date('YYYY/MM/DD HH:mm:ss') 支援不穩，
+  // 所以台銀牌告時間一定要手動解析，避免手機判定 invalid 後整頁空白。
+  const m = text.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if(m){
+    const y = Number(m[1]);
+    const mo = Number(m[2]) - 1;
+    const d = Number(m[3]);
+    const h = Number(m[4] || 0);
+    const mi = Number(m[5] || 0);
+    const se = Number(m[6] || 0);
+    const dt = new Date(y, mo, d, h, mi, se);
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+
+  const dt = new Date(text);
+  return isNaN(dt.getTime()) ? null : dt;
 }
 
 function quoteStatusText(quoteTime){
@@ -598,9 +611,42 @@ function applyBankRateData(data){
   document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
   document.getElementById('rate-update').textContent = `${status}｜${sourceText}｜本機讀取：${refreshText}`;
 
+  try{
+    localStorage.setItem('fx_last_bank_data', JSON.stringify({
+      kind: data.kind,
+      details: data.details,
+      rates: data.rates || {},
+      updateTime: data.updateTime || '',
+      source: data.source || '臺灣銀行牌告匯率',
+      savedAt: new Date().toISOString()
+    }));
+  }catch(e){ console.warn('FX localStorage save failed:', e); }
+
   convert();
   renderBoard();
   if(document.getElementById('panel-chart')?.classList.contains('active')) loadChart();
+}
+
+function loadLastBankRateFromStorage(){
+  try{
+    const raw = localStorage.getItem('fx_last_bank_data');
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    if(!data || !data.details || !parseBankQuoteTime(data.updateTime)) return false;
+    applyBankRateData({
+      kind:'bot',
+      details:data.details,
+      rates:data.rates || {},
+      updateTime:data.updateTime,
+      source:(data.source || '臺灣銀行牌告匯率') + '（本機暫存）'
+    });
+    const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('rate-update').textContent = `${quoteStatusText(bankUpdateTime)}｜牌告：${bankUpdateTime}｜本機暫存，正在更新：${refreshText}`;
+    return true;
+  }catch(e){
+    console.warn('FX localStorage load failed:', e);
+    return false;
+  }
 }
 
 async function fetchBankJson(url, label){
@@ -661,6 +707,13 @@ async function fetchRates(){
     document.getElementById('rate-update').textContent = `🔴 暫時無法連線更新；保留最後成功台銀牌告｜牌告：${bankUpdateTime}｜本機檢查：${refreshText}`;
     convert();
     renderBoard();
+    return;
+  }
+
+  if(loadLastBankRateFromStorage()){
+    const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+    const ru = document.getElementById('rate-update');
+    if(ru) ru.textContent = `${quoteStatusText(bankUpdateTime)}｜無法連線更新；顯示本機最後成功台銀牌告｜牌告：${bankUpdateTime}｜本機檢查：${refreshText}`;
     return;
   }
 
@@ -732,7 +785,7 @@ function renderBankBest(from, to, amt){
   const preferred = spot || cash;
   main.innerHTML = preferred
     ? `依目前可取得的 <b>臺灣銀行牌告匯率</b> 估算，你這筆是「${preferred.action}」。判斷優惠時請看：<b>${preferred.rule}</b>。`
-    : `目前此幣別缺少完整銀行牌告資料，暫以市場中間價提供參考。`;
+    : `目前此幣別缺少完整銀行牌告資料，無法提供銀行估算。`;
   const rows = [];
   if(cash) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">現金估算</div><div class="bank-rate-val">${fmt(cash.result)} ${to}</div></div>`);
   if(spot) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">即期估算</div><div class="bank-rate-val">${fmt(spot.result)} ${to}</div></div>`);
@@ -990,8 +1043,11 @@ document.addEventListener('visibilitychange', () => {
   if(!document.hidden) refreshAllRates();
 });
 window.addEventListener('focus', refreshAllRates);
+window.addEventListener('pageshow', refreshAllRates);
 
 initSelects();
+// 先載入本機最後成功資料，避免手機網路或來源暫時失敗時畫面空白；接著立即連線更新。
+loadLastBankRateFromStorage();
 refreshAllRates();
 startAutoRefresh();
 </script>
