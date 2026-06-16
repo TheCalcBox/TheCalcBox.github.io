@@ -1,0 +1,14 @@
+name = "thecalcbox-fx-rates"
+main = "worker.js"
+compatibility_date = "2026-06-16"
+
+# Run every 5 minutes. Cloudflare Cron uses UTC.
+[triggers]
+crons = ["*/5 * * * *"]
+
+# After creating KV namespace, replace the id below.
+# Command:
+#   wrangler kv namespace create FX_KV
+[[kv_namespaces]]
+binding = "FX_KV"
+id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
