@@ -1,0 +1,37 @@
+name: Update FX Rates
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-fx-rates
+  cancel-in-progress: true
+
+jobs:
+  update-fx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch BOT rates
+        run: node scripts/fetch-bot-rates.js
+
+      - name: Commit updated rates
+        run: |
+          git config user.name "fx-bot"
+          git config user.email "fx-bot@users.noreply.github.com"
+          git add rates/latest.json public/rates/latest.json
+          git commit -m "Update FX rates" || echo "No changes"
+          git push
