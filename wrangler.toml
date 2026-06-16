@@ -1,4 +1,4 @@
-name = "thecalcbox-fx-rates"
+name = "fx-rates-worker"
 main = "worker.js"
 compatibility_date = "2026-06-16"
 
