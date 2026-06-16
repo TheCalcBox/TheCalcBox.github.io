@@ -38,6 +38,19 @@ function parseCSVLine(line) {
   return result;
 }
 
+function getTaipeiTimeString(date = new Date()) {
+  return new Intl.DateTimeFormat('zh-TW', {
+    timeZone: 'Asia/Taipei',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  }).format(date).replace(/\//g, '/');
+}
+
 function normalizeTaipeiQuoteTime(text) {
   if (!text) return '';
   const match = String(text).match(/(\d{4})\/(\d{1,2})\/(\d{1,2})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/);
@@ -47,27 +60,48 @@ function normalizeTaipeiQuoteTime(text) {
 }
 
 async function fetchOfficialQuoteTime() {
-  const response = await fetch(`${BOT_PAGE_URL}&_=${Date.now()}`, {
-    redirect: 'follow'
-  });
+  try {
+    const response = await fetch(`${BOT_PAGE_URL}&_=${Date.now()}`, {
+      redirect: 'follow',
+      headers: {
+        'user-agent': 'Mozilla/5.0 fx-rate-bot'
+      }
+    });
 
-  if (!response.ok) {
-    throw new Error(`BOT page fetch failed: ${response.status}`);
+    if (!response.ok) {
+      console.warn(`BOT page fetch failed: ${response.status}`);
+      return null;
+    }
+
+    const html = await response.text();
+
+    const patterns = [
+      /牌價最新掛牌時間\s*[：:]?\s*([0-9/]+\s+[0-9:]+)/,
+      /最新掛牌時間\s*[：:]?\s*([0-9/]+\s+[0-9:]+)/,
+      /掛牌時間\s*[：:]?\s*([0-9/]+\s+[0-9:]+)/,
+      /(20\d{2}\/\d{1,2}\/\d{1,2}\s+\d{1,2}:\d{2}(?::\d{2})?)/
+    ];
+
+    for (const pattern of patterns) {
+      const match = html.match(pattern);
+      const quoteTime = normalizeTaipeiQuoteTime(match && match[1]);
+      if (quoteTime) return quoteTime;
+    }
+
+    console.warn('Official quote time not found on BOT page. Using generated time as display time.');
+    return null;
+  } catch (error) {
+    console.warn('BOT page quote time fetch skipped:', error.message);
+    return null;
   }
-
-  const html = await response.text();
-  const match = html.match(/牌價最新掛牌時間\s*[：:]\s*([0-9/]+\s+[0-9:]+)/);
-  const quoteTime = normalizeTaipeiQuoteTime(match && match[1]);
-
-  if (!quoteTime) {
-    throw new Error('Official quote time not found on BOT page');
-  }
-
-  return quoteTime;
 }
 
 async function fetchCsvText() {
-  const response = await fetch(`${BOT_CSV_URL}?_=${Date.now()}`);
+  const response = await fetch(`${BOT_CSV_URL}?_=${Date.now()}`, {
+    headers: {
+      'user-agent': 'Mozilla/5.0 fx-rate-bot'
+    }
+  });
 
   if (!response.ok) {
     throw new Error(`BOT CSV fetch failed: ${response.status}`);
@@ -91,12 +125,6 @@ function parseBotCsv(text) {
 
     if (!/^[A-Z]{3}$/.test(code)) continue;
 
-    // BOT CSV columns used here:
-    // 0 currency code
-    // 2 cash buy
-    // 3 spot buy
-    // 13 cash sell
-    // 14 spot sell
     const cashBuy = parseNumber(cols[2]);
     const spotBuy = parseNumber(cols[3]);
     const cashSell = parseNumber(cols[13]);
@@ -164,10 +192,12 @@ async function main() {
   const details = parseBotCsv(csvText);
   const rates = buildUsdBaseRates(details);
   const generatedAt = new Date().toISOString();
+  const generatedTaipeiTime = getTaipeiTimeString(new Date());
 
   const output = {
     source: '臺灣銀行牌告匯率',
-    updateTime: quoteTime,
+    updateTime: quoteTime || generatedTaipeiTime,
+    quoteTimeSource: quoteTime ? 'bot-page' : 'generated-time-fallback',
     generatedAt,
     details,
     rates
@@ -177,7 +207,8 @@ async function main() {
 
   const usdMid = (details.USD.spot.buy + details.USD.spot.sell) / 2;
   console.log('FX rates updated');
-  console.log('BOT quote time:', output.updateTime);
+  console.log('Quote time:', output.updateTime);
+  console.log('Quote time source:', output.quoteTimeSource);
   console.log('Generated at:', output.generatedAt);
   console.log('USD spot:', details.USD.spot);
   console.log('USD mid:', usdMid);
