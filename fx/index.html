@@ -513,6 +513,7 @@ const CURRENCIES = {
   CHF:{name:'瑞士法郎',flag:'🇨🇭',en:'CHF'},
 };
 const API = 'https://fxapi.app/api';
+const LOCAL_RATE_URLS = ['/rates/latest.json', './rates/latest.json', '/public/rates/latest.json'];
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
 let bankDetails = null, bankUpdateTime = '', bankSource = '';
@@ -666,41 +667,52 @@ async function fetchBankJson(url, label){
   };
 }
 
-async function fetchRates(){
-  // 同時嘗試多個台銀牌告鏡像，選「牌告時間最新」的一筆。
-  // 這樣手機若拿到 jsDelivr 舊快取，不會蓋掉 raw GitHub 的新資料。
-  const sources = [
-    { label:'bank raw', url:'https://raw.githubusercontent.com/haotool/app/data/public/rates/latest.json' },
-    { label:'bank cdn', url:'https://cdn.jsdelivr.net/gh/haotool/app@data/public/rates/latest.json' },
-  ];
-
-  const results = [];
-  for(const src of sources){
+async function fetchLocalBankJson(){
+  let lastError = null;
+  for(const url of LOCAL_RATE_URLS){
     try{
-      const data = await fetchBankJson(src.url, src.label);
-      results.push(data);
+      const r = await fetchWithTimeout(url);
+      if(!r.ok) throw new Error(url + ' http ' + r.status);
+      const d = await r.json();
+      if(!d.details || !d.details.USD) throw new Error(url + ' invalid local rate json');
+      const updateTime = d.updateTime || d.timestamp || '';
+      if(!parseBankQuoteTime(updateTime)) throw new Error(url + ' invalid updateTime: ' + updateTime);
+      return {
+        kind:'bot',
+        details:d.details,
+        rates:d.rates || {},
+        updateTime,
+        source:d.source || '臺灣銀行牌告匯率',
+        generatedAt:d.generatedAt || '',
+        label:url
+      };
     }catch(e){
-      console.error('FX bank source failed:', src.label, e);
+      lastError = e;
+      console.error('FX local source failed:', url, e);
     }
   }
+  throw lastError || new Error('all local rate urls failed');
+}
 
-  if(results.length){
-    results.sort((a,b) => parseBankQuoteTime(b.updateTime) - parseBankQuoteTime(a.updateTime));
-    const newest = results[0];
+async function fetchRates(){
+  try{
+    const data = await fetchLocalBankJson();
 
     // 頁面已經有較新的牌告時，舊資料不得覆蓋新資料。
-    if(currentQuoteTime && !isNewerOrSameQuote(newest.updateTime, currentQuoteTime)){
+    if(currentQuoteTime && !isNewerOrSameQuote(data.updateTime, currentQuoteTime)){
       const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
       document.getElementById('hdr-update').textContent = `${refreshText} 檢查`;
-      document.getElementById('rate-update').textContent = `${quoteStatusText(bankUpdateTime)}｜牌告：${bankUpdateTime}｜已忽略較舊牌告：${newest.updateTime}`;
+      document.getElementById('rate-update').textContent = `${quoteStatusText(bankUpdateTime)}｜牌告：${bankUpdateTime}｜已忽略較舊牌告：${data.updateTime}`;
       return;
     }
 
-    applyBankRateData(newest);
+    applyBankRateData(data);
     return;
+  }catch(e){
+    console.error('Local FX rate failed:', e);
   }
 
-  // 所有來源失敗：若已有最後成功資料，保留畫面，不清空、不改成市場中間價。
+  // 自家 JSON 讀取失敗：若已有最後成功資料，保留畫面，不清空、不改成市場中間價。
   if(bankDetails){
     const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
     document.getElementById('hdr-update').textContent = `${refreshText} 失敗`;
@@ -719,7 +731,7 @@ async function fetchRates(){
 
   document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
   const ru = document.getElementById('rate-update');
-  if(ru) ru.textContent = '台銀牌告資料來源暫時無法連線；為避免顯示錯誤匯率，未使用市場中間價備援';
+  if(ru) ru.textContent = '自家台銀牌告資料 /rates/latest.json 暫時無法讀取；請確認 GitHub Actions 已成功產生 latest.json';
 }
 
 // ── 匯率換算 ──
