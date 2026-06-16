@@ -11,4 +11,4 @@ crons = ["*/5 * * * *"]
 #   wrangler kv namespace create FX_KV
 [[kv_namespaces]]
 binding = "FX_KV"
-id = "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+id = "9ccfac984c0b4befac95f9541cb402e2"
