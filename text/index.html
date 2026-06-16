@@ -513,9 +513,11 @@ const CURRENCIES = {
   CHF:{name:'瑞士法郎',flag:'🇨🇭',en:'CHF'},
 };
 const API = 'https://fxapi.app/api';
+const LOCAL_RATE_URLS = ['/rates/latest.json', './rates/latest.json', '/public/rates/latest.json'];
 const QUICK_AMOUNTS = [100, 1000, 5000, 10000, 50000, 100000];
 let rates = {}, lastUpdated = null, chartPeriod = 7;
 let bankDetails = null, bankUpdateTime = '', bankSource = '';
+let currentQuoteTime = null; // 目前畫面使用中的牌告時間；舊資料不可覆蓋新資料
 let activeRateSource = 'market';
 const fmt = (v, d=2) => {
   if(v == null || isNaN(v)) return '—';
@@ -556,74 +558,180 @@ function fetchWithTimeout(url, ms=6000){
   return fetch(noCacheUrl, { signal: ctrl.signal }).finally(()=>clearTimeout(timer));
 }
 
-async function fetchRates(){
-  // 先抓臺灣銀行牌告匯率：較符合台灣使用者換匯情境，含現金/即期買入賣出
-  const sources = [
-    // 先抓 GitHub raw，避免 CDN 分區快取導致手機與電腦不同步
-    async () => {
-      const r = await fetchWithTimeout('https://raw.githubusercontent.com/haotool/app/data/public/rates/latest.json');
-      if(!r.ok) throw new Error('bank raw http ' + r.status);
-      const d = await r.json();
-      if(!d.details) throw new Error('no bank details');
-      return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
-    },
-    // jsDelivr 作為第二順位備援
-    async () => {
-      const r = await fetchWithTimeout('https://cdn.jsdelivr.net/gh/haotool/app@data/public/rates/latest.json');
-      if(!r.ok) throw new Error('bank cdn http ' + r.status);
-      const d = await r.json();
-      if(!d.details) throw new Error('no bank details');
-      return { kind:'bot', details:d.details, rates:d.rates || {}, updateTime:d.updateTime || d.timestamp || '', source:d.source || '臺灣銀行牌告匯率' };
-    },
-    // 為確保主換算器與匯率看板資料正確，這裡不再用國際市場中間價備援。
-    // 台銀牌告抓不到時，畫面會明確顯示無法載入，而不是顯示不同來源的匯率。
-  ];
+function parseBankQuoteTime(value){
+  if(!value) return null;
+  const text = String(value).trim();
 
-  for(const src of sources){
+  // iPhone Safari 對 new Date('YYYY/MM/DD HH:mm:ss') 支援不穩，
+  // 所以台銀牌告時間一定要手動解析，避免手機判定 invalid 後整頁空白。
+  const m = text.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?/);
+  if(m){
+    const y = Number(m[1]);
+    const mo = Number(m[2]) - 1;
+    const d = Number(m[3]);
+    const h = Number(m[4] || 0);
+    const mi = Number(m[5] || 0);
+    const se = Number(m[6] || 0);
+    const dt = new Date(y, mo, d, h, mi, se);
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+
+  const dt = new Date(text);
+  return isNaN(dt.getTime()) ? null : dt;
+}
+
+function quoteStatusText(quoteTime){
+  const d = parseBankQuoteTime(quoteTime);
+  if(!d) return '⚪ 牌告時間未提供';
+  const ageHours = (Date.now() - d.getTime()) / 3600000;
+  if(ageHours <= 6) return '🟢 台銀最新牌告';
+  if(ageHours <= 24) return '🟡 台銀牌告可能過舊';
+  return '🔴 台銀牌告已超過 24 小時，請以銀行交易當下公告為準';
+}
+
+function isNewerOrSameQuote(newTime, oldTime){
+  const n = parseBankQuoteTime(newTime);
+  const o = parseBankQuoteTime(oldTime);
+  if(!n) return false;
+  if(!o) return true;
+  return n.getTime() >= o.getTime();
+}
+
+function applyBankRateData(data){
+  activeRateSource = data.kind;
+  lastUpdated = new Date();
+  currentQuoteTime = data.updateTime || '';
+  bankDetails = data.details || null;
+  bankUpdateTime = data.updateTime || '';
+  bankSource = data.source || '臺灣銀行牌告匯率';
+  rates = data.rates || {};
+
+  const refreshText = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+  const sourceText = bankUpdateTime ? `牌告：${bankUpdateTime}` : '牌告時間未提供';
+  const status = quoteStatusText(bankUpdateTime);
+  document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
+  document.getElementById('rate-update').textContent = `${status}｜${sourceText}｜本機讀取：${refreshText}`;
+
+  try{
+    localStorage.setItem('fx_last_bank_data', JSON.stringify({
+      kind: data.kind,
+      details: data.details,
+      rates: data.rates || {},
+      updateTime: data.updateTime || '',
+      source: data.source || '臺灣銀行牌告匯率',
+      savedAt: new Date().toISOString()
+    }));
+  }catch(e){ console.warn('FX localStorage save failed:', e); }
+
+  convert();
+  renderBoard();
+  if(document.getElementById('panel-chart')?.classList.contains('active')) loadChart();
+}
+
+function loadLastBankRateFromStorage(){
+  try{
+    const raw = localStorage.getItem('fx_last_bank_data');
+    if(!raw) return false;
+    const data = JSON.parse(raw);
+    if(!data || !data.details || !parseBankQuoteTime(data.updateTime)) return false;
+    applyBankRateData({
+      kind:'bot',
+      details:data.details,
+      rates:data.rates || {},
+      updateTime:data.updateTime,
+      source:(data.source || '臺灣銀行牌告匯率') + '（本機暫存）'
+    });
+    const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('rate-update').textContent = `${quoteStatusText(bankUpdateTime)}｜牌告：${bankUpdateTime}｜本機暫存，正在更新：${refreshText}`;
+    return true;
+  }catch(e){
+    console.warn('FX localStorage load failed:', e);
+    return false;
+  }
+}
+
+async function fetchBankJson(url, label){
+  const r = await fetchWithTimeout(url);
+  if(!r.ok) throw new Error(label + ' http ' + r.status);
+  const d = await r.json();
+  if(!d.details) throw new Error(label + ' no bank details');
+  const updateTime = d.updateTime || d.timestamp || '';
+  if(!parseBankQuoteTime(updateTime)) throw new Error(label + ' invalid updateTime: ' + updateTime);
+  return {
+    kind:'bot',
+    details:d.details,
+    rates:d.rates || {},
+    updateTime,
+    source:d.source || '臺灣銀行牌告匯率',
+    label
+  };
+}
+
+async function fetchLocalBankJson(){
+  let lastError = null;
+  for(const url of LOCAL_RATE_URLS){
     try{
-      const data = await src();
-      activeRateSource = data.kind;
-      lastUpdated = new Date();
-      const refreshText = lastUpdated.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
-
-      if(data.kind === 'bot'){
-        bankDetails = data.details || null;
-        bankUpdateTime = data.updateTime || '';
-        bankSource = data.source || '臺灣銀行牌告匯率';
-        rates = data.rates || {};
-        const sourceText = bankUpdateTime ? `牌告：${bankUpdateTime}` : '牌告時間未提供';
-        document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
-        document.getElementById('rate-update').textContent = `${sourceText}｜本機讀取：${refreshText}`;
-      }else{
-        bankDetails = null;
-        rates = data.rates || {};
-        rates['USD'] = 1;
-        let dateNote = '';
-        if(data.date){
-          const dataDate = new Date(data.date);
-          if(!isNaN(dataDate.getTime())){
-            const today = new Date();
-            if(dataDate.toDateString() !== today.toDateString()){
-              dateNote = `｜市場報價日：${dataDate.getMonth()+1}/${dataDate.getDate()}（假日可能沿用最近收盤）`;
-            }
-          }
-        }
-        document.getElementById('hdr-update').textContent = `${refreshText} 讀取`;
-        document.getElementById('rate-update').textContent = `資料源：${data.source}｜本機讀取：${refreshText}${dateNote}`;
-      }
-      convert();
-      renderBoard();
-      if(document.getElementById('panel-chart')?.classList.contains('active')) loadChart();
-      return;
+      const r = await fetchWithTimeout(url);
+      if(!r.ok) throw new Error(url + ' http ' + r.status);
+      const d = await r.json();
+      if(!d.details || !d.details.USD) throw new Error(url + ' invalid local rate json');
+      const updateTime = d.updateTime || d.timestamp || '';
+      if(!parseBankQuoteTime(updateTime)) throw new Error(url + ' invalid updateTime: ' + updateTime);
+      return {
+        kind:'bot',
+        details:d.details,
+        rates:d.rates || {},
+        updateTime,
+        source:d.source || '臺灣銀行牌告匯率',
+        generatedAt:d.generatedAt || '',
+        label:url
+      };
     }catch(e){
-      console.error('FX bank source failed:', e);
-      // 此來源失敗，嘗試下一個
+      lastError = e;
+      console.error('FX local source failed:', url, e);
     }
+  }
+  throw lastError || new Error('all local rate urls failed');
+}
+
+async function fetchRates(){
+  try{
+    const data = await fetchLocalBankJson();
+
+    // 頁面已經有較新的牌告時，舊資料不得覆蓋新資料。
+    if(currentQuoteTime && !isNewerOrSameQuote(data.updateTime, currentQuoteTime)){
+      const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+      document.getElementById('hdr-update').textContent = `${refreshText} 檢查`;
+      document.getElementById('rate-update').textContent = `${quoteStatusText(bankUpdateTime)}｜牌告：${bankUpdateTime}｜已忽略較舊牌告：${data.updateTime}`;
+      return;
+    }
+
+    applyBankRateData(data);
+    return;
+  }catch(e){
+    console.error('Local FX rate failed:', e);
+  }
+
+  // 自家 JSON 讀取失敗：若已有最後成功資料，保留畫面，不清空、不改成市場中間價。
+  if(bankDetails){
+    const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('hdr-update').textContent = `${refreshText} 失敗`;
+    document.getElementById('rate-update').textContent = `🔴 暫時無法連線更新；保留最後成功台銀牌告｜牌告：${bankUpdateTime}｜本機檢查：${refreshText}`;
+    convert();
+    renderBoard();
+    return;
+  }
+
+  if(loadLastBankRateFromStorage()){
+    const refreshText = new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'});
+    const ru = document.getElementById('rate-update');
+    if(ru) ru.textContent = `${quoteStatusText(bankUpdateTime)}｜無法連線更新；顯示本機最後成功台銀牌告｜牌告：${bankUpdateTime}｜本機檢查：${refreshText}`;
+    return;
   }
 
   document.getElementById('rate-main').textContent = '匯率暫時無法載入，請稍後重新整理';
   const ru = document.getElementById('rate-update');
-  if(ru) ru.textContent = '台銀牌告資料來源暫時無法連線；為避免顯示錯誤匯率，已停止使用市場中間價備援';
+  if(ru) ru.textContent = '自家台銀牌告資料 /rates/latest.json 暫時無法讀取；請確認 GitHub Actions 已成功產生 latest.json';
 }
 
 // ── 匯率換算 ──
@@ -634,8 +742,7 @@ function twdPerUnit(code){
     const q = (d.spot && d.spot.buy && d.spot.sell) ? d.spot : d.cash;
     if(q && q.buy && q.sell) return (Number(q.buy) + Number(q.sell)) / 2;
   }
-  // 備援市場價：原資料為 1 USD = X 外幣，因此 TWD/外幣 = USD/TWD 除以 USD/外幣
-  if(rates[code] && rates['TWD']) return Number(rates['TWD']) / Number(rates[code]);
+  // 嚴格使用台銀牌告，不用市場中間價混算。
   return null;
 }
 
@@ -690,7 +797,7 @@ function renderBankBest(from, to, amt){
   const preferred = spot || cash;
   main.innerHTML = preferred
     ? `依目前可取得的 <b>臺灣銀行牌告匯率</b> 估算，你這筆是「${preferred.action}」。判斷優惠時請看：<b>${preferred.rule}</b>。`
-    : `目前此幣別缺少完整銀行牌告資料，暫以市場中間價提供參考。`;
+    : `目前此幣別缺少完整銀行牌告資料，無法提供銀行估算。`;
   const rows = [];
   if(cash) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">現金估算</div><div class="bank-rate-val">${fmt(cash.result)} ${to}</div></div>`);
   if(spot) rows.push(`<div class="bank-rate-cell"><div class="bank-rate-lbl">即期估算</div><div class="bank-rate-val">${fmt(spot.result)} ${to}</div></div>`);
@@ -948,8 +1055,11 @@ document.addEventListener('visibilitychange', () => {
   if(!document.hidden) refreshAllRates();
 });
 window.addEventListener('focus', refreshAllRates);
+window.addEventListener('pageshow', refreshAllRates);
 
 initSelects();
+// 先載入本機最後成功資料，避免手機網路或來源暫時失敗時畫面空白；接著立即連線更新。
+loadLastBankRateFromStorage();
 refreshAllRates();
 startAutoRefresh();
 </script>
