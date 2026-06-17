@@ -221,9 +221,48 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+/* 圖表 */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:16px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;margin:2px 0 4px}
+.gauge-wrap svg{width:200px;max-width:100%}
+/* 長文 */
+.article{max-width:820px;margin:2rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.6rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:var(--accent-light);border:1px solid #CDE6D2;border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px}
+.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}
+.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B}
+.faq2{max-width:820px;margin:2rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted);transition:transform .2s}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"投資試算工具","item":"https://thecalcbox.github.io/invest/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"投資試算工具","item":"https://thecalcbox.com/invest/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"股利再投入真的比領現金好嗎？","acceptedAnswer":{"@type":"Answer","text":"在資產累積階段通常是的。股利再投入會買回更多股票、產生更多股利，形成複利雪球；持有時間越長與領現金的差距越明顯。退休需要現金流時則領現金較實用。"}},
+{"@type":"Question","name":"台股殖利率多高才算好？","acceptedAnswer":{"@type":"Answer","text":"一般認為殖利率 4%~6% 且獲利穩定為合理目標。若高殖利率來自股價下跌（本業衰退），則可能是賺股利賠價差的陷阱，須綜合獲利能力評估。"}},
+{"@type":"Question","name":"ROI 和 CAGR 有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"ROI 是總報酬率、不考慮時間；CAGR 年化複合成長率把總報酬換算成每年複利幾 %，能公平比較不同期間長度的投資績效。比較績效應看年化而非總報酬。"}},
+{"@type":"Question","name":"ETF 定期定額真的能賺錢嗎？","acceptedAnswer":{"@type":"Answer","text":"長期投資寬基股票指數歷史年化約 7%~10%。透過定期定額持續投入、複利滾動，時間拉長後投資收益常超過投入本金，但需承受短期波動，過去績效不保證未來。"}},
+{"@type":"Question","name":"把錢全放定存有什麼風險？","acceptedAnswer":{"@type":"Answer","text":"最大風險是通膨。定存利率約 1.6%~2%、長期通膨約 2%，實質購買力可能持平甚至下降。長期不動用資金全放定存等於放棄複利成長。"}},
+{"@type":"Question","name":"FIRE 財務自由需要存多少錢？","acceptedAnswer":{"@type":"Answer","text":"依 4% 法則，FIRE 目標金額約為年支出的 25 倍。月支出 6 萬、年支出 72 萬者目標約 1,800 萬。關鍵在儲蓄率，支出越低、需要的目標金額越少。"}}
+]}</script>
 </head>
 <body>
 
@@ -236,12 +275,12 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>財經新聞</span></button>
-    <button class="tab-btn" onclick="switchTab('dividend')" id="tab-dividend"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 11v6M9.5 12.5h5M9.5 15.5h5"/><path d="M7 7l2-3h6l2 3"/></svg><span>股利試算</span></button>
+    <button class="tab-btn active" onclick="switchTab('dividend')" id="tab-dividend"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 11v6M9.5 12.5h5M9.5 15.5h5"/><path d="M7 7l2-3h6l2 3"/></svg><span>股利試算</span></button>
     <button class="tab-btn" onclick="switchTab('roi')" id="tab-roi"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg><span>報酬率</span></button>
     <button class="tab-btn" onclick="switchTab('etf')" id="tab-etf"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg><span>ETF試算</span></button>
     <button class="tab-btn" onclick="switchTab('deposit')" id="tab-deposit"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M4 10v8M9 10v8M15 10v8M20 10v8M3 21h18"/></svg><span>定存vs投資</span></button>
     <button class="tab-btn" onclick="switchTab('fire')" id="tab-fire"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 1.5-4 .5 1.5 1.5 2 2 2 .5-2-.5-5 1.5-7Z"/></svg><span>FIRE計算</span></button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>財經新聞</span></button>
   </div>
 </div>
 
@@ -250,7 +289,7 @@ footer a:hover{color:#F3C969!important}
 <p class="page-lead">免費投資試算：股利配息計算、年化報酬率CAGR、ETF定期定額、定存vs投資比較、FIRE財務自由計算，附每日財經新聞。</p>
 
 
-<div class="panel active" id="panel-news">
+<div class="panel" id="panel-news">
   <div class="news-header">
     <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
     <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
@@ -262,7 +301,7 @@ footer a:hover{color:#F3C969!important}
 </div>
 
 <!-- 股利試算 -->
-<div class="panel" id="panel-dividend">
+<div class="panel active" id="panel-dividend">
   <div class="tool-card"><div class="card-head">
     <h2>股利 / 配息試算</h2>
     <p>計算持股股利收入，含二代健保補充保費與所得稅試算</p>
@@ -276,6 +315,11 @@ footer a:hover{color:#F3C969!important}
       <div class="field"><label>所得稅率</label>
         <select id="dv-taxrate"><option value="0">5%（年所得低）</option><option value="0.12" selected>12%</option><option value="0.2">20%</option><option value="0.3">30%</option><option value="0.4">40%</option></select></div>
     </div>
+    <div class="fields">
+      <div class="field"><label>持有年數（股利再投入試算）</label>
+        <select id="dv-years"><option value="5">5 年</option><option value="10" selected>10 年</option><option value="15">15 年</option><option value="20">20 年</option><option value="30">30 年</option></select></div>
+      <div class="field"><label>年化股利成長率（%，選填）</label><input type="number" id="dv-growth" value="0" step="0.5" inputmode="decimal"></div>
+    </div>
     <button class="calc-btn" onclick="calcDividend()">試算股利</button>
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9830" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="dividend-result">
@@ -288,7 +332,22 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">殖利率</div><div class="val green" id="dv-yield">—</div></div>
       </div>
       <div class="result-note" id="dv-note"></div>
-      <div class="result-disclaimer">股利所得可選「合併計稅」或「分離課稅（28%）」，以較低者為準。二代健保超過2萬才扣。</div>
+      <div class="drip" id="dv-drip" style="display:none">
+        <div class="result-grid" style="margin-top:.5rem">
+          <div class="result-cell"><div class="lbl" id="dv-drip-yr-lbl">N 年後（再投入）</div><div class="val green" id="dv-drip-re">—</div></div>
+          <div class="result-cell"><div class="lbl">不再投入（領現金）</div><div class="val" id="dv-drip-no">—</div></div>
+          <div class="result-cell"><div class="lbl">再投入多賺</div><div class="val green" id="dv-drip-diff">—</div></div>
+        </div>
+        <div class="charts">
+          <div class="chart-box">
+            <div class="chart-title">股利再投入 vs 領現金：資產成長</div>
+            <div class="chart-sub">股利持續買回股票、滾入複利，長期與領現金的差距會越拉越大。</div>
+            <div id="dv-chart"></div>
+            <div class="chart-legend"><span><i style="background:#2E7D32"></i>股利再投入</span><span><i style="background:#9AA9BA"></i>領現金不投入</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="result-disclaimer">股利所得可選「合併計稅」或「分離課稅（28%）」，以較低者為準。二代健保超過2萬才扣。再投入試算假設股價維持現價、股利淨額（扣二代健保）滾入買回，未計入交易成本與所得稅年度結算，僅供長期趨勢參考。</div>
     </div>
     <div class="seo-box">
       <h3>台灣股利課稅說明</h3>
@@ -298,6 +357,26 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9803" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>股利投資與「股利再投入」的複利威力</h2>
+  <p class="lead-card">領股利很爽，但把股利「再投入」買回股票，長期威力會遠超過領現金。差別就在複利——你的股票會生股利，股利又變成更多股票，雪球越滾越大。</p>
+  <h3>1. 殖利率怎麼看才對</h3>
+  <p>殖利率 =（每股股利 ÷ 股價）× 100%。台股一般認為殖利率 4%~6% 且獲利穩定算合理。但要小心「高殖利率陷阱」：若股價是因本業衰退而下跌才推高殖利率，等於拿自己的本金配回給自己，並非真的賺到。</p>
+  <h3>2. 股利再投入（DRIP）為什麼這麼強</h3>
+  <p>假設持有市值 80 萬、殖利率約 4.4% 的股票：每年領到的股利如果都拿去買回同檔股票，第二年的股利就會比第一年多（因為股數變多了），如此循環。本頁試算器的「持有年數」與「股利成長率」就是在模擬這個複利過程，並把「再投入」與「領現金不投入」兩條成長曲線畫給你看——時間越長，兩條線的缺口越大。</p>
+  <h3>3. 別忽略稅與二代健保</h3>
+  <p>單次股利發放超過 2 萬元，要扣 2.11% 二代健保補充保費。股利所得課稅可選「合併計稅」（享 8.5% 可抵減稅額、上限 8 萬）或「分離課稅 28%」，系統會以較有利者為準。一般受薪族股利不高時，合併計稅通常較划算。</p>
+  <h3>4. 什麼人適合股利再投入</h3>
+  <p>還在資產累積階段、不需要這筆現金流的人，最適合 DRIP，讓複利全力運作；已退休、需要現金流支應生活的人，則適合領現金。兩種策略沒有好壞，取決於你在人生哪個階段。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：用本頁試算「再投入 vs 領現金」的長期差距 → 累積期選再投入讓複利滾動 → 退休期再切換成領現金 → 留意高殖利率陷阱與二代健保。</div>
+</article>
+<section class="faq2">
+  <h2>股利投資常見問題</h2>
+  <details><summary>股利再投入真的比領現金好嗎？</summary><div class="faq2-a">在資產累積階段通常是的。股利再投入會買回更多股票、產生更多股利，形成複利雪球；持有時間越長，與領現金的差距越明顯。但退休需要現金流時，領現金較實用。可用本頁試算兩者長期差距。</div></details>
+  <details><summary>殖利率多高才算好？</summary><div class="faq2-a">台股一般認為殖利率 4%~6% 且獲利穩定為合理目標。但若高殖利率來自股價下跌（本業衰退），則可能是「賺股利賠價差」的陷阱，需綜合獲利能力評估。</div></details>
+  <details><summary>領股利要繳稅嗎？</summary><div class="faq2-a">要。股利所得可選合併計稅（享 8.5% 可抵減、上限 8 萬）或分離課稅 28%，以較低者為準。此外單次發放超過 2 萬元須扣 2.11% 二代健保補充保費。</div></details>
+  <details><summary>股利再投入要手動操作嗎？</summary><div class="faq2-a">台股多數需自行用領到的股利買回零股或整股；部分券商或基金平台提供配息自動再投入。海外 ETF/券商常有 DRIP 自動再投入機制。</div></details>
+</section>
 </div>
 
 <!-- 報酬率 -->
@@ -325,6 +404,13 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">資本損益</div><div class="val" id="ri-gain">—</div></div>
       </div>
       <div class="result-note" id="ri-note"></div>
+      <div class="charts" id="ri-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">報酬比較：含股利 vs 純價差</div>
+          <div class="chart-sub">股利再投入或計入後，總報酬通常明顯高於只看股價漲跌。</div>
+          <div id="ri-chart"></div>
+        </div>
+      </div>
       <div class="result-disclaimer">年化報酬率（CAGR）是將總報酬換算為每年複利的等效報酬，排除時間因素影響。</div>
     </div>
     <div class="seo-box">
@@ -333,6 +419,24 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9804" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>看懂 ROI 與年化報酬（CAGR），別被「總報酬」騙了</h2>
+  <p class="lead-card">「我這檔賺了 50%」聽起來很厲害，但如果花了 10 年才賺 50%，年化其實只有 4%。比較投資績效，一定要看年化報酬，而不是總報酬。</p>
+  <h3>1. 總報酬 vs 年化報酬（CAGR）</h3>
+  <p>總報酬只說「總共賺多少」，不管花了多久；年化報酬（CAGR）把它換算成「每年複利幾 %」，才能公平比較不同時間長度的投資。例如 3 年漲 35%，CAGR ≈ 10.6%，而不是直接除以 3 的 11.7%——因為複利的關係。</p>
+  <h3>2. 別忘了把股利算進去</h3>
+  <p>只看股價漲跌會低估真實報酬。對存股族來說，股利（尤其再投入）常佔長期總報酬相當大的比例。本頁試算器會同時算「純價差報酬」與「含股利總報酬」，並用長條圖對比給你看，差距往往比想像大。</p>
+  <h3>3. 報酬要對比風險與時間成本</h3>
+  <p>高報酬通常伴隨高波動。看到一檔年化 20% 的標的，要問的是它的波動與最大回檔有多大、你抱不抱得住。把資金鎖在一檔長期不動，也有機會成本。報酬、風險、流動性要一起看。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：比績效看年化（CAGR）不看總報酬 → 把股利計入才是真實報酬 → 高報酬要對照波動與你的持有能力。</div>
+</article>
+<section class="faq2">
+  <h2>報酬率常見問題</h2>
+  <details><summary>ROI 和 CAGR 有什麼不同？</summary><div class="faq2-a">ROI（總報酬率）是「總共賺賠多少百分比」，不考慮時間；CAGR（年化複合成長率）把總報酬換算成每年複利幾 %，能公平比較不同期間長度的投資績效。</div></details>
+  <details><summary>為什麼不能直接把總報酬除以年數？</summary><div class="faq2-a">因為複利。3 年賺 35% 直接除以 3 是 11.7%，但考慮複利的 CAGR 約 10.6%。年數越長、報酬越高，兩者差距越大。</div></details>
+  <details><summary>計算報酬要把股利算進去嗎？</summary><div class="faq2-a">要。只看股價漲跌會低估真實報酬，對存股族尤其明顯。本頁可同時計算純價差與含股利的總報酬與年化報酬。</div></details>
+  <details><summary>年化報酬多少算好？</summary><div class="faq2-a">寬基股票指數長期年化約 7%~10%（含通膨）。能長期穩定達到此區間已屬良好；短期單一年度的高報酬不具參考性，須看長期平均與波動。</div></details>
+</section>
 </div>
 
 <!-- ETF試算 -->
@@ -362,6 +466,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">等效月收入（4%法則）</div><div class="val" id="et-income">—</div></div>
       </div>
       <div class="result-note" id="et-note"></div>
+      <div class="charts" id="et-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">資產累積：總資產 vs 投入本金</div>
+          <div class="chart-sub">兩線間的綠色缺口就是複利滾出的投資收益，時間越長越明顯。</div>
+          <div id="et-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>總資產</span><span><i style="background:#9AA9BA"></i>累積投入本金</span></div>
+        </div>
+      </div>
       <div class="result-disclaimer">試算假設報酬率固定，實際市場有波動。過去績效不代表未來。</div>
     </div>
     <div class="seo-box">
@@ -370,6 +482,24 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9805" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>ETF 定期定額：時間才是你最大的武器</h2>
+  <p class="lead-card">定期定額 ETF 不需要選股、不需要擇時，靠的是「持續投入＋複利＋時間」。本頁試算器會把「總資產」與「累積投入本金」兩條線畫出來，兩線間的缺口就是複利幫你賺到的錢。</p>
+  <h3>1. 複利的缺口會越拉越大</h3>
+  <p>每月固定投入，前幾年總資產和投入本金幾乎貼在一起，看起來沒什麼。但隨時間拉長，投資收益開始指數成長，缺口越來越大。以每月 1 萬、年化 8% 為例，20 年投入 240 萬，總資產可達約 589 萬——超過一半是複利賺來的。</p>
+  <h3>2. 寬基 ETF 是多數人的核心</h3>
+  <p>台股常見：0050（元大台灣50）歷史年化約 8%~10%、006208（富邦台灣50）相近、00878（國泰永續高股息）約 6%~8%。美股則有 VOO/SPY（S&P 500）、QQQ（那斯達克100）。費用率低、成分分散的寬基 ETF，適合長期核心持有。</p>
+  <h3>3. 紀律比擇時重要</h3>
+  <p>定期定額的精神是「不管漲跌都買」，用時間平滑成本（定期定額攤平）。試圖擇時進出，多數人反而錯過上漲、追高殺低。設定自動扣款、長期持有，是最樸實也最有效的方法。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：用本頁看複利缺口如何放大 → 選費用低的寬基 ETF 當核心 → 設自動扣款、無視短期波動 → 時間越長、複利越猛。</div>
+</article>
+<section class="faq2">
+  <h2>ETF 定期定額常見問題</h2>
+  <details><summary>定期定額 ETF 真的能賺錢嗎？</summary><div class="faq2-a">長期而言，投資寬基股票指數歷史年化約 7%~10%。透過定期定額持續投入、複利滾動，時間拉長後投資收益常超過投入本金。但需承受短期波動、且過去績效不保證未來。</div></details>
+  <details><summary>每月該投入多少？</summary><div class="faq2-a">以不影響生活、能長期持續為原則，建議先存好緊急預備金（6 個月生活費）後，將可支配結餘的固定比例投入。金額不必大，重點是持續與時間。</div></details>
+  <details><summary>0050 和 00878 怎麼選？</summary><div class="faq2-a">0050 追蹤台灣前 50 大市值、偏成長、歷史年化較高；00878 為高股息型、配息較穩、波動較低。累積期重成長可選 0050，重現金流可選 00878，也可兩者搭配。</div></details>
+  <details><summary>要不要擇時進場？</summary><div class="faq2-a">多數研究顯示一般投資人擇時的結果不如紀律性定期定額。定期定額用時間分散買進成本，避免追高殺低，長期更穩健。</div></details>
+</section>
 </div>
 
 <!-- 定存vs投資 -->
@@ -398,6 +528,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">投資倍數</div><div class="val" id="dp-x">—</div></div>
       </div>
       <div class="result-note" id="dp-note"></div>
+      <div class="charts" id="dp-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">同一筆錢：定存 vs 投資的時間差距</div>
+          <div class="chart-sub">複利下，定存與投資的終值差距隨年期呈指數放大。</div>
+          <div id="dp-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>投資</span><span><i style="background:#9AA9BA"></i>定存</span></div>
+        </div>
+      </div>
       <div class="result-disclaimer">試算未計通膨。投資有風險，請依個人風險承受能力配置資金。</div>
     </div>
     <div class="seo-box">
@@ -406,6 +544,24 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9806" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>定存 vs 投資：通膨才是你的隱形殺手</h2>
+  <p class="lead-card">把錢放定存感覺最安全，但在通膨面前，「不投資」其實也是一種風險——你的購買力正在悄悄縮水。本頁試算器把同一筆錢的定存與投資終值畫成兩條曲線，差距會讓你重新思考。</p>
+  <h3>1. 定存利率常常追不上通膨</h3>
+  <p>台灣現行定存利率約 1.6%~2%，但長期通膨率也約 2%。換句話說，定存的實質購買力可能只是持平、甚至略降。錢看起來變多了，但能買的東西沒變多。</p>
+  <h3>2. 複利下的時間差距驚人</h3>
+  <p>同樣 100 萬，定存 1.6% 與投資年化 8%，10 年後分別約 117 萬 vs 216 萬；20 年後約 137 萬 vs 466 萬；30 年後差距更是以倍數放大。複利在長時間下會把微小的報酬率差異變成巨大的財富差距。</p>
+  <h3>3. 不是要你 all in，而是合理配置</h3>
+  <p>定存仍有其角色——緊急預備金、短期要用的錢，就該放在安全、流動性高的地方。但長期不會動用的資金若全放定存，等於放棄複利成長。重點是依「用錢時間」分層配置，而非二選一。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：定存安全但追不上通膨 → 短期備用金放定存、長期閒錢才投資 → 用本頁看複利如何把報酬差異放大成財富差距。</div>
+</article>
+<section class="faq2">
+  <h2>定存 vs 投資常見問題</h2>
+  <details><summary>把錢全放定存有什麼風險？</summary><div class="faq2-a">最大風險是通膨。定存利率約 1.6%~2%、長期通膨約 2%，實質購買力可能持平甚至下降。長期不動用的資金全放定存，等於放棄複利成長的機會。</div></details>
+  <details><summary>定存和投資該怎麼分配？</summary><div class="faq2-a">依「用錢時間」分層：緊急預備金與短期（1~2 年內）要用的錢放定存等安全標的；長期（5 年以上）不動用的資金才適合投資，承受波動換取較高報酬。</div></details>
+  <details><summary>100 萬定存和投資 20 年差多少？</summary><div class="faq2-a">以定存 1.6%、投資年化 8% 估算，100 萬 20 年後分別約 137 萬 vs 466 萬，差距逾 3 倍。可用本頁試算不同利率與年期的實際差距。</div></details>
+  <details><summary>現在進場會不會買在高點？</summary><div class="faq2-a">擇時極難。對長期投資而言，分批進場或定期定額能分散時點風險；與其等待「最佳時機」而長期空手，紀律性持續投入通常結果更好。</div></details>
+</section>
 </div>
 
 <!-- FIRE計算 -->
@@ -433,6 +589,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">月被動收入（4%）</div><div class="val green" id="fi-passive">—</div></div>
       </div>
       <div class="result-note" id="fi-note"></div>
+      <div class="charts" id="fi-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">資產累積到 FIRE 目標</div>
+          <div class="chart-sub">藍線為資產成長、虛線為 FIRE 目標，交會點即達成財務自由。</div>
+          <div id="fi-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>資產累積</span><span><i style="background:#C58A12"></i>FIRE 目標</span></div>
+        </div>
+      </div>
       <div class="result-disclaimer">依4%法則，退休後每年提領資產4%。實際需視通膨與市場表現調整。</div>
     </div>
     <div class="seo-box">
@@ -443,6 +607,26 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9807" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>FIRE 財務自由：儲蓄率，才是決定一切的關鍵</h2>
+  <p class="lead-card">FIRE（財務獨立、提早退休）不是有錢人專利。真正決定你幾年能達標的，不是你賺多少，而是你「存下多少比例」。本頁試算器會把資產累積曲線與 FIRE 目標線畫在一起，交會點就是你財務自由的那一天。</p>
+  <h3>1. FIRE 目標 = 年支出 × 25</h3>
+  <p>FIRE 的核心是「4% 法則」：若每年只提領資產的 4%，理論上資產可長期支應生活。反推回去，FIRE 目標金額 = 年支出 × 25。月支出 6 萬，年支出 72 萬，FIRE 目標就是 1,800 萬。</p>
+  <h3>2. 儲蓄率比收入更關鍵</h3>
+  <p>關鍵不在月薪高低，而在儲蓄率（存下的 ÷ 收入）。儲蓄率越高，一來累積越快、二來需要的目標金額越低（因為支出低）。月收 5 萬、儲蓄率 50%，約 16~20 年可達 FIRE；月收 10 萬但儲蓄率只有 20%，反而要更久。</p>
+  <h3>3. 兩個槓桿：增加收入、降低支出</h3>
+  <p>想加速 FIRE，只有兩條路：開源（提高收入與投入金額）與節流（降低支出，同時降低目標金額）。節流的威力常被低估——少花的每一塊，既增加投入、又降低你需要的總目標，是雙重效果。</p>
+  <h3>4. FIRE 不一定是「不工作」</h3>
+  <p>很多人達到 FIRE 後選擇 Barista FIRE（做喜歡但低薪的工作）或 Coast FIRE（資產已足夠靠複利成長，不必再大量投入）。FIRE 給的是「選擇權」，而不一定是徹底退休。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：FIRE 目標 = 年支出 × 25 → 儲蓄率決定速度，不是月薪 → 開源＋節流雙管齊下 → 用本頁看資產何時與目標線交會。</div>
+</article>
+<section class="faq2">
+  <h2>FIRE 常見問題</h2>
+  <details><summary>FIRE 需要存多少錢？</summary><div class="faq2-a">依 4% 法則，FIRE 目標金額約為年支出的 25 倍。月支出 6 萬、年支出 72 萬者，FIRE 目標約 1,800 萬。支出越低、需要的目標金額越少。</div></details>
+  <details><summary>4% 法則在台灣適用嗎？</summary><div class="faq2-a">4% 法則源自美股歷史回測，提供大方向參考，但需考量台灣的市場報酬、匯率、通膨與個人投資配置差異，宜保守看待，可採更低的提領率（如 3%~3.5%）增加安全邊際。</div></details>
+  <details><summary>儲蓄率為什麼比收入重要？</summary><div class="faq2-a">儲蓄率高有雙重效果：累積資產更快，且因為支出低、需要的 FIRE 目標金額也更低。月收高但儲蓄率低的人，達標反而比月收低但儲蓄率高的人更慢。</div></details>
+  <details><summary>達到 FIRE 後一定要辭職嗎？</summary><div class="faq2-a">不一定。許多人選擇 Coast FIRE（資產已足夠靠複利成長、不必再大量投入）或 Barista FIRE（從事喜歡的低薪工作）。FIRE 提供的是選擇的自由，而非強制退休。</div></details>
+</section>
 </div>
 </div>
 
@@ -487,6 +671,70 @@ const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
 const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
 let newsLoaded=false;
 const fmt=v=>Math.round(v).toLocaleString();
+
+/* ══ 純 SVG 圖表（零依賴，CalcBox 圖表規範） ══ */
+function wan(v){return (Math.abs(v)/10000>=1?(v/10000).toFixed(Math.abs(v/10000)>=100?0:1)+'萬':Math.round(v)+'元');}
+
+// 多線成長曲線 series=[{label,color,data:[v0..vN]}]，x 軸為年(0..N)
+function growthCurveSVG(series,years){
+  const W=600,H=240,P={t:14,r:12,b:28,l:52};
+  const iw=W-P.l-P.r, ih=H-P.t-P.b;
+  const maxY=Math.max(...series.flatMap(s=>s.data))||1;
+  const N=years;
+  const X=i=>P.l+(i/N)*iw;
+  const Y=v=>P.t+ih-(v/maxY)*ih;
+  let grid='';
+  for(let g=0;g<=4;g++){const val=maxY*g/4;const yy=P.t+ih-(g/4)*ih;
+    grid+=`<line x1="${P.l}" y1="${yy.toFixed(1)}" x2="${W-P.r}" y2="${yy.toFixed(1)}" stroke="#EDF1F6" stroke-width="1"/>`;
+    grid+=`<text x="${P.l-6}" y="${yy+3.5}" text-anchor="end" font-size="9" fill="#9AA9BA">${wan(val)}</text>`;}
+  let xlab='';
+  for(let i=0;i<=N;i++){if(i===0||i===N||i%Math.ceil(N/6)===0)xlab+=`<text x="${X(i).toFixed(1)}" y="${H-P.b+16}" text-anchor="middle" font-size="9" fill="#9AA9BA">${i}</text>`;}
+  let paths='';
+  series.forEach(s=>{
+    let d='';s.data.forEach((v,i)=>{d+=(i===0?'M ':'L ')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';});
+    if(s.fill){let area=d+'L '+X(N).toFixed(1)+' '+(P.t+ih)+' L '+P.l+' '+(P.t+ih)+' Z';paths+=`<path d="${area}" fill="${s.fill}"/>`;}
+    paths+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"><title>${s.label}</title></path>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="成長曲線圖">${grid}${paths}${xlab}<text x="${W-P.r}" y="${H-4}" text-anchor="end" font-size="9" fill="#9AA9BA">年</text></svg>`;
+}
+
+// 甜甜圈圖 segs=[{label,value,color}]
+function donutSVG(segs,centerTop,centerBot){
+  const W=200,H=200,cx=100,cy=100,r=70,sw=26;
+  const total=segs.reduce((a,s)=>a+s.value,0)||1;
+  const C=2*Math.PI*r;let off=0,ring='';
+  segs.forEach(s=>{const frac=s.value/total;const len=frac*C;
+    ring+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"><title>${s.label} ${(frac*100).toFixed(1)}%</title></circle>`;off+=len;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="組成比例甜甜圈圖">${ring}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" fill="#9AA9BA">${centerTop||''}</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="17" font-weight="800" fill="#1B3A5C">${centerBot||''}</text></svg>`;
+}
+
+// 水平對比長條 items=[{label,value,color,disp,note}]
+function compareBarSVG(items){
+  const W=600,hasNote=items.some(i=>i.note),rowH=hasNote?54:40,padL=4,labelH=18,barH=20;
+  const H=items.length*rowH+8;
+  const maxV=Math.max(...items.map(i=>i.value))||1, barMax=W-padL-114;
+  let rows='';
+  items.forEach((it,i)=>{const y=i*rowH+8;const w=Math.max((it.value/maxV)*barMax,2);
+    rows+=`<text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#1B3A5C">${it.label}</text>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${it.color}"><title>${it.label} ${it.disp||it.value}</title></rect>`;
+    rows+=`<text x="${(padL+barMax+8)}" y="${y+labelH+14}" font-size="12" font-weight="800" fill="${it.color}">${it.disp||it.value}</text>`;
+    if(it.note)rows+=`<text x="${padL}" y="${y+labelH+barH+11}" font-size="9.5" fill="#9AA9BA">${it.note}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="對比長條圖">${rows}</svg>`;
+}
+
+// 半圓儀表（達成率/比例）value 0-100，col 顏色
+function gaugeSVG(pct,col,maxLabel){
+  const W=200,H=120,cx=100,cy=104,r=82,max=100;
+  const frac=Math.min(Math.max(pct,0),max)/max;
+  const a0=Math.PI,a1=Math.PI*(1-frac);
+  const polar=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];
+  const arc=(s,e,c,w)=>{const[x1,y1]=polar(s),[x2,y2]=polar(e);const lg=(s-e)>Math.PI?1:0;return `<path d="M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${c}" stroke-width="11" stroke-linecap="round"/>`;};
+  const bg=arc(a0,Math.PI*0,'#EDF1F6');
+  const val=arc(a0,a1,col);
+  const[nx,ny]=polar(a1);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="達成率儀表 ${pct.toFixed(0)}%">${bg}${val}<circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="5" fill="${col}"/><text x="${cx}" y="${cy-14}" text-anchor="middle" font-size="26" font-weight="800" fill="${col}">${pct.toFixed(0)}%</text><text x="22" y="${cy+12}" font-size="9" fill="#9AA9BA">0%</text><text x="${W-22}" y="${cy+12}" text-anchor="end" font-size="9" fill="#9AA9BA">${maxLabel||'100%'}</text></svg>`;
+}
 
 function switchTab(id){
   if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
@@ -569,6 +817,40 @@ function calcDividend(){
   document.getElementById('dv-tax').textContent=taxRate>0?fmt(taxImpact)+' 元（'+Math.round(taxRate*100)+'%）':'—';
   document.getElementById('dv-yield').textContent=price>0?yld+'%':'請填股價';
   document.getElementById('dv-note').textContent=`${shares/1000}張 × ${dps}元/股 = 股利總額 ${fmt(gross)} 元，扣二代健保 ${nhiBase>0?fmt(nhi):0} 元後約 ${fmt(net)} 元（未含所得稅申報多退少補）。`;
+
+  // ── 股利再投入（DRIP）投影 ──
+  const drip=document.getElementById('dv-drip');
+  if(price>0){
+    const yearsN=parseInt(document.getElementById('dv-years').value)||10;
+    const g=(parseFloat(document.getElementById('dv-growth').value)||0)/100;
+    let reShares=shares, cashCum=0;
+    const reSeries=[shares*price], noSeries=[shares*price];
+    for(let y=1;y<=yearsN;y++){
+      const dpsY=dps*Math.pow(1+g,y-1);
+      // 再投入：本年股利淨額（扣二代健保）買回股票
+      const reDivGross=reShares*dpsY;
+      const reNhi=Math.max(0,reDivGross-20000)*0.0211;
+      const reDivNet=reDivGross-reNhi;
+      reShares+=reDivNet/price;
+      reSeries.push(reShares*price);
+      // 不再投入：持股不變，累積現金股利
+      const noDivGross=shares*dpsY;
+      const noNhi=Math.max(0,noDivGross-20000)*0.0211;
+      cashCum+=(noDivGross-noNhi);
+      noSeries.push(shares*price+cashCum);
+    }
+    const reFinal=reSeries[yearsN], noFinal=noSeries[yearsN], diff=reFinal-noFinal;
+    drip.style.display='';
+    document.getElementById('dv-drip-yr-lbl').textContent=yearsN+' 年後（再投入）';
+    document.getElementById('dv-drip-re').textContent=fmt(reFinal)+' 元';
+    document.getElementById('dv-drip-no').textContent=fmt(noFinal)+' 元';
+    document.getElementById('dv-drip-diff').textContent='+'+fmt(diff)+' 元';
+    document.getElementById('dv-chart').innerHTML=growthCurveSVG([
+      {label:'股利再投入',color:'#2E7D32',data:reSeries,fill:'rgba(46,125,50,.08)'},
+      {label:'領現金不投入',color:'#9AA9BA',data:noSeries}
+    ],yearsN);
+  }else{drip.style.display='none';}
+
   document.getElementById('dividend-result').classList.add('show');
 }
 function calcROI(){
@@ -588,6 +870,12 @@ function calcROI(){
   document.getElementById('ri-cagr-div').textContent=cagrDiv+'%/年';
   document.getElementById('ri-gain').textContent=(gain>=0?'+':'')+fmt(gain)+' 元';
   document.getElementById('ri-note').textContent=`持有 ${years} 年，買入 ${fmt(cost)} 元 → 現值 ${fmt(val)} 元，資本損益 ${fmt(gain)} 元，年化報酬 ${cagr}%${div>0?`，含股利 ${fmt(div)} 元後年化 ${cagrDiv}%`:''}。`;
+  const ric=document.getElementById('ri-charts');
+  ric.style.display='flex';
+  document.getElementById('ri-chart').innerHTML=compareBarSVG([
+    {label:'純價差報酬',value:Math.abs(parseFloat(totalRoi)),color:'#9AA9BA',disp:(gain>=0?'+':'')+totalRoi+'%',note:'只看股價漲跌'},
+    {label:'含股利總報酬',value:Math.abs(parseFloat(totalWithDiv)),color:'#2E7D32',disp:(parseFloat(totalWithDiv)>=0?'+':'')+totalWithDiv+'%',note:'股利計入後'}
+  ]);
   document.getElementById('roi-result').classList.add('show');
 }
 function calcETF(){
@@ -606,6 +894,14 @@ function calcETF(){
   document.getElementById('et-pct').textContent=(gain/fv*100).toFixed(0)+'%';
   document.getElementById('et-income').textContent=fmt(Math.round(income))+' 元/月';
   document.getElementById('et-note').textContent=`每月投入 ${fmt(m)} 元，年化報酬 ${document.getElementById('et-rate').value}%，${y}年後累積 ${(fv/10000).toFixed(1)} 萬元，其中投資收益佔 ${(gain/fv*100).toFixed(0)}%。依4%法則可支撐每月被動收入約 ${fmt(Math.round(income))} 元。`;
+  // 成長曲線：逐年總資產 vs 累積投入
+  const etTotal=[0],etIn=[0];
+  for(let yr=1;yr<=y;yr++){const nn=yr*12;etTotal.push(m*((Math.pow(1+r,nn)-1)/r));etIn.push(m*nn);}
+  document.getElementById('et-charts').style.display='flex';
+  document.getElementById('et-chart').innerHTML=growthCurveSVG([
+    {label:'總資產',color:'#2D6CB5',data:etTotal,fill:'rgba(46,125,50,.10)'},
+    {label:'累積投入本金',color:'#9AA9BA',data:etIn}
+  ],y);
   document.getElementById('etf-result').classList.add('show');
 }
 function calcDeposit(){
@@ -623,6 +919,13 @@ function calcDeposit(){
   document.getElementById('dp-inv-end').textContent=(invEnd/10000).toFixed(1)+' 萬';
   document.getElementById('dp-x').textContent=(invEnd/depEnd).toFixed(2)+' 倍';
   document.getElementById('dp-note').textContent=`${p/10000} 萬元，定存 ${(dr*100).toFixed(1)}% 後 ${y} 年變 ${(depEnd/10000).toFixed(1)} 萬；投資年化 ${(ir*100).toFixed(1)}% 後變 ${(invEnd/10000).toFixed(1)} 萬，差距 ${(diff/10000).toFixed(1)} 萬元（${(invEnd/depEnd).toFixed(2)} 倍）。`;
+  const dpInv=[p],dpDep=[p];
+  for(let yr=1;yr<=y;yr++){dpInv.push(p*Math.pow(1+ir,yr));dpDep.push(p*Math.pow(1+dr,yr));}
+  document.getElementById('dp-charts').style.display='flex';
+  document.getElementById('dp-chart').innerHTML=growthCurveSVG([
+    {label:'投資',color:'#2D6CB5',data:dpInv,fill:'rgba(46,125,50,.10)'},
+    {label:'定存',color:'#9AA9BA',data:dpDep}
+  ],y);
   document.getElementById('deposit-result').classList.add('show');
 }
 function calcFIRE(){
@@ -642,6 +945,18 @@ function calcFIRE(){
   document.getElementById('fi-saverate').textContent=saveRate+'%';
   document.getElementById('fi-passive').textContent=fmt(Math.round(target*0.04/12))+' 元/月';
   document.getElementById('fi-note').textContent=`月支出 ${fmt(spend)} 元，FIRE目標（25倍年支出）= ${(target/10000).toFixed(0)} 萬元。現有資產 ${(assets/10000).toFixed(0)} 萬，每月投入 ${fmt(save)} 元，年化 ${document.getElementById('fi-rate').value}%，預計約 ${years<100?years.toFixed(1):'100+'} 年達成財務自由。`;
+  // 資產累積曲線 + 目標線
+  if(years<100){
+    const yN=Math.max(1,Math.ceil(years));
+    const fiAsset=[assets],fiTarget=[target];
+    let v=assets;
+    for(let yr=1;yr<=yN;yr++){for(let mth=0;mth<12;mth++){v=v*(1+r/12)+save;}fiAsset.push(v);fiTarget.push(target);}
+    document.getElementById('fi-charts').style.display='flex';
+    document.getElementById('fi-chart').innerHTML=growthCurveSVG([
+      {label:'資產累積',color:'#2D6CB5',data:fiAsset,fill:'rgba(45,108,181,.08)'},
+      {label:'FIRE 目標',color:'#C58A12',data:fiTarget}
+    ],yN);
+  }else{document.getElementById('fi-charts').style.display='none';}
   document.getElementById('fire-result').classList.add('show');
 }
 
