@@ -20,11 +20,11 @@
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <title>孕產育兒計算機｜預產期、懷孕週數、排卵期、育兒補助試算 — CalcBox</title>
 <link rel="canonical" href="https://thecalcbox.com/baby/">
-<meta name="description" content="免費孕產育兒工具：預產期計算、懷孕週數查詢、排卵期推算、孕期體重建議、育兒津貼托育補助試算，附每日健康新聞。">
-<meta name="keywords" content="預產期計算,懷孕週數,排卵期計算,育兒津貼,托育補助,孕期體重">
+<meta name="description" content="免費台灣孕產育兒計算機：預產期、懷孕週數、排卵期、安全期、孕期體重、育兒津貼與托育補助一次試算，含圖表、長文說明與常見問題。">
+<meta name="keywords" content="預產期計算,懷孕週數,排卵期計算,安全期計算,育兒津貼,托育補助,孕期體重,育嬰補助,孕婦體重">
 <meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
 <meta property="og:title" content="孕產育兒計算機｜預產期、懷孕週數、排卵期、育兒補助試算 — CalcBox">
-<meta property="og:description" content="免費孕產育兒工具：預產期計算、懷孕週數查詢、排卵期推算、孕期體重建議、育兒津貼托育補助試算，附每日健康新聞。">
+<meta property="og:description" content="免費台灣孕產育兒計算機：預產期、懷孕週數、排卵期、安全期、孕期體重、育兒津貼與托育補助一次試算，含圖表、長文說明與常見問題。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="CalcBox">
 <meta property="og:locale" content="zh_TW">
@@ -36,7 +36,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://thecalcbox.com/og/baby.png">
 <meta name="twitter:title" content="孕產育兒計算機｜預產期、懷孕週數、排卵期、育兒補助試算 — CalcBox">
-<meta name="twitter:description" content="免費孕產育兒工具：預產期計算、懷孕週數查詢、排卵期推算、孕期體重建議、育兒津貼托育補助試算，附每日健康新聞。">
+<meta name="twitter:description" content="免費台灣孕產育兒計算機：預產期、懷孕週數、排卵期、安全期、孕期體重、育兒津貼與托育補助一次試算，含圖表、長文說明與常見問題。">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebApplication","name":"預產期計算機","url":"https://thecalcbox.com/baby/#duedate","description":"內格萊氏法則計算預產期，含週期調整與目前孕程。","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
@@ -224,7 +224,129 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+
+/* ── Visual charts for pregnancy / childcare tools ── */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:var(--accent);margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.chart-mini-note{font-size:11px;color:var(--hint);line-height:1.6;margin-top:8px;text-align:center}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;margin:2px 0 4px}
+.gauge-wrap svg{width:220px;max-width:100%}
+.timeline-label{font-size:10px;fill:var(--muted);font-weight:700}
+.timeline-day{font-size:9px;fill:var(--hint)}
+
+/* ── SEO 長文與 FAQ（比照貸款頁標準） ── */
+.article{max-width:820px;margin:2rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:var(--accent);margin:1.6rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:var(--accent);margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px;background:#fff}
+.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}
+.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B;vertical-align:top}
+.article .lead-card{background:var(--accent-light);border:1px solid #F3C6D7;border-radius:var(--radius-sm);padding:14px 16px;margin:1rem 0;font-size:14px;color:#7A2243;line-height:1.8}
+.article .warning-card{background:#FFF8E1;border:1px solid #F3D782;border-left:4px solid #F9A825;border-radius:var(--radius-sm);padding:13px 15px;margin:1rem 0;font-size:14px;color:#6D4C00;line-height:1.8}
+.faq2{max-width:820px;margin:2rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:var(--accent);margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:var(--accent);padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--accent-mid);transition:transform .2s}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
+@media(max-width:520px){.article,.faq2{padding:0 .25rem}.article table{font-size:12.5px}.article th,.article td{padding:8px}}
+
+
 </style>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "預產期怎麼計算？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "常見算法為最後一次月經第一天加 280 天。若月經週期不是 28 天，結果需依週期調整；實際仍以產檢醫師與超音波判斷為準。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "懷孕週數為什麼從最後月經開始算？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "因為受孕日不容易精準確認，臨床多以最後一次月經第一天作為孕週起點，因此驗孕時常已被計為懷孕 4 到 5 週。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "排卵日怎麼算？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "排卵日通常約在下次月經前 14 天。易受孕區間約為排卵日前幾天到排卵後一天，但週期不規律時誤差較大。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "安全期避孕可靠嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不可靠。排卵可能因壓力、作息、疾病或荷爾蒙變化提前或延後，安全期推算法不應作為主要避孕方式。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "孕期體重增加多少合理？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "需依孕前 BMI、胎數與孕週判斷。孕前 BMI 正常者，全孕期常見建議增重約 11.5 到 16 公斤，實際應依產檢醫師建議調整。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "育兒津貼每月多少錢？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "中央標準為第 1 名子女每月 5,000 元、第 2 名子女 6,000 元、第 3 名以上 7,000 元，實際資格以政府核定為準。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "托育補助和育兒津貼可以一起領嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "通常不行。兩者對應不同照顧型態，多數情況擇一適用；若送托型態改變，應依規定向主管機關申報。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "地方政府生育獎勵金有包含在試算內嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "沒有。本頁主要試算中央標準。各縣市生育獎勵金與加碼補助差異很大，需另查戶籍地政府公告。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "這些工具可以取代醫師判斷嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不可以。本頁工具僅供初步估算，任何醫療、產檢、用藥或生產決策都應以婦產科醫師判斷為準。"
+      }
+    }
+  ]
+}
+</script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"孕產育兒計算機","item":"https://thecalcbox.github.io/baby/"}]}</script>
 </head>
@@ -251,7 +373,7 @@ footer a:hover{color:#F3C969!important}
 
 <div class="wrap">
 <h1 class="page-h1">孕產育兒計算機</h1>
-<p class="page-lead">免費孕產育兒工具：預產期計算、懷孕週數查詢、排卵期推算、孕期體重建議、育兒津貼托育補助試算，附每日健康新聞。</p>
+<p class="page-lead">免費台灣孕產育兒計算機：預產期、懷孕週數、排卵期、安全期、孕期體重、育兒津貼與托育補助一次試算，含圖表、長文說明與常見問題。</p>
 
 
 <div class="panel active" id="panel-news">
@@ -284,6 +406,15 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">距離預產期</div><div class="val" id="dd-left">—</div></div>
         <div class="result-cell"><div class="lbl">目前孕期階段</div><div class="val" id="dd-tri">—</div></div>
       </div>
+      <div class="charts" id="dd-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">孕程進度視覺化</div>
+          <div class="chart-sub">以 40 週為基準，顯示目前孕程落點與三個孕期階段。</div>
+          <div class="gauge-wrap" id="dd-chart-progress"></div>
+          <div id="dd-chart-trimesters"></div>
+          <div class="chart-legend"><span><i style="background:#D6517F"></i>目前進度</span><span><i style="background:#E8ECF2"></i>剩餘孕程</span></div>
+        </div>
+      </div>
       <div class="result-note" id="dd-note"></div>
       <div class="result-disclaimer">預產期為估計值，僅約5%寶寶在當天出生，前後2週皆屬正常。以醫師超音波推算為準。</div>
     </div>
@@ -294,6 +425,34 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9103" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+
+<article class="article">
+  <h2>預產期怎麼算？從最後月經到待產準備一次看懂</h2>
+  <p class="lead-card">預產期是孕期規劃的核心日期，可協助安排產檢、工作請假、待產包、月子中心與家人照護分工。本頁以最後一次月經第一天與平均月經週期估算預產期，同時顯示目前孕程、距離預產期天數與孕期階段。</p>
+  <h3>1. 預產期的常見算法</h3>
+  <p>最常見的推算方式是內格萊氏法則：最後一次月經第一天加 280 天，也就是約 40 週。若月經週期不是 28 天，可依週期長短做調整；週期較長者，預產期可能略往後，週期較短者則可能略往前。</p>
+  <h3>2. 為什麼預產期和醫師說的不一樣？</h3>
+  <p>若最後月經日期不確定、月經週期不規律，或排卵時間較早或較晚，單靠日期推算就可能有誤差。懷孕初期超音波可依胚胎大小估算孕週，臨床上通常比自行回推日期更可靠。若線上試算與產檢紀錄不同，應以醫師與產檢報告為準。</p>
+  <h3>3. 預產期不是保證出生日期</h3>
+  <p>寶寶不一定會在預產期當天出生。一般來說，37 週到 42 週之間出生多屬足月範圍。預產期前後，醫師會依胎動、羊水量、胎盤功能、胎兒大小與孕婦身體狀況評估追蹤方式。</p>
+  <h3>4. 預產期可以幫你安排哪些事情？</h3>
+  <ul>
+    <li><b>產檢時程</b>：安排唐氏症篩檢、高層次超音波、妊娠糖尿病篩檢與乙型鏈球菌檢查。</li>
+    <li><b>待產準備</b>：第三孕期開始準備待產包、交通路線、住院文件與陪產安排。</li>
+    <li><b>工作請假</b>：預估產假、陪產檢假、陪產假、育嬰留職停薪與托育銜接。</li>
+    <li><b>家庭財務</b>：提前規劃月子、尿布奶粉、托育費與育兒補助申請時間。</li>
+  </ul>
+  <div class="warning-card">提醒：若有出血、規律腹痛、破水、胎動明顯減少、嚴重頭痛或血壓異常，請不要只看線上計算結果，應儘速聯絡產檢院所或就醫。</div>
+  <div class="lead-card">📌 <b>一句話總結</b>：預產期適合用來排程與準備，但實際孕週與生產時機仍應以產檢醫師判斷為準。</div>
+</article>
+<section class="faq2">
+  <h2>預產期常見問題</h2>
+  <details><summary>預產期是從受孕日開始算嗎？</summary><div class="faq2-a">不是。臨床上多從最後一次月經第一天開始計算，所以剛受孕時通常已被計為懷孕約 2 週。</div></details>
+  <details><summary>月經週期不規律，預產期會準嗎？</summary><div class="faq2-a">準確度會下降。若週期差異大、忘記最後月經日期，建議以懷孕初期超音波估算結果為主。</div></details>
+  <details><summary>預產期過了還沒生，需要擔心嗎？</summary><div class="faq2-a">不一定。許多寶寶會在預產期前後出生，但超過預產期後需依醫師安排追蹤胎動、羊水與胎盤功能。</div></details>
+  <details><summary>計畫剖腹產也需要看預產期嗎？</summary><div class="faq2-a">需要。醫師會依孕週、胎兒成熟度、孕婦狀況與手術風險安排合適時間。</div></details>
+  <details><summary>預產期可以拿來規劃產假嗎？</summary><div class="faq2-a">可以作為初步規劃，但實際請假起訖仍應依公司制度、勞動法令與醫師建議調整。</div></details>
+</section>
 </div>
 
 <!-- 懷孕週數 -->
@@ -314,6 +473,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">精確孕程</div><div class="val" id="wk-exact">—</div></div>
         <div class="result-cell"><div class="lbl">孕期進度</div><div class="val" id="wk-pct">—</div></div>
       </div>
+      <div class="charts" id="wk-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">懷孕 40 週進度表</div>
+          <div class="chart-sub">用時間軸查看目前週數、各孕期分界與距離足月的相對位置。</div>
+          <div id="wk-chart-progress"></div>
+          <div class="chart-legend"><span><i style="background:#F8BBD0"></i>第一孕期</span><span><i style="background:#D6517F"></i>第二孕期</span><span><i style="background:#AD3963"></i>第三孕期</span></div>
+        </div>
+      </div>
       <div class="result-note" id="wk-note"></div>
       <div class="result-disclaimer">各週發育僅為一般參考，請以產檢結果為準。</div>
     </div>
@@ -324,6 +491,29 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9104" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+
+<article class="article">
+  <h2>懷孕週數怎麼看？三個孕期階段與產檢重點</h2>
+  <p class="lead-card">懷孕週數會影響產檢安排、胎兒發育追蹤、營養補充與待產準備。本頁可依最後一次月經或預產期反推目前孕週，讓你快速掌握現在屬於第一、第二或第三孕期。</p>
+  <h3>1. 為什麼懷孕週數從最後月經開始算？</h3>
+  <p>受孕日往往不容易精準確認，因此醫學上常用最後一次月經第一天作為孕週起點。這也是為什麼驗孕成功時，實際受孕可能才兩三週，但醫學孕週常已經顯示 4 到 5 週。</p>
+  <h3>2. 第一孕期：1 到 13 週</h3>
+  <p>第一孕期是胚胎器官形成期，孕吐、疲倦、嗜睡、乳房脹痛與食慾變化很常見。此階段重點是確認子宮內懷孕、建立產檢紀錄、補充葉酸、避免菸酒與未經確認的藥物。</p>
+  <h3>3. 第二孕期：14 到 27 週</h3>
+  <p>第二孕期通常相對穩定，許多孕婦孕吐減輕，也開始感覺胎動。常見重點包括高層次超音波、妊娠糖尿病篩檢、胎兒結構追蹤與孕期體重管理。</p>
+  <h3>4. 第三孕期：28 週到生產</h3>
+  <p>第三孕期胎兒快速成長，孕婦可能出現水腫、腰痠、頻尿、假性宮縮與睡眠困難。此時要留意胎動變化、早產徵兆、破水、規律陣痛與高血壓相關症狀。</p>
+  <table><thead><tr><th>孕期</th><th>週數</th><th>常見重點</th></tr></thead><tbody><tr><td>第一孕期</td><td>1–13 週</td><td>確認懷孕、補充葉酸、避免風險因子</td></tr><tr><td>第二孕期</td><td>14–27 週</td><td>胎動、高層次超音波、妊娠糖尿病篩檢</td></tr><tr><td>第三孕期</td><td>28 週後</td><td>數胎動、待產準備、留意早產與產兆</td></tr></tbody></table>
+  <div class="lead-card">📌 <b>一句話總結</b>：孕週能幫你安排產檢節奏，但每個孕婦與胎兒狀況不同，異常症狀應以醫師判斷為優先。</div>
+</article>
+<section class="faq2">
+  <h2>懷孕週數常見問題</h2>
+  <details><summary>懷孕幾週可以看到心跳？</summary><div class="faq2-a">通常約 6 到 8 週有機會透過超音波看到心跳，但會受排卵、著床時間與設備影響。太早看不到不一定代表異常，應依醫師安排追蹤。</div></details>
+  <details><summary>懷孕幾週算穩定？</summary><div class="faq2-a">一般常說滿 12 週後流產風險下降，但仍需定期產檢。若有出血、腹痛或不適，仍應就醫。</div></details>
+  <details><summary>胎動大約幾週會出現？</summary><div class="faq2-a">初產婦常在 18 到 22 週左右感覺胎動，經產婦可能更早。第三孕期若胎動明顯減少應儘速諮詢醫師。</div></details>
+  <details><summary>孕週和胎兒大小不一致怎麼辦？</summary><div class="faq2-a">輕微差異很常見。若差距較大，醫師可能安排追蹤超音波或其他檢查，請以產檢結果為準。</div></details>
+  <details><summary>可以用預產期反推懷孕週數嗎？</summary><div class="faq2-a">可以。預產期通常視為 40 週終點，用今天距離預產期的天數即可反推目前約幾週幾天。</div></details>
+</section>
 </div>
 
 <!-- 排卵期 -->
@@ -343,6 +533,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">易受孕區間</div><div class="val green" id="ov-window">—</div></div>
         <div class="result-cell"><div class="lbl">下次月經（預估）</div><div class="val" id="ov-next">—</div></div>
       </div>
+      <div class="charts" id="ov-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">月經週期與易受孕期</div>
+          <div class="chart-sub">顯示本週期的月經期、易受孕窗口、排卵日與下次月經預估日。</div>
+          <div id="ov-chart-cycle"></div>
+          <div class="chart-legend"><span><i style="background:#F8BBD0"></i>月經期</span><span><i style="background:#A5D6A7"></i>易受孕期</span><span><i style="background:#D6517F"></i>排卵日</span></div>
+        </div>
+      </div>
       <div class="result-note" id="ov-note"></div>
       <div class="result-disclaimer">日曆法僅適用週期規律者，且不可作為避孕依據。精確排卵請搭配排卵試紙或基礎體溫。</div>
     </div>
@@ -353,6 +551,29 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9105" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+
+<article class="article">
+  <h2>排卵期怎麼算？備孕族必看的易受孕時間</h2>
+  <p class="lead-card">排卵期計算能幫助備孕者掌握較容易受孕的時間，但它不是精準醫療檢測，更不能作為避孕依據。本工具依月經週期估算排卵日、易受孕區間與下次月經日，適合週期規律者參考。</p>
+  <h3>1. 排卵日通常在下次月經前 14 天</h3>
+  <p>多數人的黃體期約為 14 天，因此排卵日常以「下次月經預估日往前推 14 天」估算。若週期 28 天，排卵約在第 14 天；若週期 32 天，排卵可能約在第 18 天。</p>
+  <h3>2. 易受孕期不只排卵當天</h3>
+  <p>精子在女性體內可存活數天，卵子排出後可受精時間較短，因此排卵日前幾天到排卵後一天通常是較容易受孕的區間。備孕時與其只盯著一天，不如掌握整個易受孕窗口。</p>
+  <h3>3. 什麼情況會讓排卵日不準？</h3>
+  <ul><li>壓力、熬夜、旅行或作息大幅改變。</li><li>體重快速變化、過度運動或近期生病。</li><li>產後、哺乳、剛停用避孕藥。</li><li>多囊性卵巢症候群、甲狀腺或荷爾蒙相關問題。</li></ul>
+  <h3>4. 如何提高判斷準確度？</h3>
+  <p>若想提高備孕效率，可搭配排卵試紙、基礎體溫、分泌物觀察或婦產科追蹤。若嘗試一段時間仍未懷孕，或月經長期不規律，建議諮詢婦產科醫師。</p>
+  <div class="warning-card">安全提醒：排卵期推算不適合避孕。若沒有懷孕計畫，請使用保險套、口服避孕藥、子宮內避孕器等較可靠方式，並諮詢專業醫療人員。</div>
+  <div class="lead-card">📌 <b>一句話總結</b>：排卵期計算適合備孕抓方向；週期不規律或需要精準判斷時，請搭配試紙、體溫或醫師評估。</div>
+</article>
+<section class="faq2">
+  <h2>排卵期常見問題</h2>
+  <details><summary>排卵日一定是月經後第 14 天嗎？</summary><div class="faq2-a">不一定。第 14 天只適合 28 天週期的估算。週期較長或較短時，排卵日也會不同。</div></details>
+  <details><summary>排卵期同房一定會懷孕嗎？</summary><div class="faq2-a">不一定。懷孕機率與年齡、卵子品質、精子品質、輸卵管、子宮環境與同房時間都有關。</div></details>
+  <details><summary>月經不規律還能算排卵期嗎？</summary><div class="faq2-a">可以大略參考，但誤差較大。建議搭配排卵試紙、基礎體溫或婦產科追蹤。</div></details>
+  <details><summary>排卵期計算可以避孕嗎？</summary><div class="faq2-a">不建議。排卵可能提前或延後，日曆法避孕失敗風險高，不應作為可靠避孕方式。</div></details>
+  <details><summary>什麼時候需要看不孕門診？</summary><div class="faq2-a">一般若規律備孕一年未懷孕，或 35 歲以上備孕半年未懷孕，可考慮諮詢婦產科或生殖醫學專科。</div></details>
+</section>
 </div>
 
 <!-- 孕期體重 -->
@@ -375,6 +596,15 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">孕前 BMI</div><div class="val" id="pw-bmi">—</div></div>
         <div class="result-cell"><div class="lbl">目前建議累積增重</div><div class="val" id="pw-now">—</div></div>
       </div>
+      <div class="charts" id="pw-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">孕前 BMI 與建議增重範圍</div>
+          <div class="chart-sub">左圖顯示孕前 BMI 分類，右圖顯示全孕期建議增重公斤數。</div>
+          <div id="pw-chart-bmi"></div>
+          <div id="pw-chart-gain" style="margin-top:12px"></div>
+          <div class="chart-legend"><span><i style="background:#D6517F"></i>你的數值</span><span><i style="background:#A5D6A7"></i>建議範圍</span></div>
+        </div>
+      </div>
       <div class="result-note" id="pw-note"></div>
       <div class="result-disclaimer">依美國 IOM 2009 指引。實際增重請與產檢醫師討論。</div>
     </div>
@@ -384,6 +614,29 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9106" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+
+<article class="article">
+  <h2>孕期體重增加多少才合理？依孕前 BMI 管理更準</h2>
+  <p class="lead-card">孕期體重不是越多越好，也不是越少越健康。合理增重需要依孕前 BMI、胎數、孕週、飲食狀況與產檢結果綜合判斷。本頁依 IOM 建議範圍，協助估算全孕期與目前孕週的增重目標。</p>
+  <h3>1. 為什麼孕期體重要看孕前 BMI？</h3>
+  <p>孕前 BMI 可反映懷孕前體重狀態。孕前偏瘦者通常需要增加較多體重，孕前過重或肥胖者則應控制增重速度。這不是外貌要求，而是與胎兒成長、妊娠糖尿病、高血壓、剖腹產機率與產後恢復有關。</p>
+  <h3>2. 第一孕期通常不需要大幅增重</h3>
+  <p>第一孕期胎兒仍小，孕吐與食慾變化也常見。體重增加不多甚至微降，若沒有嚴重脫水或營養不足，通常不需過度焦慮。重點是補充葉酸、維持均衡飲食並定期產檢。</p>
+  <h3>3. 第二、第三孕期才是主要增重期</h3>
+  <p>進入第二孕期後，胎兒、胎盤、羊水、血液量與子宮重量都會增加。此時應注意蛋白質、鐵、鈣、DHA、膳食纖維與水分攝取，避免高糖飲料與過量精緻澱粉。</p>
+  <table><thead><tr><th>孕前 BMI</th><th>常見分類</th><th>全孕期建議增重</th></tr></thead><tbody><tr><td>&lt; 18.5</td><td>過輕</td><td>12.5–18 kg</td></tr><tr><td>18.5–24.9</td><td>正常</td><td>11.5–16 kg</td></tr><tr><td>25–29.9</td><td>過重</td><td>7–11.5 kg</td></tr><tr><td>≥ 30</td><td>肥胖</td><td>5–9 kg</td></tr></tbody></table>
+  <h3>4. 體重增加太快或太慢都要追蹤</h3>
+  <p>短時間體重快速上升可能與水腫、飲食、血壓或其他狀況有關；長期不增加則可能需要評估胎兒成長與營養狀況。若產檢醫師提醒胎兒偏大、偏小或代謝異常，應依醫囑調整。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：孕期體重管理要看孕前 BMI、孕週與胎兒成長，線上試算可輔助追蹤，但不能取代產檢。</div>
+</article>
+<section class="faq2">
+  <h2>孕期體重常見問題</h2>
+  <details><summary>懷孕前三個月沒胖正常嗎？</summary><div class="faq2-a">多數情況正常。第一孕期胎兒仍小，許多人因孕吐或食慾改變體重變化不大。若嚴重孕吐、無法進食或脫水，應就醫。</div></details>
+  <details><summary>孕期體重增加太多會怎樣？</summary><div class="faq2-a">可能增加妊娠糖尿病、高血壓、胎兒過大、剖腹產與產後恢復困難等風險。實際風險需由醫師評估。</div></details>
+  <details><summary>懷孕期間可以減肥嗎？</summary><div class="faq2-a">不建議自行節食減肥。若孕前過重或肥胖，應在醫師或營養師建議下控制增重速度，而不是極端減重。</div></details>
+  <details><summary>雙胞胎的增重標準一樣嗎？</summary><div class="faq2-a">不一樣。雙胞胎通常需要較高的增重範圍，也需要更密切追蹤，請以醫師建議為準。</div></details>
+  <details><summary>體重突然增加很多怎麼辦？</summary><div class="faq2-a">若伴隨嚴重水腫、頭痛、視力模糊或血壓升高，應儘速就醫排除妊娠高血壓等問題。</div></details>
+</section>
 </div>
 
 <!-- 育兒補助 -->
@@ -404,6 +657,14 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">年領金額</div><div class="val green" id="sb-year">—</div></div>
         <div class="result-cell"><div class="lbl">0–6 歲累積（估）</div><div class="val" id="sb-total">—</div></div>
       </div>
+      <div class="charts" id="sb-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">補助金額視覺化</div>
+          <div class="chart-sub">以月領金額換算年領與 4 年累積估算，方便比較長期現金流。</div>
+          <div id="sb-chart-bars"></div>
+          <div class="chart-legend"><span><i style="background:#D6517F"></i>每月</span><span><i style="background:#2E7D32"></i>每年</span><span><i style="background:#AD3963"></i>4年累積</span></div>
+        </div>
+      </div>
       <div class="result-note" id="sb-note"></div>
       <div class="result-disclaimer">為中央標準，各縣市另有加碼（如生育獎勵金），請洽戶籍地公所。</div>
     </div>
@@ -414,6 +675,30 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9107" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+
+<article class="article">
+  <h2>育兒津貼、托育補助怎麼選？新手爸媽補助懶人包</h2>
+  <p class="lead-card">孩子出生後，爸媽最常問的是：「自己帶可以領多少？送托可以補助多少？兩種能不能一起領？」本頁育兒補助試算器依中央標準估算每月、每年與累積補助，協助你先抓家庭現金流。</p>
+  <h3>1. 育兒津貼：自己帶或未送托常用</h3>
+  <p>未滿 2 歲兒童若完成出生登記或初設戶籍，且未接受公共化或準公共托育服務，符合資格者可申請育兒津貼。中央標準為第 1 名子女每月 5,000 元、第 2 名子女 6,000 元、第 3 名以上 7,000 元。</p>
+  <h3>2. 托育補助：送公共化或準公共托育</h3>
+  <p>若孩子送到公共托育、公共托嬰中心、準公共托嬰中心或簽約保母，通常改看托育補助。公共化托育補助每月 7,000 元起，準公共托育補助每月 13,000 元起，並依胎次加發。送托家庭通常補助金額高於未送托津貼。</p>
+  <h3>3. 育兒津貼和托育補助可以同時領嗎？</h3>
+  <p>通常不行。兩者對應不同照顧型態，多數情況是擇一適用。若孩子從自己帶改為送托，或托育型態變更，應依規定向主管機關申報，避免溢領後被追回。</p>
+  <h3>4. 地方政府可能另有加碼</h3>
+  <p>中央補助之外，各縣市可能還有生育獎勵金、育兒津貼加碼、托育差額補助、弱勢家庭補助或特殊資格補助。各地差異很大，正式申請前請查孩子戶籍地縣市政府公告。</p>
+  <h3>5. 申請前建議準備的資料</h3>
+  <ul><li>孩子出生登記或戶籍資料。</li><li>父母或監護人身分證明。</li><li>戶口名簿或可證明胎次排序的資料。</li><li>申請人或兒童金融機構帳戶。</li><li>托育補助可能需要托育契約或送托資料。</li></ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：自己帶多半看育兒津貼，送托多半看托育補助；本頁先估中央標準，實際資格與地方加碼仍以政府公告為準。</div>
+</article>
+<section class="faq2">
+  <h2>育兒補助常見問題</h2>
+  <details><summary>育兒津貼每月可以領多少？</summary><div class="faq2-a">中央標準為第 1 名子女每月 5,000 元、第 2 名子女 6,000 元、第 3 名以上 7,000 元。實際資格與發放以政府核定為準。</div></details>
+  <details><summary>送托後還能領育兒津貼嗎？</summary><div class="faq2-a">若接受公共化或準公共托育服務，通常改適用托育補助，而不是繼續領育兒津貼。照顧方式變更時應依規定申報。</div></details>
+  <details><summary>準公共托育補助比較高嗎？</summary><div class="faq2-a">通常是。準公共托育補助第 1 名子女每月 13,000 元起，金額通常高於未送托的育兒津貼，但仍需看托育型態與資格。</div></details>
+  <details><summary>育兒補助會排富嗎？</summary><div class="faq2-a">目前政策方向是不排富、全照顧，但仍需符合兒童年齡、戶籍、照顧方式與未公費安置等條件。</div></details>
+  <details><summary>各縣市生育獎勵金有包含在試算內嗎？</summary><div class="faq2-a">沒有。本頁主要試算中央標準。地方生育獎勵金與加碼補助差異很大，請另查戶籍地政府公告。</div></details>
+</section>
 </div>
 </div>
 
@@ -441,6 +726,15 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl" style="color:#2E7D32">相對安全期</div><div class="val green" id="sf-safe-period">—</div></div>
         <div class="result-cell"><div class="lbl">下次月經（預估）</div><div class="val" id="sf-next">—</div></div>
       </div>
+      <div class="charts" id="sf-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">週期風險區間圖</div>
+          <div class="chart-sub">以本次月經第一天為第 1 天，標示相對安全期、危險期與排卵日。</div>
+          <div id="sf-chart-cycle"></div>
+          <div class="chart-legend"><span><i style="background:#A5D6A7"></i>相對安全期</span><span><i style="background:#FFCDD2"></i>危險期</span><span><i style="background:#C62828"></i>排卵日</span></div>
+          <div class="chart-mini-note">安全期並非可靠避孕方式；此圖僅用來理解週期。</div>
+        </div>
+      </div>
       <div class="result-note" id="sf-note"></div>
       <div class="result-disclaimer">「安全期」並非絕對安全。週期不規律者此方法不適用。</div>
     </div>
@@ -451,11 +745,58 @@ footer a:hover{color:#F3C969!important}
       <div class="seo-faq-a">A：不可靠。日曆法年失敗率約24%，即每100對使用者每年有24次意外懷孕，請使用更可靠的避孕方式。</div>
     </div>
   </div></div>
+
+<article class="article">
+  <h2>安全期真的安全嗎？月經週期法的原理與風險</h2>
+  <p class="lead-card">安全期計算常被用來估算「相對不容易受孕」的日期，但它不是可靠避孕方式。排卵會受到壓力、睡眠、疾病、荷爾蒙與生活作息影響，可能提前或延後，因此安全期只能作為生理週期參考。</p>
+  <h3>1. 安全期是怎麼推算的？</h3>
+  <p>安全期通常根據月經週期推算排卵日，再避開排卵日前後的易受孕期。若週期規律，排卵日約在下次月經前 14 天，排卵日前後數天被視為危險期，其餘時間則被稱為相對安全期。</p>
+  <h3>2. 為什麼安全期不可靠？</h3>
+  <p>排卵不是固定日期。壓力、熬夜、旅行、疾病、體重變化、哺乳、停藥或荷爾蒙波動，都可能讓排卵提前或延後。即使月經平常規律，也可能某個月突然改變。</p>
+  <h3>3. 什麼情況更不適合用安全期？</h3>
+  <ul><li>月經週期不規律，常提前或延後很多天。</li><li>產後、哺乳中、剛停用避孕藥或月經剛恢復。</li><li>近期壓力大、睡眠差、體重快速變化。</li><li>完全沒有懷孕計畫，無法承擔意外懷孕風險。</li></ul>
+  <h3>4. 有避孕需求應選擇更可靠方式</h3>
+  <p>若目前沒有懷孕計畫，建議使用保險套、口服避孕藥、子宮內避孕器或其他經醫師評估適合的避孕方式。安全期計算可幫助理解生理週期，但不應作為主要避孕手段。</p>
+  <div class="warning-card">重要提醒：本工具名稱雖為安全期計算，但「安全期」並不代表絕對安全。若發生無防護性行為且擔心懷孕，請儘速諮詢藥師或婦產科醫師。</div>
+  <div class="lead-card">📌 <b>一句話總結</b>：安全期不是絕對安全。備孕可參考週期，避孕請使用可靠方式。</div>
+</article>
+<section class="faq2">
+  <h2>安全期常見問題</h2>
+  <details><summary>安全期避孕可靠嗎？</summary><div class="faq2-a">不可靠。排卵可能提前或延後，單靠日曆法避孕失敗風險高，不建議作為主要避孕方式。</div></details>
+  <details><summary>月經規律就可以用安全期避孕嗎？</summary><div class="faq2-a">即使月經規律，也可能因壓力、作息或健康狀況造成排卵時間改變。若不能接受懷孕風險，應使用更可靠的避孕方法。</div></details>
+  <details><summary>產後或哺乳中可以算安全期嗎？</summary><div class="faq2-a">不建議。產後與哺乳期間排卵恢復時間不固定，有時月經尚未恢復也可能先排卵，因此不適合依安全期避孕。</div></details>
+  <details><summary>安全期和排卵期有什麼不同？</summary><div class="faq2-a">排卵期是較容易受孕的期間；安全期是推算出相對不容易受孕的期間。但兩者都是估算，不能保證結果。</div></details>
+  <details><summary>安全期計算適合誰使用？</summary><div class="faq2-a">適合想了解週期規律、備孕或觀察生理週期的人參考；不適合作為避孕決策依據。</div></details>
+</section>
 </div>
 
 
 
-<p class="source-note"><b>資料來源</b>：衛福部國民健康署孕產指引、各縣市育兒津貼公告　<b>公式最後核對</b>：2026-06-12</p>
+<article class="article">
+  <h2>從備孕到育兒：爸媽最常需要試算的 6 件事</h2>
+  <p class="lead-card">孕產育兒每個階段都有不同問題：備孕時想知道排卵期，懷孕後想知道預產期與孕週，生產後又要查育兒津貼、托育補助與申請時間。CalcBox 將常用工具整理在同一頁，讓爸媽不用到處查。</p>
+  <h3>1. 備孕階段：掌握排卵期與週期規律</h3>
+  <p>備孕時最常用的是排卵期計算。透過月經週期估算排卵日與易受孕期，可以幫助安排同房時間。若週期不規律，建議搭配排卵試紙或婦產科評估。</p>
+  <h3>2. 懷孕初期：確認預產期與孕週</h3>
+  <p>驗孕後最常想知道的是「現在幾週？」與「預產期是哪一天？」這兩個資訊會影響產檢、請假、家庭告知、待產與月子安排。</p>
+  <h3>3. 懷孕中後期：追蹤體重與產檢節奏</h3>
+  <p>孕期體重應依孕前 BMI 判斷，不能只用別人的經驗比較。若增重過快或過慢，都應在產檢時與醫師討論。</p>
+  <h3>4. 生產後：確認津貼、托育與地方加碼</h3>
+  <p>孩子出生後，爸媽可依照照顧方式評估育兒津貼或托育補助。中央標準之外，各縣市可能有生育獎勵金或托育加碼，應以戶籍地公告為準。</p>
+  <h3>5. 重要決策以醫師與政府公告為準</h3>
+  <p>孕產育兒牽涉健康、醫療與政府補助。線上計算能快速估算，但若影響醫療處置、請假、補助申請或家庭財務，請再向婦產科、戶政機關、社會局處或托育單位確認。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：備孕看排卵期，懷孕看預產期與孕週，產後看育兒津貼與托育補助；工具快速估算，正式決策仍以專業與公告為準。</div>
+</article>
+<section class="faq2">
+  <h2>孕產育兒整體常見問題</h2>
+  <details><summary>這些計算結果可以取代醫師判斷嗎？</summary><div class="faq2-a">不可以。本頁工具僅供日期、週數、體重與補助金額初步估算。任何醫療、產檢、用藥或生產決策，都應以婦產科醫師判斷為準。</div></details>
+  <details><summary>預產期、懷孕週數和超音波結果不同怎麼辦？</summary><div class="faq2-a">若最後月經日期不確定或週期不規律，早期超音波通常更有參考價值。實際孕週與預產期請以產檢醫師評估為準。</div></details>
+  <details><summary>育兒津貼和托育補助要去哪裡申請？</summary><div class="faq2-a">育兒津貼通常可向兒童戶籍地主管機關申請，也可依政府線上申辦系統辦理。托育補助則需依送托型態與托育單位資格申請。</div></details>
+  <details><summary>地方政府的生育獎勵金有包含在本頁試算嗎？</summary><div class="faq2-a">沒有。本頁主要試算中央常見標準。各縣市生育獎勵金、育兒加碼與特殊補助差異很大，請另查孩子戶籍地縣市政府公告。</div></details>
+  <details><summary>排卵期和安全期可以用來避孕嗎？</summary><div class="faq2-a">不建議。排卵日可能因壓力、作息、疾病或荷爾蒙變化而提前或延後，安全期推算法避孕風險高，請使用可靠避孕方式。</div></details>
+</section>
+
+<p class="source-note"><b>資料來源</b>：衛福部國民健康署孕產指引、各縣市育兒津貼公告　<b>公式最後核對</b>：2026-06-17</p>
 <div class="related-wrap">
   <p class="related-label">你可能也需要</p>
   <div class="related-grid">
@@ -494,6 +835,87 @@ const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
 const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
 let newsLoaded=false;
 const fmt=v=>Math.round(v).toLocaleString();
+
+function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
+function escHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function dateMD(d){return d.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric'});}
+function showEl(id){const el=document.getElementById(id); if(el) el.style.display='flex';}
+function svgProgressGauge(targetId,pct,main,sub){
+  const p=clamp(pct,0,100), r=84, c=2*Math.PI*r, dash=c*p/100;
+  document.getElementById(targetId).innerHTML=`<svg viewBox="0 0 220 150" aria-label="孕程進度 ${p.toFixed(0)}%">
+    <circle cx="110" cy="92" r="84" fill="none" stroke="#E8ECF2" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="110" cy="92" r="84" fill="none" stroke="#D6517F" stroke-width="18" stroke-linecap="round" stroke-dasharray="${dash} ${c-dash}" transform="rotate(-90 110 92)"/>
+    <text x="110" y="83" text-anchor="middle" font-size="28" font-weight="800" fill="#D6517F">${main}</text>
+    <text x="110" y="108" text-anchor="middle" font-size="12" font-weight="700" fill="#5A6E84">${sub}</text>
+  </svg>`;
+}
+function svgTrimesterTimeline(targetId,week){
+  const w=clamp(week,0,40), x=24+w/40*332;
+  document.getElementById(targetId).innerHTML=`<svg viewBox="0 0 380 84" aria-label="孕期階段時間軸">
+    <rect x="24" y="28" width="108" height="16" rx="8" fill="#F8BBD0"/>
+    <rect x="132" y="28" width="116" height="16" fill="#D6517F"/>
+    <rect x="248" y="28" width="108" height="16" rx="8" fill="#AD3963"/>
+    <line x1="${x}" y1="18" x2="${x}" y2="58" stroke="#16212E" stroke-width="2"/>
+    <circle cx="${x}" cy="28" r="5" fill="#16212E"/>
+    <text x="${x}" y="13" text-anchor="middle" font-size="10" font-weight="800" fill="#16212E">目前 ${w.toFixed(0)}週</text>
+    <text x="78" y="62" text-anchor="middle" class="timeline-label">第一孕期</text>
+    <text x="190" y="62" text-anchor="middle" class="timeline-label">第二孕期</text>
+    <text x="302" y="62" text-anchor="middle" class="timeline-label">第三孕期</text>
+    <text x="24" y="78" text-anchor="middle" class="timeline-day">0</text>
+    <text x="132" y="78" text-anchor="middle" class="timeline-day">14</text>
+    <text x="248" y="78" text-anchor="middle" class="timeline-day">28</text>
+    <text x="356" y="78" text-anchor="middle" class="timeline-day">40週</text>
+  </svg>`;
+}
+function svgCycleTimeline(targetId,cycle,segments,markers){
+  const W=360, X=20, Y=30, H=18, inner=W-40;
+  let parts='';
+  segments.forEach(s=>{
+    const x=X+(s.start-1)/cycle*inner;
+    const w=Math.max(2,(s.end-s.start+1)/cycle*inner);
+    parts+=`<rect x="${x}" y="${Y}" width="${w}" height="${H}" rx="${H/2}" fill="${s.color}"/>`;
+  });
+  let marks='';
+  markers.forEach(m=>{
+    const x=X+(m.day-1)/cycle*inner;
+    marks+=`<line x1="${x}" y1="18" x2="${x}" y2="58" stroke="${m.color}" stroke-width="2"/><circle cx="${x}" cy="${Y+H/2}" r="5" fill="${m.color}"/><text x="${x}" y="13" text-anchor="middle" font-size="10" font-weight="800" fill="${m.color}">${escHtml(m.label)}</text>`;
+  });
+  document.getElementById(targetId).innerHTML=`<svg viewBox="0 0 ${W} 82" aria-label="月經週期時間軸">
+    <rect x="${X}" y="${Y}" width="${inner}" height="${H}" rx="${H/2}" fill="#E8F5E9"/>
+    ${parts}${marks}
+    <text x="${X}" y="72" text-anchor="middle" class="timeline-day">第1天</text>
+    <text x="${X+inner}" y="72" text-anchor="middle" class="timeline-day">第${cycle}天</text>
+  </svg>`;
+}
+function svgRangeBar(targetId,min,max,value,label,rangeLo,rangeHi){
+  const W=360,X=34,Y=28,inner=292;
+  const pos=v=>X+(clamp(v,min,max)-min)/(max-min)*inner;
+  const x1=pos(rangeLo), x2=pos(rangeHi), xv=pos(value);
+  document.getElementById(targetId).innerHTML=`<svg viewBox="0 0 ${W} 78" aria-label="${escHtml(label)}">
+    <rect x="${X}" y="${Y}" width="${inner}" height="16" rx="8" fill="#E8ECF2"/>
+    <rect x="${x1}" y="${Y}" width="${Math.max(2,x2-x1)}" height="16" rx="8" fill="#A5D6A7"/>
+    <line x1="${xv}" y1="18" x2="${xv}" y2="54" stroke="#D6517F" stroke-width="2"/>
+    <circle cx="${xv}" cy="${Y+8}" r="5" fill="#D6517F"/>
+    <text x="${xv}" y="13" text-anchor="middle" font-size="10" font-weight="800" fill="#D6517F">${escHtml(label)}</text>
+    <text x="${X}" y="68" text-anchor="middle" class="timeline-day">${min}</text>
+    <text x="${X+inner}" y="68" text-anchor="middle" class="timeline-day">${max}</text>
+  </svg>`;
+}
+function svgBarCompare(targetId,items){
+  const W=380,H=150,max=Math.max(...items.map(i=>i.value));
+  let bars='';
+  items.forEach((it,i)=>{
+    const x=48+i*105, h=max?it.value/max*84:0, y=106-h;
+    bars+=`<rect x="${x}" y="${y}" width="52" height="${h}" rx="6" fill="${it.color}"/>
+      <text x="${x+26}" y="${y-7}" text-anchor="middle" font-size="11" font-weight="800" fill="#16212E">${escHtml(it.text)}</text>
+      <text x="${x+26}" y="130" text-anchor="middle" font-size="11" font-weight="700" fill="#5A6E84">${escHtml(it.label)}</text>`;
+  });
+  document.getElementById(targetId).innerHTML=`<svg viewBox="0 0 ${W} ${H}" aria-label="補助金額長條圖">
+    <line x1="24" y1="106" x2="356" y2="106" stroke="#E3E9F0"/>
+    ${bars}
+  </svg>`;
+}
+
 
 function switchTab(id){
   if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
@@ -576,6 +998,9 @@ function calcDue(){
   document.getElementById('dd-left').textContent=left>0?left+' 天':'已過預產期';
   document.getElementById('dd-tri').textContent=tri;
   document.getElementById('dd-note').textContent=`預產期 ${dstr(due)}（已依 ${cycle} 天週期調整）。目前 ${w} 週 ${d} 天，屬${tri}。37–42 週出生皆為足月。`;
+  svgProgressGauge('dd-chart-progress', clamp(days/280*100,0,100), Math.max(0,Math.min(40,w))+'週', Math.round(clamp(days/280*100,0,100))+'%');
+  svgTrimesterTimeline('dd-chart-trimesters', w);
+  showEl('dd-charts');
   document.getElementById('duedate-result').classList.add('show');
 }
 function calcWeeks(){
@@ -599,6 +1024,8 @@ function calcWeeks(){
   const tips={1:'器官形成關鍵期，每日補充葉酸400–800μg',2:'孕吐高峰多在8–10週，少量多餐',3:'20週前後安排高層次超音波',4:'28週起每天數胎動，留意異常'};
   const tipKey=w<8?1:w<14?2:w<24?3:4;
   document.getElementById('wk-note').textContent=`目前懷孕 ${w} 週 ${d} 天（孕程 ${pct}%），${tri}。本階段重點：${tips[tipKey]}。`;
+  svgTrimesterTimeline('wk-chart-progress', w);
+  showEl('wk-charts');
   document.getElementById('weeks-result').classList.add('show');
 }
 function calcOv(){
@@ -614,6 +1041,12 @@ function calcOv(){
   document.getElementById('ov-window').textContent=ovu.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric'})+' 前後（'+wStart.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric'})+'–'+wEnd.toLocaleDateString('zh-TW',{month:'numeric',day:'numeric'})+'）';
   document.getElementById('ov-next').textContent=dstr(next);
   document.getElementById('ov-note').textContent=`以 ${cycle} 天週期推算，排卵日約 ${dstr(ovu)}，易受孕區間為排卵日前5天至後1天。週期不規律者請搭配排卵試紙。`;
+  const ovuDay=Math.round((ovu-lmpD)/DAY)+1;
+  svgCycleTimeline('ov-chart-cycle', cycle, [
+    {start:1,end:5,color:'#F8BBD0'},
+    {start:Math.max(1,ovuDay-5),end:Math.min(cycle,ovuDay+1),color:'#A5D6A7'}
+  ], [{day:ovuDay,color:'#D6517F',label:'排卵'}]);
+  showEl('ov-charts');
   document.getElementById('ovulation-result').classList.add('show');
 }
 function calcPW(){
@@ -639,6 +1072,9 @@ function calcPW(){
     document.getElementById('pw-now').textContent=nowLo+'–'+nowHi+' kg';
   }else document.getElementById('pw-now').textContent='填孕週後顯示';
   document.getElementById('pw-note').textContent=`孕前 BMI ${bmi.toFixed(1)}（${cat}），全孕期建議增重 ${lo}–${hi} 公斤${week>0?`，目前 ${week} 週建議累積增重約 ${nowLo}–${nowHi} 公斤`:''}。第一孕期增重很少是正常的。`;
+  svgRangeBar('pw-chart-bmi', 14, 36, bmi, 'BMI '+bmi.toFixed(1), 18.5, 24.9);
+  svgRangeBar('pw-chart-gain', 0, 25, (lo+hi)/2, lo+'–'+hi+'kg', lo, hi);
+  showEl('pw-charts');
   document.getElementById('weight-result').classList.add('show');
 }
 function calcSub(){
@@ -653,6 +1089,12 @@ function calcSub(){
   document.getElementById('sb-year').textContent=fmt(amt*12)+' 元';
   document.getElementById('sb-total').textContent='約 '+fmt(amt*12*4)+' 元以上';
   document.getElementById('sb-note').textContent=`第 ${order} 胎、${care==='home'?'自行照顧':care==='public'?'公共化托育':'準公共托育'}，每月可領 ${fmt(amt)} 元。另有勞保生育給付（投保薪資2個月）與各縣市生育獎勵金可申請。`;
+  svgBarCompare('sb-chart-bars', [
+    {label:'每月',value:amt,text:fmt(amt),color:'#D6517F'},
+    {label:'每年',value:amt*12,text:fmt(amt*12),color:'#2E7D32'},
+    {label:'4年',value:amt*12*4,text:fmt(amt*12*4),color:'#AD3963'}
+  ]);
+  showEl('sb-charts');
   document.getElementById('subsidy-result').classList.add('show');
 }
 
@@ -678,6 +1120,14 @@ function calcSafe(){
   document.getElementById('sf-safe-period').textContent = dstr(menEnd) + ' – ' + dstr(new Date(dangerStart.getTime()-DAY));
   document.getElementById('sf-next').textContent = dstr(next);
   document.getElementById('sf-note').textContent = `以 ${cycle} 天週期計算，排卵日約 ${dstr(ovu)}，危險期 ${dstr(dangerStart)}–${dstr(dangerEnd)}。「安全期」失敗率高，請搭配其他避孕方式。`;
+  const ovuDay=Math.round((ovu-lmpD)/DAY)+1;
+  svgCycleTimeline('sf-chart-cycle', cycle, [
+    {start:1,end:5,color:'#F8BBD0'},
+    {start:Math.max(1,ovuDay-5),end:Math.min(cycle,ovuDay+1),color:'#FFCDD2'},
+    {start:6,end:Math.max(6,ovuDay-6),color:'#A5D6A7'},
+    {start:Math.min(cycle,ovuDay+2),end:cycle,color:'#A5D6A7'}
+  ], [{day:ovuDay,color:'#C62828',label:'排卵'}]);
+  showEl('sf-charts');
   document.getElementById('safe-result').classList.add('show');
 }
 
