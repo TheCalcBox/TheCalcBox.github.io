@@ -15,71 +15,136 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#0E2A47">
 <meta name="robots" content="index,follow">
 <title>關於我們｜CalcBox 工具站</title>
-<link rel="canonical" href="https://thecalcbox.github.io/about/">
-<meta name="description" content="認識 CalcBox 工具站：115 個免費計算工具的理念、公式依據與團隊聯絡方式。">
+<link rel="canonical" href="https://thecalcbox.com/about/">
+<meta name="description" content="認識 CalcBox 工具站：115+ 個免費計算工具的理念、公式依據、維護與更新流程，以及團隊聯絡方式。">
 <meta property="og:title" content="關於我們｜CalcBox">
-<meta property="og:description" content="認識 CalcBox 工具站：115 個免費計算工具的理念、公式依據與團隊聯絡方式。">
+<meta property="og:description" content="認識 CalcBox 工具站：115+ 個免費計算工具的理念、公式依據與更新維護流程。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://thecalcbox.github.io/about/">
+<meta property="og:site_name" content="CalcBox">
 <meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.com/about/">
+<meta property="og:image" content="https://thecalcbox.com/og/home.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"關於 CalcBox","url":"https://thecalcbox.com/about/","inLanguage":"zh-TW","publisher":{"@type":"Organization","name":"CalcBox","url":"https://thecalcbox.com/","logo":"https://thecalcbox.com/icons/icon-512.png"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0E2A47;--ink-soft:#5A6E84;--paper:#F6F8FB;--line:#E3E9F0;--gold:#C28A1A;--gold-text:#B07A14}
+:root{
+  --ink:#0E2A47;--ink-soft:#5A6E84;--paper:#F6F8FB;--card:#fff;
+  --line:#E3E9F0;--radius:16px;
+  --gold:#C28A1A;--gold-deep:#9A6A0C;--gold-text:#B07A14;--gold-soft:#FBEED3;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.85}
-header{background:var(--ink);position:sticky;top:0;z-index:100}
-.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
-.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#1E456E,#0E2A47);border:1.5px solid rgba(243,201,105,.25);color:#F3C969;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
-.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
-.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:8px;border:1px solid rgba(255,255,255,.22)}
-.back-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
-main{max-width:820px;margin:0 auto;padding:2.2rem 1.25rem 3rem}
-h1{font-size:24px;font-weight:900;margin-bottom:.4rem}
-.updated{font-size:12px;color:#9AA9BA;margin-bottom:1.6rem}
-h2{font-size:16px;font-weight:800;margin:1.8rem 0 .6rem;color:var(--ink)}
-p,li{font-size:14px;color:#3D5168;margin-bottom:.7rem}
-ul{padding-left:1.3rem;margin-bottom:.7rem}
-a{color:var(--gold-text)}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.6rem 1.8rem;margin-bottom:1rem}
-footer{background:var(--ink);padding:1.5rem;text-align:center}
-footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:2;margin:0}
-footer a{color:rgba(255,255,255,.92);text-decoration:none}
-footer a:hover{color:#F3C969}
-@media(max-width:560px){main{padding:1.6rem 1rem 2.2rem}.card{padding:1.2rem 1.2rem}}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.8}
+svg{display:block}
+a{color:var(--gold-text);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
 
-.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
-.tab-btn span{display:inline-block}
+/* Header */
+header{background:var(--ink);position:sticky;top:0;z-index:300}
+.hdr{max-width:760px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem}
+.crumb{font-size:15px;font-weight:800;color:#fff;display:flex;align-items:center;gap:9px}
+.crumb a{color:#fff;text-decoration:none}
+.crumb .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#1E456E,#0E2A47);border:1.5px solid rgba(243,201,105,.25);color:#F3C969;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.crumb .sep{color:rgba(255,255,255,.45);font-weight:400}
+.crumb .cur{font-size:14px;font-weight:600;color:rgba(255,255,255,.85)}
+.back{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);text-decoration:none}
+.back:hover{color:#F3C969;text-decoration:none}
+
+/* Main */
+main{max-width:760px;margin:0 auto;padding:40px 1.25rem 56px}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--gold-deep);background:var(--gold-soft);padding:4px 12px;border-radius:999px;font-family:'Space Grotesk',sans-serif;margin-bottom:14px}
+h1{font-size:clamp(26px,5vw,34px);font-weight:900;line-height:1.25;letter-spacing:-.4px;margin-bottom:8px}
+.updated{font-size:12.5px;color:var(--ink-soft);margin-bottom:28px}
+h2{font-size:19px;font-weight:900;color:var(--ink);margin:30px 0 10px;letter-spacing:-.2px}
+p{font-size:15px;color:#34465B;margin-bottom:14px}
+.lead{font-size:16px;color:var(--ink)}
+
+/* Cards / process */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin:18px 0}
+.card h2{margin-top:0}
+.steps{list-style:none;counter-reset:s;margin:6px 0 0}
+.steps li{position:relative;padding-left:38px;margin-bottom:14px;font-size:14.5px;color:#34465B}
+.steps li:last-child{margin-bottom:0}
+.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#F3C969;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif}
+.steps li b{color:var(--ink)}
+
+.sources{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.sources span{font-size:12.5px;font-weight:600;color:#34465B;background:#EEF2F7;border:1px solid var(--line);padding:5px 12px;border-radius:99px}
+
+.note{font-size:13px;color:var(--ink-soft);background:#FBF7EC;border:1px solid var(--gold-soft);border-left:3px solid var(--gold);border-radius:8px;padding:12px 14px;margin-top:14px}
+
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-block;background:var(--ink);color:#fff!important;font-size:14px;font-weight:700;text-decoration:none;padding:11px 22px;border-radius:12px}
+.btn:hover{text-decoration:none;opacity:.92}
+.btn.ghost{background:#fff;color:var(--ink)!important;border:1px solid var(--line)}
+
+/* Footer */
+footer{background:var(--ink);padding:24px 1.25rem;text-align:center;margin-top:10px}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:2;margin:0}
+footer a{color:rgba(255,255,255,.92)}
+footer a:hover{color:#F3C969;text-decoration:none}
 </style>
 </head>
 <body>
+
 <header>
   <div class="hdr">
-    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 關於我們</span></a>
-    <a class="back-btn" href="/">‹ 所有工具</a>
+    <div class="crumb"><a href="/"><span class="mark">C</span></a><span class="sep">/</span><span class="cur">關於我們</span></div>
+    <a class="back" href="/">‹ 所有工具</a>
   </div>
 </header>
+
 <main>
-<h1>關於 CalcBox</h1>
-<p class="updated">最後更新：2026 年 6 月</p>
-<div class="card">
-<h2>我們在做什麼</h2>
-<p>CalcBox 是一個免費的線上計算工具站，目前提供 115 個計算器，涵蓋 21 個主題：貸款試算、稅務薪資、健康指標、退休理財、匯率換算、孕產育兒、工程專業計算等。所有工具免註冊、免下載、開啟即用。</p>
-<h2>為什麼做這個網站</h2>
-<p>生活中充滿需要計算的時刻——房貸月付多少、加班費怎麼算、BMI 是否正常、退休金夠不夠。這些問題的答案散落在各處，公式藏在法規條文裡。我們把它們整理成簡單好用的工具，依台灣在地法規與標準設計，讓每個人都能快速得到答案。</p>
-<h2>資料與公式依據</h2>
-<p>各工具的計算公式參考台灣政府機關公告（財政部、勞動部、衛福部、中央銀行等）與國際通用標準。每個工具頁面底部標示資料來源與最後核對日期。法規與費率可能變動，計算結果僅供參考，重大決策請以官方公告為準。</p>
-<h2>聯絡方式</h2>
-<p>對網站有任何建議或發現錯誤，歡迎透過<a href="/contact/">聯絡我們</a>頁面回報。</p>
-</div>
+  <span class="eyebrow">ABOUT CALCBOX</span>
+  <h1>關於 CalcBox</h1>
+  <p class="updated">最後更新：2026 年 6 月</p>
+
+  <p class="lead">CalcBox 是一個免費的線上計算工具站，目前提供 115+ 個計算器，涵蓋 21 個主題：貸款試算、稅務薪資、健康指標、退休理財、匯率換算、孕產育兒、工程專業計算等。所有工具免註冊、免下載、開啟即用。</p>
+
+  <h2>為什麼做這個網站</h2>
+  <p>生活中充滿需要計算的時刻——房貸月付多少、加班費怎麼算、BMI 是否正常、退休金夠不夠。這些問題的答案散落在各處，公式藏在法規條文裡。我們把它們整理成簡單好用的工具，依台灣在地法規與標準設計，讓每個人都能快速得到答案。</p>
+
+  <h2>誰在維護</h2>
+  <p>CalcBox 由一位長期關注台灣財稅、勞動法規與生活數據的開發者獨立建立與維護。我們沒有龐大團隊，但正因如此，每一個公式都經過實際查證才上線，而不是照抄其他網站。我們相信小而精確，勝過大而含糊。</p>
+
+  <div class="card">
+    <h2>我們如何維護公式</h2>
+    <p style="margin-bottom:4px">每個工具的計算邏輯都遵循固定流程，確保結果可被信任：</p>
+    <ul class="steps">
+      <li><b>查證來源</b>：公式以台灣政府機關公告與國際通用標準為準，不採用來源不明的網路試算。</li>
+      <li><b>標註版本</b>：涉及法規、稅率、費率的工具，頁面標示適用年度與公式最後核對日期。</li>
+      <li><b>定期複查</b>：稅率、勞健保級距、利率等每年至少複查一次，重大政策變動時即時更新。</li>
+      <li><b>使用者回報</b>：收到錯誤回報後優先查證，確認後修正並更新核對日期。</li>
+    </ul>
+    <div class="note">⚠️ 法規與費率可能隨時變動，計算結果僅供參考。涉及金錢、健康、法律的重大決策，請以主管機關或專業人員的正式意見為準。</div>
+  </div>
+
+  <h2>資料與公式依據</h2>
+  <p>各工具的計算公式參考下列來源，並在每個工具頁面底部標示對應出處與最後核對日期：</p>
+  <div class="sources">
+    <span>財政部</span><span>勞動部</span><span>衛福部</span><span>中央銀行</span>
+    <span>臺灣銀行牌告匯率</span><span>內政部</span><span>WHO</span><span>ACSM／ISSN</span>
+  </div>
+
+  <h2>聯絡與回報</h2>
+  <p>對網站有任何建議，或發現公式、數據有誤，歡迎透過<a href="/contact/">聯絡我們</a>頁面回報。每一筆回報我們都會查證；經確認的錯誤會優先修正。你的回報是 CalcBox 保持準確最重要的力量。</p>
+
+  <div class="cta-row">
+    <a class="btn" href="/">🧮 開始使用工具</a>
+    <a class="btn ghost" href="/contact/">回報問題</a>
+  </div>
 </main>
+
 <footer>
   <p>CalcBox 工具站 · 所有計算結果僅供參考<br>
   <a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a> · <a href="/">回工具目錄</a></p>
 </footer>
+
 </body>
 </html>
