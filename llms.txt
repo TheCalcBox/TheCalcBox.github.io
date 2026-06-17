@@ -1,5 +1,5 @@
 # CalcBox — 台灣免費線上計算機工具站
-# https://thecalcbox.github.io/
+# https://thecalcbox.com/
 # Last updated: 2026-06-12
 
 ## 站點簡介
@@ -36,9 +36,9 @@ CalcBox 是台灣免費線上計算機工具庫，提供生活財務、稅務薪
 
 ## 技術資訊
 - 靜態 HTML，GitHub Pages 托管。
-- sitemap: https://thecalcbox.github.io/sitemap.xml
-- robots: https://thecalcbox.github.io/robots.txt
+- sitemap: https://thecalcbox.com/sitemap.xml
+- robots: https://thecalcbox.com/robots.txt
 
 ## 聯絡與品牌
 品牌名稱：CalcBox。
-網站： https://thecalcbox.github.io/
+網站： https://thecalcbox.com/
