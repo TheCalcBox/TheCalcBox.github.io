@@ -2,274 +2,274 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://thecalcbox.github.io/</loc>
+    <loc>https://thecalcbox.com/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/baby/</loc>
+    <loc>https://thecalcbox.com/baby/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/baby.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/baby.png</image:loc>
       <image:title>孕產育兒｜CalcBox</image:title>
       <image:caption>孕產育兒試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/bill/</loc>
+    <loc>https://thecalcbox.com/bill/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/bill.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/bill.png</image:loc>
       <image:title>生活費用｜CalcBox</image:title>
       <image:caption>生活費用試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/calendar/</loc>
+    <loc>https://thecalcbox.com/calendar/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/calendar.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/calendar.png</image:loc>
       <image:title>行事曆工具｜CalcBox</image:title>
       <image:caption>行事曆與連假工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/car/</loc>
+    <loc>https://thecalcbox.com/car/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/car.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/car.png</image:loc>
       <image:title>汽機車｜CalcBox</image:title>
       <image:caption>汽機車稅費試算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/construction/</loc>
+    <loc>https://thecalcbox.com/construction/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/construction.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/construction.png</image:loc>
       <image:title>建築裝潢｜CalcBox</image:title>
       <image:caption>建築裝潢用量試算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/convert/</loc>
+    <loc>https://thecalcbox.com/convert/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/convert.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/convert.png</image:loc>
       <image:title>單位換算｜CalcBox</image:title>
       <image:caption>單位換算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/date/</loc>
+    <loc>https://thecalcbox.com/date/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/date.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/date.png</image:loc>
       <image:title>日期時間｜CalcBox</image:title>
       <image:caption>日期與時間計算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/electronics/</loc>
+    <loc>https://thecalcbox.com/electronics/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/electronics.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/electronics.png</image:loc>
       <image:title>電子電路｜CalcBox</image:title>
       <image:caption>電子電路計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/fx/</loc>
+    <loc>https://thecalcbox.com/fx/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/fx.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/fx.png</image:loc>
       <image:title>即時匯率｜CalcBox</image:title>
       <image:caption>匯率換算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/health/</loc>
+    <loc>https://thecalcbox.com/health/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/health.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/health.png</image:loc>
       <image:title>健康計算｜CalcBox</image:title>
       <image:caption>健康BMI TDEE試算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/hr/</loc>
+    <loc>https://thecalcbox.com/hr/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/hr.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/hr.png</image:loc>
       <image:title>人資HR｜CalcBox</image:title>
       <image:caption>人資薪資計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/invest/</loc>
+    <loc>https://thecalcbox.com/invest/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/invest.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/invest.png</image:loc>
       <image:title>投資試算｜CalcBox</image:title>
       <image:caption>投資報酬試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/legal/</loc>
+    <loc>https://thecalcbox.com/legal/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/legal.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/legal.png</image:loc>
       <image:title>法律合約｜CalcBox</image:title>
       <image:caption>法律費用計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/loan/</loc>
+    <loc>https://thecalcbox.com/loan/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/loan.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/loan.png</image:loc>
       <image:title>貸款試算｜CalcBox</image:title>
       <image:caption>房貸車貸試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/logistics/</loc>
+    <loc>https://thecalcbox.com/logistics/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/logistics.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/logistics.png</image:loc>
       <image:title>物流運費｜CalcBox</image:title>
       <image:caption>物流材積運費計算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/medical/</loc>
+    <loc>https://thecalcbox.com/medical/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/medical.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/medical.png</image:loc>
       <image:title>醫療護理｜CalcBox</image:title>
       <image:caption>醫療劑量計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/nutrition/</loc>
+    <loc>https://thecalcbox.com/nutrition/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/nutrition.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/nutrition.png</image:loc>
       <image:title>營養飲食｜CalcBox</image:title>
       <image:caption>營養熱量計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/property/</loc>
+    <loc>https://thecalcbox.com/property/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/property.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/property.png</image:loc>
       <image:title>房產試算｜CalcBox</image:title>
       <image:caption>房產稅費試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/retire/</loc>
+    <loc>https://thecalcbox.com/retire/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/retire.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/retire.png</image:loc>
       <image:title>退休理財｜CalcBox</image:title>
       <image:caption>退休金試算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/student/</loc>
+    <loc>https://thecalcbox.com/student/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/student.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/student.png</image:loc>
       <image:title>學生工具｜CalcBox</image:title>
       <image:caption>GPA成績計算工具</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/tax/</loc>
+    <loc>https://thecalcbox.com/tax/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://thecalcbox.github.io/og/tax.png</image:loc>
+      <image:loc>https://thecalcbox.com/og/tax.png</image:loc>
       <image:title>稅務薪資｜CalcBox</image:title>
       <image:caption>所得稅薪資計算</image:caption>
     </image:image>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/about/</loc>
+    <loc>https://thecalcbox.com/about/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/privacy/</loc>
+    <loc>https://thecalcbox.com/privacy/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/disclaimer/</loc>
+    <loc>https://thecalcbox.com/disclaimer/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/contact/</loc>
+    <loc>https://thecalcbox.com/contact/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/guide/buy-vs-rent/</loc>
+    <loc>https://thecalcbox.com/guide/buy-vs-rent/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://thecalcbox.github.io/guide/prepay-vs-invest/</loc>
+    <loc>https://thecalcbox.com/guide/prepay-vs-invest/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
