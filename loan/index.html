@@ -368,6 +368,16 @@ footer a:hover{color:#F3C969!important}
       <div class="field"><label>還款方式</label>
         <select id="m-method"><option value="annuity" selected>本利均攤（每月固定）</option><option value="principal">本金均攤（逐月遞減）</option></select>
       </div>
+      <div class="field"><label>寬限期（年，只繳息）</label>
+        <select id="m-grace" onchange="document.getElementById('m-grace-mode-row').style.display=this.value>0?'':'none'"><option value="0" selected>無寬限期</option><option value="1">1 年</option><option value="2">2 年</option><option value="3">3 年</option><option value="5">5 年</option></select>
+      </div>
+    </div>
+    <div class="fields one" id="m-grace-mode-row" style="display:none">
+      <div class="field"><label>寬限期計息方式</label>
+        <select id="m-grace-mode"><option value="fixed" selected>只繳息，剩餘年期攤還（總年期不變，期滿月付跳升較多）</option><option value="recalc">寬限後本金重算（攤還年期不變，總年期延長）</option></select>
+      </div>
+    </div>
+    <div class="fields one">
       <div class="field"><label>家庭月收入（萬元，選填）</label><input type="number" id="m-income" step="0.1" placeholder="例：8" inputmode="decimal"></div>
     </div>
     <button class="calc-btn" onclick="calcMortgage()">計算房貸</button>
@@ -377,6 +387,7 @@ footer a:hover{color:#F3C969!important}
       <span class="tag" id="m-tag"></span>
       <div class="result-grid">
         <div class="result-cell"><div class="lbl">貸款金額</div><div class="val" id="m-loan">—</div></div>
+        <div class="result-cell" id="m-grace-cell" style="display:none"><div class="lbl">寬限期月付（只繳息）</div><div class="val" id="m-grace-pay">—</div></div>
         <div class="result-cell"><div class="lbl">總利息</div><div class="val red" id="m-interest">—</div></div>
         <div class="result-cell"><div class="lbl">本利總計</div><div class="val" id="m-total">—</div></div>
       </div>
@@ -418,6 +429,56 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>房貸試算怎麼看？台灣買房前必懂的 5 件事</h2>
+  <p class="lead-card">用本頁試算器算出月付金只是第一步。真正決定你「買得起、養得起」的，是月付金佔家庭收入的比例、利率走勢，以及那些不會出現在月付金裡的隱形成本。以下整理台灣購屋族最常忽略的關鍵。</p>
+
+  <h3>1. 月付金不是重點，「負擔比」才是</h3>
+  <p>很多人只看月付金數字，卻沒對照自己的收入。財務上的通則是：每月房貸支出最好不超過家庭月收入的 <b>30%~40%</b>。低於 30% 相當寬鬆、財務彈性大；落在 30%~40% 仍算合理但已接近上緣；一旦超過 40%，遇到升息、收入中斷或突發支出時就容易週轉困難。本頁房貸試算器已內建「月收入負擔比」，填入家庭月收入即可看到你的比例落在哪個區間，並反推建議的收入門檻。</p>
+
+  <h3>2. 本利均攤 vs 本金均攤，差在哪？</h3>
+  <p>這是台灣房貸最常見的兩種還款方式，沒有絕對好壞，取決於你的現金流規劃：</p>
+  <table>
+    <thead><tr><th>比較項目</th><th>本利均攤</th><th>本金均攤</th></tr></thead>
+    <tbody>
+      <tr><td>每月金額</td><td>固定不變</td><td>首月最高、逐月遞減</td></tr>
+      <tr><td>初期壓力</td><td>較平均</td><td>較大</td></tr>
+      <tr><td>總利息</td><td>較多</td><td>較少</td></tr>
+      <tr><td>適合對象</td><td>想要月付固定、好規劃</td><td>初期負擔得起、想省總利息</td></tr>
+    </tbody>
+  </table>
+  <p>多數首購族選本利均攤，因為每月金額固定、方便編列家庭預算；若你初期收入充裕、想壓低總利息，本金均攤長期更划算。</p>
+
+  <h3>3. 寬限期是雙面刃</h3>
+  <p>寬限期內只繳利息、不還本金，通常 2~5 年，能大幅降低初期月付壓力，適合短期資金周轉或裝潢階段。但代價是：寬限期結束後，本金要在更短的剩餘年限內攤還，月付金會明顯跳升，而且整筆貸款的<b>總利息更高</b>。把寬限期當成長期降月付的手段，是常見的財務誤判。</p>
+
+  <h3>4. 月付金以外的「隱形持有成本」</h3>
+  <p>試算器算的是本息，但實際養一間房，每年還要付出：</p>
+  <ul>
+    <li><b>房屋稅</b>：自住稅率較低，依房屋現值與地方政府稅率計算。</li>
+    <li><b>地價稅</b>：每年 11 月開徵，自用住宅用地有優惠稅率。</li>
+    <li><b>火險與地震險</b>：銀行通常要求投保，金額不高但必繳。</li>
+    <li><b>管理費</b>：大樓或社區每月固定支出，老屋公寓則多為自行維護。</li>
+    <li><b>修繕預備</b>：屋齡越高，每年要預留的維修金越多。</li>
+  </ul>
+  <p>把這些加總，每年常落在房價的 0.5%~1%。買房前用月付金 + 持有成本一起估，才不會「買得起、養不起」。</p>
+
+  <h3>5. 新青安與首購優惠</h3>
+  <p>首購族可留意政府的「新青安貸款」，提供較低利率、較高成數與利息補貼，能有效降低初期負擔。但要注意：優惠多有額度上限與適用條件，且第二戶以上會受央行信用管制影響成數。實際條件以申辦當下的銀行與政策公告為準。</p>
+
+  <div class="lead-card">📌 <b>一句話總結</b>：先用試算器算月付金 → 對照負擔比是否低於 35% → 再加上每年持有成本 → 確認急用金預留 6 個月以上，四個關卡都過，才是真的買得起。</div>
+</article>
+
+
+<section class="faq2">
+  <h2>房貸常見問題</h2>
+  <details><summary>房貸月付金佔收入多少才安全？</summary><div class="faq2-a">一般建議每月房貸支出不超過家庭月收入的 30%~40%。低於 30% 財務彈性充足；30%~40% 仍合理但接近上緣；超過 40% 則風險偏高，建議拉長年期、增加頭期款或選擇總價較低的物件。本頁試算器可直接顯示你的負擔比。</div></details>
+  <details><summary>2026 年台灣房貸利率大概多少？</summary><div class="faq2-a">目前一般房貸利率約 1.8%~2.5%，首購族透過新青安貸款可取得更優惠的補貼利率。實際利率依銀行、貸款成數與個人信用條件而定，並會隨央行政策調整，申辦前建議多比較幾家銀行牌告。</div></details>
+  <details><summary>頭期款要準備房價的幾成？</summary><div class="faq2-a">一般銀行自住房貸成數最高約 8 成，因此頭期款至少需準備房價的 2 成；新青安最高也是 8 成且有利息補貼。除頭期款外，建議再預留房價 5%~8% 作為契稅、代書費、仲介費與基本裝潢費用。</div></details>
+  <details><summary>寬限期值得用嗎？</summary><div class="faq2-a">寬限期內只繳息不還本，能降低初期月付，適合短期資金周轉。但寬限期結束後月付金會明顯增加，且總利息更高。若把它當成長期降低月付的手段，反而會付出更多成本，需審慎評估。</div></details>
+  <details><summary>本利均攤和本金均攤怎麼選？</summary><div class="faq2-a">想要每月金額固定、方便編預算，選本利均攤；初期收入充裕、想省下總利息，選本金均攤（首月較高、逐月遞減）。多數首購族選本利均攤。</div></details>
+  <details><summary>提前還款一定划算嗎？</summary><div class="faq2-a">提前還款等於賺到等同貸款利率的無風險報酬。若房貸利率 2.2%、且閒置資金沒有更好去處，提前還款合理；若有穩定報酬高於利率的投資管道，資金投入投資可能更有效益。注意綁約期內提前清償可能有違約金。</div></details>
+</section>
 </div>
 
 <!-- ══ 車貸 ══ -->
@@ -470,6 +531,26 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>車貸怎麼貸最划算？台灣買車前必看的成本陷阱</h2>
+  <p class="lead-card">車貸利率遠高於房貸，加上汽車一落地就開始折舊，「能借多少」不該是重點，「總共要多付多少」才是。下面拆解買車族最常踩的幾個坑。</p>
+  <h3>1. 車貸利率為什麼比房貸高這麼多</h3>
+  <p>台灣新車貸款利率約 3%~6%、中古車甚至 6%~12%，是房貸（約 1.8%~2.5%）的好幾倍。原因很單純：房子會增值、車子會折舊，銀行拿車當擔保品的回收價值低、風險高，自然把利率拉高。</p>
+  <h3>2. 「零利率」其實常常更貴</h3>
+  <p>車商最愛打「0 利率分期」，但天下沒有白吃的午餐。零利率方案通常以「放棄現金價折讓」為交換——也就是付現可以殺價 5~10 萬，但選零利率就不給折。把放棄的折讓換算回去，實際年化成本往往比一般車貸還高。<b>正確比法：拿「零利率的總付款」對比「現金價＋一般車貸的總付款」，哪個總支出低就選哪個。</b></p>
+  <h3>3. 車貸 vs 信貸 vs 原廠分期</h3>
+  <p>同樣是借錢買車，三種管道成本不同：原廠／經銷商分期方便但利率與條件參差；銀行車貸利率較透明；信貸利率通常最高，除非有特別優惠專案。建議至少比較兩家以上，並一律換算成 APR（含手續費的真實年化成本）再比。</p>
+  <h3>4. 別忘了「養車成本」</h3>
+  <p>月付金之外，每年還有牌照稅、燃料稅、強制險＋任意險、保養維修、停車與油（電）費。把這些一起估進預算，才不會「買得起、養不起」。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：先用本頁試算月付與總利息 → 對比現金價方案 → 加上每年養車固定支出 → 確認月付不影響生活，再下訂。</div>
+</article>
+<section class="faq2">
+  <h2>車貸常見問題</h2>
+  <details><summary>2026 年車貸利率大概多少？</summary><div class="faq2-a">新車貸款利率約 3%~6%，中古車約 6%~12%，依車齡、貸款成數與個人信用而定。利率明顯高於房貸，因為汽車折舊快、銀行回收擔保價值低。</div></details>
+  <details><summary>車商說的「零利率」是真的嗎？</summary><div class="faq2-a">名目上利率是 0，但通常以放棄現金價折讓作為交換。把放棄的折扣換算回去，實際成本常比一般車貸還高。應比較「零利率總付款」與「現金價＋車貸總付款」，總支出低者勝。</div></details>
+  <details><summary>車貸需要保證人嗎？</summary><div class="faq2-a">多數新車貸款在信用條件良好時不需保證人；但中古車、信用條件較弱或貸款成數高時，銀行可能要求提供保證人或提高利率。</div></details>
+  <details><summary>提前還清車貸要付違約金嗎？</summary><div class="faq2-a">視合約而定。部分車貸在綁約期內提前清償會收違約金（常見為剩餘本金的某個百分比），簽約前務必確認提前還款條款。</div></details>
+</section>
 </div>
 
 <!-- ══ 信貸 ══ -->
@@ -516,6 +597,27 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>信用貸款怎麼比？看懂 APR 才不會被低利率話術騙</h2>
+  <p class="lead-card">信貸最容易被「前三個月 1.5% 起」這種廣告吸引，但真正要比的是把所有費用算進去的總成本。學會看 APR，就不會被話術牽著走。</p>
+  <h3>1. 表面利率 vs APR，差在哪</h3>
+  <p>表面利率只是帳面數字，APR（總費用年百分率）才把開辦費、帳管費全部換算進年化成本。舉例：利率 3% 但開辦費 9,000 元的方案，實際 APR 可能比「利率 4%、免開辦費」的方案更貴。法規要求銀行揭露 APR，<b>比較信貸時只看 APR，不要被表面利率騙。</b></p>
+  <h3>2. 「前低後高」階梯利率的陷阱</h3>
+  <p>很多專案主打「前 3 期 0.99%」，但第 4 期之後跳到 3%~5%，平均下來並不便宜。看總利息與 APR，而不是被前幾期的超低數字吸引。</p>
+  <h3>3. 開辦費可以談</h3>
+  <p>開辦費是一次性收取、且直接墊高 APR 的成本。它往往有議價空間，尤其薪轉戶、信用良好或多家比較時。談下開辦費，比利率少 0.1% 還有感。</p>
+  <h3>4. 借款上限：DBR 22 倍</h3>
+  <p>金管會規定無擔保債務（信貸＋信用卡循環＋現金卡）總額不得超過月薪的 22 倍。月薪 5 萬，無擔保債務上限約 110 萬，且需扣掉既有負債。額度不是越高越好，借越多利息越重。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：別看表面利率，用本頁試算 APR → 把開辦費納入比較 → 至少問兩三家 → 只借真正需要的金額。</div>
+</article>
+<section class="faq2">
+  <h2>信貸常見問題</h2>
+  <details><summary>APR（總費用年百分率）是什麼？</summary><div class="faq2-a">APR 把利率加上開辦費、帳管費等所有費用換算成年化成本，是比較信貸真實成本的唯一標準。法規要求銀行必須揭露，比較時看 APR 而非表面利率。</div></details>
+  <details><summary>信貸額度最高可以借多少？</summary><div class="faq2-a">受金管會 DBR 22 倍規範：無擔保債務總額不得超過月薪 22 倍。月薪 5 萬最高約可貸 110 萬，且須扣除既有信用卡循環與其他信貸。</div></details>
+  <details><summary>開辦費可以殺價嗎？</summary><div class="faq2-a">可以。開辦費是一次性費用且直接影響 APR，通常有議價空間，尤其薪轉戶、信用良好或同時比較多家時，較有機會談低或減免。</div></details>
+  <details><summary>「前三期超低利率」划算嗎？</summary><div class="faq2-a">不一定。階梯式利率前幾期低、之後跳高，平均成本未必便宜。應看整筆貸款的總利息與 APR，而非被前幾期的數字吸引。</div></details>
+  <details><summary>信貸提前清償會有違約金嗎？</summary><div class="faq2-a">多數信貸在綁約期（常見 1~3 年）內提前清償會收違約金。簽約前確認綁約期長度與違約金計算方式。</div></details>
+</section>
 </div>
 
 <!-- ══ 學貸 ══ -->
@@ -570,6 +672,34 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>就學貸款全解析：政府到底幫你出多少利息？</h2>
+  <p class="lead-card">就學貸款是台灣利率最低的貸款，而且符合資格的學生，在學期間的利息其實是政府幫你出的。搞懂補貼機制，才知道該不該急著還。</p>
+  <h3>1. 利率結構：學生只付 0.15%、政府扛 1.1%</h3>
+  <p>學貸利率以中華郵政一年期定儲機動利率為指標：學生負擔的部分只加碼 0.15%（2026 年合計約 1.835%），政府負擔的部分加碼 1.1%。利率隨郵局利率浮動、由教育部公告。</p>
+  <h3>2. 在學期間利息誰付？看家庭年所得分三級</h3>
+  <p>政府的利息補貼，依家庭年所得分三個級距（門檻由教育部每年微調）：</p>
+  <ul>
+    <li><b>114 萬以下</b>：在學期間到畢業後一年內，利息由政府全額補貼，學生這段期間完全不用付利息。</li>
+    <li><b>114~120 萬</b>：在學期間政府半額補貼，其餘由學生負擔。</li>
+    <li><b>120 萬以上</b>（且家中 2 名以上就讀高中以上）：在學期間需自付全部利息。</li>
+  </ul>
+  <h3>3. 什麼時候開始還？</h3>
+  <p>畢業（或退伍、實習結束）滿一年後進入還款期，還款期間利息一律由學生自付。償還年限約為借款期間的 1.5 倍，最長 15 年，採年金法按月攤還。</p>
+  <h3>4. 收入不高可以緩繳</h3>
+  <p>開始還款後若月收入未達門檻（約 3.5~5 萬元，含子女可再加計），或屬低收入戶／中低收入戶，可申請緩繳本金，每次一年、可多次申請，且緩繳期間利息由政府負擔。</p>
+  <h3>5. 學貸該提前還嗎？</h3>
+  <p>學生自付利率僅約 1.835%，是市面最便宜的資金。提前還清等於只省下 1.8% 的利息；若這筆錢留作緊急預備金，或投入報酬率穩定高於 1.8% 的標的，通常比急著還學貸更有效益。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：學貸利率超低、在學期間多由政府補貼利息 → 用本頁試算你實付多少、政府補多少 → 畢業後若手頭緊可緩繳 → 不必急著提前清償。</div>
+</article>
+<section class="faq2">
+  <h2>就學貸款常見問題</h2>
+  <details><summary>政府真的會幫我付學貸利息嗎？</summary><div class="faq2-a">會。學貸利率中政府負擔加碼 1.1%、學生只付加碼 0.15%。家庭年所得 114 萬以下者，在學期間到畢業後一年內利息由政府全額補貼、學生免付；114~120 萬為半額補貼；120 萬以上原則自付。</div></details>
+  <details><summary>家庭年所得門檻是多少？</summary><div class="faq2-a">主要級距為 114 萬、120 萬，依在學人數與所得認定補貼比例。門檻由教育部每年公告、會微調，實際以申辦當年度公告為準。</div></details>
+  <details><summary>畢業後多久要開始還學貸？</summary><div class="faq2-a">畢業（或退伍、實習結束）滿一年後開始進入還款期。償還年限約為借款期間的 1.5 倍、最長 15 年，採年金法按月平均攤還本息。</div></details>
+  <details><summary>收入不高還不出來怎麼辦？</summary><div class="faq2-a">可申請緩繳本金。月收入未達門檻（約 3.5~5 萬，含子女可加計）或屬低收入／中低收入戶者，每次可緩繳一年、可多次申請，緩繳期間利息由政府負擔。</div></details>
+  <details><summary>學貸需要提前還清嗎？</summary><div class="faq2-a">不需急著還。學生自付利率僅約 1.835%，是所有貸款中最便宜的資金。資金留作緊急預備金或投入報酬高於利率的標的，通常比提前還學貸更有效益。</div></details>
+</section>
 </div>
 
 <!-- ══ 提前還款 ══ -->
@@ -617,62 +747,33 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="6007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>提前還款划算嗎？什麼情況該還、什麼情況別還</h2>
+  <p class="lead-card">提前還款的本質，是用「確定省下的利息」對比「這筆錢的其他用途」。它不是永遠正確，關鍵在你的貸款利率、有沒有更好的資金去處，以及緊急預備金夠不夠。</p>
+  <h3>1. 提前還款＝賺到等於利率的無風險報酬</h3>
+  <p>多還的本金，會直接減少之後的利息。如果房貸利率 2.2%，提前還款就等於穩穩賺到 2.2% 的無風險報酬——這點是投資很難 100% 保證的。</p>
+  <h3>2. 縮短年限 vs 降低月付，選哪個？</h3>
+  <p>部分還款後通常有兩種重算方式：<b>縮短年限</b>（月付不變、提早還完、省下最多利息）適合想早日無債一身輕的人；<b>降低月付</b>（年限不變、減輕每月壓力）適合現金流吃緊、想增加生活彈性的人。想省最多利息選縮短年限，想喘口氣選降低月付。</p>
+  <h3>3. 先確認三件事再決定</h3>
+  <ul>
+    <li><b>違約金</b>：綁約期內提前清償可能有違約金，先確認合約條款。</li>
+    <li><b>緊急預備金</b>：把錢全拿去還貸款，卻沒留 6 個月生活費，反而更危險。</li>
+    <li><b>機會成本</b>：若有報酬穩定高於貸款利率的去處，資金投入該處可能更有效益。</li>
+  </ul>
+  <h3>4. 低利貸款不必急著還</h3>
+  <p>學貸（約 1.8%）、新青安等低利貸款，提前還款省下的利息有限。這類資金留著做緊急預備或投資，往往比急著清償更聰明；高利的信貸、卡債才是優先該還的對象。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：用本頁試算能省多少利息 → 確認沒有違約金、且已留足急用金 → 高利債優先還、低利債不必急 → 想省息選縮年限、想減壓選降月付。</div>
+</article>
+<section class="faq2">
+  <h2>提前還款常見問題</h2>
+  <details><summary>提前還款可以省多少利息？</summary><div class="faq2-a">提前還的本金會直接減少後續利息，省下的金額相當於該本金以貸款利率計算的複利。可用本頁試算器輸入提前還款金額，立即看到省息金額與縮短的年限。</div></details>
+  <details><summary>提前還款後該選縮短年限還是降低月付？</summary><div class="faq2-a">想省最多利息、早日還清，選「縮短年限」（月付不變）；想減輕每月壓力、增加現金流彈性，選「降低月付」（年限不變）。前者省息較多，後者較有喘息空間。</div></details>
+  <details><summary>提前還款會有違約金嗎？</summary><div class="faq2-a">視合約而定。許多貸款在綁約期（常見 1~3 年）內提前清償會收違約金。提前還款前務必確認合約的提前清償條款與綁約期。</div></details>
+  <details><summary>該提前還房貸還是拿去投資？</summary><div class="faq2-a">比較貸款利率與投資報酬。若房貸利率 2.2%、且有穩定報酬高於此的管道，投資可能更有效益；若沒有把握的去處，提前還款等於穩賺利率的無風險報酬。也別忘了先留足緊急預備金。</div></details>
+</section>
 </div>
 
 </div><!-- /wrap -->
-
-
-<article class="article">
-  <h2>房貸試算怎麼看？台灣買房前必懂的 5 件事</h2>
-  <p class="lead-card">用本頁試算器算出月付金只是第一步。真正決定你「買得起、養得起」的，是月付金佔家庭收入的比例、利率走勢，以及那些不會出現在月付金裡的隱形成本。以下整理台灣購屋族最常忽略的關鍵。</p>
-
-  <h3>1. 月付金不是重點，「負擔比」才是</h3>
-  <p>很多人只看月付金數字，卻沒對照自己的收入。財務上的通則是：每月房貸支出最好不超過家庭月收入的 <b>30%~40%</b>。低於 30% 相當寬鬆、財務彈性大；落在 30%~40% 仍算合理但已接近上緣；一旦超過 40%，遇到升息、收入中斷或突發支出時就容易週轉困難。本頁房貸試算器已內建「月收入負擔比」，填入家庭月收入即可看到你的比例落在哪個區間，並反推建議的收入門檻。</p>
-
-  <h3>2. 本利均攤 vs 本金均攤，差在哪？</h3>
-  <p>這是台灣房貸最常見的兩種還款方式，沒有絕對好壞，取決於你的現金流規劃：</p>
-  <table>
-    <thead><tr><th>比較項目</th><th>本利均攤</th><th>本金均攤</th></tr></thead>
-    <tbody>
-      <tr><td>每月金額</td><td>固定不變</td><td>首月最高、逐月遞減</td></tr>
-      <tr><td>初期壓力</td><td>較平均</td><td>較大</td></tr>
-      <tr><td>總利息</td><td>較多</td><td>較少</td></tr>
-      <tr><td>適合對象</td><td>想要月付固定、好規劃</td><td>初期負擔得起、想省總利息</td></tr>
-    </tbody>
-  </table>
-  <p>多數首購族選本利均攤，因為每月金額固定、方便編列家庭預算；若你初期收入充裕、想壓低總利息，本金均攤長期更划算。</p>
-
-  <h3>3. 寬限期是雙面刃</h3>
-  <p>寬限期內只繳利息、不還本金，通常 2~5 年，能大幅降低初期月付壓力，適合短期資金周轉或裝潢階段。但代價是：寬限期結束後，本金要在更短的剩餘年限內攤還，月付金會明顯跳升，而且整筆貸款的<b>總利息更高</b>。把寬限期當成長期降月付的手段，是常見的財務誤判。</p>
-
-  <h3>4. 月付金以外的「隱形持有成本」</h3>
-  <p>試算器算的是本息，但實際養一間房，每年還要付出：</p>
-  <ul>
-    <li><b>房屋稅</b>：自住稅率較低，依房屋現值與地方政府稅率計算。</li>
-    <li><b>地價稅</b>：每年 11 月開徵，自用住宅用地有優惠稅率。</li>
-    <li><b>火險與地震險</b>：銀行通常要求投保，金額不高但必繳。</li>
-    <li><b>管理費</b>：大樓或社區每月固定支出，老屋公寓則多為自行維護。</li>
-    <li><b>修繕預備</b>：屋齡越高，每年要預留的維修金越多。</li>
-  </ul>
-  <p>把這些加總，每年常落在房價的 0.5%~1%。買房前用月付金 + 持有成本一起估，才不會「買得起、養不起」。</p>
-
-  <h3>5. 新青安與首購優惠</h3>
-  <p>首購族可留意政府的「新青安貸款」，提供較低利率、較高成數與利息補貼，能有效降低初期負擔。但要注意：優惠多有額度上限與適用條件，且第二戶以上會受央行信用管制影響成數。實際條件以申辦當下的銀行與政策公告為準。</p>
-
-  <div class="lead-card">📌 <b>一句話總結</b>：先用試算器算月付金 → 對照負擔比是否低於 35% → 再加上每年持有成本 → 確認急用金預留 6 個月以上，四個關卡都過，才是真的買得起。</div>
-</article>
-
-
-<section class="faq2">
-  <h2>房貸常見問題</h2>
-  <details><summary>房貸月付金佔收入多少才安全？</summary><div class="faq2-a">一般建議每月房貸支出不超過家庭月收入的 30%~40%。低於 30% 財務彈性充足；30%~40% 仍合理但接近上緣；超過 40% 則風險偏高，建議拉長年期、增加頭期款或選擇總價較低的物件。本頁試算器可直接顯示你的負擔比。</div></details>
-  <details><summary>2026 年台灣房貸利率大概多少？</summary><div class="faq2-a">目前一般房貸利率約 1.8%~2.5%，首購族透過新青安貸款可取得更優惠的補貼利率。實際利率依銀行、貸款成數與個人信用條件而定，並會隨央行政策調整，申辦前建議多比較幾家銀行牌告。</div></details>
-  <details><summary>頭期款要準備房價的幾成？</summary><div class="faq2-a">一般銀行自住房貸成數最高約 8 成，因此頭期款至少需準備房價的 2 成；新青安最高也是 8 成且有利息補貼。除頭期款外，建議再預留房價 5%~8% 作為契稅、代書費、仲介費與基本裝潢費用。</div></details>
-  <details><summary>寬限期值得用嗎？</summary><div class="faq2-a">寬限期內只繳息不還本，能降低初期月付，適合短期資金周轉。但寬限期結束後月付金會明顯增加，且總利息更高。若把它當成長期降低月付的手段，反而會付出更多成本，需審慎評估。</div></details>
-  <details><summary>本利均攤和本金均攤怎麼選？</summary><div class="faq2-a">想要每月金額固定、方便編預算，選本利均攤；初期收入充裕、想省下總利息，選本金均攤（首月較高、逐月遞減）。多數首購族選本利均攤。</div></details>
-  <details><summary>提前還款一定划算嗎？</summary><div class="faq2-a">提前還款等於賺到等同貸款利率的無風險報酬。若房貸利率 2.2%、且閒置資金沒有更好去處，提前還款合理；若有穩定報酬高於利率的投資管道，資金投入投資可能更有效益。注意綁約期內提前清償可能有違約金。</div></details>
-</section>
-
 
 
 <div class="guide-links"><a href="/guide/buy-vs-rent/">📖 買房 vs 租屋完整比較</a><a href="/guide/prepay-vs-invest/">📖 提前還款 vs 投資哪個划算</a></div>
@@ -786,31 +887,54 @@ function calcMortgage(){
   const rate=parseFloat(document.getElementById('m-rate').value)/100/12;
   const years=parseInt(document.getElementById('m-years').value);
   const method=document.getElementById('m-method').value;
+  const grace=parseInt(document.getElementById('m-grace').value)||0;
   if(!price||!rate){alert('請填寫房價與利率');return;}
   const loan=price-down;
   if(loan<=0){alert('頭期款不能大於房價');return;}
-  const n=years*12;
-  let monthly,totalInterest=0;amortData=[];
-  const yearData=[];let yPr=0,yInt=0;
+  const graceMode=document.getElementById('m-grace-mode').value; // fixed / recalc
+  const n=years*12, graceN=grace*12;
+  // fixed：總年期不變，攤還期 = n - graceN
+  // recalc：寬限後本金於完整 n 期重算，總年期延長為 grace+years
+  const payN=(graceMode==='recalc')?n:(n-graceN);
+  const totalN=graceN+payN;
+  if(payN<12){alert('寬限期過長，攤還期不足');return;}
+  let monthly,totalInterest=0,graceMonthly=loan*rate;amortData=[];
+  const yearData=[];let yPr=0,yInt=0;let bal=loan;
+  // 寬限期：只繳息、不還本金
+  for(let i=1;i<=graceN;i++){const int_=bal*rate;totalInterest+=int_;yInt+=int_;
+    if(i<=12)amortData.push({m:i,pay:int_,pr:0,int:int_,bal});
+    if(i%12===0){yearData.push({year:i/12,principal:0,interest:yInt,balance:bal});yPr=0;yInt=0;}}
+  // 寬限期後：正式攤還（payN 期）
   if(method==='annuity'){
-    monthly=loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1);
-    let bal=loan;
-    for(let i=1;i<=n;i++){const int_=bal*rate;const pr=monthly-int_;bal-=pr;totalInterest+=int_;yPr+=pr;yInt+=int_;
+    monthly=loan*rate*Math.pow(1+rate,payN)/(Math.pow(1+rate,payN)-1);
+    for(let i=graceN+1;i<=totalN;i++){const int_=bal*rate;const pr=monthly-int_;bal-=pr;totalInterest+=int_;yPr+=pr;yInt+=int_;
       if(i<=12)amortData.push({m:i,pay:monthly,pr,int:int_,bal:Math.max(0,bal)});
-      if(i%12===0||i===n){yearData.push({year:Math.ceil(i/12),principal:yPr,interest:yInt,balance:Math.max(0,bal)});yPr=0;yInt=0;}}
+      if(i%12===0||i===totalN){yearData.push({year:Math.ceil(i/12),principal:yPr,interest:yInt,balance:Math.max(0,bal)});yPr=0;yInt=0;}}
   }else{
-    const prMonthly=loan/n;let bal=loan;
-    for(let i=1;i<=n;i++){const int_=bal*rate;const pay=prMonthly+int_;bal-=prMonthly;totalInterest+=int_;yPr+=prMonthly;yInt+=int_;
-      if(i===1)monthly=pay;
+    const prMonthly=loan/payN;
+    for(let i=graceN+1;i<=totalN;i++){const int_=bal*rate;const pay=prMonthly+int_;bal-=prMonthly;totalInterest+=int_;yPr+=prMonthly;yInt+=int_;
+      if(i===graceN+1)monthly=pay;
       if(i<=12)amortData.push({m:i,pay,pr:prMonthly,int:int_,bal:Math.max(0,bal)});
-      if(i%12===0||i===n){yearData.push({year:Math.ceil(i/12),principal:yPr,interest:yInt,balance:Math.max(0,bal)});yPr=0;yInt=0;}}
+      if(i%12===0||i===totalN){yearData.push({year:Math.ceil(i/12),principal:yPr,interest:yInt,balance:Math.max(0,bal)});yPr=0;yInt=0;}}
   }
   document.getElementById('m-monthly').textContent=fmt(monthly);
-  document.getElementById('m-tag').textContent=years+'年期 · '+document.getElementById('m-rate').value+'% · '+(method==='annuity'?'本利均攤':'本金均攤（首月）');
+  const totalYears=Math.round(totalN/12);
+  const graceTag=grace>0?(graceMode==='recalc'?'（含寬限 '+grace+' 年，總期 '+totalYears+' 年）':'（含寬限 '+grace+' 年）'):'';
+  document.getElementById('m-tag').textContent=years+'年期'+graceTag+' · '+document.getElementById('m-rate').value+'% · '+(method==='annuity'?'本利均攤':'本金均攤（首月）');
   document.getElementById('m-loan').textContent=fmt(loan)+' 元';
+  const graceCell=document.getElementById('m-grace-cell');
+  if(grace>0){graceCell.style.display='';document.getElementById('m-grace-pay').textContent=fmt(graceMonthly)+' 元';}
+  else graceCell.style.display='none';
   document.getElementById('m-interest').textContent=fmt(totalInterest)+' 元';
   document.getElementById('m-total').textContent=fmt(loan+totalInterest)+' 元';
-  document.getElementById('m-note').textContent=`貸款 ${fmt(loan)} 元，${years} 年共付利息 ${fmt(totalInterest)} 元（約佔貸款額 ${(totalInterest/loan*100).toFixed(0)}%）。`;
+  let graceNote='';
+  if(grace>0){
+    if(graceMode==='recalc')
+      graceNote=`含 ${grace} 年寬限期（每月只繳息 ${fmt(graceMonthly)} 元），寬限後本金於完整 ${years} 年重算，月付約 ${fmt(monthly)} 元，但總還款期延長為 ${totalYears} 年、總利息墊高。`;
+    else
+      graceNote=`含 ${grace} 年寬限期（每月只繳息 ${fmt(graceMonthly)} 元，本金不減），寬限期後月付升至 ${fmt(monthly)} 元（本金壓縮在剩餘 ${years-grace} 年攤還）。寬限期會墊高總利息。`;
+  }
+  document.getElementById('m-note').textContent=`貸款 ${fmt(loan)} 元，共付利息 ${fmt(totalInterest)} 元（約佔貸款額 ${(totalInterest/loan*100).toFixed(0)}%）。${graceNote}`;
   document.getElementById('amort-body').innerHTML=amortData.map(r=>`<tr><td>第${r.m}期</td><td>${fmt(r.pay)}</td><td>${fmt(r.pr)}</td><td>${fmt(r.int)}</td><td>${fmt(r.bal)}</td></tr>`).join('');
 
   // ── 月收入負擔比 ──
