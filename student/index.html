@@ -217,9 +217,53 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+/* ── 圖表/文章/FAQ（CalcBox 標準） ── */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:12px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+/* 新增：CSV 按鈕 */
+.export-btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:7px 16px;border:1.5px solid var(--accent);border-radius:8px;background:transparent;color:var(--accent);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:background .15s}
+.export-btn:hover{background:var(--accent-light)}
+/* 新增：期末目標區間帶 */
+.target-band{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;margin-bottom:7px;font-size:13px;font-weight:600}
+.hint-line{font-size:11.5px;color:var(--hint);margin:3px 0 8px;line-height:1.5}
+/* 文章/FAQ */
+.article{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.4rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:var(--accent-light);border:1px solid #C5CBF0;border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px}
+.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}
+.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B;text-align:center}
+.article td:first-child{text-align:left;font-weight:600}
+.faq2{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted)}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"學生計算工具","item":"https://thecalcbox.github.io/student/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"學生計算工具","item":"https://thecalcbox.com/student/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"GPA 4.0 和 4.3 制有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"4.0 制最常見，A 和 A+ 都是 4.0 滿分；4.3 制在部分港美學校使用，A+ 可給到 4.3，使優秀學生的 GPA 能突破 4.0 更能區分頂尖成績。"}},
+{"@type":"Question","name":"加權 GPA 怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"各科成績乘以學分數後加總，再除以總學分數。學分重的課對 GPA 影響更大，3 學分的課影響是 1 學分課的三倍。"}},
+{"@type":"Question","name":"台灣 80 分等於 GPA 多少？","acceptedAnswer":{"@type":"Answer","text":"依台灣大學常見對照，80分約等於 B+（GPA 3.3）。但各校標準不同，正式申請請以就讀學校官方換算表為準。"}},
+{"@type":"Question","name":"期末要考幾分才能及格？","acceptedAnswer":{"@type":"Answer","text":"用「期末目標」計算機：輸入目前累積分、累積佔比、期末佔比，即可算出各目標等第（及格、C、B、A）需要的期末考分數。超過100分代表現有條件下無法達標。"}},
+{"@type":"Question","name":"獎學金需要幾分才能申請？","acceptedAnswer":{"@type":"Answer","text":"一般獎學金通常需均分80分以上；書卷獎依各校規定，常見為前5%或前10%，或均分90分以上。校長獎通常要求系排名第一。實際標準以各校公告為準。"}},
+{"@type":"Question","name":"讀書計畫每天要讀幾小時？","acceptedAnswer":{"@type":"Answer","text":"用「讀書計畫」計算機：輸入考試日期、總目標時數、已完成時數，系統算出每天需讀幾小時。可設定每日上限，判斷計畫是否可行。"}}
+]}</script>
 </head>
 <body>
 
@@ -232,12 +276,13 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
-    <button class="tab-btn" onclick="switchTab('gpa')" id="tab-gpa"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.5"/></svg><span>GPA計算</span></button>
+    <button class="tab-btn active" onclick="switchTab('gpa')" id="tab-gpa"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.5"/></svg><span>GPA計算</span></button>
     <button class="tab-btn" onclick="switchTab('weighted')" id="tab-weighted"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg><span>加權平均</span></button>
     <button class="tab-btn" onclick="switchTab('grade')" id="tab-grade"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.5 9a9 9 0 0 1 14.8-3.4L23 10M1 14l4.7 4.4A9 9 0 0 0 20.5 15"/></svg><span>成績換算</span></button>
+    <button class="tab-btn" onclick="switchTab('target')" id="tab-target"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg><span>期末目標</span></button>
     <button class="tab-btn" onclick="switchTab('scholarship')" id="tab-scholarship"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0Z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/></svg><span>獎學金</span></button>
-    <button class="tab-btn" onclick="switchTab('study')" id="tab-study">⏱️ 讀書計畫</button>
+    <button class="tab-btn" onclick="switchTab('study')" id="tab-study">⏱️<span>讀書計畫</span></button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
   </div>
 </div>
 
@@ -246,7 +291,7 @@ footer a:hover{color:#F3C969!important}
 <p class="page-lead">免費學生工具：GPA計算機、加權平均成績、百分制換算、獎學金資格試算、讀書計畫，附每日新聞。</p>
 
 
-<div class="panel active" id="panel-news">
+<div class="panel" id="panel-news">
   <div class="news-header">
     <div><div class="news-title">每日焦點新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
     <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
@@ -258,7 +303,7 @@ footer a:hover{color:#F3C969!important}
 </div>
 
 <!-- GPA -->
-<div class="panel" id="panel-gpa">
+<div class="panel active" id="panel-gpa">
   <div class="tool-card"><div class="card-head">
     <h2>GPA 計算機</h2>
     <p>輸入各科成績與學分數，計算 GPA（4.0 / 4.3 制）</p>
@@ -275,7 +320,13 @@ footer a:hover{color:#F3C969!important}
     <button onclick="addGPARow()" style="font-size:12px;padding:7px 16px;border:1.5px dashed var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;margin-bottom:10px">＋ 新增科目</button>
     <div class="fields one">
       <div class="field"><label>計算制度</label>
-        <select id="gpa-system"><option value="4.0" selected>4.0 制（常見）</option><option value="4.3">4.3 制（A+ 含4.3）</option></select></div>
+        <select id="gpa-system">
+          <option value="4.0" selected>4.0 制（美國/台灣通用）</option>
+          <option value="4.3">4.3 制（A+ 含4.3，部分港美校）</option>
+          <option value="5.0">5.0 制（部分台灣大學校內制）</option>
+          <option value="tw">台灣等第制（優甲乙丙丁）</option>
+          <option value="100">百分制（輸出平均分）</option>
+        </select></div>
     </div>
     <button class="calc-btn" onclick="calcGPA()">計算 GPA</button>
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9930" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -287,6 +338,19 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">平均分數</div><div class="val" id="gpa-avg">—</div></div>
       </div>
       <div class="result-note" id="gpa-note"></div>
+      <button class="export-btn" onclick="exportGPACSV()">⬇ 匯出成績 CSV</button>
+      <div class="charts" id="gpa-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">各科成績分布（依等第上色）</div>
+          <div class="chart-sub">A=深綠 ／ B=藍 ／ C=金 ／ D/F=紅，右側標示等第字母</div>
+          <div id="gpa-bar-chart"></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">整體 GPA 達成率</div>
+          <div class="chart-sub">目前 GPA 佔滿分制度的百分比</div>
+          <div id="gpa-gauge-chart" style="display:flex;justify-content:center"></div>
+        </div>
+      </div>
     </div>
     <div class="seo-box">
       <h3>GPA 換算對照</h3>
@@ -296,6 +360,34 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9903" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>GPA 怎麼算？4.0、4.3、5.0 與台灣等第制完整對照</h2>
+  <p class="lead-card">台灣大學生最常面對「GPA 換算」的時機是申請研究所或出國留學。但不同學校用不同制度，先搞懂自己的制度才能換算正確。</p>
+  <h3>1. 四種主要制度</h3>
+  <table>
+    <thead><tr><th>百分制</th><th>GPA 4.0</th><th>GPA 4.3</th><th>GPA 5.0</th><th>台灣等第</th></tr></thead>
+    <tbody>
+      <tr><td>90–100</td><td>A（4.0）</td><td>A（4.0）/ A+（4.3）</td><td>A（5.0）</td><td>優</td></tr>
+      <tr><td>85–89</td><td>A-（3.7）</td><td>A-（3.7）</td><td>B+（4.5）</td><td>優</td></tr>
+      <tr><td>80–84</td><td>B+（3.3）</td><td>B+（3.3）</td><td>B（4.0）</td><td>甲</td></tr>
+      <tr><td>70–79</td><td>B（3.0）/ B-（2.7）</td><td>同左</td><td>C（3.0）</td><td>甲/乙</td></tr>
+      <tr><td>60–69</td><td>C+（2.3）/ C（2.0）</td><td>同左</td><td>D（2.0）</td><td>乙/丙</td></tr>
+      <tr><td>&lt;60</td><td>F（0）</td><td>F（0）</td><td>F（0）</td><td>不及格</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 加權 GPA 才是重點</h3>
+  <p>GPA 不是簡單算平均——要<b>依學分數加權</b>。3 學分的課比 1 學分的課對 GPA 影響大三倍。本工具會自動幫你做加權計算，每科輸入「成績＋學分數」即可。</p>
+  <h3>3. GPA 多少才夠</h3>
+  <p>台灣研究所申請：3.0 以上為基本門檻；3.5 以上競爭力較強；3.7+ 適合頂尖校系申請。美國研究所：理工科平均要求約 3.0–3.3；商科 MBA 約 3.0–3.5。台灣就業市場通常看系排名多於 GPA 絕對值。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：加權 GPA（依學分）才準確 → 確認申請對象用哪種制度 → 本工具支援 4.0/4.3/5.0/台灣等第/百分制 → 可匯出 CSV 附在申請文件中。</div>
+</article>
+<section class="faq2">
+  <h2>GPA 常見問題</h2>
+  <details><summary>GPA 4.0 和 4.3 有什麼不同？</summary><div class="faq2-a">4.0 制最常見，A/A+ 都是 4.0 滿分；4.3 制在部分港美學校使用，A+ 可給到 4.3，使優秀學生的 GPA 能突破 4.0，更能區分頂尖成績。</div></details>
+  <details><summary>台灣大學的「5.0 制」是什麼？</summary><div class="faq2-a">部分台灣大學（如台大等）採 5.0 GPA 制度，等級更多、區分更細。A=5.0、B+=4.5、B=4.0、C+=3.5、C=3.0、C-=2.5、F=0。申請研究所時需注意換算方式。</div></details>
+  <details><summary>為什麼要用學分加權計算 GPA？</summary><div class="faq2-a">因為不同課程的學分數不同，學分重的課對 GPA 影響更大。直接算分數平均會高估小學分難課的影響，學分加權 GPA 才反映真實學業負擔與成績。</div></details>
+  <details><summary>GPA 可以導出存檔嗎？</summary><div class="faq2-a">可以。計算後點「⬇ 匯出成績 CSV」即可下載含科目、成績、學分、GPA 等第的 CSV 試算表，方便附在申請資料中或自行整理。</div></details>
+</section>
 </div>
 
 <!-- 加權平均 -->
@@ -324,6 +416,13 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">等第</div><div class="val" id="wt-grade">—</div></div>
       </div>
       <div class="result-note" id="wt-note"></div>
+      <div class="charts" id="wt-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">各項目對總分的貢獻（分數 × 權重）</div>
+          <div class="chart-sub">每條長度 = 該項目分數 × 佔比，加總即加權總分</div>
+          <div id="wt-chart"></div>
+        </div>
+      </div>
       <div class="result-disclaimer">比重總和超過100%時自動等比縮放。</div>
     </div>
     <div class="seo-box">
@@ -332,6 +431,22 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9904" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>加權平均怎麼算？期中期末各佔幾分一次搞定</h2>
+  <p class="lead-card">很多課的成績是「平時 30%＋期中 30%＋期末 40%」這種加權組合，每個項目分開算再加起來才是最終分數。本工具幫你拆解每項目的貢獻。</p>
+  <h3>1. 加權計算方式</h3>
+  <p>加權平均＝各項目（分數 × 佔比）加總，若佔比總和不等於 100%，工具會自動等比換算。例如：平時 85 分佔 30%、期中 78 分佔 30%、期末 90 分佔 40%，加權平均 = 85×0.3 + 78×0.3 + 90×0.4 = 84.9 分。</p>
+  <h3>2. 看「貢獻瀑布圖」找弱點</h3>
+  <p>本頁的貢獻圖把每個項目的「分數 × 比重」畫成長條，讓你一眼看出哪個項目對最終成績貢獻最少——那就是最值得加強的地方。</p>
+  <h3>3. 提前規劃期末需求</h3>
+  <p>若你已知平時與期中成績，想知道期末要考幾分才能達目標，用「期末目標」分頁直接計算。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：加權平均 = Σ（分數×佔比），佔比總和不等於100%時自動換算 → 看貢獻圖找最需加強的項目 → 配合「期末目標」分頁規劃衝刺目標。</div>
+</article>
+<section class="faq2">
+  <h2>加權平均常見問題</h2>
+  <details><summary>佔比加起來沒有 100% 怎麼辦？</summary><div class="faq2-a">本工具會自動把所有佔比等比例換算到 100%，讓結果仍可比較。若教授還有未公告的項目，最終分數仍以教授實際計算為準。</div></details>
+  <details><summary>如何知道期末要考幾分才能及格或拿 A？</summary><div class="faq2-a">切換到「期末目標」分頁，輸入目前累積分數與各佔比，系統會自動算出不同目標等第需要的期末考分數。</div></details>
+</section>
 </div>
 
 <!-- 成績換算 -->
@@ -355,6 +470,14 @@ footer a:hover{color:#F3C969!important}
         </table>
       </div>
       <div class="result-note" id="gr-note"></div>
+      <div class="result-disclaimer">⚠ 各校成績換算標準不盡相同，本工具採台灣大學通用對照表，僅供參考，正式申請請以就讀學校規定為準。</div>
+      <div class="charts" id="gr-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">四制對照刻度尺</div>
+          <div class="chart-sub">同一個分數在百分制 / GPA 4.0 / 美國信等 / 台灣等第的對應位置</div>
+          <div id="gr-chart"></div>
+        </div>
+      </div>
     </div>
     <div style="margin-top:1rem;overflow-x:auto">
       <div style="font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em">成績換算對照表</div>
@@ -379,6 +502,88 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9905" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>成績換算指南：百分制、GPA、信等、台灣等第互換</h2>
+  <p class="lead-card">出國留學申請、外校轉學、求職附上成績單，都可能需要把成績換成不同格式。本頁換算僅供參考——不同學校的標準真的不一樣。</p>
+  <h3>1. 為什麼「僅供參考」很重要</h3>
+  <p>台灣各校對「80 分 = B+（3.3）」的對應並不統一，有些學校 80 分是 B（3.0），有些是 B+（3.3），頂尖學校可能要求 85 以上才算 B+。正式申請時，務必以就讀學校的官方換算表或 WES/NACES 等第三方評估為準，不能只拿本工具的換算結果直接填表。</p>
+  <h3>2. 四制對照刻度尺怎麼看</h3>
+  <p>本頁把同一分數在四種制度的對應位置用刻度尺視覺化——你的分數（黑色指針）落在哪個區間，對應的 GPA、信等、台灣等第一目了然，不必記對照表。</p>
+  <h3>3. 申請時常見問題</h3>
+  <ul>
+    <li>美國碩班申請：多數看 GPA 4.0 制，部分學校只接受 WES 官方評估。</li>
+    <li>台灣研究所：多看百分制或學校自己的等第，GPA 換算僅供參考。</li>
+    <li>就業附成績：通常直接附原始成績單，不需額外換算。</li>
+  </ul>
+  <div class="lead-card">📌 <b>本工具採台灣大學通用對照，各校標準不同，正式申請請以就讀學校官方換算表或第三方認證機構為準。</b></div>
+</article>
+<section class="faq2">
+  <h2>成績換算常見問題</h2>
+  <details><summary>台灣 80 分等於美國的 B 還是 B+？</summary><div class="faq2-a">依學校而定，沒有統一標準。本工具採台灣常見對照（80分=B+/3.3），但部分學校採80分=B/3.0。正式申請時請以就讀學校的官方換算表為準。</div></details>
+  <details><summary>申請美國研究所需要官方換算嗎？</summary><div class="faq2-a">部分美國學校要求透過 WES（World Education Services）等第三方機構評估台灣成績，直接附原始成績單和本工具換算結果僅供學校參考，不一定被採認為官方 GPA。</div></details>
+  <details><summary>台灣等第「優甲乙丙」怎麼對應 GPA？</summary><div class="faq2-a">一般對應：優（GPA≥3.7）、甲（GPA 2.7–3.7）、乙（GPA 2.0–2.7）、丙（GPA>0–2.0）、不及格（0）。各校可能略有調整。</div></details>
+</section>
+</div>
+
+<!-- 期末目標 -->
+<div class="panel" id="panel-target">
+  <div class="tool-card"><div class="card-head">
+    <h2>期末要考幾分？</h2>
+    <p>輸入目前累積成績與期末考佔比，算出不同目標等第需要的期末考分數</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>目前累積分數（平時/期中）</label><input type="number" id="tg-current" placeholder="例：78" inputmode="decimal"></div>
+      <div class="field"><label>目前累積佔總成績比例（%）</label><input type="number" id="tg-done-pct" placeholder="例：60" inputmode="decimal"></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>期末考佔比（%）</label><input type="number" id="tg-final-pct" placeholder="例：40" inputmode="decimal"></div>
+    </div>
+    <p class="hint-line">※ 目前累積佔比＋期末佔比應等於 100%。若不等於 100% 系統會自動換算。</p>
+    <button class="calc-btn" onclick="calcTarget()">計算期末需求分</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9940" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="target-result">
+      <div class="result-top"><div class="result-number" id="tg-pass-score">—</div><div class="result-unit">分（60分及格）</div></div>
+      <span class="tag" id="tg-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">拿 A（90+）需考</div><div class="val" id="tg-a">—</div></div>
+        <div class="result-cell"><div class="lbl">拿 B（80+）需考</div><div class="val" id="tg-b">—</div></div>
+        <div class="result-cell"><div class="lbl">拿 C（70+）需考</div><div class="val" id="tg-c">—</div></div>
+        <div class="result-cell"><div class="lbl">目前累積貢獻分</div><div class="val" id="tg-contrib">—</div></div>
+      </div>
+      <div class="charts" id="tg-charts">
+        <div class="chart-box">
+          <div class="chart-title">期末考分數需求區間</div>
+          <div class="chart-sub">不同目標等第所需的期末考分數，超過 100 分表示在現有累積下無法達標</div>
+          <div id="tg-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2E7D32"></i>A（90+）</span><span><i style="background:#2D6CB5"></i>B（80+）</span><span><i style="background:#C58A12"></i>C（70+）</span><span><i style="background:#9AA9BA"></i>及格（60+）</span></div>
+        </div>
+      </div>
+      <div class="result-note" id="tg-note"></div>
+      <div class="result-disclaimer">各科及格標準與等第定義依學校規定可能不同，本頁以 60/70/80/90 分為四個標準，僅供參考。</div>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9941" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>期末要考幾分？逆推計算讓你知道該衝多高</h2>
+  <p class="lead-card">學期中盤點成績時，最想知道的就是「我還有救嗎？」和「期末要考幾分才能拿 A？」這個工具幫你算清楚，不必自己反推。</p>
+  <h3>1. 計算原理</h3>
+  <p>目標總分 = 目前累積分 × 累積佔比 ＋ 期末分 × 期末佔比，把目標總分（如90）代入，反推出期末需要的分數。超過 100 分代表在現有累積下無論期末考幾分都無法達標，需要與教授確認是否有其他加分機會。</p>
+  <h3>2. 目標分區帶圖怎麼看</h3>
+  <p>圖中四條彩色刻度線分別標示拿 A/B/C/及格各需要的期末分數，紅色虛線是 100 分上限——線落在虛線右邊代表已不可能達標，落在左邊代表還有機會，你只需要考到那條線的數字即可。</p>
+  <h3>3. 實用策略</h3>
+  <ul>
+    <li>期末考佔比越高，拉分空間越大，衝刺越有效。</li>
+    <li>若及格線都超過 100 分，優先和教授確認有無補考或作業補分機會。</li>
+    <li>知道「需要幾分」後，結合「讀書計畫」分配衝刺時間。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：期末需求分 =（目標總分－目前貢獻）÷ 期末佔比 → 超過100代表現有條件下無法達標 → 知道目標分後搭配讀書計畫分配時間。</div>
+</article>
+<section class="faq2">
+  <h2>期末目標常見問題</h2>
+  <details><summary>期末需求分超過 100 分怎麼辦？</summary><div class="faq2-a">代表在現有累積分數下，即使期末滿分也無法達到那個目標。可優先確認教授有無額外加分機會（作業補交、報告加分）、或調整為較低的目標等第。</div></details>
+  <details><summary>期末考佔比越高拉分空間越大嗎？</summary><div class="faq2-a">是的。期末佔比越高，意味著它對最終成績影響越大，衝刺期末的效果也越顯著。期末佔 60% 以上的課，只要期末考好就能大幅提升總成績。</div></details>
+  <details><summary>這個計算適用於任何評分方式嗎？</summary><div class="faq2-a">適用於「多項目加權加總」的評分方式（如平時+期中+期末）。若課程採其他方式（如純出席、portfolio、曲線評分），請以教授說明為準。</div></details>
+</section>
 </div>
 
 <!-- 獎學金 -->
@@ -401,6 +606,13 @@ footer a:hover{color:#F3C969!important}
       <div class="result-top"><div class="result-number" id="sc-pct" style="font-size:28px">—</div><div class="result-unit">% 班排百分比</div></div>
       <div id="sc-list" style="margin-top:.85rem"></div>
       <div class="result-note" id="sc-note"></div>
+      <div class="charts" id="sc-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">分數位置 vs 各獎學金門檻</div>
+          <div class="chart-sub">▶ 標示你的分數在各門檻的位置，綠線 = 已達標，灰線 = 未達標</div>
+          <div id="sc-chart"></div>
+        </div>
+      </div>
       <div class="result-disclaimer">各校獎學金規定不同，以就讀學校公告為準。</div>
     </div>
     <div class="seo-box">
@@ -436,6 +648,13 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">完成度</div><div class="val" id="st-progress">—</div></div>
       </div>
       <div class="result-note" id="st-note"></div>
+      <div class="charts" id="st-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">讀書進度甘特圖</div>
+          <div class="chart-sub">藍 = 已完成，金 = 今日目標，灰 = 剩餘待讀</div>
+          <div id="st-chart"></div>
+        </div>
+      </div>
     </div>
     <div class="seo-box">
       <h3>高效讀書方法</h3>
@@ -555,6 +774,332 @@ function scoreToGPA40(s){for(const[t,g]of GPA_MAP_40){if(s>=t)return g;}return 0
 function gpaToLetter(g){if(g>=4.0)return 'A';if(g>=3.7)return 'A-';if(g>=3.3)return 'B+';if(g>=3.0)return 'B';if(g>=2.7)return 'B-';if(g>=2.3)return 'C+';if(g>=2.0)return 'C';if(g>0)return 'D';return 'F';}
 function gpaToTW(g){if(g>=3.7)return '優';if(g>=2.7)return '甲';if(g>=2.0)return '乙';if(g>0)return '丙';return '不及格';}
 
+/* ══ 純 SVG 圖表（CalcBox 圖表規範） ══ */
+
+// GPA 各科橫條圖（依等第上色，含 GPA 字母標示）
+function gpaBarSVG(subjects){ // subjects=[{name,score,gpa,letter,color}]
+  const W=600,rowH=38,padL=90,padR=80,barH=22,top=4;
+  const H=subjects.length*rowH+top+4;
+  const maxS=100,barMax=W-padL-padR;
+  let rows='';
+  subjects.forEach((s,i)=>{
+    const y=top+i*rowH,w=(s.score/maxS)*barMax;
+    rows+=`<text x="${padL-8}" y="${y+barH-4}" text-anchor="end" font-size="11" font-weight="600" fill="#34465B">${s.name.length>7?s.name.slice(0,7)+'…':s.name}</text>`;
+    rows+=`<rect x="${padL}" y="${y}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${s.color}"><title>${s.name} ${s.score}分 ${s.letter}</title></rect>`;
+    rows+=`<text x="${padL+w+6}" y="${y+barH-4}" font-size="11" font-weight="800" fill="${s.color}">${s.score}分</text>`;
+    rows+=`<text x="${W-4}" y="${y+barH-4}" text-anchor="end" font-size="12" font-weight="900" fill="${s.color}">${s.letter}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="各科成績橫條圖">${rows}</svg>`;
+}
+
+// GPA 半圓儀表
+function gaugeSVG(pct,col,label,sublabel){
+  const W=260,H=150,cx=130,cy=138,r=100;
+  const frac=Math.min(Math.max(pct,0),1);
+  const a0=Math.PI,a1=Math.PI*(1-frac);
+  const polar=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];
+  const arcPath=(s,e,c,w)=>{const[x1,y1]=polar(s),[x2,y2]=polar(e);const lg=(s-e)>Math.PI?1:0;return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`;};
+  const bg=arcPath(Math.PI,0,'#EDF1F6',12);
+  const fg=arcPath(Math.PI,a1,col,12);
+  const[nx,ny]=polar(a1);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="GPA 達成率 ${(frac*100).toFixed(0)}%">${bg}${fg}<circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="5" fill="${col}"/><text x="${cx}" y="${cy-28}" text-anchor="middle" font-size="34" font-weight="900" fill="${col}">${label}</text><text x="${cx}" y="${cy-6}" text-anchor="middle" font-size="13" fill="#9AA9BA">${sublabel}</text><text x="30" y="${cy+14}" font-size="10" fill="#9AA9BA">0</text><text x="${W-30}" y="${cy+14}" text-anchor="end" font-size="10" fill="#9AA9BA">滿分</text></svg>`;
+}
+
+// 加權平均貢獻瀑布橫條
+function waterfallBarSVG(items,total){ // items=[{name,score,pct,contrib}]
+  const W=600,rowH=38,padL=90,padR=60,barH=20,top=4;
+  const H=items.length*rowH+top+28;
+  const maxC=total||Math.max(...items.map(i=>i.contrib))||1,barMax=W-padL-padR;
+  let rows='';
+  const COLORS=['#2D6CB5','#2E7D32','#C58A12','#6A4FB5','#C62828','#3E8E9C','#E65100','#388E3C'];
+  items.forEach((it,i)=>{
+    const y=top+i*rowH,w=(it.contrib/maxC)*barMax,col=COLORS[i%COLORS.length];
+    rows+=`<text x="${padL-8}" y="${y+barH-2}" text-anchor="end" font-size="11" font-weight="600" fill="#34465B">${it.name.length>7?it.name.slice(0,7)+'…':it.name}</text>`;
+    rows+=`<rect x="${padL}" y="${y}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${col}"><title>${it.name} ${it.score}分×${it.pct}%=${it.contrib.toFixed(1)}</title></rect>`;
+    rows+=`<text x="${padL+w+6}" y="${y+barH-3}" font-size="11" font-weight="700" fill="${col}">${it.score}×${it.pct}%=${it.contrib.toFixed(1)}</text>`;
+  });
+  // 合計線
+  const tw=(total/maxC)*barMax,ty=items.length*rowH+top+4;
+  rows+=`<line x1="${padL}" y1="${ty}" x2="${W-padR}" y2="${ty}" stroke="#E3E9F0" stroke-width="1"/>`;
+  rows+=`<text x="${padL}" y="${ty+16}" font-size="12" font-weight="800" fill="#1B3A5C">加權總分：${total.toFixed(1)} 分</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="各項貢獻瀑布圖">${rows}</svg>`;
+}
+
+// 四制並排刻度尺
+function gradescaleSVG(percent){
+  const W=600,H=180,padL=70,padR=12,trackW=W-padL-padR;
+  const THRESHOLDS=[{p:90,l:'A'},{p:85,l:'A-'},{p:80,l:'B+'},{p:75,l:'B'},{p:70,l:'B-'},{p:65,l:'C+'},{p:60,l:'C'},{p:0,l:'F'}];
+  const GRADE_COLORS={'A':'#2E7D32','A-':'#388E3C','B+':'#2D6CB5','B':'#3A7FCC','B-':'#5B8ED4','C+':'#C58A12','C':'#B07A14','D':'#E65100','F':'#C62828'};
+  const x=p=>padL+(p/100)*trackW;
+  const pointerX=x(Math.max(0,Math.min(100,percent)));
+  // 背景漸層軌道（紅→金→藍→綠）
+  let track=`<defs><linearGradient id="gsg" x1="0" x2="1" y1="0" y2="0"><stop offset="0%" stop-color="#FFEBEE"/><stop offset="60%" stop-color="#FDF3DD"/><stop offset="80%" stop-color="#EAF1F9"/><stop offset="100%" stop-color="#E8F5E9"/></linearGradient></defs>`;
+  // 4條軌道
+  const tracks=[
+    {label:'百分制',y:24,marks:[{p:60,t:'60'},{p:70,t:'70'},{p:80,t:'80'},{p:90,t:'90'},{p:100,t:'100'}]},
+    {label:'GPA 4.0',y:68,marks:[{p:60,t:'2.0'},{p:70,t:'2.7'},{p:80,t:'3.3'},{p:85,t:'3.7'},{p:90,t:'4.0'}]},
+    {label:'美國信等',y:112,marks:[{p:60,t:'D'},{p:70,t:'C'},{p:80,t:'B'},{p:85,t:'A-'},{p:90,t:'A'}]},
+    {label:'台灣等第',y:156,marks:[{p:60,t:'丙'},{p:70,t:'乙'},{p:80,t:'甲'},{p:90,t:'優'}]},
+  ];
+  let rows='';
+  tracks.forEach(tk=>{
+    rows+=`<text x="${padL-6}" y="${tk.y+10}" text-anchor="end" font-size="11" font-weight="700" fill="#5A6E84">${tk.label}</text>`;
+    rows+=`<rect x="${padL}" y="${tk.y}" width="${trackW}" height="14" rx="4" fill="url(#gsg)"/>`;
+    // 刻度線
+    tk.marks.forEach(m=>{const mx=x(m.p);rows+=`<line x1="${mx}" y1="${tk.y}" x2="${mx}" y2="${tk.y+14}" stroke="#C0CAD6" stroke-width="1.2"/>`;rows+=`<text x="${mx}" y="${tk.y+25}" text-anchor="middle" font-size="10" fill="#5A6E84">${m.t}</text>`;});
+    // 指針
+    rows+=`<rect x="${pointerX-2}" y="${tk.y-4}" width="4" height="22" rx="2" fill="#1A237E" opacity="0.85"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="四制對照刻度尺">${track}${rows}</svg>`;
+}
+
+// 獎學金門檻軌道
+function scholarTrackSVG(avg){
+  const W=600,H=120,padL=12,padR=12,trackH=28,trackY=30;
+  const barW=W-padL-padR;
+  const thresholds=[{p:60,l:'一般及格',c:'#9AA9BA'},{p:80,l:'一般獎學金',c:'#2D6CB5'},{p:87,l:'書卷10%',c:'#C58A12'},{p:90,l:'書卷5%/優異',c:'#2E7D32'}];
+  const x=v=>padL+(Math.min(v,100)/100)*barW;
+  const px=x(avg);
+  const passed=t=>avg>=t;
+  let rows=`<rect x="${padL}" y="${trackY}" width="${barW}" height="${trackH}" rx="6" fill="#EDF1F6"/>`;
+  // 已達標區段上色
+  thresholds.forEach(t=>{if(passed(t.p)){const fw=x(Math.min(avg,100))-padL;rows+=`<rect x="${padL}" y="${trackY}" width="${fw.toFixed(1)}" height="${trackH}" rx="6" fill="${t.c}" opacity="0.25"/>}`;}});
+  // 門檻線
+  thresholds.forEach(t=>{const tx=x(t.p);const ok=passed(t.p);rows+=`<line x1="${tx}" y1="${trackY-4}" x2="${tx}" y2="${trackY+trackH+4}" stroke="${ok?t.c:'#C0CAD6'}" stroke-width="${ok?2:1.5}" stroke-dasharray="${ok?'':4}"/>`;rows+=`<text x="${tx}" y="${trackY-8}" text-anchor="middle" font-size="10" font-weight="${ok?700:400}" fill="${ok?t.c:'#9AA9BA'}">${t.l}</text>`;rows+=`<text x="${tx}" y="${trackY+trackH+14}" text-anchor="middle" font-size="10" fill="${ok?t.c:'#C0CAD6'}">${t.p}分</text>`;});
+  // 你的分數指針
+  rows+=`<line x1="${px}" y1="${trackY-8}" x2="${px}" y2="${trackY+trackH+8}" stroke="#1A237E" stroke-width="3" stroke-linecap="round"/>`;
+  rows+=`<circle cx="${px}" cy="${trackY-10}" r="5" fill="#1A237E"/>`;
+  rows+=`<text x="${px}" y="${trackY-18}" text-anchor="middle" font-size="11" font-weight="900" fill="#1A237E">▼ 你的分數 ${avg}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="獎學金門檻軌道圖">${rows}</svg>`;
+}
+
+// 讀書計畫甘特式進度條
+function studyGanttSVG(done,perDay,remain,days){
+  const W=600,H=100,padL=12,padR=12,barH=30,barY=30;
+  const total=done+remain,barW=W-padL-padR;
+  const doneW=total>0?(done/total)*barW:0;
+  const todayW=total>0?(Math.min(perDay,remain)/total)*barW:0;
+  const rows=[];
+  // 已完成（藍）
+  if(done>0)rows.push(`<rect x="${padL}" y="${barY}" width="${doneW.toFixed(1)}" height="${barH}" rx="6" fill="#2D6CB5"><title>已完成 ${done}h</title></rect>`);
+  // 今日目標（金）
+  if(todayW>0)rows.push(`<rect x="${(padL+doneW).toFixed(1)}" y="${barY}" width="${todayW.toFixed(1)}" height="${barH}" rx="${doneW>0?0:6}" fill="#C58A12"><title>今日目標 ${perDay}h</title></rect>`);
+  // 剩餘（灰）
+  rows.push(`<rect x="${padL}" y="${barY}" width="${barW}" height="${barH}" rx="6" fill="none" stroke="#E3E9F0" stroke-width="1.5"/>`);
+  // 標籤
+  rows.push(`<text x="${padL}" y="${barY+barH+18}" font-size="11" font-weight="700" fill="#2D6CB5">已完成 ${done}h</text>`);
+  rows.push(`<text x="${W/2}" y="${barY+barH+18}" text-anchor="middle" font-size="11" font-weight="700" fill="#C58A12">今日 ${perDay.toFixed(1)}h/天</text>`);
+  rows.push(`<text x="${W-padR}" y="${barY+barH+18}" text-anchor="end" font-size="11" font-weight="600" fill="#9AA9BA">剩餘 ${remain}h / ${days}天</text>`);
+  rows.push(`<text x="${W/2}" y="${barY-10}" text-anchor="middle" font-size="10" fill="#9AA9BA">總目標 ${total}h</text>`);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="讀書進度甘特圖">${rows.join('')}</svg>`;
+}
+
+// 期末目標分區帶圖
+function targetBandSVG(contrib,finalPct,thresholds){
+  const W=600,H=140,padL=12,padR=12,barH=24,barW=W-padL-padR;
+  const toX=v=>padL+(Math.min(Math.max(v,0),120)/120)*barW;
+  const BANDS=[{t:'A',min:thresholds.a,color:'#2E7D32'},{t:'B',min:thresholds.b,color:'#2D6CB5'},{t:'C',min:thresholds.c,color:'#C58A12'},{t:'及格',min:thresholds.pass,color:'#9AA9BA'}];
+  let rows=[];
+  // 背景軌道（0-120，超過100標紅）
+  rows.push(`<rect x="${padL}" y="50" width="${barW}" height="${barH}" rx="6" fill="#EDF1F6"/>`);
+  // 100分分隔線
+  const x100=toX(100);
+  rows.push(`<rect x="${x100.toFixed(1)}" y="46" width="${barW-(x100-padL)}" height="${barH+8}" rx="3" fill="#FEF0F0" opacity="0.7"/>`);
+  rows.push(`<line x1="${x100.toFixed(1)}" y1="42" x2="${x100.toFixed(1)}" y2="${50+barH+8}" stroke="#C62828" stroke-width="1.5" stroke-dasharray="3"/>`);
+  rows.push(`<text x="${x100+4}" y="42" font-size="10" fill="#C62828">100分上限</text>`);
+  // 各等第需求線
+  BANDS.forEach((b,i)=>{
+    const nx=toX(b.min);const feasible=b.min<=100;
+    rows.push(`<line x1="${nx.toFixed(1)}" y1="46" x2="${nx.toFixed(1)}" y2="${50+barH}" stroke="${b.color}" stroke-width="2.5"/>`);
+    rows.push(`<text x="${nx.toFixed(1)}" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="${b.color}">${b.t}</text>`);
+    rows.push(`<text x="${nx.toFixed(1)}" y="${50+barH+16}" text-anchor="middle" font-size="11" font-weight="${feasible?800:500}" fill="${feasible?b.color:'#C62828'}">${b.min>120?'不可達':b.min.toFixed(0)+'分'}</text>`);
+  });
+  // 已貢獻分起始線
+  const cx=toX(0);
+  rows.push(`<text x="${padL}" y="110" font-size="10" fill="#5A6E84">期末考分數需求（含貢獻：${contrib.toFixed(1)}分加成後）</text>`);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="期末目標分區帶圖">${rows.join('')}</svg>`;
+}
+
+// GPA 科目顏色依等第
+function letterColor(l){const m={'A':'#1B7A34','A-':'#2E7D32','B+':'#2D6CB5','B':'#3A7FCC','B-':'#5B8ED4','C+':'#B07A14','C':'#C58A12','D':'#E65100','F':'#C62828'};return m[l]||'#9AA9BA';}
+
+/* ══ 更新 calcGPA（支援 5 制 + 台灣等第制 + 圖表 + CSV） ══ */
+function calcGPA(){
+  const rows=document.querySelectorAll('#gpa-rows>div');
+  if(!rows.length){alert('請新增科目');return;}
+  const sysRaw=document.getElementById('gpa-system').value;
+  const sys=parseFloat(sysRaw)||4.0;
+  const isTW=sysRaw==='tw', is100=sysRaw==='100';
+  let totalPoints=0,totalCredits=0,totalScore=0,cnt=0;
+  const subjects=[];
+  rows.forEach(row=>{
+    const inputs=row.querySelectorAll('input');
+    const name=inputs[0].value||'科目'+(cnt+1);
+    const score=parseFloat(inputs[1].value);
+    const credits=parseFloat(inputs[2].value)||1;
+    if(isNaN(score))return;
+    const gpa=scoreToGPA40(score);
+    totalPoints+=gpa*credits;totalCredits+=credits;totalScore+=score;cnt++;
+    subjects.push({name,score,gpa,letter:gpaToLetter(gpa),credits,color:letterColor(gpaToLetter(gpa))});
+  });
+  if(!totalCredits){alert('請填寫成績');return;}
+  let gpa=totalPoints/totalCredits;
+  let displayGPA,displayMax;
+  if(is100){displayGPA=(totalScore/cnt).toFixed(1);displayMax='百分制';}
+  else if(isTW){const tw=gpaToTW(gpa);displayGPA=tw;displayMax='等第制';}
+  else if(sysRaw==='4.3'){gpa=Math.min(4.3,gpa*4.3/4.0);displayGPA=gpa.toFixed(2);displayMax='/ 4.3';}
+  else if(sysRaw==='5.0'){gpa=Math.min(5.0,gpa*5.0/4.0);displayGPA=gpa.toFixed(2);displayMax='/ 5.0';}
+  else{displayGPA=gpa.toFixed(2);displayMax='/ 4.0';}
+  document.getElementById('gpa-out').textContent=displayGPA;
+  document.getElementById('gpa-system-out').textContent=displayMax;
+  document.getElementById('gpa-tag').textContent=gpaToLetter(totalPoints/totalCredits)+' · '+gpaToTW(totalPoints/totalCredits)+(isTW||is100?'':' · GPA '+(totalPoints/totalCredits).toFixed(2)+' (4.0)');
+  document.getElementById('gpa-credits').textContent=totalCredits+' 學分';
+  document.getElementById('gpa-avg').textContent=(totalScore/cnt).toFixed(1)+' 分';
+  document.getElementById('gpa-note').textContent=`共 ${cnt} 科 ${totalCredits} 學分，加權平均 ${(totalScore/cnt).toFixed(1)} 分 → ${displayGPA} ${displayMax}。`;
+  document.getElementById('gpa-result').classList.add('show');
+  // 圖表
+  const charts=document.getElementById('gpa-charts');
+  charts.style.display='flex';
+  document.getElementById('gpa-bar-chart').innerHTML=gpaBarSVG(subjects);
+  const gpa40=(totalPoints/totalCredits),maxGPA=parseFloat(sysRaw)||4.0;
+  const pct=is100?(totalScore/cnt)/100:isTW?gpa40/4.0:Math.min(gpa,maxGPA)/maxGPA;
+  const col=pct>=0.9?'#2E7D32':pct>=0.7?'#2D6CB5':pct>=0.5?'#C58A12':'#C62828';
+  document.getElementById('gpa-gauge-chart').innerHTML=gaugeSVG(pct,col,displayGPA,displayMax);
+  // 儲存供 CSV 用
+  window._gpaSubjects=subjects;window._gpaSystem=sysRaw;
+}
+
+/* ══ CSV 匯出 ══ */
+function exportGPACSV(){
+  const subs=window._gpaSubjects;
+  if(!subs||!subs.length){alert('請先計算 GPA');return;}
+  const header='科目,成績,學分,GPA(4.0),等第,台灣等第';
+  const rows=subs.map(s=>`${s.name},${s.score},${s.credits},${s.gpa.toFixed(1)},${s.letter},${gpaToTW(s.gpa)}`);
+  const csv='\uFEFF'+[header,...rows].join('\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='GPA成績表.csv';a.click();
+}
+
+/* ══ 加權平均圖表 ══ */
+function calcWeighted(){
+  const rows=document.querySelectorAll('#wt-rows>div');
+  if(!rows.length){alert('請新增項目');return;}
+  let sum=0,totalPct=0;const items=[];
+  rows.forEach(row=>{
+    const inputs=row.querySelectorAll('input');
+    const name=inputs[0].value||'項目';
+    const score=parseFloat(inputs[1].value);
+    const pct=parseFloat(inputs[2].value)||0;
+    if(isNaN(score))return;
+    const contrib=score*(pct/100);
+    sum+=contrib;totalPct+=pct;
+    items.push({name,score,pct,contrib});
+  });
+  const wtScore=totalPct>0?sum*(100/totalPct):sum;
+  const grade=wtScore>=90?'A（優）':wtScore>=80?'B（甲）':wtScore>=70?'C（乙）':wtScore>=60?'D（丙）':'F（不及格）';
+  document.getElementById('wt-out').textContent=wtScore.toFixed(1);
+  document.getElementById('wt-tag').textContent=grade;
+  document.getElementById('wt-pct').textContent=totalPct.toFixed(0)+'%'+(totalPct!==100?' (已換算為100%)':'');
+  document.getElementById('wt-grade').textContent=grade;
+  document.getElementById('wt-note').textContent=`加權總分 ${wtScore.toFixed(1)} 分（${grade}）。${totalPct!==100?'比重總和 '+totalPct+'%，已自動等比換算。':''}`;
+  document.getElementById('weighted-result').classList.add('show');
+  // 圖表
+  document.getElementById('wt-charts').style.display='flex';
+  document.getElementById('wt-chart').innerHTML=waterfallBarSVG(items,wtScore);
+}
+
+/* ══ 成績換算圖表 ══ */
+function calcGrade(){
+  const raw=parseFloat(document.getElementById('gr-score').value);
+  const from=document.getElementById('gr-from').value;
+  if(isNaN(raw)){alert('請輸入數值');return;}
+  let percent,gpa40,letter,tw;
+  if(from==='percent'){
+    percent=raw;gpa40=scoreToGPA40(raw);letter=gpaToLetter(gpa40);tw=gpaToTW(gpa40);
+  }else if(from==='gpa40'){
+    gpa40=raw;letter=gpaToLetter(raw);tw=gpaToTW(raw);
+    percent=raw>=4.0?95:raw>=3.7?87:raw>=3.3?82:raw>=3.0?77:raw>=2.7?72:raw>=2.3?67:raw>=2.0?62:50;
+  }else{
+    const lmap={'A':95,'A-':87,'B+':82,'B':77,'B-':72,'C+':67,'C':62,'D':55,'F':0};
+    percent=lmap[raw.toString().toUpperCase()]||0;
+    gpa40=scoreToGPA40(percent);letter=raw.toString().toUpperCase();tw=gpaToTW(gpa40);
+  }
+  document.getElementById('grade-thead').innerHTML='<th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--accent-mid)">百分制</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">等第</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">GPA 4.0</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">美國信等</th>';
+  document.getElementById('grade-tbody').innerHTML=`<td style="padding:10px 12px;font-size:18px;font-weight:800;color:var(--accent-mid)">${percent}分</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${tw}</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${gpa40.toFixed(1)}</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${letter}</td>`;
+  document.getElementById('gr-note').textContent=`${raw}（${from==='percent'?'百分制':from==='gpa40'?'GPA':'美國信等'}）≈ ${percent}分 / ${tw} / GPA ${gpa40.toFixed(1)} / ${letter}。各校換算標準可能不同，本結果僅供參考。`;
+  document.getElementById('grade-result').classList.add('show');
+  document.getElementById('gr-charts').style.display='flex';
+  document.getElementById('gr-chart').innerHTML=gradescaleSVG(percent);
+}
+
+/* ══ 期末目標計算 ══ */
+function calcTarget(){
+  const cur=parseFloat(document.getElementById('tg-current').value);
+  const donePct=parseFloat(document.getElementById('tg-done-pct').value)||0;
+  const finalPct=parseFloat(document.getElementById('tg-final-pct').value)||0;
+  if(isNaN(cur)||!donePct||!finalPct){alert('請填寫目前分數與各佔比');return;}
+  const total=donePct+finalPct;
+  const dR=donePct/total,fR=finalPct/total;
+  const contrib=cur*dR;
+  const needScore=(target,dR,fR)=>((target-cur*dR)/fR);
+  const pass=needScore(60,dR,fR),cScore=needScore(70,dR,fR),bScore=needScore(80,dR,fR),aScore=needScore(90,dR,fR);
+  const fmt2=v=>v>120?'無法達標（>120）':v<0?'已確保':v.toFixed(1)+'分';
+  document.getElementById('tg-pass-score').textContent=pass<=100?pass.toFixed(1)+'分以上':'需先達累積';
+  document.getElementById('tg-tag').textContent=pass>100?'⚠ 累積分不足，及格困難':pass<=0?'✅ 已確保及格，繼續衝高':'需在期末考拿 '+pass.toFixed(0)+' 分以上才及格';
+  document.getElementById('tg-a').textContent=fmt2(aScore);
+  document.getElementById('tg-b').textContent=fmt2(bScore);
+  document.getElementById('tg-c').textContent=fmt2(cScore);
+  document.getElementById('tg-contrib').textContent=contrib.toFixed(1)+' 分';
+  document.getElementById('tg-note').textContent=`目前累積 ${cur} 分（佔 ${donePct}%），已貢獻 ${contrib.toFixed(1)} 分；期末考佔 ${finalPct}%。及格需 ${fmt2(pass)}、C需 ${fmt2(cScore)}、B需 ${fmt2(bScore)}、A需 ${fmt2(aScore)}。`;
+  document.getElementById('target-result').classList.add('show');
+  document.getElementById('tg-chart').innerHTML=targetBandSVG(contrib,finalPct,{pass,c:cScore,b:bScore,a:aScore});
+}
+
+/* ══ 獎學金圖表 ══ */
+function calcScholarship(){
+  const avg=parseFloat(document.getElementById('sc-avg').value)||0;
+  const rank=parseInt(document.getElementById('sc-rank').value)||0;
+  const total=parseInt(document.getElementById('sc-total').value)||0;
+  if(!avg){alert('請填寫平均分數');return;}
+  const pct=total&&rank?((rank/total)*100).toFixed(1):null;
+  document.getElementById('sc-pct').textContent=pct?pct:'—';
+  const schemes=[{name:'書卷獎（前5%）',pass:(pct&&parseFloat(pct)<=5)||avg>=90},{name:'書卷獎（前10%）',pass:(pct&&parseFloat(pct)<=10)||avg>=87},{name:'一般獎學金（均分80+）',pass:avg>=80},{name:'校長獎（第1名）',pass:rank===1},{name:'學業優異（均分90+）',pass:avg>=90}];
+  document.getElementById('sc-list').innerHTML=schemes.map(s=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:${s.pass?'var(--green-light)':'var(--gray-50)'};border-radius:6px;margin-bottom:6px;font-size:13px"><span style="font-size:16px">${s.pass?'✅':'⬜'}</span><span style="font-weight:${s.pass?700:400};color:${s.pass?'var(--green)':'var(--muted)'}">${s.name}</span></div>`).join('');
+  const passed=schemes.filter(s=>s.pass).length;
+  document.getElementById('sc-note').textContent=`均分 ${avg} 分${pct?'，班排前 '+pct+'%':''}，符合 ${passed} 項獎學金條件。實際申請資格以各校公告為準。`;
+  document.getElementById('scholarship-result').classList.add('show');
+  document.getElementById('sc-charts').style.display='flex';
+  document.getElementById('sc-chart').innerHTML=scholarTrackSVG(avg);
+}
+
+/* ══ 讀書計畫圖表 ══ */
+function calcStudy(){
+  const dateV=document.getElementById('st-date').value;
+  const totalH=parseFloat(document.getElementById('st-total').value)||0;
+  const dailyMax=parseFloat(document.getElementById('st-daily-max').value)||4;
+  const done=parseFloat(document.getElementById('st-done').value)||0;
+  if(!dateV||!totalH){alert('請填寫考試日期與目標時數');return;}
+  const today=new Date();today.setHours(0,0,0,0);
+  const exam=new Date(dateV);
+  const days=Math.ceil((exam-today)/86400000);
+  if(days<=0){alert('考試日期需為今天之後');return;}
+  const remain=Math.max(0,totalH-done);
+  const perDay=remain/days;
+  const isFeasible=perDay<=dailyMax;
+  const progress=Math.min(100,(done/totalH*100)).toFixed(0);
+  document.getElementById('st-per-day').textContent=perDay.toFixed(1);
+  document.getElementById('st-tag').textContent=isFeasible?'計畫可行 ✓':'⚠ 每日上限不足，需調整';
+  document.getElementById('st-days').textContent=days+' 天';
+  document.getElementById('st-remain').textContent=remain+' 小時';
+  document.getElementById('st-progress').textContent=progress+'%';
+  document.getElementById('st-note').textContent=`距考試 ${days} 天，還需讀 ${remain} 小時，每天需讀 ${perDay.toFixed(1)} 小時。${isFeasible?'在每日 '+dailyMax+' 小時上限內，計畫可行。':'超過每日 '+dailyMax+' 小時上限，建議調整計畫。'}`;
+  document.getElementById('study-result').classList.add('show');
+  document.getElementById('st-charts').style.display='flex';
+  document.getElementById('st-chart').innerHTML=studyGanttSVG(done,perDay,remain,days);
+}
+
 let gpaRows=0;
 function addGPARow(name='',score='',credits=''){
   gpaRows++;
@@ -568,157 +1113,6 @@ function addGPARow(name='',score='',credits=''){
     <button onclick="document.getElementById('gpa-row-${id}').remove()" style="height:36px;border:1.5px solid var(--red-light);border-radius:6px;background:var(--red-light);color:var(--red);cursor:pointer;font-size:14px">×</button>`;
   document.getElementById('gpa-rows').appendChild(div);
 }
-function calcGPA(){
-  const rows=document.querySelectorAll('#gpa-rows>div');
-  if(!rows.length){alert('請新增科目');return;}
-  const sys=parseFloat(document.getElementById('gpa-system').value);
-  let totalPoints=0,totalCredits=0,totalScore=0,cnt=0;
-  rows.forEach(row=>{
-    const inputs=row.querySelectorAll('input');
-    const score=parseFloat(inputs[1].value);
-    const credits=parseFloat(inputs[2].value)||1;
-    if(isNaN(score))return;
-    const gpa=scoreToGPA40(score);
-    totalPoints+=gpa*credits;
-    totalCredits+=credits;
-    totalScore+=score;
-    cnt++;
-  });
-  if(!totalCredits){alert('請填寫成績');return;}
-  let gpa=(totalPoints/totalCredits);
-  if(sys===4.3) gpa=Math.min(4.3,gpa*4.3/4.0);
-  document.getElementById('gpa-out').textContent=gpa.toFixed(2);
-  document.getElementById('gpa-system-out').textContent='/ '+sys;
-  const letter=gpaToLetter(gpa);
-  document.getElementById('gpa-tag').textContent=letter+' · '+gpaToTW(gpa);
-  document.getElementById('gpa-credits').textContent=totalCredits+' 學分';
-  document.getElementById('gpa-avg').textContent=(totalScore/cnt).toFixed(1)+' 分';
-  document.getElementById('gpa-note').textContent=`共 ${totalCredits} 學分，加權 GPA ${gpa.toFixed(2)} / ${sys}（${letter}）。`;
-  document.getElementById('gpa-result').classList.add('show');
-}
-
-// ── 加權平均 ──
-let wtRows=0;
-function addWTRow(name='',score='',pct=''){
-  wtRows++;
-  const id=wtRows;
-  const div=document.createElement('div');
-  div.id='wt-row-'+id;
-  div.style.cssText='display:grid;grid-template-columns:1fr 80px 80px 40px;gap:6px;margin-bottom:6px';
-  div.innerHTML=`<input type="text" placeholder="期中考、作業…" value="${name}" style="height:36px;padding:0 10px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit">
-    <input type="number" placeholder="分數" value="${score}" min="0" max="100" inputmode="numeric" style="height:36px;padding:0 8px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;text-align:center">
-    <input type="number" placeholder="%" value="${pct}" min="0" max="100" inputmode="numeric" style="height:36px;padding:0 8px;border:1.5px solid var(--border);border-radius:6px;font-size:13px;font-family:inherit;text-align:center">
-    <button onclick="document.getElementById('wt-row-${id}').remove()" style="height:36px;border:1.5px solid var(--red-light);border-radius:6px;background:var(--red-light);color:var(--red);cursor:pointer;font-size:14px">×</button>`;
-  document.getElementById('wt-rows').appendChild(div);
-}
-function calcWeighted(){
-  const rows=document.querySelectorAll('#wt-rows>div');
-  if(!rows.length){alert('請新增項目');return;}
-  let sum=0,totalPct=0;
-  rows.forEach(row=>{
-    const inputs=row.querySelectorAll('input');
-    const score=parseFloat(inputs[1].value);
-    const pct=parseFloat(inputs[2].value)||0;
-    if(isNaN(score))return;
-    sum+=score*(pct/100);
-    totalPct+=pct;
-  });
-  const wtScore=totalPct>0?sum*(100/totalPct):sum;
-  const grade=wtScore>=90?'A（優）':wtScore>=80?'B（甲）':wtScore>=70?'C（乙）':wtScore>=60?'D（丙）':'F（不及格）';
-  document.getElementById('wt-out').textContent=wtScore.toFixed(1);
-  document.getElementById('wt-tag').textContent=grade;
-  document.getElementById('wt-pct').textContent=totalPct.toFixed(0)+'%'+(totalPct!==100?' (已換算為100%)':'');
-  document.getElementById('wt-grade').textContent=grade;
-  document.getElementById('wt-note').textContent=`加權總分 ${wtScore.toFixed(1)} 分（${grade}）。${totalPct!==100?'比重總和 '+totalPct+'%，已自動等比換算。':''}`;
-  document.getElementById('weighted-result').classList.add('show');
-}
-
-// ── 成績換算 ──
-function calcGrade(){
-  const raw=parseFloat(document.getElementById('gr-score').value);
-  const from=document.getElementById('gr-from').value;
-  if(isNaN(raw)){alert('請輸入數值');return;}
-  let percent,gpa40,letter,tw;
-  if(from==='percent'){
-    percent=raw;
-    gpa40=scoreToGPA40(raw);
-    letter=gpaToLetter(gpa40);
-    tw=gpaToTW(gpa40);
-  }else if(from==='gpa40'){
-    gpa40=raw;
-    letter=gpaToLetter(raw);
-    tw=gpaToTW(raw);
-    percent=raw>=4.0?95:raw>=3.7?87:raw>=3.3?82:raw>=3.0?77:raw>=2.7?72:raw>=2.3?67:raw>=2.0?62:50;
-  }else{
-    const lmap={'A':95,'A-':87,'B+':82,'B':77,'B-':72,'C+':67,'C':62,'D':55,'F':0};
-    percent=lmap[raw.toString().toUpperCase()]||0;
-    gpa40=scoreToGPA40(percent);
-    letter=raw.toString().toUpperCase();
-    tw=gpaToTW(gpa40);
-  }
-  document.getElementById('grade-thead').innerHTML='<th style="padding:8px 12px;text-align:left;font-size:10px;font-weight:700;color:var(--accent-mid)">百分制</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">等第</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">GPA 4.0</th><th style="padding:8px 12px;font-size:10px;font-weight:700;color:var(--accent-mid)">美國信等</th>';
-  document.getElementById('grade-tbody').innerHTML=`<td style="padding:10px 12px;font-size:18px;font-weight:800;color:var(--accent-mid)">${percent}分</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${tw}</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${gpa40.toFixed(1)}</td><td style="padding:10px 12px;text-align:center;font-size:18px;font-weight:800">${letter}</td>`;
-  document.getElementById('gr-note').textContent=`${raw}（${from==='percent'?'百分制':from==='gpa40'?'GPA':'美國信等'}）≈ ${percent}分 / ${tw} / GPA ${gpa40.toFixed(1)} / ${letter}。`;
-  document.getElementById('grade-result').classList.add('show');
-}
-
-// ── 獎學金 ──
-function calcScholarship(){
-  const avg=parseFloat(document.getElementById('sc-avg').value)||0;
-  const rank=parseInt(document.getElementById('sc-rank').value)||0;
-  const total=parseInt(document.getElementById('sc-total').value)||0;
-  if(!avg){alert('請填寫平均分數');return;}
-  const pct=total&&rank?((rank/total)*100).toFixed(1):null;
-  document.getElementById('sc-pct').textContent=pct?pct:'—';
-  const schemes=[
-    {name:'書卷獎（前5%）',pass:(pct&&parseFloat(pct)<=5)||avg>=90},
-    {name:'書卷獎（前10%）',pass:(pct&&parseFloat(pct)<=10)||avg>=87},
-    {name:'一般獎學金（均分80+）',pass:avg>=80},
-    {name:'校長獎（第1名）',pass:rank===1},
-    {name:'學業優異（均分90+）',pass:avg>=90},
-  ];
-  document.getElementById('sc-list').innerHTML=schemes.map(s=>
-    `<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:${s.pass?'var(--green-light)':'var(--gray-50)'};border-radius:6px;margin-bottom:6px;font-size:13px">
-      <span style="font-size:16px">${s.pass?'✅':'⬜'}</span>
-      <span style="font-weight:${s.pass?700:400};color:${s.pass?'var(--green)':'var(--muted)'}">${s.name}</span>
-    </div>`
-  ).join('');
-  const passed=schemes.filter(s=>s.pass).length;
-  document.getElementById('sc-note').textContent=`均分 ${avg} 分${pct?'，班排前 '+pct+'%':''}，符合 ${passed} 項獎學金條件。實際申請資格以各校公告為準。`;
-  document.getElementById('scholarship-result').classList.add('show');
-}
-
-// ── 讀書計畫 ──
-function calcStudy(){
-  const dateV=document.getElementById('st-date').value;
-  const totalH=parseFloat(document.getElementById('st-total').value)||0;
-  const dailyMax=parseFloat(document.getElementById('st-daily-max').value)||4;
-  const done=parseFloat(document.getElementById('st-done').value)||0;
-  if(!dateV||!totalH){alert('請填寫考試日期與目標時數');return;}
-  const today=new Date();today.setHours(0,0,0,0);
-  const exam=new Date(dateV);
-  const days=Math.ceil((exam-today)/86400000);
-  if(days<=0){alert('考試日期需為今天之後');return;}
-  const remain=Math.max(0,totalH-done);
-  const perDay=(remain/days).toFixed(1);
-  const isFeasible=parseFloat(perDay)<=dailyMax;
-  const progress=Math.min(100,(done/totalH*100)).toFixed(0);
-  document.getElementById('st-per-day').textContent=perDay;
-  document.getElementById('st-tag').textContent=isFeasible?'計畫可行 ✓':'⚠ 每日上限不足，需調整';
-  document.getElementById('st-days').textContent=days+' 天';
-  document.getElementById('st-remain').textContent=remain+' 小時';
-  document.getElementById('st-progress').textContent=progress+'%';
-  document.getElementById('st-note').textContent=`距考試 ${days} 天，還需讀 ${remain} 小時，每天需讀 ${perDay} 小時。${isFeasible?'在每日 '+dailyMax+' 小時上限內，計畫可行。':'超過每日 '+dailyMax+' 小時上限，建議增加每日讀書時間或降低目標時數。'}`;
-  document.getElementById('study-result').classList.add('show');
-}
-
-// 預設填入資料
-addGPARow('微積分','85','3');
-addGPARow('英文','78','2');
-addGPARow('程式設計','92','3');
-addWTRow('期末考','80','40');
-addWTRow('期中考','75','30');
-addWTRow('作業','90','30');
 
 window.addEventListener('load',()=>loadNews());
 </script>
