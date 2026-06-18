@@ -261,9 +261,45 @@ footer a:hover{color:#F3C969!important}
 .trip-tr{display:flex;align-items:center;gap:8px;padding:11px 14px;background:var(--accent-light);border-radius:10px;font-size:14px;font-weight:700;color:var(--text)}
 .trip-tr .arrow{color:var(--accent);font-size:16px}
 .trip-tr .tr-amt{margin-left:auto;color:var(--accent);font-weight:800}
+/* 圖表/文章/FAQ（CalcBox 標準） */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white,#fff)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint,#98A4B3);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted,#5A6E84);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;margin:2px 0 4px}
+.gauge-wrap svg{width:200px;max-width:100%}
+.article{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.4rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:var(--accent-light,#FFF3E0);border:1px solid var(--border,#E3E9F0);border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.faq2{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white,#fff);border:1px solid var(--border,#E3E9F0);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted,#5A6E84);transition:transform .2s}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border,#E3E9F0)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"生活費用計算機","item":"https://thecalcbox.github.io/bill/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"生活費用計算機","item":"https://thecalcbox.com/bill/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"旅遊分帳怎麼算最公平？","acceptedAnswer":{"@type":"Answer","text":"逐筆記錄每筆消費並勾選實際分攤對象，沒參與的人不分擔。系統計算每人淨收支後，用最少轉帳讓該付錢的人直接轉給該收錢的人，把還錢筆數降到最低。"}},
+{"@type":"Question","name":"台電電費怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"住宅採累進級距電價，用電越多超出部分單價越高。帳單通常兩個月一期，計費時換算成每月平均度數套用級距，夏月（6至9月）費率高於非夏月。"}},
+{"@type":"Question","name":"手機綁約和自購哪個划算？","acceptedAnswer":{"@type":"Answer","text":"比較總成本：綁約等於月租乘綁約月數加手機補貼價；自購等於手機原價加低資費月租乘同月數。通常手機越貴、綁越久，自購搭配低資費越划算。"}},
+{"@type":"Question","name":"聚餐分帳要把服務費算進去嗎？","acceptedAnswer":{"@type":"Answer","text":"要。許多餐廳加收10%服務費，應先把服務費加進總額再除以人數均分。除不盡的零頭可指定由一人多付、其餘人付整數。"}},
+{"@type":"Question","name":"折扣的8折和20% off一樣嗎？","acceptedAnswer":{"@type":"Answer","text":"結果一樣，都是付原價80%，但方向相反：台灣8折指付80%，歐美20% off指省20%。高單價商品按比例打折省更多，低單價商品定額折抵較划算。"}},
+{"@type":"Question","name":"開車的油費一年要花多少？","acceptedAnswer":{"@type":"Answer","text":"油費等於行駛里程乘油耗(L/100km)除以100再乘油價。把月油費除以月里程得到每公里成本，便於和大眾運輸比較。年度油費常超乎預期。"}},
+{"@type":"Question","name":"停車費時數計費和月租哪個划算？","acceptedAnswer":{"@type":"Answer","text":"看每月停車天數與時數。天天通勤、固定停同處的人月租通常較省；偶爾開車的人按時計費較彈性。把每月時數計費總額和月租金一比即知。"}}
+]}</script>
 </head>
 <body>
 
@@ -276,14 +312,14 @@ footer a:hover{color:#F3C969!important}
 
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
+    <button class="tab-btn active" onclick="switchTab('trip')" id="tab-trip"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 7l2 13h14l2-13M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>旅遊分帳</span></button>
     <button class="tab-btn" onclick="switchTab('electric')" id="tab-electric"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>電費</span></button>
     <button class="tab-btn" onclick="switchTab('mobile')" id="tab-mobile"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="10" y1="18" x2="14" y2="18"/></svg><span>手機費</span></button>
-    <button class="tab-btn" onclick="switchTab('trip')" id="tab-trip"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 7l2 13h14l2-13M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>旅遊分帳</span></button>
     <button class="tab-btn" onclick="switchTab('fuel')" id="tab-fuel"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16M3 12h10"/><path d="M16 8l2 2v7a2 2 0 0 0 2 2 2 2 0 0 0 2-2v-9l-3-3"/></svg><span>油耗</span></button>
     <button class="tab-btn" onclick="switchTab('parking')" id="tab-parking"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 16V8h3a2.5 2.5 0 0 1 0 5H9"/></svg><span>停車費</span></button>
     <button class="tab-btn" onclick="switchTab('discount')" id="tab-discount"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 3 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.2 7.2a2 2 0 0 1 0 2.6Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span>折扣試算</span></button>
     <button class="tab-btn" onclick="switchTab('split')" id="tab-split"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v8a2 2 0 0 0 2 2v8M5 3v6M9 3v6M19 3c-1.5 0-3 2-3 5s1 4 3 4v9"/></svg><span>分帳計算</span></button>
+    <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
   </div>
 </div>
 
@@ -292,7 +328,7 @@ footer a:hover{color:#F3C969!important}
 <p class="page-lead">免費生活費用工具：台電電費試算、油耗計算、停車費比較、手機資費、折扣試算、分帳計算機，附每日新聞。</p>
 
 
-<div class="panel active" id="panel-news">
+<div class="panel" id="panel-news">
   <div class="news-header">
     <div><div class="news-title">每日生活焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
     <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
@@ -339,6 +375,27 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9603" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>台電電費怎麼算？累進級距與夏月費率完整解析</h2>
+  <p class="lead-card">電費帳單看不懂？台電住宅電價採「累進級距」，用越多每度越貴，而且夏月（6–9月）費率更高。搞懂級距，才知道怎麼省。</p>
+  <h3>1. 累進級距：用越多越貴</h3>
+  <p>住宅電價分多段級距，每月用電量越高，超出的部分適用越高的單價。台電帳單通常兩個月一期，計費時會把總度數換算成每月平均，再套用級距，因此控制每月用電在較低級距內最省。</p>
+  <h3>2. 夏月費率（6/1–9/30）</h3>
+  <p>夏季電價明顯高於非夏月，冷氣是用電大宗。把冷氣設在 26–28 度、搭配電扇、定期清洗濾網，能有效降低夏月電費。</p>
+  <h3>3. 省電的實際做法</h3>
+  <ul>
+    <li>把高耗電時段分散，避免單月用電衝上高級距。</li>
+    <li>汰換老舊電器為能效一級，長期省電費。</li>
+    <li>待機電器拔插頭或用智慧插座，減少待機耗電。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：電價累進、用越多每度越貴 → 夏月費率更高、冷氣是大宗 → 控制每月用電在低級距、汰換高能效電器最有效。</div>
+</article>
+<section class="faq2">
+  <h2>電費常見問題</h2>
+  <details><summary>台電電費怎麼計算？</summary><div class="faq2-a">住宅採累進級距電價，用電越多超出部分單價越高。帳單通常兩個月一期，計費時換算成每月平均度數套用級距，夏月（6–9月）費率高於非夏月。</div></details>
+  <details><summary>夏月電費為什麼特別貴？</summary><div class="faq2-a">6/1–9/30 適用較高的夏月費率，加上冷氣使用量大，雙重因素使夏季電費明顯偏高。冷氣設 26–28 度搭配電扇可有效節電。</div></details>
+  <details><summary>怎麼降低電費？</summary><div class="faq2-a">控制每月用電量避免衝上高級距、汰換為能效一級電器、減少待機耗電、分散高耗電時段，都能有效降低電費。</div></details>
+</section>
 </div>
 
 <!-- 油耗 -->
@@ -365,6 +422,13 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">每月加油量</div><div class="val" id="fu-liters">—</div></div>
         <div class="result-cell"><div class="lbl">每年油費</div><div class="val red" id="fu-yearly">—</div></div>
       </div>
+      <div class="charts" id="fu-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">油費：每月 vs 每年</div>
+          <div class="chart-sub">把每月油費乘以 12，年度油費的規模常超乎想像。</div>
+          <div id="fu-chart"></div>
+        </div>
+      </div>
       <div class="result-note" id="fu-note"></div>
     </div>
     <div class="seo-box">
@@ -373,6 +437,27 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9604" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>油錢一年花多少？油耗計算與省油實用技巧</h2>
+  <p class="lead-card">每次加油幾百塊感覺還好，但乘以一年的里程，油費常是一筆可觀支出。算清楚每公里成本，才好評估換車或通勤方式。</p>
+  <h3>1. 油費怎麼算</h3>
+  <p>油費 = 行駛里程 × 油耗（L/100km）÷ 100 × 油價。油耗數字可參考車輛能耗標示或自行記錄「兩次加滿之間的里程÷加油量」實測，實際油耗常比官方數據高。</p>
+  <h3>2. 每公里成本是關鍵指標</h3>
+  <p>把月油費除以月里程，得到每公里成本，方便和大眾運輸、共享車或電動車比較。本頁同時算出每月與每年油費，年度數字往往讓人重新思考通勤方式。</p>
+  <h3>3. 省油技巧</h3>
+  <ul>
+    <li>維持穩定車速、避免急加速急煞，市區尤其耗油。</li>
+    <li>定期保養、保持正確胎壓，可改善油耗。</li>
+    <li>減少車內無謂載重、長時間怠速。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：油費＝里程×油耗×油價 → 用每公里成本和其他交通方式比較 → 平穩駕駛、正確胎壓、定期保養最省油。</div>
+</article>
+<section class="faq2">
+  <h2>油耗常見問題</h2>
+  <details><summary>油費怎麼計算？</summary><div class="faq2-a">油費＝行駛里程×油耗(L/100km)÷100×油價。油耗可用兩次加滿之間的里程除以加油量實測，通常比官方數據略高。</div></details>
+  <details><summary>怎麼比較開車和搭車哪個划算？</summary><div class="faq2-a">把月油費除以月里程算出每公里成本，再和大眾運輸票價、共享車費率比較。別忘了開車還有停車費、保養、折舊等隱形成本。</div></details>
+  <details><summary>怎麼開最省油？</summary><div class="faq2-a">維持穩定車速、避免急加速急煞、保持正確胎壓、定期保養、減少無謂載重與怠速，都能改善油耗。</div></details>
+</section>
 </div>
 
 <!-- 停車費 -->
@@ -402,6 +487,13 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">每天費用</div><div class="val" id="pk-daily">—</div></div>
         <div class="result-cell"><div class="lbl">每年費用</div><div class="val red" id="pk-yearly">—</div></div>
       </div>
+      <div class="charts" id="pk-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">停車費：每日 / 每月 / 每年</div>
+          <div class="chart-sub">不同時間尺度的停車成本，年度數字最能看出負擔。</div>
+          <div id="pk-chart"></div>
+        </div>
+      </div>
       <div class="result-note" id="pk-note"></div>
     </div>
     <div class="seo-box">
@@ -410,6 +502,26 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9605" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>停車費怎麼算划算？時數計費 vs 月租比較</h2>
+  <p class="lead-card">天天開車上班，停車費可能比油錢還貴。算清楚時數計費和月租哪個划算，一年能差好幾萬。</p>
+  <h3>1. 時數計費 vs 月租的損益平衡</h3>
+  <p>關鍵在你每月停幾天、每天停多久。偶爾開車的人按時計費較彈性；天天通勤、固定停同一處的人，月租通常更省。把「每月時數計費總額」和「月租金」一比就知道。</p>
+  <h3>2. 別漏算隱形成本</h3>
+  <p>路邊停車要算可能的超時、開單風險；私人停車場注意每日上限、跨日計費規則。月租則要確認有無固定車位、進出時間限制。</p>
+  <h3>3. 省停車費的方法</h3>
+  <ul>
+    <li>比較公有與私人停車場費率，公有通常較便宜。</li>
+    <li>查清每日收費上限，避免長時間停車被高額計費。</li>
+    <li>評估轉乘大眾運輸（停遠一點＋轉乘）是否更省。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：比較每月時數計費總額與月租金 → 天天停選月租、偶爾停按時計費 → 留意每日上限與跨日規則 → 公有停車場通常較便宜。</div>
+</article>
+<section class="faq2">
+  <h2>停車費常見問題</h2>
+  <details><summary>時數計費和月租哪個划算？</summary><div class="faq2-a">看每月停車天數與時數。天天通勤、固定停同處的人月租通常較省；偶爾開車的人按時計費較彈性。把每月時數計費總額和月租金一比即知。</div></details>
+  <details><summary>停車費有每日上限嗎？</summary><div class="faq2-a">多數停車場設有每日收費上限，但規則不一，跨日可能重新計費。長時間停車前務必查清上限與跨日計費方式，避免高額費用。</div></details>
+</section>
 </div>
 
 <!-- 手機費 -->
@@ -447,6 +559,26 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9606" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>手機綁約划算嗎？綁約 vs 自購手機完整比較</h2>
+  <p class="lead-card">電信業者的「0 元手機」綁約方案看似划算，但攤開總成本，自購手機＋選低資費常常更省。學會算總費用，才不會被話術影響。</p>
+  <h3>1. 比的是「總成本」不是月租</h3>
+  <p>綁約總成本 = 月租 × 綁約月數 ＋ 手機補貼價；自購方案 = 手機原價 ＋ 低資費月租 × 同月數。把兩者總額一比，就知道哪個划算。常見結果是：手機越貴、綁越久，自購＋低資費越有利。</p>
+  <h3>2. 綁約的隱形限制</h3>
+  <p>綁約期內換約、解約要付違約金；方案綁定特定資費，未必是你需要的流量。自購手機則自由選擇資費、隨時換約，彈性高。</p>
+  <h3>3. 怎麼選</h3>
+  <ul>
+    <li>用量大、需要高階機：比較綁約補貼與自購的總成本差。</li>
+    <li>用量小：自購中階機＋大省資費（如純上網低月租）通常最省。</li>
+    <li>注意首綁與續約優惠常不同，續約未必有手機補貼。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：比總成本（月租×月數＋手機價）不比月租 → 手機越貴綁越久、自購＋低資費越省 → 綁約有違約金與資費綁定、彈性較低。</div>
+</article>
+<section class="faq2">
+  <h2>手機資費常見問題</h2>
+  <details><summary>手機綁約和自購哪個划算？</summary><div class="faq2-a">比較總成本：綁約＝月租×綁約月數＋手機補貼價；自購＝手機原價＋低資費月租×同月數。通常手機越貴、綁越久，自購搭配低資費越划算。</div></details>
+  <details><summary>綁約解約要付多少違約金？</summary><div class="faq2-a">違約金依合約而定，常與剩餘綁約月數及補貼金額相關。綁約前務必確認解約條款，避免中途換約付出高額違約金。</div></details>
+</section>
 </div>
 
 <!-- 折扣試算 -->
@@ -471,10 +603,33 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">省了多少</div><div class="val green" id="dc-saved">—</div></div>
         <div class="result-cell"><div class="lbl">折扣幅度</div><div class="val" id="dc-rate">—</div></div>
       </div>
+      <div class="charts" id="dc-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">原價 vs 折後價</div>
+          <div class="chart-sub">綠色縮短的部分就是你省下的金額。</div>
+          <div id="dc-chart"></div>
+        </div>
+      </div>
       <div class="result-note" id="dc-note"></div>
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9607" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>折扣怎麼算？打折、折抵、滿額折一次看懂</h2>
+  <p class="lead-card">「8 折」「第二件 6 折」「滿千折百」算法都不同，店家標示也常讓人混淆。搞懂折扣計算，才不會被「假優惠」騙。</p>
+  <h3>1. 台式「打折」和歐美「off」相反</h3>
+  <p>台灣的「8 折」是付原價的 80%（省 20%）；歐美的「20% off」是省 20%（付 80%）。雖然結果一樣，但數字方向相反，看到「X 折」和「X% off」要分清楚。本工具支援多種折扣輸入方式，避免算錯。</p>
+  <h3>2. 折抵 vs 打折</h3>
+  <p>「折抵 100 元」是直接從金額減固定數；「打 9 折」是按比例。高單價商品打折省更多，低單價商品定額折抵反而划算，視情況而定。</p>
+  <h3>3. 留意「假優惠」</h3>
+  <p>有些「特價」是先抬高原價再打折。看到大折扣時，可比對平時售價或其他通路，確認是真省還是行銷數字。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：台灣「8折」＝付80%、歐美「20% off」＝省20%，方向相反 → 高單價打折省更多、低單價定額折抵划算 → 慎防先抬價再打折的假優惠。</div>
+</article>
+<section class="faq2">
+  <h2>折扣常見問題</h2>
+  <details><summary>「8 折」和「20% off」一樣嗎？</summary><div class="faq2-a">結果一樣（都是付原價 80%），但表達方向相反：台灣「8 折」指付 80%；歐美「20% off」指省 20%。本工具支援不同輸入方式避免混淆。</div></details>
+  <details><summary>打折和折抵哪個划算？</summary><div class="faq2-a">看商品單價。高單價商品按比例打折省更多；低單價商品用定額折抵（如折 100 元）反而划算。可用本工具分別試算比較。</div></details>
+</section>
 </div>
 
 <!-- 分帳 -->
@@ -499,13 +654,41 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">含服務費總額</div><div class="val" id="sp-with-svc">—</div></div>
         <div class="result-cell"><div class="lbl">多付者付</div><div class="val" id="sp-extra-out">—</div></div>
       </div>
+      <div class="charts" id="sp-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">分帳組成：消費 vs 服務費</div>
+          <div class="chart-sub">服務費佔總額的比例，常被忽略的隱形支出。</div>
+          <div class="gauge-wrap" id="sp-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>消費金額</span><span><i style="background:#C58A12"></i>服務費</span></div>
+        </div>
+      </div>
       <div class="result-note" id="sp-note"></div>
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9608" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>聚餐分帳怎麼算？服務費與均分一次搞定</h2>
+  <p class="lead-card">餐廳聚餐後分帳，常忘了加服務費、或除不盡誰多付。這工具自動算含服務費總額、均分每人金額，並處理除不盡的零頭。</p>
+  <h3>1. 別忘了 10% 服務費</h3>
+  <p>許多餐廳會加收 10% 服務費，分帳時要先把服務費算進總額再均分。本工具讓你輸入服務費比例，自動算出含服務費的總金額與每人應付。</p>
+  <h3>2. 除不盡的零頭怎麼處理</h3>
+  <p>總額除以人數常除不盡。工具會把多出的零頭指定由一人多付幾元，其餘人付整數，避免「每人 333.33 元」這種難湊的金額。</p>
+  <h3>3. 公平分帳的小技巧</h3>
+  <ul>
+    <li>有人沒喝酒、沒點貴的，可改用「旅遊分帳」逐項分攤更公平。</li>
+    <li>先算好每人金額，用電子支付收款最快。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：先把服務費加進總額再均分 → 零頭指定一人多付、其餘付整數 → 消費差異大時改用旅遊分帳逐項分攤更公平。</div>
+</article>
+<section class="faq2">
+  <h2>分帳常見問題</h2>
+  <details><summary>分帳要把服務費算進去嗎？</summary><div class="faq2-a">要。許多餐廳加收 10% 服務費，應先把服務費加進總額再除以人數均分。本工具可輸入服務費比例自動計算含服務費的每人金額。</div></details>
+  <details><summary>金額除不盡怎麼辦？</summary><div class="faq2-a">本工具會把除不盡的零頭指定由一人多付幾元、其餘人付整數，避免出現難以湊出的小數金額。</div></details>
+  <details><summary>每個人點的不一樣怎麼分？</summary><div class="faq2-a">若消費差異大（有人沒喝酒、沒點貴的），建議改用「旅遊分帳」工具逐筆勾選實際分攤對象，比平均分帳更公平。</div></details>
+</section>
 </div>
 
-<div class="panel" id="panel-trip">
+<div class="panel active" id="panel-trip">
   <div class="tool-card"><div class="card-head">
     <h2>旅遊分帳結算</h2>
     <p>多人、多筆消費、誰代墊都能算，自動算出最簡轉帳方案</p>
@@ -544,6 +727,27 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9618" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>旅遊分帳怎麼算最公平？AA 制與最少轉帳全攻略</h2>
+  <p class="lead-card">幾個人出去玩，誰先付了什麼、最後誰該還誰多少，常常一筆爛帳。這個工具幫你記錄每筆消費、自動算出每人收支，並用「最少轉帳」把還錢次數降到最低。</p>
+  <h3>1. 為什麼要用「分攤對象」而不是平均</h3>
+  <p>旅遊中不是每筆都全員均分——有人沒參加某餐、有人沒搭某趟車。這工具讓你為每筆消費勾選實際的分攤對象，只有真正享用的人才分擔，比「全部平均」公平得多。</p>
+  <h3>2. 最少轉帳：還錢不必繞圈</h3>
+  <p>5 個人互相有欠款時，若一筆筆還會很多次轉帳。本工具用貪婪演算法計算<b>最少轉帳筆數</b>：把所有人的淨收支算出來後，讓「該付錢的」直接轉給「該收錢的」，總筆數降到最低。例如 A 欠 B、B 欠 C，系統會直接讓 A 轉給 C，省一手。</p>
+  <h3>3. 分帳的實用原則</h3>
+  <ul>
+    <li><b>當下記帳</b>：每筆消費當下就記，避免事後忘記誰付的。</li>
+    <li><b>大筆指定付款人</b>：住宿、包車等大額由一人先刷，再用工具分攤，省去現場湊錢。</li>
+    <li><b>善用收款碼</b>：算出轉帳方案後，用 LINE Pay／街口等收款連結一次結清。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：逐筆記錄、勾選實際分攤對象 → 系統算每人收支與最少轉帳 → 大筆由一人先付再分攤 → 用電子支付一次結清。</div>
+</article>
+<section class="faq2">
+  <h2>旅遊分帳常見問題</h2>
+  <details><summary>每筆消費可以只分攤給部分人嗎？</summary><div class="faq2-a">可以。本工具讓你為每筆消費勾選實際分攤對象，沒參與的人不分擔，比全員平均更公平，特別適合有人缺席某些行程的情況。</div></details>
+  <details><summary>「最少轉帳」是什麼意思？</summary><div class="faq2-a">當多人互相有欠款時，系統會計算每人的淨收支，讓該付錢的人直接轉給該收錢的人，把總轉帳筆數降到最低，不必一筆筆繞圈還錢。</div></details>
+  <details><summary>分帳結果可以分享給朋友嗎？</summary><div class="faq2-a">可以截圖轉帳方案分享到 LINE 群組，再用 LINE Pay、街口等收款連結一次結清，省去現場湊零錢。</div></details>
+</section>
 </div>
 </div>
 
@@ -587,6 +791,29 @@ const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
 const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
 let newsLoaded=false;
 const fmt=v=>Math.round(v).toLocaleString();
+
+/* ══ 純 SVG 圖表（CalcBox 圖表規範） ══ */
+function donutSVG(segs,centerTop,centerBot){
+  const W=200,H=200,cx=100,cy=100,r=70,sw=26;
+  const total=segs.reduce((a,s)=>a+s.value,0)||1;
+  const C=2*Math.PI*r;let off=0,ring='';
+  segs.forEach(s=>{const frac=s.value/total;const len=frac*C;
+    ring+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"><title>${s.label} ${(frac*100).toFixed(1)}%</title></circle>`;off+=len;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="組成比例甜甜圈圖">${ring}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" fill="#9AA9BA">${centerTop||''}</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="17" font-weight="800" fill="#1B3A5C">${centerBot||''}</text></svg>`;
+}
+function compareBarSVG(items){
+  const W=600,hasNote=items.some(i=>i.note),rowH=hasNote?54:40,padL=4,labelH=18,barH=20;
+  const H=items.length*rowH+8;
+  const maxV=Math.max(...items.map(i=>Math.abs(i.value)))||1,barMax=W-padL-150;
+  let rows='';
+  items.forEach((it,i)=>{const y=i*rowH+8;const w=Math.max((Math.abs(it.value)/maxV)*barMax,2);
+    rows+=`<text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#1B3A5C">${it.label}</text>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${it.color}"><title>${it.label} ${it.disp||it.value}</title></rect>`;
+    rows+=`<text x="${(padL+barMax+8)}" y="${y+labelH+14}" font-size="12" font-weight="800" fill="${it.color}">${it.disp||it.value}</text>`;
+    if(it.note)rows+=`<text x="${padL}" y="${y+labelH+barH+11}" font-size="9.5" fill="#9AA9BA">${it.note}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="對比長條圖">${rows}</svg>`;
+}
 
 function switchTab(id){
   const panel=document.getElementById('panel-'+id), tab=document.getElementById('tab-'+id);
@@ -967,6 +1194,11 @@ function calcFuel(){
   document.getElementById('fu-liters').textContent=liters.toFixed(1)+' 公升';
   document.getElementById('fu-yearly').textContent=fmt(monthly*12)+' 元';
   document.getElementById('fu-note').textContent=`每月行駛 ${fmt(km)} 公里，油耗 ${l100}L/100km，每月耗油 ${liters.toFixed(1)} 公升，油費約 ${fmt(monthly)} 元，每年約 ${fmt(monthly*12)} 元。`;
+  document.getElementById('fu-charts').style.display='flex';
+  document.getElementById('fu-chart').innerHTML=compareBarSVG([
+    {label:'每月油費',value:monthly,color:'#2D6CB5',disp:fmt(monthly)+'元'},
+    {label:'每年油費',value:monthly*12,color:'#C58A12',disp:fmt(monthly*12)+'元'}
+  ]);
   document.getElementById('fuel-result').classList.add('show');
 }
 // 停車費
@@ -995,6 +1227,12 @@ function calcParking(){
   document.getElementById('pk-daily').textContent=fmt(daily)+' 元';
   document.getElementById('pk-yearly').textContent=fmt(monthly*12)+' 元';
   document.getElementById('pk-note').textContent=note;
+  document.getElementById('pk-charts').style.display='flex';
+  document.getElementById('pk-chart').innerHTML=compareBarSVG([
+    {label:'每日',value:daily,color:'#388E3C',disp:fmt(daily)+'元'},
+    {label:'每月',value:monthly,color:'#2D6CB5',disp:fmt(monthly)+'元'},
+    {label:'每年',value:monthly*12,color:'#C58A12',disp:fmt(monthly*12)+'元'}
+  ]);
   document.getElementById('parking-result').classList.add('show');
 }
 // 手機費
@@ -1095,6 +1333,11 @@ function calcDiscount(){
   document.getElementById('dc-saved').textContent=fmt(saved)+' 元';
   document.getElementById('dc-rate').textContent=((saved/price)*100).toFixed(1)+'%off';
   document.getElementById('dc-note').textContent=`原價 ${fmt(price)} 元，折後 ${fmt(final)} 元，省了 ${fmt(saved)} 元（${((saved/price)*100).toFixed(1)}%）。`;
+  document.getElementById('dc-charts').style.display='flex';
+  document.getElementById('dc-chart').innerHTML=compareBarSVG([
+    {label:'原價',value:price,color:'#9AA9BA',disp:fmt(price)+'元'},
+    {label:'折後價',value:final,color:'#2E7D32',disp:fmt(final)+'元',note:`省下 ${fmt(saved)} 元`}
+  ]);
   document.getElementById('discount-result').classList.add('show');
 }
 // 分帳
@@ -1111,6 +1354,12 @@ function calcSplit(){
   document.getElementById('sp-with-svc').textContent=fmt(withSvc)+' 元';
   document.getElementById('sp-extra-out').textContent=extra>0?fmt(extraPerson)+' 元':'同 '+fmt(each)+' 元';
   document.getElementById('sp-note').textContent=`含 ${svcPct}% 服務費總計 ${fmt(withSvc)} 元，${people} 人分帳每人 ${fmt(each)} 元${extra>0?`（多付者付 ${fmt(extraPerson)} 元）`:''}。`;
+  const svcAmt=withSvc-total;
+  document.getElementById('sp-charts').style.display='flex';
+  document.getElementById('sp-chart').innerHTML=donutSVG([
+    {label:'消費金額',value:total,color:'#2D6CB5'},
+    {label:'服務費',value:svcAmt,color:'#C58A12'}
+  ],'服務費佔',(svcAmt/withSvc*100).toFixed(0)+'%');
   document.getElementById('split-result').classList.add('show');
 }
 
