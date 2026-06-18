@@ -18,647 +18,128 @@
 <meta name="apple-mobile-web-app-title" content="退休理財">
 <meta name="theme-color" content="#1B3A5C">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<title>退休理財計算機｜勞保退休金、複利、定期定額、4%法則試算 — CalcBox</title>
+<title>退休理財計算機｜勞保年金、勞退新制、退休缺口、4%法則、定期定額 — CalcBox</title>
 <link rel="canonical" href="https://thecalcbox.com/retire/">
-<meta name="description" content="免費退休理財工具：勞保老年給付、複利計算、定期定額、退休金缺口（4%法則）、儲蓄目標，附每日財經新聞。">
-<meta name="keywords" content="勞保退休金試算,複利計算機,定期定額試算,4%法則,退休金計算,儲蓄計算">
+<meta name="description" content="免費退休理財工具：勞保老年年金、勞退新制個人專戶、複利、定期定額含通膨與三情境、退休金缺口、儲蓄目標與退休金來源比例圖。">
+<meta name="keywords" content="勞保退休金試算,勞退新制試算,退休缺口,4%法則,定期定額通膨,退休金來源比例,複利計算機">
 <meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
-<meta property="og:title" content="退休理財計算機｜勞保退休金、複利、定期定額、4%法則試算 — CalcBox">
-<meta property="og:description" content="免費退休理財工具：勞保老年給付、複利計算、定期定額、退休金缺口（4%法則）、儲蓄目標，附每日財經新聞。">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="CalcBox">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:url" content="https://thecalcbox.com/retire/">
-<meta property="og:image" content="https://thecalcbox.com/og/retire.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="退休理財｜勞保退休金、複利、4%法則">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://thecalcbox.com/og/retire.png">
-<meta name="twitter:title" content="退休理財計算機｜勞保退休金、複利、定期定額、4%法則試算 — CalcBox">
-<meta name="twitter:description" content="免費退休理財工具：勞保老年給付、複利計算、定期定額、退休金缺口（4%法則）、儲蓄目標，附每日財經新聞。">
+<meta property="og:title" content="退休理財計算機｜勞保年金、勞退新制、退休缺口、4%法則 — CalcBox">
+<meta property="og:description" content="一次試算勞保年金、勞退個人專戶、退休金缺口、定期定額通膨調整與悲觀/中性/樂觀三情境。">
+<meta property="og:type" content="website"><meta property="og:site_name" content="CalcBox"><meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.com/retire/"><meta property="og:image" content="https://thecalcbox.com/og/retire.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="退休理財｜勞保年金、勞退新制、退休缺口">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://thecalcbox.com/og/retire.png"><meta name="twitter:title" content="退休理財計算機｜勞保年金、勞退新制、退休缺口 — CalcBox"><meta name="twitter:description" content="免費退休理財試算：勞保、勞退、4%法則、定期定額與退休缺口一次算清楚。">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"WebApplication","name":"勞保老年給付試算","url":"https://thecalcbox.com/retire/#laborpension","description":"勞保年金與勞退月領合併試算，含所得替代率。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"複利計算機","url":"https://thecalcbox.com/retire/#compound","description":"單筆投資複利成長試算，附72法則翻倍年數。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"定期定額試算","url":"https://thecalcbox.com/retire/#dca","description":"每月定額投資長期累積試算。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"退休金缺口試算","url":"https://thecalcbox.com/retire/#gap","description":"4%法則計算退休目標、準備進度與每月應投入金額。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"儲蓄目標計算","url":"https://thecalcbox.com/retire/#saving","description":"目標金額反推每月儲蓄額，含利息複利。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+{"@type":"WebApplication","name":"勞保老年年金試算","url":"https://thecalcbox.com/retire/#laborpension","description":"清楚標示適用年資、平均月投保薪資、請領年齡與提前/延後請領調整。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"勞退新制個人專戶試算","url":"https://thecalcbox.com/retire/#laboraccount","description":"依薪資、雇主提繳6%、個人自提、報酬率與年期估算勞退專戶終值與月領。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"複利計算機","url":"https://thecalcbox.com/retire/#compound","description":"單筆投資複利成長試算，含72法則與三情境。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"定期定額試算","url":"https://thecalcbox.com/retire/#dca","description":"每月投入長期累積，含通膨調整、實質購買力與悲觀中性樂觀三情境。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"退休金缺口試算","url":"https://thecalcbox.com/retire/#gap","description":"每月想花多少、已有資產、勞保勞退與保險收入，反推還差多少與每月需投入。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"儲蓄目標計算","url":"https://thecalcbox.com/retire/#saving","description":"目標金額反推每月儲蓄額，含利息複利與達標進度。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
 ]}
 </script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"退休理財計算機","item":"https://thecalcbox.com/retire/"}]}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"4%法則是什麼？","acceptedAnswer":{"@type":"Answer","text":"退休後每年從投資組合提領4%，本金理論上可支撐30年以上。退休目標＝年支出×25。"}},
-{"@type":"Question","name":"勞保年金怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"月領金額＝平均月投保薪資×年資×1.55%。投保薪資45,800元、年資35年約月領24,852元。"}},
-{"@type":"Question","name":"72法則是什麼？","acceptedAnswer":{"@type":"Answer","text":"72÷年報酬率≈資產翻倍所需年數。年報酬7%約10.3年翻倍。"}}
+{"@type":"Question","name":"勞保退休金試算要看哪些條件？","acceptedAnswer":{"@type":"Answer","text":"主要看平均月投保薪資、勞保年資與請領年齡。平均月投保薪資通常以最高60個月平均計，年資滿15年可請領老年年金，提前或延後請領會依規定減給或增給。"}},
+{"@type":"Question","name":"勞保和勞退新制有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"勞保老年年金是社會保險給付，依投保薪資、年資與公式計算；勞退新制是個人專戶，雇主每月提繳至少6%，勞工可自願提繳最高6%，兩者可同時領取。"}},
+{"@type":"Question","name":"4%法則可以直接用在台灣嗎？","acceptedAnswer":{"@type":"Answer","text":"4%法則源自美國歷史市場資料，台灣退休者仍需考量台股/美股配置、匯率、通膨、醫療長照支出與稅制差異，保守者可用3%到3.5%提領率評估。"}},
+{"@type":"Question","name":"退休缺口怎麼算？","acceptedAnswer":{"@type":"Answer","text":"先估退休後每月想花多少，再扣除勞保、勞退、保險年金等固定收入，剩下需要由投資或儲蓄支應的金額，再用提領率反推需要準備的資產。"}},
+{"@type":"Question","name":"定期定額為什麼要看通膨？","acceptedAnswer":{"@type":"Answer","text":"名目金額會隨投資成長，但退休時真正重要的是購買力。扣除通膨後的實質資產，才能評估未來生活是否足夠。"}}
 ]}
 </script>
 <style>
-:root{
-  --accent:#4A3490;--accent-light:#EFEAF9;--accent-mid:#6A4FB5;
-  --sub:#C58A12;--sub-light:#FDF3DD;
-  --green:#2E7D32;--green-light:#E8F5E9;
-  --red:#C62828;--red-light:#FFEBEE;
-  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
-  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
-  --border:#E3E9F0;--border-light:#F0F3F7;
-  --white:#fff;--radius:12px;--radius-sm:8px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;scroll-behavior:smooth}
-body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
-header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
-.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
-.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
-.hdr-tag{font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:3px 11px;border-radius:20px;font-weight:800}
-.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
-.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
-.tab-inner::-webkit-scrollbar{display:none}
-.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
-.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
-.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
-.panel{display:none}.panel.active{display:block}
-.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
-.card-head{padding:1.25rem 1.5rem 0}
-.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
-.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
-.card-body{padding:0 1.5rem 1.5rem}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-.fields.one{grid-template-columns:1fr}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
-.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
-.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(106,79,181,.1)}
-.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
-.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
-.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
-.result.show{display:block}
-.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
-.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
-.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
-.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
-.tag-green{background:var(--green-light);color:var(--green)}
-.tag-red{background:var(--red-light);color:var(--red)}
-.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
-.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
-.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
-.result-cell .val{font-size:15px;font-weight:700}
-.result-cell .val.red{color:var(--red)}
-.result-cell .val.green{color:var(--green)}
-.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
-.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
-.news-title{font-size:17px;font-weight:800}
-.news-meta{font-size:12px;color:var(--hint)}
-.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}
-.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
-.refresh-btn:disabled{opacity:.4;cursor:not-allowed}
-.spin{display:inline-block;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.news-list{display:flex;flex-direction:column;gap:10px}
-.news-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;cursor:pointer;transition:all .15s}
-.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}
-.news-card-inner{display:flex;gap:14px;align-items:flex-start}
-.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.news-content{flex:1;min-width:0}
-.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}
-.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}
-.news-summary{font-size:12px;color:var(--muted);line-height:1.6}
-.news-date{font-size:11px;color:var(--hint);margin-top:5px}
-.news-skeleton{display:flex;flex-direction:column;gap:10px}
-.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
-.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}
-.skel-line.short{width:35%}.skel-line.mid{width:65%}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}
-.seo-box{margin-top:1.25rem;padding:1.25rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm)}
-.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}
-.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}
-.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}
-.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}
-.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}
-.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
-footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
-footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
-footer a{color:rgba(255,255,255,.92);text-decoration:none}
-@media(max-width:520px){
-  .wrap{padding:1.25rem 1rem 3rem}
-  .fields{grid-template-columns:1fr}
-  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
-  .tab-btn{padding:0 11px;font-size:12px}
-}
-
-.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
-
-/* ── 回到主頁按鈕 ── */
-.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
-  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
-  border-radius:8px;border:1px solid rgba(255,255,255,.22);
-  transition:color .15s,background .15s,border-color .15s}
-.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
-.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
-  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
-.back-btn:hover svg{transform:translateX(-2px)}
-
-/* ── Brand unification ── */
-header{background:#0E2A47!important}
-footer{background:#0E2A47!important}
-footer p{color:rgba(255,255,255,.78)!important}
-footer a{color:rgba(255,255,255,.92)!important}
-footer a:hover{color:#F3C969!important}
-.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
-
-/* ── 相關工具 ── */
-.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
-.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.related-card{
-  display:flex;align-items:center;gap:12px;
-  text-decoration:none;
-  background:var(--rs,#F4F6F9);
-  border:1.5px solid transparent;
-  border-left:4px solid var(--rc,#888);
-  border-radius:12px;padding:14px 14px 14px 16px;
-  transition:box-shadow .18s,transform .18s,background .18s;
-  -webkit-tap-highlight-color:transparent;
-}
-.related-card:hover,.related-card:active{
-  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
-  transform:translateY(-2px);
-  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
-}
-.related-card-body{flex:1;min-width:0}
-.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
-.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
-.related-card-tags span{
-  font-size:10px;font-weight:600;
-  color:var(--rc,#555);
-  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
-  padding:2px 7px;border-radius:5px;
-  white-space:nowrap;
-}
-.related-card-go{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  background:var(--rc,#888);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:17px;line-height:1;
-  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
-  transition:transform .18s;
-}
-.related-card:hover .related-card-go{transform:translateX(3px)}
-@media(max-width:560px){
-  .related-grid{grid-template-columns:1fr}
-  .related-card-sub{white-space:normal}
-}
-
-/* ── 資料來源標註 ── */
-.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
-.source-note b{color:#7A8EA0;font-weight:600}
-
-.guide-links{max-width:820px;margin:1.2rem auto 0;padding:0 1.25rem;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.guide-links a{font-size:12.5px;font-weight:700;color:#9A6A0C;background:#FBEED3;border:1px solid #E8D5A8;text-decoration:none;padding:7px 16px;border-radius:99px;transition:transform .15s}
-.guide-links a:hover{transform:translateY(-1px)}
-
-/* ── 按鈕下方廣告位 ── */
-.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
-.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
-.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
-
-.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
-.tab-btn span{display:inline-block}
+:root{--accent:#4A3490;--accent-light:#EFEAF9;--accent-mid:#6A4FB5;--sub:#C58A12;--sub-light:#FDF3DD;--green:#2E7D32;--green-light:#E8F5E9;--red:#C62828;--red-light:#FFEBEE;--blue:#2D6CB5;--gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;--text:#16212E;--muted:#5A6E84;--hint:#98A4B3;--border:#E3E9F0;--border-light:#F0F3F7;--white:#fff;--radius:12px;--radius-sm:8px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}header{background:#0E2A47!important;padding:0 1.5rem;position:sticky;top:0;z-index:300}.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}.logo .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:8px;border:1px solid rgba(255,255,255,.22);transition:color .15s,background .15s,border-color .15s}.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}.back-btn:hover svg{transform:translateX(-2px)}.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}.tab-inner::-webkit-scrollbar{display:none}.tab-btn{flex-shrink:0;padding:0 13px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}.page-h1{font-size:22px;font-weight:800;color:#1B3A5C;margin:0 0 1rem;letter-spacing:-.2px}.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}.panel{display:none}.panel.active{display:block}.tool-card,.news-card,.seo-box,.article .lead-card,.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}.card-head{padding:1.25rem 1.5rem 0}.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}.card-body{padding:0 1.5rem 1.5rem}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.fields.three{grid-template-columns:repeat(3,1fr)}.fields.one{grid-template-columns:1fr}.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(106,79,181,.1)}.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}.result.show{display:block}.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}.tag-green{background:var(--green-light);color:var(--green)}.tag-red{background:var(--red-light);color:var(--red)}.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}.result-cell .val{font-size:15px;font-weight:700}.result-cell .val.red{color:var(--red)}.result-cell .val.green{color:var(--green)}.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}.warn-box{font-size:12.5px;color:#7A4F00;background:#FFF7E8;border:1px solid #F0D4A4;border-radius:8px;padding:10px 12px;line-height:1.7;margin:.8rem 0}.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100);border-radius:8px}.seo-box{margin-top:1.25rem;padding:1.25rem;border-radius:var(--radius-sm);box-shadow:none}.seo-box h3{font-size:14px;font-weight:700;margin-bottom:8px}.seo-box p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:8px}.seo-faq{margin-top:10px;border-top:1px solid var(--border-light);padding-top:10px}.seo-faq-q{font-size:13px;font-weight:600;margin-bottom:3px;margin-top:8px}.seo-faq-a{font-size:12px;color:var(--muted);line-height:1.7}.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}.chart-box svg{width:100%;height:auto;display:block;overflow:visible}.chart-legend{display:flex;gap:16px;justify-content:center;margin-top:8px;flex-wrap:wrap}.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}.article{max-width:820px;margin:2rem auto 0;padding:0}.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.6rem 0 .7rem;letter-spacing:-.3px}.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}.article ul{margin:0 0 1rem 1.2rem;padding:0}.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}.article .lead-card{background:var(--accent-light);border-color:#DDD2F5;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8;box-shadow:none}.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px}.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B}.faq2{max-width:820px;margin:2rem auto 0;padding:0}.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}.faq2 details{margin-bottom:8px;overflow:hidden;box-shadow:none}.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}.faq2 summary::-webkit-details-marker{display:none}.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted);transition:transform .2s}.faq2 details[open] summary::after{content:'−'}.faq2 details[open] summary{border-bottom:1px solid var(--border)}.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}.news-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}.news-title{font-size:17px;font-weight:800}.news-meta{font-size:12px;color:var(--hint)}.refresh-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;font-size:11px;font-weight:700;border:1.5px solid var(--border);border-radius:6px;background:var(--white);cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;text-transform:uppercase;letter-spacing:.04em}.refresh-btn:hover{border-color:var(--accent);color:var(--accent)}.refresh-btn:disabled{opacity:.4;cursor:not-allowed}.spin{display:inline-block;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.news-list{display:flex;flex-direction:column;gap:10px}.news-card{padding:1rem 1.25rem;cursor:pointer;transition:all .15s}.news-card:hover{box-shadow:0 4px 12px rgba(14,42,71,.08);border-color:var(--accent-mid)}.news-card-inner{display:flex;gap:14px;align-items:flex-start}.news-num{flex-shrink:0;width:26px;height:26px;border-radius:5px;background:var(--sub-light);color:var(--sub);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}.news-content{flex:1;min-width:0}.news-src{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:5px;background:var(--sub-light);color:var(--sub);letter-spacing:.04em}.news-headline{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:4px}.news-summary{font-size:12px;color:var(--muted);line-height:1.6}.news-date{font-size:11px;color:var(--hint);margin-top:5px}.skel-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}.skel-line{height:11px;background:var(--gray-100);border-radius:4px;margin-bottom:8px;animation:pulse 1.4s ease-in-out infinite}.skel-line.short{width:35%}.skel-line.mid{width:65%}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.news-error{text-align:center;padding:2.5rem 1rem;color:var(--muted);font-size:13px}.guide-links{max-width:820px;margin:1.2rem auto 0;padding:0 1.25rem;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.guide-links a{font-size:12.5px;font-weight:700;color:#9A6A0C;background:#FBEED3;border:1px solid #E8D5A8;text-decoration:none;padding:7px 16px;border-radius:99px;transition:transform .15s}.guide-links a:hover{transform:translateY(-1px)}.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}.source-note b{color:#7A8EA0;font-weight:600}.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem .5rem}.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.related-card{display:flex;align-items:center;gap:12px;text-decoration:none;background:var(--rs,#F4F6F9);border:1.5px solid transparent;border-left:4px solid var(--rc,#888);border-radius:12px;padding:14px 14px 14px 16px;transition:box-shadow .18s,transform .18s,background .18s;-webkit-tap-highlight-color:transparent}.related-card:hover{box-shadow:0 6px 18px -8px rgba(14,42,71,.18);transform:translateY(-2px)}.related-card-body{flex:1;min-width:0}.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}.related-card-tags span{font-size:10px;font-weight:600;color:var(--rc,#555);background:color-mix(in srgb,var(--rc,#888) 10%,#fff);padding:2px 7px;border-radius:5px;white-space:nowrap}.related-card-go{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:var(--rc,#888);color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1}footer{background:#0E2A47!important;padding:1.5rem;text-align:center;margin-top:2rem}footer p{font-size:12px;color:rgba(255,255,255,.78)!important;line-height:1.9}footer a{color:rgba(255,255,255,.92)!important;text-decoration:none}footer a:hover{color:#F3C969!important}@media(max-width:640px){.fields,.fields.three{grid-template-columns:1fr}.wrap{padding:1.25rem 1rem 3rem}.card-head,.card-body{padding-left:1rem;padding-right:1rem}.tab-btn{padding:0 11px;font-size:12px}.related-grid{grid-template-columns:1fr}}
 </style>
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"退休理財計算機","item":"https://thecalcbox.github.io/retire/"}]}</script>
 </head>
 <body>
-
-<header>
-  <div class="hdr">
-    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 退休理財</span></a>
-    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
-  </div>
-</header>
-
-<div class="tab-bar">
-  <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>財經新聞</span></button>
-    <button class="tab-btn" onclick="switchTab('laborpension')" id="tab-laborpension"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6Z"/></svg><span>勞保退休金</span></button>
-    <button class="tab-btn" onclick="switchTab('compound')" id="tab-compound"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg><span>複利計算</span></button>
-    <button class="tab-btn" onclick="switchTab('dca')" id="tab-dca"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>定期定額</span></button>
-    <button class="tab-btn" onclick="switchTab('gap')" id="tab-gap"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>退休缺口</span></button>
-    <button class="tab-btn" onclick="switchTab('saving')" id="tab-saving"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><circle cx="10" cy="13" r="1"/><circle cx="14" cy="13" r="1"/><path d="M6 8 4 6M18 8l2-2"/></svg><span>儲蓄目標</span></button>
-  </div>
-</div>
-
+<header><div class="hdr"><a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 退休理財</span></a><a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a></div></header>
+<div class="tab-bar"><div class="tab-inner">
+<button class="tab-btn active" onclick="switchTab('laborpension')" id="tab-laborpension"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6Z"/></svg><span>勞保年金</span></button>
+<button class="tab-btn" onclick="switchTab('laboraccount')" id="tab-laboraccount"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5M4 10v8M9 10v8M15 10v8M20 10v8M3 21h18"/></svg><span>勞退新制</span></button>
+<button class="tab-btn" onclick="switchTab('compound')" id="tab-compound"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="20" x2="6" y2="12"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="18" y1="20" x2="18" y2="9"/></svg><span>複利計算</span></button>
+<button class="tab-btn" onclick="switchTab('dca')" id="tab-dca"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>定期定額</span></button>
+<button class="tab-btn" onclick="switchTab('gap')" id="tab-gap"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg><span>退休缺口</span></button>
+<button class="tab-btn" onclick="switchTab('saving')" id="tab-saving"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="7"/><circle cx="10" cy="13" r="1"/><circle cx="14" cy="13" r="1"/><path d="M6 8 4 6M18 8l2-2"/></svg><span>儲蓄目標</span></button>
+<button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>財經新聞</span></button>
+</div></div>
 <div class="wrap">
-<h1 class="page-h1">退休理財計算機</h1>
-<p class="page-lead">免費退休理財工具：勞保老年給付、複利計算、定期定額、退休金缺口（4%法則）、儲蓄目標，附每日財經新聞。</p>
+<h1 class="page-h1">退休理財計算機</h1><p class="page-lead">免費退休理財工具：勞保老年年金、勞退新制個人專戶、複利、定期定額含通膨與三情境、退休金缺口、儲蓄目標，並附退休金來源比例圖與每日財經新聞。</p>
 
-
-<div class="panel active" id="panel-news">
-  <div class="news-header">
-    <div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div>
-    <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
-  </div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <div id="news-container" style="margin-top:1.25rem"></div>
-  <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  <p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。投資有風險，請諮詢專業人員。</p>
-</div>
-
-<!-- 勞保退休金 -->
-<div class="panel" id="panel-laborpension">
-  <div class="tool-card"><div class="card-head">
-    <h2>勞保老年給付試算</h2><p>依勞保年金公式試算月領金額（擇優：平均月投保薪資 × 年資 × 1.55%）</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>平均月投保薪資（元）</label>
-        <select id="lp-salary"><option value="30300">30,300</option><option value="36300">36,300</option><option value="40100">40,100</option><option value="43900">43,900</option><option value="45800" selected>45,800（上限）</option></select></div>
-      <div class="field"><label>預計勞保年資（年）</label><input type="number" id="lp-years" placeholder="例：35" inputmode="numeric"></div>
-      <div class="field"><label>勞退專戶累積（萬元）</label><input type="number" id="lp-pension" placeholder="例：200" value="0" inputmode="numeric"></div>
-      <div class="field"><label>勞退月領年期</label><select id="lp-payout"><option value="20" selected>20 年</option><option value="24">24 年</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcLP()">試算退休月領</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="laborpension-result">
-      <div class="result-top"><div class="result-number" id="lp-total">—</div><div class="result-unit">元 / 月（合計）</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">勞保年金</div><div class="val" id="lp-labor">—</div></div>
-        <div class="result-cell"><div class="lbl">勞退月領</div><div class="val" id="lp-lp">—</div></div>
-        <div class="result-cell"><div class="lbl">所得替代率（以投保薪資計）</div><div class="val" id="lp-ratio">—</div></div>
-      </div>
-      <div class="result-note" id="lp-note"></div>
-      <div class="result-disclaimer">簡化試算，實際給付依勞保局核定，可至勞保局 e 化服務系統查詢精確數字。</div>
-    </div>
-    <div class="seo-box">
-      <h3>勞保 vs 勞退差在哪？</h3>
-      <p>勞保老年給付：公式為平均月投保薪資 × 年資 × 1.55%，活多久領多久。勞退新制：雇主每月提撥 6% 進個人專戶，可自提最高 6%（免稅），退休後月領或一次領。兩筆錢互相獨立、都領得到。</p>
-      <div class="seo-faq">
-        <div class="seo-faq-q">Q：幾歲可以領勞保年金？</div>
-        <div class="seo-faq-a">A：法定請領年齡已逐步調至 65 歲（47 年次以後出生者）。可提前 5 年減額請領（每提前 1 年減 4%）或延後 5 年增額（每延 1 年加 4%）。</div>
-      </div>
-    </div>
+<div class="panel active" id="panel-laborpension">
+  <div class="tool-card"><div class="card-head"><h2>勞保老年年金試算</h2><p>清楚標示「適用年資、平均月投保薪資、請領年齡」，並依勞保年金兩式擇優與提前/延後請領調整。</p></div><div class="card-body">
+    <div class="fields three"><div class="field"><label>平均月投保薪資（最高60個月平均）</label><select id="lp-salary"><option value="30300">30,300</option><option value="36300">36,300</option><option value="40100">40,100</option><option value="43900">43,900</option><option value="45800" selected>45,800（常見上限）</option></select></div><div class="field"><label>勞保年資（年，可小數）</label><input type="number" id="lp-years" placeholder="例：35" step="0.1" inputmode="decimal"></div><div class="field"><label>請領年齡</label><input type="number" id="lp-claim-age" value="65" inputmode="numeric"></div></div>
+    <div class="fields"><div class="field"><label>法定請領年齡</label><select id="lp-legal-age"><option value="60">60歲</option><option value="61">61歲</option><option value="62">62歲</option><option value="63">63歲</option><option value="64">64歲</option><option value="65" selected>65歲（多數年次）</option></select></div><div class="field"><label>預估其他固定月收入（選填）</label><input type="number" id="lp-other" value="0" inputmode="numeric"></div></div>
+    <button class="calc-btn" onclick="calcLP()">試算勞保年金</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="laborpension-result"><div class="result-top"><div class="result-number" id="lp-total">—</div><div class="result-unit">元 / 月（勞保年金）</div></div><span class="tag" id="lp-tag"></span><div class="result-grid"><div class="result-cell"><div class="lbl">擇優公式一</div><div class="val" id="lp-f1">—</div></div><div class="result-cell"><div class="lbl">擇優公式二</div><div class="val green" id="lp-f2">—</div></div><div class="result-cell"><div class="lbl">年齡調整</div><div class="val" id="lp-age-adj">—</div></div><div class="result-cell"><div class="lbl">含其他收入</div><div class="val" id="lp-with-other">—</div></div></div><div class="result-note" id="lp-note"></div><div class="result-disclaimer">年資未滿 15 年通常無法請領老年年金，可能改領一次給付。實際資格、出生年次請領年齡與金額仍以勞保局核定為準。</div></div>
+    <div class="seo-box"><h3>勞保年金試算必看三個條件</h3><p>勞保老年年金不是只看「退休時薪水」，而是看平均月投保薪資、保險年資與請領年齡。平均月投保薪資以加保期間最高 60 個月平均計，老年年金給付有兩個公式並擇優：①平均月投保薪資 × 年資 × 0.775% + 3,000；②平均月投保薪資 × 年資 × 1.55%。</p><div class="seo-faq"><div class="seo-faq-q">Q：提前領會少多少？</div><div class="seo-faq-a">A：符合年資但未達法定請領年齡時，可最多提前 5 年，每提前 1 年減給 4%，最多減 20%；延後請領則每延後 1 年增給 4%，最多增 20%。</div></div></div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <article class="article"><h2>勞保老年年金：不要只看月領數字，要看你是否真的適用</h2><p class="lead-card">很多退休試算只給一個月領金額，但最容易誤解的其實是「我能不能用這個公式」。勞保年金必須同時看年資、平均月投保薪資與請領年齡，少看一項就可能高估退休收入。</p><h3>1. 適用年資是第一關</h3><p>老年年金通常以保險年資滿 15 年作為重要門檻。若年資不足，試算出來的月領年金就沒有實際意義，應改查一次給付或其他請領方式。因此本頁會在結果中特別標示年資是否達年金門檻。</p><h3>2. 平均月投保薪資不是實領薪資</h3><p>勞保年金採「平均月投保薪資」，不是你的實際月薪。它與投保級距有關，且以加保期間最高 60 個月平均計算。若長期高薪但早期投保較低，或公司投保級距不等於實薪，退休金會與想像有落差。</p><h3>3. 請領年齡會永久影響金額</h3><p>提前請領會減給，延後請領會增給，而且調整後比例通常會固定，不是之後到法定年齡就恢復。若健康狀況、工作收入與現金流允許，是否延後領取值得仔細比較。</p><div class="lead-card">📌 <b>一句話總結</b>：先確認年資滿不滿 → 再看最高 60 個月平均投保薪資 → 最後依請領年齡調整，才是接近真實的勞保年金估算。</div></article>
+  <section class="faq2"><h2>勞保年金常見問題</h2><details><summary>勞保年金公式是什麼？</summary><div class="faq2-a">老年年金給付依兩式擇優：平均月投保薪資 × 年資 × 0.775% + 3,000 元，或平均月投保薪資 × 年資 × 1.55%。年資長、投保薪資高者通常第二式較有利。</div></details><details><summary>平均月投保薪資怎麼看？</summary><div class="faq2-a">依勞保局說明，平均月投保薪資按加保期間最高 60 個月之月投保薪資平均計算，不一定等於實領薪資或最後一個月薪水。</div></details><details><summary>提前領勞保年金划算嗎？</summary><div class="faq2-a">提前領可增加現金流，但每提前 1 年減給 4%，最多減 20%，且減給比例通常固定。若不急用現金，應比較提前領的現金流與永久減額的差異。</div></details><details><summary>勞保年金足夠退休嗎？</summary><div class="faq2-a">多數人勞保年金只能覆蓋部分生活費，還需要勞退新制、個人儲蓄、投資或保險年金補足。建議再使用「退休缺口」分頁合併估算。</div></details></section>
 </div>
 
-<!-- 複利 -->
+<div class="panel" id="panel-laboraccount">
+  <div class="tool-card"><div class="card-head"><h2>勞退新制個人專戶試算</h2><p>估算雇主提繳 6%、個人自提 0–6%、薪資成長與專戶收益後，退休時可累積多少。</p></div><div class="card-body">
+    <div class="fields three"><div class="field"><label>目前勞退專戶餘額（萬元）</label><input type="number" id="la-balance" value="0" inputmode="decimal"></div><div class="field"><label>目前月薪（元）</label><input type="number" id="la-wage" placeholder="例：50000" inputmode="numeric"></div><div class="field"><label>距離請領年數</label><input type="number" id="la-years" value="25" inputmode="numeric"></div></div>
+    <div class="fields three"><div class="field"><label>雇主提繳率（%）</label><input type="number" id="la-employer" value="6" step="0.1"></div><div class="field"><label>個人自提率（0–6%）</label><input type="number" id="la-voluntary" value="0" step="0.5"></div><div class="field"><label>年化收益率（%）</label><input type="number" id="la-return" value="3" step="0.1"></div></div>
+    <div class="fields"><div class="field"><label>薪資年成長率（%）</label><input type="number" id="la-wage-growth" value="1.5" step="0.1"></div><div class="field"><label>月領換算年期</label><select id="la-payout"><option value="15">15 年</option><option value="20" selected>20 年</option><option value="24">24 年</option></select></div></div>
+    <button class="calc-btn" onclick="calcLA()">試算勞退專戶</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9015" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="laboraccount-result"><div class="result-top"><div class="result-number" id="la-final">—</div><div class="result-unit">萬元（退休專戶終值）</div></div><span class="tag" id="la-tag"></span><div class="result-grid"><div class="result-cell"><div class="lbl">雇主累積提繳</div><div class="val" id="la-emp-total">—</div></div><div class="result-cell"><div class="lbl">個人自提累積</div><div class="val" id="la-vol-total">—</div></div><div class="result-cell"><div class="lbl">投資收益估算</div><div class="val green" id="la-gain">—</div></div><div class="result-cell"><div class="lbl">換算月領</div><div class="val green" id="la-monthly">—</div></div></div><div class="charts" id="la-charts" style="display:none"><div class="chart-box"><div class="chart-title">勞退專戶組成比例</div><div class="chart-sub">比較既有餘額、雇主提繳、個人自提與收益對終值的貢獻。</div><div id="la-chart"></div></div></div><div class="result-note" id="la-note"></div><div class="result-disclaimer">勞退新制實際給付以個人專戶累積金額為準；年滿 60 歲可請領，提繳年資滿 15 年以上可選月退休金或一次退休金，未滿 15 年通常僅一次領。</div></div>
+    <div class="seo-box"><h3>勞退新制不是勞保，這是一個屬於你的個人帳戶</h3><p>勞退新制由雇主每月提繳不低於工資 6% 到勞工退休金個人專戶，勞工也可自願提繳最高 6%。自提金額有稅務優惠，且退休金專戶參與收益分配；但實際可領多少，仍以個人專戶累積總額為準。</p><div class="seo-faq"><div class="seo-faq-q">Q：自提 6% 一定划算嗎？</div><div class="seo-faq-a">A：自提有節稅與強迫儲蓄效果，但流動性低，需衡量現金流、緊急預備金與其他投資報酬機會。</div></div></div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <article class="article"><h2>勞退新制個人專戶：退休金第二支柱，關鍵在提繳時間</h2><p class="lead-card">勞保像是社會保險，勞退新制則像一個跟著你走的退休帳戶。工作越早開始提繳、薪資越高、自提比例越高，退休時專戶累積就越可觀。</p><h3>1. 雇主 6% 是基本盤</h3><p>適用勞基法的勞工，雇主應按月提繳不低於工資 6% 到個人專戶。換工作時，專戶不是由公司保管，而是跟著勞工本人累積，因此不同公司的提繳可以延續。</p><h3>2. 自提 0–6% 是加速器</h3><p>個人自提最高 6%，可享稅務優惠，也會一起參與收益分配。對容易花掉現金的人，自提有強迫儲蓄功能；但若你還沒有緊急預備金，或有高利債務，應先處理現金流風險。</p><h3>3. 月領與一次領要看年資與需求</h3><p>勞退新制年滿 60 歲才可請領。提繳年資滿 15 年以上通常可選月退休金或一次退休金；未滿 15 年則多以一次領為主。實際核發金額仍以勞保局個人專戶試算與核定為準。</p><div class="lead-card">📌 <b>一句話總結</b>：勞退新制是個人專戶 → 雇主 6% 是基礎 → 自提 6% 可加速但要看現金流 → 請領時再比較月領與一次領。</div></article>
+  <section class="faq2"><h2>勞退新制常見問題</h2><details><summary>勞退新制可以和勞保一起領嗎？</summary><div class="faq2-a">可以。勞保老年年金與勞退新制個人專戶是兩套制度，彼此獨立，符合資格時可同時成為退休收入來源。</div></details><details><summary>公司提繳 6% 是從我薪水扣嗎？</summary><div class="faq2-a">雇主法定提繳 6% 是雇主負擔，不是從員工薪水扣。若你選擇個人自提，才會從薪資中另行提繳。</div></details><details><summary>勞退自提有什麼好處？</summary><div class="faq2-a">主要是強迫儲蓄、增加專戶累積、參與收益分配與薪資所得稅優惠。但缺點是資金流動性較低，退休前不易動用。</div></details><details><summary>勞退專戶報酬率該填多少？</summary><div class="faq2-a">可用 2%–4% 做保守估算，並用悲觀/中性/樂觀不同假設觀察落差。實際收益每年不同，不能保證固定報酬。</div></details></section>
+</div>
+
 <div class="panel" id="panel-compound">
-  <div class="tool-card"><div class="card-head">
-    <h2>複利計算機</h2><p>單筆投入的複利成長試算，看見時間如何放大你的錢</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>本金（萬元）</label><input type="number" id="cp-principal" placeholder="例：100" inputmode="decimal"></div>
-      <div class="field"><label>年報酬率（%）</label><input type="number" id="cp-rate" step="0.1" value="7" inputmode="decimal"></div>
-      <div class="field"><label>投資年期</label><select id="cp-years"><option value="10">10 年</option><option value="20" selected>20 年</option><option value="30">30 年</option><option value="40">40 年</option></select></div>
-      <div class="field"><label>複利頻率</label><select id="cp-freq"><option value="1" selected>每年</option><option value="12">每月</option></select></div>
-    </div>
-    <button class="calc-btn" onclick="calcCompound()">計算複利</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="compound-result">
-      <div class="result-top"><div class="result-number" id="cp-final">—</div><div class="result-unit">萬元（期末資產）</div></div>
-      <span class="tag" id="cp-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">投入本金</div><div class="val" id="cp-in">—</div></div>
-        <div class="result-cell"><div class="lbl">利息收益</div><div class="val green" id="cp-gain">—</div></div>
-        <div class="result-cell"><div class="lbl">成長倍數</div><div class="val" id="cp-x">—</div></div>
-        <div class="result-cell"><div class="lbl">翻倍所需（72法則）</div><div class="val" id="cp-double">—</div></div>
-      </div>
-      <div class="result-note" id="cp-note"></div>
-      <div class="result-disclaimer">試算假設報酬率固定，實際投資報酬有波動，過去績效不代表未來。</div>
-    </div>
-    <div class="seo-box">
-      <h3>複利是什麼？72 法則一秒估翻倍</h3>
-      <p>複利＝利滾利，本金產生的利息繼續產生利息。72 法則：72 ÷ 年報酬率 ≈ 資產翻倍年數。年報酬 7% 約 10.3 年翻倍，30 年可變約 7.6 倍。越早開始，時間複利效果越驚人。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：年報酬率填多少合理？</div><div class="seo-faq-a">A：全球股市長期年化約 7–9%（含通膨前），台灣定存約 1.6%，債券約 3–4%。保守試算建議用 5–6%。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
+  <div class="tool-card"><div class="card-head"><h2>複利計算機</h2><p>單筆投入的複利成長試算，加入悲觀/中性/樂觀三情境與 72 法則。</p></div><div class="card-body"><div class="fields"><div class="field"><label>本金（萬元）</label><input type="number" id="cp-principal" placeholder="例：100" inputmode="decimal"></div><div class="field"><label>中性年報酬率（%）</label><input type="number" id="cp-rate" step="0.1" value="7" inputmode="decimal"></div><div class="field"><label>投資年期</label><select id="cp-years"><option value="10">10 年</option><option value="20" selected>20 年</option><option value="30">30 年</option><option value="40">40 年</option></select></div><div class="field"><label>三情境差距（±%）</label><input type="number" id="cp-spread" value="3" step="0.5"></div></div><button class="calc-btn" onclick="calcCompound()">計算複利</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><div class="result" id="compound-result"><div class="result-top"><div class="result-number" id="cp-final">—</div><div class="result-unit">萬元（中性期末資產）</div></div><span class="tag" id="cp-tag"></span><div class="result-grid"><div class="result-cell"><div class="lbl">悲觀情境</div><div class="val red" id="cp-bad">—</div></div><div class="result-cell"><div class="lbl">中性情境</div><div class="val" id="cp-mid">—</div></div><div class="result-cell"><div class="lbl">樂觀情境</div><div class="val green" id="cp-good">—</div></div><div class="result-cell"><div class="lbl">翻倍所需（72法則）</div><div class="val" id="cp-double">—</div></div></div><div class="charts" id="cp-charts" style="display:none"><div class="chart-box"><div class="chart-title">單筆投資三情境</div><div class="chart-sub">同一筆本金在不同報酬率假設下，長期結果可能差很多。</div><div id="cp-chart"></div><div class="chart-legend"><span><i style="background:#C62828"></i>悲觀</span><span><i style="background:#2D6CB5"></i>中性</span><span><i style="background:#2E7D32"></i>樂觀</span></div></div></div><div class="result-note" id="cp-note"></div><div class="result-disclaimer">試算假設報酬率固定，實際投資有波動。悲觀/中性/樂觀僅為敏感度分析，不代表預測。</div></div><div class="seo-box"><h3>複利試算為什麼要看三情境？</h3><p>退休規劃不能只看單一報酬率。年化 7% 與 4% 看似只差 3 個百分點，但拉長 20、30 年後，終值差距可能是數倍。三情境能幫你避免用過度樂觀的假設規劃退休。</p></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div>
+  <article class="article"><h2>複利不是魔法，是時間與紀律的結果</h2><p class="lead-card">複利最可怕的地方，不是第一年賺多少，而是第十年、第二十年之後，利息也開始幫你賺利息。</p><h3>1. 72 法則快速估翻倍</h3><p>72 ÷ 年報酬率 ≈ 資產翻倍所需年數。年化 6% 約 12 年翻倍，年化 8% 約 9 年翻倍。這不是精準公式，但非常適合快速建立直覺。</p><h3>2. 長期假設要保守</h3><p>退休規劃不是追求最好看的數字，而是要避免退休後錢不夠。若你的投資組合波動較大，建議同時看悲觀情境，確認低報酬下是否仍有安全邊際。</p><h3>3. 複利需要不中斷</h3><p>頻繁進出、恐慌賣出、短期借用退休資金，都會破壞複利曲線。最有效的做法通常是設定合理配置，讓時間幫你工作。</p><div class="lead-card">📌 <b>一句話總結</b>：用 72 法則建立直覺 → 用三情境避免過度樂觀 → 讓本金留在市場中，複利才有時間發揮。</div></article>
+  <section class="faq2"><h2>複利計算常見問題</h2><details><summary>複利和單利差在哪？</summary><div class="faq2-a">單利只用本金計息，複利則讓利息加入本金繼續計息。時間越長，複利與單利的差距越大。</div></details><details><summary>年報酬率填多少比較合理？</summary><div class="faq2-a">保守退休規劃可用 4%–6%，股票比重高可另看 7%–8% 情境，但需承受波動。不要只用最高報酬率做退休目標。</div></details><details><summary>複利頻率越高越好嗎？</summary><div class="faq2-a">理論上頻率越高終值略高，但長期差異通常小於「報酬率、投入金額、持有時間」的影響。</div></details><details><summary>複利試算可以保證退休金嗎？</summary><div class="faq2-a">不能。複利試算是規劃工具，實際投資會有年度波動、稅費、匯率與通膨影響。</div></details></section>
 </div>
 
-<!-- 定期定額 -->
 <div class="panel" id="panel-dca">
-  <div class="tool-card"><div class="card-head">
-    <h2>定期定額試算</h2><p>每月固定投入的長期累積試算，小錢也能滾出大資產</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>每月投入（元）</label><input type="number" id="d-monthly" placeholder="例：10000" inputmode="numeric"></div>
-      <div class="field"><label>年報酬率（%）</label><input type="number" id="d-rate" step="0.1" value="7" inputmode="decimal"></div>
-      <div class="field"><label>投資年期</label><select id="d-years"><option value="10">10 年</option><option value="20" selected>20 年</option><option value="30">30 年</option></select></div>
-      <div class="field"><label>已有本金（萬元，可0）</label><input type="number" id="d-initial" value="0" inputmode="numeric"></div>
-    </div>
-    <button class="calc-btn" onclick="calcDCA()">試算定期定額</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="dca-result">
-      <div class="result-top"><div class="result-number" id="d-final">—</div><div class="result-unit">萬元（期末資產）</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">總投入</div><div class="val" id="d-in">—</div></div>
-        <div class="result-cell"><div class="lbl">投資收益</div><div class="val green" id="d-gain">—</div></div>
-        <div class="result-cell"><div class="lbl">收益佔比</div><div class="val" id="d-pct">—</div></div>
-      </div>
-      <div class="result-note" id="d-note"></div>
-      <div class="result-disclaimer">試算假設報酬率固定。定期定額能平均成本，但不保證獲利。</div>
-    </div>
-    <div class="seo-box">
-      <h3>定期定額的威力</h3>
-      <p>每月 1 萬、年報酬 7%、30 年 → 總投入 360 萬，期末約 1,176 萬，收益是本金的 2.3 倍。重點不是金額大小，是「開始得夠早＋從不中斷」。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：市場下跌要停扣嗎？</div><div class="seo-faq-a">A：不要。下跌時同樣金額買到更多單位數，正是定期定額「微笑曲線」攤平成本的精髓，停扣反而破壞策略。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
+  <div class="tool-card"><div class="card-head"><h2>定期定額試算：含通膨與敏感度分析</h2><p>每月固定投入，試算名目資產、扣通膨後購買力，並比較悲觀/中性/樂觀三情境。</p></div><div class="card-body"><div class="fields three"><div class="field"><label>每月投入（元）</label><input type="number" id="d-monthly" placeholder="例：10000" inputmode="numeric"></div><div class="field"><label>已有本金（萬元）</label><input type="number" id="d-initial" value="0" inputmode="decimal"></div><div class="field"><label>投資年期</label><select id="d-years"><option value="10">10 年</option><option value="20" selected>20 年</option><option value="30">30 年</option></select></div></div><div class="fields three"><div class="field"><label>中性年報酬率（%）</label><input type="number" id="d-rate" step="0.1" value="7" inputmode="decimal"></div><div class="field"><label>通膨率（%）</label><input type="number" id="d-inflation" step="0.1" value="2" inputmode="decimal"></div><div class="field"><label>情境差距（±%）</label><input type="number" id="d-spread" value="3" step="0.5"></div></div><button class="calc-btn" onclick="calcDCA()">試算定期定額</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><div class="result" id="dca-result"><div class="result-top"><div class="result-number" id="d-final">—</div><div class="result-unit">萬元（中性名目資產）</div></div><div class="result-grid"><div class="result-cell"><div class="lbl">扣通膨後購買力</div><div class="val green" id="d-real">—</div></div><div class="result-cell"><div class="lbl">總投入</div><div class="val" id="d-in">—</div></div><div class="result-cell"><div class="lbl">投資收益</div><div class="val green" id="d-gain">—</div></div><div class="result-cell"><div class="lbl">實質年化報酬</div><div class="val" id="d-real-rate">—</div></div></div><div class="result-grid"><div class="result-cell"><div class="lbl">悲觀</div><div class="val red" id="d-bad">—</div></div><div class="result-cell"><div class="lbl">中性</div><div class="val" id="d-mid">—</div></div><div class="result-cell"><div class="lbl">樂觀</div><div class="val green" id="d-good">—</div></div></div><div class="charts" id="d-charts" style="display:none"><div class="chart-box"><div class="chart-title">定期定額資產累積：名目 vs 本金</div><div class="chart-sub">同時觀察總資產、累積投入本金與扣通膨後購買力。</div><div id="d-chart"></div><div class="chart-legend"><span><i style="background:#2D6CB5"></i>名目資產</span><span><i style="background:#2E7D32"></i>實質購買力</span><span><i style="background:#9AA9BA"></i>累積本金</span></div></div><div class="chart-box"><div class="chart-title">報酬率敏感度分析</div><div class="chart-sub">報酬率上下調整後，期末資產差距。</div><div id="d-sens-chart"></div></div></div><div class="result-note" id="d-note"></div><div class="result-disclaimer">通膨會侵蝕購買力，名目資產不等於退休時能買到的生活水準。報酬率敏感度僅為假設分析。</div></div><div class="seo-box"><h3>定期定額不能只看名目金額</h3><p>每月投入 1 萬、20 年後變成幾百萬很振奮，但退休規劃更重要的是「那時候的購買力」。因此本頁同時計算名目資產與扣通膨後的實質資產，避免高估退休安全感。</p></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div>
+  <article class="article"><h2>定期定額：你真正要累積的是未來購買力</h2><p class="lead-card">定期定額最適合退休規劃，因為它把「要不要進場」變成「每月固定執行」。但只看名目金額會忽略通膨，退休時真正重要的是能不能支撐生活。</p><h3>1. 通膨會讓同樣金額變薄</h3><p>20 年後的 500 萬，不等於今天的 500 萬。若通膨長期 2%，20 年後的購買力約會打折。因此本頁會把期末資產折算成今日購買力，讓退休目標更實際。</p><h3>2. 報酬率差一點，結果差很多</h3><p>年化 4%、7%、10% 在短期看起來差距不大，但 20 或 30 年後可能差數百萬。敏感度分析能幫你看見退休計畫對報酬率假設有多依賴。</p><h3>3. 下跌時停扣，常常是最大錯誤</h3><p>定期定額的核心是低點買到更多單位。若市場下跌就停扣，等於放棄攤低成本的機會。前提是你投資的是分散、長期可持有的標的。</p><div class="lead-card">📌 <b>一句話總結</b>：定期定額看長期 → 一定要扣通膨 → 用悲觀/中性/樂觀檢查計畫是否夠穩。</div></article>
+  <section class="faq2"><h2>定期定額常見問題</h2><details><summary>定期定額一定賺錢嗎？</summary><div class="faq2-a">不一定。定期定額能分散買進時點，但不保證獲利。標的品質、投資期間、費用與是否能持續執行都很重要。</div></details><details><summary>為什麼要加入通膨？</summary><div class="faq2-a">退休後花的是購買力，不是帳面數字。通膨會讓未來同樣金額能買的東西變少，因此需要看實質資產。</div></details><details><summary>悲觀/中性/樂觀要怎麼設定？</summary><div class="faq2-a">可以用中性報酬率上下 2%–3% 做敏感度。例如中性 7%，悲觀 4%，樂觀 10%，觀察期末資產是否仍能達標。</div></details><details><summary>每月投入要隨薪資增加嗎？</summary><div class="faq2-a">建議隨薪資或通膨逐年提高投入金額，避免多年後投入金額實質縮水。若收入增加，優先提高退休投資比例。</div></details></section>
 </div>
 
-<!-- 退休缺口 -->
 <div class="panel" id="panel-gap">
-  <div class="tool-card"><div class="card-head">
-    <h2>退休金缺口試算（4% 法則）</h2><p>算出退休需要多少錢、現在的準備進度，與每月該補多少</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>目前年齡</label><input type="number" id="g-age" placeholder="例：35" inputmode="numeric"></div>
-      <div class="field"><label>預計退休年齡</label><select id="g-retire"><option value="55">55</option><option value="60" selected>60</option><option value="65">65</option></select></div>
-      <div class="field"><label>退休後每月想花（元）</label><input type="number" id="g-spend" placeholder="例：50000" inputmode="numeric"></div>
-      <div class="field"><label>已準備退休金（萬元）</label><input type="number" id="g-saved" value="0" inputmode="numeric"></div>
-      <div class="field"><label>預估投資年報酬（%）</label><input type="number" id="g-rate" step="0.1" value="6" inputmode="decimal"></div>
-      <div class="field"><label>預估月領勞保勞退（元）</label><input type="number" id="g-pension" value="20000" inputmode="numeric"></div>
-    </div>
-    <button class="calc-btn" onclick="calcGap()">試算退休缺口</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="gap-result">
-      <div class="result-top"><div class="result-number" id="g-target">—</div><div class="result-unit">萬元（退休目標）</div></div>
-      <span class="tag" id="g-tag"></span>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">準備進度</div><div class="val" id="g-progress">—</div></div>
-        <div class="result-cell"><div class="lbl">資金缺口</div><div class="val red" id="g-gap">—</div></div>
-        <div class="result-cell"><div class="lbl">每月需投入</div><div class="val green" id="g-monthly">—</div></div>
-        <div class="result-cell"><div class="lbl">距離退休</div><div class="val" id="g-years">—</div></div>
-      </div>
-      <div class="result-note" id="g-note"></div>
-      <div class="result-disclaimer">4%法則為美國研究經驗值，實際提領率請依個人風險承受度調整。</div>
-    </div>
-    <div class="seo-box">
-      <h3>4% 法則是什麼？</h3>
-      <p>退休後每年從投資組合提領 4%，理論上本金可支撐 30 年以上。反推：退休目標＝年支出 × 25。每月想花 5 萬（扣掉勞保勞退月領 2 萬，需自籌 3 萬）→ 年支出 36 萬 × 25 ＝ 900 萬。</p>
-      <div class="seo-faq"><div class="seo-faq-q">Q：通膨怎麼辦？</div><div class="seo-faq-a">A：4%法則已假設提領金額逐年隨通膨調升。保守者可改用 3.5% 提領率（目標＝年支出×28.6）。</div></div>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
+  <div class="tool-card"><div class="card-head"><h2>退休金缺口試算（含 4% 法則提醒）</h2><p>輸入退休後每月想花多少、已有資產與固定收入，算出退休目標、還差多少與每月需投入。</p></div><div class="card-body"><div class="fields three"><div class="field"><label>目前年齡</label><input type="number" id="g-age" placeholder="例：35" inputmode="numeric"></div><div class="field"><label>預計退休年齡</label><input type="number" id="g-retire" value="65" inputmode="numeric"></div><div class="field"><label>退休後每月想花（今日幣值）</label><input type="number" id="g-spend" placeholder="例：60000" inputmode="numeric"></div></div><div class="fields three"><div class="field"><label>已準備資產（萬元）</label><input type="number" id="g-saved" value="0" inputmode="decimal"></div><div class="field"><label>預估投資年報酬（%）</label><input type="number" id="g-rate" step="0.1" value="6"></div><div class="field"><label>通膨率（%）</label><input type="number" id="g-inflation" step="0.1" value="2"></div></div><div class="fields three"><div class="field"><label>預估勞保月領</label><input type="number" id="g-labor" value="20000" inputmode="numeric"></div><div class="field"><label>預估勞退月領</label><input type="number" id="g-labor-retire" value="8000" inputmode="numeric"></div><div class="field"><label>保險/其他月收入</label><input type="number" id="g-insurance" value="0" inputmode="numeric"></div></div><div class="fields"><div class="field"><label>安全提領率</label><select id="g-withdraw"><option value="0.03">3%（保守）</option><option value="0.035">3.5%</option><option value="0.04" selected>4%（常見法則）</option></select></div><div class="field"><label>情境差距（±%）</label><input type="number" id="g-spread" value="2" step="0.5"></div></div><div class="warn-box">提醒：4% 法則源自美國市場歷史回測，不一定完全適用台灣退休環境。若有美股/外幣資產，還需考量匯率；若醫療、長照、租金或通膨高於預期，建議用 3%–3.5% 做保守版。</div><button class="calc-btn" onclick="calcGap()">試算退休缺口</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9013" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><div class="result" id="gap-result"><div class="result-top"><div class="result-number" id="g-target">—</div><div class="result-unit">萬元（退休目標）</div></div><span class="tag" id="g-tag"></span><div class="result-grid"><div class="result-cell"><div class="lbl">退休時每月支出</div><div class="val" id="g-future-spend">—</div></div><div class="result-cell"><div class="lbl">固定月收入</div><div class="val green" id="g-fixed">—</div></div><div class="result-cell"><div class="lbl">退休缺口</div><div class="val red" id="g-gap">—</div></div><div class="result-cell"><div class="lbl">每月需投入</div><div class="val green" id="g-monthly">—</div></div></div><div class="result-grid"><div class="result-cell"><div class="lbl">悲觀需投入</div><div class="val red" id="g-bad">—</div></div><div class="result-cell"><div class="lbl">中性需投入</div><div class="val" id="g-mid">—</div></div><div class="result-cell"><div class="lbl">樂觀需投入</div><div class="val green" id="g-good">—</div></div></div><div class="charts" id="g-charts" style="display:none"><div class="chart-box"><div class="chart-title">退休金來源比例圖</div><div class="chart-sub">勞保、勞退、保險/其他收入與個人資產提領的來源占比。</div><div id="g-source-chart"></div><div class="chart-legend"><span><i style="background:#6A4FB5"></i>勞保</span><span><i style="background:#2D6CB5"></i>勞退</span><span><i style="background:#C58A12"></i>保險/其他</span><span><i style="background:#2E7D32"></i>儲蓄投資</span></div></div></div><div class="result-note" id="g-note"></div><div class="result-disclaimer">退休缺口試算為規劃工具。實際退休規劃需納入稅費、醫療長照、匯率、資產配置、房租房貸與家庭責任。</div></div><div class="seo-box"><h3>退休缺口怎麼看？</h3><p>退休缺口不是「總共想存多少」而已，而是要先扣掉確定收入。例如退休後每月想花 6 萬，勞保 2 萬、勞退 8 千、保險年金 5 千，剩下 2.7 萬才需要由個人資產提領支應。再用提領率反推所需資產，才是比較合理的退休目標。</p></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div>
+  <article class="article"><h2>退休缺口：算清楚「每月還差多少」，比喊目標一千萬更重要</h2><p class="lead-card">退休規劃最常見的錯誤，是先設定一個聽起來很大的數字，例如 1,000 萬或 2,000 萬。其實應該從每月生活費開始，扣掉勞保、勞退與其他固定收入，再反推缺口。</p><h3>1. 先估退休後每月支出</h3><p>食衣住行、醫療、旅遊、保險、孝親、房租或管理費都要算。若你現在 35 歲、65 歲退休，還要把通膨放進去，因為 30 年後的 6 萬元購買力不等於今天的 6 萬元。</p><h3>2. 固定收入先扣掉</h3><p>勞保年金、勞退月領、商業保險年金、租金收入，都可以降低需要由投資組合提領的金額。真正需要準備的，是扣掉這些固定收入後的缺口。</p><h3>3. 4% 法則要保守使用</h3><p>4% 法則提供簡單直覺：年支出 × 25。但台灣退休者可能面臨匯率、通膨、醫療長照與市場配置差異。若退休金主要投資海外資產，匯率波動會影響台幣生活費；若退休期間遇到高通膨，提領壓力會更大。</p><div class="lead-card">📌 <b>一句話總結</b>：退休目標 = 扣掉固定收入後的年缺口 ÷ 安全提領率；想保守一點，就用 3%–3.5% 而不是 4%。</div></article>
+  <section class="faq2"><h2>退休缺口常見問題</h2><details><summary>4% 法則是什麼？</summary><div class="faq2-a">4% 法則是指退休後第一年提領投資組合的 4%，之後依通膨調整，歷史回測中有機會支撐 30 年以上。簡化公式是退休目標 = 年支出 × 25。</div></details><details><summary>4% 法則適用台灣嗎？</summary><div class="faq2-a">不能直接照抄。它源自美國市場資料，台灣退休者需考量台幣生活費、海外資產匯率、台灣通膨、健保與長照支出、投資稅費差異。保守可用 3%–3.5%。</div></details><details><summary>退休後每月想花多少怎麼估？</summary><div class="faq2-a">可先用現在生活費為基準，分成基本生活、醫療保險、旅遊娛樂、房屋、家庭責任五類，再用通膨率推估退休時所需金額。</div></details><details><summary>已有房子還需要準備退休金嗎？</summary><div class="faq2-a">需要。自住房可降低租金壓力，但不能直接支付日常生活費，且還有修繕、管理費、稅費與醫療長照支出。</div></details></section>
 </div>
 
-<!-- 儲蓄目標 -->
 <div class="panel" id="panel-saving">
-  <div class="tool-card"><div class="card-head">
-    <h2>儲蓄目標計算</h2><p>想在幾年內存到一筆錢？算出每月該存多少</p>
-  </div><div class="card-body">
-    <div class="fields">
-      <div class="field"><label>目標金額（萬元）</label><input type="number" id="sv-target" placeholder="例：100" inputmode="decimal"></div>
-      <div class="field"><label>達成年限</label><select id="sv-years"><option value="1">1 年</option><option value="2">2 年</option><option value="3" selected>3 年</option><option value="5">5 年</option><option value="10">10 年</option></select></div>
-      <div class="field"><label>已有存款（萬元）</label><input type="number" id="sv-now" value="0" inputmode="decimal"></div>
-      <div class="field"><label>年利率/報酬（%）</label><input type="number" id="sv-rate" step="0.1" value="1.6" inputmode="decimal"></div>
-    </div>
-    <button class="calc-btn" onclick="calcSaving()">計算每月儲蓄額</button>
-<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-    <div class="result" id="saving-result">
-      <div class="result-top"><div class="result-number" id="sv-monthly">—</div><div class="result-unit">元 / 月</div></div>
-      <div class="result-grid">
-        <div class="result-cell"><div class="lbl">總儲蓄額</div><div class="val" id="sv-total">—</div></div>
-        <div class="result-cell"><div class="lbl">利息貢獻</div><div class="val green" id="sv-interest">—</div></div>
-      </div>
-      <div class="result-note" id="sv-note"></div>
-      <div class="result-disclaimer">以每月複利計算。高目標短年限請評估可行性。</div>
-    </div>
-    <div class="seo-box">
-      <h3>存錢的正確順序</h3>
-      <p>①先存 3–6 個月生活費的緊急預備金（放高利活存）②清掉高利率債務（信用卡循環 15%）③再開始投資。先把儲蓄當成「每月第一筆支出」自動轉帳，剩下的才拿來花。</p>
-    </div>
-    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
-  </div></div>
-</div>
+  <div class="tool-card"><div class="card-head"><h2>儲蓄目標計算</h2><p>想在幾年內存到一筆退休預備金？反推每月該存多少，並比較儲蓄與投資速度。</p></div><div class="card-body"><div class="fields"><div class="field"><label>目標金額（萬元）</label><input type="number" id="sv-target" placeholder="例：100" inputmode="decimal"></div><div class="field"><label>達成年限</label><select id="sv-years"><option value="1">1 年</option><option value="2">2 年</option><option value="3" selected>3 年</option><option value="5">5 年</option><option value="10">10 年</option></select></div><div class="field"><label>已有存款（萬元）</label><input type="number" id="sv-now" value="0" inputmode="decimal"></div><div class="field"><label>年利率/報酬（%）</label><input type="number" id="sv-rate" step="0.1" value="1.6" inputmode="decimal"></div></div><button class="calc-btn" onclick="calcSaving()">計算每月儲蓄額</button><div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9014" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><div class="result" id="saving-result"><div class="result-top"><div class="result-number" id="sv-monthly">—</div><div class="result-unit">元 / 月</div></div><div class="result-grid"><div class="result-cell"><div class="lbl">總儲蓄額</div><div class="val" id="sv-total">—</div></div><div class="result-cell"><div class="lbl">利息貢獻</div><div class="val green" id="sv-interest">—</div></div><div class="result-cell"><div class="lbl">本金占比</div><div class="val" id="sv-principal-pct">—</div></div></div><div class="charts" id="sv-charts" style="display:none"><div class="chart-box"><div class="chart-title">儲蓄目標組成</div><div class="chart-sub">目前存款、未來每月儲蓄與利息貢獻比例。</div><div id="sv-chart"></div></div></div><div class="result-note" id="sv-note"></div><div class="result-disclaimer">以每月複利計算。若目標太高或年限太短，建議拆分成緊急預備金、短期目標與長期投資三層。</div></div><div class="seo-box"><h3>存退休金的正確順序</h3><p>先存 3–6 個月生活費的緊急預備金，再清掉高利率債務，接著才把長期資金投入退休配置。每月儲蓄最好設在發薪日自動轉帳，把儲蓄當成第一筆支出。</p></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div></div></div>
+  <article class="article"><h2>儲蓄目標：先建立安全墊，再談退休投資</h2><p class="lead-card">退休投資很重要，但沒有緊急預備金的人，遇到失業、醫療或家庭支出時，容易被迫賣掉投資，讓長期計畫中斷。</p><h3>1. 緊急預備金先於投資</h3><p>建議先準備 3–6 個月生活費，收入不穩或家庭責任較重者可提高到 12 個月。這筆錢應放在高流動性、低風險的帳戶，而不是波動大的投資。</p><h3>2. 高利債務優先處理</h3><p>若有信用卡循環或高利信貸，先還債通常比投資更有效。因為高利債務的利率可能遠高於長期投資報酬。</p><h3>3. 目標要拆小</h3><p>不要只寫「退休存 1,000 萬」。可以先拆成：6 個月預備金、3 年買房頭期款、20 年退休金。不同時間長度，適合不同工具。</p><div class="lead-card">📌 <b>一句話總結</b>：短期錢要安全，中期錢要穩健，長期退休金才適合承擔波動換報酬。</div></article>
+  <section class="faq2"><h2>儲蓄目標常見問題</h2><details><summary>每月該存收入的幾成？</summary><div class="faq2-a">可先以 20% 為基本目標，若想提早退休或退休缺口大，需提高到 30%–50%。重點是長期可持續。</div></details><details><summary>緊急預備金要放哪裡？</summary><div class="faq2-a">應放在高利活存、貨幣型基金或短天期定存等低風險高流動性工具，不適合放在股票或波動大的 ETF。</div></details><details><summary>有投資還需要儲蓄目標嗎？</summary><div class="faq2-a">需要。儲蓄目標處理的是短中期現金需求，退休投資處理的是長期資產成長，兩者功能不同。</div></details><details><summary>利率很低還要存錢嗎？</summary><div class="faq2-a">要。儲蓄的目的不只是賺利息，而是建立安全墊與現金流彈性。長期資產成長可另外透過投資處理。</div></details></section>
 </div>
 
-
+<div class="panel" id="panel-news"><div class="news-header"><div><div class="news-title">每日財經焦點</div><div class="news-meta" id="news-date">載入中...</div></div><button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><div id="news-container" style="margin-top:1.25rem"></div><div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div><p style="font-size:11px;color:var(--hint);text-align:center;margin-top:1rem">僅供參考。投資有風險，請諮詢專業人員。</p></div>
+</div>
 <div class="guide-links"><a href="/guide/prepay-vs-invest/">📖 提前還款 vs 投資哪個划算</a></div>
-<p class="source-note"><b>資料來源</b>：勞動部勞工保險局老年給付規定　<b>公式最後核對</b>：2026-06-12</p>
-<div class="related-wrap">
-  <p class="related-label">你可能也需要</p>
-  <div class="related-grid">
-    <a class="related-card" href="/invest/" style="--rc:#2E7D32;--rs:#E8F5E9">
-      <div class="related-card-body">
-        <div class="related-card-name">投資試算</div>
-        <div class="related-card-tags"><span>股利試算</span><span>ETF定期定額</span><span>FIRE</span><span>定存比較</span></div>
-      </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD">
-      <div class="related-card-body">
-        <div class="related-card-name">貸款試算</div>
-        <div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div>
-      </div>
-      <div class="related-card-go">›</div>
-    </a>
-    <a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9">
-      <div class="related-card-body">
-        <div class="related-card-name">稅務薪資</div>
-        <div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div>
-      </div>
-      <div class="related-card-go">›</div>
-    </a>
-  </div>
-</div>
-<footer>
-  <p>CalcBox 退休理財 · 計算結果僅供參考<br>
-  <a href="/">回工具目錄</a> · <a href="/loan/">貸款試算</a> · <a href="/tax/">稅務薪資</a> · <a href="/health/">健康計算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
-</footer>
-
+<p class="source-note"><b>資料來源</b>：勞動部勞工保險局老年年金給付、勞工退休金個人專戶與自願提繳說明；4%法則為退休提領經驗法則，非台灣官方保證。　<b>公式最後核對</b>：2026-06-18</p>
+<div class="related-wrap"><p class="related-label">你可能也需要</p><div class="related-grid"><a class="related-card" href="/invest/" style="--rc:#2E7D32;--rs:#E8F5E9"><div class="related-card-body"><div class="related-card-name">投資試算</div><div class="related-card-tags"><span>股利試算</span><span>ETF定期定額</span><span>FIRE</span><span>定存比較</span></div></div><div class="related-card-go">›</div></a><a class="related-card" href="/loan/" style="--rc:#C58A12;--rs:#FDF3DD"><div class="related-card-body"><div class="related-card-name">貸款試算</div><div class="related-card-tags"><span>房貸試算</span><span>車貸計算</span><span>信貸APR</span><span>攤還表</span></div></div><div class="related-card-go">›</div></a><a class="related-card" href="/tax/" style="--rc:#2D6CB5;--rs:#EAF1F9"><div class="related-card-body"><div class="related-card-name">稅務薪資</div><div class="related-card-tags"><span>所得稅</span><span>加班費</span><span>年終獎金</span><span>健保費</span></div></div><div class="related-card-go">›</div></a></div></div>
+<footer><p>CalcBox 退休理財 · 計算結果僅供參考<br><a href="/">回工具目錄</a> · <a href="/invest/">投資試算</a> · <a href="/loan/">貸款試算</a> · <a href="/tax/">稅務薪資</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p></footer>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
-
 <script>
-const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';
-const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;
-let newsLoaded=false;
-const fmt=v=>Math.round(v).toLocaleString();
-
-function switchTab(id){
-  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+id).classList.add('active');
-  document.getElementById('tab-'+id).classList.add('active');
-  if(id==='news'&&!newsLoaded) loadNews();
-}
-
-async function loadNews(){
-  const btn=document.getElementById('refresh-btn');
-  const icon=document.getElementById('refresh-icon');
-  const container=document.getElementById('news-container');
-  if(btn)btn.disabled=true;
-  if(icon)icon.className='spin';
-  container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;
-  const nd=document.getElementById('news-date');
-  if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';
-  const FEEDS=['https://feeds.feedburner.com/rsscna/finance','https://news.ltn.com.tw/rss/business.xml'];
-  let loaded=false;
-  for(const feedUrl of FEEDS){
-    try{
-      const ctrl=new AbortController();
-      const timer=setTimeout(()=>ctrl.abort(),7000);
-      const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});
-      clearTimeout(timer);
-      if(!res.ok)throw new Error('HTTP '+res.status);
-      const xml=new DOMParser().parseFromString(await res.text(),'application/xml');
-      let items=Array.from(xml.querySelectorAll('item'));
-      if(!items.length)items=Array.from(xml.getElementsByTagName('item'));
-      items=items.slice(0,8);
-      if(!items.length)throw new Error('no items');
-      let html='<div class="news-list">';
-      items.forEach((item,i)=>{
-        const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';
-        const descEl=item.querySelector('description')||item.getElementsByTagName('description')[0];
-        const desc=(descEl?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);
-        const pubDate=(item.querySelector('pubDate')||item.getElementsByTagName('pubDate')[0])?.textContent?.trim()||'';
-        const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';
-        let link='#';
-        const linkEl=item.getElementsByTagName('link')[0];
-        if(linkEl)link=linkEl.textContent?.trim()||'#';
-        if(!link||link==='#'){const guid=item.getElementsByTagName('guid')[0];if(guid?.getAttribute('isPermaLink')!=='false')link=guid?.textContent?.trim()||'#';}
-        html+=`<div class="news-card" onclick="window.open('${link}','_blank')">
-          <div class="news-card-inner"><div class="news-num">${i+1}</div>
-          <div class="news-content"><span class="news-src">中央社</span>
-          <div class="news-headline">${title}</div>
-          ${desc?`<div class="news-summary">${desc}...</div>`:''}
-          ${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;
-      });
-      container.innerHTML=html+'</div>';
-      newsLoaded=true;loaded=true;break;
-    }catch(e){ /* 換下一個來源 */ }
-  }
-  if(!loaded){
-    container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;
-  }
-  if(btn)btn.disabled=false;
-  if(icon)icon.className='';
-}
-
-
-function calcLP(){
-  const s=parseFloat(document.getElementById('lp-salary').value);
-  const y=parseFloat(document.getElementById('lp-years').value);
-  if(!y){alert('請輸入年資');return;}
-  const labor=Math.round(s*y*0.0155);
-  const pension=(parseFloat(document.getElementById('lp-pension').value)||0)*10000;
-  const payout=parseInt(document.getElementById('lp-payout').value)*12;
-  const lp=pension>0?Math.round(pension/payout):0;
-  const total=labor+lp;
-  document.getElementById('lp-total').textContent=fmt(total);
-  document.getElementById('lp-labor').textContent=fmt(labor)+' 元';
-  document.getElementById('lp-lp').textContent=lp>0?fmt(lp)+' 元':'未填';
-  document.getElementById('lp-ratio').textContent=(total/s*100).toFixed(0)+'%';
-  document.getElementById('lp-note').textContent=`勞保年金約 ${fmt(labor)} 元/月（${fmt(s)}×${y}年×1.55%）${lp>0?`，加勞退月領 ${fmt(lp)} 元`:''}，合計 ${fmt(total)} 元/月。`;
-  document.getElementById('laborpension-result').classList.add('show');
-}
-function calcCompound(){
-  const p=(parseFloat(document.getElementById('cp-principal').value)||0)*10000;
-  if(!p){alert('請輸入本金');return;}
-  const r=parseFloat(document.getElementById('cp-rate').value)/100;
-  const y=parseInt(document.getElementById('cp-years').value);
-  const f=parseInt(document.getElementById('cp-freq').value);
-  const final=p*Math.pow(1+r/f,f*y);
-  const gain=final-p;
-  document.getElementById('cp-final').textContent=(final/10000).toFixed(1);
-  document.getElementById('cp-tag').textContent=y+'年 · 年報酬 '+document.getElementById('cp-rate').value+'%';
-  document.getElementById('cp-in').textContent=fmt(p)+' 元';
-  document.getElementById('cp-gain').textContent=fmt(gain)+' 元';
-  document.getElementById('cp-x').textContent=(final/p).toFixed(2)+' 倍';
-  document.getElementById('cp-double').textContent=(72/(r*100)).toFixed(1)+' 年';
-  document.getElementById('cp-note').textContent=`本金 ${fmt(p)} 元以年報酬 ${(r*100)}% 複利 ${y} 年，成長為 ${fmt(final)} 元（${(final/p).toFixed(2)} 倍），其中利息收益 ${fmt(gain)} 元。`;
-  document.getElementById('compound-result').classList.add('show');
-}
-function calcDCA(){
-  const m=parseFloat(document.getElementById('d-monthly').value);
-  if(!m){alert('請輸入每月投入');return;}
-  const r=parseFloat(document.getElementById('d-rate').value)/100/12;
-  const y=parseInt(document.getElementById('d-years').value);
-  const init=(parseFloat(document.getElementById('d-initial').value)||0)*10000;
-  const n=y*12;
-  const fvInit=init*Math.pow(1+r,n);
-  const fvDCA=m*((Math.pow(1+r,n)-1)/r);
-  const final=fvInit+fvDCA;
-  const totalIn=init+m*n;
-  const gain=final-totalIn;
-  document.getElementById('d-final').textContent=(final/10000).toFixed(1);
-  document.getElementById('d-in').textContent=fmt(totalIn)+' 元';
-  document.getElementById('d-gain').textContent=fmt(gain)+' 元';
-  document.getElementById('d-pct').textContent=(gain/final*100).toFixed(0)+'%';
-  document.getElementById('d-note').textContent=`每月 ${fmt(m)} 元投入 ${y} 年，總投入 ${fmt(totalIn)} 元，期末資產約 ${fmt(final)} 元，投資收益佔 ${(gain/final*100).toFixed(0)}%——這就是時間複利的力量。`;
-  document.getElementById('dca-result').classList.add('show');
-}
-function calcGap(){
-  const age=parseInt(document.getElementById('g-age').value);
-  const retire=parseInt(document.getElementById('g-retire').value);
-  const spend=parseFloat(document.getElementById('g-spend').value);
-  if(!age||!spend){alert('請填寫年齡與支出');return;}
-  if(age>=retire){alert('目前年齡需小於退休年齡');return;}
-  const saved=(parseFloat(document.getElementById('g-saved').value)||0)*10000;
-  const r=parseFloat(document.getElementById('g-rate').value)/100;
-  const pension=parseFloat(document.getElementById('g-pension').value)||0;
-  const selfNeed=Math.max(0,spend-pension);
-  const target=selfNeed*12*25;
-  const years=retire-age;
-  const fvSaved=saved*Math.pow(1+r,years);
-  const gap=Math.max(0,target-fvSaved);
-  const mr=r/12,n=years*12;
-  const monthly=gap>0?gap*mr/(Math.pow(1+mr,n)-1):0;
-  const progress=target>0?Math.min(100,fvSaved/target*100):100;
-  document.getElementById('g-target').textContent=(target/10000).toFixed(0);
-  const t=document.getElementById('g-tag');
-  if(progress>=100){t.textContent='已達標 🎉';t.className='tag tag-green';}
-  else if(progress>=50){t.textContent='進度過半，繼續保持';t.className='tag';}
-  else{t.textContent='及早開始，複利幫你追';t.className='tag';}
-  document.getElementById('g-progress').textContent=progress.toFixed(0)+'%';
-  document.getElementById('g-gap').textContent=fmt(gap)+' 元';
-  document.getElementById('g-monthly').textContent=fmt(monthly)+' 元';
-  document.getElementById('g-years').textContent=years+' 年';
-  document.getElementById('g-note').textContent=`退休後每月需自籌 ${fmt(selfNeed)} 元（已扣勞保勞退 ${fmt(pension)} 元），依4%法則目標為 ${fmt(target)} 元。現有準備至退休時約值 ${fmt(fvSaved)} 元（進度 ${progress.toFixed(0)}%），${gap>0?`缺口 ${fmt(gap)} 元，未來 ${years} 年每月投入 ${fmt(monthly)} 元可補齊`:'恭喜已達標'}。`;
-  document.getElementById('gap-result').classList.add('show');
-}
-function calcSaving(){
-  const target=(parseFloat(document.getElementById('sv-target').value)||0)*10000;
-  if(!target){alert('請輸入目標金額');return;}
-  const y=parseInt(document.getElementById('sv-years').value);
-  const now=(parseFloat(document.getElementById('sv-now').value)||0)*10000;
-  const r=parseFloat(document.getElementById('sv-rate').value)/100/12;
-  const n=y*12;
-  const fvNow=now*Math.pow(1+r,n);
-  const need=Math.max(0,target-fvNow);
-  const monthly=need>0?(r>0?need*r/(Math.pow(1+r,n)-1):need/n):0;
-  const totalSave=monthly*n;
-  const interest=target-now-totalSave;
-  document.getElementById('sv-monthly').textContent=fmt(monthly);
-  document.getElementById('sv-total').textContent=fmt(totalSave)+' 元';
-  document.getElementById('sv-interest').textContent=fmt(Math.max(0,interest))+' 元';
-  document.getElementById('sv-note').textContent=`${y} 年內存到 ${fmt(target)} 元，每月需存 ${fmt(monthly)} 元${now>0?`（已有 ${fmt(now)} 元持續滾息）`:''}。建議設定發薪日自動轉帳，把儲蓄變成第一筆支出。`;
-  document.getElementById('saving-result').classList.add('show');
-}
-
-window.addEventListener('load',()=>loadNews());
+const RSS_PROXY='https://rss-proxy.alonsolu0204.workers.dev';const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class="skel-line mid"></div><div class="skel-line"></div></div>`;let newsLoaded=false;const fmt=v=>Math.round(v).toLocaleString();const pct=v=>(v*100).toFixed(1)+'%';function wan(v){return (Math.abs(v)/10000>=1?(v/10000).toFixed(Math.abs(v/10000)>=100?0:1)+'萬':Math.round(v)+'元');}
+function futureValueMonthly(initial,monthly,annual,years){const r=annual/12,n=Math.round(years*12);let v=initial;for(let i=0;i<n;i++)v=v*(1+r)+monthly;return v;}
+function monthlyNeeded(target,present,annual,years){const r=annual/12,n=Math.max(1,Math.round(years*12));const fv=present*Math.pow(1+r,n);const gap=Math.max(0,target-fv);return gap<=0?0:(r>0?gap*r/(Math.pow(1+r,n)-1):gap/n);}
+function growthCurveSVG(series,years){const W=600,H=240,P={t:14,r:12,b:28,l:52};const iw=W-P.l-P.r,ih=H-P.t-P.b;const maxY=Math.max(...series.flatMap(s=>s.data))||1;const N=Math.max(1,years);const X=i=>P.l+(i/N)*iw;const Y=v=>P.t+ih-(v/maxY)*ih;let grid='',xlab='';for(let g=0;g<=4;g++){const val=maxY*g/4,yy=P.t+ih-(g/4)*ih;grid+=`<line x1="${P.l}" y1="${yy.toFixed(1)}" x2="${W-P.r}" y2="${yy.toFixed(1)}" stroke="#EDF1F6" stroke-width="1"/><text x="${P.l-6}" y="${yy+3.5}" text-anchor="end" font-size="9" fill="#9AA9BA">${wan(val)}</text>`;}for(let i=0;i<=N;i++){if(i===0||i===N||i%Math.ceil(N/6)===0)xlab+=`<text x="${X(i).toFixed(1)}" y="${H-P.b+16}" text-anchor="middle" font-size="9" fill="#9AA9BA">${i}</text>`;}let paths='';series.forEach(s=>{let d='';s.data.forEach((v,i)=>{d+=(i===0?'M ':'L ')+X(i).toFixed(1)+' '+Y(v).toFixed(1)+' ';});if(s.fill){paths+=`<path d="${d}L ${X(N).toFixed(1)} ${P.t+ih} L ${P.l} ${P.t+ih} Z" fill="${s.fill}"/>`;}paths+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"><title>${s.label}</title></path>`;});return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="成長曲線圖">${grid}${paths}${xlab}<text x="${W-P.r}" y="${H-4}" text-anchor="end" font-size="9" fill="#9AA9BA">年</text></svg>`;}
+function compareBarSVG(items){const W=600,rowH=48,H=items.length*rowH+8,padL=4,labelH=18,barH=20;const maxV=Math.max(...items.map(i=>i.value))||1,barMax=W-padL-120;let rows='';items.forEach((it,i)=>{const y=i*rowH+8,w=Math.max((it.value/maxV)*barMax,2);rows+=`<text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#1B3A5C">${it.label}</text><rect x="${padL}" y="${y+labelH}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/><rect x="${padL}" y="${y+labelH}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${it.color}"><title>${it.label} ${it.disp}</title></rect><text x="${padL+barMax+8}" y="${y+labelH+14}" font-size="12" font-weight="800" fill="${it.color}">${it.disp}</text>`;});return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="對比長條圖">${rows}</svg>`;}
+function donutSVG(segs,centerTop,centerBot){const W=220,H=210,cx=110,cy=103,r=72,sw=26;const total=segs.reduce((a,s)=>a+s.value,0)||1,C=2*Math.PI*r;let off=0,ring='';segs.filter(s=>s.value>0).forEach(s=>{const frac=s.value/total,len=frac*C;ring+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"><title>${s.label} ${(frac*100).toFixed(1)}%</title></circle>`;off+=len;});return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="比例圖">${ring}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" fill="#9AA9BA">${centerTop||''}</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="17" font-weight="800" fill="#1B3A5C">${centerBot||''}</text></svg>`;}
+function switchTab(id){if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id))return;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');document.getElementById('tab-'+id).classList.add('active');if(id==='news'&&!newsLoaded)loadNews();}
+async function loadNews(){const btn=document.getElementById('refresh-btn'),icon=document.getElementById('refresh-icon'),container=document.getElementById('news-container');if(btn)btn.disabled=true;if(icon)icon.className='spin';container.innerHTML=`<div class="news-skeleton">${SKEL.repeat(5)}</div>`;const nd=document.getElementById('news-date');if(nd)nd.textContent=new Date().toLocaleDateString('zh-TW',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' 更新';const FEEDS=['https://feeds.feedburner.com/rsscna/finance','https://news.ltn.com.tw/rss/business.xml'];let loaded=false;for(const feedUrl of FEEDS){try{const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),7000);const res=await fetch(`${RSS_PROXY}?url=${encodeURIComponent(feedUrl)}`,{signal:ctrl.signal});clearTimeout(timer);if(!res.ok)throw new Error('HTTP '+res.status);const xml=new DOMParser().parseFromString(await res.text(),'application/xml');let items=Array.from(xml.querySelectorAll('item'));if(!items.length)items=Array.from(xml.getElementsByTagName('item'));items=items.slice(0,8);if(!items.length)throw new Error('no items');let html='<div class="news-list">';items.forEach((item,i)=>{const title=(item.querySelector('title')||item.getElementsByTagName('title')[0])?.textContent?.trim()||'無標題';const desc=(item.querySelector('description')?.textContent||'').replace(/<[^>]+>/g,'').trim().slice(0,80);const pubDate=item.querySelector('pubDate')?.textContent?.trim()||'';const dateStr=pubDate?new Date(pubDate).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):'';let link=item.getElementsByTagName('link')[0]?.textContent?.trim()||'#';html+=`<div class="news-card" onclick="window.open('${link}','_blank')"><div class="news-card-inner"><div class="news-num">${i+1}</div><div class="news-content"><span class="news-src">中央社</span><div class="news-headline">${title}</div>${desc?`<div class="news-summary">${desc}...</div>`:''}${dateStr?`<div class="news-date">🕐 ${dateStr}</div>`:''}</div></div></div>`;});container.innerHTML=html+'</div>';newsLoaded=true;loaded=true;break;}catch(e){}}if(!loaded)container.innerHTML=`<div class="news-error">📡 新聞暫時無法載入，請稍後按重新整理</div>`;if(btn)btn.disabled=false;if(icon)icon.className='';}
+function calcLP(){const s=parseFloat(document.getElementById('lp-salary').value),y=parseFloat(document.getElementById('lp-years').value),claim=parseFloat(document.getElementById('lp-claim-age').value),legal=parseFloat(document.getElementById('lp-legal-age').value),other=parseFloat(document.getElementById('lp-other').value)||0;if(!y||!claim){alert('請輸入年資與請領年齡');return;}const f1=s*y*0.00775+3000,f2=s*y*0.0155,base=Math.max(f1,f2);let adj=1,adjText='無調整';if(claim<legal){const early=Math.min(5,legal-claim);adj=1-0.04*early;adjText=`提前 ${early.toFixed(1)} 年，減給 ${(100*(1-adj)).toFixed(0)}%`;}else if(claim>legal){const late=Math.min(5,claim-legal);adj=1+0.04*late;adjText=`延後 ${late.toFixed(1)} 年，增給 ${(100*(adj-1)).toFixed(0)}%`;}const pension=Math.round(base*adj);document.getElementById('lp-total').textContent=fmt(pension);const tag=document.getElementById('lp-tag');tag.textContent=`適用年資 ${y} 年 · 平均月投保薪資 ${fmt(s)} 元 · ${claim} 歲請領`;tag.className=y>=15?'tag':'tag tag-red';document.getElementById('lp-f1').textContent=fmt(f1)+' 元';document.getElementById('lp-f2').textContent=fmt(f2)+' 元';document.getElementById('lp-age-adj').textContent=adjText;document.getElementById('lp-with-other').textContent=fmt(pension+other)+' 元';document.getElementById('lp-note').textContent=`以平均月投保薪資 ${fmt(s)} 元、保險年資 ${y} 年、${claim} 歲請領估算，兩式擇優基礎金額為 ${fmt(base)} 元，${adjText}後約 ${fmt(pension)} 元/月。${y<15?'注意：年資未滿15年，通常不適用老年年金月領，請改查一次給付。':''}`;document.getElementById('laborpension-result').classList.add('show');}
+function calcLA(){const bal=(parseFloat(document.getElementById('la-balance').value)||0)*10000,wage=parseFloat(document.getElementById('la-wage').value)||0,years=parseFloat(document.getElementById('la-years').value)||0,er=(parseFloat(document.getElementById('la-employer').value)||0)/100,vr=Math.min(6,Math.max(0,parseFloat(document.getElementById('la-voluntary').value)||0))/100,ret=(parseFloat(document.getElementById('la-return').value)||0)/100,wg=(parseFloat(document.getElementById('la-wage-growth').value)||0)/100,payout=parseInt(document.getElementById('la-payout').value)||20;if(!wage||!years){alert('請輸入月薪與距離請領年數');return;}let v=bal,empTotal=0,volTotal=0;const months=Math.round(years*12);for(let m=0;m<months;m++){const yy=Math.floor(m/12);const w=wage*Math.pow(1+wg,yy);const emp=w*er,vol=w*vr;v=v*(1+ret/12)+emp+vol;empTotal+=emp;volTotal+=vol;}const gain=v-bal-empTotal-volTotal,monthly=v/(payout*12);document.getElementById('la-final').textContent=(v/10000).toFixed(1);document.getElementById('la-tag').textContent=`雇主 ${(er*100).toFixed(1)}% · 自提 ${(vr*100).toFixed(1)}% · ${years} 年`;document.getElementById('la-emp-total').textContent=fmt(empTotal)+' 元';document.getElementById('la-vol-total').textContent=fmt(volTotal)+' 元';document.getElementById('la-gain').textContent=fmt(Math.max(0,gain))+' 元';document.getElementById('la-monthly').textContent=fmt(monthly)+' 元/月';document.getElementById('la-note').textContent=`目前專戶 ${fmt(bal)} 元，未來 ${years} 年以月薪 ${fmt(wage)} 元、薪資年成長 ${(wg*100).toFixed(1)}%、專戶收益 ${(ret*100).toFixed(1)}% 估算，退休時約 ${fmt(v)} 元。若以 ${payout} 年平均月領，約 ${fmt(monthly)} 元/月。`;document.getElementById('la-chart').innerHTML=donutSVG([{label:'既有餘額',value:bal,color:'#6A4FB5'},{label:'雇主提繳',value:empTotal,color:'#2D6CB5'},{label:'個人自提',value:volTotal,color:'#C58A12'},{label:'收益',value:Math.max(0,gain),color:'#2E7D32'}],'總額',(v/10000).toFixed(0)+'萬');document.getElementById('la-charts').style.display='flex';document.getElementById('laboraccount-result').classList.add('show');}
+function calcCompound(){const p=(parseFloat(document.getElementById('cp-principal').value)||0)*10000,r=(parseFloat(document.getElementById('cp-rate').value)||0)/100,y=parseInt(document.getElementById('cp-years').value),sp=(parseFloat(document.getElementById('cp-spread').value)||0)/100;if(!p){alert('請輸入本金');return;}const rb=Math.max(-0.99,r-sp),rg=r+sp;const fb=p*Math.pow(1+rb,y),fm=p*Math.pow(1+r,y),fg=p*Math.pow(1+rg,y);document.getElementById('cp-final').textContent=(fm/10000).toFixed(1);document.getElementById('cp-tag').textContent=`${y}年 · 中性年報酬 ${(r*100).toFixed(1)}%`;document.getElementById('cp-bad').textContent=(fb/10000).toFixed(1)+' 萬';document.getElementById('cp-mid').textContent=(fm/10000).toFixed(1)+' 萬';document.getElementById('cp-good').textContent=(fg/10000).toFixed(1)+' 萬';document.getElementById('cp-double').textContent=r>0?(72/(r*100)).toFixed(1)+' 年':'—';document.getElementById('cp-note').textContent=`本金 ${fmt(p)} 元，中性情境 ${y} 年後約 ${fmt(fm)} 元；若報酬率降低 ${(sp*100).toFixed(1)} 個百分點，約 ${fmt(fb)} 元；若提高 ${(sp*100).toFixed(1)} 個百分點，約 ${fmt(fg)} 元。`;const bad=[p],mid=[p],good=[p];for(let i=1;i<=y;i++){bad.push(p*Math.pow(1+rb,i));mid.push(p*Math.pow(1+r,i));good.push(p*Math.pow(1+rg,i));}document.getElementById('cp-chart').innerHTML=growthCurveSVG([{label:'悲觀',color:'#C62828',data:bad},{label:'中性',color:'#2D6CB5',data:mid,fill:'rgba(45,108,181,.08)'},{label:'樂觀',color:'#2E7D32',data:good}],y);document.getElementById('cp-charts').style.display='flex';document.getElementById('compound-result').classList.add('show');}
+function calcDCA(){const m=parseFloat(document.getElementById('d-monthly').value)||0,init=(parseFloat(document.getElementById('d-initial').value)||0)*10000,y=parseInt(document.getElementById('d-years').value),r=(parseFloat(document.getElementById('d-rate').value)||0)/100,inf=(parseFloat(document.getElementById('d-inflation').value)||0)/100,sp=(parseFloat(document.getElementById('d-spread').value)||0)/100;if(!m){alert('請輸入每月投入');return;}const final=futureValueMonthly(init,m,r,y),totalIn=init+m*y*12,gain=final-totalIn,real=final/Math.pow(1+inf,y),realRate=(1+r)/(1+inf)-1,bad=futureValueMonthly(init,m,Math.max(-0.99,r-sp),y),good=futureValueMonthly(init,m,r+sp,y);document.getElementById('d-final').textContent=(final/10000).toFixed(1);document.getElementById('d-real').textContent=(real/10000).toFixed(1)+' 萬';document.getElementById('d-in').textContent=fmt(totalIn)+' 元';document.getElementById('d-gain').textContent=fmt(gain)+' 元';document.getElementById('d-real-rate').textContent=(realRate*100).toFixed(1)+'%';document.getElementById('d-bad').textContent=(bad/10000).toFixed(1)+' 萬';document.getElementById('d-mid').textContent=(final/10000).toFixed(1)+' 萬';document.getElementById('d-good').textContent=(good/10000).toFixed(1)+' 萬';document.getElementById('d-note').textContent=`每月投入 ${fmt(m)} 元、${y} 年，名目資產約 ${fmt(final)} 元；若通膨 ${(inf*100).toFixed(1)}%，折算今日購買力約 ${fmt(real)} 元。悲觀/中性/樂觀分別約 ${fmt(bad)}、${fmt(final)}、${fmt(good)} 元。`;const total=[init],realArr=[init],inArr=[init];for(let yr=1;yr<=y;yr++){const fv=futureValueMonthly(init,m,r,yr);total.push(fv);realArr.push(fv/Math.pow(1+inf,yr));inArr.push(init+m*yr*12);}document.getElementById('d-chart').innerHTML=growthCurveSVG([{label:'名目資產',color:'#2D6CB5',data:total,fill:'rgba(45,108,181,.08)'},{label:'實質購買力',color:'#2E7D32',data:realArr},{label:'累積本金',color:'#9AA9BA',data:inArr}],y);document.getElementById('d-sens-chart').innerHTML=compareBarSVG([{label:'悲觀 '+((r-sp)*100).toFixed(1)+'%',value:bad,color:'#C62828',disp:(bad/10000).toFixed(1)+'萬'},{label:'中性 '+(r*100).toFixed(1)+'%',value:final,color:'#2D6CB5',disp:(final/10000).toFixed(1)+'萬'},{label:'樂觀 '+((r+sp)*100).toFixed(1)+'%',value:good,color:'#2E7D32',disp:(good/10000).toFixed(1)+'萬'}]);document.getElementById('d-charts').style.display='flex';document.getElementById('dca-result').classList.add('show');}
+function calcGap(){const age=parseInt(document.getElementById('g-age').value),retire=parseInt(document.getElementById('g-retire').value),spend=parseFloat(document.getElementById('g-spend').value)||0,saved=(parseFloat(document.getElementById('g-saved').value)||0)*10000,r=(parseFloat(document.getElementById('g-rate').value)||0)/100,inf=(parseFloat(document.getElementById('g-inflation').value)||0)/100,labor=parseFloat(document.getElementById('g-labor').value)||0,la=parseFloat(document.getElementById('g-labor-retire').value)||0,ins=parseFloat(document.getElementById('g-insurance').value)||0,wr=parseFloat(document.getElementById('g-withdraw').value),spread=(parseFloat(document.getElementById('g-spread').value)||0)/100;if(!age||!retire||!spend){alert('請填寫年齡、退休年齡與支出');return;}if(age>=retire){alert('目前年齡需小於退休年齡');return;}const years=retire-age,futureSpend=spend*Math.pow(1+inf,years),fixed=labor+la+ins,selfNeed=Math.max(0,futureSpend-fixed),target=selfNeed*12/wr,fvSaved=saved*Math.pow(1+r,years),gap=Math.max(0,target-fvSaved),monthly=monthlyNeeded(target,saved,r,years),mbad=monthlyNeeded(target,saved,Math.max(-0.99,r-spread),years),mgood=monthlyNeeded(target,saved,r+spread,years),progress=target>0?Math.min(100,fvSaved/target*100):100;document.getElementById('g-target').textContent=(target/10000).toFixed(0);const tg=document.getElementById('g-tag');tg.textContent=progress>=100?'已達標 🎉':`準備進度 ${progress.toFixed(0)}%`;tg.className=progress>=100?'tag tag-green':'tag';document.getElementById('g-future-spend').textContent=fmt(futureSpend)+' 元/月';document.getElementById('g-fixed').textContent=fmt(fixed)+' 元/月';document.getElementById('g-gap').textContent=fmt(gap)+' 元';document.getElementById('g-monthly').textContent=fmt(monthly)+' 元';document.getElementById('g-bad').textContent=fmt(mbad)+' 元/月';document.getElementById('g-mid').textContent=fmt(monthly)+' 元/月';document.getElementById('g-good').textContent=fmt(mgood)+' 元/月';document.getElementById('g-note').textContent=`距離退休 ${years} 年，今日月支出 ${fmt(spend)} 元在通膨後約為 ${fmt(futureSpend)} 元/月。扣除固定收入 ${fmt(fixed)} 元後，需由個人資產支應 ${fmt(selfNeed)} 元/月；以 ${(wr*100).toFixed(1)}% 提領率反推退休目標約 ${fmt(target)} 元。`;document.getElementById('g-source-chart').innerHTML=donutSVG([{label:'勞保',value:labor,color:'#6A4FB5'},{label:'勞退',value:la,color:'#2D6CB5'},{label:'保險/其他',value:ins,color:'#C58A12'},{label:'儲蓄投資',value:selfNeed,color:'#2E7D32'}],'月支出',fmt(futureSpend));document.getElementById('g-charts').style.display='flex';document.getElementById('gap-result').classList.add('show');}
+function calcSaving(){const target=(parseFloat(document.getElementById('sv-target').value)||0)*10000,y=parseInt(document.getElementById('sv-years').value),now=(parseFloat(document.getElementById('sv-now').value)||0)*10000,r=(parseFloat(document.getElementById('sv-rate').value)||0)/100/12;if(!target){alert('請輸入目標金額');return;}const n=y*12,fvNow=now*Math.pow(1+r,n),need=Math.max(0,target-fvNow),monthly=need>0?(r>0?need*r/(Math.pow(1+r,n)-1):need/n):0,totalSave=monthly*n,interest=Math.max(0,target-now-totalSave);document.getElementById('sv-monthly').textContent=fmt(monthly);document.getElementById('sv-total').textContent=fmt(totalSave)+' 元';document.getElementById('sv-interest').textContent=fmt(interest)+' 元';document.getElementById('sv-principal-pct').textContent=((now+totalSave)/target*100).toFixed(0)+'%';document.getElementById('sv-note').textContent=`${y} 年內存到 ${fmt(target)} 元，每月需存 ${fmt(monthly)} 元。若已有 ${fmt(now)} 元，持續滾息後可降低每月壓力。`;document.getElementById('sv-chart').innerHTML=donutSVG([{label:'已有存款',value:now,color:'#6A4FB5'},{label:'未來儲蓄',value:totalSave,color:'#2D6CB5'},{label:'利息',value:interest,color:'#2E7D32'}],'目標',(target/10000).toFixed(0)+'萬');document.getElementById('sv-charts').style.display='flex';document.getElementById('saving-result').classList.add('show');}
 </script>
-
-<script>
-/* GA4 事件追蹤：calculate / copy_result */
-document.addEventListener('click', function(e){
-  if (typeof gtag !== 'function') return;
-  var btn = e.target.closest('button, .calc-btn, [onclick]');
-  if (!btn) return;
-  var tool = (location.pathname.split('/').filter(Boolean)[0]) || 'home';
-  var oc = (btn.getAttribute('onclick') || '') + ' ' + (btn.className || '');
-  var label = (btn.textContent || '').trim().slice(0, 30);
-  if (/calc/i.test(oc) || btn.classList.contains('calc-btn')) {
-    gtag('event', 'calculate', { tool: tool, button_label: label });
-  } else if (/copy/i.test(oc)) {
-    gtag('event', 'copy_result', { tool: tool });
-  }
-});
-</script>
-</body>
-</html>
+<script>document.addEventListener('click',function(e){if(typeof gtag!=='function')return;var btn=e.target.closest('button, .calc-btn, [onclick]');if(!btn)return;var tool=(location.pathname.split('/').filter(Boolean)[0])||'home';var oc=(btn.getAttribute('onclick')||'')+' '+(btn.className||'');var label=(btn.textContent||'').trim().slice(0,30);if(/calc/i.test(oc)||btn.classList.contains('calc-btn')){gtag('event','calculate',{tool:tool,button_label:label});}else if(/copy/i.test(oc)){gtag('event','copy_result',{tool:tool});}});</script>
+</body></html>
