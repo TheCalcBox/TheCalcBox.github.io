@@ -42,7 +42,11 @@
 {"@type":"WebApplication","name":"即時匯率換算計算機","url":"https://thecalcbox.com/fx/","description":"台幣美元日圓等主要貨幣即時匯率換算，每5分鐘更新。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"台幣換日幣匯率多少？","acceptedAnswer":{"@type":"Answer","text":"台幣兌日圓匯率每日變動，請查看本頁即時更新的匯率資訊（每5分鐘更新）。"}},
-{"@type":"Question","name":"在哪裡換匯最划算？","acceptedAnswer":{"@type":"Answer","text":"一般而言銀行掛牌現鈔匯率比中間價差約1–3%，機場換匯最貴。可比較各銀行牌告匯率，或使用網銀換匯服務通常較優惠。"}}
+{"@type":"Question","name":"在哪裡換匯最划算？","acceptedAnswer":{"@type":"Answer","text":"一般而言銀行掛牌現鈔匯率比中間價差約1–3%，機場換匯最貴。可比較各銀行牌告匯率，或使用網銀換匯服務通常較優惠。"}},
+{"@type":"Question","name":"買外幣和賣外幣看哪個匯率？","acceptedAnswer":{"@type":"Answer","text":"買外幣（出國用）看銀行賣出價，數字越低越划算；把外幣換回台幣看銀行買入價，數字越高越划算。買賣價差就是銀行賺的、也是你的換匯成本。"}},
+{"@type":"Question","name":"現金匯率和即期匯率差在哪？","acceptedAnswer":{"@type":"Answer","text":"現金（現鈔）交易因銀行需保管實體鈔票，價差較大；即期是帳戶間電子交易（外幣存款、刷卡），價差較小較划算。帶現金看現鈔價，刷卡看即期價。"}},
+{"@type":"Question","name":"出國旅遊該換多少外幣？","acceptedAnswer":{"@type":"Answer","text":"可用本頁旅遊換匯模式，輸入台幣預算即以銀行現鈔賣出價估算可換到的外幣金額。建議出發前2–4週分批換、用網路銀行換匯避開機場高價，並可搭配免手續費信用卡。"}},
+{"@type":"Question","name":"匯率數字變大是升值還是貶值？","acceptedAnswer":{"@type":"Answer","text":"以1美元等於幾元台幣報價時，數字變大代表台幣貶值、美元走強；數字變小是台幣升值、美元相對便宜，此時買美元較有利。"}}
 ]}
 ]}
 </script>
@@ -271,9 +275,49 @@ footer a:hover{color:#F3C969!important}
 .bank-link:hover{background:#F7E4B4}
 @media(max-width:520px){.bank-rate-grid{grid-template-columns:1fr}.bank-links{flex-direction:column}.bank-link{text-align:center}}
 
+/* 圖表/文章/FAQ/旅遊（CalcBox 標準） */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:16px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.travel-card{margin-top:1rem;border:1px solid #CDE6D2;border-radius:14px;padding:16px;background:linear-gradient(135deg,#F1F9F3,#fff)}
+.travel-title{font-size:14px;font-weight:800;color:#1A5C2A;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.travel-sub{font-size:11.5px;color:var(--muted);margin-bottom:12px}
+.travel-row{display:flex;gap:10px}
+.travel-row .fx-field{flex:1}
+.travel-row label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px}
+.travel-row input,.travel-row select{width:100%;height:42px;padding:0 10px;border:1.5px solid var(--border);border-radius:8px;font-size:15px;font-weight:600;font-family:inherit;background:var(--white);-webkit-appearance:none}
+.travel-btn{width:100%;height:44px;margin-top:12px;border:none;border-radius:10px;background:linear-gradient(135deg,#2E7D32,#1A5C2A);color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
+.travel-result{display:none;margin-top:14px}
+.travel-result.show{display:block}
+.travel-big{text-align:center;padding:12px;background:var(--white);border:1px solid var(--border);border-radius:10px;margin-bottom:10px}
+.travel-big .tb-num{font-size:30px;font-weight:800;color:#1A5C2A;letter-spacing:-.5px}
+.travel-big .tb-unit{font-size:13px;color:var(--muted);margin-top:2px}
+.travel-tips{font-size:12px;color:#34465B;line-height:1.7;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.travel-tips b{color:#1A5C2A}
+.article{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.4rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:#F1F9F3;border:1px solid #CDE6D2;border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.faq2{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted);transition:transform .2s}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"即時匯率換算","item":"https://thecalcbox.github.io/fx/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"即時匯率換算","item":"https://thecalcbox.com/fx/"}]}</script>
 </head>
 <body>
 
@@ -344,6 +388,26 @@ footer a:hover{color:#F3C969!important}
 
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9410" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 
+    <!-- 旅遊換匯模式 -->
+    <div class="travel-card">
+      <div class="travel-title">✈️ 旅遊換匯模式</div>
+      <div class="travel-sub">輸入目的地與台幣預算，算出實際能換到多少現鈔，並附換匯建議。</div>
+      <div class="travel-row">
+        <div class="fx-field"><label>目的地貨幣</label><select id="tv-cur"></select></div>
+        <div class="fx-field"><label>台幣預算（TWD）</label><input type="number" id="tv-budget" value="30000" inputmode="numeric"></div>
+      </div>
+      <button class="travel-btn" onclick="calcTravel()">換算旅費</button>
+      <div class="travel-result" id="tv-result">
+        <div class="travel-big"><div class="tb-num" id="tv-num">—</div><div class="tb-unit" id="tv-unit"></div></div>
+        <div class="charts"><div class="chart-box">
+          <div class="chart-title">現鈔實拿 vs 中間價理論值</div>
+          <div class="chart-sub">兩者差額就是銀行的現鈔價差成本（換匯隱形手續費）。</div>
+          <div id="tv-chart"></div>
+        </div></div>
+        <div class="travel-tips" id="tv-tips"></div>
+      </div>
+    </div>
+
     <!-- 自訂匯率換算 -->
     <details class="custom-fx">
       <summary>✏️ 自訂匯率換算（銀行牌告、私下交易適用）</summary>
@@ -392,6 +456,32 @@ footer a:hover{color:#F3C969!important}
       <div class="seo-faq-a" style="font-size:12px;color:var(--muted,#5a6e84);line-height:1.7">A：匯率受聯準會、日銀利率政策與國際資金流向影響，無法預測。建議分批換匯（外幣定存）平均成本，避免一次all-in。</div>
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9401" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+<article class="article">
+  <h2>換匯怎麼換最省？旅遊與投資換匯全攻略</h2>
+  <p class="lead-card">換匯時你看到的「匯率」其實有好幾種：中間價、現金價、即期價。搞懂它們的差別，加上換對通路、換對時機，一趟旅行可以省下好幾百甚至上千元。</p>
+  <h3>1. 買外幣看「賣出價」，賣外幣看「買入價」</h3>
+  <p>這是換匯最重要的觀念。銀行牌告會有「買入」與「賣出」兩個價：<b>你要買外幣（出國用）</b>，看的是銀行的<b>賣出價</b>，數字越低越划算；<b>你要把外幣換回台幣</b>，看的是銀行的<b>買入價</b>，數字越高越划算。買賣之間的差距，就是銀行賺的價差，也是你的換匯成本。本頁換算結果會自動依方向提示你該看哪個價。</p>
+  <h3>2. 現金價 vs 即期價</h3>
+  <p>「現金（現鈔）」價差較大，因為銀行要承擔保管實體鈔票的成本；「即期」是帳戶間的外幣交易（如外幣存款、刷卡），價差較小、較划算。出國要帶現金就看現鈔價，刷卡或外幣帳戶則接近即期價。</p>
+  <h3>3. 旅遊換匯：用本頁「旅遊換匯模式」</h3>
+  <p>本頁的「✈️ 旅遊換匯模式」會用銀行<b>現鈔賣出價</b>估算你的台幣預算實際能換到多少外幣，並把它和「中間價理論值」對比——兩者的差距就是你看不見的換匯價差成本。幾個實用原則：</p>
+  <ul>
+    <li><b>網路銀行</b>換匯通常比臨櫃便宜 0.5%~1%，<b>機場換匯最貴</b>，能避則避。</li>
+    <li>出發前 <b>2~4 週分批換</b>，平均成本，避免臨時一次大額換在高點。</li>
+    <li>國外刷<b>免手續費信用卡</b>有時比換現鈔更划算，可搭配使用。</li>
+    <li>剩餘外幣可用原通路回換，或留待下次旅行，避免來回各被賺一次價差。</li>
+  </ul>
+  <h3>4. 換匯時機：能預測嗎？</h3>
+  <p>老實說，匯率短期極難預測，受美國聯準會利率、各國央行政策、國際資金流向等多重因素影響。與其猜時機，不如用「分批換匯」分散風險；長期需求（如留學、長住）可考慮外幣定存分批布局。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：買外幣看賣出價、現鈔價差大於即期 → 用旅遊換匯模式估實拿金額 → 網銀換、分批換、避開機場 → 別猜時機，分批最穩。</div>
+</article>
+<section class="faq2">
+  <h2>換匯常見問題</h2>
+  <details><summary>買外幣和賣外幣看哪個價格？</summary><div class="faq2-a">買外幣（出國用）看銀行「賣出價」，數字越低越划算；把外幣換回台幣看銀行「買入價」，數字越高越划算。買賣價差就是銀行賺的、也是你的換匯成本。</div></details>
+  <details><summary>現金價和即期價差在哪？</summary><div class="faq2-a">現金（現鈔）價差較大，因銀行要承擔保管實體鈔票成本；即期是帳戶間外幣交易（外幣存款、刷卡），價差較小較划算。帶現金看現鈔價，刷卡／外幣帳戶接近即期價。</div></details>
+  <details><summary>在哪裡換匯最划算？</summary><div class="faq2-a">網路銀行換匯通常比臨櫃便宜 0.5%~1%，機場換匯最貴。建議出發前用網銀分批換，避免在機場臨時大額換匯。</div></details>
+  <details><summary>什麼時候換匯最便宜？</summary><div class="faq2-a">匯率受聯準會、各國央行政策與國際資金流向影響，短期極難預測。與其猜時機，建議出發前 2~4 週分批換匯，平均成本、分散風險。</div></details>
+</section>
 </div>
 
 <!-- ══ 匯率看板 ══ -->
@@ -411,6 +501,23 @@ footer a:hover{color:#F3C969!important}
     <h3>常見貨幣代碼</h3>
     <p>TWD 台幣、USD 美元、JPY 日圓、HKD 港幣、CNY 人民幣、EUR 歐元、GBP 英鎊、KRW 韓元、SGD 新加坡幣、AUD 澳幣、THB 泰銖。</p>
   </div>
+<article class="article">
+  <h2>看懂銀行牌告匯率：買入、賣出、現金、即期</h2>
+  <p class="lead-card">第一次看銀行牌告，常被「買入／賣出／現金／即期」四個數字搞混。其實只要記住「站在銀行的角度」就懂了。</p>
+  <h3>1. 買入 vs 賣出（站在銀行角度）</h3>
+  <p>牌告上的「買入」「賣出」都是<b>銀行</b>的動作，不是你的。「銀行買入」＝銀行向你買外幣（你賣外幣換台幣時適用）；「銀行賣出」＝銀行賣外幣給你（你買外幣時適用）。所以你買外幣看「賣出」、你賣外幣看「買入」，方向剛好相反。</p>
+  <h3>2. 現金 vs 即期</h3>
+  <p>「現金」是實體鈔票交易、價差較大；「即期」是帳戶間的電子交易（外幣存款、電匯、刷卡），價差較小。同一貨幣通常有四個價：現金買入、現金賣出、即期買入、即期賣出。</p>
+  <h3>3. 價差就是換匯成本</h3>
+  <p>同一時間，賣出價一定高於買入價，這個差距（spread）就是銀行的利潤、也是你換匯的隱形成本。價差越小對你越有利，這也是為什麼網銀通常比臨櫃、機場划算——它的價差更窄。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：牌告的買入賣出是「銀行的動作」 → 你買外幣看賣出、賣外幣看買入 → 現金價差大於即期 → 價差越小越划算。</div>
+</article>
+<section class="faq2">
+  <h2>銀行牌告常見問題</h2>
+  <details><summary>牌告的「買入」「賣出」是誰的動作？</summary><div class="faq2-a">都是銀行的動作。「銀行買入」是銀行向你買外幣（你賣外幣時適用）；「銀行賣出」是銀行賣外幣給你（你買外幣時適用）。所以你買外幣看賣出價、賣外幣看買入價。</div></details>
+  <details><summary>現金匯率為什麼比即期差？</summary><div class="faq2-a">現金（現鈔）交易銀行需承擔運送、保管實體鈔票的成本，因此價差較大；即期是帳戶間電子交易，成本低、價差小，較為划算。</div></details>
+  <details><summary>牌告匯率多久更新一次？</summary><div class="faq2-a">銀行牌告匯率在交易時間內會隨市場波動多次更新。本頁匯率資料定時自動更新，實際成交以銀行當下牌告為準。</div></details>
+</section>
 </div>
 
 <!-- ══ 走勢圖 ══ -->
@@ -453,6 +560,28 @@ footer a:hover{color:#F3C969!important}
     <div class="seo-q">Q：換匯什麼時候最划算？</div>
     <div class="seo-a">A：理論上台幣相對強勢（美元便宜）時換美元較划算，但預測匯率極難。旅遊換匯建議提前 2–4 週分批換，避免臨出發才大量換匯。</div>
   </div>
+<article class="article">
+  <h2>看懂匯率走勢：升值、貶值與背後的影響因素</h2>
+  <p class="lead-card">看 TWD/USD 走勢圖時，數字變大變小到底代表什麼？理解升貶值的方向與成因，才能判斷現在換匯是相對有利還是不利。</p>
+  <h3>1. 數字變小 = 台幣升值</h3>
+  <p>以「1 美元 = 幾元台幣」報價為例：數字從 32 變成 30，代表同樣 1 美元只要更少台幣就能換到，也就是<b>台幣升值、美元相對便宜</b>，這時買美元（出國、海外投資）較有利。反之數字變大是台幣貶值，對出口商與持有外幣者有利。</p>
+  <h3>2. 用區間高低判斷相對位置</h3>
+  <p>本頁走勢圖提供 7／30／90 天的最高、最低、平均與區間漲跌。把目前匯率對照區間的高低點，可以大致判斷現在是相對偏貴還是偏便宜——雖然不能預測未來，但能避免在明顯的相對高點大額換匯。</p>
+  <h3>3. 影響匯率的主要因素</h3>
+  <ul>
+    <li><b>利率政策</b>：美國聯準會升息通常使美元走強、台幣相對走貶。</li>
+    <li><b>貿易與出口</b>：台灣出口暢旺、外資匯入，傾向推升台幣。</li>
+    <li><b>國際資金流向</b>：避險情緒升高時資金湧向美元，影響匯率。</li>
+    <li><b>央行調節</b>：台灣央行會適度調節，避免匯率過度波動。</li>
+  </ul>
+  <div class="lead-card">📌 <b>一句話總結</b>：數字變小＝台幣升值（買外幣較划算） → 用區間高低判斷相對位置 → 匯率受利率、出口、資金流向影響 → 短期難測，分批換匯最穩。</div>
+</article>
+<section class="faq2">
+  <h2>匯率走勢常見問題</h2>
+  <details><summary>匯率數字變大是升值還是貶值？</summary><div class="faq2-a">以「1 美元 = 幾元台幣」報價時，數字變大代表要更多台幣才能換 1 美元，即台幣貶值、美元走強；數字變小則是台幣升值、美元相對便宜，此時買美元較有利。</div></details>
+  <details><summary>怎麼判斷現在換匯划不划算？</summary><div class="faq2-a">可對照走勢圖的區間最高、最低與平均，看目前匯率落在相對高點還是低點。雖無法預測未來，但能避免在明顯相對高點大額換匯。建議仍以分批換匯分散風險。</div></details>
+  <details><summary>哪些因素會影響台幣匯率？</summary><div class="faq2-a">主要包括美國聯準會與各國利率政策、台灣出口與外資動向、國際避險資金流向，以及央行的調節。多重因素交互作用，使短期匯率難以預測。</div></details>
+</section>
 </div>
 
 </div><!-- /wrap -->
@@ -533,6 +662,58 @@ const fmt = (v, d=2) => {
   return v.toPrecision(2);
 };
 
+// ── 純 SVG 對比長條（CalcBox 圖表規範） ──
+function compareBarSVG(items){
+  const W=600,hasNote=items.some(i=>i.note),rowH=hasNote?54:40,padL=4,labelH=18,barH=20;
+  const H=items.length*rowH+8;
+  const maxV=Math.max(...items.map(i=>i.value))||1, barMax=W-padL-150;
+  let rows='';
+  items.forEach((it,i)=>{const y=i*rowH+8;const w=Math.max((it.value/maxV)*barMax,2);
+    rows+=`<text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#1B3A5C">${it.label}</text>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${it.color}"><title>${it.label} ${it.disp||it.value}</title></rect>`;
+    rows+=`<text x="${(padL+barMax+8)}" y="${y+labelH+14}" font-size="12" font-weight="800" fill="${it.color}">${it.disp||it.value}</text>`;
+    if(it.note)rows+=`<text x="${padL}" y="${y+labelH+barH+11}" font-size="9.5" fill="#9AA9BA">${it.note}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="對比長條圖">${rows}</svg>`;
+}
+
+// ── 旅遊換匯模式 ──
+function calcTravel(){
+  const cur = document.getElementById('tv-cur').value;
+  const budget = parseFloat(document.getElementById('tv-budget').value) || 0;
+  const res = document.getElementById('tv-result');
+  if(!cur || !budget){ alert('請選擇貨幣並輸入台幣預算'); return; }
+  // 中間價：1 外幣 = ? TWD
+  const midRate = getRate(cur, 'TWD'); // 1 cur = midRate TWD
+  if(!midRate){ document.getElementById('tv-num').textContent='匯率載入中…'; res.classList.add('show'); return; }
+  const midForeign = budget / midRate; // 用中間價理論可換
+  // 現鈔賣出價（你買外幣看銀行「賣出」）
+  const qCash = getBankQuote(cur, 'cash');
+  let cashForeign = null, cashSell = null;
+  if(qCash && qCash.sell){ cashSell = Number(qCash.sell); cashForeign = budget / cashSell; }
+  const realForeign = cashForeign != null ? cashForeign : midForeign;
+  const flag = (CURRENCIES[cur]?.flag)||''; const name = (CURRENCIES[cur]?.name)||cur;
+  document.getElementById('tv-num').textContent = fmt(realForeign) + ' ' + cur;
+  document.getElementById('tv-unit').textContent =
+    `${flag} ${fmt(budget)} 台幣 ≈ ${fmt(realForeign)} ${name}` + (cashForeign!=null ? '（銀行現鈔賣出價）' : '（市場中間價，銀行牌告載入中）');
+  // 對比圖：現鈔實拿 vs 中間價理論值
+  const spread = midForeign - realForeign;
+  document.getElementById('tv-chart').innerHTML = compareBarSVG([
+    {label:'中間價理論值', value: midForeign, color:'#9AA9BA', disp: fmt(midForeign)+' '+cur, note:'市場參考價，實際換不到'},
+    {label:'現鈔實拿', value: realForeign, color:'#2E7D32', disp: fmt(realForeign)+' '+cur, note: cashForeign!=null ? `價差成本約 ${fmt(spread)} ${cur}` : '銀行牌告載入中'}
+  ]);
+  // 建議
+  const perc = cashForeign!=null && midForeign>0 ? (spread/midForeign*100).toFixed(1) : null;
+  document.getElementById('tv-tips').innerHTML =
+    `<b>換匯建議：</b><br>`+
+    `• 你是「買外幣」，看的是銀行<b>賣出價</b>，價格<b>越低</b>越划算。<br>`+
+    (perc!=null?`• 現鈔比中間價多付約 <b>${perc}%</b> 的價差，這是換匯的隱形成本。<br>`:'')+
+    `• <b>網路銀行</b>換匯通常比臨櫃便宜 0.5–1%，<b>機場</b>最貴，盡量別在機場換。<br>`+
+    `• 建議出發前 <b>2–4 週分批</b>換，平均成本、避免臨時大額換匯。<br>`+
+    `• 刷國外免手續費信用卡有時比換現鈔更划算；剩餘外幣可用原通路回換或留待下次。`;
+  res.classList.add('show');
+}
+
 // ── 初始化選單 ──
 function initSelects(){
   const codes = Object.keys(CURRENCIES);
@@ -546,6 +727,14 @@ function initSelects(){
   document.getElementById('cv-to').value = 'USD';
   document.getElementById('chart-from').value = 'TWD';
   document.getElementById('chart-to').value = 'USD';
+  // 旅遊換匯：只列外幣（排除 TWD），預設日圓
+  const tv = document.getElementById('tv-cur');
+  if(tv){
+    tv.innerHTML = codes.filter(c=>c!=='TWD').map(c =>
+      `<option value="${c}">${CURRENCIES[c].flag} ${c} ${CURRENCIES[c].name}</option>`
+    ).join('');
+    tv.value = codes.includes('JPY') ? 'JPY' : tv.value;
+  }
 }
 
 // ── 抓即時匯率 (以 USD 為基準，多重備援) ──
