@@ -48,7 +48,11 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"資遣費怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"新制（2005/7/1後）：每滿1年給0.5個月平均工資，未滿1年按比例，上限6個月。舊制（2005/7/1前）：每滿1年給1個月平均工資，前3年每年1個月、第4年起每年0.5個月，上限45個月。"}},
-{"@type":"Question","name":"特休幾天？","acceptedAnswer":{"@type":"Answer","text":"依勞基法第38條：滿0.5年3天、1年7天、2年10天、3年14天、5年15天、10年起每年加1天（上限30天）。"}}
+{"@type":"Question","name":"特休幾天？","acceptedAnswer":{"@type":"Answer","text":"依勞基法第38條：滿0.5年3天、1年7天、2年10天、3年14天、5年15天、10年起每年加1天（上限30天）。"}},
+{"@type":"Question","name":"資遣費用本薪還是平均工資算？","acceptedAnswer":{"@type":"Answer","text":"用平均工資，即離職前6個月工資總額除以總日數乘30，包含加班費、全勤、按月發放獎金等經常性給與，通常高於本薪。"}},
+{"@type":"Question","name":"資遣費以外還有預告工資嗎？","acceptedAnswer":{"@type":"Answer","text":"有。雇主資遣須提前預告：年資3個月至1年預告10天、1至3年20天、3年以上30天。未提前預告者須另給預告期間工資。"}},
+{"@type":"Question","name":"雇主每月為員工要多付多少？","acceptedAnswer":{"@type":"Answer","text":"除月薪外，雇主還負擔勞保約投保薪資70%、健保約60%、強制提繳勞退6%、職災保險0.1%至0.5%及獎金攤提，實際人力成本通常比帳面薪資多15%至20%。"}},
+{"@type":"Question","name":"特休沒休完怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"未休完的特休不會歸零，雇主應折算工資發給（未休天數乘以一日工資，約月薪除以30）。經勞資協商也可遞延一年，之後仍未休須發錢。"}}
 ]}
 </script>
 <style>
@@ -579,9 +583,40 @@ body.shift-active #panel-shift .st-export-bar{
   }
 }
 
+/* 圖表/文章/FAQ（CalcBox 標準） */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.gauge-wrap{display:flex;flex-direction:column;align-items:center;margin:2px 0 4px}
+.gauge-wrap svg{width:200px;max-width:100%}
+.article{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.4rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:var(--accent-light);border:1px solid #C9E6CD;border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px}
+.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}
+.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B}
+.faq2{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted);transition:transform .2s}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
+.hint-line{font-size:11.5px;color:var(--hint);margin:-2px 0 6px;line-height:1.5}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.github.io/hr/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"人資 HR 計算機","item":"https://thecalcbox.com/hr/"}]}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
@@ -617,10 +652,11 @@ body.shift-active #panel-shift .st-export-bar{
     <p>依勞基法第17條試算資遣費，支援舊制（工作年資）與新制（勞退）兩種計算方式</p>
   </div><div class="card-body">
     <div class="fields">
-      <div class="field"><label>月薪（元）</label><input type="number" id="sv-salary" placeholder="例：45000" inputmode="numeric"></div>
+      <div class="field"><label>平均工資（元 / 月）</label><input type="number" id="sv-salary" placeholder="例：45000" inputmode="numeric"></div>
       <div class="field"><label>年資制度</label>
         <select id="sv-system"><option value="new" selected>新制（2005/7/1後）</option><option value="old">舊制（2005/7/1前）</option><option value="mix">新舊混合</option></select></div>
     </div>
+    <p class="hint-line">※ 資遣費基數為「平均工資」＝離職前6個月工資總額÷總日數×30，<b>含加班費、全勤、按月發放的獎金</b>，通常高於本薪。請盡量填平均工資而非僅本薪。</p>
     <div class="fields" id="sv-new-row">
       <div class="field"><label>新制年資（年）</label><input type="number" id="sv-new-years" placeholder="例：5" step="0.5" inputmode="decimal"></div>
       <div class="field"><label>新制月數（月，補充）</label><input type="number" id="sv-new-months" placeholder="例：3" inputmode="numeric"></div>
@@ -636,10 +672,18 @@ body.shift-active #panel-shift .st-export-bar{
       <div class="result-grid">
         <div class="result-cell"><div class="lbl">新制資遣費</div><div class="val" id="sv-new-amt">—</div></div>
         <div class="result-cell"><div class="lbl">舊制資遣費</div><div class="val" id="sv-old-amt">—</div></div>
-        <div class="result-cell"><div class="lbl">平均工資基準</div><div class="val" id="sv-base">—</div></div>
+        <div class="result-cell"><div class="lbl">預告工資</div><div class="val" id="sv-notice">—</div></div>
+        <div class="result-cell"><div class="lbl">資遣費＋預告工資</div><div class="val green" id="sv-grand">—</div></div>
+      </div>
+      <div class="charts" id="sv-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">資遣給付組成</div>
+          <div class="chart-sub">新制／舊制資遣費與預告工資的金額對比。</div>
+          <div id="sv-chart"></div>
+        </div>
       </div>
       <div class="result-note" id="sv-note"></div>
-      <div class="result-disclaimer">依勞基法第17條試算。實際資遣費須確認勞工保險投保薪資及完整服務期間，建議諮詢勞工局。</div>
+      <div class="result-disclaimer">依勞基法第17條（資遣費）與第16條（預告期）試算。預告期內雇主未給預告者，須另給預告工資。實際以平均工資與完整服務期間認定，建議諮詢勞工局。公式最後核對：2026-06。</div>
     </div>
     <div class="seo-box">
       <h3>資遣費計算公式</h3>
@@ -649,6 +693,33 @@ body.shift-active #panel-shift .st-export-bar{
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9801" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>資遣費怎麼算？平均工資、預告工資與新舊制全解析</h2>
+  <p class="lead-card">很多人以為資遣費就是「幾個月薪水」，其實計算基數是「平均工資」、要分新舊制，而且別忘了還有一筆「預告工資」。算錯很容易少領好幾萬。</p>
+  <h3>1. 基數是「平均工資」，不是本薪</h3>
+  <p>資遣費的計算基數是<b>平均工資</b>＝離職前 6 個月工資總額 ÷ 總日數 × 30。這裡的「工資」包含加班費、全勤獎金、按月發放的津貼等經常性給與，<b>通常高於本薪</b>。只用本薪計算會低估資遣費，務必用平均工資。</p>
+  <h3>2. 新制 vs 舊制 vs 混合</h3>
+  <table>
+    <thead><tr><th>制度</th><th>計算方式</th><th>上限</th></tr></thead>
+    <tbody>
+      <tr><td>新制（2005/7/1後）</td><td>每滿 1 年給 0.5 個月平均工資，未滿 1 年按比例</td><td>最高 6 個月</td></tr>
+      <tr><td>舊制（2005/7/1前）</td><td>前 3 年每年 1 個月，第 4 年起每年 0.5 個月</td><td>最高 45 個月</td></tr>
+      <tr><td>新舊混合</td><td>2005/7/1 前後年資分別依各自制度計算後相加</td><td>分別適用</td></tr>
+    </tbody>
+  </table>
+  <h3>3. 別漏了「預告工資」</h3>
+  <p>資遣勞工，雇主須依勞基法第 16 條提前預告：年資 3 個月～1 年須預告 10 天、1～3 年 20 天、3 年以上 30 天。雇主若未提前預告，須<b>另外給付預告期間的工資</b>。本頁會自動依年資加計預告工資，算出「資遣費＋預告工資」總額。</p>
+  <h3>4. 什麼情況才有資遣費</h3>
+  <p>資遣費只在<b>非自願離職</b>（雇主主動終止契約）時發給。勞工自請離職不得請求；但若是雇主違反勞動契約或勞工法令致勞工被迫離職，仍可依法請求資遣費。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：基數用平均工資（含加班獎金）→ 分清新舊制與上限 → 加計預告工資 → 確認屬非自願離職 → 有疑義洽當地勞工局。</div>
+</article>
+<section class="faq2">
+  <h2>資遣費常見問題</h2>
+  <details><summary>資遣費用本薪還是平均工資計算？</summary><div class="faq2-a">用平均工資，即離職前 6 個月工資總額÷總日數×30，包含加班費、全勤、按月發放的獎金等經常性給與，通常高於本薪。只用本薪會低估資遣費。</div></details>
+  <details><summary>新制和舊制資遣費差多少？</summary><div class="faq2-a">新制每滿一年給 0.5 個月、上限 6 個月；舊制前 3 年每年 1 個月、之後每年 0.5 個月、上限 45 個月。舊制對長年資勞工明顯較優厚。2005/7/1 前後的年資分別適用。</div></details>
+  <details><summary>預告工資是什麼？</summary><div class="faq2-a">雇主資遣須提前預告：年資 3 個月～1 年預告 10 天、1～3 年 20 天、3 年以上 30 天。未提前預告者須另給預告期間工資。這是資遣費以外的一筆給付。</div></details>
+  <details><summary>自己離職有資遣費嗎？</summary><div class="faq2-a">沒有。資遣費僅在非自願離職（雇主主動終止）時發給。但若雇主違法致勞工被迫離職，勞工仍可依勞基法第 14 條請求資遣費。</div></details>
+</section>
 </div>
 
 <!-- 年資換算 -->
@@ -671,6 +742,13 @@ body.shift-active #panel-shift .st-export-bar{
         <div class="result-cell"><div class="lbl">總天數</div><div class="val" id="sr-days">—</div></div>
         <div class="result-cell"><div class="lbl">特休天數（勞基法）</div><div class="val green" id="sr-leave">—</div></div>
       </div>
+      <div class="charts" id="sr-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">勞基法特休級距（你的位置）</div>
+          <div class="chart-sub">特休天數隨年資階梯式增加，綠色為你目前所在級距。</div>
+          <div id="sr-chart"></div>
+        </div>
+      </div>
       <div class="result-note" id="sr-note"></div>
     </div>
     <div class="seo-box">
@@ -681,6 +759,33 @@ body.shift-active #panel-shift .st-export-bar{
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9802" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>年資與特休：勞基法第 38 條級距完整對照</h2>
+  <p class="lead-card">特休天數不是固定的，而是隨年資階梯式增加。搞懂級距，才知道自己今年該有幾天特休、雇主有沒有少給。</p>
+  <h3>1. 特休級距怎麼跳</h3>
+  <table>
+    <thead><tr><th>年資</th><th>特休天數</th></tr></thead>
+    <tbody>
+      <tr><td>滿 6 個月～未滿 1 年</td><td>3 天</td></tr>
+      <tr><td>滿 1 年～未滿 2 年</td><td>7 天</td></tr>
+      <tr><td>滿 2 年～未滿 3 年</td><td>10 天</td></tr>
+      <tr><td>滿 3 年～未滿 5 年</td><td>每年 14 天</td></tr>
+      <tr><td>滿 5 年～未滿 10 年</td><td>每年 15 天</td></tr>
+      <tr><td>滿 10 年以上</td><td>每多 1 年加 1 天，最高 30 天</td></tr>
+    </tbody>
+  </table>
+  <h3>2. 年資怎麼算</h3>
+  <p>年資從<b>到職日</b >起算，計入試用期。轉換計算基準時（週年制 vs 曆年制）天數可能略有差異，但法定最低標準不變。本頁以到職日與計算日精算到「年月日」，並標出你目前落在哪個特休級距。</p>
+  <h3>3. 到職週年制 vs 曆年制</h3>
+  <p>特休的給假基準，雇主可採「到職週年制」（以每年到職日為一個特休年度）或「曆年制」（以 1/1～12/31 為週期，依比例給假），兩者換算方式不同但全年總額應符合法定標準。多數中小企業採週年制，較單純。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：特休依年資階梯成長、滿 10 年起每年加 1 天封頂 30 天 → 年資從到職日起算含試用期 → 週年制與曆年制換算不同但不得低於法定標準。</div>
+</article>
+<section class="faq2">
+  <h2>年資與特休常見問題</h2>
+  <details><summary>年資滿幾年有幾天特休？</summary><div class="faq2-a">滿 6 個月 3 天、滿 1 年 7 天、滿 2 年 10 天、滿 3 年起 14 天、滿 5 年起 15 天、滿 10 年起每年加 1 天最高 30 天。為勞基法第 38 條法定最低標準。</div></details>
+  <details><summary>試用期算年資嗎？</summary><div class="faq2-a">算。勞基法沒有「試用期不計年資」的規定，試用期間仍屬僱傭關係，應併入年資計算特休與其他權益。</div></details>
+  <details><summary>到職週年制和曆年制差在哪？</summary><div class="faq2-a">週年制以每年到職日為特休年度；曆年制以 1/1～12/31 為週期、依到職比例給假。兩者換算方式不同，但全年特休總額都不得低於法定標準。</div></details>
+</section>
 </div>
 
 <!-- 人力成本 -->
@@ -712,6 +817,14 @@ body.shift-active #panel-shift .st-export-bar{
         <div class="result-cell"><div class="lbl">年終攤月成本</div><div class="val red" id="hc-bonus-m">—</div></div>
         <div class="result-cell"><div class="lbl">薪資以外附加率</div><div class="val" id="hc-rate">—</div></div>
       </div>
+      <div class="charts" id="hc-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">每月人力成本組成</div>
+          <div class="chart-sub">本薪以外的勞健保、勞退、職災與年終攤提，是企業的隱形人事成本。</div>
+          <div class="gauge-wrap" id="hc-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>本薪</span><span><i style="background:#388E3C"></i>雇主勞保</span><span><i style="background:#C58A12"></i>雇主健保</span><span><i style="background:#6A4FB5"></i>勞退6%</span><span><i style="background:#C62828"></i>職災</span><span><i style="background:#98A4B3"></i>年終攤</span></div>
+        </div>
+      </div>
       <div class="result-note" id="hc-note"></div>
       <div class="result-disclaimer">未含招募、訓練、設備等間接成本。實際費率以勞保局、健保署公告為準。</div>
     </div>
@@ -721,6 +834,29 @@ body.shift-active #panel-shift .st-export-bar{
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9803" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>一個員工的真實成本：薪水以外的隱形人事費</h2>
+  <p class="lead-card">老闆常以為「給 5 萬月薪＝每月成本 5 萬」，其實還要加上雇主負擔的勞健保、勞退、職災與年終攤提，實際成本往往比帳面薪資多 15%~20%。</p>
+  <h3>1. 雇主要額外負擔哪些</h3>
+  <ul>
+    <li><b>勞保</b>：雇主負擔約投保薪資的 70%（普通事故＋就業保險）。</li>
+    <li><b>健保</b>：雇主負擔約投保金額的 60%（含眷屬平均負擔）。</li>
+    <li><b>勞退</b>：雇主須提繳 <b>月薪 6%</b> 到員工的勞退個人專戶，這是強制的。</li>
+    <li><b>職災保險</b>：依行業別費率（行政約 0.1%、製造約 0.2%、營造約 0.5%）。</li>
+    <li><b>年終／獎金攤提</b>：把年度獎金平均分攤到每月。</li>
+  </ul>
+  <h3>2. 為什麼要算「真實成本」</h3>
+  <p>做人力預算、報價、評估加薪或外包時，用真實人力成本才不會低估。一個帳面 5 萬的員工，企業實際每月支出常達 5.8~6 萬。本頁會把各項組成用甜甜圈圖拆給你看，一眼掌握隱形成本比例。</p>
+  <h3>3. 投保級距 ≠ 月薪</h3>
+  <p>勞健保是按「投保薪資級距」計算，不是實際月薪。高薪者投保金額有上限，因此勞健保佔比會隨薪資提高而下降，但勞退 6% 仍按全額月薪提繳。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：真實人力成本＝本薪＋雇主勞健保＋勞退 6%＋職災＋獎金攤提 → 通常比帳面薪資多 15~20% → 做預算、報價、加薪評估都該用真實成本。</div>
+</article>
+<section class="faq2">
+  <h2>人力成本常見問題</h2>
+  <details><summary>雇主每月要為員工多付多少？</summary><div class="faq2-a">除月薪外，雇主還要負擔勞保（約投保薪資 70%）、健保（約 60%）、強制提繳勞退 6%、職災保險（依行業 0.1%~0.5%）及獎金攤提，合計通常使實際成本比帳面薪資多 15%~20%。</div></details>
+  <details><summary>勞退 6% 是強制的嗎？</summary><div class="faq2-a">是。依勞工退休金條例，雇主須按員工月提繳工資的 6% 提繳至勞退個人專戶，不得以任何名目扣抵或要求員工負擔。員工可另自願提繳最高 6%。</div></details>
+  <details><summary>職災保險費率怎麼定？</summary><div class="faq2-a">依行業別風險訂定，一般行政約 0.1%、製造業約 0.2%、營造土木約 0.5%，由雇主全額負擔。費率由勞動部定期公告調整。</div></details>
+</section>
 </div>
 
 <!-- 招募成本 -->
@@ -750,6 +886,14 @@ body.shift-active #panel-shift .st-export-bar{
         <div class="result-cell"><div class="lbl">外部招募費用</div><div class="val" id="rc-ext">—</div></div>
         <div class="result-cell"><div class="lbl">總招募成本</div><div class="val" id="rc-total">—</div></div>
       </div>
+      <div class="charts" id="rc-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">招募成本組成</div>
+          <div class="chart-sub">HR 投入工時（隱形成本）常被低估，與外部費用一起才是真實招募成本。</div>
+          <div class="gauge-wrap" id="rc-chart"></div>
+          <div class="chart-legend"><span><i style="background:#2D6CB5"></i>HR 人力成本</span><span><i style="background:#C58A12"></i>外部費用</span></div>
+        </div>
+      </div>
       <div class="result-note" id="rc-note"></div>
       <div class="result-disclaimer">未含新人訓練、試用期低效率等隱性成本。台灣企業平均 CPH 約月薪的 0.5–2 倍。</div>
     </div>
@@ -759,6 +903,23 @@ body.shift-active #panel-shift .st-export-bar{
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9804" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>招募成本怎麼算？別只看刊登廣告費</h2>
+  <p class="lead-card">很多公司算招募成本只算「人力銀行刊登費」，卻忽略 HR 投入的工時、面試主管的時間、獵頭費等。真實的每人招募成本（CPH）常比想像高很多。</p>
+  <h3>1. CPH（Cost Per Hire）＝總成本 ÷ 錄取人數</h3>
+  <p>招募成本要把<b>內部</b>與<b>外部</b>成本一起算：內部包含 HR 投入工時的人力成本、用人主管面試時間；外部包含人力銀行刊登費、獵頭費（常為年薪的 20%~30%）、人才測評工具等。總和除以實際錄取人數，才是真實 CPH。</p>
+  <h3>2. HR 工時是最常被低估的隱形成本</h3>
+  <p>從寫職缺、篩履歷、安排面試到報到，HR 投入的工時換算成薪資，往往是招募成本的大宗。本頁把「HR 人力成本」與「外部費用」分開呈現，讓你看清隱形成本的比例。</p>
+  <h3>3. 招募成本的常見估算</h3>
+  <p>業界常以「該職位年薪的某個比例」概估整體招募與到職成本，一般職位約年薪的 20%~50%、高階或稀缺人才可能更高。這只是<b>常見估算區間</b>，實際應以你公司真實投入的內外部成本計算為準。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：CPH＝（HR 工時成本＋主管時間＋外部費用）÷ 錄取人數 → HR 工時是最大隱形成本 → 年薪比例法只是概估、實算更準 → 降低 CPH 從提升人才命中率著手。</div>
+</article>
+<section class="faq2">
+  <h2>招募成本常見問題</h2>
+  <details><summary>招募成本（CPH）包含哪些？</summary><div class="faq2-a">包含內部成本（HR 投入工時的人力成本、用人主管面試時間）與外部成本（人力銀行刊登費、獵頭費、測評工具等）。總和除以實際錄取人數即為每人招募成本 CPH。</div></details>
+  <details><summary>招募成本約占年薪多少？</summary><div class="faq2-a">業界常以年薪的 20%~50% 概估整體招募與到職成本，高階或稀缺人才更高。但這只是常見估算區間，實際應依公司真實投入的內外部成本計算。</div></details>
+  <details><summary>獵頭費通常多少？</summary><div class="faq2-a">獵頭（人力仲介）費用常為錄取者年薪的 20%~30%，依職位層級與稀缺度而定，通常於到職並通過保證期後支付。</div></details>
+</section>
 </div>
 
 <!-- 特休試算 -->
@@ -784,6 +945,14 @@ body.shift-active #panel-shift .st-export-bar{
         <div class="result-cell"><div class="lbl">日薪基準</div><div class="val" id="lv-daily">—</div></div>
         <div class="result-cell"><div class="lbl">未休折薪金額</div><div class="val" id="lv-cash">—</div></div>
       </div>
+      <div class="charts" id="lv-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">特休使用狀況</div>
+          <div class="chart-sub">未休的特休年度結束時雇主應折算工資發給。</div>
+          <div class="gauge-wrap" id="lv-chart"></div>
+          <div class="chart-legend"><span><i style="background:#98A4B3"></i>已用</span><span><i style="background:#2E7D32"></i>剩餘</span></div>
+        </div>
+      </div>
       <div class="result-note" id="lv-note"></div>
       <div class="result-disclaimer">依勞基法第38條。特休折薪以「一日工資」計算（月薪÷30）。</div>
     </div>
@@ -793,6 +962,24 @@ body.shift-active #panel-shift .st-export-bar{
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9805" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+<article class="article">
+  <h2>特休沒休完怎麼辦？折算工資與遞延規則</h2>
+  <p class="lead-card">特休沒休完不會白白消失。依勞基法，年度結束或契約終止時未休的特休，雇主應折算工資發給；經勞資協商也可遞延一年。</p>
+  <h3>1. 未休特休一定要折算工資</h3>
+  <p>特休應由勞工排定。但因年度終結或契約終止而未休完的日數，<b>雇主應發給工資</b>，不得片面歸零。折算標準為「未休天數 × 一日工資」，一日工資通常以月薪 ÷ 30 計。</p>
+  <h3>2. 可協商遞延一年</h3>
+  <p>勞資雙方可協商，將當年度未休的特休遞延到次一年度實施；遞延後仍未休完的，雇主就要折算工資發給。遞延需雙方同意，雇主不得強制勞工只能遞延而不發錢。</p>
+  <h3>3. 雇主應主動告知</h3>
+  <p>每年度終結，雇主應將勞工特休的給假與未休日數、可領的工資數額告知勞工，並記載於工資清冊。勞工有權知道自己還有幾天特休、未休可折多少錢。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：未休特休不歸零、雇主應折算工資 → 一日工資約月薪÷30 → 可經協商遞延一年、之後仍未休須發錢 → 雇主應主動告知未休日數與金額。</div>
+</article>
+<section class="faq2">
+  <h2>特休常見問題</h2>
+  <details><summary>特休沒休完會不見嗎？</summary><div class="faq2-a">不會。因年度終結或契約終止而未休完的特休，雇主應折算工資發給，不得片面歸零。折算為未休天數×一日工資（約月薪÷30）。</div></details>
+  <details><summary>特休可以遞延到隔年嗎？</summary><div class="faq2-a">可以，但須勞資協商同意，將未休特休遞延至次一年度。遞延後仍未休完的，雇主仍應折算工資發給，不能無限遞延或藉此不發錢。</div></details>
+  <details><summary>未休特休工資怎麼計算？</summary><div class="faq2-a">以「未休天數 × 一日工資」計算，一日工資通常以月薪÷30 計。本頁可輸入年資、已用天數與月薪，自動算出剩餘天數與折算工資。</div></details>
+  <details><summary>離職時剩餘特休要結算嗎？</summary><div class="faq2-a">要。契約終止（含離職、資遣、退休）時，當年度未休的特休一律折算工資發給，與離職原因無關。</div></details>
+</section>
 </div>
 
 <!-- 排班表 -->
@@ -947,6 +1134,45 @@ const SKEL=`<div class="skel-card"><div class="skel-line short"></div><div class
 let newsLoaded=false;
 const fmt=v=>Math.round(v).toLocaleString();
 
+/* ══ 純 SVG 圖表（CalcBox 圖表規範） ══ */
+// 甜甜圈圖 segs=[{label,value,color}]
+function donutSVG(segs,centerTop,centerBot){
+  const W=200,H=200,cx=100,cy=100,r=70,sw=26;
+  const total=segs.reduce((a,s)=>a+s.value,0)||1;
+  const C=2*Math.PI*r;let off=0,ring='';
+  segs.forEach(s=>{const frac=s.value/total;const len=frac*C;
+    ring+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"><title>${s.label} ${(frac*100).toFixed(1)}%</title></circle>`;off+=len;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="組成比例甜甜圈圖">${ring}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="13" fill="#9AA9BA">${centerTop||''}</text><text x="${cx}" y="${cy+18}" text-anchor="middle" font-size="17" font-weight="800" fill="#1B3A5C">${centerBot||''}</text></svg>`;
+}
+// 水平對比長條 items=[{label,value,color,disp,note}]
+function compareBarSVG(items){
+  const W=600,hasNote=items.some(i=>i.note),rowH=hasNote?54:40,padL=4,labelH=18,barH=20;
+  const H=items.length*rowH+8;
+  const maxV=Math.max(...items.map(i=>i.value))||1,barMax=W-padL-150;
+  let rows='';
+  items.forEach((it,i)=>{const y=i*rowH+8;const w=Math.max((it.value/maxV)*barMax,2);
+    rows+=`<text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#1B3A5C">${it.label}</text>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${barMax}" height="${barH}" rx="5" fill="#EDF1F6"/>`;
+    rows+=`<rect x="${padL}" y="${y+labelH}" width="${w.toFixed(1)}" height="${barH}" rx="5" fill="${it.color}"><title>${it.label} ${it.disp||it.value}</title></rect>`;
+    rows+=`<text x="${(padL+barMax+8)}" y="${y+labelH+14}" font-size="12" font-weight="800" fill="${it.color}">${it.disp||it.value}</text>`;
+    if(it.note)rows+=`<text x="${padL}" y="${y+labelH+barH+11}" font-size="9.5" fill="#9AA9BA">${it.note}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="對比長條圖">${rows}</svg>`;
+}
+// 特休級距階梯（勞基法第38條）highlight 目前年資
+function leaveLadderSVG(curYrs){
+  const levels=[{y:'0.5年',d:3,min:0.5},{y:'1年',d:7,min:1},{y:'2年',d:10,min:2},{y:'3年',d:14,min:3},{y:'5年',d:15,min:5},{y:'10年',d:16,min:10},{y:'15年',d:21,min:15},{y:'24年+',d:30,min:24}];
+  const W=600,rowH=30,padL=44,top=6,barMax=W-padL-70;
+  const H=levels.length*rowH+top+4, maxD=30;
+  // 找目前所在級距
+  let curIdx=-1;for(let i=0;i<levels.length;i++){if(curYrs>=levels[i].min)curIdx=i;}
+  let rows='';
+  levels.forEach((lv,i)=>{const y=top+i*rowH;const w=(lv.d/maxD)*barMax;const on=i===curIdx;
+    rows+=`<text x="${padL-6}" y="${y+16}" text-anchor="end" font-size="11" font-weight="${on?700:400}" fill="${on?'#2E7D32':'#9AA9BA'}">${lv.y}</text>`;
+    rows+=`<rect x="${padL}" y="${y+4}" width="${w.toFixed(1)}" height="18" rx="4" fill="${on?'#2E7D32':'#D7E6DA'}"><title>${lv.y} → ${lv.d}天</title></rect>`;
+    rows+=`<text x="${padL+w+7}" y="${y+17}" font-size="11" font-weight="${on?800:600}" fill="${on?'#2E7D32':'#9AA9BA'}">${lv.d}天${on?' ◀ 你':''}</text>`;});
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="勞基法特休級距階梯圖">${rows}</svg>`;
+}
+
 function switchTab(id){
   if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -1031,12 +1257,26 @@ function calcSeverance(){
     oldAmt=Math.min(oldAmt,45*salary);
   }
   const total=Math.round(newAmt+oldAmt);
+  // 預告工資（勞基法第16條）：依總年資 3個月~1年=10天、1~3年=20天、3年以上=30天
+  const totalYrs=(sys==='old'?oldY:0)+(sys==='new'?newTotal:0)+(sys==='mix'?(oldY+newTotal):0);
+  let noticeDays=0;
+  if(totalYrs>=3)noticeDays=30; else if(totalYrs>=1)noticeDays=20; else if(totalYrs>=0.25)noticeDays=10;
+  const noticePay=Math.round(salary/30*noticeDays);
+  const grand=total+noticePay;
   document.getElementById('sv-total').textContent=fmt(total);
   document.getElementById('sv-tag').textContent=sys==='new'?'新制（2005/7/1後）':sys==='old'?'舊制':'新舊混合';
   document.getElementById('sv-new-amt').textContent=sys!=='old'?fmt(Math.round(newAmt))+' 元':'—';
   document.getElementById('sv-old-amt').textContent=sys!=='new'?fmt(Math.round(oldAmt))+' 元':'—';
-  document.getElementById('sv-base').textContent=fmt(salary)+' 元（月薪）';
-  document.getElementById('sv-note').textContent=`月薪 ${fmt(salary)} 元，${sys!=='old'?`新制年資 ${newTotal.toFixed(2)} 年 → ${fmt(Math.round(newAmt))} 元`:''}${sys==='mix'?'；':''}${sys!=='new'?`舊制年資 ${oldY} 年 → ${fmt(Math.round(oldAmt))} 元`:''}，合計資遣費 ${fmt(total)} 元。`;
+  document.getElementById('sv-notice').textContent=noticeDays>0?fmt(noticePay)+' 元（'+noticeDays+'天）':'未達預告門檻';
+  document.getElementById('sv-grand').textContent=fmt(grand)+' 元';
+  document.getElementById('sv-note').textContent=`平均工資 ${fmt(salary)} 元，${sys!=='old'?`新制年資 ${newTotal.toFixed(2)} 年 → ${fmt(Math.round(newAmt))} 元`:''}${sys==='mix'?'；':''}${sys!=='new'?`舊制年資 ${oldY} 年 → ${fmt(Math.round(oldAmt))} 元`:''}，資遣費合計 ${fmt(total)} 元；另預告期 ${noticeDays} 天、預告工資 ${fmt(noticePay)} 元，總計約 ${fmt(grand)} 元。`;
+  // 圖表
+  const items=[];
+  if(sys!=='old')items.push({label:'新制資遣費',value:Math.round(newAmt),color:'#2D6CB5',disp:fmt(Math.round(newAmt))+'元'});
+  if(sys!=='new')items.push({label:'舊制資遣費',value:Math.round(oldAmt),color:'#388E3C',disp:fmt(Math.round(oldAmt))+'元'});
+  if(noticePay>0)items.push({label:'預告工資',value:noticePay,color:'#C58A12',disp:fmt(noticePay)+'元'});
+  document.getElementById('sv-charts').style.display='flex';
+  document.getElementById('sv-chart').innerHTML=compareBarSVG(items.length?items:[{label:'資遣費',value:total,color:'#2D6CB5',disp:fmt(total)+'元'}]);
   document.getElementById('severance-result').classList.add('show');
 }
 document.getElementById('sv-system').addEventListener('change',function(){
@@ -1070,6 +1310,8 @@ function calcSeniority(){
   document.getElementById('sr-days').textContent=days.toLocaleString()+' 天';
   document.getElementById('sr-leave').textContent=leave+' 天';
   document.getElementById('sr-note').textContent=`到職 ${s} 至 ${e}，共 ${years} 年 ${remM} 月 ${remD} 天（${days.toLocaleString()} 天），依勞基法應有特休 ${leave} 天。`;
+  document.getElementById('sr-charts').style.display='flex';
+  document.getElementById('sr-chart').innerHTML=leaveLadderSVG(yrs);
   document.getElementById('seniority-result').classList.add('show');
 }
 function calcHRCost(){
@@ -1094,6 +1336,15 @@ function calcHRCost(){
   document.getElementById('hc-bonus-m').textContent=fmt(bonusMon)+' 元';
   document.getElementById('hc-rate').textContent=addRate+'%';
   document.getElementById('hc-note').textContent=`月薪 ${fmt(salary)} 元，加上雇主勞保 ${fmt(laborEmp)}、健保 ${fmt(nhiEmp)}、勞退 ${fmt(pension)}、年終攤 ${fmt(bonusMon)} 元，每月實際人力成本約 ${fmt(total)} 元（比薪資多 ${addRate}%）。`;
+  document.getElementById('hc-charts').style.display='flex';
+  document.getElementById('hc-chart').innerHTML=donutSVG([
+    {label:'本薪',value:salary,color:'#2D6CB5'},
+    {label:'雇主勞保',value:laborEmp,color:'#388E3C'},
+    {label:'雇主健保',value:nhiEmp,color:'#C58A12'},
+    {label:'勞退6%',value:pension,color:'#6A4FB5'},
+    {label:'職災',value:injury,color:'#C62828'},
+    {label:'年終攤',value:bonusMon,color:'#98A4B3'}
+  ],'附加成本',addRate+'%');
   document.getElementById('cost-result').classList.add('show');
 }
 function calcRecruit(){
@@ -1112,6 +1363,11 @@ function calcRecruit(){
   document.getElementById('rc-ext').textContent=fmt(ext)+' 元';
   document.getElementById('rc-total').textContent=fmt(Math.round(total))+' 元';
   document.getElementById('rc-note').textContent=`招募 ${n} 人，HR 投入 ${(hrPct*100).toFixed(0)}% 工時 ${days} 天，HR 人力成本 ${fmt(Math.round(hrCost))} 元，外部費用 ${fmt(ext)} 元，總成本 ${fmt(Math.round(total))} 元，每人招募成本（CPH）約 ${fmt(Math.round(cph))} 元。`;
+  document.getElementById('rc-charts').style.display='flex';
+  document.getElementById('rc-chart').innerHTML=donutSVG([
+    {label:'HR 人力成本',value:Math.round(hrCost),color:'#2D6CB5'},
+    {label:'外部費用',value:ext,color:'#C58A12'}
+  ],'每人 CPH',fmt(Math.round(cph)));
   document.getElementById('recruit-result').classList.add('show');
 }
 function calcLeave(){
@@ -1135,6 +1391,11 @@ function calcLeave(){
   document.getElementById('lv-daily').textContent=salary>0?fmt(parseInt(daily))+' 元/天':'未填薪資';
   document.getElementById('lv-cash').textContent=salary>0?fmt(Math.round(remain*(salary/30)))+' 元':'未填薪資';
   document.getElementById('lv-note').textContent=`年資 ${yrs} 年，應有特休 ${total} 天，已用 ${used} 天，剩餘 ${remain} 天${salary>0?`，折算工資約 ${fmt(Math.round(remain*(salary/30)))} 元`:''}。`;
+  document.getElementById('lv-charts').style.display='flex';
+  document.getElementById('lv-chart').innerHTML=donutSVG([
+    {label:'已用',value:Math.max(0,used),color:'#98A4B3'},
+    {label:'剩餘',value:remain,color:'#2E7D32'}
+  ],'剩餘',remain+'天');
   document.getElementById('leave-result').classList.add('show');
 }
 
