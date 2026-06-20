@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YSWRYYKD44');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+<link rel="apple-touch-icon" href="/icons/tools-white/statistics.png">
+<meta name="apple-mobile-web-app-title" content="統計品管工具">
+<meta name="theme-color" content="#00695C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<title>統計與品管計算工具｜Cp/Cpk、QC抽樣表、樣本數、NPS — CalcBox</title>
+<link rel="canonical" href="https://thecalcbox.com/statistics/">
+<meta name="description" content="免費統計與品管計算工具：製程能力Cp/Cpk、QC抽樣表(AQL)、樣本數計算機、信賴區間、敘述統計、相關迴歸分析、NPS淨推薦值、良率DPMO，適合市場研究與品管工程師，支援資料匯入匯出。">
+<meta name="keywords" content="Cp Cpk計算,QC抽樣表,AQL抽樣計畫,樣本數計算,信賴區間計算,敘述統計,相關係數迴歸,NPS淨推薦值,良率DPMO,六標準差">
+<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
+<meta property="og:title" content="統計與品管計算工具｜Cp/Cpk、QC抽樣表、樣本數、NPS — CalcBox">
+<meta property="og:description" content="免費統計與品管計算工具：製程能力Cp/Cpk、QC抽樣表(AQL)、樣本數計算機、信賴區間、敘述統計、相關迴歸分析、NPS淨推薦值、良率DPMO，適合市場研究與品管工程師，支援資料匯入匯出。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CalcBox">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:url" content="https://thecalcbox.com/statistics/">
+<meta property="og:image" content="https://thecalcbox.com/og/statistics.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="統計與品管工具｜樣本數、信賴區間、Cp/Cpk、NPS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thecalcbox.com/og/statistics.png">
+<meta name="twitter:title" content="統計與品管計算工具｜Cp/Cpk、QC抽樣表、樣本數、NPS — CalcBox">
+<meta name="twitter:description" content="免費統計與品管計算工具：製程能力Cp/Cpk、QC抽樣表(AQL)、樣本數計算機、信賴區間、敘述統計、相關迴歸分析、NPS淨推薦值、良率DPMO，適合市場研究與品管工程師，支援資料匯入匯出。">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"樣本數計算機","url":"https://thecalcbox.com/statistics/#samplesize","description":"依信心水準、誤差範圍計算問卷調查或抽樣檢驗所需樣本數。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"信賴區間計算機","url":"https://thecalcbox.com/statistics/#ci","description":"計算比例或均值的信賴區間與誤差範圍。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"敘述統計計算機","url":"https://thecalcbox.com/statistics/#descriptive","description":"輸入數據自動計算平均數、中位數、標準差、四分位數並繪製箱型圖。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"相關與迴歸分析","url":"https://thecalcbox.com/statistics/#correlation","description":"計算兩組數據的相關係數與簡單線性迴歸方程式，附散佈圖。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"NPS淨推薦值計算機","url":"https://thecalcbox.com/statistics/#nps","description":"依推薦者、中立者、貶低者人數計算NPS分數。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"製程能力與良率計算機","url":"https://thecalcbox.com/statistics/#capability","description":"計算Cp/Cpk製程能力指標與DPMO、六標準差水準。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"QC抽樣表計算機","url":"https://thecalcbox.com/statistics/#qcsampling","description":"依批量與AQL計算允收抽樣計畫，含字碼查詢、樣本數、允收/拒收數與OC曲線。","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+]}
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.com/"},{"@type":"ListItem","position":2,"name":"統計與品管工具","item":"https://thecalcbox.com/statistics/"}]}</script>
+<script type="application/ld+json" id="faqpage-schema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"母體越大，需要的樣本數也要越多嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。當母體規模夠大（通常超過2萬）時，所需樣本數幾乎不再隨母體成長而顯著增加，因為決定樣本數的主要是誤差範圍與信心水準，而非母體大小。只有母體較小時，有限母體修正才會明顯降低所需樣本數。"}},
+{"@type":"Question","name":"為什麼常聽到「樣本數384」這個數字？","acceptedAnswer":{"@type":"Answer","text":"384是95%信心水準、5%誤差範圍、預期比例50%（最保守假設）下的無限母體標準樣本數，是市場研究業界最常用的基準組合，因此經常被提及。"}},
+{"@type":"Question","name":"95%信賴區間是不是代表真實值有95%機率在範圍內？","acceptedAnswer":{"@type":"Answer","text":"嚴格來說不是。95%信賴水準描述的是重複抽樣方法的可靠度：若重複抽樣100次各算一次區間，平均95次會包含真實值。對單次調查得出的區間，真實值要嘛在裡面要嘛不在，這是統計學中常見的誤解。"}},
+{"@type":"Question","name":"想把誤差範圍縮小一半，樣本數要增加多少？","acceptedAnswer":{"@type":"Answer","text":"要增加到約4倍。誤差範圍與樣本數呈反比平方根關係，這是提高精準度成本很高的原因，也是業界常在5%誤差範圍打住的原因。"}},
+{"@type":"Question","name":"平均數和中位數該看哪一個？","acceptedAnswer":{"@type":"Answer","text":"資料對稱分布時兩者接近，看哪個都可以；資料有極端值或明顯偏態（如薪資、房價）時，中位數較不受極端值影響，更能代表一般情況。建議兩者都算出來互相對照。"}},
+{"@type":"Question","name":"箱型圖的離群值是怎麼判定的？","acceptedAnswer":{"@type":"Answer","text":"採用統計學常用的1.5倍IQR規則：數值低於Q1減1.5倍IQR或高於Q3加1.5倍IQR視為離群值。本工具會自動計算並用紅點標示在箱型圖上。"}},
+{"@type":"Question","name":"相關係數多少算高度相關？","acceptedAnswer":{"@type":"Answer","text":"一般經驗法則：絕對值0.7以上為強相關、0.4至0.7為中度相關、0.2至0.4為弱相關、低於0.2幾乎無相關。實際門檻依領域而異，社會科學資料的相關係數通常比物理量測資料低。"}},
+{"@type":"Question","name":"相關係數高，可以說A導致B嗎？","acceptedAnswer":{"@type":"Answer","text":"不能直接這樣推論。相關只說明兩者有共同變動的趨勢，可能是A導致B、B導致A，或是有第三個共同因素同時影響兩者。確立因果關係需要對照實驗或更嚴謹的研究設計。"}},
+{"@type":"Question","name":"NPS幾分算好？","acceptedAnswer":{"@type":"Answer","text":"沒有放諸四海皆準的標準，因產業而異。一般經驗：0以下需正視問題、0至30尚可、30至70良好、70以上為世界級水準。建議跟自己過去的NPS趨勢與同產業競品比較。"}},
+{"@type":"Question","name":"為什麼NPS的7-8分不算推薦者？","acceptedAnswer":{"@type":"Answer","text":"這是NPS方法論刻意採取的嚴格標準。研究顯示給7-8分的顧客雖滿意但忠誠度不夠穩固，容易被更好的選擇吸引而流失，因此被歸類為中立者而非推薦者。"}},
+{"@type":"Question","name":"Cp和Cpk有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"Cp假設製程剛好置中於規格中心，只看規格寬度與變異的比例；Cpk進一步考慮製程是否真的置中，若製程平均偏離中心，Cpk會明顯低於Cp。Cpk永遠小於等於Cp，是更貼近實際狀況的指標。"}},
+{"@type":"Question","name":"Cpk要達到多少才算合格？","acceptedAnswer":{"@type":"Answer","text":"業界常見標準：Cpk達1.33以上視為製程能力良好、1.67以上為優異。低於1.0代表製程能力不足，會產出明顯不良品，需要立即改善。實際門檻依產業與客戶要求而異。"}},
+{"@type":"Question","name":"六標準差代表什麼水準？","acceptedAnswer":{"@type":"Answer","text":"6個標準差代表每百萬次機會只有約3.4次缺陷，良率約99.99966%，是業界推廣的世界級品質標準。對照：3個標準差約93.3%良率、4個約99.4%、5個約99.98%。多數業界平均製程落在3至4個標準差之間。"}},
+{"@type":"Question","name":"信賴區間計算適用小樣本嗎？","acceptedAnswer":{"@type":"Answer","text":"小樣本（n小於30）時，常態分配近似效果變差，正規分析應改用t分配（結果會更寬、更保守）。本工具採常態近似，小樣本結果僅供參考，重要決策建議用統計軟體進行t分配計算。"}},
+{"@type":"Question","name":"R²和相關係數r有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"R²是相關係數的平方。r描述線性關係的方向與強度；R²描述Y的變異中有多少比例可由X解釋，恆為正值、不分方向，常用於評估迴歸模型的解釋力。"}},
+{"@type":"Question","name":"Cp/Cpk適用所有製程嗎？","acceptedAnswer":{"@type":"Answer","text":"不一定。Cp/Cpk與Sigma水準的計算都假設製程數據呈常態分配。若資料明顯偏態或有多重峰值，這些指標會失真，建議先用箱型圖或直方圖檢查資料分布是否接近常態再採用。"}},
+{"@type":"Question","name":"NPS可以看出顧客不滿意的原因嗎？","acceptedAnswer":{"@type":"Answer","text":"不行，NPS只是一個精簡的單一分數，適合長期追蹤趨勢，但不會說明原因。建議搭配開放式問題一起調查，才能找到具體的改善方向。"}},
+{"@type":"Question","name":"AQL是允許的不良率嗎？","acceptedAnswer":{"@type":"Answer","text":"不完全是。AQL（允收品質界限）的精確定義是：當整批真實不良率等於AQL時，該抽樣計畫設計成約有95%機率允收整批。AQL數字越小代表標準越嚴格，但它描述的是抽樣計畫的設計目標，而非保證不良率低於此值。"}},
+{"@type":"Question","name":"QC抽樣的字碼是什麼？","acceptedAnswer":{"@type":"Answer","text":"字碼是依批量與檢驗水準查出的英文字母代號（A至R），用來決定固定的樣本數。同一字碼不論AQL多少，抽樣數都相同；只有允收數Ac與拒收數Re會隨AQL不同而改變。"}},
+{"@type":"Question","name":"QC檢驗水準I、II、III該選哪個？","acceptedAnswer":{"@type":"Answer","text":"一般檢驗II是業界預設、最常用的水準。水準I抽樣數較少、檢驗成本低但風險略高；水準III抽樣數較多、更嚴格，常用於關鍵零件、新供應商導入初期或客戶有特殊要求時。"}}
+]}</script>
+<style>
+:root{
+  --accent:#00695C;--accent-light:#E0F2F1;--accent-mid:#00897B;
+  --sub:#00897B;--sub-light:#E0F2F1;
+  --green:#2E7D32;--green-light:#E8F5E9;
+  --red:#C62828;--red-light:#FFEBEE;
+  --gray-50:#FAFBFD;--gray-100:#F4F6F9;--gray-200:#E8ECF2;
+  --text:#16212E;--muted:#5A6E84;--hint:#98A4B3;
+  --border:#E3E9F0;--border-light:#F0F3F7;
+  --white:#fff;--radius:12px;--radius-sm:8px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--gray-50);color:var(--text);line-height:1.6}
+header{background:var(--accent);padding:0 1.5rem;position:sticky;top:0;z-index:300}
+.hdr{max-width:820px;margin:0 auto;height:54px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:17px;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:9px}
+.logo .mark{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900}
+.logo .crumb{font-size:12px;font-weight:400;color:rgba(255,255,255,.75)}
+.tab-bar{background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;position:sticky;top:54px;z-index:200}
+.tab-inner{max-width:820px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.tab-inner::-webkit-scrollbar{display:none}
+.tab-btn{flex-shrink:0;padding:0 14px;height:44px;font-size:13px;font-weight:600;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;transition:all .15s;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.tab-btn.active{color:var(--accent-mid);border-bottom-color:var(--accent-mid)}
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.5rem 4rem}
+.panel{display:none}.panel.active{display:block}
+.tool-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(14,42,71,.06)}
+.card-head{padding:1.25rem 1.5rem 0}
+.card-head h2{font-size:17px;font-weight:800;margin-bottom:4px}
+.card-head p{font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.card-body{padding:0 1.5rem 1.5rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fields.one{grid-template-columns:1fr}
+.fields.three{grid-template-columns:1fr 1fr 1fr}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.field input,.field select{height:40px;padding:0 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none;transition:border .15s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent-mid);box-shadow:0 0 0 3px rgba(0,137,123,.12)}
+.calc-btn{width:100%;height:44px;margin-top:4px;font-size:14px;font-weight:700;border:none;border-radius:var(--radius-sm);background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit;transition:opacity .15s,transform .1s}
+.calc-btn:hover{opacity:.88}.calc-btn:active{transform:scale(.99)}
+.result{display:none;margin-top:1.25rem;padding:1.25rem;background:var(--gray-50);border:1px solid var(--border);border-radius:var(--radius-sm)}
+.result.show{display:block}
+.result-top{display:flex;align-items:flex-end;gap:12px;margin-bottom:.75rem}
+.result-number{font-size:36px;font-weight:800;line-height:1;color:var(--accent-mid);letter-spacing:-.5px}
+.result-unit{font-size:13px;color:var(--muted);padding-bottom:4px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:5px;margin-bottom:.85rem;background:var(--accent-light);color:var(--accent-mid)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-red{background:var(--red-light);color:var(--red)}
+.result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:.85rem}
+.result-cell{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px}
+.result-cell .lbl{font-size:10px;color:var(--hint);font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:.05em}
+.result-cell .val{font-size:15px;font-weight:700}
+.result-cell .val.red{color:var(--red)}
+.result-cell .val.green{color:var(--green)}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;padding-top:.75rem;border-top:1px solid var(--border)}
+.result-disclaimer{font-size:11px;color:var(--hint);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.ad-slot{width:100%;margin:1.25rem 0 0;background:var(--gray-100);border:1px dashed var(--gray-200);border-radius:var(--radius-sm);min-height:90px;display:flex;align-items:center;justify-content:center}
+footer{background:var(--accent);padding:1.5rem;text-align:center;margin-top:2rem}
+footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:1.9}
+footer a{color:rgba(255,255,255,.92);text-decoration:none}
+@media(max-width:520px){
+  .wrap{padding:1.25rem 1rem 3rem}
+  .fields{grid-template-columns:1fr}
+  .fields.three{grid-template-columns:1fr 1fr}
+  .card-head,.card-body{padding-left:1rem;padding-right:1rem}
+  .tab-btn{padding:0 11px;font-size:12px}
+}
+.page-h1{font-size:22px;font-weight:800;color:var(--navy);margin:0 0 1rem;letter-spacing:-.2px}
+.page-lead{font-size:13px;color:var(--muted);margin:-.5rem 0 1.25rem;line-height:1.7}
+.back-btn{font-size:12px;font-weight:700;color:rgba(255,255,255,.9);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;padding:5px 13px;
+  border-radius:8px;border:1px solid rgba(255,255,255,.22);
+  transition:color .15s,background .15s,border-color .15s}
+.back-btn:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4)}
+.back-btn svg{width:14px;height:14px;stroke:#F2B134;stroke-width:2.2;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;transition:transform .15s}
+.back-btn:hover svg{transform:translateX(-2px)}
+header{background:#0E2A47!important}
+footer{background:#0E2A47!important}
+footer p{color:rgba(255,255,255,.78)!important}
+footer a{color:rgba(255,255,255,.92)!important}
+footer a:hover{color:#F3C969!important}
+.logo .mark{background:linear-gradient(135deg,#1E456E,#0E2A47)!important;color:#F3C969!important;border:1.5px solid rgba(243,201,105,.25)!important}
+.related-wrap{max-width:820px;margin:0 auto;padding:1.5rem 1.25rem 0.5rem}
+.related-label{font-size:11px;font-weight:700;color:#9AA9BA;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.related-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:var(--rs,#F4F6F9);
+  border:1.5px solid transparent;
+  border-left:4px solid var(--rc,#888);
+  border-radius:12px;padding:14px 14px 14px 16px;
+  transition:box-shadow .18s,transform .18s,background .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.related-card:hover,.related-card:active{
+  box-shadow:0 6px 18px -8px rgba(14,42,71,.18);
+  transform:translateY(-2px);
+  background:color-mix(in srgb,var(--rs,#F4F6F9) 85%,var(--rc,#888) 15%);
+}
+.related-card-body{flex:1;min-width:0}
+.related-card-name{font-size:14px;font-weight:800;color:var(--rc,#333);margin-bottom:6px;line-height:1.3}
+.related-card-tags{display:flex;gap:4px;flex-wrap:wrap}
+.related-card-tags span{
+  font-size:10px;font-weight:600;
+  color:var(--rc,#555);
+  background:color-mix(in srgb,var(--rc,#888) 10%,#fff);
+  padding:2px 7px;border-radius:5px;
+  white-space:nowrap;
+}
+.related-card-go{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:var(--rc,#888);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;line-height:1;
+  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--rc,#888) 60%,transparent);
+  transition:transform .18s;
+}
+.related-card:hover .related-card-go{transform:translateX(3px)}
+@media(max-width:560px){
+  .related-grid{grid-template-columns:1fr}
+}
+.source-note{max-width:820px;margin:1.4rem auto 0;padding:0 1.25rem;font-size:11px;color:#9AA9BA;text-align:center;line-height:1.7}
+.source-note b{color:#7A8EA0;font-weight:600}
+.ad-below-btn{margin:1.1rem 0 .2rem;text-align:center}
+.ad-below-btn .ad-label{display:block;font-size:9px;color:#B8C2CE;letter-spacing:.15em;margin-bottom:3px}
+.ad-below-btn ins{display:block;min-height:90px;background:var(--gray-100,#F4F6F9);border-radius:8px}
+.tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
+.tab-btn span{display:inline-block}
+/* ── 圖表/文章/FAQ（CalcBox 標準） ── */
+.charts{margin-top:1rem;display:flex;flex-direction:column;gap:1rem}
+.chart-box{border:1px solid var(--border);border-radius:12px;padding:14px 14px 10px;background:var(--white)}
+.chart-title{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:2px}
+.chart-sub{font-size:11px;color:var(--hint);margin-bottom:10px;line-height:1.5}
+.chart-box svg{width:100%;height:auto;display:block;overflow:visible}
+.chart-legend{display:flex;gap:12px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.chart-legend span{font-size:11px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chart-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.article{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.article h2{font-size:20px;font-weight:800;color:#1B3A5C;margin:1.4rem 0 .7rem;letter-spacing:-.3px}
+.article h3{font-size:16px;font-weight:700;color:#1B3A5C;margin:1.2rem 0 .5rem}
+.article p{font-size:14.5px;color:#34465B;line-height:1.85;margin-bottom:.9rem}
+.article ul{margin:0 0 1rem 1.2rem;padding:0}
+.article li{font-size:14.5px;color:#34465B;line-height:1.8;margin-bottom:.4rem}
+.article .lead-card{background:var(--accent-light);border:1px solid #B2DFDB;border-radius:12px;padding:14px 16px;margin:1rem 0;font-size:14px;color:#1B3A5C;line-height:1.8}
+.article table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:13.5px}
+.article th{background:var(--accent-light);color:var(--accent);font-weight:700;padding:9px 12px;text-align:left;border:1px solid var(--border)}
+.article td{padding:9px 12px;border:1px solid var(--border);color:#34465B;text-align:center}
+.article td:first-child{text-align:left;font-weight:600}
+.faq2{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
+.faq2 h2{font-size:20px;font-weight:800;color:#1B3A5C;margin-bottom:.9rem;letter-spacing:-.3px}
+.faq2 details{background:var(--white);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq2 summary{font-size:14.5px;font-weight:700;color:#1B3A5C;padding:13px 16px;cursor:pointer;list-style:none;position:relative;padding-right:40px}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';position:absolute;right:16px;top:11px;font-size:20px;font-weight:400;color:var(--muted)}
+.faq2 details[open] summary::after{content:'−'}
+.faq2 details[open] summary{border-bottom:1px solid var(--border)}
+.faq2 .faq2-a{font-size:14px;color:#34465B;line-height:1.85;padding:13px 16px}
+/* ── 資料匯入區（CalcBox 統計頁專屬） ── */
+.import-zone{margin-bottom:14px;padding:12px 14px;background:var(--gray-50);border:1.5px dashed #B2DFDB;border-radius:10px}
+.import-zone-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.import-label{font-size:11.5px;font-weight:700;color:var(--accent)}
+.import-file-btn{font-size:11px;font-weight:700;padding:5px 12px;border:1.5px solid var(--accent-mid);border-radius:7px;background:var(--white);color:var(--accent-mid);cursor:pointer;font-family:inherit}
+.import-file-btn:hover{background:var(--accent-light)}
+.import-textarea{width:100%;min-height:54px;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:12.5px;font-family:ui-monospace,monospace;resize:vertical;margin-bottom:6px;background:var(--white)}
+.import-textarea:focus{outline:none;border-color:var(--accent-mid)}
+.import-apply-btn{font-size:11.5px;font-weight:700;padding:6px 14px;border:none;border-radius:7px;background:var(--accent-mid);color:#fff;cursor:pointer;font-family:inherit}
+.import-apply-btn:hover{opacity:.88}
+.import-hint{font-size:10.5px;color:var(--hint);margin-top:4px;line-height:1.5}
+.export-btn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:7px 16px;border:1.5px solid var(--accent);border-radius:8px;background:transparent;color:var(--accent);font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;transition:background .15s}
+.export-btn:hover{background:var(--accent-light)}
+.export-row{display:flex;gap:8px;flex-wrap:wrap}
+.subcard{border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px;background:var(--gray-50)}
+.subcard-h{font-size:14px;font-weight:800;color:#1B3A5C;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.subcard-h .n{width:20px;height:20px;border-radius:50%;background:var(--accent-mid);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mode-switch{display:flex;gap:6px;margin-bottom:12px;background:var(--gray-100);padding:4px;border-radius:9px}
+.mode-btn{flex:1;text-align:center;padding:7px 8px;font-size:12px;font-weight:700;border:none;background:transparent;border-radius:6px;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s}
+.mode-btn.active{background:var(--white);color:var(--accent-mid);box-shadow:0 1px 3px rgba(14,42,71,.12)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="logo" href="/"><span class="mark">C</span>CalcBox <span class="crumb">/ 統計品管工具</span></a>
+    <a class="back-btn" href="/"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>所有工具</a>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-inner">
+    <button class="tab-btn active" onclick="switchTab('capability')" id="tab-capability"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg><span>製程能力</span></button>
+    <button class="tab-btn" onclick="switchTab('qcsampling')" id="tab-qcsampling"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2"/><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 13l2.5 2.5L16 10"/></svg><span>QC抽樣表</span></button>
+    <button class="tab-btn" onclick="switchTab('samplesize')" id="tab-samplesize"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M8 12l2.5 2.5L16 9"/></svg><span>樣本數</span></button>
+    <button class="tab-btn" onclick="switchTab('ci')" id="tab-ci"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="8" x2="4" y2="16"/><line x1="20" y1="8" x2="20" y2="16"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/></svg><span>信賴區間</span></button>
+    <button class="tab-btn" onclick="switchTab('descriptive')" id="tab-descriptive"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="7"/><rect x="6" y="7" width="12" height="10" rx="1"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="12" y1="17" x2="12" y2="22"/></svg><span>敘述統計</span></button>
+    <button class="tab-btn" onclick="switchTab('correlation')" id="tab-correlation"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="1.5" fill="currentColor" stroke="none"/><circle cx="10" cy="13" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="15" r="1.5" fill="currentColor" stroke="none"/><circle cx="18" cy="7" r="1.5" fill="currentColor" stroke="none"/><circle cx="9" cy="8" r="1.5" fill="currentColor" stroke="none"/><line x1="4" y1="19" x2="20" y2="5"/></svg><span>相關分析</span></button>
+    <button class="tab-btn" onclick="switchTab('nps')" id="tab-nps"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><line x1="12" y1="16" x2="16" y2="10"/><circle cx="12" cy="16" r="1.3" fill="currentColor" stroke="none"/></svg><span>NPS</span></button>
+  </div>
+</div>
+
+<div class="wrap">
+<h1 class="page-h1">統計與品管計算工具</h1>
+<p class="page-lead">免費統計與品管計算工具：樣本數計算機、信賴區間、敘述統計、相關迴歸分析、NPS淨推薦值、製程能力 Cp/Cpk 與良率 DPMO，適合市場研究與品管工程師。每個工具皆支援資料匯入與結果匯出。</p>
+
+<!-- ══ 樣本數計算機 ══ -->
+<div class="panel" id="panel-samplesize">
+  <div class="tool-card"><div class="card-head">
+    <h2>樣本數計算機</h2>
+    <p>問卷調查、市場研究或抽樣檢驗，該抽幾份才夠準？輸入信心水準與可接受誤差，算出所需樣本數。</p>
+  </div><div class="card-body">
+
+    <div class="import-zone">
+      <div class="import-zone-head">
+        <span class="import-label">📥 資料匯入（選用）</span>
+        <button class="import-file-btn" onclick="document.getElementById('ss-file').click()">上傳 CSV</button>
+        <input type="file" id="ss-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'ss')">
+      </div>
+      <textarea id="ss-paste" class="import-textarea" placeholder="貼上：母體數,信心水準,誤差範圍,預期比例（例如：5000,95,5,50）"></textarea>
+      <button class="import-apply-btn" onclick="importSampleSize()">套用匯入資料</button>
+      <div class="import-hint">格式：母體數,信心水準(%),誤差範圍(%),預期比例(%)。母體數留空或填0視為無限母體。</div>
+    </div>
+
+    <div class="fields">
+      <div class="field"><label>母體規模 N（選填）</label><input type="number" id="ss-population" placeholder="例：5000，留空＝無限母體" inputmode="numeric"></div>
+      <div class="field"><label>信心水準</label>
+        <select id="ss-confidence"><option value="90">90%</option><option value="95" selected>95%（最常用）</option><option value="99">99%</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>可接受誤差範圍（%）</label><input type="number" id="ss-margin" value="5" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>預期比例（%，不確定填50最保守）</label><input type="number" id="ss-proportion" value="50" step="1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcSampleSize()">計算所需樣本數</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9950" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="samplesize-result">
+      <div class="result-top"><div class="result-number" id="ss-n">—</div><div class="result-unit">份（建議樣本數）</div></div>
+      <span class="tag" id="ss-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">無母體修正基礎值</div><div class="val" id="ss-n0">—</div></div>
+        <div class="result-cell"><div class="lbl">母體修正後</div><div class="val" id="ss-nadj">—</div></div>
+        <div class="result-cell"><div class="lbl">使用 Z 值</div><div class="val" id="ss-z">—</div></div>
+      </div>
+      <div class="charts" id="ss-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">樣本數 vs 誤差範圍</div>
+          <div class="chart-sub">誤差範圍越小，所需樣本數呈非線性暴增——這就是為什麼「精準度」很貴</div>
+          <div id="ss-chart"></div>
+        </div>
+      </div>
+      <div class="result-note" id="ss-note"></div>
+      <div class="result-disclaimer">公式：n₀ = Z²×p(1-p)/e²；若提供母體數則套用有限母體修正 n = n₀/(1+(n₀-1)/N)。僅適用簡單隨機抽樣。</div>
+      <button class="export-btn" onclick="exportCSV('ss')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9951" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>樣本數計算：問卷該發幾份才夠準？</h2>
+  <p class="lead-card">「我的問卷該發幾份？」是市場研究最常被問、卻最容易被誤解的問題。答案跟母體大小幾乎無關，關鍵在你能接受多少誤差。</p>
+  <h3>1. 樣本數跟母體大小關係不大</h3>
+  <p>很多人直覺認為母體（如全台灣 2300 萬人）越大，需要的樣本數就要越多。但統計學告訴你：當母體夠大時（例如超過 2 萬），樣本數幾乎不再隨母體成長而增加。同樣 95% 信心水準、5% 誤差，母體 5 萬人和母體 500 萬人，所需樣本數幾乎一樣（約 384 份）。真正決定樣本數的是你能接受的<b>誤差範圍</b>與<b>信心水準</b>。</p>
+  <h3>2. 業界標準：95% 信心水準、5% 誤差</h3>
+  <p>這是市場研究最常見的組合，對應樣本數約 384 份（無限母體、p=50%）。信心水準提高到 99%，樣本數會明顯增加；誤差範圍從 5% 縮小到 3%，樣本數會暴增超過 2.7 倍——這就是「精準度」的代價，本頁的「樣本數 vs 誤差範圍」曲線圖把這個關係視覺化給你看。</p>
+  <h3>3. 為什麼預設用 p=50%</h3>
+  <p>公式中的 p（預期比例）在 50% 時，p×(1-p) 數值最大，算出的樣本數也最大——這是最保守、最安全的假設。如果你已經知道大概的比例（例如去年調查滿意度約 70%），可以代入更準確的 p 值，得到的所需樣本數會比用 50% 假設更小。</p>
+  <h3>4. 有限母體修正什麼時候重要</h3>
+  <p>當母體規模較小（例如公司內部 200 名員工的滿意度調查），有限母體修正會明顯降低所需樣本數。母體越小，修正效果越明顯；母體夠大時修正幾乎沒有作用。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：樣本數主要由誤差範圍與信心水準決定，跟母體大小關係不大（除非母體很小）→ 業界常用 95%/5% 組合約需384份 → 不確定比例時用 p=50% 最保守。</div>
+</article>
+<section class="faq2">
+  <h2>樣本數計算常見問題</h2>
+  <details><summary>母體越大，需要的樣本數也要越多嗎？</summary><div class="faq2-a">不一定。當母體規模夠大（通常超過2萬）時，所需樣本數幾乎不再隨母體成長而顯著增加，因為決定樣本數的主要是誤差範圍與信心水準，而非母體大小。只有母體較小時，有限母體修正才會明顯降低所需樣本數。</div></details>
+  <details><summary>為什麼常聽到「樣本數384」這個數字？</summary><div class="faq2-a">384是95%信心水準、5%誤差範圍、預期比例50%（最保守假設）下的無限母體標準樣本數，是市場研究業界最常用的基準組合，因此經常被提及。</div></details>
+  <details><summary>信心水準和誤差範圍要怎麼選？</summary><div class="faq2-a">95%信心水準、5%誤差範圍是業界最常見、CP值最高的組合。若研究結果攸關重大決策（如醫療、政策），可考慮提高信心水準至99%或縮小誤差範圍，但所需樣本數會明顯增加。</div></details>
+</section>
+</div>
+
+<!-- ══ 信賴區間 ══ -->
+<div class="panel" id="panel-ci">
+  <div class="tool-card"><div class="card-head">
+    <h2>信賴區間計算機</h2>
+    <p>調查出來的數字有多可信？輸入樣本資料，算出母體真實值的信賴區間與誤差範圍。</p>
+  </div><div class="card-body">
+
+    <div class="mode-switch">
+      <button class="mode-btn active" id="ci-mode-prop" onclick="setCIMode('prop')">比例（如滿意度%）</button>
+      <button class="mode-btn" id="ci-mode-mean" onclick="setCIMode('mean')">均值（如平均分數）</button>
+    </div>
+
+    <div class="import-zone">
+      <div class="import-zone-head">
+        <span class="import-label">📥 資料匯入（選用）</span>
+        <button class="import-file-btn" onclick="document.getElementById('ci-file').click()">上傳 CSV</button>
+        <input type="file" id="ci-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'ci')">
+      </div>
+      <textarea id="ci-paste" class="import-textarea" placeholder="比例模式：貼上 0/1 清單（1=同意,0=不同意）或「樣本數,比例%」&#10;均值模式：貼上原始數據（12,15,18,22...）自動算平均與標準差"></textarea>
+      <button class="import-apply-btn" onclick="importCI()">套用匯入資料</button>
+      <div class="import-hint">比例模式可貼 0/1 清單自動算比例；均值模式貼原始數據自動算平均與標準差。</div>
+    </div>
+
+    <div id="ci-fields-prop">
+      <div class="fields">
+        <div class="field"><label>樣本數 n</label><input type="number" id="ci-p-n" placeholder="例：384" inputmode="numeric"></div>
+        <div class="field"><label>樣本比例（%）</label><input type="number" id="ci-p-pct" placeholder="例：62" step="0.1" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div id="ci-fields-mean" style="display:none">
+      <div class="fields">
+        <div class="field"><label>樣本數 n</label><input type="number" id="ci-m-n" placeholder="例：50" inputmode="numeric"></div>
+        <div class="field"><label>樣本平均</label><input type="number" id="ci-m-mean" placeholder="例：78.5" step="0.01" inputmode="decimal"></div>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>樣本標準差</label><input type="number" id="ci-m-sd" placeholder="例：8.2" step="0.01" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>信心水準</label>
+        <select id="ci-confidence"><option value="90">90%</option><option value="95" selected>95%（最常用）</option><option value="99">99%</option></select></div>
+    </div>
+    <button class="calc-btn" onclick="calcCI()">計算信賴區間</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9952" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="ci-result">
+      <div class="result-top"><div class="result-number" id="ci-point">—</div><div class="result-unit" id="ci-unit">点估計值</div></div>
+      <span class="tag" id="ci-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">下界</div><div class="val" id="ci-lower">—</div></div>
+        <div class="result-cell"><div class="lbl">上界</div><div class="val" id="ci-upper">—</div></div>
+        <div class="result-cell"><div class="lbl">誤差範圍 ±</div><div class="val" id="ci-margin">—</div></div>
+      </div>
+      <div class="charts" id="ci-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">信賴區間視覺化</div>
+          <div class="chart-sub">陰影範圍代表真實母體值有 95% 機率落在此區間內</div>
+          <div id="ci-chart"></div>
+        </div>
+      </div>
+      <div class="result-note" id="ci-note"></div>
+      <div class="result-disclaimer">均值模式 n&lt;30 時建議改用 t 分配計算，本工具採常態近似（Z分配），小樣本結果僅供參考。</div>
+      <button class="export-btn" onclick="exportCSV('ci')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9953" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>信賴區間是什麼？破解「95%機率」的常見誤解</h2>
+  <p class="lead-card">「95%信賴區間」是統計學中最常被誤解的概念之一。它不是說「真實值有95%機率落在這個範圍」，正確理解能讓你避免在報告中犯錯。</p>
+  <h3>1. 正確理解：信賴水準描述的是「方法」，不是「這一次」</h3>
+  <p>95%信賴區間真正的意思是：如果你用同樣方法重複抽樣100次、各算一次信賴區間，平均會有95次的區間包含真實的母體值。對<b>單一一次</b>調查得出的區間，真實值要嘛在裡面、要嘛不在，並非「95%機率在裡面」。這個區別很細微但在學術寫作中很重要。</p>
+  <h3>2. 誤差範圍跟樣本數成反比的平方根關係</h3>
+  <p>想把誤差範圍縮小一半，樣本數要增加到4倍——這是平方根關係。本頁「樣本數計算機」可以反過來幫你估算，要達到多窄的信賴區間，需要多少樣本。</p>
+  <h3>3. 比例 vs 均值，公式不同</h3>
+  <p>調查滿意度百分比用「比例」信賴區間（margin = Z×√(p(1-p)/n)）；分析平均分數、平均消費金額則用「均值」信賴區間（margin = Z×(σ/√n)）。本頁兩種模式都支援，並可直接貼上原始數據自動計算。</p>
+  <h3>4. 小樣本（n&lt;30）要小心</h3>
+  <p>當樣本數小於30時，常態分配（Z分配）的近似效果會變差，正規做法應改用t分配（會得到較寬的信賴區間，更保守）。本工具採Z分配近似，小樣本結果僅供參考，正式研究建議用統計軟體以t分配計算。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：信賴區間描述的是抽樣方法的可靠度，不是單次結果的機率 → 想縮小誤差範圍要大幅增加樣本數 → 小樣本（n&lt;30）建議改用t分配。</div>
+</article>
+<section class="faq2">
+  <h2>信賴區間常見問題</h2>
+  <details><summary>95%信賴區間是不是代表真實值有95%機率在這個範圍內？</summary><div class="faq2-a">嚴格來說不是。95%信賴水準描述的是「重複抽樣方法」的可靠度：若重複抽樣100次各算一次區間，平均95次會包含真實值。對單次調查得出的區間，真實值要嘛在裡面要嘛不在，這是統計學中常見的誤解。</div></details>
+  <details><summary>想把誤差範圍縮小一半，樣本數要增加多少？</summary><div class="faq2-a">要增加到約4倍。誤差範圍與樣本數呈反比平方根關係，這是為什麼提高精準度的成本很高，也是為什麼業界常在5%誤差範圍打住、而非追求更精確的數字。</div></details>
+  <details><summary>樣本數很小（例如n=10）可以用這個工具嗎？</summary><div class="faq2-a">可以試算，但結果僅供參考。樣本數小於30時，常態分配近似效果變差，正規分析應改用t分配（結果會更寬、更保守）。重要決策建議用統計軟體進行正式的t分配計算。</div></details>
+</section>
+</div>
+
+<!-- ══ 敘述統計 ══ -->
+<div class="panel" id="panel-descriptive">
+  <div class="tool-card"><div class="card-head">
+    <h2>敘述統計計算機</h2>
+    <p>貼上一串數據，自動算出平均數、中位數、標準差、四分位數，並繪製箱型圖。</p>
+  </div><div class="card-body">
+
+    <div class="import-zone">
+      <div class="import-zone-head">
+        <span class="import-label">📥 資料匯入</span>
+        <button class="import-file-btn" onclick="document.getElementById('ds-file').click()">上傳 CSV</button>
+        <input type="file" id="ds-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'ds')">
+      </div>
+      <textarea id="ds-paste" class="import-textarea" placeholder="貼上數據，逗號、空格或換行分隔皆可，例如：&#10;85, 92, 78, 88, 95, 70, 83, 91, 76, 89"></textarea>
+      <button class="import-apply-btn" onclick="importDS()">套用並計算</button>
+      <div class="import-hint">這是本工具的主要輸入方式：貼上原始數據即可，不需手動逐筆輸入。</div>
+    </div>
+
+    <button class="calc-btn" onclick="calcDescriptive()">計算敘述統計</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9954" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="descriptive-result">
+      <div class="result-top"><div class="result-number" id="ds-mean">—</div><div class="result-unit">平均數</div></div>
+      <span class="tag" id="ds-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">樣本數 n</div><div class="val" id="ds-n">—</div></div>
+        <div class="result-cell"><div class="lbl">中位數</div><div class="val" id="ds-median">—</div></div>
+        <div class="result-cell"><div class="lbl">眾數</div><div class="val" id="ds-mode">—</div></div>
+        <div class="result-cell"><div class="lbl">標準差（樣本）</div><div class="val" id="ds-sd">—</div></div>
+        <div class="result-cell"><div class="lbl">變異數</div><div class="val" id="ds-var">—</div></div>
+        <div class="result-cell"><div class="lbl">全距 Range</div><div class="val" id="ds-range">—</div></div>
+        <div class="result-cell"><div class="lbl">Q1 / Q3</div><div class="val" id="ds-q">—</div></div>
+        <div class="result-cell"><div class="lbl">IQR 四分位距</div><div class="val" id="ds-iqr">—</div></div>
+      </div>
+      <div class="charts" id="ds-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">箱型圖（Box Plot）</div>
+          <div class="chart-sub">箱子涵蓋中間50%數據（Q1~Q3），鬚線延伸至非離群值極端，點為離群值</div>
+          <div id="ds-chart"></div>
+        </div>
+      </div>
+      <div class="result-note" id="ds-note"></div>
+      <button class="export-btn" onclick="exportCSV('ds')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9955" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>敘述統計入門：平均數、中位數、標準差到底在說什麼</h2>
+  <p class="lead-card">一串數據丟給你，第一步永遠是敘述統計：用幾個數字摘要這堆資料的「中心」與「離散程度」。搞懂這幾個指標，看任何報表都更有感。</p>
+  <h3>1. 平均數 vs 中位數：哪個更能代表資料？</h3>
+  <p>平均數容易被極端值拉走——10個人薪水都5萬，1個老闆領500萬，平均數會被拉到接近50萬，完全不能代表「一般員工」。這種情況下中位數（排序後正中間的值）更能代表真實情況。資料越偏態（如薪資、房價），中位數越重要；資料越對稱，平均數和中位數會很接近。</p>
+  <h3>2. 標準差在量什麼</h3>
+  <p>標準差衡量資料的「離散程度」——數字越大，代表資料越分散、越不集中在平均數附近。兩組平均分數都是80分的班級，標準差小的代表大家程度接近，標準差大的代表有人很強有人很弱。</p>
+  <h3>3. 箱型圖怎麼看</h3>
+  <p>箱型圖一眼濃縮五個關鍵數字：最小值、Q1（前25%）、中位數、Q3（前75%）、最大值。箱子涵蓋中間50%的資料（IQR四分位距），箱子越窄代表資料越集中。本頁箱型圖還會自動標出離群值（用1.5倍IQR規則判定）——超出 Q1−1.5×IQR 或 Q3+1.5×IQR 的點，用紅點特別標示。</p>
+  <h3>4. 離群值該刪除嗎？</h3>
+  <p>不一定。離群值可能是真實的極端案例（如真的有超高消費客戶），也可能是輸入錯誤。發現離群值後，第一步是「檢查」而非「刪除」——先確認資料是否有誤，再決定是否排除。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：資料偏態時看中位數比平均數更準 → 標準差衡量離散程度 → 箱型圖一眼看五個關鍵數字 → 離群值先檢查再決定是否排除。</div>
+</article>
+<section class="faq2">
+  <h2>敘述統計常見問題</h2>
+  <details><summary>平均數和中位數該看哪一個？</summary><div class="faq2-a">資料對稱分布時兩者接近，看哪個都可以；資料有極端值或明顯偏態（如薪資、房價）時，中位數較不受極端值影響，更能代表「一般」情況。建議兩者都算出來互相對照。</div></details>
+  <details><summary>箱型圖的離群值是怎麼判定的？</summary><div class="faq2-a">採用統計學常用的1.5倍IQR規則：數值低於 Q1−1.5×IQR 或高於 Q3+1.5×IQR 視為離群值。本工具會自動計算並用紅點標示在箱型圖上。</div></details>
+  <details><summary>發現離群值該刪掉嗎？</summary><div class="faq2-a">不建議直接刪除。應先檢查該筆資料是否為輸入錯誤；若確認是真實的極端案例，是否排除需依分析目的判斷，刪除前建議記錄並說明理由。</div></details>
+</section>
+</div>
+
+<!-- ══ 相關分析 ══ -->
+<div class="panel" id="panel-correlation">
+  <div class="tool-card"><div class="card-head">
+    <h2>相關與迴歸分析</h2>
+    <p>兩組數據有沒有關係？算出相關係數、迴歸方程式與 R²，並繪製散佈圖。</p>
+  </div><div class="card-body">
+
+    <div class="import-zone">
+      <div class="import-zone-head">
+        <span class="import-label">📥 資料匯入</span>
+        <button class="import-file-btn" onclick="document.getElementById('cr-file').click()">上傳 CSV</button>
+        <input type="file" id="cr-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'cr')">
+      </div>
+      <textarea id="cr-paste" class="import-textarea" placeholder="每行一組 X,Y，例如：&#10;100,12&#10;150,18&#10;200,25&#10;250,28"></textarea>
+      <button class="import-apply-btn" onclick="importCR()">套用並計算</button>
+      <div class="import-hint">每行格式為「X值,Y值」，例如「廣告預算,銷售額」配對數據。</div>
+    </div>
+
+    <button class="calc-btn" onclick="calcCorrelation()">計算相關與迴歸</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9956" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="correlation-result">
+      <div class="result-top"><div class="result-number" id="cr-r">—</div><div class="result-unit">相關係數 r</div></div>
+      <span class="tag" id="cr-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">樣本對數 n</div><div class="val" id="cr-n">—</div></div>
+        <div class="result-cell"><div class="lbl">R²（解釋力）</div><div class="val" id="cr-r2">—</div></div>
+        <div class="result-cell"><div class="lbl">迴歸方程式</div><div class="val" id="cr-eq">—</div></div>
+      </div>
+      <div class="charts" id="cr-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">散佈圖與迴歸線</div>
+          <div class="chart-sub">點越貼近直線，相關性越強；藍線為最適迴歸線</div>
+          <div id="cr-chart"></div>
+        </div>
+      </div>
+      <div class="result-note" id="cr-note"></div>
+      <div class="result-disclaimer">相關不等於因果。R² 表示 Y 的變異中有多少比例可由 X 解釋，僅適用線性關係。</div>
+      <button class="export-btn" onclick="exportCSV('cr')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9957" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>相關分析與迴歸：兩組數據有關係，不代表誰造成誰</h2>
+  <p class="lead-card">「廣告花得多、業績就好」——這是相關還是因果？相關分析能告訴你兩件事有沒有一起變動的趨勢，但解讀因果關係需要更謹慎。</p>
+  <h3>1. 相關係數 r 怎麼解讀</h3>
+  <p>r 介於 −1 到 +1：正值代表正相關（一個變大、另一個也變大），負值代表負相關。一般經驗法則：|r|≥0.7 算強相關、0.4~0.7 中度相關、0.2~0.4 弱相關、低於0.2 幾乎無相關。本頁計算後會自動標示方向與強度。</p>
+  <h3>2. 「相關不等於因果」的經典案例</h3>
+  <p>統計學最愛舉的例子：冰淇淋銷量和溺水人數高度正相關——但不是冰淇淋導致溺水，而是「夏天」這個共同因素同時推高兩者。看到相關係數很高，先想想是否有第三個變數同時影響兩邊，不要急著下因果結論。</p>
+  <h3>3. R² 在說什麼</h3>
+  <p>R²（決定係數）= r²，代表 Y 的變異中有多少比例可由 X 解釋。R²=70% 表示用 X 來預測 Y，能解釋掉七成的變化，剩下三成由其他未知因素決定。R² 越高，迴歸方程式的預測力越強。</p>
+  <h3>4. 迴歸方程式只適用線性關係</h3>
+  <p>簡單線性迴歸假設兩變數呈直線關係。若實際資料是曲線關係（如收益隨時間先升後降），線性迴歸會嚴重失準。畫散佈圖先用肉眼檢查資料形狀，是用迴歸分析前最重要的一步——這也是本頁附上散佈圖的原因。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：r 衡量線性關係的方向與強度 → 相關不等於因果，留意是否有共同因素 → R²代表X能解釋Y變異的比例 → 用散佈圖先確認資料是否真的呈線性關係。</div>
+</article>
+<section class="faq2">
+  <h2>相關分析常見問題</h2>
+  <details><summary>相關係數多少算「高度相關」？</summary><div class="faq2-a">一般經驗法則：|r|≥0.7為強相關、0.4~0.7為中度相關、0.2~0.4為弱相關、低於0.2幾乎無相關。但實際門檻依領域而異，社會科學資料的相關係數通常比物理量測資料低。</div></details>
+  <details><summary>相關係數高，可以說A導致B嗎？</summary><div class="faq2-a">不能直接這樣推論。相關只說明兩者有共同變動的趨勢，可能是A導致B、B導致A，或是有第三個共同因素同時影響兩者（如冰淇淋銷量與溺水人數都受「夏天」影響）。確立因果關係需要對照實驗或更嚴謹的研究設計。</div></details>
+  <details><summary>R²和相關係數r有什麼不同？</summary><div class="faq2-a">R²=r²，是相關係數的平方。r描述線性關係的方向（正負）與強度；R²描述Y的變異中有多少比例可由X解釋，恆為正值、不分方向，常用於評估迴歸模型的解釋力。</div></details>
+</section>
+</div>
+
+<!-- ══ NPS ══ -->
+<div class="panel" id="panel-nps">
+  <div class="tool-card"><div class="card-head">
+    <h2>NPS 淨推薦值計算機</h2>
+    <p>顧客滿意度調查的標準指標。輸入推薦者/中立者/貶低者人數，或直接貼上原始評分。</p>
+  </div><div class="card-body">
+
+    <div class="mode-switch">
+      <button class="mode-btn active" id="nps-mode-count" onclick="setNPSMode('count')">輸入人數</button>
+      <button class="mode-btn" id="nps-mode-raw" onclick="setNPSMode('raw')">貼上原始評分</button>
+    </div>
+
+    <div id="nps-fields-raw" style="display:none">
+      <div class="import-zone">
+        <div class="import-zone-head">
+          <span class="import-label">📥 資料匯入</span>
+          <button class="import-file-btn" onclick="document.getElementById('nps-file').click()">上傳 CSV</button>
+          <input type="file" id="nps-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'nps')">
+        </div>
+        <textarea id="nps-paste" class="import-textarea" placeholder="貼上每位受訪者的 0-10 分推薦意願評分，例如：&#10;9,10,7,8,3,9,10,6,5,9"></textarea>
+        <button class="import-apply-btn" onclick="importNPS()">套用並自動分類</button>
+        <div class="import-hint">系統自動分類：9-10分=推薦者、7-8分=中立者、0-6分=貶低者。</div>
+      </div>
+    </div>
+
+    <div id="nps-fields-count" class="fields three">
+      <div class="field"><label>推薦者（9-10分）</label><input type="number" id="nps-promoters" placeholder="例：120" inputmode="numeric"></div>
+      <div class="field"><label>中立者（7-8分）</label><input type="number" id="nps-passives" placeholder="例：50" inputmode="numeric"></div>
+      <div class="field"><label>貶低者（0-6分）</label><input type="number" id="nps-detractors" placeholder="例：30" inputmode="numeric"></div>
+    </div>
+    <button class="calc-btn" onclick="calcNPS()">計算 NPS</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9958" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="nps-result">
+      <div class="result-top"><div class="result-number" id="nps-score">—</div><div class="result-unit">NPS（−100 ~ +100）</div></div>
+      <span class="tag" id="nps-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">總受訪人數</div><div class="val" id="nps-total">—</div></div>
+        <div class="result-cell"><div class="lbl">推薦者佔比</div><div class="val green" id="nps-promo-pct">—</div></div>
+        <div class="result-cell"><div class="lbl">貶低者佔比</div><div class="val red" id="nps-detr-pct">—</div></div>
+      </div>
+      <div class="charts" id="nps-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">受訪者組成</div>
+          <div class="chart-sub">綠＝推薦者　灰＝中立者　紅＝貶低者</div>
+          <div id="nps-comp-chart"></div>
+        </div>
+        <div class="chart-box">
+          <div class="chart-title">NPS 分數儀表</div>
+          <div class="chart-sub">業界常見區間：0以下需改善　0-30尚可　30-70良好　70+卓越</div>
+          <div id="nps-gauge-chart" style="display:flex;justify-content:center"></div>
+        </div>
+      </div>
+      <div class="result-note" id="nps-note"></div>
+      <button class="export-btn" onclick="exportCSV('nps')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9959" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+<article class="article">
+  <h2>NPS 淨推薦值：一個問題看穿顧客忠誠度</h2>
+  <p class="lead-card">「你有多大可能將我們推薦給朋友？」這一題，是全球企業最愛用的顧客忠誠度指標。簡單到只有一題，卻能精準預測回購率與口碑效應。</p>
+  <h3>1. NPS 怎麼分類</h3>
+  <p>受訪者依0-10分回答推薦意願：9-10分是<b>推薦者</b>（Promoters，忠誠且會主動推薦）；7-8分是<b>中立者</b>（Passives，滿意但不特別熱情、容易被競品搶走）；0-6分是<b>貶低者</b>（Detractors，可能會說負評影響他人）。NPS = 推薦者佔比% − 貶低者佔比%，範圍 −100 到 +100。</p>
+  <h3>2. 為什麼7-8分不算「推薦者」</h3>
+  <p>這是NPS方法論刻意設計的嚴格標準——研究發現，給7-8分的顧客雖然滿意，但忠誠度不夠穩固，遇到更好的選擇容易流失，不能算真正的推薦者。這種「寧可嚴格也不要灌水」的設計，讓NPS比一般滿意度調查更能預測真實的顧客行為。</p>
+  <h3>3. 業界基準怎麼看</h3>
+  <p>NPS沒有放諸四海皆準的「好」數字，因產業而異。一般經驗：0以下需要正視問題、0-30尚可、30-70算良好、70以上是世界級水準（如Apple、Costco等指標性品牌常在此區間）。比起絕對數字，更重要的是<b>跟自己過去比較</b>、以及<b>跟同產業競品比較</b>。</p>
+  <h3>4. NPS 的限制：只告訴你「多少」，不告訴你「為什麼」</h3>
+  <p>NPS是個精簡的單一指標，適合長期追蹤趨勢，但它不會告訴你貶低者不滿意的原因。實務上建議搭配開放式問題（「是什麼原因讓您給這個分數？」），才能找到具體的改善方向。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：NPS=推薦者%−貶低者%，範圍−100~+100 → 7-8分故意不算推薦者，標準嚴格 → 跟自己歷史與同業比較比看絕對值更有意義 → 搭配開放題才知道「為什麼」。</div>
+</article>
+<section class="faq2">
+  <h2>NPS 常見問題</h2>
+  <details><summary>NPS幾分算好？</summary><div class="faq2-a">沒有放諸四海皆準的標準，因產業而異。一般經驗：0以下需正視問題、0-30尚可、30-70良好、70以上為世界級水準。比起絕對數字，更建議跟自己過去的NPS趨勢與同產業競品比較。</div></details>
+  <details><summary>為什麼7-8分不算推薦者？</summary><div class="faq2-a">這是NPS方法論刻意採取的嚴格標準。研究顯示給7-8分的顧客雖滿意但忠誠度不夠穩固，容易被更好的選擇吸引而流失，因此被歸類為中立者而非推薦者，讓NPS更能反映真實的顧客忠誠度。</div></details>
+  <details><summary>NPS可以看出顧客不滿意的原因嗎？</summary><div class="faq2-a">不行，NPS只是一個精簡的單一分數，適合長期追蹤趨勢，但不會說明原因。建議搭配開放式問題（如「是什麼原因讓您給這個分數？」）一起調查，才能找到具體的改善方向。</div></details>
+</section>
+</div>
+
+<!-- ══ 製程能力 ══ -->
+<div class="panel active" id="panel-capability">
+  <div class="tool-card"><div class="card-head">
+    <h2>製程能力與良率分析</h2>
+    <p>品管工程師必備：Cp/Cpk 看製程穩不穩，DPMO/Sigma 水準看不良率換算成六標準差等級。</p>
+  </div><div class="card-body">
+
+    <div class="subcard">
+      <div class="subcard-h"><span class="n">1</span>製程能力指標（Cp / Cpk）</div>
+
+      <div class="import-zone">
+        <div class="import-zone-head">
+          <span class="import-label">📥 量測資料匯入（選用）</span>
+          <button class="import-file-btn" onclick="document.getElementById('cpk-file').click()">上傳 CSV</button>
+          <input type="file" id="cpk-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'cpk')">
+        </div>
+        <textarea id="cpk-paste" class="import-textarea" placeholder="貼上量測數據，自動算平均與標準差，例如：&#10;10.02, 9.98, 10.05, 9.95, 10.01"></textarea>
+        <button class="import-apply-btn" onclick="importCPK()">套用並自動算平均/標準差</button>
+        <div class="import-hint">貼上實際量測值，系統自動算出製程平均與標準差並填入下方。</div>
+      </div>
+
+      <div class="fields">
+        <div class="field"><label>規格上限 USL</label><input type="number" id="cpk-usl" placeholder="例：10.5" step="0.001" inputmode="decimal"></div>
+        <div class="field"><label>規格下限 LSL</label><input type="number" id="cpk-lsl" placeholder="例：9.5" step="0.001" inputmode="decimal"></div>
+      </div>
+      <div class="fields">
+        <div class="field"><label>製程平均 x̄</label><input type="number" id="cpk-mean" placeholder="例：10.0" step="0.001" inputmode="decimal"></div>
+        <div class="field"><label>製程標準差 σ</label><input type="number" id="cpk-sd" placeholder="例：0.15" step="0.001" inputmode="decimal"></div>
+      </div>
+      <button class="calc-btn" onclick="calcCapability()">計算 Cp / Cpk</button>
+
+      <div class="result" id="cpk-result">
+        <div class="result-top"><div class="result-number" id="cpk-cpk">—</div><div class="result-unit">Cpk</div></div>
+        <span class="tag" id="cpk-tag"></span>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">Cp（潛在能力）</div><div class="val" id="cpk-cp">—</div></div>
+          <div class="result-cell"><div class="lbl">Cpk（實際能力）</div><div class="val" id="cpk-cpk2">—</div></div>
+          <div class="result-cell"><div class="lbl">製程偏移</div><div class="val" id="cpk-shift">—</div></div>
+        </div>
+        <div class="charts" id="cpk-charts" style="display:none">
+          <div class="chart-box">
+            <div class="chart-title">製程分佈與規格界限</div>
+            <div class="chart-sub">紅色陰影區為超出規格的不良比例，曲線偏離中心代表製程有偏移</div>
+            <div id="cpk-chart"></div>
+          </div>
+        </div>
+        <div class="result-note" id="cpk-note"></div>
+        <div class="result-disclaimer">Cp≥1.33 一般視為製程能力良好；Cpk 考慮製程偏移，Cpk &lt; Cp 代表製程未置中。</div>
+        <button class="export-btn" onclick="exportCSV('cpk')">⬇ 匯出結果 CSV</button>
+      </div>
+    </div>
+
+    <div class="subcard">
+      <div class="subcard-h"><span class="n">2</span>良率 / DPMO / 六標準差水準</div>
+      <div class="fields">
+        <div class="field"><label>總生產數量</label><input type="number" id="yld-units" placeholder="例：10000" inputmode="numeric"></div>
+        <div class="field"><label>不良品數</label><input type="number" id="yld-defects" placeholder="例：23" inputmode="numeric"></div>
+      </div>
+      <div class="fields one">
+        <div class="field"><label>每單位機會數（複雜產品可能有多個檢驗點，預設1）</label><input type="number" id="yld-opportunities" value="1" inputmode="numeric"></div>
+      </div>
+      <button class="calc-btn" onclick="calcYield()">計算良率 / DPMO / Sigma</button>
+
+      <div class="result" id="yld-result">
+        <div class="result-top"><div class="result-number" id="yld-sigma">—</div><div class="result-unit">σ Sigma 水準</div></div>
+        <span class="tag" id="yld-tag"></span>
+        <div class="result-grid">
+          <div class="result-cell"><div class="lbl">良率 Yield</div><div class="val green" id="yld-yield">—</div></div>
+          <div class="result-cell"><div class="lbl">不良率</div><div class="val red" id="yld-defrate">—</div></div>
+          <div class="result-cell"><div class="lbl">DPMO</div><div class="val" id="yld-dpmo">—</div></div>
+        </div>
+        <div class="charts" id="yld-charts" style="display:none">
+          <div class="chart-box">
+            <div class="chart-title">六標準差水準儀表</div>
+            <div class="chart-sub">3σ≈93.3% 良率　4σ≈99.4%　5σ≈99.98%　6σ≈99.9997%（世界級水準）</div>
+            <div id="yld-chart" style="display:flex;justify-content:center"></div>
+          </div>
+        </div>
+        <div class="result-note" id="yld-note"></div>
+        <div class="result-disclaimer">Sigma 水準採業界慣用 1.5σ 製程飄移修正估算，為近似值。</div>
+        <button class="export-btn" onclick="exportCSV('yld')">⬇ 匯出結果 CSV</button>
+      </div>
+    </div>
+
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9960" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+
+<article class="article">
+  <h2>Cp、Cpk、DPMO、Sigma水準：品管工程師的核心指標全解析</h2>
+  <p class="lead-card">製程「能不能用」，不是看有沒有不良品，而是看這四個數字：Cp、Cpk、DPMO、Sigma水準。看懂它們，才能跟工程團隊與客戶談品質規格。</p>
+  <h3>1. Cp 和 Cpk 差在哪：有沒有「置中」</h3>
+  <p>Cp（製程潛力指標）只看規格寬度與製程變異的比例，<b>假設製程剛好置中</b>於規格中心。Cpk（製程能力指標）則進一步考慮製程是否真的置中——若製程平均值偏離規格中心，Cpk 會明顯低於 Cp。<b>Cpk 永遠 ≤ Cp</b>，兩者差距越大，代表製程偏移越嚴重，即使變異不大，也可能因為偏移而產出大量不良品。</p>
+  <h3>2. Cpk 數值怎麼判讀</h3>
+  <table>
+    <thead><tr><th>Cpk</th><th>意義</th></tr></thead>
+    <tbody>
+      <tr><td>&lt; 1.0</td><td>製程能力不足，會產出明顯不良品</td></tr>
+      <tr><td>1.0 ~ 1.33</td><td>尚可，邊緣水準，建議改善</td></tr>
+      <tr><td>1.33 ~ 1.67</td><td>良好，業界常見的合格標準</td></tr>
+      <tr><td>≥ 1.67</td><td>優異，接近六標準差水準</td></tr>
+    </tbody>
+  </table>
+  <h3>3. DPMO 與 Sigma 水準：把不良率換算成「等級」</h3>
+  <p>DPMO（Defects Per Million Opportunities，百萬機會缺陷數）把不良率標準化，方便跨產品、跨產線比較。Sigma水準則是業界更直觀的等級制：3σ≈93.3%良率（業界平均偏低）、4σ≈99.4%、5σ≈99.98%、6σ≈99.99966%（每百萬次機會只有3.4次缺陷，世界級水準，如奇異、摩托羅拉的招牌標準）。本頁換算採業界慣用的「1.5σ製程飄移」修正，與業界常見對照表一致。</p>
+  <h3>4. 重要前提：常態分配假設</h3>
+  <p>Cp/Cpk 與 Sigma 水準的計算都假設製程數據呈常態分配（鐘形曲線）。若製程資料明顯偏態或有多重峰值，這些指標會失真，建議先用本頁「敘述統計」的箱型圖檢查資料分布，或用直方圖確認常態性再採用 Cp/Cpk。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：Cp看潛力、Cpk看實際（含置中），Cpk永遠≤Cp → 業界常以Cpk≥1.33為合格標準 → DPMO/Sigma把不良率換算成跨產業可比的等級 → 這些指標都假設資料呈常態分配，用前先檢查分布。</div>
+</article>
+<section class="faq2">
+  <h2>製程能力與良率常見問題</h2>
+  <details><summary>Cp和Cpk有什麼不同？</summary><div class="faq2-a">Cp假設製程剛好置中於規格中心，只看規格寬度與變異的比例；Cpk進一步考慮製程是否真的置中，若製程平均偏離中心，Cpk會明顯低於Cp。Cpk永遠小於等於Cp，是更貼近實際狀況的指標。</div></details>
+  <details><summary>Cpk要達到多少才算合格？</summary><div class="faq2-a">業界常見標準：Cpk≥1.33視為製程能力良好、Cpk≥1.67為優異（接近六標準差水準）。低於1.0代表製程能力不足，會產出明顯不良品，需要立即改善。實際門檻依產業與客戶要求而異。</div></details>
+  <details><summary>六標準差（6σ）代表什麼水準？</summary><div class="faq2-a">6σ代表每百萬次機會只有約3.4次缺陷（良率約99.99966%），是奇異、摩托羅拉等公司推廣的世界級品質標準。對照表：3σ≈93.3%良率、4σ≈99.4%、5σ≈99.98%、6σ≈99.99966%。多數業界平均製程落在3-4σ之間。</div></details>
+  <details><summary>Cp/Cpk適用所有製程嗎？</summary><div class="faq2-a">不一定。Cp/Cpk與Sigma水準的計算都假設製程數據呈常態分配。若資料明顯偏態或有多重峰值，這些指標會失真，建議先用箱型圖或直方圖檢查資料分布是否接近常態，再採用這些指標判讀。</div></details>
+</section>
+</div>
+
+<!-- ══ QC抽樣表 ══ -->
+<div class="panel" id="panel-qcsampling">
+  <div class="tool-card"><div class="card-head">
+    <h2>QC 抽樣表（允收抽樣計畫）</h2>
+    <p>「這批貨抽幾件驗？幾件不良算退貨？」輸入批量與允收品質界限（AQL），算出抽樣數與允收/拒收數。</p>
+  </div><div class="card-body">
+
+    <div class="import-zone">
+      <div class="import-zone-head">
+        <span class="import-label">📥 資料匯入（選用）</span>
+        <button class="import-file-btn" onclick="document.getElementById('qc-file').click()">上傳 CSV</button>
+        <input type="file" id="qc-file" accept=".csv,.txt" style="display:none" onchange="genericFileImport(event,'qc')">
+      </div>
+      <textarea id="qc-paste" class="import-textarea" placeholder="貼上：批量,檢驗水準,AQL（例如：3000,2,2.5　水準1/2/3對應一般檢驗I/II/III）"></textarea>
+      <button class="import-apply-btn" onclick="importQC()">套用匯入資料</button>
+      <div class="import-hint">格式：批量,檢驗水準(1/2/3),AQL(%)。檢驗水準 1=I、2=II（最常用）、3=III。</div>
+    </div>
+
+    <div class="fields">
+      <div class="field"><label>批量（本批總件數）</label><input type="number" id="qc-lot" placeholder="例：3000" inputmode="numeric"></div>
+      <div class="field"><label>檢驗水準</label>
+        <select id="qc-level"><option value="1">一般檢驗 I（寬鬆）</option><option value="2" selected>一般檢驗 II（最常用）</option><option value="3">一般檢驗 III（嚴格）</option></select></div>
+    </div>
+    <div class="fields one">
+      <div class="field"><label>AQL 允收品質界限（%，缺陷率門檻）</label>
+        <select id="qc-aql">
+          <option value="0.065">0.065%（極嚴格，關鍵安全件）</option>
+          <option value="0.1">0.10%</option>
+          <option value="0.15">0.15%</option>
+          <option value="0.25">0.25%（常見：嚴重缺陷 Critical/Major）</option>
+          <option value="0.4">0.40%</option>
+          <option value="0.65">0.65%（常見：主要缺陷 Major）</option>
+          <option value="1.0">1.0%（常見：一般電子代工）</option>
+          <option value="1.5">1.5%</option>
+          <option value="2.5" selected>2.5%（業界最常用：一般/次要缺陷）</option>
+          <option value="4.0">4.0%</option>
+          <option value="6.5">6.5%（常見：輕微缺陷 Minor）</option>
+          <option value="10.0">10.0%（寬鬆）</option>
+        </select></div>
+    </div>
+    <button class="calc-btn" onclick="calcQCSampling()">計算抽樣計畫</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9961" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+
+    <div class="result" id="qc-result">
+      <div class="result-top"><div class="result-number" id="qc-n">—</div><div class="result-unit">件（應抽樣本數）</div></div>
+      <span class="tag" id="qc-tag"></span>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">字碼</div><div class="val" id="qc-letter">—</div></div>
+        <div class="result-cell"><div class="lbl">允收數 Ac（≤此數量收）</div><div class="val green" id="qc-ac">—</div></div>
+        <div class="result-cell"><div class="lbl">拒收數 Re（≥此數量退）</div><div class="val red" id="qc-re">—</div></div>
+      </div>
+      <div class="charts" id="qc-charts" style="display:none">
+        <div class="chart-box">
+          <div class="chart-title">OC 曲線（允收機率曲線）</div>
+          <div class="chart-sub">X軸為該批實際不良率，Y軸為被允收的機率。曲線在 AQL 處應接近95%允收，曲線越陡代表抽樣計畫越能分辨好批與壞批</div>
+          <div id="qc-chart"></div>
+        </div>
+      </div>
+      <div class="result-note" id="qc-note"></div>
+      <div class="result-disclaimer">⚠ 本計算依抽樣理論（卜瓦松近似、95%允收機率對應AQL）動態推算字碼與Ac/Re，理念與ANSI/ASQ Z1.4、GB/T 2828.1（MIL-STD-105E）一致，但實際數字可能與官方公告表略有差異。正式驗收、合約或稽核用途請以官方發布的標準抽樣表為準。</div>
+      <button class="export-btn" onclick="exportCSV('qc')">⬇ 匯出結果 CSV</button>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9962" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+
+<article class="article">
+  <h2>QC 抽樣表怎麼用？批量、AQL、Ac/Re 一次搞懂</h2>
+  <p class="lead-card">進貨檢驗、出貨檢驗不可能每件都驗，「抽樣檢驗」用統計學原理，在合理成本下控制品質風險。搞懂三個關鍵字：字碼、AQL、Ac/Re，你就能看懂任何一張抽樣表。</p>
+  <h3>1. 抽樣計畫的三步驟</h3>
+  <p>第一步，依<b>批量</b>（這批貨總件數）與<b>檢驗水準</b>查出對應的<b>字碼</b>（Sample Size Code Letter，A~R）；第二步，字碼直接對應一個固定的<b>樣本數</b>（例如字碼 K 固定抽 125 件，與 AQL 無關）；第三步，字碼配合你選的 <b>AQL</b>，查出<b>允收數 Ac</b>與<b>拒收數 Re</b>——抽出的樣本中不良品數量 ≤ Ac 就允收整批，≥ Re 就拒收整批。</p>
+  <h3>2. AQL 是什麼，不是「允許的不良率」</h3>
+  <p>AQL（Acceptance Quality Limit，允收品質界限）常被誤解為「容許的不良率上限」，但更精確的意義是：當整批的真實不良率<b>等於</b> AQL 時，這個抽樣計畫設計成约有 95% 的機率允收這批貨（即生產者承擔約5%被誤判拒收的風險）。AQL 數字越小，代表標準越嚴格，需要的樣本數通常越大、允收標準越嚴苛。</p>
+  <h3>3. 檢驗水準怎麼選</h3>
+  <p>一般檢驗 II 是業界預設、最常使用的水準，沒有特殊理由通常就用它。檢驗水準 I 抽樣數較少（檢驗成本低但風險略高），水準 III 抽樣數較多（檢驗更嚴格、風險更低，常用於關鍵零件或新供應商導入初期）。</p>
+  <h3>4. OC 曲線：抽樣計畫的「體檢報告」</h3>
+  <p>OC（Operating Characteristic）曲線畫出「實際不良率」對應「被允收機率」的關係。理想的抽樣計畫曲線應該很陡——不良率剛好在 AQL 以下時幾乎都允收，超過一個門檻（稱為 LTPD，消費者拒收品質界限）後幾乎都拒收。曲線越平緩，代表抽樣計畫的判斷力越弱，可能「好貨被拒、壞貨被收」。本頁圖表把這條曲線畫給你看，幫助判斷目前抽樣計畫是否夠嚴謹。</p>
+  <div class="lead-card">📌 <b>一句話總結</b>：批量+檢驗水準→字碼→樣本數 → 字碼+AQL→Ac/Re允收拒收門檻 → AQL是「95%允收」的設計點，不是不良率上限 → 用OC曲線檢查抽樣計畫夠不夠嚴謹。</div>
+</article>
+<section class="faq2">
+  <h2>QC 抽樣表常見問題</h2>
+  <details><summary>AQL 是「允許的不良率」嗎？</summary><div class="faq2-a">不完全是。AQL（允收品質界限）的精確定義是：當整批真實不良率等於AQL時，該抽樣計畫設計成約有95%機率允收整批。AQL數字越小代表標準越嚴格，但它描述的是抽樣計畫的設計目標，而非「保證不良率低於此值」。</div></details>
+  <details><summary>字碼（Code Letter）是什麼？</summary><div class="faq2-a">字碼是依批量與檢驗水準查出的英文字母代號（A至R），用來決定固定的樣本數。同一字碼不論AQL多少，抽樣數都相同；只有允收數Ac與拒收數Re會隨AQL不同而改變。</div></details>
+  <details><summary>檢驗水準 I、II、III 該選哪個？</summary><div class="faq2-a">一般檢驗II是業界預設、最常用的水準。水準I抽樣數較少、檢驗成本低但風險略高；水準III抽樣數較多、更嚴格，常用於關鍵零件、新供應商導入初期或客戶有特殊要求時。</div></details>
+  <details><summary>抽樣結果跟官方標準表會不會不一樣？</summary><div class="faq2-a">本工具依AQL抽樣理論（卜瓦松近似法、95%允收機率對應AQL）動態計算，理念與ANSI/ASQ Z1.4、GB/T 2828.1（MIL-STD-105E）一致，但具體數字可能與官方公告表存在細微差異。正式驗收、合約稽核等場合請以官方發布的標準抽樣表為準。</div></details>
+</section>
+</div>
+
+</div><!-- /wrap -->
+
+<p class="source-note"><b>資料來源</b>：統計學常用公式（常態分配近似）、六標準差業界慣用換算　<b>公式最後核對</b>：2026-06-20</p>
+<div class="related-wrap">
+  <p class="related-label">你可能也需要</p>
+  <div class="related-grid">
+    <a class="related-card" href="/hr/" style="--rc:#2E7D32;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">人資 HR</div>
+        <div class="related-card-tags"><span>資遣費計算</span><span>人力成本</span><span>特休試算</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/invest/" style="--rc:#1A5C2A;--rs:#E8F5E9">
+      <div class="related-card-body">
+        <div class="related-card-name">投資試算</div>
+        <div class="related-card-tags"><span>股利試算</span><span>ETF定期定額</span><span>FIRE</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+    <a class="related-card" href="/student/" style="--rc:#1A237E;--rs:#E8EAF6">
+      <div class="related-card-body">
+        <div class="related-card-name">學生工具</div>
+        <div class="related-card-tags"><span>GPA計算</span><span>成績換算</span><span>讀書計畫</span></div>
+      </div>
+      <div class="related-card-go">›</div>
+    </a>
+  </div>
+</div>
+<footer>
+  <p>CalcBox 統計品管工具 · 計算結果僅供參考，正式研究或品管決策請諮詢專業統計人員<br>
+  <a href="/">回工具目錄</a> · <a href="/hr/">人資HR</a> · <a href="/invest/">投資試算</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9509448455103495" crossorigin="anonymous"></script>
+
+<script>
+function switchTab(id){
+  if(!document.getElementById('panel-'+id)||!document.getElementById('tab-'+id)) return;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+/* ══ 共用 helper ══ */
+const Z_TABLE={90:1.645,95:1.96,99:2.576};
+const fmt=v=>Math.round(v).toLocaleString();
+window._exportData={};
+
+function parseNumbers(text){
+  return text.split(/[,，\s\n]+/).map(s=>s.trim()).filter(Boolean).map(Number).filter(v=>!isNaN(v));
+}
+function quantile(sortedArr,q){
+  const pos=(sortedArr.length-1)*q;
+  const base=Math.floor(pos);
+  const rest=pos-base;
+  if(sortedArr[base+1]!==undefined) return sortedArr[base]+rest*(sortedArr[base+1]-sortedArr[base]);
+  return sortedArr[base];
+}
+function genericFileImport(event,prefix){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const ta=document.getElementById(prefix+'-paste');
+    if(ta) ta.value=e.target.result.trim();
+  };
+  reader.readAsText(file,'UTF-8');
+}
+function exportCSV(prefix){
+  const data=window._exportData[prefix];
+  if(!data){alert('請先計算結果');return;}
+  let lines=[data.headers.join(',')];
+  data.rows.forEach(r=>lines.push(r.join(',')));
+  if(data.summary){
+    lines.push('');
+    lines.push('摘要統計,');
+    data.summary.forEach(r=>lines.push(r.join(',')));
+  }
+  const csv='\uFEFF'+lines.join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=data.filename||(prefix+'_結果.csv');
+  a.click();
+}
+
+/* ══════════ 1. 樣本數計算機 ══════════ */
+function calcSampleSize(){
+  const N=parseFloat(document.getElementById('ss-population').value)||0;
+  const confLevel=parseInt(document.getElementById('ss-confidence').value);
+  const e=(parseFloat(document.getElementById('ss-margin').value)||5)/100;
+  const p=(parseFloat(document.getElementById('ss-proportion').value)||50)/100;
+  if(e<=0||e>=1){alert('誤差範圍需介於0~100%之間');return;}
+  const z=Z_TABLE[confLevel];
+  const n0=(z*z*p*(1-p))/(e*e);
+  let nAdj=n0;
+  if(N>0) nAdj=n0/(1+((n0-1)/N));
+  const n0Round=Math.ceil(n0), nAdjRound=Math.ceil(nAdj);
+  document.getElementById('ss-n').textContent=fmt(nAdjRound);
+  document.getElementById('ss-tag').textContent=N>0?'已套用有限母體修正':'無限母體假設';
+  document.getElementById('ss-n0').textContent=fmt(n0Round)+' 份';
+  document.getElementById('ss-nadj').textContent=N>0?fmt(nAdjRound)+' 份':'（未提供母體數）';
+  document.getElementById('ss-z').textContent='Z = '+z;
+  document.getElementById('ss-note').textContent=`在 ${confLevel}% 信心水準、誤差範圍 ±${(e*100).toFixed(1)}%、預期比例 ${(p*100).toFixed(0)}% 下，建議樣本數為 ${fmt(nAdjRound)} 份。${N>0?`已依母體數 ${fmt(N)} 套用有限母體修正（修正前為 ${fmt(n0Round)} 份）。`:'未提供母體數，採無限母體假設。'}`;
+  document.getElementById('samplesize-result').classList.add('show');
+  document.getElementById('ss-charts').style.display='flex';
+  document.getElementById('ss-chart').innerHTML=marginCurveSVG(p,z,e*100,N);
+  window._exportData.ss={headers:['項目','數值'],rows:[['母體規模N',N>0?N:'無限母體'],['信心水準',confLevel+'%'],['誤差範圍',(e*100)+'%'],['預期比例',(p*100)+'%'],['Z值',z],['基礎樣本數n0',n0Round],['修正後樣本數',nAdjRound]],filename:'樣本數計算結果.csv'};
+}
+function importSampleSize(){
+  const raw=document.getElementById('ss-paste').value.trim();
+  if(!raw){alert('請先貼上資料');return;}
+  const parts=raw.split(',').map(s=>s.trim());
+  document.getElementById('ss-population').value=(parts[0]&&parts[0]!=='0')?parts[0]:'';
+  if(parts[1]&&['90','95','99'].includes(parts[1])) document.getElementById('ss-confidence').value=parts[1];
+  if(parts[2]) document.getElementById('ss-margin').value=parts[2];
+  if(parts[3]) document.getElementById('ss-proportion').value=parts[3];
+  calcSampleSize();
+}
+
+/* ══════════ 2. 信賴區間 ══════════ */
+let ciMode='prop';
+function setCIMode(mode){
+  ciMode=mode;
+  document.getElementById('ci-mode-prop').classList.toggle('active',mode==='prop');
+  document.getElementById('ci-mode-mean').classList.toggle('active',mode==='mean');
+  document.getElementById('ci-fields-prop').style.display=mode==='prop'?'':'none';
+  document.getElementById('ci-fields-mean').style.display=mode==='mean'?'':'none';
+}
+function calcCI(){
+  const confLevel=parseInt(document.getElementById('ci-confidence').value);
+  const z=Z_TABLE[confLevel];
+  let point,lower,upper,margin,unit,label;
+  if(ciMode==='prop'){
+    const n=parseFloat(document.getElementById('ci-p-n').value);
+    const pct=parseFloat(document.getElementById('ci-p-pct').value);
+    if(!n||isNaN(pct)){alert('請填寫樣本數與比例');return;}
+    const p=pct/100;
+    margin=z*Math.sqrt(p*(1-p)/n);
+    point=p;lower=Math.max(0,p-margin);upper=Math.min(1,p+margin);
+    unit='比例估計值';label=(p*100).toFixed(1)+'%';
+    document.getElementById('ci-point').textContent=(p*100).toFixed(1)+'%';
+    document.getElementById('ci-lower').textContent=(lower*100).toFixed(1)+'%';
+    document.getElementById('ci-upper').textContent=(upper*100).toFixed(1)+'%';
+    document.getElementById('ci-margin').textContent='±'+(margin*100).toFixed(1)+'%';
+    document.getElementById('ci-note').textContent=`樣本比例 ${(p*100).toFixed(1)}%，在 ${confLevel}% 信心水準下，母體真實比例的信賴區間為 ${(lower*100).toFixed(1)}% ~ ${(upper*100).toFixed(1)}%（誤差範圍 ±${(margin*100).toFixed(1)}%）。`;
+  }else{
+    const n=parseFloat(document.getElementById('ci-m-n').value);
+    const mean=parseFloat(document.getElementById('ci-m-mean').value);
+    const sd=parseFloat(document.getElementById('ci-m-sd').value);
+    if(!n||isNaN(mean)||!sd){alert('請填寫樣本數、平均與標準差');return;}
+    margin=z*(sd/Math.sqrt(n));
+    point=mean;lower=mean-margin;upper=mean+margin;
+    unit='平均值估計';label=mean.toFixed(2);
+    document.getElementById('ci-point').textContent=mean.toFixed(2);
+    document.getElementById('ci-lower').textContent=lower.toFixed(2);
+    document.getElementById('ci-upper').textContent=upper.toFixed(2);
+    document.getElementById('ci-margin').textContent='±'+margin.toFixed(2);
+    document.getElementById('ci-note').textContent=`樣本平均 ${mean.toFixed(2)}，在 ${confLevel}% 信心水準下，母體真實平均值的信賴區間為 ${lower.toFixed(2)} ~ ${upper.toFixed(2)}（誤差範圍 ±${margin.toFixed(2)}）。${n<30?'樣本數小於30，建議改用t分配計算更準確。':''}`;
+  }
+  document.getElementById('ci-unit').textContent=unit;
+  document.getElementById('ci-tag').textContent=confLevel+'% 信心水準';
+  document.getElementById('ci-result').classList.add('show');
+  document.getElementById('ci-charts').style.display='flex';
+  document.getElementById('ci-chart').innerHTML=intervalBandSVG(point,lower,upper,label,ciMode==='prop');
+  window._exportData.ci={headers:['項目','數值'],rows:[['模式',ciMode==='prop'?'比例':'均值'],['信心水準',confLevel+'%'],['點估計',label],['下界',ciMode==='prop'?(lower*100).toFixed(1)+'%':lower.toFixed(2)],['上界',ciMode==='prop'?(upper*100).toFixed(1)+'%':upper.toFixed(2)],['誤差範圍',ciMode==='prop'?'±'+(margin*100).toFixed(1)+'%':'±'+margin.toFixed(2)]],filename:'信賴區間計算結果.csv'};
+}
+function importCI(){
+  const raw=document.getElementById('ci-paste').value.trim();
+  if(!raw){alert('請先貼上資料');return;}
+  const parts=parseNumbers(raw);
+  if(ciMode==='prop'){
+    const isBinary=parts.length>1&&parts.every(v=>v===0||v===1);
+    if(isBinary){
+      const n=parts.length,successes=parts.reduce((a,b)=>a+b,0);
+      document.getElementById('ci-p-n').value=n;
+      document.getElementById('ci-p-pct').value=((successes/n)*100).toFixed(2);
+    }else if(parts.length>=2){
+      document.getElementById('ci-p-n').value=parts[0];
+      document.getElementById('ci-p-pct').value=parts[1];
+    }else{alert('請貼上 0/1 清單，或「樣本數,比例」');return;}
+  }else{
+    if(parts.length<2){alert('請貼上至少2筆原始數據');return;}
+    const n=parts.length,mean=parts.reduce((a,b)=>a+b,0)/n;
+    const variance=parts.reduce((a,b)=>a+(b-mean)**2,0)/(n-1);
+    document.getElementById('ci-m-n').value=n;
+    document.getElementById('ci-m-mean').value=mean.toFixed(3);
+    document.getElementById('ci-m-sd').value=Math.sqrt(variance).toFixed(3);
+  }
+  calcCI();
+}
+
+/* ══════════ 3. 敘述統計 ══════════ */
+function importDS(){
+  const raw=document.getElementById('ds-paste').value.trim();
+  if(!raw){alert('請先貼上資料');return;}
+  calcDescriptive();
+}
+function calcDescriptive(){
+  const raw=document.getElementById('ds-paste').value.trim();
+  if(!raw){alert('請先貼上數據');return;}
+  const data=parseNumbers(raw).sort((a,b)=>a-b);
+  if(data.length<2){alert('請至少輸入2筆數據');return;}
+  const n=data.length;
+  const sum=data.reduce((a,b)=>a+b,0);
+  const mean=sum/n;
+  const median=n%2===0?(data[n/2-1]+data[n/2])/2:data[(n-1)/2];
+  const freq={};
+  data.forEach(v=>freq[v]=(freq[v]||0)+1);
+  const maxFreq=Math.max(...Object.values(freq));
+  const modes=Object.keys(freq).filter(k=>freq[k]===maxFreq).map(Number);
+  const modeStr=maxFreq>1?(modes.length>3?'多重眾數':modes.join(', ')):'無明顯眾數';
+  const variance=data.reduce((a,b)=>a+(b-mean)**2,0)/(n-1);
+  const sd=Math.sqrt(variance);
+  const min=data[0],max=data[n-1],range=max-min;
+  const q1=quantile(data,0.25),q3=quantile(data,0.75),iqr=q3-q1;
+
+  document.getElementById('ds-mean').textContent=mean.toFixed(2);
+  document.getElementById('ds-tag').textContent=`n = ${n} 筆數據`;
+  document.getElementById('ds-n').textContent=n;
+  document.getElementById('ds-median').textContent=median.toFixed(2);
+  document.getElementById('ds-mode').textContent=modeStr;
+  document.getElementById('ds-sd').textContent=sd.toFixed(3);
+  document.getElementById('ds-var').textContent=variance.toFixed(3);
+  document.getElementById('ds-range').textContent=range.toFixed(2)+`（${min}~${max}）`;
+  document.getElementById('ds-q').textContent=q1.toFixed(2)+' / '+q3.toFixed(2);
+  document.getElementById('ds-iqr').textContent=iqr.toFixed(2);
+  document.getElementById('ds-note').textContent=`共 ${n} 筆數據，平均 ${mean.toFixed(2)}、中位數 ${median.toFixed(2)}、標準差 ${sd.toFixed(3)}。中間50%數據落在 ${q1.toFixed(2)} ~ ${q3.toFixed(2)} 之間（IQR=${iqr.toFixed(2)}）。`;
+  document.getElementById('descriptive-result').classList.add('show');
+  document.getElementById('ds-charts').style.display='flex';
+  document.getElementById('ds-chart').innerHTML=boxPlotSVG(data,q1,median,q3,min,max);
+  window._exportData.ds={headers:['項目','數值'],rows:[['n',n],['平均數',mean.toFixed(3)],['中位數',median.toFixed(3)],['眾數',modeStr],['標準差',sd.toFixed(3)],['變異數',variance.toFixed(3)],['最小值',min],['最大值',max],['Q1',q1.toFixed(3)],['Q3',q3.toFixed(3)],['IQR',iqr.toFixed(3)]],summary:[['原始數據',data.join(';')]],filename:'敘述統計結果.csv'};
+}
+
+/* ══════════ 4. 相關與迴歸分析 ══════════ */
+function importCR(){
+  const raw=document.getElementById('cr-paste').value.trim();
+  if(!raw){alert('請先貼上資料');return;}
+  calcCorrelation();
+}
+function calcCorrelation(){
+  const raw=document.getElementById('cr-paste').value.trim();
+  if(!raw){alert('請先貼上 X,Y 配對數據');return;}
+  const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean);
+  const points=[];
+  lines.forEach(line=>{
+    const parts=line.split(/[,，\s]+/).map(Number);
+    if(parts.length>=2&&!isNaN(parts[0])&&!isNaN(parts[1])) points.push({x:parts[0],y:parts[1]});
+  });
+  if(points.length<3){alert('請至少輸入3組有效的 X,Y 配對數據');return;}
+  const n=points.length;
+  const sumX=points.reduce((a,p)=>a+p.x,0),sumY=points.reduce((a,p)=>a+p.y,0);
+  const sumXY=points.reduce((a,p)=>a+p.x*p.y,0),sumX2=points.reduce((a,p)=>a+p.x*p.x,0),sumY2=points.reduce((a,p)=>a+p.y*p.y,0);
+  const meanX=sumX/n,meanY=sumY/n;
+  const numerator=n*sumXY-sumX*sumY;
+  const denominator=Math.sqrt((n*sumX2-sumX*sumX)*(n*sumY2-sumY*sumY));
+  const r=denominator!==0?numerator/denominator:0;
+  const slope=(n*sumXY-sumX*sumY)/(n*sumX2-sumX*sumX);
+  const intercept=meanY-slope*meanX;
+  const r2=r*r;
+  const strength=Math.abs(r)>=0.7?'強相關':Math.abs(r)>=0.4?'中度相關':Math.abs(r)>=0.2?'弱相關':'幾乎無相關';
+  const direction=r>0.001?'正相關':r<-0.001?'負相關':'無相關';
+
+  document.getElementById('cr-r').textContent=r.toFixed(3);
+  document.getElementById('cr-tag').textContent=`${direction} · ${strength}`;
+  document.getElementById('cr-n').textContent=n;
+  document.getElementById('cr-r2').textContent=(r2*100).toFixed(1)+'%';
+  document.getElementById('cr-eq').textContent=`y = ${slope.toFixed(3)}x ${intercept>=0?'+':'−'} ${Math.abs(intercept).toFixed(3)}`;
+  document.getElementById('cr-note').textContent=`${n} 組數據，相關係數 r = ${r.toFixed(3)}（${direction}、${strength}）。迴歸方程式 y=${slope.toFixed(3)}x${intercept>=0?'+':''}${intercept.toFixed(3)}，R²=${(r2*100).toFixed(1)}%，代表 Y 的變異中有 ${(r2*100).toFixed(1)}% 可由 X 解釋。`;
+  document.getElementById('correlation-result').classList.add('show');
+  document.getElementById('cr-charts').style.display='flex';
+  document.getElementById('cr-chart').innerHTML=scatterRegressionSVG(points,slope,intercept,r2);
+  window._exportData.cr={headers:['X','Y'],rows:points.map(p=>[p.x,p.y]),summary:[['相關係數r',r.toFixed(4)],['R平方',r2.toFixed(4)],['斜率',slope.toFixed(4)],['截距',intercept.toFixed(4)]],filename:'相關分析結果.csv'};
+}
+
+
+
+
+
+/* ══════════ 5. NPS 淨推薦值 ══════════ */
+let npsMode='count';
+function setNPSMode(mode){
+  npsMode=mode;
+  document.getElementById('nps-mode-count').classList.toggle('active',mode==='count');
+  document.getElementById('nps-mode-raw').classList.toggle('active',mode==='raw');
+  document.getElementById('nps-fields-count').style.display=mode==='count'?'':'none';
+  document.getElementById('nps-fields-raw').style.display=mode==='raw'?'':'none';
+}
+function importNPS(){
+  const raw=document.getElementById('nps-paste').value.trim();
+  if(!raw){alert('請先貼上評分資料');return;}
+  const scores=parseNumbers(raw).filter(v=>v>=0&&v<=10);
+  if(scores.length<1){alert('請貼上 0-10 的評分數據');return;}
+  const promoters=scores.filter(v=>v>=9).length;
+  const passives=scores.filter(v=>v>=7&&v<=8).length;
+  const detractors=scores.filter(v=>v<=6).length;
+  document.getElementById('nps-promoters').value=promoters;
+  document.getElementById('nps-passives').value=passives;
+  document.getElementById('nps-detractors').value=detractors;
+  calcNPS();
+}
+function calcNPS(){
+  const promoters=parseFloat(document.getElementById('nps-promoters').value)||0;
+  const passives=parseFloat(document.getElementById('nps-passives').value)||0;
+  const detractors=parseFloat(document.getElementById('nps-detractors').value)||0;
+  const total=promoters+passives+detractors;
+  if(total<=0){alert('請輸入受訪人數');return;}
+  const promoPct=promoters/total*100,detrPct=detractors/total*100;
+  const nps=Math.round(promoPct-detrPct);
+  let tag;
+  if(nps>=70)tag='卓越（World Class）';
+  else if(nps>=30)tag='良好';
+  else if(nps>=0)tag='尚可，有改善空間';
+  else tag='⚠ 需立即改善';
+  document.getElementById('nps-score').textContent=(nps>=0?'+':'')+nps;
+  document.getElementById('nps-tag').textContent=tag;
+  document.getElementById('nps-total').textContent=fmt(total);
+  document.getElementById('nps-promo-pct').textContent=promoPct.toFixed(1)+'%';
+  document.getElementById('nps-detr-pct').textContent=detrPct.toFixed(1)+'%';
+  document.getElementById('nps-note').textContent=`總受訪 ${fmt(total)} 人，推薦者 ${fmt(promoters)} 人（${promoPct.toFixed(1)}%）、中立者 ${fmt(passives)} 人、貶低者 ${fmt(detractors)} 人（${detrPct.toFixed(1)}%）。NPS = ${promoPct.toFixed(1)}% − ${detrPct.toFixed(1)}% = ${nps}。`;
+  document.getElementById('nps-result').classList.add('show');
+  document.getElementById('nps-charts').style.display='flex';
+  document.getElementById('nps-comp-chart').innerHTML=npsCompositionSVG(promoters,passives,detractors);
+  document.getElementById('nps-gauge-chart').innerHTML=npsGaugeSVG(nps);
+  window._exportData.nps={headers:['項目','數值'],rows:[['推薦者人數',promoters],['中立者人數',passives],['貶低者人數',detractors],['總人數',total],['推薦者佔比',promoPct.toFixed(2)+'%'],['貶低者佔比',detrPct.toFixed(2)+'%'],['NPS分數',nps]],filename:'NPS計算結果.csv'};
+}
+
+/* ══════════ 6. 製程能力 Cp/Cpk ══════════ */
+function importCPK(){
+  const raw=document.getElementById('cpk-paste').value.trim();
+  if(!raw){alert('請先貼上量測數據');return;}
+  const data=parseNumbers(raw);
+  if(data.length<2){alert('請至少輸入2筆量測值');return;}
+  const n=data.length,mean=data.reduce((a,b)=>a+b,0)/n;
+  const variance=data.reduce((a,b)=>a+(b-mean)**2,0)/(n-1);
+  document.getElementById('cpk-mean').value=mean.toFixed(4);
+  document.getElementById('cpk-sd').value=Math.sqrt(variance).toFixed(4);
+}
+function calcCapability(){
+  const usl=parseFloat(document.getElementById('cpk-usl').value);
+  const lsl=parseFloat(document.getElementById('cpk-lsl').value);
+  const mean=parseFloat(document.getElementById('cpk-mean').value);
+  const sd=parseFloat(document.getElementById('cpk-sd').value);
+  if(isNaN(usl)||isNaN(lsl)||isNaN(mean)||!sd){alert('請填寫規格上下限、平均與標準差');return;}
+  if(usl<=lsl){alert('規格上限需大於規格下限');return;}
+  const cp=(usl-lsl)/(6*sd);
+  const cpu=(usl-mean)/(3*sd),cpl=(mean-lsl)/(3*sd);
+  const cpk=Math.min(cpu,cpl);
+  const shift=mean-((usl+lsl)/2);
+  let tag;
+  if(cpk>=1.67)tag='✅ 優異（六標準差水準）';
+  else if(cpk>=1.33)tag='✅ 良好（製程能力足夠）';
+  else if(cpk>=1.0)tag='⚠ 尚可，建議改善';
+  else tag='❌ 不足，製程需立即改善';
+  document.getElementById('cpk-cpk').textContent=cpk.toFixed(3);
+  document.getElementById('cpk-tag').textContent=tag;
+  document.getElementById('cpk-cp').textContent=cp.toFixed(3);
+  document.getElementById('cpk-cpk2').textContent=cpk.toFixed(3);
+  document.getElementById('cpk-shift').textContent=(shift>=0?'+':'')+shift.toFixed(4);
+  document.getElementById('cpk-note').textContent=`規格 [${lsl}, ${usl}]，製程平均 ${mean}、標準差 ${sd}。Cp=${cp.toFixed(3)}（潛在能力，假設製程置中）、Cpk=${cpk.toFixed(3)}（實際能力，已反映製程偏移 ${shift.toFixed(4)}）。${cpk<cp-0.05?'Cpk明顯低於Cp，代表製程未置中於規格中心，建議調整製程平均值。':''}`;
+  document.getElementById('cpk-result').classList.add('show');
+  document.getElementById('cpk-charts').style.display='flex';
+  document.getElementById('cpk-chart').innerHTML=capabilityBellSVG(mean,sd,usl,lsl,cp,cpk);
+  window._exportData.cpk={headers:['項目','數值'],rows:[['USL',usl],['LSL',lsl],['製程平均',mean],['製程標準差',sd],['Cp',cp.toFixed(4)],['Cpk',cpk.toFixed(4)],['製程偏移',shift.toFixed(4)]],filename:'製程能力分析結果.csv'};
+}
+
+/* ══════════ 良率 / DPMO / Sigma ══════════ */
+function calcYield(){
+  const units=parseFloat(document.getElementById('yld-units').value);
+  const defects=parseFloat(document.getElementById('yld-defects').value);
+  const opp=parseFloat(document.getElementById('yld-opportunities').value)||1;
+  if(!units||isNaN(defects)){alert('請填寫生產數量與不良品數');return;}
+  const defectRate=defects/units;
+  const yieldPct=(1-defectRate)*100;
+  const dpmo=(defects/(units*opp))*1000000;
+  const sigma=dpmoToSigma(dpmo);
+  let tag;
+  if(sigma>=6)tag='世界級水準（六標準差）';
+  else if(sigma>=5)tag='優異';
+  else if(sigma>=4)tag='良好（業界平均以上）';
+  else if(sigma>=3)tag='一般（業界平均）';
+  else tag='⚠ 需改善';
+  document.getElementById('yld-sigma').textContent=sigma.toFixed(2)+'σ';
+  document.getElementById('yld-tag').textContent=tag;
+  document.getElementById('yld-yield').textContent=yieldPct.toFixed(3)+'%';
+  document.getElementById('yld-defrate').textContent=(defectRate*100).toFixed(3)+'%';
+  document.getElementById('yld-dpmo').textContent=fmt(dpmo);
+  document.getElementById('yld-note').textContent=`生產 ${fmt(units)} 件，不良 ${fmt(defects)} 件，良率 ${yieldPct.toFixed(3)}%。DPMO（百萬機會缺陷數）= ${fmt(dpmo)}，換算約為 ${sigma.toFixed(2)}σ（含1.5σ製程飄移修正）。`;
+  document.getElementById('yld-result').classList.add('show');
+  document.getElementById('yld-charts').style.display='flex';
+  document.getElementById('yld-chart').innerHTML=sigmaGaugeSVG(sigma,dpmo);
+  window._exportData.yld={headers:['項目','數值'],rows:[['生產數量',units],['不良品數',defects],['每單位機會數',opp],['良率',yieldPct.toFixed(4)+'%'],['不良率',(defectRate*100).toFixed(4)+'%'],['DPMO',Math.round(dpmo)],['Sigma水準',sigma.toFixed(3)]],filename:'良率DPMO分析結果.csv'};
+}
+function dpmoToSigma(dpmo){
+  const p=Math.max(0.0000001,Math.min(0.9999999,dpmo/1000000));
+  return normInv(1-p)+1.5;
+}
+function normInv(p){
+  const a=[-3.969683028665376e+01,2.209460984245205e+02,-2.759285104469687e+02,1.383577518672690e+02,-3.066479806614716e+01,2.506628277459239e+00];
+  const b=[-5.447609879822406e+01,1.615858368580409e+02,-1.556989798598866e+02,6.680131188771972e+01,-1.328068155288572e+01];
+  const c=[-7.784894002430293e-03,-3.223964580411365e-01,-2.400758277161838e+00,-2.549732539343734e+00,4.374664141464968e+00,2.938163982698783e+00];
+  const d=[7.784695709041462e-03,3.224671290700398e-01,2.445134137142996e+00,3.754408661907416e+00];
+  const plow=0.02425,phigh=1-plow;
+  let q,r;
+  if(p<plow){
+    q=Math.sqrt(-2*Math.log(p));
+    return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }else if(p<=phigh){
+    q=p-0.5;r=q*q;
+    return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+  }else{
+    q=Math.sqrt(-2*Math.log(1-p));
+    return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+  }
+}
+
+/* ══════════ 7. QC 抽樣表（允收抽樣計畫） ══════════ */
+// Table 1：批量 + 檢驗水準 → 字碼（依 ANSI/ASQ Z1.4 一般檢驗水準 I/II/III 結構）
+const QC_CODE_TABLE=[
+  {max:8,L:['A','A','B']},
+  {max:15,L:['A','B','C']},
+  {max:25,L:['B','C','D']},
+  {max:50,L:['C','D','E']},
+  {max:90,L:['C','E','F']},
+  {max:150,L:['D','F','G']},
+  {max:280,L:['E','G','H']},
+  {max:500,L:['F','H','J']},
+  {max:1200,L:['G','J','K']},
+  {max:3200,L:['H','K','L']},
+  {max:10000,L:['J','L','M']},
+  {max:35000,L:['K','M','N']},
+  {max:150000,L:['L','N','P']},
+  {max:500000,L:['M','P','Q']},
+  {max:Infinity,L:['N','Q','R']}
+];
+// 字碼 → 樣本數（標準固定值）
+const QC_LETTER_N={A:2,B:3,C:5,D:8,E:13,F:20,G:32,H:50,J:80,K:125,L:200,M:315,N:500,P:800,Q:1250,R:2000};
+
+function qcLookupLetter(lotSize,level){
+  const row=QC_CODE_TABLE.find(r=>lotSize<=r.max);
+  return row.L[level-1];
+}
+// 卜瓦松近似：找最大 Ac 使 P(X≤Ac | λ=n×AQL/100) ≥ 0.95（對應AQL定義之95%允收機率）
+function qcCalcAc(n,aqlPct){
+  const lambda=n*(aqlPct/100);
+  let cum=Math.exp(-lambda),term=cum,k=0;
+  if(cum>=0.95)return 0;
+  for(k=1;k<=n;k++){
+    term*=lambda/k;
+    cum+=term;
+    if(cum>=0.95)return k;
+  }
+  return k;
+}
+function qcAcceptProb(n,ac,p){
+  // 二項機率 P(X≤ac | n,p)，用卜瓦松近似（n大、p小時準確）
+  const lambda=n*p;
+  if(lambda===0)return 1;
+  let cum=Math.exp(-lambda),term=cum;
+  for(let k=1;k<=ac;k++){term*=lambda/k;cum+=term;}
+  return Math.min(1,cum);
+}
+function calcQCSampling(){
+  const lot=parseFloat(document.getElementById('qc-lot').value);
+  const level=parseInt(document.getElementById('qc-level').value);
+  const aql=parseFloat(document.getElementById('qc-aql').value);
+  if(!lot||lot<2){alert('請填寫批量（至少2件）');return;}
+  const letter=qcLookupLetter(lot,level);
+  const n=Math.min(QC_LETTER_N[letter],lot);
+  const ac=qcCalcAc(n,aql);
+  const re=ac+1;
+  const levelName=['一般檢驗I','一般檢驗II','一般檢驗III'][level-1];
+
+  document.getElementById('qc-n').textContent=fmt(n);
+  document.getElementById('qc-tag').textContent=`批量${fmt(lot)} · ${levelName} · AQL ${aql}%`;
+  document.getElementById('qc-letter').textContent=letter;
+  document.getElementById('qc-ac').textContent=ac;
+  document.getElementById('qc-re').textContent=re;
+  document.getElementById('qc-note').textContent=`批量 ${fmt(lot)} 件，依${levelName}查得字碼 ${letter}，應抽樣 ${fmt(n)} 件檢驗。樣本中發現不良品數 ≤ ${ac} 件則允收整批，≥ ${re} 件則拒收整批。`;
+  document.getElementById('qc-result').classList.add('show');
+  document.getElementById('qc-charts').style.display='flex';
+  document.getElementById('qc-chart').innerHTML=ocCurveSVG(n,ac,aql);
+  window._exportData.qc={headers:['項目','數值'],rows:[['批量',lot],['檢驗水準',levelName],['AQL(%)',aql],['字碼',letter],['樣本數n',n],['允收數Ac',ac],['拒收數Re',re]],filename:'QC抽樣計畫結果.csv'};
+}
+function importQC(){
+  const raw=document.getElementById('qc-paste').value.trim();
+  if(!raw){alert('請先貼上資料');return;}
+  const parts=raw.split(',').map(s=>s.trim());
+  if(parts[0]) document.getElementById('qc-lot').value=parts[0];
+  if(parts[1]&&['1','2','3'].includes(parts[1])) document.getElementById('qc-level').value=parts[1];
+  if(parts[2]){
+    const sel=document.getElementById('qc-aql');
+    const opt=[...sel.options].find(o=>Math.abs(parseFloat(o.value)-parseFloat(parts[2]))<0.001);
+    if(opt) sel.value=opt.value;
+  }
+  calcQCSampling();
+}
+</script>
+
+<script>
+/* ══════════ SVG 圖表函式庫（CalcBox 統計頁專用） ══════════ */
+
+// 1. 樣本數 vs 誤差範圍 曲線圖
+function marginCurveSVG(p,z,currentE,N){
+  const W=600,H=240,P={t:14,r:14,b:30,l:54};
+  const iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const xs=[];for(let e=1;e<=15;e++)xs.push(e);
+  const calcN=ePercent=>{
+    const e=ePercent/100;
+    let n0=(z*z*p*(1-p))/(e*e);
+    if(N>0) n0=n0/(1+((n0-1)/N));
+    return n0;
+  };
+  const ys=xs.map(calcN);
+  const maxY=Math.min(Math.max(...ys),9999);
+  const X=e=>P.l+((e-1)/14)*iw;
+  const Y=v=>P.t+ih-(Math.min(v,maxY)/maxY)*ih;
+  let grid='';
+  for(let g=0;g<=4;g++){
+    const val=maxY*g/4,yy=P.t+ih-(g/4)*ih;
+    grid+=`<line x1="${P.l}" y1="${yy.toFixed(1)}" x2="${W-P.r}" y2="${yy.toFixed(1)}" stroke="#EDF1F6" stroke-width="1"/>`;
+    grid+=`<text x="${P.l-6}" y="${yy+3.5}" text-anchor="end" font-size="9" fill="#9AA9BA">${Math.round(val).toLocaleString()}</text>`;
+  }
+  let xlab='';
+  [1,3,5,7,9,11,13,15].forEach(e=>{xlab+=`<text x="${X(e).toFixed(1)}" y="${H-P.b+16}" text-anchor="middle" font-size="9" fill="#9AA9BA">${e}%</text>`;});
+  let d='';
+  xs.forEach((e,i)=>{const v=calcN(e);d+=(i===0?'M ':'L ')+X(e).toFixed(1)+' '+Y(v).toFixed(1)+' ';});
+  const area=d+'L '+X(15).toFixed(1)+' '+(P.t+ih)+' L '+X(1).toFixed(1)+' '+(P.t+ih)+' Z';
+  const eClamped=Math.max(1,Math.min(15,currentE));
+  const curN=calcN(eClamped);
+  const cx=X(eClamped),cy=Y(curN);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="樣本數與誤差範圍關係曲線">${grid}<path d="${area}" fill="rgba(0,105,92,.08)"/><path d="${d}" fill="none" stroke="#00695C" stroke-width="2.5" stroke-linejoin="round"/><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="5" fill="#C58A12" stroke="#fff" stroke-width="2"/><text x="${cx.toFixed(1)}" y="${(cy-10).toFixed(1)}" text-anchor="middle" font-size="10" font-weight="800" fill="#C58A12">你的設定</text>${xlab}<text x="${W-P.r}" y="${H-4}" text-anchor="end" font-size="9" fill="#9AA9BA">誤差範圍 →</text></svg>`;
+}
+
+// 2. 信賴區間 帶狀圖
+function intervalBandSVG(point,lower,upper,label,isPercent){
+  const W=600,H=130,padL=20,padR=20,trackY=60,trackH=10;
+  const range=upper-lower,buf=range*1.5||1;
+  const min=lower-buf,max=upper+buf;
+  const x=v=>padL+((v-min)/(max-min))*(W-padL-padR);
+  const lx=x(lower),ux=x(upper),px=x(point);
+  let rows=`<line x1="${padL}" y1="${trackY}" x2="${W-padR}" y2="${trackY}" stroke="#EDF1F6" stroke-width="2"/>`;
+  rows+=`<rect x="${lx.toFixed(1)}" y="${trackY-trackH/2}" width="${(ux-lx).toFixed(1)}" height="${trackH}" rx="5" fill="#00695C" opacity="0.18"/>`;
+  rows+=`<line x1="${lx.toFixed(1)}" y1="${trackY-14}" x2="${lx.toFixed(1)}" y2="${trackY+14}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<line x1="${ux.toFixed(1)}" y1="${trackY-14}" x2="${ux.toFixed(1)}" y2="${trackY+14}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<text x="${lx.toFixed(1)}" y="${trackY+30}" text-anchor="middle" font-size="11" font-weight="700" fill="#00695C">${isPercent?(lower*100).toFixed(1)+'%':lower.toFixed(2)}</text>`;
+  rows+=`<text x="${ux.toFixed(1)}" y="${trackY+30}" text-anchor="middle" font-size="11" font-weight="700" fill="#00695C">${isPercent?(upper*100).toFixed(1)+'%':upper.toFixed(2)}</text>`;
+  rows+=`<circle cx="${px.toFixed(1)}" cy="${trackY}" r="6" fill="#C58A12" stroke="#fff" stroke-width="2"/>`;
+  rows+=`<text x="${px.toFixed(1)}" y="${trackY-22}" text-anchor="middle" font-size="12" font-weight="900" fill="#C58A12">點估計 ${label}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="信賴區間圖">${rows}</svg>`;
+}
+
+// 3. 箱型圖 Box Plot
+function boxPlotSVG(data,q1,median,q3,min,max){
+  const W=600,H=140,padL=20,padR=20,boxY=50,boxH=40;
+  const iqr=q3-q1;
+  const lowerFence=q1-1.5*iqr,upperFence=q3+1.5*iqr;
+  const outliers=data.filter(v=>v<lowerFence||v>upperFence);
+  const nonOutliers=data.filter(v=>v>=lowerFence&&v<=upperFence);
+  const whiskerMin=nonOutliers.length?Math.min(...nonOutliers):min;
+  const whiskerMax=nonOutliers.length?Math.max(...nonOutliers):max;
+  const domainMin=Math.min(min,whiskerMin),domainMax=Math.max(max,whiskerMax);
+  const buf=(domainMax-domainMin)*0.08||1;
+  const lo=domainMin-buf,hi=domainMax+buf;
+  const x=v=>padL+((v-lo)/(hi-lo))*(W-padL-padR);
+  let rows=`<line x1="${x(whiskerMin).toFixed(1)}" y1="${boxY+boxH/2}" x2="${x(q1).toFixed(1)}" y2="${boxY+boxH/2}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<line x1="${x(q3).toFixed(1)}" y1="${boxY+boxH/2}" x2="${x(whiskerMax).toFixed(1)}" y2="${boxY+boxH/2}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<line x1="${x(whiskerMin).toFixed(1)}" y1="${boxY+10}" x2="${x(whiskerMin).toFixed(1)}" y2="${boxY+boxH-10}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<line x1="${x(whiskerMax).toFixed(1)}" y1="${boxY+10}" x2="${x(whiskerMax).toFixed(1)}" y2="${boxY+boxH-10}" stroke="#00695C" stroke-width="2"/>`;
+  rows+=`<rect x="${x(q1).toFixed(1)}" y="${boxY}" width="${(x(q3)-x(q1)).toFixed(1)}" height="${boxH}" fill="#E0F2F1" stroke="#00695C" stroke-width="2" rx="3"/>`;
+  rows+=`<line x1="${x(median).toFixed(1)}" y1="${boxY}" x2="${x(median).toFixed(1)}" y2="${boxY+boxH}" stroke="#C58A12" stroke-width="3"/>`;
+  outliers.forEach(v=>{rows+=`<circle cx="${x(v).toFixed(1)}" cy="${boxY+boxH/2}" r="4" fill="#C62828" opacity="0.75"><title>離群值 ${v}</title></circle>`;});
+  rows+=`<text x="${x(q1).toFixed(1)}" y="${boxY-8}" text-anchor="middle" font-size="10" font-weight="700" fill="#00695C">Q1=${q1.toFixed(1)}</text>`;
+  rows+=`<text x="${x(median).toFixed(1)}" y="${boxY+boxH+16}" text-anchor="middle" font-size="11" font-weight="800" fill="#C58A12">中位數 ${median.toFixed(1)}</text>`;
+  rows+=`<text x="${x(q3).toFixed(1)}" y="${boxY-8}" text-anchor="middle" font-size="10" font-weight="700" fill="#00695C">Q3=${q3.toFixed(1)}</text>`;
+  rows+=`<text x="${x(whiskerMin).toFixed(1)}" y="${boxY+boxH+30}" text-anchor="middle" font-size="9" fill="#9AA9BA">最小 ${whiskerMin.toFixed(1)}</text>`;
+  rows+=`<text x="${x(whiskerMax).toFixed(1)}" y="${boxY+boxH+30}" text-anchor="middle" font-size="9" fill="#9AA9BA">最大 ${whiskerMax.toFixed(1)}</text>`;
+  if(outliers.length>0)rows+=`<text x="${W-padR}" y="20" text-anchor="end" font-size="10" fill="#C62828">● 離群值 ${outliers.length} 筆</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="箱型圖">${rows}</svg>`;
+}
+
+// 4. 散佈圖 + 迴歸線
+function scatterRegressionSVG(points,slope,intercept,r2){
+  const W=600,H=320,P={t:14,r:14,b:34,l:50};
+  const iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const xs=points.map(p=>p.x),ys=points.map(p=>p.y);
+  let minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const bufX=(maxX-minX)*0.1||1,bufY=(maxY-minY)*0.1||1;
+  minX-=bufX;maxX+=bufX;minY-=bufY;maxY+=bufY;
+  const X=v=>P.l+((v-minX)/(maxX-minX))*iw;
+  const Y=v=>P.t+ih-((v-minY)/(maxY-minY))*ih;
+  let grid='';
+  for(let g=0;g<=4;g++){const yy=P.t+ih-(g/4)*ih;grid+=`<line x1="${P.l}" y1="${yy.toFixed(1)}" x2="${W-P.r}" y2="${yy.toFixed(1)}" stroke="#EDF1F6" stroke-width="1"/>`;}
+  let dots='';
+  points.forEach(p=>{dots+=`<circle cx="${X(p.x).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="4.5" fill="#00897B" opacity="0.75" stroke="#fff" stroke-width="1"><title>(${p.x}, ${p.y})</title></circle>`;});
+  const y1=slope*minX+intercept,y2v=slope*maxX+intercept;
+  const line=`<line x1="${X(minX).toFixed(1)}" y1="${Y(y1).toFixed(1)}" x2="${X(maxX).toFixed(1)}" y2="${Y(y2v).toFixed(1)}" stroke="#2D6CB5" stroke-width="2.5"/>`;
+  const xlab=`<text x="${P.l}" y="${H-8}" font-size="9" fill="#9AA9BA">${minX.toFixed(1)}</text><text x="${W-P.r}" y="${H-8}" text-anchor="end" font-size="9" fill="#9AA9BA">${maxX.toFixed(1)}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="散佈圖與迴歸線">${grid}${line}${dots}${xlab}<text x="${W-P.r}" y="${P.t+12}" text-anchor="end" font-size="10" font-weight="700" fill="#2D6CB5">R²=${(r2*100).toFixed(1)}%</text></svg>`;
+}
+
+// 5. NPS 組成堆疊條
+function npsCompositionSVG(promoters,passives,detractors){
+  const total=promoters+passives+detractors||1;
+  const W=600,H=70,barY=20,barH=30,padL=4,padR=4,barW=W-padL-padR;
+  const pW=(promoters/total)*barW,sW=(passives/total)*barW,dW=(detractors/total)*barW;
+  let rows='',xCur=padL;
+  const segs=[[pW,'#2E7D32','推薦者',promoters],[sW,'#B0BEC5','中立者',passives],[dW,'#C62828','貶低者',detractors]];
+  segs.forEach(([w,color,label,count])=>{
+    if(w>0.5){
+      rows+=`<rect x="${xCur.toFixed(1)}" y="${barY}" width="${w.toFixed(1)}" height="${barH}" fill="${color}"><title>${label} ${count}人（${(count/total*100).toFixed(1)}%）</title></rect>`;
+      if(w>50)rows+=`<text x="${(xCur+w/2).toFixed(1)}" y="${barY+barH/2+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">${(count/total*100).toFixed(0)}%</text>`;
+    }
+    xCur+=w;
+  });
+  rows+=`<rect x="${padL}" y="${barY}" width="${barW}" height="${barH}" fill="none" stroke="#E3E9F0" stroke-width="1" rx="4"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="NPS組成圖">${rows}</svg>`;
+}
+
+// 6. NPS 儀表（-100~+100）
+function npsGaugeSVG(nps){
+  const W=260,H=150,cx=130,cy=138,r=100;
+  const frac=(nps+100)/200;
+  const a1=Math.PI*(1-Math.min(Math.max(frac,0),1));
+  const polar=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];
+  const arcPath=(s,e,c)=>{const[x1,y1]=polar(s),[x2,y2]=polar(e);const lg=(s-e)>Math.PI?1:0;return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/>`;};
+  const bg=arcPath(Math.PI,0,'#EDF1F6');
+  const col=nps>=70?'#2E7D32':nps>=30?'#388E3C':nps>=0?'#C58A12':'#C62828';
+  const fg=arcPath(Math.PI,a1,col);
+  const[nx,ny]=polar(a1);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="NPS儀表 ${nps}">${bg}${fg}<circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="5" fill="${col}"/><text x="${cx}" y="${cy-28}" text-anchor="middle" font-size="32" font-weight="900" fill="${col}">${nps>=0?'+':''}${nps}</text><text x="30" y="${cy+14}" font-size="10" fill="#9AA9BA">-100</text><text x="${W-30}" y="${cy+14}" text-anchor="end" font-size="10" fill="#9AA9BA">+100</text></svg>`;
+}
+
+// 7. 製程能力分佈鐘形曲線
+function capabilityBellSVG(mean,sd,usl,lsl,cp,cpk){
+  const W=600,H=220,P={t:24,r:16,b:34,l:16};
+  const iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const lo=Math.min(lsl,mean-4*sd),hi=Math.max(usl,mean+4*sd);
+  const X=v=>P.l+((v-lo)/(hi-lo))*iw;
+  const normalPdf=x=>(1/(sd*Math.sqrt(2*Math.PI)))*Math.exp(-0.5*((x-mean)/sd)**2);
+  const peakY=normalPdf(mean);
+  const Y=v=>P.t+ih-(v/peakY)*ih*0.92;
+  const steps=80;
+  let d='',areaPts=[];
+  for(let i=0;i<=steps;i++){
+    const xv=lo+(hi-lo)*(i/steps),y=normalPdf(xv);
+    d+=(i===0?'M ':'L ')+X(xv).toFixed(1)+' '+Y(y).toFixed(1)+' ';
+    areaPts.push([X(xv),Y(y),xv]);
+  }
+  let outArea='';
+  const leftPts=areaPts.filter(p=>p[2]<=lsl);
+  const rightPts=areaPts.filter(p=>p[2]>=usl);
+  if(leftPts.length>1){
+    let pd='M '+leftPts[0][0].toFixed(1)+' '+(P.t+ih).toFixed(1)+' ';
+    leftPts.forEach(([x,y])=>pd+='L '+x.toFixed(1)+' '+y.toFixed(1)+' ');
+    pd+='L '+leftPts[leftPts.length-1][0].toFixed(1)+' '+(P.t+ih).toFixed(1)+' Z';
+    outArea+=`<path d="${pd}" fill="#C62828" opacity="0.25"/>`;
+  }
+  if(rightPts.length>1){
+    let pd='M '+rightPts[0][0].toFixed(1)+' '+(P.t+ih).toFixed(1)+' ';
+    rightPts.forEach(([x,y])=>pd+='L '+x.toFixed(1)+' '+y.toFixed(1)+' ');
+    pd+='L '+rightPts[rightPts.length-1][0].toFixed(1)+' '+(P.t+ih).toFixed(1)+' Z';
+    outArea+=`<path d="${pd}" fill="#C62828" opacity="0.25"/>`;
+  }
+  const area=d+'L '+X(hi).toFixed(1)+' '+(P.t+ih)+' L '+X(lo).toFixed(1)+' '+(P.t+ih)+' Z';
+  let specLines=`<line x1="${X(usl).toFixed(1)}" y1="${P.t}" x2="${X(usl).toFixed(1)}" y2="${P.t+ih}" stroke="#C62828" stroke-width="2" stroke-dasharray="4"/>`;
+  specLines+=`<text x="${X(usl).toFixed(1)}" y="${P.t-8}" text-anchor="middle" font-size="10" font-weight="700" fill="#C62828">USL ${usl}</text>`;
+  specLines+=`<line x1="${X(lsl).toFixed(1)}" y1="${P.t}" x2="${X(lsl).toFixed(1)}" y2="${P.t+ih}" stroke="#C62828" stroke-width="2" stroke-dasharray="4"/>`;
+  specLines+=`<text x="${X(lsl).toFixed(1)}" y="${P.t-8}" text-anchor="middle" font-size="10" font-weight="700" fill="#C62828">LSL ${lsl}</text>`;
+  let meanLine=`<line x1="${X(mean).toFixed(1)}" y1="${P.t}" x2="${X(mean).toFixed(1)}" y2="${P.t+ih}" stroke="#00695C" stroke-width="1.5" stroke-dasharray="2"/>`;
+  meanLine+=`<text x="${X(mean).toFixed(1)}" y="${P.t+ih+18}" text-anchor="middle" font-size="10" font-weight="700" fill="#00695C">x̄ ${mean}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="製程能力分佈圖">${specLines}<path d="${area}" fill="rgba(0,105,92,.10)"/><path d="${d}" fill="none" stroke="#00695C" stroke-width="2.5"/>${outArea}${meanLine}</svg>`;
+}
+
+// 8. Sigma 水準儀表
+function sigmaGaugeSVG(sigma,dpmo){
+  const W=260,H=150,cx=130,cy=138,r=100,maxSigma=6.5;
+  const frac=Math.min(Math.max(sigma,0),maxSigma)/maxSigma;
+  const a1=Math.PI*(1-frac);
+  const polar=a=>[cx+r*Math.cos(a),cy-r*Math.sin(a)];
+  const arcPath=(s,e,c)=>{const[x1,y1]=polar(s),[x2,y2]=polar(e);const lg=(s-e)>Math.PI?1:0;return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 ${lg} 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round"/>`;};
+  const bg=arcPath(Math.PI,0,'#EDF1F6');
+  const col=sigma>=6?'#2E7D32':sigma>=4?'#388E3C':sigma>=3?'#C58A12':'#C62828';
+  const fg=arcPath(Math.PI,a1,col);
+  const[nx,ny]=polar(a1);
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Sigma水準儀表 ${sigma.toFixed(2)}">${bg}${fg}<circle cx="${nx.toFixed(1)}" cy="${ny.toFixed(1)}" r="5" fill="${col}"/><text x="${cx}" y="${cy-30}" text-anchor="middle" font-size="28" font-weight="900" fill="${col}">${sigma.toFixed(2)}σ</text><text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="11" fill="#9AA9BA">DPMO ${Math.round(dpmo).toLocaleString()}</text><text x="30" y="${cy+14}" font-size="10" fill="#9AA9BA">0σ</text><text x="${W-30}" y="${cy+14}" text-anchor="end" font-size="10" fill="#9AA9BA">6σ+</text></svg>`;
+}
+
+// 9. OC 曲線（Operating Characteristic Curve，允收機率曲線）
+function ocCurveSVG(n,ac,aql){
+  const W=600,H=260,P={t:16,r:16,b:34,l:50};
+  const iw=W-P.l-P.r,ih=H-P.t-P.b;
+  const maxP=Math.min(0.30,Math.max(aql/100*4,0.05)); // X軸範圍：涵蓋AQL的約4倍，至少到5%
+  const steps=60;
+  const X=p=>P.l+(p/maxP)*iw;
+  const Y=prob=>P.t+ih-prob*ih;
+  let grid='';
+  for(let g=0;g<=4;g++){
+    const yy=P.t+ih-(g/4)*ih;
+    grid+=`<line x1="${P.l}" y1="${yy.toFixed(1)}" x2="${W-P.r}" y2="${yy.toFixed(1)}" stroke="#EDF1F6" stroke-width="1"/>`;
+    grid+=`<text x="${P.l-6}" y="${yy+3.5}" text-anchor="end" font-size="9" fill="#9AA9BA">${(g*25)}%</text>`;
+  }
+  let xlab='';
+  for(let g=0;g<=6;g++){
+    const p=maxP*g/6,xx=X(p);
+    xlab+=`<text x="${xx.toFixed(1)}" y="${H-P.b+16}" text-anchor="middle" font-size="9" fill="#9AA9BA">${(p*100).toFixed(1)}%</text>`;
+  }
+  let d='';
+  for(let i=0;i<=steps;i++){
+    const p=maxP*(i/steps);
+    const prob=qcAcceptProb(n,ac,p);
+    d+=(i===0?'M ':'L ')+X(p).toFixed(1)+' '+Y(prob).toFixed(1)+' ';
+  }
+  const area=d+'L '+X(maxP).toFixed(1)+' '+(P.t+ih)+' L '+X(0).toFixed(1)+' '+(P.t+ih)+' Z';
+  // 標出 AQL 點
+  const aqlP=aql/100,aqlProb=qcAcceptProb(n,ac,aqlP);
+  const aqlX=X(aqlP),aqlY=Y(aqlProb);
+  const aqlLine=`<line x1="${aqlX.toFixed(1)}" y1="${P.t}" x2="${aqlX.toFixed(1)}" y2="${P.t+ih}" stroke="#C58A12" stroke-width="1.5" stroke-dasharray="4"/>`;
+  const aqlDot=`<circle cx="${aqlX.toFixed(1)}" cy="${aqlY.toFixed(1)}" r="5" fill="#C58A12" stroke="#fff" stroke-width="2"/>`;
+  const aqlLabel=`<text x="${aqlX.toFixed(1)}" y="${P.t+12}" text-anchor="middle" font-size="10" font-weight="800" fill="#C58A12">AQL ${aql}%（允收率${(aqlProb*100).toFixed(0)}%）</text>`;
+  const y95=Y(0.95);
+  const refLine=`<line x1="${P.l}" y1="${y95.toFixed(1)}" x2="${W-P.r}" y2="${y95.toFixed(1)}" stroke="#9AA9BA" stroke-width="1" stroke-dasharray="2"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="OC曲線圖">${grid}${refLine}<path d="${area}" fill="rgba(0,105,92,.08)"/><path d="${d}" fill="none" stroke="#00695C" stroke-width="2.5"/>${aqlLine}${aqlDot}${aqlLabel}${xlab}<text x="${W-P.r}" y="${H-4}" text-anchor="end" font-size="9" fill="#9AA9BA">實際不良率 →</text></svg>`;
+}
+</script>
+</body>
+</html>
+
