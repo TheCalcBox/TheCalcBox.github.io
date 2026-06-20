@@ -217,6 +217,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://thecalcbox.com/statistics/</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://thecalcbox.com/og/statistics.png</image:loc>
+      <image:title>統計品管工具｜CalcBox</image:title>
+      <image:caption>樣本數、Cp/Cpk、QC抽樣表、NPS試算工具</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thecalcbox.com/student/</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
