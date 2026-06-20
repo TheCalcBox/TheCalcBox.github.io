@@ -66,7 +66,10 @@ header{background:rgba(250,251,253,.9);backdrop-filter:blur(14px);-webkit-backdr
 .add-home-btn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border:none;border-radius:8px;background:linear-gradient(135deg,#1B3A5C,#0E2A47);color:#F3C969;font-size:12.5px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;transition:opacity .15s}
 .add-home-btn:hover{opacity:.9}
 .add-home-btn svg{width:15px;height:15px}
-@media(max-width:480px){.add-home-btn span{display:none}.add-home-btn{padding:0 9px}}
+@media(max-width:480px){
+  .add-home-btn{height:38px;padding:0 14px;font-size:14px;gap:7px}
+  .add-home-btn svg{width:19px;height:19px}
+}
 /* iOS 教學彈窗 */
 .a2hs-mask{position:fixed;inset:0;background:rgba(14,42,71,.55);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}
 .a2hs-mask.show{display:flex}
@@ -111,6 +114,11 @@ header{background:rgba(250,251,253,.9);backdrop-filter:blur(14px);-webkit-backdr
 .hstat .n{font-size:24px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:var(--ink)}
 .hstat .n::after{content:'+';color:var(--gold);font-size:17px;margin-left:1px}
 .hstat .l{font-size:10px;color:var(--ink-soft);margin-top:1px;letter-spacing:.03em}
+.hstat-ig{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:9px 22px;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.hstat-ig:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(14,42,71,.25)}
+.ig-box{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ig-box svg{width:16px;height:16px}
+.hstat-ig .l{margin-top:0}
 
 /* ── Section wrapper ── */
 .wrap{max-width:1020px;margin:0 auto;padding:28px 1.5rem 60px}
@@ -226,13 +234,6 @@ footer a:hover{color:#F3C969}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="12" y1="7" x2="12" y2="13"/><line x1="9" y1="10" x2="15" y2="10"/></svg>
         <span>加到桌面</span>
       </button>
-      <select class="lang-select" onchange="if(this.value)location.href=this.value" aria-label="選擇地區">
-        <option value="/" selected>🇹🇼 台灣</option>
-        <option value="/US/">🇺🇸 美國（建置中）</option>
-        <option value="" disabled>🇯🇵 日本（準備中）</option>
-        <option value="" disabled>🇻🇳 越南（準備中）</option>
-        <option value="" disabled>🇮🇩 印尼（準備中）</option>
-      </select>
     </div>
   </div>
 </header>
@@ -279,6 +280,12 @@ footer a:hover{color:#F3C969}
     <div class="hero-stats">
       <div class="hstat"><div class="n" data-to="115">115</div><div class="l">線上工具</div></div>
       <div class="hstat"><div class="n" data-to="21">21</div><div class="l">主題分類</div></div>
+      <a class="hstat hstat-ig" href="https://www.instagram.com/thecalcbox?igsh=aXI0d2w3aTVoYXI3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="追蹤 CalcBox Instagram">
+        <div class="ig-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="l">Instagram</div>
+      </a>
     </div>
   </div>
 </div>
