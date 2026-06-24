@@ -328,6 +328,49 @@ footer a:hover{color:var(--gold-mid)}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
+
+/* ── 旅遊記帳入口卡片（緊湊橫排） ── */
+.trip-entry-card{
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#1a4a6e 100%);
+  border-radius:var(--r);
+  padding:.85rem 1.2rem;
+  margin-bottom:1.25rem;
+  position:relative;overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 3px 14px rgba(14,42,71,.2);
+}
+.trip-entry-card::after{
+  content:'✈';position:absolute;right:100px;bottom:-14px;
+  font-size:52px;opacity:.07;line-height:1;pointer-events:none;
+  transform:rotate(-12deg);
+}
+.trip-entry-card:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(14,42,71,.28)}
+.trip-entry-icon{font-size:26px;line-height:1;flex-shrink:0;position:relative;z-index:1}
+.trip-entry-body{flex-shrink:0;position:relative;z-index:1}
+.trip-entry-title{font-size:14px;font-weight:900;color:#fff;letter-spacing:-.1px}
+.trip-entry-desc{font-size:11px;color:rgba(255,255,255,.55);margin-top:1px;white-space:nowrap}
+.trip-entry-chips{display:flex;gap:5px;flex-wrap:nowrap;margin-left:auto;position:relative;z-index:1}
+.trip-entry-chips span{
+  font-size:10px;font-weight:700;
+  color:var(--gold-mid);
+  background:rgba(194,138,26,.18);
+  border:1px solid rgba(194,138,26,.25);
+  padding:2px 8px;border-radius:99px;white-space:nowrap;
+}
+.trip-entry-arrow{
+  font-size:18px;color:var(--gold-mid);flex-shrink:0;
+  position:relative;z-index:1;
+  transition:transform .2s;
+  font-family:'Space Grotesk',sans-serif;font-weight:700;
+  margin-left:6px;
+}
+.trip-entry-card:hover .trip-entry-arrow{transform:translateX(3px)}
+@media(max-width:600px){
+  .trip-entry-chips{display:none}
+  .trip-entry-desc{display:none}
+}
 </style>
 </head>
 <body>
@@ -378,6 +421,19 @@ footer a:hover{color:var(--gold-mid)}
 </div>
 
 <div class="wrap">
+
+<!-- ── 旅遊記帳入口 ── -->
+<a href="/trip/" class="trip-entry-card">
+  <div class="trip-entry-icon">✈️</div>
+  <div class="trip-entry-body">
+    <div class="trip-entry-title">旅遊記帳</div>
+    <div class="trip-entry-desc">即時匯率・多幣別・分帳，旅途中一頁搞定</div>
+  </div>
+  <div class="trip-entry-chips">
+    <span>16 種幣別</span><span>台銀牌告</span><span>自訂匯率</span><span>分帳</span>
+  </div>
+  <div class="trip-entry-arrow">→</div>
+</a>
 
 <!-- ══════════════ 旅遊分帳 ══════════════ -->
 <div class="panel active" id="panel-trip">
