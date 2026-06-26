@@ -256,29 +256,35 @@ footer a:hover{color:#F3C969!important}
 .gauge-marker::after{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #16212E}
 .gauge-scale{display:flex;justify-content:space-between;font-size:10px;color:var(--hint);margin-top:4px}
 .gauge-status{font-size:13px;font-weight:700;margin-top:10px}
+/* 比例對照長條 */
+.cmp{display:flex;flex-direction:column;gap:7px}
+.cmp-row{display:flex;align-items:center;gap:9px;font-size:12px}
+.cmp-label{width:74px;flex-shrink:0;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmp-track{flex:1;height:18px;background:var(--gray-100);border-radius:5px;overflow:hidden}
+.cmp-fill{height:100%;border-radius:5px;background:#C9B79C;transition:width .4s}
+.cmp-val{width:88px;flex-shrink:0;font-size:11px;color:var(--hint);white-space:nowrap}
+.cmp-row.me .cmp-label{color:var(--accent-mid);font-weight:800}
+.cmp-row.me .cmp-fill{background:linear-gradient(90deg,#8A5A2B,#A56A33)}
+.cmp-row.me .cmp-val{color:var(--accent-mid);font-weight:700}
 
-/* ── 長文教學 ── */
-.longform{max-width:820px;margin:1.5rem auto 0;padding:0 1.25rem}
-.longform .lf-head{font-size:18px;font-weight:800;color:var(--text);margin:1.6rem 0 .4rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent-light)}
-.longform article{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.25rem 1.4rem;margin-bottom:1rem;box-shadow:0 1px 3px rgba(14,42,71,.04)}
-.longform article h3{font-size:15px;font-weight:800;color:var(--accent-mid);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
-.longform article h4{font-size:13.5px;font-weight:700;color:var(--text);margin:.9rem 0 .35rem}
-.longform article p{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:.6rem}
-.longform article p:last-child{margin-bottom:0}
-.longform article ul{margin:.3rem 0 .7rem 1.1rem}
-.longform article li{font-size:13px;color:var(--muted);line-height:1.85}
+/* ── 主題長文 + FAQ（每分頁專屬，內嵌於各面板）── */
+.tool-extra{margin-top:1.5rem}
+.lf-head{font-size:15px;font-weight:800;color:var(--text);margin:1.4rem 0 .5rem;padding-bottom:.45rem;border-bottom:2px solid var(--accent-light);display:flex;align-items:center;gap:8px}
+.lf-head:first-child{margin-top:0}
+.tool-extra article{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;box-shadow:0 1px 3px rgba(14,42,71,.04)}
+.tool-extra article h4{font-size:13.5px;font-weight:700;color:var(--accent-mid);margin:.9rem 0 .35rem}
+.tool-extra article p{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:.6rem}
+.tool-extra article p:last-child{margin-bottom:0}
 .lf-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:12.5px}
 .lf-table th,.lf-table td{border:1px solid var(--border);padding:7px 10px;text-align:center}
 .lf-table th{background:var(--accent-light);color:var(--accent-mid);font-weight:700}
 .lf-table td:first-child{font-weight:700;color:var(--text);background:var(--gray-50)}
-
-/* ── FAQ 手風琴 ── */
-.faq-acc{max-width:820px;margin:.5rem auto 0;padding:0 1.25rem}
+.faq-acc{margin-top:.3rem}
 .faq-item{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
-.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:var(--text);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.faq-q .chev{flex-shrink:0;transition:transform .2s;color:var(--accent-mid);font-size:13px}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--text);padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.faq-q .chev{flex-shrink:0;transition:transform .2s;color:var(--accent-mid);font-size:12px}
 .faq-item.open .chev{transform:rotate(180deg)}
-.faq-a{display:none;padding:0 16px 14px;font-size:13px;color:var(--muted);line-height:1.85}
+.faq-a{display:none;padding:0 15px 13px;font-size:12.5px;color:var(--muted);line-height:1.85}
 .faq-item.open .faq-a{display:block}
 </style>
 
@@ -353,6 +359,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9303" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>坪數、公設比與室內實坪</div><article><p>「坪」源自日治時期，1 坪＝6 台尺×6 台尺＝3.30579 平方公尺，約兩張榻榻米。買房看到的「權狀坪數」含主建物、附屬建物與公設，能實際使用的「室內實坪」會比權狀小。</p><h4>公設比如何影響實際空間？</h4><p>室內實坪 ＝ 權狀坪數 ×(1−公設比)。新大樓有電梯、梯廳、公共設施，公設比常 30～35%；中古公寓多 10～15%。</p><table class="lf-table"><tr><th>權狀</th><th>公設25%</th><th>公設30%</th><th>公設35%</th></tr><tr><td>25 坪</td><td>18.8</td><td>17.5</td><td>16.3</td></tr><tr><td>30 坪</td><td>22.5</td><td>21.0</td><td>19.5</td></tr><tr><td>40 坪</td><td>30.0</td><td>28.0</td><td>26.0</td></tr></table><p>在上方工具輸入公設比，即可看到「室內實坪 vs 公設」的視覺化比例條。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">30 坪的房子實際多大？<span class="chev">▾</span></button><div class="faq-a">權狀 30 坪≈99 ㎡，扣 30% 公設後室內約 21 坪（69 ㎡），通常為三房兩廳。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">公設比多少算合理？<span class="chev">▾</span></button><div class="faq-a">有電梯的大樓常見 30～35%；若低於 32% 較為理想，超過 35% 公設偏高。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 坪等於幾帖榻榻米？<span class="chev">▾</span></button><div class="faq-a">1 坪≈2 帖（日本帖），1 坪＝3.30579 ㎡＝35.58 平方英尺。</div></div></div></div>
 </div>
 
 <!-- 長度 -->
@@ -369,6 +376,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9311" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="length-result">
       <div class="result-grid" id="ln-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="ln-cmp-viz" style="display:none"><div class="viz-title">長度比例對照</div><div class="cmp" id="ln-cmp"></div></div>
       <div class="result-note" id="ln-note"></div>
     </div>
     <div class="seo-box">
@@ -377,6 +385,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9304" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>公制、英制與台制長度</div><article><p>長度換算只要記住基準：1 英吋＝2.54 公分、1 英尺＝30.48 公分、1 英里＝1.609 公里、1 台尺＝30.3 公分（10 台寸）。</p><p>買電視看到的「吋」指螢幕對角線英吋數，55 吋約 140 公分；換算面板寬高還要依 16:9 比例計算，55 吋約寬 122 公分、高 68 公分。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">55 吋電視多寬？<span class="chev">▾</span></button><div class="faq-a">對角線約 140 公分，16:9 面板寬約 122 公分、高約 68 公分。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 台尺是幾公分？<span class="chev">▾</span></button><div class="faq-a">1 台尺＝30.3 公分，1 台寸＝3.03 公分，常用於傳統家具與門窗尺寸。</div></div></div></div>
 </div>
 
 <!-- 重量 -->
@@ -393,6 +402,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9312" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="weight-result">
       <div class="result-grid" id="wt-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="wt-cmp-viz" style="display:none"><div class="viz-title">重量比例對照</div><div class="cmp" id="wt-cmp"></div></div>
       <div class="result-note" id="wt-note"></div>
     </div>
     <div class="seo-box">
@@ -402,6 +412,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9305" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>台斤、兩與磅</div><article><p>傳統市場用「台斤」喊價、超市用「公斤」標價，比價沒換算容易吃虧。記住：1 台斤＝600 公克＝16 兩，1 兩＝37.5 公克，1 公斤≈1.67 台斤。</p><p>市場「一斤 50 元」換算成公斤價≈83 元/公斤；超市「100 元/公斤」其實是 60 元/台斤。健身常用磅，1 磅＝453.6 公克≈0.756 台斤。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">市場一斤和超市一公斤哪個多？<span class="chev">▾</span></button><div class="faq-a">1 公斤（1000g）比 1 台斤（600g）多。比價前要先把單位統一。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">健身的 1 磅是幾公克？<span class="chev">▾</span></button><div class="faq-a">1 磅＝453.6 公克≈0.756 台斤；常見啞鈴 10 磅≈4.5 公斤。</div></div></div></div>
 </div>
 
 <!-- 溫度 -->
@@ -433,6 +444,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9306" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>攝氏、華氏與生活情境</div><article><p>攝氏轉華氏：°F ＝ °C×9÷5＋32；反向 °C ＝(°F−32)×5÷9。出國看天氣或用美式食譜時，快速心算「°F ≈ °C×2＋30」可抓大概。</p><table class="lf-table"><tr><th>情境</th><th>°C</th><th>°F</th></tr><tr><td>冰點</td><td>0</td><td>32</td></tr><tr><td>舒適室溫</td><td>25</td><td>77</td></tr><tr><td>人體體溫</td><td>37</td><td>98.6</td></tr><tr><td>烤箱中溫</td><td>177</td><td>350</td></tr><tr><td>水沸點</td><td>100</td><td>212</td></tr></table><p>換算後工具會畫出一支溫度計，依溫度填色並標出冰點、體溫、沸點刻度。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">攝氏怎麼換華氏？<span class="chev">▾</span></button><div class="faq-a">°F＝°C×9÷5＋32，心算可用 °C×2＋30 估算。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">美式食譜 350°F 是幾度？<span class="chev">▾</span></button><div class="faq-a">350°F≈177°C，是常見的烤箱中溫。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">正常體溫幾度華氏？<span class="chev">▾</span></button><div class="faq-a">37°C＝98.6°F，37.5°C 以上（99.5°F）通常視為發燒。</div></div></div></div>
 </div>
 
 <!-- 容量 -->
@@ -449,6 +461,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9314" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="volume-result">
       <div class="result-grid" id="vl-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="vl-cmp-viz" style="display:none"><div class="viz-title">容量比例對照</div><div class="cmp" id="vl-cmp"></div></div>
       <div class="result-note" id="vl-note"></div>
     </div>
     <div class="seo-box">
@@ -457,6 +470,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9307" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>量杯、大匙與加侖</div><article><p>下廚與海淘常需容量換算：1 量杯＝240 ml＝16 大匙，1 大匙＝15 ml＝3 小匙，1 美制加侖＝3.785 公升，1 液量盎司＝29.57 ml。</p><p>特別注意：日本食譜的「1 杯＝200 ml」，與台灣、美國的 240 ml 不同，做日式料理時換算要修正，否則水量會偏多。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">日本食譜的 1 杯是幾毫升？<span class="chev">▾</span></button><div class="faq-a">日本 1 杯＝200 ml，台美量杯為 240 ml，換算時要特別注意。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 大匙是幾毫升？<span class="chev">▾</span></button><div class="faq-a">1 大匙＝15 ml＝3 小匙；1 小匙＝5 ml。</div></div></div></div>
 </div>
 
 <!-- 面積 -->
@@ -473,6 +487,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9315" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="area-result">
       <div class="result-grid" id="ar-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="ar-cmp-viz" style="display:none"><div class="viz-title">面積比例對照</div><div class="cmp" id="ar-cmp"></div></div>
       <div class="result-note" id="ar-note"></div>
     </div>
     <div class="seo-box">
@@ -482,6 +497,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9320" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>甲、分、公頃與英畝</div><article><p>看農地、建地常遇到台制土地單位。1 甲＝2934 坪＝0.96992 公頃＝9699.17 ㎡，而 1 甲＝10 分，所以 1 分地約 293.4 坪。</p><p>國際單位則用公頃與英畝：1 公頃＝10000 ㎡＝3025 坪；1 英畝＝4046.86 ㎡≈1224 坪。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">一分地有多大？<span class="chev">▾</span></button><div class="faq-a">1 分＝1/10 甲＝293.4 坪＝969.9 ㎡。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 公頃等於幾坪？<span class="chev">▾</span></button><div class="faq-a">1 公頃＝10000 ㎡＝3025 坪≈1.031 甲。</div></div></div></div>
 </div>
 
 <!-- 速度 -->
@@ -498,6 +514,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9316" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="speed-result">
       <div class="result-grid" id="sp-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="sp-cmp-viz" style="display:none"><div class="viz-title">速度情境對照</div><div class="cmp" id="sp-cmp"></div></div>
       <div class="result-note" id="sp-note"></div>
     </div>
     <div class="seo-box">
@@ -506,6 +523,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9321" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>時速、mph、節與馬赫</div><article><p>各國儀表單位不同：美規常用 mph，1 mph＝1.609 km/h；航海與氣象用「節（knot）」，1 節＝1.852 km/h。公尺每秒與時速的關係是 m/s ＝ km/h ÷ 3.6。</p><p>音速（馬赫 1）在海平面、20°C 時約 343 m/s＝1235 km/h；客機巡航約 0.85 馬赫。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">時速 100 公里等於每秒幾公尺？<span class="chev">▾</span></button><div class="faq-a">100 km/h＝27.78 m/s＝62.14 mph。公式：m/s＝km/h÷3.6。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 節（knot）有多快？<span class="chev">▾</span></button><div class="faq-a">1 節＝1.852 km/h，是航海與氣象常用的速度單位。</div></div></div></div>
 </div>
 
 <!-- 壓力／胎壓 -->
@@ -537,6 +555,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9322" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>胎壓 psi、bar 與 kPa</div><article><p>加油站打氣機在台灣多用 psi，部分顯示 kPa 或 bar。換算上 1 psi＝6.895 kPa＝0.0689 bar＝0.0703 kgf/cm²。</p><p>一般房車冷車建議胎壓約 30～36 psi，正確數值請看「駕駛座車門邊」或油箱蓋標示；長途或載重可略增 2～4 psi。換算後工具會用量表標出你的數值落在偏低、建議或偏高區間。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">32 psi 等於幾 bar、幾 kPa？<span class="chev">▾</span></button><div class="faq-a">32 psi≈2.2 bar≈220 kPa≈2.25 kgf/cm²。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">胎壓多少才正常？<span class="chev">▾</span></button><div class="faq-a">一般房車冷車約 30～36 psi，實際以車門邊標示為準，過低耗油、過高易爆胎。</div></div></div></div>
 </div>
 
 <!-- 資料儲存 -->
@@ -553,6 +572,7 @@ footer a:hover{color:#F3C969!important}
 <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9318" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     <div class="result" id="data-result">
       <div class="result-grid" id="dt-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))"></div>
+      <div class="viz" id="dt-cmp-viz" style="display:none"><div class="viz-title">資料量比例對照</div><div class="cmp" id="dt-cmp"></div></div>
       <div class="result-note" id="dt-note"></div>
     </div>
     <div class="seo-box">
@@ -561,6 +581,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9323" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>1024 進位與硬碟容量</div><article><p>電腦以 1024 進位計算容量：1GB＝1024MB＝1,048,576KB；本工具採此標準。</p><p>但硬碟廠商用 1000 進位標示（1GB＝1000MB），所以買「1TB」硬碟，換算成系統的 1024 制只剩約 931GB，這就是容量「縮水」的原因。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1GB 等於幾 MB？<span class="chev">▾</span></button><div class="faq-a">電腦 1024 進位：1GB＝1024MB＝1,048,576KB。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">為什麼 1TB 硬碟只剩 931GB？<span class="chev">▾</span></button><div class="faq-a">廠商用 1000 進位標示、系統用 1024 進位計算，1TB≈系統的 931GB。</div></div></div></div>
 </div>
 
 <!-- 即時新聞（已移至最後） -->
@@ -579,73 +600,6 @@ footer a:hover{color:#F3C969!important}
 
 <p class="source-note"><b>資料來源</b>：CNS 國家度量衡標準　<b>公式最後核對</b>：2026-06-12</p>
 
-<!-- ── 深度教學長文 ── -->
-<div class="longform">
-  <div class="lf-head">單位換算完整教學</div>
-
-  <article>
-    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/></svg>坪數、公設比與室內實坪</h3>
-    <p>「坪」源自日治時期，1 坪等於 6 台尺 × 6 台尺，換算公制為 3.30579 平方公尺，差不多是兩張標準榻榻米的大小。買房時看到的「權狀坪數」包含了主建物、附屬建物與公共設施（公設），因此真正能使用的「室內實坪」會比權狀小。</p>
-    <h4>公設比怎麼影響實際空間？</h4>
-    <p>室內實坪 ＝ 權狀坪數 × (1 − 公設比)。新大樓因為有電梯、梯廳、健身房等，公設比常落在 30～35%；中古公寓沒有電梯，公設比可能只有 10～15%。以下是常見權狀坪數扣除公設後的實坪對照：</p>
-    <table class="lf-table">
-      <tr><th>權狀坪數</th><th>公設比 25%</th><th>公設比 30%</th><th>公設比 35%</th></tr>
-      <tr><td>25 坪</td><td>18.8 坪</td><td>17.5 坪</td><td>16.3 坪</td></tr>
-      <tr><td>30 坪</td><td>22.5 坪</td><td>21.0 坪</td><td>19.5 坪</td></tr>
-      <tr><td>40 坪</td><td>30.0 坪</td><td>28.0 坪</td><td>26.0 坪</td></tr>
-    </table>
-    <p>在上方坪數換算工具輸入公設比，即可看到「室內實坪 vs 公設」的視覺化比例條，買房評估格局時更直覺。</p>
-  </article>
-
-  <article>
-    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="20"/><path d="M5 7h14"/></svg>台斤、兩與市場買菜</h3>
-    <p>傳統市場以「台斤」喊價、超市以「公斤」標價，比價時若沒換算很容易吃虧。記住三個數字就夠用：1 台斤＝600 公克＝16 兩，1 兩＝37.5 公克，1 公斤約等於 1.67 台斤。</p>
-    <p>舉例來說，市場「一斤 50 元」的青菜，換算成公斤價是 50 ÷ 0.6 ≈ 83 元/公斤；超市標「100 元/公斤」其實是「60 元/台斤」。健身或進口食品常用「磅」，1 磅＝453.6 公克，約 0.756 台斤。</p>
-  </article>
-
-  <article>
-    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a2 2 0 0 0-2 2v9a4 4 0 1 0 4 0V5a2 2 0 0 0-2-2Z"/></svg>溫度換算與生活情境</h3>
-    <p>攝氏轉華氏的公式是 °F ＝ °C × 9 ÷ 5 ＋ 32，反過來 °C ＝ (°F − 32) × 5 ÷ 9。出國看天氣或用美式食譜時，記住快速心算法「°F ≈ °C × 2 ＋ 30」就能抓個大概。</p>
-    <table class="lf-table">
-      <tr><th>情境</th><th>攝氏 °C</th><th>華氏 °F</th></tr>
-      <tr><td>冰點</td><td>0</td><td>32</td></tr>
-      <tr><td>舒適室溫</td><td>25</td><td>77</td></tr>
-      <tr><td>人體體溫</td><td>37</td><td>98.6</td></tr>
-      <tr><td>烤箱中溫</td><td>177</td><td>350</td></tr>
-      <tr><td>水沸點</td><td>100</td><td>212</td></tr>
-    </table>
-    <p>溫度換算工具會依結果畫出一支溫度計，標出冰點、體溫、沸點等參考刻度，一眼看出目前溫度落在哪個區間。</p>
-  </article>
-
-  <article>
-    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 5V3"/></svg>開車與 3C 必備：胎壓、速度、資料</h3>
-    <h4>胎壓（psi / bar / kPa）</h4>
-    <p>加油站打氣機在台灣多用 psi，部分顯示 kPa 或 bar。一般房車冷車建議胎壓約 30～36 psi，正確數值請看駕駛座車門邊的標示。換算上 1 psi＝6.895 kPa＝0.0689 bar，32 psi 約等於 220 kPa、2.2 bar。胎壓工具會用量表標出你的數值落在偏低、建議或偏高的區間。</p>
-    <h4>速度（km/h / mph / 節）</h4>
-    <p>美規儀表板常用 mph，1 mph＝1.609 km/h；航海與氣象用「節（knot）」，1 節＝1.852 km/h。公尺每秒與時速的換算是 m/s ＝ km/h ÷ 3.6。</p>
-    <h4>資料儲存（KB / MB / GB / TB）</h4>
-    <p>電腦以 1024 進位，1GB＝1024MB＝1,048,576KB。硬碟廠商卻用 1000 進位標示容量，這就是為什麼買「1TB」硬碟，系統只顯示約 931GB。</p>
-  </article>
-
-  <article>
-    <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>面積與土地單位（甲、分、公頃）</h3>
-    <p>看農地、建地時常遇到「甲、分」這些台制土地單位。1 甲＝2934 坪＝0.96992 公頃＝9699.17 平方公尺，而 1 甲又等於 10 分，所以 1 分地約 293.4 坪。國際上常用公頃（ha）與英畝（acre）：1 公頃＝10000 ㎡＝3025 坪，1 英畝＝4046.86 ㎡。</p>
-  </article>
-</div>
-
-<!-- ── 常見問題 ── -->
-<div class="longform"><div class="lf-head">常見問題 FAQ</div></div>
-<div class="faq-acc" id="faq-acc">
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 坪等於幾平方公尺？<span class="chev">▾</span></button><div class="faq-a">1 坪＝3.30579 平方公尺，約等於 2 帖榻榻米。30 坪約 99 平方公尺。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">公設比 30% 的房子實際多大？<span class="chev">▾</span></button><div class="faq-a">室內實坪＝權狀坪數 ×(1−公設比)。權狀 30 坪、公設比 30%，室內實坪約 21 坪（約 69 ㎡），通常為三房兩廳格局。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 台斤是幾公克？怎麼跟公斤比？<span class="chev">▾</span></button><div class="faq-a">1 台斤＝600 公克＝16 兩，1 兩＝37.5 公克。1 公斤（1000g）比 1 台斤多，約等於 1.67 台斤。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">攝氏怎麼換華氏？<span class="chev">▾</span></button><div class="faq-a">°F＝°C × 9 ÷ 5 ＋ 32。快速心算 °F ≈ °C × 2 ＋ 30。人體 37°C＝98.6°F。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">汽車胎壓 psi 怎麼換 bar 或 kPa？<span class="chev">▾</span></button><div class="faq-a">1 psi＝6.895 kPa＝0.0689 bar。一般房車建議胎壓約 30～36 psi（約 207～248 kPa），實際以車門邊標示為準。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1 甲地是幾坪、幾公頃？<span class="chev">▾</span></button><div class="faq-a">1 甲＝2934 坪＝0.96992 公頃＝9699.17 ㎡。1 公頃＝10000 ㎡＝3025 坪。1 甲＝10 分。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">時速 100 公里等於每秒幾公尺？<span class="chev">▾</span></button><div class="faq-a">100 km/h＝27.78 m/s＝62.14 mph。換算公式：m/s＝km/h ÷ 3.6。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">為什麼 1TB 硬碟只剩 931GB？<span class="chev">▾</span></button><div class="faq-a">電腦用 1024 進位（1GB＝1024MB），硬碟廠商用 1000 進位標示，所以系統顯示容量會略小。1TB 約等於系統的 931GB。</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">日本食譜的 1 杯是幾毫升？<span class="chev">▾</span></button><div class="faq-a">日本 1 杯＝200ml，台灣與美國量杯為 240ml，換算食譜時要特別注意。</div></div>
-</div>
 <div class="related-wrap">
   <p class="related-label">你可能也需要</p>
   <div class="related-grid">
@@ -789,6 +743,7 @@ function calcLen(){
   const out=[['公分',m*100,'cm'],['公尺',m,'m'],['公里',m/1000,'km'],['英吋',m/0.0254,'in'],['英尺',m/0.3048,'ft'],['台尺',m/0.303,'台尺']];
   document.getElementById('ln-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${val<0.01?val.toExponential(2):val>=10000?val.toLocaleString(undefined,{maximumFractionDigits:0}):parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
   document.getElementById('ln-note').textContent=`已將 ${v} ${u} 換算為各常用長度單位。`;
+  drawCompare('ln-cmp-viz','ln-cmp',m,'m',[{label:'信用卡',value:0.0856},{label:'A4 紙',value:0.297},{label:'成人身高',value:1.7},{label:'一層樓',value:3},{label:'籃球場長',value:28}]);
   document.getElementById('length-result').classList.add('show');
 }
 function calcWt(){
@@ -800,6 +755,7 @@ function calcWt(){
   const out=[['公克',g,'g'],['公斤',g/1000,'kg'],['台斤',g/600,'台斤'],['兩',g/37.5,'兩'],['磅',g/453.592,'lb'],['盎司',g/28.3495,'oz']];
   document.getElementById('wt-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
   document.getElementById('wt-note').textContent=`已將 ${v} ${u} 換算為各常用重量單位。市場買菜記住：1 台斤＝600 公克＝16 兩。`;
+  drawCompare('wt-cmp-viz','wt-cmp',g/1000,'kg',[{label:'雞蛋',value:0.06},{label:'一瓶水',value:0.6},{label:'家貓',value:4},{label:'西瓜',value:6},{label:'成人',value:65}]);
   document.getElementById('weight-result').classList.add('show');
 }
 function calcTp(){
@@ -848,11 +804,23 @@ function calcVl(){
   const out=[['毫升',ml,'ml'],['公升',ml/1000,'L'],['量杯',ml/240,'杯'],['大匙',ml/15,'匙'],['液量盎司',ml/29.5735,'fl oz'],['美制加侖',ml/3785.41,'gal']];
   document.getElementById('vl-grid').innerHTML=out.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${parseFloat(val.toFixed(3)).toLocaleString()} ${unit}</div></div>`).join('');
   document.getElementById('vl-note').textContent=`已將 ${v} ${u} 換算為各常用容量單位。注意日本食譜 1 杯＝200ml。`;
+  drawCompare('vl-cmp-viz','vl-cmp',ml,'ml',[{label:'易開罐',value:330},{label:'寶特瓶',value:600},{label:'一公升',value:1000},{label:'大瓶飲料',value:2000},{label:'一桶水',value:5000}]);
   document.getElementById('volume-result').classList.add('show');
 }
 
 function fmtCell(val){return Math.abs(val)<0.0001&&val!==0?val.toExponential(2):Math.abs(val)>=100000?val.toLocaleString(undefined,{maximumFractionDigits:0}):parseFloat(val.toFixed(4)).toLocaleString();}
 function gridHTML(rows){return rows.map(([n,val,unit])=>`<div class="result-cell"><div class="lbl">${n}</div><div class="val">${fmtCell(val)} ${unit}</div></div>`).join('');}
+function drawCompare(vizId,cmpId,userVal,unit,refs){
+  const rows=refs.concat([{label:'★ 你的值',value:userVal,me:true}]).sort((a,b)=>a.value-b.value);
+  const max=Math.max(...rows.map(r=>r.value))||1;
+  document.getElementById(cmpId).innerHTML=rows.map(r=>{
+    const w=Math.max(r.value/max*100,1.5);
+    return `<div class="cmp-row${r.me?' me':''}"><div class="cmp-label">${r.label}</div>`+
+      `<div class="cmp-track"><div class="cmp-fill" style="width:${w.toFixed(1)}%"></div></div>`+
+      `<div class="cmp-val">${fmtCell(r.value)} ${unit}</div></div>`;
+  }).join('');
+  document.getElementById(vizId).style.display='block';
+}
 
 function calcArea(){
   const v=parseFloat(document.getElementById('ar-val').value);
@@ -863,6 +831,7 @@ function calcArea(){
   const rows=[['平方公尺',m2,'㎡'],['坪',m2/3.30579,'坪'],['公頃',m2/10000,'ha'],['甲',m2/9699.17,'甲'],['英畝',m2/4046.86,'acre'],['平方英尺',m2/0.092903,'ft²']];
   document.getElementById('ar-grid').innerHTML=gridHTML(rows);
   document.getElementById('ar-note').textContent='已換算為各常用面積單位。1 甲＝2934 坪＝0.97 公頃＝10 分。';
+  drawCompare('ar-cmp-viz','ar-cmp',m2,'㎡',[{label:'雙人床',value:3.5},{label:'停車格',value:12.5},{label:'套房10坪',value:33},{label:'教室',value:67},{label:'籃球場',value:420}]);
   document.getElementById('area-result').classList.add('show');
 }
 function calcSpeed(){
@@ -874,6 +843,7 @@ function calcSpeed(){
   const rows=[['公里/小時',ms*3.6,'km/h'],['公尺/秒',ms,'m/s'],['英里/小時',ms/0.44704,'mph'],['節',ms/0.514444,'knot'],['英尺/秒',ms/0.3048,'ft/s'],['馬赫',ms/343,'Mach']];
   document.getElementById('sp-grid').innerHTML=gridHTML(rows);
   document.getElementById('sp-note').textContent='m/s ＝ km/h ÷ 3.6；音速（馬赫 1）約 1235 km/h（343 m/s）。';
+  drawCompare('sp-cmp-viz','sp-cmp',ms*3.6,'km/h',[{label:'步行',value:5},{label:'自行車',value:20},{label:'市區汽車',value:50},{label:'國道',value:110},{label:'高鐵',value:300}]);
   document.getElementById('speed-result').classList.add('show');
 }
 function calcPressure(){
@@ -909,6 +879,7 @@ function calcData(){
   const rows=[['位元',b*8,'bit'],['位元組',b,'B'],['KB',b/1024,'KB'],['MB',b/1048576,'MB'],['GB',b/1073741824,'GB'],['TB',b/1099511627776,'TB']];
   document.getElementById('dt-grid').innerHTML=gridHTML(rows);
   document.getElementById('dt-note').textContent='採電腦 1024 進位：1GB＝1024MB＝1,048,576KB。硬碟廠商用 1000 進位，故標示容量比系統顯示略大。';
+  drawCompare('dt-cmp-viz','dt-cmp',b/1048576,'MB',[{label:'一張照片',value:3},{label:'一首歌',value:5},{label:'一集劇',value:350},{label:'一部電影',value:1400},{label:'一張DVD',value:4700}]);
   document.getElementById('data-result').classList.add('show');
 }
 function toggleFaq(btn){const it=btn.closest('.faq-item');if(it)it.classList.toggle('open');}
