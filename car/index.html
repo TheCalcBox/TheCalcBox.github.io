@@ -44,7 +44,11 @@
 {"@type":"WebApplication","name":"強制險保費估算","url":"https://thecalcbox.com/car/#insurance","description":"依車種估算強制汽車責任險保費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"汽車過戶費用試算","url":"https://thecalcbox.com/car/#transfer","description":"估算二手車過戶監理規費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"汽車折舊試算","url":"https://thecalcbox.com/car/#depreciation","description":"估算愛車市場殘值與每月折舊成本。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"油耗／每月油錢試算","url":"https://thecalcbox.com/car/#fuel_cost","description":"依里程、油耗與油價估算每月與每年油費，附油價敏感度曲線。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+{"@type":"WebApplication","name":"油耗／每月油錢試算","url":"https://thecalcbox.com/car/#fuel_cost","description":"依里程、油耗與油價估算每月與每年油費，附油價敏感度曲線。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"電動車vs油車成本比較","url":"https://thecalcbox.com/car/#ev_compare","description":"比較電車與油車每月能源費、年省金額與車價回本年，附累積成本交叉曲線。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"充電成本與時間試算","url":"https://thecalcbox.com/car/#charging","description":"依電池容量、充電功率與電價估算充電費用與時間。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"養車總成本TCO試算","url":"https://thecalcbox.com/car/#tco","description":"合計折舊、稅費、油錢、保險、保養、停車的每月養車總成本。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"養車vs搭車划算門檻","url":"https://thecalcbox.com/car/#own_vs_rent","description":"計算養車與搭車的損益平衡里程，附成本交叉曲線。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
 ]}
 </script>
 <script type="application/ld+json">
@@ -57,7 +61,9 @@
 {"@type":"Question","name":"電動車牌照稅和燃料費要繳嗎？","acceptedAnswer":{"@type":"Answer","text":"電動車目前免徵牌照稅，燃料費依規定減半徵收。實際優惠以當年度公路監理公告為準。"}},
 {"@type":"Question","name":"汽車一年大概折舊多少？","acceptedAnswer":{"@type":"Answer","text":"日系車年折舊率約15%、德系豪華約18%、電動車約12%。新車前3年折舊最快，第一年常達15–20%。"}},
 {"@type":"Question","name":"二手車過戶需要驗車嗎？","acceptedAnswer":{"@type":"Answer","text":"自用小客車過戶通常需驗車（約450元）；若同時換牌另加約1,200元。可上監理服務網線上預約縮短等待時間。"}},
-{"@type":"Question","name":"每月油費怎麼算？","acceptedAnswer":{"@type":"Answer","text":"每月油費＝每月里程÷平均油耗(km/L)×油價。例如每月1,000公里、油耗14km/L、油價30元，每月油費約2,143元。"}}
+{"@type":"Question","name":"每月油費怎麼算？","acceptedAnswer":{"@type":"Answer","text":"每月油費＝每月里程÷平均油耗(km/L)×油價。例如每月1,000公里、油耗14km/L、油價30元，每月油費約2,143元。"}},
+{"@type":"Question","name":"電動車比油車省嗎？幾年回本？","acceptedAnswer":{"@type":"Answer","text":"純能源費電車每公里約0.8元、油車約2元以上，電車較省；但電車車價較高，需用每年省下的能源費攤提價差，里程高且用家充者多在3–6年回本。"}},
+{"@type":"Question","name":"養車一個月大概多少錢？","acceptedAnswer":{"@type":"Answer","text":"含折舊、稅費、油錢、保險、保養、停車，80萬的車持有5年每月真實成本常落在1.2–1.8萬元，其中折舊往往最高。"}}
 ]}
 </script>
 <style>
@@ -287,6 +293,10 @@ footer a:hover{color:#F3C969!important}
     <button class="tab-btn" onclick="switchTab('transfer')" id="tab-transfer"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/></svg><span>過戶費用</span></button>
     <button class="tab-btn" onclick="switchTab('depreciation')" id="tab-depreciation"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg><span>折舊試算</span></button>
     <button class="tab-btn" onclick="switchTab('fuel_cost')" id="tab-fuel_cost"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="9" height="18" rx="1.5"/><line x1="4" y1="9" x2="13" y2="9"/><path d="M13 7h3.5a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 0 3 0V9l-2.5-2.5"/></svg><span>油耗油錢</span></button>
+    <button class="tab-btn" onclick="switchTab('ev_compare')" id="tab-ev_compare"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="14" height="9" rx="2"/><line x1="19" y1="11" x2="19" y2="14"/><path d="M9 9l-2 3h2.5l-2 3"/></svg><span>電車比油車</span></button>
+    <button class="tab-btn" onclick="switchTab('charging')" id="tab-charging"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 L4 14 h7 l-2 8 9-12 h-7 z"/></svg><span>充電試算</span></button>
+    <button class="tab-btn" onclick="switchTab('tco')" id="tab-tco"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10h10A10 10 0 0 0 12 2z"/></svg><span>養車總成本</span></button>
+    <button class="tab-btn" onclick="switchTab('own_vs_rent')" id="tab-own_vs_rent"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 7h14"/><path d="M5 7l-3 6h6z"/><path d="M19 7l-3 6h6z"/></svg><span>租車比買車</span></button>
     <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
   </div>
 </div>
@@ -562,6 +572,178 @@ footer a:hover{color:#F3C969!important}
   </div>
 </div>
 
+<!-- 電車 vs 油車 -->
+<div class="panel" id="panel-ev_compare">
+  <div class="tool-card"><div class="card-head">
+    <h2>電動車 vs 油車 用車成本比較</h2>
+    <p>比較每月能源費、年省金額與車價價差回本年</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月行駛里程（公里）</label><input type="number" id="ev-km" placeholder="例：1000" value="1000" inputmode="decimal"></div>
+      <div class="field"><label>油車油耗（km/L）</label><input type="number" id="ev-eff" placeholder="例：14" value="14" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>油價（元/公升）</label><input type="number" id="ev-fprice" value="30" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>電車耗電（km/度）</label><input type="number" id="ev-eppk" value="6" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>電價（元/度）</label><input type="number" id="ev-eprice" value="5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>電車車價多付（萬元，選填）</label><input type="number" id="ev-pricediff" placeholder="例：20" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcEVCompare()">比較成本</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9656" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="ev_compare-result">
+      <div class="result-top"><div class="result-number" id="ev-save">—</div><div class="result-unit">元 / 月（電車省）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">油車每月能源費</div><div class="val red" id="ev-fmonth">—</div></div>
+        <div class="result-cell"><div class="lbl">電車每月能源費</div><div class="val green" id="ev-emonth">—</div></div>
+        <div class="result-cell"><div class="lbl">每年省</div><div class="val" id="ev-ysave">—</div></div>
+        <div class="result-cell"><div class="lbl">車價回本年</div><div class="val" id="ev-payback">—</div></div>
+      </div>
+      <div class="viz" id="ev-viz" style="display:none">
+        <div class="viz-title">累積用車成本交叉曲線</div>
+        <div id="ev-curve"></div>
+        <div class="viz-legend" id="ev-legend"></div>
+        <div class="callout" id="ev-callout"></div>
+      </div>
+      <div class="result-note" id="ev-note"></div>
+      <div class="result-disclaimer">能源費僅計油電，未含保養與電池衰退差異。電價以家充估算，使用公共快充成本較高。</div>
+    </div>
+    <div class="seo-box"><h3>電車真的比較省嗎？</h3>
+      <p>純看能源費，電車每公里約 0.8 元、油車約 2 元以上，電車明顯較省；但電車車價通常較高，要用「每年省下的能源費」去攤提車價差，才知道幾年回本。家充比公共快充便宜很多。</p></div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B009" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>電車與油車怎麼比才準</div><article><p>比較電車與油車不能只看油電費。能源面：電車每公里電費（電價 ÷ km每度）通常約 0.7–1 元，油車每公里油錢（油價 ÷ km/L）約 1.8–2.5 元，電車明顯省。</p><h4>別忽略車價差與回本年</h4><p>電車購入價常比同級油車高，把每年省下的能源費拿去攤提這筆價差，就能算出「回本年」。若你里程高、又用家充，回本通常 3–6 年；里程低、靠公共快充，回本會拉長。上方交叉曲線的交點就是回本年。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">電車每公里多少錢？<span class="chev">▾</span></button><div class="faq-a">以耗電 6 km/度、電價 5 元計，每公里約 0.83 元；油車油耗 14、油價 30 約 2.14 元。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">家充和快充差多少？<span class="chev">▾</span></button><div class="faq-a">家用充電約 3–5 元/度，公共直流快充常 8–12 元/度，差距會直接反映在每月電費。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">電車幾年回本？<span class="chev">▾</span></button><div class="faq-a">視里程與車價差而定，里程高且家充者多在 3–6 年回本；本工具會依你的數字算出交叉點。</div></div></div></div>
+</div>
+<!-- 充電試算 -->
+<div class="panel" id="panel-charging">
+  <div class="tool-card"><div class="card-head">
+    <h2>充電成本 / 時間試算</h2>
+    <p>依電池容量、充電功率與電價，估算充電費用與所需時間</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>電池容量（kWh）</label><input type="number" id="ch-cap" value="60" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>充電功率（kW）</label>
+        <select id="ch-power"><option value="1.5">家用插座 1.5kW</option><option value="3.5">家用充電 3.5kW</option><option value="7" selected>壁掛 AC 7kW</option><option value="11">三相 AC 11kW</option><option value="50">直流快充 50kW</option><option value="120">超級快充 120kW</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>起始電量（%）</label><input type="number" id="ch-start" value="20" min="0" max="100" inputmode="decimal"></div>
+      <div class="field"><label>目標電量（%）</label><input type="number" id="ch-target" value="80" min="0" max="100" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>電價（元/度）</label><input type="number" id="ch-price" value="5" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>耗電（km/度，選填）</label><input type="number" id="ch-eff" value="6" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcCharging()">試算充電</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9657" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="charging-result">
+      <div class="result-top"><div class="result-number" id="ch-cost">—</div><div class="result-unit">元（本次充電費用）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">需補電量</div><div class="val" id="ch-kwh">—</div></div>
+        <div class="result-cell"><div class="lbl">充電時間</div><div class="val" id="ch-time">—</div></div>
+        <div class="result-cell"><div class="lbl">可增加里程</div><div class="val green" id="ch-range">—</div></div>
+        <div class="result-cell"><div class="lbl">每度電費</div><div class="val" id="ch-perkwh">—</div></div>
+      </div>
+      <div class="viz" id="ch-viz" style="display:none">
+        <div class="viz-title">電池充電區間</div>
+        <div id="ch-battery"></div>
+        <div class="callout" id="ch-callout"></div>
+      </div>
+      <div class="result-note" id="ch-note"></div>
+      <div class="result-disclaimer">時間為理論估算（含約 10% 損耗），直流快充在 80% 以上會明顯降速，實際時間略長。</div>
+    </div>
+    <div class="seo-box"><h3>充電充到幾%最划算？</h3>
+      <p>直流快充建議充到 80% 就好，因為 80% 後充電速度會大幅下降，最後 20% 往往要花掉近一半時間。日常通勤用家用 AC 慢充過夜最省電費。</p></div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B010" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>充電費用與時間怎麼算</div><article><p>充電費用 ＝ 需補電量(kWh) × 電價。需補電量 ＝ 電池容量 ×（目標% − 起始%）。充電時間 ≈ 需補電量 ÷ 充電功率，再加上約一成的轉換損耗。</p><h4>為什麼充到 80% 最快</h4><p>鋰電池在高電量時為了保護電池會自動降低充電功率，直流快充在 80% 以上速度明顯變慢，最後 20% 常要花掉近一半時間，所以長途快充建議充到 80% 就上路。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">充滿一次電要多少錢？<span class="chev">▾</span></button><div class="faq-a">以 60 度電池、家充 5 元/度，從 20% 充到 100% 約補 48 度、約 240 元。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">家充要充多久？<span class="chev">▾</span></button><div class="faq-a">60 度電池用 7kW 壁掛充電，從 20% 到 80%（約 36 度）約需 5–6 小時，適合過夜充。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">快充傷電池嗎？<span class="chev">▾</span></button><div class="faq-a">偶爾快充影響有限，但長期頻繁快充、且常充到 100% 會加速電池衰退，日常以慢充為主較佳。</div></div></div></div>
+</div>
+<!-- 養車總成本 -->
+<div class="panel" id="panel-tco">
+  <div class="tool-card"><div class="card-head">
+    <h2>養車總成本 TCO 試算</h2>
+    <p>把折舊、稅費、油錢、保險、保養、停車合成每月真實成本</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>購車價（萬元）</label><input type="number" id="tc-price" value="80" inputmode="decimal"></div>
+      <div class="field"><label>預計持有（年）</label><input type="number" id="tc-years" value="5" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>品牌折舊</label><select id="tc-brand"><option value="0.15" selected>日系（15%）</option><option value="0.18">德系豪華（18%）</option><option value="0.20">美系/韓系（20%）</option><option value="0.12">電動車（12%）</option></select></div>
+      <div class="field"><label>排氣量</label><select id="tc-cc"><option value="1200">1200cc 以下</option><option value="1800" selected>1201–1800cc</option><option value="2400">1801–2400cc</option><option value="3000">2401–3000cc</option></select></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>每月里程（公里）</label><input type="number" id="tc-km" value="1000" inputmode="decimal"></div>
+      <div class="field"><label>油耗（km/L）</label><input type="number" id="tc-eff" value="14" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>油價（元/L）</label><input type="number" id="tc-fprice" value="30" step="0.1" inputmode="decimal"></div>
+      <div class="field"><label>保險（元/年）</label><input type="number" id="tc-ins" value="12000" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>保養（元/年）</label><input type="number" id="tc-maint" value="12000" inputmode="decimal"></div>
+      <div class="field"><label>停車（元/月）</label><input type="number" id="tc-park" value="3000" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcTCO()">試算養車成本</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9658" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="tco-result">
+      <div class="result-top"><div class="result-number" id="tc-month">—</div><div class="result-unit">元 / 月（總成本）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每年總成本</div><div class="val" id="tc-year">—</div></div>
+        <div class="result-cell"><div class="lbl">每公里成本</div><div class="val" id="tc-perkm">—</div></div>
+        <div class="result-cell"><div class="lbl">持有期總花費</div><div class="val red" id="tc-total">—</div></div>
+      </div>
+      <div class="viz" id="tc-viz" style="display:none">
+        <div class="viz-title">每月成本組成</div>
+        <div class="donut-wrap"><div id="tc-donut"></div><div class="viz-legend" id="tc-legend"></div></div>
+      </div>
+      <div class="result-note" id="tc-note"></div>
+      <div class="result-disclaimer">折舊為估算，保養/保險/停車依實際情況調整。未含貸款利息與意外維修。</div>
+    </div>
+    <div class="seo-box"><h3>養一台車一個月多少錢？</h3>
+      <p>養車最大的隱形成本其實是折舊，其次才是油錢與停車。一台 80 萬的車持有 5 年，含折舊、稅費、油錢、保險、保養、停車，每月真實成本常落在 1.2–1.8 萬元。</p></div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B011" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>養車總成本（TCO）包含什麼</div><article><p>很多人只算油錢，卻忽略養車最大的成本其實是<b>折舊</b>。完整的養車總成本（TCO）包含六大項：折舊、牌照稅與燃料費、強制險與任意險、保養維修、停車，以及變動的油（電）錢。</p><h4>折舊往往最被低估</h4><p>一台 80 萬的車持有 5 年若殘值剩 35 萬，等於每月折舊約 7,500 元，常是所有項目中最高的。上方圓環圖會把六大項的占比畫出來，讓你看清錢花到哪。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">養車一個月大概多少？<span class="chev">▾</span></button><div class="faq-a">80 萬的車持有 5 年，含折舊、稅險、油錢、保養、停車，每月常落在 1.2–1.8 萬元。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">養車最大的成本是什麼？<span class="chev">▾</span></button><div class="faq-a">通常是折舊，尤其前 3 年；其次是停車與油錢，稅費反而占比不高。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">怎麼降低養車成本？<span class="chev">▾</span></button><div class="faq-a">選保值車款、拉長持有年限攤平折舊、減少市區停車費，並依里程選擇是否真的需要養車。</div></div></div></div>
+</div>
+<!-- 租車比買車 -->
+<div class="panel" id="panel-own_vs_rent">
+  <div class="tool-card"><div class="card-head">
+    <h2>養車 vs 搭車（租車／計程車）划算門檻</h2>
+    <p>算出每月里程的損益平衡點，判斷該養車還是搭車</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>養車每月固定成本（元）</label><input type="number" id="or-fixed" value="8000" inputmode="decimal"></div>
+      <div class="field"><label>自駕每公里變動（元/km）</label><input type="number" id="or-var" value="2.2" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>計程車/租車（元/km）</label><input type="number" id="or-taxi" value="25" step="0.5" inputmode="decimal"></div>
+      <div class="field"><label>你每月里程（公里）</label><input type="number" id="or-km" value="800" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcOwnRent()">找出划算門檻</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9659" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="own_vs_rent-result">
+      <div class="result-top"><div class="result-number" id="or-be">—</div><div class="result-unit">公里 / 月（損益平衡）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">你的里程·養車月成本</div><div class="val" id="or-owncost">—</div></div>
+        <div class="result-cell"><div class="lbl">你的里程·搭車月成本</div><div class="val" id="or-taxicost">—</div></div>
+        <div class="result-cell"><div class="lbl">建議</div><div class="val" id="or-advice">—</div></div>
+      </div>
+      <div class="viz" id="or-viz" style="display:none">
+        <div class="viz-title">月成本交叉曲線（依里程）</div>
+        <div id="or-curve"></div>
+        <div class="viz-legend" id="or-legend"></div>
+        <div class="callout" id="or-callout"></div>
+      </div>
+      <div class="result-note" id="or-note"></div>
+      <div class="result-disclaimer">養車固定成本可用上方「養車總成本」試算後填入（折舊+稅險+保養+停車）。搭車成本依實際叫車費率調整。</div>
+    </div>
+    <div class="seo-box"><h3>里程多低該考慮不買車？</h3>
+      <p>養車有一大筆「固定成本」（折舊、稅險、停車）無論開不開都要付。里程越低，這些固定成本攤到每公里就越貴。都市低里程族（每月 &lt;800 公里）改用計程車或租車，常常更划算。</p></div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B012" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>該養車還是搭車？</div><article><p>養車的成本分成兩塊：不管開不開都要付的<b>固定成本</b>（折舊、稅險、停車），以及隨里程增加的<b>變動成本</b>（油錢）。搭計程車/租車則幾乎全是按里程計費。</p><h4>損益平衡里程</h4><p>當「固定成本 ÷（搭車每公里 − 自駕每公里）」就是兩者打平的里程。低於這個里程，搭車較划算；高於它，養車較划算。上方交叉曲線會標出這個門檻與你目前的位置。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">里程多少以下不該買車？<span class="chev">▾</span></button><div class="faq-a">視固定成本而定，常見在每月 600–900 公里以下時搭車較划算，本工具會算出你的精確門檻。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">計程車每公里大約多少？<span class="chev">▾</span></button><div class="faq-a">都會區短程加上起跳費，平均每公里約 25–35 元；長途與離峰較低。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">租車比養車划算嗎？<span class="chev">▾</span></button><div class="faq-a">偶爾用車或里程低時，短租＋計程車組合常比養一台車便宜，且免折舊與停車煩惱。</div></div></div></div>
+</div>
 <div class="panel" id="panel-news">
   <div class="news-header">
     <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">點選後載入</div></div>
@@ -948,6 +1130,134 @@ function renderFuelPriceCurve(km,kmpl,price){
     <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#C62828" font-family="'Space Grotesk',sans-serif">${fmt(cost(pc))}</text></svg>`;
   document.getElementById('fc-callout').innerHTML=`油價每漲 1 元，每月油費就多 <b>${fmt(litersM)} 元</b>（等於你每月加油量）。若油價漲到 40 元，每月約 <b>${fmt(cost(40))} 元</b>；跌到 25 元則約 ${fmt(cost(25))} 元。`;
   viz.style.display='block';
+}
+
+/* ── 共用小工具 ── */
+function _val(id){return parseFloat(document.getElementById(id).value);}
+function _set(id,t){document.getElementById(id).textContent=t;}
+function _show(id){document.getElementById(id).classList.add('show');}
+function _leg(id,items){document.getElementById(id).innerHTML=items.map(a=>`<span><i style="background:${a[1]}"></i>${a[0]}</span>`).join('');}
+function _co(id,html){document.getElementById(id).innerHTML=html;}
+function fmtHours(h){if(h<1)return Math.round(h*60)+' 分鐘';const H=Math.floor(h),M=Math.round((h-H)*60);return H+' 小時'+(M?' '+M+' 分':'');}
+/* 共用折線圖（1–2 條線、可標記與垂直導引） */
+function drawLineChart(cid,o){
+  const W=440,H=190,padL=o.padL||52,padR=14,padT=16,padB=34;
+  const plotW=W-padL-padR,plotH=H-padT-padB,xMax=o.xMax||1;
+  let yMax=0;
+  o.series.forEach(s=>{for(let i=0;i<=30;i++){yMax=Math.max(yMax,s.f(xMax*i/30));}});
+  (o.markers||[]).forEach(m=>yMax=Math.max(yMax,m.y));
+  yMax=(yMax*1.08)||1;
+  const X=x=>padL+x/xMax*plotW, Y=y=>padT+plotH-(y/yMax)*plotH;
+  let grid='';
+  for(let k=0;k<=2;k++){const v=yMax*k/2,y=Y(v);grid+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="#EDF1F7"/><text x="${padL-5}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#98A4B3">${o.yFmt?o.yFmt(v):Math.round(v)}</text>`;}
+  let guides='';(o.vGuides||[]).forEach(g=>{const gx=X(Math.min(g.x,xMax));guides+=`<line x1="${gx.toFixed(1)}" y1="${padT}" x2="${gx.toFixed(1)}" y2="${padT+plotH}" stroke="${g.color}" stroke-dasharray="3 3" stroke-width="1"/>`;});
+  let lines='';o.series.forEach(s=>{let d='';for(let i=0;i<=30;i++){const x=xMax*i/30;d+=(i?' L ':'M ')+X(x).toFixed(1)+' '+Y(s.f(x)).toFixed(1);}lines+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"/>`;});
+  let xl='';(o.xTicks||[]).forEach(t=>{xl+=`<text x="${X(t.x).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${t.label}</text>`;});
+  let mk='';(o.markers||[]).forEach(m=>{const mx=X(Math.min(m.x,xMax)),my=Y(m.y);mk+=`<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="${m.color}" stroke="#fff" stroke-width="2"/>`+(m.label?`<text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${m.color}" font-family="'Space Grotesk',sans-serif">${m.label}</text>`:'');});
+  document.getElementById(cid).innerHTML=`<svg viewBox="0 0 ${W} ${H}">${grid}${guides}${lines}${xl}${mk}</svg>`;
+}
+
+/* ── 電動車 vs 油車 ── */
+function calcEVCompare(){
+  const km=_val('ev-km'),feff=_val('ev-eff'),fp=_val('ev-fprice'),eppk=_val('ev-eppk'),ep=_val('ev-eprice');
+  const pd=parseFloat(document.getElementById('ev-pricediff').value)||0;
+  if(!km||!feff||!fp||!eppk||!ep){alert('請完整填寫里程、油耗、油價、耗電與電價');return;}
+  const fmonth=km/feff*fp,emonth=km/eppk*ep,fyear=fmonth*12,eyear=emonth*12,saveM=fmonth-emonth,saveY=saveM*12;
+  _set('ev-save',fmt(saveM)); _set('ev-fmonth',fmt(fmonth)+' 元'); _set('ev-emonth',fmt(emonth)+' 元'); _set('ev-ysave',fmt(saveY)+' 元');
+  let payback=null;
+  if(pd>0&&saveY>0){payback=pd*10000/saveY;_set('ev-payback',payback.toFixed(1)+' 年');}
+  else _set('ev-payback', pd>0?'難回本':'無價差');
+  _set('ev-note',`油車每月 ${fmt(fmonth)} 元、電車 ${fmt(emonth)} 元，電車每月省 ${fmt(saveM)} 元（每年 ${fmt(saveY)} 元）。`+(payback?`電車多付 ${pd} 萬，約 ${payback.toFixed(1)} 年回本。`:''));
+  renderEVCurve(fyear,eyear,pd,payback);
+  _show('ev_compare-result');
+}
+function renderEVCurve(fyear,eyear,pdWan,payback){
+  const pd=pdWan*10000, saveY=fyear-eyear;
+  let xMax=payback?Math.min(Math.ceil(payback)+3,15):8; xMax=Math.max(xMax,6);
+  const series=[{name:'油車',color:'#C62828',f:t=>fyear*t},{name:'電車',color:'#1565C0',f:t=>pd+eyear*t}];
+  const markers=[],guides=[];
+  if(payback&&payback<=xMax){markers.push({x:payback,y:fyear*payback,color:'#1976D2',label:payback.toFixed(1)+'年'});guides.push({x:payback,color:'#1976D2'});}
+  const xTicks=[],step=Math.max(1,Math.ceil(xMax/6));for(let t=0;t<=xMax;t+=step)xTicks.push({x:t,label:t+'年'});
+  drawLineChart('ev-curve',{xMax,series,markers,xTicks,vGuides:guides,yFmt:v=>fmt(v/10000)+'萬'});
+  _leg('ev-legend',[['油車累積','#C62828'],['電車累積','#1565C0']]);
+  _co('ev-callout', payback?`電車多付 <b>${pdWan} 萬</b>，靠每年省下的 <b>${fmt(saveY)} 元</b>能源費，約 <b>${payback.toFixed(1)} 年</b>回本，之後越開越省。`:(pd>0?`目前設定下電車能源費未明顯較低，車價差難以回本。`:`未輸入車價差：純看能源費，電車每年省 <b>${fmt(saveY)} 元</b>，里程越高越划算。`));
+}
+
+/* ── 充電 ── */
+function calcCharging(){
+  const cap=_val('ch-cap'),power=_val('ch-power'),st=_val('ch-start'),tg=_val('ch-target'),price=_val('ch-price');
+  const eff=parseFloat(document.getElementById('ch-eff').value)||0;
+  if(!cap||isNaN(st)||isNaN(tg)){alert('請填寫電池容量與起訖電量');return;}
+  if(tg<=st){alert('目標電量需大於起始電量');return;}
+  const kwh=cap*(tg-st)/100, cost=kwh*price, ce=power>=50?0.95:0.9, hours=kwh/power/ce, range=eff?kwh*eff:0;
+  _set('ch-cost',fmt(cost)); _set('ch-kwh',kwh.toFixed(1)+' 度'); _set('ch-time',fmtHours(hours));
+  _set('ch-range',range?fmt(range)+' km':'—'); _set('ch-perkwh',price.toFixed(1)+' 元/度');
+  _set('ch-note',`從 ${st}% 充到 ${tg}% 需補 ${kwh.toFixed(1)} 度電，費用約 ${fmt(cost)} 元，${power}kW 約需 ${fmtHours(hours)}。`);
+  renderBattery(st,tg);
+  _show('charging-result');
+}
+function renderBattery(start,target){
+  const W=300,H=92,bx=10,by=16,bw=255,bh=54;
+  const ix=bx+5,iy=by+5,iw=bw-10,ih=bh-10;
+  const sw0=iw*start/100, swAdd=iw*(target-start)/100;
+  document.getElementById('ch-battery').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="max-width:320px">
+    <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="9" fill="#F4F6F9" stroke="#CBD7E6" stroke-width="2"/>
+    <rect x="${bx+bw}" y="${by+bh/2-11}" width="9" height="22" rx="3" fill="#CBD7E6"/>
+    <rect x="${ix}" y="${iy}" width="${sw0.toFixed(1)}" height="${ih}" rx="4" fill="#90CAF9"/>
+    <rect x="${(ix+sw0).toFixed(1)}" y="${iy}" width="${swAdd.toFixed(1)}" height="${ih}" rx="4" fill="#1565C0"/>
+    <text x="${ix+iw/2}" y="${by+bh/2+6}" text-anchor="middle" font-size="16" font-weight="800" fill="#0E2A47" font-family="'Space Grotesk',sans-serif">${target}%</text>
+    <text x="${bx}" y="${by+bh+18}" font-size="11" fill="#98A4B3">起始 ${start}%</text>
+    <text x="${bx+bw}" y="${by+bh+18}" text-anchor="end" font-size="11" fill="#1565C0" font-weight="700">補充 ${target-start}%</text></svg>`;
+  _co('ch-callout','深藍為本次補充的電量、淺藍為原有電量。直流快充在 80% 以上會明顯降速，長途建議充到 80% 即可。');
+  document.getElementById('ch-viz').style.display='block';
+}
+
+/* ── 養車總成本 TCO ── */
+function calcTCO(){
+  const price=_val('tc-price'),years=_val('tc-years'),rate=_val('tc-brand'),cc=document.getElementById('tc-cc').value;
+  const km=_val('tc-km'),eff=_val('tc-eff'),fp=_val('tc-fprice'),ins=_val('tc-ins'),maint=_val('tc-maint'),park=_val('tc-park');
+  if(!price||!years||!km||!eff){alert('請填寫購車價、年數、里程與油耗');return;}
+  const valueN=price*Math.pow(1-rate,years), depMonth=(price-valueN)*10000/(years*12);
+  const taxMonth=(getLicenseAmt('car',cc)+getFuelAmt('car',cc))/12;
+  const fuelMonth=km/eff*fp, insMonth=ins/12, maintMonth=maint/12, parkMonth=park;
+  const month=depMonth+taxMonth+fuelMonth+insMonth+maintMonth+parkMonth, year=month*12, perkm=month/km, total=month*years*12;
+  _set('tc-month',fmt(month)); _set('tc-year',fmt(year)+' 元'); _set('tc-perkm',perkm.toFixed(1)+' 元/km'); _set('tc-total',fmt(total)+' 元');
+  _set('tc-note',`每月養車總成本約 ${fmt(month)} 元，其中折舊 ${fmt(depMonth)}、油錢 ${fmt(fuelMonth)}、停車 ${fmt(parkMonth)} 元。持有 ${years} 年總花費約 ${fmt(total)} 元。`);
+  renderTCODonut([['折舊',depMonth,'#1565C0'],['油錢',fuelMonth,'#42A5F5'],['稅費',taxMonth,'#90CAF9'],['保險',insMonth,'#0E2A47'],['保養',maintMonth,'#64B5F6'],['停車',parkMonth,'#B3D4F0']]);
+  _show('tco-result');
+}
+function renderTCODonut(parts){
+  parts=parts.filter(p=>p[1]>0);
+  const total=parts.reduce((s,p)=>s+p[1],0)||1, cx=75,cy=75,r=54,sw=22,C=2*Math.PI*r;
+  let off=0,arcs='';
+  parts.forEach(([n,v,col])=>{const len=v/total*C;arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;off+=len;});
+  document.getElementById('tc-donut').innerHTML=`<svg viewBox="0 0 150 150" style="width:148px"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EEF3F9" stroke-width="${sw}"/>${arcs}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="17" font-weight="800" fill="#16212E" font-family="'Space Grotesk',sans-serif">${fmt(total)}</text><text x="${cx}" y="${cy+15}" text-anchor="middle" font-size="9.5" fill="#98A4B3">每月總成本</text></svg>`;
+  document.getElementById('tc-legend').innerHTML=parts.map(([n,v,col])=>`<span><i style="background:${col}"></i>${n} <b>${fmt(v)}</b>（${(v/total*100).toFixed(0)}%）</span>`).join('');
+  document.getElementById('tc-viz').style.display='block';
+}
+
+/* ── 養車 vs 搭車 ── */
+function calcOwnRent(){
+  const fixed=_val('or-fixed'),varc=_val('or-var'),taxi=_val('or-taxi'),km=_val('or-km');
+  if(isNaN(fixed)||isNaN(taxi)||!km){alert('請填寫固定成本、搭車費率與里程');return;}
+  const be=taxi>varc?fixed/(taxi-varc):Infinity, ownCost=fixed+varc*km, taxiCost=taxi*km;
+  _set('or-be', isFinite(be)?fmt(be):'—'); _set('or-owncost',fmt(ownCost)+' 元'); _set('or-taxicost',fmt(taxiCost)+' 元');
+  _set('or-advice', km<be?'搭車較划算':'養車較划算');
+  document.getElementById('or-advice').className='val '+(km<be?'green':'');
+  _set('or-note',`你每月 ${fmt(km)} 公里：養車約 ${fmt(ownCost)} 元、搭車約 ${fmt(taxiCost)} 元，${km<be?'搭車':'養車'}較划算。損益平衡里程約 ${isFinite(be)?fmt(be)+' 公里/月':'—'}。`);
+  renderOwnRentCurve(fixed,varc,taxi,km,be);
+  _show('own_vs_rent-result');
+}
+function renderOwnRentCurve(fixed,varc,taxi,km,be){
+  let xMax=isFinite(be)?Math.max(be*1.6,km*1.4,600):Math.max(km*1.6,2000);
+  xMax=Math.ceil(xMax/200)*200;
+  const series=[{name:'養車',color:'#1565C0',f:x=>fixed+varc*x},{name:'搭車',color:'#E65100',f:x=>taxi*x}];
+  const markers=[{x:km,y:fixed+varc*km,color:'#1976D2',label:'你'}],guides=[{x:km,color:'#1976D2'}];
+  if(isFinite(be)&&be<=xMax){markers.push({x:be,y:taxi*be,color:'#C62828',label:''});guides.push({x:be,color:'#C62828'});}
+  const xTicks=[],step=xMax/5;for(let i=0;i<=5;i++)xTicks.push({x:step*i,label:fmt(step*i)});
+  drawLineChart('or-curve',{xMax,series,markers,xTicks,vGuides:guides,yFmt:v=>fmt(v)});
+  _leg('or-legend',[['養車','#1565C0'],['搭車','#E65100']]);
+  _co('or-callout', isFinite(be)?`損益平衡里程約 <b>${fmt(be)} 公里/月</b>。你目前 ${fmt(km)} 公里，${km<be?'低於門檻 → <b>搭車較省</b>':'高於門檻 → <b>養車較省</b>'}。`:`搭車每公里低於自駕變動成本，養車幾乎總是較貴。`);
 }
 
 /* 初始化：設定牌照稅車種對應欄位（新聞改為點選分頁才載入） */
