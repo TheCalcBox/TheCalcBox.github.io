@@ -43,13 +43,21 @@
 {"@type":"WebApplication","name":"燃料費試算","url":"https://thecalcbox.com/car/#fuel_tax","description":"依排氣量查詢年度燃料費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"強制險保費估算","url":"https://thecalcbox.com/car/#insurance","description":"依車種估算強制汽車責任險保費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"汽車過戶費用試算","url":"https://thecalcbox.com/car/#transfer","description":"估算二手車過戶監理規費。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"汽車折舊試算","url":"https://thecalcbox.com/car/#depreciation","description":"估算愛車市場殘值與每月折舊成本。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
+{"@type":"WebApplication","name":"汽車折舊試算","url":"https://thecalcbox.com/car/#depreciation","description":"估算愛車市場殘值與每月折舊成本。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"油耗／每月油錢試算","url":"https://thecalcbox.com/car/#fuel_cost","description":"依里程、油耗與油價估算每月與每年油費，附油價敏感度曲線。","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}
 ]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"2026年牌照稅1800cc要繳多少？","acceptedAnswer":{"@type":"Answer","text":"1201–1800cc自用小客車牌照稅為7,120元，每年4月1日至30日繳納。電動車免徵。"}},
-{"@type":"Question","name":"汽車過戶費用需要多少？","acceptedAnswer":{"@type":"Answer","text":"自用小客車過戶基本規費約400元登記費+450元驗車費，需換牌另加1,200元，合計約850–2,050元，委託代辦另計1,000–3,000元。"}}
+{"@type":"Question","name":"牌照稅逾期繳納怎麼辦？","acceptedAnswer":{"@type":"Answer","text":"逾期30天內加徵5%滯納金，超過30天加徵15%。可向公路監理所申請延期繳納，繳費時間為每年4月1日至30日。"}},
+{"@type":"Question","name":"燃料費和牌照稅有什麼不同？","acceptedAnswer":{"@type":"Answer","text":"牌照稅每年4月繳、燃料費每年7月隨強制險繳。1800cc小客車牌照稅7,120元、燃料費4,800元，合計約11,920元/年。"}},
+{"@type":"Question","name":"強制險保障範圍有哪些？","acceptedAnswer":{"@type":"Answer","text":"傷亡補償最高220萬、傷害醫療最高20萬。強制險不賠自身傷亡與財損，需另投保第三人責任險（任意險）補足。"}},
+{"@type":"Question","name":"汽車過戶費用需要多少？","acceptedAnswer":{"@type":"Answer","text":"自用小客車過戶約400元登記費＋450元驗車費，需換牌另加1,200元，合計約850–2,050元，委託代辦另計1,000–3,000元。"}},
+{"@type":"Question","name":"電動車牌照稅和燃料費要繳嗎？","acceptedAnswer":{"@type":"Answer","text":"電動車目前免徵牌照稅，燃料費依規定減半徵收。實際優惠以當年度公路監理公告為準。"}},
+{"@type":"Question","name":"汽車一年大概折舊多少？","acceptedAnswer":{"@type":"Answer","text":"日系車年折舊率約15%、德系豪華約18%、電動車約12%。新車前3年折舊最快，第一年常達15–20%。"}},
+{"@type":"Question","name":"二手車過戶需要驗車嗎？","acceptedAnswer":{"@type":"Answer","text":"自用小客車過戶通常需驗車（約450元）；若同時換牌另加約1,200元。可上監理服務網線上預約縮短等待時間。"}},
+{"@type":"Question","name":"每月油費怎麼算？","acceptedAnswer":{"@type":"Answer","text":"每月油費＝每月里程÷平均油耗(km/L)×油價。例如每月1,000公里、油耗14km/L、油價30元，每月油費約2,143元。"}}
 ]}
 </script>
 <style>
@@ -223,6 +231,41 @@ footer a:hover{color:#F3C969!important}
 
 .tab-btn .tab-ico{width:16px;height:16px;flex-shrink:0}
 .tab-btn span{display:inline-block}
+
+/* ── 視覺化通用 ── */
+.viz{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.viz-title{font-size:11px;font-weight:700;color:var(--hint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem}
+.viz svg{display:block;max-width:100%;height:auto}
+.viz-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:var(--muted)}
+.viz-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+.viz-legend b{color:var(--text);font-weight:700}
+/* 圓環中央 */
+.donut-wrap{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+/* 堆疊條 */
+.stackbar{display:flex;height:30px;border-radius:7px;overflow:hidden;border:1px solid var(--border)}
+.stackbar .seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;min-width:0;white-space:nowrap;overflow:hidden}
+.callout{margin-top:10px;font-size:12.5px;color:var(--muted);background:var(--accent-light);border-radius:8px;padding:9px 12px;line-height:1.7}
+.callout b{color:var(--accent-mid)}
+
+/* ── 主題長文 + FAQ（每分頁專屬）── */
+.tool-extra{margin-top:1.5rem}
+.lf-head{font-size:15px;font-weight:800;color:var(--text);margin:1.4rem 0 .5rem;padding-bottom:.45rem;border-bottom:2px solid var(--accent-light);display:flex;align-items:center;gap:8px}
+.lf-head:first-child{margin-top:0}
+.tool-extra article{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-bottom:.6rem;box-shadow:0 1px 3px rgba(14,42,71,.04)}
+.tool-extra article h4{font-size:13.5px;font-weight:700;color:var(--accent-mid);margin:.9rem 0 .35rem}
+.tool-extra article p{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:.6rem}
+.tool-extra article p:last-child{margin-bottom:0}
+.lf-table{width:100%;border-collapse:collapse;margin:.6rem 0;font-size:12.5px}
+.lf-table th,.lf-table td{border:1px solid var(--border);padding:7px 10px;text-align:center}
+.lf-table th{background:var(--accent-light);color:var(--accent-mid);font-weight:700}
+.lf-table td:first-child{font-weight:700;color:var(--text);background:var(--gray-50)}
+.faq-acc{margin-top:.3rem}
+.faq-item{background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;font-family:inherit;font-size:13.5px;font-weight:700;color:var(--text);padding:13px 15px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.faq-q .chev{flex-shrink:0;transition:transform .2s;color:var(--accent-mid);font-size:12px}
+.faq-item.open .chev{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 15px 13px;font-size:12.5px;color:var(--muted);line-height:1.85}
+.faq-item.open .faq-a{display:block}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"CalcBox","item":"https://thecalcbox.github.io/"},{"@type":"ListItem","position":2,"name":"汽機車計算機","item":"https://thecalcbox.github.io/car/"}]}</script>
@@ -243,6 +286,7 @@ footer a:hover{color:#F3C969!important}
     <button class="tab-btn" onclick="switchTab('insurance')" id="tab-insurance"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6Z"/></svg><span>強制險</span></button>
     <button class="tab-btn" onclick="switchTab('transfer')" id="tab-transfer"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/></svg><span>過戶費用</span></button>
     <button class="tab-btn" onclick="switchTab('depreciation')" id="tab-depreciation"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg><span>折舊試算</span></button>
+    <button class="tab-btn" onclick="switchTab('fuel_cost')" id="tab-fuel_cost"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="9" height="18" rx="1.5"/><line x1="4" y1="9" x2="13" y2="9"/><path d="M13 7h3.5a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 0 3 0V9l-2.5-2.5"/></svg><span>油耗油錢</span></button>
     <button class="tab-btn" onclick="switchTab('news')" id="tab-news"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="15" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2"/><line x1="6" y1="9" x2="14" y2="9"/><line x1="6" y1="13" x2="14" y2="13"/><line x1="6" y1="17" x2="11" y2="17"/></svg><span>即時新聞</span></button>
   </div>
 </div>
@@ -288,6 +332,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">每次繳納</div><div class="val" id="lt-each">—</div></div>
         <div class="result-cell"><div class="lbl">月均稅負</div><div class="val" id="lt-monthly">—</div></div>
       </div>
+      <div class="viz" id="lt-viz" style="display:none"><div class="viz-title">牌照稅級距階梯</div><div id="lt-step"></div><div class="callout" id="lt-callout"></div></div>
       <div class="result-note" id="lt-note"></div>
       <div class="result-disclaimer">依 2026 年公路監理費率。電動車免徵牌照稅。4 月底前未繳可申請分期，逾期加徵滯納金。</div>
     </div>
@@ -299,6 +344,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B001" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>牌照稅怎麼算與繳納</div><article><p>牌照稅全名「使用牌照稅」，依汽缸排氣量（cc）分級課徵，每年 4 月 1 日至 30 日繳納。排氣量越大、稅額跳級越高，3000cc 以上大幅遞增，最高可達 117,000 元；電動車目前免徵。</p><table class="lf-table"><tr><th>排氣量</th><th>自用小客車牌照稅</th></tr><tr><td>600cc 以下</td><td>1,620</td></tr><tr><td>601–1200cc</td><td>4,320</td></tr><tr><td>1201–1800cc</td><td>7,120</td></tr><tr><td>1801–2400cc</td><td>11,230</td></tr><tr><td>2401–3000cc</td><td>15,210</td></tr></table><h4>逾期與分期</h4><p>逾期 30 天內加徵 5% 滯納金，超過 30 天加徵 15%，可向公路監理所申請延期繳納。上方階梯圖會標出你的級距，並顯示升一級要多繳多少。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">1800cc 牌照稅要繳多少？<span class="chev">▾</span></button><div class="faq-a">1201–1800cc 自用小客車為 7,120 元/年，每年 4 月繳納。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">電動車要繳牌照稅嗎？<span class="chev">▾</span></button><div class="faq-a">電動車目前免徵牌照稅；燃料費則減半徵收。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">牌照稅逾期會罰多少？<span class="chev">▾</span></button><div class="faq-a">逾期 30 天內加徵 5% 滯納金，超過 30 天加徵 15%。</div></div></div></div>
 </div>
 
 <!-- 燃料稅 -->
@@ -328,6 +374,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">月均燃料費</div><div class="val" id="ft-monthly">—</div></div>
         <div class="result-cell"><div class="lbl">繳納時間</div><div class="val" id="ft-when">7月（隨強制險）</div></div>
       </div>
+      <div class="viz" id="ft-viz" style="display:none"><div class="viz-title">全年養車稅費組成（牌照稅＋燃料費）</div><div class="donut-wrap"><div id="ft-donut"></div><div class="viz-legend" id="ft-legend"></div></div></div>
       <div class="result-note" id="ft-note"></div>
     </div>
     <div class="seo-box">
@@ -336,6 +383,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B002" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>燃料費怎麼算</div><article><p>燃料費（汽車燃料使用費）按排氣量定額課徵，與實際行駛里程無關，每年 7 月隨強制險一起繳。1800cc 小客車為 4,800 元/年，電動車減半。</p><table class="lf-table"><tr><th>排氣量</th><th>年燃料費</th></tr><tr><td>600cc 以下</td><td>1,620</td></tr><tr><td>1201–1800cc</td><td>4,800</td></tr><tr><td>1801–2400cc</td><td>6,180</td></tr><tr><td>2401–3000cc</td><td>8,640</td></tr></table><p>燃料費與牌照稅是兩筆不同的稅費，上方圓環圖會把兩者合計，讓你一眼看出全年的基本養車稅負。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">燃料費什麼時候繳？<span class="chev">▾</span></button><div class="faq-a">每年 7 月隨強制汽車責任險一起繳納。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">燃料費和牌照稅差在哪？<span class="chev">▾</span></button><div class="faq-a">牌照稅 4 月繳、燃料費 7 月繳；1800cc 合計約 7,120＋4,800＝11,920 元/年。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">電動車燃料費要繳嗎？<span class="chev">▾</span></button><div class="faq-a">電動車燃料費依規定減半徵收，實際以當年公告為準。</div></div></div></div>
 </div>
 
 <!-- 強制險 -->
@@ -360,6 +408,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">殘廢最高理賠</div><div class="val green" id="ins-disable">220 萬元</div></div>
         <div class="result-cell"><div class="lbl">傷害醫療</div><div class="val green" id="ins-medical">最高 20 萬元</div></div>
       </div>
+      <div class="viz" id="ins-viz" style="display:none"><div class="viz-title">強制險保障額度</div><div class="donut-wrap"><div id="ins-shield"></div><div class="viz-legend" id="ins-legend"></div></div></div>
       <div class="result-note" id="ins-note"></div>
       <div class="result-disclaimer">強制險為法定最低保障，建議同時投保第三人責任險（任意險）以獲得更完整保障。實際保費以各保險公司報價為準。</div>
     </div>
@@ -369,6 +418,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B003" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>強制險的保障與保費</div><article><p>強制汽車責任險是法律規定一定要投保的險種，保障的是「對方」（受害人）的傷亡：死亡或失能最高理賠 220 萬元、傷害醫療最高 20 萬元。</p><h4>強制險不賠什麼？</h4><p>強制險<b>不賠自己的傷亡，也不賠任何車輛與財物損失</b>。因此務必另外投保第三人責任險（任意險），建議至少 300–500 萬，才能補足財損與超額傷亡的缺口。保費依車種、車齡與肇事紀錄調整，自用小客車約 4,000–6,000 元/年。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">強制險會賠我自己嗎？<span class="chev">▾</span></button><div class="faq-a">不會。強制險只賠對方傷亡，自身傷亡與車損須靠任意險。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">強制險保費大約多少？<span class="chev">▾</span></button><div class="faq-a">自用小客車約 4,000–6,000 元/年，有肇事紀錄較高、長期無肇事可折扣。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">沒保強制險會怎樣？<span class="chev">▾</span></button><div class="faq-a">屬違法，汽車可罰 3,000–15,000 元、機車 1,500–3,000 元，且無法完成驗車與換照。</div></div></div></div>
 </div>
 
 <!-- 過戶費用 -->
@@ -399,6 +449,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">換牌費用</div><div class="val" id="tr-plate">—</div></div>
         <div class="result-cell"><div class="lbl">牌照稅未繳補繳</div><div class="val red" id="tr-taxtip">—</div></div>
       </div>
+      <div class="viz" id="tr-viz" style="display:none"><div class="viz-title">過戶費用組成</div><div class="stackbar" id="tr-stack"></div><div class="viz-legend" id="tr-legend"></div></div>
       <div class="result-note" id="tr-note"></div>
       <div class="result-disclaimer">以上為監理所規費估算，實際費用以各地監理所公告為準。代辦費用另計（約 1,000–3,000 元）。</div>
     </div>
@@ -408,6 +459,7 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B004" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>二手車過戶流程與費用</div><article><p>二手車過戶的監理規費：登記費約 400 元、驗車費約 450 元、若同時申請新車牌另加約 1,200 元。委託車行代辦另計 1,000–3,000 元。</p><h4>過戶流程</h4><p>① 買賣雙方備齊身分證、印章、行照　② 到監理所繳交過戶規費　③ 驗車（如需）　④ 領取新行照。可先上監理服務網（mvdis.gov.tw）線上預約縮短等待。</p><p>過戶前務必確認<b>牌照稅、燃料費、交通罰單都已結清</b>，否則無法完成過戶。上方堆疊圖會顯示各項費用占比。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">過戶總共要多少錢？<span class="chev">▾</span></button><div class="faq-a">基本規費約 850 元（登記＋驗車），換牌再加 1,200 元，代辦另計 1,000–3,000 元。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">過戶一定要驗車嗎？<span class="chev">▾</span></button><div class="faq-a">自用小客車過戶通常需驗車（約 450 元）；不換牌可省下換牌費。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">過戶前要注意什麼？<span class="chev">▾</span></button><div class="faq-a">先結清牌照稅、燃料費與罰單，並確認保險、貸款狀態，否則無法過戶。</div></div></div></div>
 </div>
 
 <!-- 折舊 -->
@@ -437,6 +489,7 @@ footer a:hover{color:#F3C969!important}
         <div class="result-cell"><div class="lbl">每年折舊</div><div class="val" id="dp-yearly">—</div></div>
         <div class="result-cell"><div class="lbl">每月折舊</div><div class="val" id="dp-monthly">—</div></div>
       </div>
+      <div class="viz" id="dp-viz" style="display:none"><div class="viz-title">折舊曲線（殘值 vs 車齡）</div><div id="dp-curve"></div><div class="callout" id="dp-callout"></div></div>
       <div class="result-note" id="dp-note"></div>
       <div class="result-disclaimer">市場殘值受車況、里程、顏色、區域行情影響，本工具為粗略估算，實際請詢問中古車商。</div>
     </div>
@@ -446,11 +499,72 @@ footer a:hover{color:#F3C969!important}
     </div>
     <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B005" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
   </div></div>
+  <div class="tool-extra"><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>汽車折舊與殘值</div><article><p>車子一落地就開始折舊，且<b>前 3 年掉得最快</b>，第一年常折舊 15–20%。品牌保值度差異大：日系約年折 15%、德系豪華約 18%、美韓系約 20%、電動車約 12%。</p><table class="lf-table"><tr><th>品牌類型</th><th>約略年折舊率</th></tr><tr><td>日系</td><td>15%</td></tr><tr><td>德系豪華</td><td>18%</td></tr><tr><td>美系/韓系</td><td>20%</td></tr><tr><td>電動車</td><td>12%</td></tr></table><p>殘值還會受里程、車況、顏色與市場行情影響。計算養車總成本時，折舊往往是最大的隱形成本，上方曲線圖會畫出殘值隨車齡下降的軌跡並標出你目前的位置。</p></article><div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div><div class="faq-acc"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">哪種車比較保值？<span class="chev">▾</span></button><div class="faq-a">一般日系與熱門電動車保值度較高，冷門品牌與大改款前車款折舊較快。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">一年大概折舊多少？<span class="chev">▾</span></button><div class="faq-a">新車前 3 年最快，第一年常 15–20%，之後每年遞減；日系約年折 15%。</div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">電動車折舊比較快嗎？<span class="chev">▾</span></button><div class="faq-a">主流電動車（如 Tesla）折舊已趨穩，本工具預設約 12%，仍受電池健康與改款影響。</div></div></div></div>
 </div>
 
-<div class="panel active" id="panel-news">
+<!-- 油耗 / 每月油錢 -->
+<div class="panel" id="panel-fuel_cost">
+  <div class="tool-card"><div class="card-head">
+    <h2>油耗 / 每月油錢試算</h2>
+    <p>依里程、油耗與油價估算每月與每年油費，並看油價敏感度</p>
+  </div><div class="card-body">
+    <div class="fields">
+      <div class="field"><label>每月行駛里程（公里）</label><input type="number" id="fc-km" placeholder="例：1000" inputmode="decimal"></div>
+      <div class="field"><label>平均油耗</label><input type="number" id="fc-eff" placeholder="例：14" step="0.1" inputmode="decimal"></div>
+    </div>
+    <div class="fields">
+      <div class="field"><label>油耗單位</label>
+        <select id="fc-effunit"><option value="kmpl" selected>公里/公升 (km/L)</option><option value="l100">公升/100公里 (L/100km)</option></select></div>
+      <div class="field"><label>油價（元/公升）</label><input type="number" id="fc-price" value="30" step="0.1" inputmode="decimal"></div>
+    </div>
+    <button class="calc-btn" onclick="calcFuelCost()">試算油費</button>
+<div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9655" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+    <div class="result" id="fuel_cost-result">
+      <div class="result-top"><div class="result-number" id="fc-month">—</div><div class="result-unit">元 / 月（油費）</div></div>
+      <div class="result-grid">
+        <div class="result-cell"><div class="lbl">每年油費</div><div class="val" id="fc-year">—</div></div>
+        <div class="result-cell"><div class="lbl">每公里油錢</div><div class="val" id="fc-perkm">—</div></div>
+        <div class="result-cell"><div class="lbl">每月加油量</div><div class="val" id="fc-liter">—</div></div>
+        <div class="result-cell"><div class="lbl">換算油耗</div><div class="val" id="fc-kmpl">—</div></div>
+      </div>
+      <div class="viz" id="fc-viz" style="display:none">
+        <div class="viz-title">油價敏感度曲線（每月油費 vs 油價）</div>
+        <div id="fc-curve"></div>
+        <div class="callout" id="fc-callout"></div>
+      </div>
+      <div class="result-note" id="fc-note"></div>
+      <div class="result-disclaimer">實際油耗受駕駛習慣、路況、冷氣與載重影響，市區走停通常比高速耗油。油價以中油／台塑牌價為準。</div>
+    </div>
+    <div class="seo-box">
+      <h3>怎麼算油錢？</h3>
+      <p>每月油費 ＝ 每月里程 ÷ 平均油耗（km/L）× 油價。例如每月跑 1,000 公里、油耗 14 km/L、油價 30 元，每月油費約 2,143 元。市區走走停停油耗會更差。</p>
+    </div>
+    <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B008" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+  </div></div>
+  <div class="tool-extra">
+    <div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>油錢怎麼算、怎麼省</div>
+    <article>
+      <p>每月油費的算法很簡單：<b>每月里程 ÷ 平均油耗（km/L）× 油價</b>。油耗越高（每公升跑越多公里）、油價越低，油錢就越省。若你的油耗是用「L/100km」表示，換成 km/L 只要 100 ÷ 該數值（例如 7.1 L/100km＝14 km/L）。</p>
+      <h4>市區 vs 高速油耗差很多</h4>
+      <p>市區走走停停、頻繁起步與怠速，油耗通常比高速差 2～4 km/L。冷氣全開、重載、胎壓不足也會增加油耗。</p>
+      <table class="lf-table"><tr><th>每月里程</th><th>油耗 12 km/L</th><th>油耗 16 km/L</th></tr>
+        <tr><td>500 km</td><td>1,250 元</td><td>938 元</td></tr>
+        <tr><td>1,000 km</td><td>2,500 元</td><td>1,875 元</td></tr>
+        <tr><td>2,000 km</td><td>5,000 元</td><td>3,750 元</td></tr></table>
+      <p>（以油價 30 元/公升估算）上方的油價敏感度曲線會告訴你：油價每漲 1 元，你每月油費會多多少。</p>
+    </article>
+    <div class="lf-head"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1976D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>常見問題</div>
+    <div class="faq-acc">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">每月油費怎麼算？<span class="chev">▾</span></button><div class="faq-a">每月油費 ＝ 每月里程 ÷ 油耗（km/L）× 油價。例如 1,000 km ÷ 14 × 30 ≈ 2,143 元。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">km/L 和 L/100km 怎麼換算？<span class="chev">▾</span></button><div class="faq-a">兩者互為倒數再乘 100：km/L ＝ 100 ÷ L/100km。例如 7.1 L/100km＝14 km/L，數值越小代表越省油（L/100km）或越耗油（km/L 越大越省）。</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">開冷氣會多耗多少油？<span class="chev">▾</span></button><div class="faq-a">冷氣壓縮機運轉約增加 10～20% 油耗，市區低速時影響更明顯；高速行駛時關窗開冷氣通常比開窗省油。</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-news">
   <div class="news-header">
-    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">載入中...</div></div>
+    <div><div class="news-title">每日即時新聞</div><div class="news-meta" id="news-date">點選後載入</div></div>
     <button class="refresh-btn" onclick="loadNews()" id="refresh-btn"><span id="refresh-icon">↻</span> 重新整理</button>
   </div>
   <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="B006" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -600,6 +714,7 @@ function calcLicenseTax(){
   document.getElementById('lt-each').textContent=period===1?fmt(amt)+' 元':fmt(Math.ceil(amt/2))+' 元 × 2次';
   document.getElementById('lt-monthly').textContent=fmt(Math.round(amt/12))+' 元';
   document.getElementById('lt-note').textContent=`${cc}cc 以下${type==='car'?'自用小客車':'車輛'}年繳牌照稅 ${fmt(amt)} 元，每月平均 ${fmt(Math.round(amt/12))} 元。繳費期間為每年 4 月 1–30 日。`;
+  renderLicenseStep(type,cc,amt);
   document.getElementById('tax-result').classList.add('show');
 }
 function calcFuelTax(){
@@ -611,6 +726,7 @@ function calcFuelTax(){
   document.getElementById('ft-monthly').textContent=fmt(Math.round(final/12))+' 元';
   document.getElementById('ft-when').textContent='每年7月（隨強制險）';
   document.getElementById('ft-note').textContent=`${cc}cc ${type==='ev'?'電動車（減半）':''}燃料費 ${fmt(final)} 元/年，每年 7 月與強制險一起繳納。`;
+  renderFuelDonut(getLicenseAmt(type==='car'?'car':(type==='ev'?'ev':'moto'),cc), final);
   document.getElementById('fuel_tax-result').classList.add('show');
 }
 function calcInsurance(){
@@ -623,6 +739,7 @@ function calcInsurance(){
   document.getElementById('ins-amount').textContent=fmt(amt);
   document.getElementById('ins-tag').textContent='每年7月繳納';
   document.getElementById('ins-note').textContent=`強制險估算保費約 ${fmt(amt)} 元/年。若有肇事紀錄保費較高；連續多年無肇事可享折扣。建議至少再投保 300–500 萬第三人責任險。`;
+  renderInsuranceShield(amt);
   document.getElementById('insurance-result').classList.add('show');
 }
 function calcTransfer(){
@@ -643,6 +760,7 @@ function calcTransfer(){
   document.getElementById('tr-plate').textContent=newplate?fmt(plate)+' 元':'不換牌';
   document.getElementById('tr-taxtip').textContent=taxtip;
   document.getElementById('tr-note').textContent=`過戶基本規費約 ${fmt(total)} 元${newplate?'（含換牌費）':''}。如委託代辦另需代辦費 1,000–3,000 元。`;
+  renderTransferStack(reg,inspect,plate);
   document.getElementById('transfer-result').classList.add('show');
 }
 function calcDepreciation(){
@@ -666,10 +784,174 @@ function calcDepreciation(){
   document.getElementById('dp-yearly').textContent=yearlyDep.toFixed(1)+' 萬/年';
   document.getElementById('dp-monthly').textContent=(yearlyDep/12*10000/10000).toFixed(2)+' 萬/月（'+fmt(Math.round(yearlyDep/12*10000))+' 元）';
   document.getElementById('dp-note').textContent=`購價 ${price} 萬，車齡 ${age} 年，估算殘值約 ${value.toFixed(1)} 萬（折舊 ${(lost/price*100).toFixed(0)}%），每月折舊成本約 ${fmt(Math.round(yearlyDep/12*10000))} 元。`;
+  renderDepreciationCurve(price,rate,age,kmAdj,value);
   document.getElementById('depreciation-result').classList.add('show');
 }
 
-window.addEventListener('load',()=>loadNews());
+/* ── UI ── */
+function toggleCarType(){
+  const type=document.getElementById('lt-type').value;
+  const f=document.getElementById('lt-cc').closest('.field');
+  if(f) f.style.display=(type==='moto'||type==='ev')?'none':'';
+}
+function toggleFaq(btn){const it=btn.closest('.faq-item');if(it)it.classList.toggle('open');}
+
+/* ── 牌照稅：級距階梯曲線 ── */
+function renderLicenseStep(type,cc,amt){
+  const viz=document.getElementById('lt-viz');
+  const stepEl=document.getElementById('lt-step');
+  const co=document.getElementById('lt-callout');
+  const tbl=LICENSE_TAX[type]||LICENSE_TAX.car;
+  const levels=Object.keys(tbl).map(Number).sort((a,b)=>a-b);
+  if(type==='ev'){ stepEl.innerHTML=''; co.innerHTML='電動車目前 <b>免徵牌照稅</b>，是政府推廣電動車的租稅優惠。'; viz.style.display='block'; return; }
+  if(levels.length<2){ stepEl.innerHTML=''; co.innerHTML=`此車種採單一稅額 <b>${fmt(amt)} 元/年</b>，無排氣量級距。`; viz.style.display='block'; return; }
+  const vals=levels.map(l=>tbl[l]);
+  const maxV=Math.max(...vals);
+  const W=440,H=190,padL=10,padR=10,padT=22,padB=40;
+  const plotW=W-padL-padR,plotH=H-padT-padB,n=levels.length;
+  const X=i=>padL+i/(n-1)*plotW, Y=v=>padT+plotH-(v/maxV)*plotH;
+  let curIdx=levels.indexOf(parseInt(cc));
+  if(curIdx<0){curIdx=levels.findIndex(l=>parseInt(cc)<=l); if(curIdx<0)curIdx=0;}
+  const ccLab=lv=> lv>=9999?'5.4k+':((lv/1000)+'').replace(/\.0$/,'')+'k';
+  let d='M '+X(0)+' '+Y(vals[0]);
+  for(let i=1;i<n;i++) d+=' L '+X(i)+' '+Y(vals[i-1])+' L '+X(i)+' '+Y(vals[i]);
+  const area=d+' L '+X(n-1)+' '+(padT+plotH)+' L '+X(0)+' '+(padT+plotH)+' Z';
+  let labels='';
+  levels.forEach((lv,i)=>{ labels+=`<text x="${X(i).toFixed(1)}" y="${H-padB+20}" text-anchor="middle" font-size="9" fill="#98A4B3">${ccLab(lv)}</text>`; });
+  stepEl.innerHTML=`<svg viewBox="0 0 ${W} ${H}">
+    <path d="${area}" fill="rgba(21,101,192,.10)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>
+    ${labels}
+    <line x1="${X(curIdx).toFixed(1)}" y1="${Y(vals[curIdx]).toFixed(1)}" x2="${X(curIdx).toFixed(1)}" y2="${padT+plotH}" stroke="#1565C0" stroke-dasharray="3 3" stroke-width="1"/>
+    <circle cx="${X(curIdx).toFixed(1)}" cy="${Y(vals[curIdx]).toFixed(1)}" r="5" fill="#1565C0" stroke="#fff" stroke-width="2"/>
+    <text x="${X(curIdx).toFixed(1)}" y="${(Y(vals[curIdx])-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#1565C0" font-family="'Space Grotesk',sans-serif">${fmt(vals[curIdx])}</text>
+  </svg>`;
+  let html=`你的級距稅額 <b>${fmt(amt)} 元/年</b>。`;
+  if(curIdx+1<n) html+=`若排氣量升到下一級距（${ccLab(levels[curIdx+1])}），稅額跳到 ${fmt(vals[curIdx+1])} 元，多繳 <b>${fmt(vals[curIdx+1]-amt)} 元</b>。`;
+  else html+='已是最高級距。';
+  co.innerHTML=html; viz.style.display='block';
+}
+
+/* ── 燃料稅：年度稅費圓環 ── */
+function renderFuelDonut(license,fuel){
+  const viz=document.getElementById('ft-viz');
+  const total=license+fuel;
+  const dEl=document.getElementById('ft-donut'), leg=document.getElementById('ft-legend');
+  if(total<=0){ dEl.innerHTML=''; leg.innerHTML='<span>本車種稅費為 0（如電動車免徵）。</span>'; viz.style.display='block'; return; }
+  const cx=75,cy=75,r=54,sw=22,C=2*Math.PI*r;
+  const segs=[['牌照稅',license,'#1565C0'],['燃料費',fuel,'#64B5F6']].filter(s=>s[1]>0);
+  let off=0,arcs='';
+  segs.forEach(([n,v,col])=>{ const len=v/total*C;
+    arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;
+    off+=len; });
+  dEl.innerHTML=`<svg viewBox="0 0 150 150" style="width:148px">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EEF3F9" stroke-width="${sw}"/>${arcs}
+    <text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="20" font-weight="800" fill="#16212E" font-family="'Space Grotesk',sans-serif">${fmt(total)}</text>
+    <text x="${cx}" y="${cy+15}" text-anchor="middle" font-size="10" fill="#98A4B3">全年稅費（元）</text></svg>`;
+  leg.innerHTML=segs.map(([n,v,col])=>`<span><i style="background:${col}"></i>${n} <b>${fmt(v)}</b> 元（${(v/total*100).toFixed(0)}%）</span>`).join('');
+  viz.style.display='block';
+}
+
+/* ── 強制險：保障盾牌 ── */
+function renderInsuranceShield(premium){
+  const viz=document.getElementById('ins-viz');
+  document.getElementById('ins-shield').innerHTML=`<svg viewBox="0 0 120 140" style="width:104px">
+    <defs><linearGradient id="shg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#42A5F5"/><stop offset="1" stop-color="#1565C0"/></linearGradient></defs>
+    <path d="M60 6 L108 24 V70 C108 104 88 124 60 134 C32 124 12 104 12 70 V24 Z" fill="url(#shg)"/>
+    <path d="M40 66 l13 13 l27 -30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="60" y="114" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="'Space Grotesk',sans-serif">220萬</text></svg>`;
+  document.getElementById('ins-legend').innerHTML=
+    `<span><i style="background:#1565C0"></i>死亡／失能 <b>最高 220 萬</b></span>`+
+    `<span><i style="background:#42A5F5"></i>傷害醫療 <b>最高 20 萬</b></span>`+
+    `<span><i style="background:#90CAF9"></i>年保費 <b>${fmt(premium)}</b> 元</span>`;
+  viz.style.display='block';
+}
+
+/* ── 過戶：費用組成堆疊條 ── */
+function renderTransferStack(reg,inspect,plate){
+  const viz=document.getElementById('tr-viz');
+  const parts=[['登記費',reg,'#1565C0'],['驗車費',inspect,'#42A5F5'],['換牌費',plate,'#90CAF9']].filter(p=>p[1]>0);
+  const total=parts.reduce((s,p)=>s+p[1],0)||1;
+  document.getElementById('tr-stack').innerHTML=parts.map(([n,v,col])=>{
+    const w=v/total*100; return `<div class="seg" style="width:${w}%;background:${col}">${w>=16?fmt(v):''}</div>`;}).join('');
+  document.getElementById('tr-legend').innerHTML=
+    parts.map(([n,v,col])=>`<span><i style="background:${col}"></i>${n} <b>${fmt(v)}</b> 元</span>`).join('')+
+    `<span style="margin-left:auto">合計 <b>${fmt(total)}</b> 元</span>`;
+  viz.style.display='block';
+}
+
+/* ── 折舊：殘值曲線 ── */
+function renderDepreciationCurve(price,rate,age,kmAdj,value){
+  const viz=document.getElementById('dp-viz');
+  const maxAge=Math.max(Math.ceil(age)+2,6);
+  const pts=[]; for(let t=0;t<=maxAge;t++) pts.push(price*Math.pow(1-rate,t));
+  const maxV=price||1;
+  const W=440,H=190,padL=44,padR=12,padT=16,padB=34;
+  const plotW=W-padL-padR,plotH=H-padT-padB;
+  const X=t=>padL+t/maxAge*plotW, Y=v=>padT+plotH-(v/maxV)*plotH;
+  let d='M '+X(0)+' '+Y(pts[0]);
+  for(let t=1;t<=maxAge;t++) d+=' L '+X(t)+' '+Y(pts[t]);
+  const area=d+' L '+X(maxAge)+' '+(padT+plotH)+' L '+X(0)+' '+(padT+plotH)+' Z';
+  let grid='';
+  for(let k=0;k<=2;k++){const v=maxV*k/2,y=Y(v);grid+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="#EDF1F7"/><text x="${padL-5}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#98A4B3">${v.toFixed(0)}萬</text>`;}
+  let xl=''; const xs=Math.max(1,Math.ceil(maxAge/6));
+  for(let t=0;t<=maxAge;t+=xs) xl+=`<text x="${X(t).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${t}年</text>`;
+  const mx=X(Math.min(age,maxAge)), my=Y(value);
+  document.getElementById('dp-curve').innerHTML=`<svg viewBox="0 0 ${W} ${H}">
+    ${grid}<path d="${area}" fill="rgba(21,101,192,.10)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>${xl}
+    <line x1="${mx.toFixed(1)}" y1="${padT}" x2="${mx.toFixed(1)}" y2="${padT+plotH}" stroke="#C62828" stroke-dasharray="3 3" stroke-width="1"/>
+    <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="#C62828" stroke="#fff" stroke-width="2"/>
+    <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#C62828" font-family="'Space Grotesk',sans-serif">${value.toFixed(1)}萬</text></svg>`;
+  document.getElementById('dp-callout').innerHTML=`新車價 <b>${price}萬</b>，車齡 ${age} 年估算殘值 <b>${value.toFixed(1)}萬</b>（已折舊 ${((price-value)/price*100).toFixed(0)}%）。曲線可見殘值前幾年下降最快。`;
+  viz.style.display='block';
+}
+
+/* ── 油耗 / 每月油錢 + 油價敏感度曲線 ── */
+function calcFuelCost(){
+  const km=parseFloat(document.getElementById('fc-km').value)||0;
+  const eff=parseFloat(document.getElementById('fc-eff').value)||0;
+  const unit=document.getElementById('fc-effunit').value;
+  const price=parseFloat(document.getElementById('fc-price').value)||0;
+  if(!km||!eff||!price){alert('請填寫里程、油耗與油價');return;}
+  const kmpl=unit==='l100'?100/eff:eff;
+  const litersM=km/kmpl;
+  const month=litersM*price, year=month*12, perkm=price/kmpl;
+  document.getElementById('fc-month').textContent=fmt(month);
+  document.getElementById('fc-year').textContent=fmt(year)+' 元';
+  document.getElementById('fc-perkm').textContent=perkm.toFixed(2)+' 元/km';
+  document.getElementById('fc-liter').textContent=litersM.toFixed(1)+' 公升';
+  document.getElementById('fc-kmpl').textContent=kmpl.toFixed(1)+' km/L';
+  document.getElementById('fc-note').textContent=`每月跑 ${fmt(km)} 公里、油耗 ${kmpl.toFixed(1)} km/L、油價 ${price} 元，每月油費約 ${fmt(month)} 元，每年約 ${fmt(year)} 元。`;
+  renderFuelPriceCurve(km,kmpl,price);
+  document.getElementById('fuel_cost-result').classList.add('show');
+}
+function renderFuelPriceCurve(km,kmpl,price){
+  const viz=document.getElementById('fc-viz');
+  const litersM=km/kmpl;
+  const pMin=20,pMax=45, cost=p=>litersM*p;
+  const maxV=cost(pMax)||1;
+  const W=440,H=190,padL=48,padR=14,padT=16,padB=34;
+  const plotW=W-padL-padR,plotH=H-padT-padB;
+  const X=p=>padL+(p-pMin)/(pMax-pMin)*plotW, Y=v=>padT+plotH-(v/maxV)*plotH;
+  const d=`M ${X(pMin)} ${Y(cost(pMin))} L ${X(pMax)} ${Y(cost(pMax))}`;
+  const area=`${d} L ${X(pMax)} ${padT+plotH} L ${X(pMin)} ${padT+plotH} Z`;
+  let grid='';
+  for(let k=0;k<=2;k++){const v=maxV*k/2,y=Y(v);grid+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="#EDF1F7"/><text x="${padL-5}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#98A4B3">${fmt(v)}</text>`;}
+  let xl=''; for(let p=pMin;p<=pMax;p+=5) xl+=`<text x="${X(p).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${p}元</text>`;
+  const pc=Math.min(Math.max(price,pMin),pMax), mx=X(pc), my=Y(cost(pc));
+  document.getElementById('fc-curve').innerHTML=`<svg viewBox="0 0 ${W} ${H}">
+    ${grid}<path d="${area}" fill="rgba(21,101,192,.10)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>${xl}
+    <line x1="${mx.toFixed(1)}" y1="${padT}" x2="${mx.toFixed(1)}" y2="${padT+plotH}" stroke="#C62828" stroke-dasharray="3 3" stroke-width="1"/>
+    <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="#C62828" stroke="#fff" stroke-width="2"/>
+    <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#C62828" font-family="'Space Grotesk',sans-serif">${fmt(cost(pc))}</text></svg>`;
+  document.getElementById('fc-callout').innerHTML=`油價每漲 1 元，每月油費就多 <b>${fmt(litersM)} 元</b>（等於你每月加油量）。若油價漲到 40 元，每月約 <b>${fmt(cost(40))} 元</b>；跌到 25 元則約 ${fmt(cost(25))} 元。`;
+  viz.style.display='block';
+}
+
+/* 初始化：設定牌照稅車種對應欄位（新聞改為點選分頁才載入） */
+toggleCarType();
 </script>
 
 <script>
