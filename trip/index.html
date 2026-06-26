@@ -246,6 +246,18 @@ header{background:var(--navy);padding:0 1rem;position:sticky;top:0;z-index:400;b
 .transfer-card .amt{margin-left:auto;color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:900}
 .no-transfer{text-align:center;padding:1.5rem;color:var(--hint);font-size:13px}
 
+/* ── Trip library (旅遊記憶) ── */
+.lib-trip{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1.5px solid var(--border);border-radius:var(--r-sm);margin-bottom:8px;background:var(--surface-2);cursor:pointer;transition:border .15s,background .15s}
+.lib-trip:hover{border-color:var(--gold)}
+.lib-trip.current{border-color:var(--navy-mid);background:var(--gold-pale)}
+.lib-trip .lib-icon{width:34px;height:34px;border-radius:9px;background:var(--gold-soft);color:var(--gold);font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lib-trip .lib-info{flex:1;min-width:0}
+.lib-trip .lib-name{font-size:13px;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lib-trip .lib-meta{font-size:10.5px;color:var(--hint);margin-top:2px}
+.lib-trip .lib-cur{font-size:10px;font-weight:700;color:var(--navy-mid);background:#fff;border:1px solid var(--border);padding:1px 6px;border-radius:5px;flex-shrink:0}
+.lib-trip .lib-del{width:30px;height:30px;border:none;background:var(--red-lt);color:var(--red);border-radius:7px;font-size:15px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.lib-badge-current{font-size:9px;font-weight:800;color:var(--green);background:var(--green-lt);padding:1px 6px;border-radius:5px;flex-shrink:0}
+
 /* ── Animations ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .entry-card{animation:fadeUp .3s ease both}
@@ -284,8 +296,15 @@ header{background:var(--navy);padding:0 1rem;position:sticky;top:0;z-index:400;b
     <p>即時匯率換算、類別統計<br>分帳結算，一頁搞定</p>
   </div>
 
+  <!-- Saved trips (旅遊記憶) -->
+  <div class="setup-card" id="library-card" style="display:none">
+    <h2>旅遊記憶</h2>
+    <div id="trip-library"></div>
+    <button class="add-member-btn" style="margin-top:4px" onclick="newTrip()">＋ 建立新旅程</button>
+  </div>
+
   <div class="setup-card">
-    <h2>旅程資訊</h2>
+    <h2 id="form-heading">旅程資訊</h2>
     <div class="field">
       <label>旅程名稱</label>
       <input type="text" id="s-name" placeholder="例：日本關西 2026" maxlength="30">
@@ -371,10 +390,18 @@ header{background:var(--navy);padding:0 1rem;position:sticky;top:0;z-index:400;b
     <div class="cat-legend" id="cat-legend"></div>
   </div>
 
+  <!-- Budget burndown -->
+  <div class="chart-card" id="burn-card">
+    <div class="chart-card-title">預算燃燒圖</div>
+    <div class="chart-card-sub">實際累積 vs 理想配速</div>
+    <canvas id="burn-chart" width="420" height="190"></canvas>
+    <div class="cat-legend" id="burn-legend"></div>
+  </div>
+
   <!-- Daily chart -->
   <div class="chart-card">
-    <div class="chart-card-title">每日支出走勢</div>
-    <div class="chart-card-sub">台幣換算</div>
+    <div class="chart-card-title">每日支出</div>
+    <div class="chart-card-sub">台幣換算，紅柱表示超出每日額度</div>
     <canvas id="daily-chart" width="420" height="180"></canvas>
   </div>
 
@@ -399,7 +426,8 @@ header{background:var(--navy);padding:0 1rem;position:sticky;top:0;z-index:400;b
   <button class="export-btn" onclick="exportCSV()">📥 匯出 CSV</button>
   <div class="divider"></div>
   <div class="section-label" style="color:var(--red)">危險區域</div>
-  <button class="reset-btn" onclick="resetTrip()">🗑 清除旅程，重新開始</button>
+  <button class="reset-btn" onclick="deleteCurrentTrip()">🗑 刪除目前旅程</button>
+  <div class="rate-info" style="padding-top:.5rem">刪除後此旅程的記帳將永久移除，其他已儲存的旅遊記憶不受影響。</div>
 </div>
 
 <!-- ── Bottom Nav ── -->
@@ -473,6 +501,12 @@ header{background:var(--navy);padding:0 1rem;position:sticky;top:0;z-index:400;b
         <button class="cat-btn" data-cat="other" onclick="selectCat(this)"><span class="ico">📌</span><span class="lbl">其他</span></button>
       </div>
 
+      <!-- Date -->
+      <div class="field" style="margin-bottom:12px">
+        <label>消費日期</label>
+        <input type="date" id="e-date">
+      </div>
+
       <!-- Description -->
       <div class="field" style="margin-bottom:12px">
         <label>備註（選填）</label>
@@ -519,15 +553,27 @@ const CAT = {
 
 const fmtTWD = v => Math.round(v).toLocaleString('zh-TW');
 const fmtNum = (v, d=0) => Number(v).toLocaleString('zh-TW',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pad2 = n => n.toString().padStart(2,'0');
+const isoDate = d => { const x=new Date(d); return x.getFullYear()+'-'+pad2(x.getMonth()+1)+'-'+pad2(x.getDate()); };
+const todayISO = () => isoDate(new Date());
+function defaultEntryDate(){
+  const t=todayISO();
+  if(trip&&trip.start&&trip.end){ if(t<trip.start) return trip.start; if(t>trip.end) return trip.end; }
+  return t;
+}
 
 /* ── State ── */
 let trip = null;       // {name, dest, start, end, budget, currency, members:[]}
 let entries = [];      // [{id,ts,amount,currency,twd,rate,rateMode,customRate,cat,desc,payer}]
+let library = { activeId:null, trips:[] }; // 旅遊記憶: [{id,trip,entries,updatedAt}]
+let setupMode = 'new'; // 'new' | 'edit'
 let bankDetails = null;
 let rateMode = 'live';
 let selectedCat = 'food';
 let selectedPayer = 0;
 let editId = null;
+
+const LIB_KEY = 'calcbox_trips_v1';
 
 /* ════ FX ════ */
 async function fetchWithTimeout(url, ms=7000){
@@ -639,14 +685,26 @@ function startTrip(){
   const start=document.getElementById('s-start').value;
   const end=document.getElementById('s-end').value;
   if(!name){alert('請輸入旅程名稱');return;}
+  if(start&&end&&end<start){alert('回程日期不可早於出發日期');return;}
   const memberNames=members.map((m,i)=>m.name.trim()||String.fromCharCode(65+i));
-  trip={name,start,end,budget,currency,members:memberNames};
-  entries=[];
+
+  if(setupMode==='edit' && trip){
+    // 編輯目前旅程：保留記帳資料，只更新設定
+    trip={...trip,name,start,end,budget,currency,members:memberNames};
+  }else{
+    // 建立新旅程：封存舊的，開一筆新記憶
+    trip={name,start,end,budget,currency,members:memberNames};
+    entries=[];
+    library.activeId=genTripId();
+  }
   saveData();
   showTrip();
 }
 
+function genTripId(){ return 't'+Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
+
 function showTrip(){
+  if(entries&&entries.length) entries.sort((a,b)=>b.ts-a.ts);
   document.getElementById('page-setup').classList.remove('active');
   document.querySelectorAll('.bnav-btn:not(.add-btn)').forEach(b=>b.style.display='');
   document.querySelector('.bnav-btn.add-btn').style.display='';
@@ -654,10 +712,9 @@ function showTrip(){
 }
 
 function goSetup(){
-  if(trip&&entries.length>0){
-    if(!confirm('返回設定將保留現有記帳資料，確定繼續？')) return;
-  }
-  // populate setup from existing trip
+  // 進入設定 = 編輯目前旅程（保留記帳）
+  setupMode = trip ? 'edit' : 'new';
+  document.getElementById('form-heading').textContent = trip ? '編輯旅程' : '旅程資訊';
   if(trip){
     document.getElementById('s-name').value=trip.name||'';
     document.getElementById('s-start').value=trip.start||'';
@@ -667,8 +724,86 @@ function goSetup(){
     members=trip.members.map(n=>({name:n}));
     renderMembers();
   }
+  renderSetupLibrary();
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-setup').classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ════ 旅遊記憶（多旅程庫）════ */
+function newTrip(){
+  saveData(); // 先封存目前旅程
+  setupMode='new';
+  trip=null; entries=[];
+  document.getElementById('form-heading').textContent='建立新旅程';
+  document.getElementById('s-name').value='';
+  document.getElementById('s-budget').value='';
+  const today=new Date(); const end=new Date(); end.setDate(end.getDate()+7);
+  document.getElementById('s-start').value=isoDate(today);
+  document.getElementById('s-end').value=isoDate(end);
+  document.getElementById('s-currency').value='JPY';
+  members=[{name:''}]; renderMembers();
+  renderSetupLibrary();
+  window.scrollTo(0,0);
+}
+
+function switchToTrip(id){
+  if(id===library.activeId) { showTrip(); return; }
+  saveData(); // 封存目前
+  const rec=library.trips.find(t=>t.id===id);
+  if(!rec) return;
+  trip=rec.trip; entries=rec.entries||[]; library.activeId=id;
+  persistLibrary();
+  showTrip();
+}
+
+function deleteTrip(id, ev){
+  if(ev) ev.stopPropagation();
+  const rec=library.trips.find(t=>t.id===id);
+  if(!rec) return;
+  if(!confirm(`確定刪除「${rec.trip.name}」？此旅程的記帳將永久移除，無法復原。`)) return;
+  library.trips=library.trips.filter(t=>t.id!==id);
+  if(library.activeId===id){
+    if(library.trips.length){
+      const next=library.trips[0];
+      library.activeId=next.id; trip=next.trip; entries=next.entries||[];
+      persistLibrary(); showTrip(); return;
+    }else{
+      library.activeId=null; trip=null; entries=[];
+      persistLibrary();
+      newTrip();
+      return;
+    }
+  }
+  persistLibrary();
+  renderSetupLibrary();
+}
+
+function deleteCurrentTrip(){
+  if(library.activeId) deleteTrip(library.activeId);
+}
+
+function renderSetupLibrary(){
+  const card=document.getElementById('library-card');
+  const list=document.getElementById('trip-library');
+  if(!library.trips.length){ card.style.display='none'; return; }
+  card.style.display='';
+  const sorted=[...library.trips].sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+  list.innerHTML=sorted.map(rec=>{
+    const t=rec.trip;
+    const total=(rec.entries||[]).reduce((s,e)=>s+e.twd,0);
+    const dates=t.start&&t.end?(t.start.replace(/-/g,'/')+'–'+t.end.slice(5).replace(/-/g,'/')):'';
+    const isCur=rec.id===library.activeId;
+    return `<div class="lib-trip ${isCur?'current':''}" onclick="switchToTrip('${rec.id}')">
+      <div class="lib-icon">✈️</div>
+      <div class="lib-info">
+        <div class="lib-name">${t.name||'未命名旅程'} ${isCur?'<span class="lib-badge-current">目前</span>':''}</div>
+        <div class="lib-meta">${dates}　${(rec.entries||[]).length} 筆　NT$ ${fmtTWD(total)}</div>
+      </div>
+      <span class="lib-cur">${t.currency||''}</span>
+      <button class="lib-del" onclick="deleteTrip('${rec.id}',event)">×</button>
+    </div>`;
+  }).join('');
 }
 
 /* ════ Pages ════ */
@@ -703,6 +838,7 @@ function openSheet(id=null){
       document.getElementById('e-amount').value=e.amount;
       document.getElementById('e-currency').value=e.currency;
       document.getElementById('e-desc').value=e.desc||'';
+      document.getElementById('e-date').value=isoDate(e.ts);
       selectedCat=e.cat||'food';
       selectedPayer=trip.members.indexOf(e.payer);
       if(selectedPayer<0) selectedPayer=0;
@@ -716,6 +852,7 @@ function openSheet(id=null){
   }else{
     document.getElementById('e-amount').value='';
     document.getElementById('e-desc').value='';
+    document.getElementById('e-date').value=defaultEntryDate();
     selectedCat='food';
     selectedPayer=0;
     setRateMode('live');
@@ -806,9 +943,21 @@ function submitEntry(){
   const twd=cur==='TWD'?amt:amt*rate;
   const customRate=rateMode==='custom'?parseFloat(document.getElementById('e-custom-rate').value):null;
 
+  // 以選定日期組合時間戳（編輯保留原時分秒，新增用當下時間）
+  const dateStr=document.getElementById('e-date').value||defaultEntryDate();
+  let ts;
+  if(editId){
+    const old=entries.find(e=>e.id===editId);
+    const od=old?new Date(old.ts):new Date();
+    ts=new Date(dateStr+'T'+pad2(od.getHours())+':'+pad2(od.getMinutes())+':'+pad2(od.getSeconds())).getTime();
+  }else{
+    const now=new Date();
+    ts=new Date(dateStr+'T'+pad2(now.getHours())+':'+pad2(now.getMinutes())+':'+pad2(now.getSeconds())).getTime();
+  }
+
   const entry={
     id:editId||Date.now().toString(36)+Math.random().toString(36).slice(2,5),
-    ts:editId?(entries.find(e=>e.id===editId)?.ts||Date.now()):Date.now(),
+    ts:ts,
     amount:amt, currency:cur, twd:Math.round(twd),
     rate:rate||null, rateMode, customRate:customRate||null,
     cat:selectedCat, desc, payer:trip.members[selectedPayer]||trip.members[0]
@@ -820,6 +969,7 @@ function submitEntry(){
   }else{
     entries.unshift(entry);
   }
+  entries.sort((a,b)=>b.ts-a.ts);
   saveData();
   closeSheet();
   if(document.getElementById('page-home').classList.contains('active')) renderHome();
@@ -861,6 +1011,8 @@ function renderHome(){
 
   // cat chart
   renderCatChart();
+  // burndown
+  renderBurndownChart();
   // daily chart
   renderDailyChart();
   // recent
@@ -905,12 +1057,12 @@ function deleteEntry(id){
   renderList();
 }
 
-/* ── Category SVG bar chart ── */
+/* ── Category SVG donut chart ── */
 function renderCatChart(){
   const totals={};
   Object.keys(CAT).forEach(k=>totals[k]=0);
   entries.forEach(e=>{totals[e.cat||'other']=(totals[e.cat||'other']||0)+e.twd;});
-  const totalAll=Object.values(totals).reduce((a,b)=>a+b,0)||1;
+  const totalAll=Object.values(totals).reduce((a,b)=>a+b,0)||0;
   const sorted=Object.entries(totals).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
 
   if(!sorted.length){
@@ -919,118 +1071,206 @@ function renderCatChart(){
     return;
   }
 
-  const W=400, rowH=32, padL=4, padR=90, padT=4;
-  const H=sorted.length*rowH+padT*2;
-  const barMax=W-padL-padR;
-  const maxV=sorted[0][1];
-
-  let rows='';
-  sorted.forEach(([cat,val],i)=>{
-    const info=CAT[cat]||CAT.other;
-    const y=padT+i*rowH;
-    const w=Math.max((val/maxV)*barMax,4);
-    const pct=(val/totalAll*100).toFixed(0)+'%';
-    rows+=`
-      <text x="${padL}" y="${y+13}" font-size="12" font-weight="700" fill="#16212E" font-family="'Noto Sans TC',sans-serif">${info.icon} ${info.label}</text>
-      <rect x="${padL}" y="${y+16}" width="${barMax}" height="12" rx="4" fill="#F0F2F5"/>
-      <rect x="${padL}" y="${y+16}" width="${w.toFixed(1)}" height="12" rx="4" fill="${info.color}">
-        <title>${info.label}：NT$ ${fmtTWD(val)} (${pct})</title></rect>
-      <text x="${padL+barMax+6}" y="${y+26}" font-size="11" font-weight="700" fill="${info.color}" font-family="'Space Grotesk',sans-serif">${pct}</text>`;
+  const W=200,H=200,cx=W/2,cy=H/2,r=66,sw=28;
+  const C=2*Math.PI*r;
+  // 色碼（取 CSS 變數對應的實際色，供 SVG stroke 使用）
+  const CATHEX={food:'#E65100',transport:'#1565C0',hotel:'#6A1B9A',shop:'#C62828',ticket:'#2E7D32',other:'#546E7A'};
+  let offset=0,arcs='';
+  sorted.forEach(([cat,val])=>{
+    const frac=val/totalAll;
+    const len=frac*C;
+    const col=CATHEX[cat]||'#546E7A';
+    arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}"
+      stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"
+      transform="rotate(-90 ${cx} ${cy})"><title>${(CAT[cat]||CAT.other).label}：NT$ ${fmtTWD(val)} (${(frac*100).toFixed(0)}%)</title></circle>`;
+    offset+=len;
   });
 
-  document.getElementById('cat-chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="overflow:visible">${rows}</svg>`;
+  const svg=`<svg viewBox="0 0 ${W} ${H}" style="max-width:230px;margin:0 auto;display:block">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#F0F2F5" stroke-width="${sw}"/>
+    ${arcs}
+    <text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="22" font-weight="800" fill="#16212E" font-family="'Space Grotesk',sans-serif">$${fmtTWD(totalAll)}</text>
+    <text x="${cx}" y="${cy+16}" text-anchor="middle" font-size="11" fill="#98A4B3" font-family="'Noto Sans TC',sans-serif">總花費</text>
+  </svg>`;
+  document.getElementById('cat-chart').innerHTML=svg;
 
-  // legend
-  document.getElementById('cat-legend').innerHTML=sorted.map(([cat])=>{
+  // legend（含百分比）
+  document.getElementById('cat-legend').innerHTML=sorted.map(([cat,val])=>{
     const info=CAT[cat]||CAT.other;
-    return `<span><i style="background:${info.color}"></i>${info.label}</span>`;
+    const pct=(val/totalAll*100).toFixed(0);
+    return `<span><i style="background:${CATHEX[cat]||'#546E7A'}"></i>${info.label} ${pct}%</span>`;
   }).join('');
 }
 
-/* ── Daily canvas line chart ── */
-function renderDailyChart(){
-  const cv=document.getElementById('daily-chart');
-  if(!cv) return;
-  const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));
-  const W=420,H=180;
-  cv.width=W*dpr; cv.height=H*dpr;
-  cv.style.width='100%'; cv.style.height=(H*cv.offsetWidth/W||H)+'px';
+/* ── Canvas helper：像素尺寸只初始化一次，dpr 鎖定一次（鐵則 1+2）── */
+function prepCanvas(cv,W,H){
+  if(!cv.dataset.sized){
+    const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));
+    cv.width=W*dpr; cv.height=H*dpr;
+    cv.style.width='100%'; cv.style.height='auto';
+    cv.dataset.sized='1'; cv.dataset.dpr=dpr;
+  }
+  const dpr=parseFloat(cv.dataset.dpr)||1;
   const ctx=cv.getContext('2d');
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.clearRect(0,0,W,H);
+  return ctx;
+}
 
-  if(!entries.length){
-    ctx.fillStyle='#98A4B3'; ctx.font='12px "Noto Sans TC",sans-serif'; ctx.textAlign='center';
-    ctx.fillText('尚無資料',W/2,H/2);
-    return;
+/* ── 旅程日期序列（含起訖；無日期則用記帳日）── */
+function tripDayList(){
+  if(trip&&trip.start&&trip.end){
+    const out=[]; let d=new Date(trip.start+'T00:00:00'); const end=new Date(trip.end+'T00:00:00');
+    let g=0; while(d<=end&&g<400){ out.push(isoDate(d)); d.setDate(d.getDate()+1); g++; }
+    return out;
+  }
+  return [...new Set(entries.map(e=>isoDate(e.ts)))].sort();
+}
+
+/* ── 預算燃燒圖：實際累積 vs 理想配速 ── */
+function renderBurndownChart(){
+  const cv=document.getElementById('burn-chart'); if(!cv) return;
+  const W=420,H=190;
+  const legend=document.getElementById('burn-legend');
+  const days=tripDayList();
+
+  if(!entries.length||days.length<1){
+    const ctx=prepCanvas(cv,W,H);
+    ctx.fillStyle='#98A4B3';ctx.font='12px "Noto Sans TC",sans-serif';ctx.textAlign='center';
+    ctx.fillText('開始記帳後顯示燃燒圖',W/2,H/2);
+    if(legend) legend.innerHTML=''; return;
   }
 
-  // build day map
   const dayMap={};
-  entries.forEach(e=>{
-    const d=new Date(e.ts);
-    const key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
-    dayMap[key]=(dayMap[key]||0)+e.twd;
-  });
-  const keys=Object.keys(dayMap).sort();
-  if(keys.length===1) keys.unshift(''); // pad for single point
+  entries.forEach(e=>{const k=isoDate(e.ts);dayMap[k]=(dayMap[k]||0)+e.twd;});
+  const todayK=todayISO();
+  const n=days.length;
+  const budget=trip.budget||0;
+  const idealPer=budget?budget/n:0;
 
-  const values=keys.map(k=>dayMap[k]||0);
-  const maxV=Math.max(...values)*1.2||1;
+  const actualCum=[]; let run=0,lastIdx=-1;
+  days.forEach((k,i)=>{ run+=dayMap[k]||0; if(k<=todayK){actualCum[i]=run;lastIdx=i;} else actualCum[i]=null; });
+  if(lastIdx<0){ run=dayMap[days[0]]||0; actualCum[0]=run; lastIdx=0; }
 
-  const padL=52,padR=16,padT=16,padB=36;
+  const maxActual=Math.max(...actualCum.filter(v=>v!=null),0);
+  const yMax=(Math.max(budget,maxActual)*1.08)||1; // 動態 Y（鐵則 3）
+
+  const ctx=prepCanvas(cv,W,H);
+  const padL=50,padR=16,padT=16,padB=34;
   const plotW=W-padL-padR,plotH=H-padT-padB;
-  const X=i=>padL+i/(keys.length-1||1)*plotW;
-  const Y=v=>padT+plotH-(v/maxV)*plotH;
+  const X=i=>padL+(n<=1?plotW/2:i/(n-1)*plotW);
+  const Y=v=>padT+plotH-(v/yMax)*plotH;
 
-  // grid
-  ctx.strokeStyle='#EDF1F7'; ctx.lineWidth=1;
-  ctx.fillStyle='#98A4B3'; ctx.font='10px "Space Grotesk",sans-serif'; ctx.textAlign='right';
-  const yStep=Math.max(1000,Math.ceil(maxV/3/1000)*1000);
-  for(let v=0;v<=maxV;v+=yStep){
-    const y=Y(v);
-    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke();
-    ctx.fillText('$'+fmtTWD(v),padL-5,y+3.5);
+  // grid + y labels
+  ctx.strokeStyle='#EDF1F7';ctx.lineWidth=1;
+  ctx.fillStyle='#98A4B3';ctx.font='10px "Space Grotesk",sans-serif';ctx.textAlign='right';
+  const yStep=Math.max(1000,Math.ceil(yMax/3/1000)*1000);
+  for(let v=0;v<=yMax;v+=yStep){const y=Y(v);ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.fillText('$'+fmtTWD(v),padL-5,y+3.5);}
+
+  // 理想配速線（金色虛線）
+  if(budget){
+    ctx.strokeStyle='#C28A1A';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();
+    days.forEach((_,i)=>{const x=X(i),y=Y(idealPer*(i+1));i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);});
+    ctx.stroke();ctx.setLineDash([]);
   }
 
-  // fill area
+  // 實際累積（深藍面積+線，畫到今天）
   ctx.save();
   const grd=ctx.createLinearGradient(0,padT,0,padT+plotH);
-  grd.addColorStop(0,'rgba(45,108,181,.25)');
-  grd.addColorStop(1,'rgba(45,108,181,.02)');
-  ctx.fillStyle=grd;
-  ctx.beginPath();
-  ctx.moveTo(X(0),padT+plotH);
-  keys.forEach((_,i)=>ctx.lineTo(X(i),Y(values[i])));
-  ctx.lineTo(X(keys.length-1),padT+plotH);
-  ctx.closePath(); ctx.fill();
-  ctx.restore();
+  grd.addColorStop(0,'rgba(27,58,92,.22)');grd.addColorStop(1,'rgba(27,58,92,.02)');
+  ctx.fillStyle=grd;ctx.beginPath();ctx.moveTo(X(0),padT+plotH);
+  for(let i=0;i<=lastIdx;i++)ctx.lineTo(X(i),Y(actualCum[i]));
+  ctx.lineTo(X(lastIdx),padT+plotH);ctx.closePath();ctx.fill();ctx.restore();
 
-  // line
-  ctx.strokeStyle='#2D6CB5'; ctx.lineWidth=2.5; ctx.lineJoin='round';
-  ctx.beginPath();
-  keys.forEach((_,i)=>{ i===0?ctx.moveTo(X(i),Y(values[i])):ctx.lineTo(X(i),Y(values[i])); });
+  ctx.strokeStyle='#1B3A5C';ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.beginPath();
+  for(let i=0;i<=lastIdx;i++){const x=X(i),y=Y(actualCum[i]);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
   ctx.stroke();
 
-  // dots + labels
-  keys.forEach((k,i)=>{
-    if(!k) return;
-    const x=X(i),y=Y(values[i]);
-    ctx.fillStyle='#2D6CB5';
-    ctx.beginPath(); ctx.arc(x,y,4,0,7); ctx.fill();
-    ctx.fillStyle='#fff';
-    ctx.beginPath(); ctx.arc(x,y,2.5,0,7); ctx.fill();
+  // 末點：超前理想=綠、落後=紅
+  const over = budget ? actualCum[lastIdx] > idealPer*(lastIdx+1) : false;
+  const dotCol=budget?(over?'#C62828':'#2E7D32'):'#1B3A5C';
+  const lx=X(lastIdx),ly=Y(actualCum[lastIdx]);
+  ctx.fillStyle=dotCol;ctx.beginPath();ctx.arc(lx,ly,4.5,0,7);ctx.fill();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(lx,ly,2.3,0,7);ctx.fill();
+  ctx.fillStyle=dotCol;ctx.font='bold 9.5px "Space Grotesk",sans-serif';ctx.textAlign=lastIdx>n-2?'right':'center';
+  ctx.fillText('$'+fmtTWD(actualCum[lastIdx]),lx,ly-9);
 
-    // x label
-    const parts=k.split('-');
-    ctx.fillStyle='#98A4B3'; ctx.font='10px "Space Grotesk",sans-serif'; ctx.textAlign='center';
-    ctx.fillText((parseInt(parts[1]))+'/'+parseInt(parts[2]),x,H-padB+14);
-    // value label
-    if(values[i]>0){
-      ctx.fillStyle='#1B3A5C'; ctx.font='bold 9.5px "Space Grotesk",sans-serif';
-      ctx.fillText('$'+fmtTWD(values[i]),x,y-8);
+  // x labels（疏化）
+  ctx.fillStyle='#98A4B3';ctx.font='10px "Space Grotesk",sans-serif';ctx.textAlign='center';
+  const step=Math.max(1,Math.ceil(n/6));
+  days.forEach((k,i)=>{ if(i%step!==0 && i!==n-1) return; const p=k.split('-'); ctx.fillText(parseInt(p[1])+'/'+parseInt(p[2]),X(i),H-padB+15);});
+
+  if(legend){
+    const status=!budget?'未設定預算':(over?'<span style="color:var(--red)">超出配速</span>':'<span style="color:var(--green)">配速健康</span>');
+    legend.innerHTML=`<span><i style="background:#1B3A5C"></i>實際累積</span>
+      <span><i style="background:#C28A1A"></i>理想配速</span>
+      <span style="margin-left:auto">${status}</span>`;
+  }
+}
+
+/* ── 每日支出長條圖（含每日額度參考線）── */
+function renderDailyChart(){
+  const cv=document.getElementById('daily-chart'); if(!cv) return;
+  const W=420,H=180;
+  const ctx=prepCanvas(cv,W,H);
+
+  if(!entries.length){
+    ctx.fillStyle='#98A4B3';ctx.font='12px "Noto Sans TC",sans-serif';ctx.textAlign='center';
+    ctx.fillText('尚無資料',W/2,H/2);return;
+  }
+
+  const dayMap={};
+  entries.forEach(e=>{const k=isoDate(e.ts);dayMap[k]=(dayMap[k]||0)+e.twd;});
+  const tdays=tripDayList();
+  let keys=(tdays.length&&tdays.length<=31)?tdays:[...new Set(entries.map(e=>isoDate(e.ts)))].sort();
+  const values=keys.map(k=>dayMap[k]||0);
+  const allowance=(trip.budget&&tdays.length)?trip.budget/tdays.length:0;
+  const maxV=(Math.max(Math.max(...values),allowance)*1.15)||1; // 動態 Y（鐵則 3）
+
+  const padL=46,padR=14,padT=18,padB=32;
+  const plotW=W-padL-padR,plotH=H-padT-padB;
+  const X=i=>padL+(i+0.5)/keys.length*plotW;
+  const Y=v=>padT+plotH-(v/maxV)*plotH;
+  const barW=Math.min(28,(plotW/keys.length)*0.6);
+
+  // grid + y labels
+  ctx.strokeStyle='#EDF1F7';ctx.lineWidth=1;
+  ctx.fillStyle='#98A4B3';ctx.font='10px "Space Grotesk",sans-serif';ctx.textAlign='right';
+  const yStep=Math.max(1000,Math.ceil(maxV/3/1000)*1000);
+  for(let v=0;v<=maxV;v+=yStep){const y=Y(v);ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.fillText('$'+fmtTWD(v),padL-5,y+3.5);}
+
+  // bars
+  keys.forEach((k,i)=>{
+    const v=values[i]; if(v<=0) return;
+    const x=X(i),y=Y(v),h=padT+plotH-y;
+    ctx.fillStyle = allowance>0 ? (v>allowance?'#C62828':'#2E7D32') : '#2D6CB5';
+    const r=Math.min(4,barW/2);
+    ctx.beginPath();
+    ctx.moveTo(x-barW/2,y+r);
+    ctx.arcTo(x-barW/2,y,x-barW/2+r,y,r);
+    ctx.lineTo(x+barW/2-r,y);
+    ctx.arcTo(x+barW/2,y,x+barW/2,y+r,r);
+    ctx.lineTo(x+barW/2,y+h);ctx.lineTo(x-barW/2,y+h);ctx.closePath();ctx.fill();
+    if(keys.length<=10){
+      ctx.fillStyle='#1B3A5C';ctx.font='bold 9px "Space Grotesk",sans-serif';ctx.textAlign='center';
+      ctx.fillText('$'+fmtTWD(v),x,y-5);
     }
   });
+
+  // 每日額度線（金色虛線）
+  if(allowance>0){
+    const y=Y(allowance);
+    ctx.strokeStyle='#C28A1A';ctx.lineWidth=1.5;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#C28A1A';ctx.font='9px sans-serif';ctx.textAlign='left';
+    ctx.fillText('每日額度 $'+fmtTWD(allowance),padL+2,y-3);
+  }
+
+  // x labels（疏化）
+  ctx.fillStyle='#98A4B3';ctx.font='10px "Space Grotesk",sans-serif';ctx.textAlign='center';
+  const step=Math.max(1,Math.ceil(keys.length/7));
+  keys.forEach((k,i)=>{ if(i%step!==0 && i!==keys.length-1) return; const p=k.split('-'); ctx.fillText(parseInt(p[1])+'/'+parseInt(p[2]),X(i),H-padB+14);});
 }
 
 /* ════ Split ════ */
@@ -1113,28 +1353,46 @@ function exportCSV(){
   a.click();
 }
 
-/* ════ Reset ════ */
-function resetTrip(){
-  if(!confirm('確定清除所有旅程資料？此操作無法復原。')) return;
-  trip=null; entries=[];
-  localStorage.removeItem(STORAGE_KEY);
-  location.reload();
+/* ════ Persist（旅遊記憶庫）════ */
+function persistLibrary(){
+  try{localStorage.setItem(LIB_KEY,JSON.stringify(library));}catch(e){console.warn('save failed',e);}
 }
 
-/* ════ Persist ════ */
 function saveData(){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify({trip,entries}));}catch(e){console.warn('save failed',e);}
+  if(!trip) { persistLibrary(); return; }
+  if(!library.activeId) library.activeId=genTripId();
+  let rec=library.trips.find(t=>t.id===library.activeId);
+  if(!rec){ rec={id:library.activeId,trip,entries,updatedAt:Date.now()}; library.trips.push(rec); }
+  else { rec.trip=trip; rec.entries=entries; rec.updatedAt=Date.now(); }
+  persistLibrary();
 }
 
-function loadData(){
+function loadLibrary(){
   try{
-    const raw=localStorage.getItem(STORAGE_KEY);
-    if(!raw) return false;
-    const d=JSON.parse(raw);
-    if(!d||!d.trip) return false;
-    trip=d.trip; entries=d.entries||[];
-    return true;
-  }catch(e){return false;}
+    const raw=localStorage.getItem(LIB_KEY);
+    if(raw){
+      const d=JSON.parse(raw);
+      if(d&&Array.isArray(d.trips)&&d.trips.length){
+        library=d;
+        const act=library.trips.find(t=>t.id===library.activeId)||library.trips[0];
+        if(act){ trip=act.trip; entries=(act.entries||[]).slice().sort((a,b)=>b.ts-a.ts); library.activeId=act.id; return true; }
+      }
+      return false;
+    }
+    // 舊版單一旅程資料 → 遷移為第一筆旅遊記憶
+    const old=localStorage.getItem(STORAGE_KEY);
+    if(old){
+      const d=JSON.parse(old);
+      if(d&&d.trip){
+        const id=genTripId();
+        trip=d.trip; entries=(d.entries||[]).slice().sort((a,b)=>b.ts-a.ts);
+        library={activeId:id,trips:[{id,trip,entries,updatedAt:Date.now()}]};
+        persistLibrary();
+        return true;
+      }
+    }
+  }catch(e){}
+  return false;
 }
 
 /* ════ Init ════ */
@@ -1144,19 +1402,19 @@ function loadData(){
 
   // default dates
   const today=new Date();
-  const pad=n=>n.toString().padStart(2,'0');
-  const todayStr=`${today.getFullYear()}-${pad(today.getMonth()+1)}-${pad(today.getDate())}`;
-  document.getElementById('s-start').value=todayStr;
-  // end = today + 7
+  document.getElementById('s-start').value=isoDate(today);
   const end=new Date(today); end.setDate(end.getDate()+7);
-  document.getElementById('s-end').value=`${end.getFullYear()}-${pad(end.getMonth()+1)}-${pad(end.getDate())}`;
+  document.getElementById('s-end').value=isoDate(end);
 
   // default member
   renderMembers();
 
-  // load saved
-  if(loadData()){
+  // load saved（旅遊記憶）
+  if(loadLibrary()){
     showTrip();
+  }else{
+    setupMode='new';
+    renderSetupLibrary();
   }
 
   // load rates
