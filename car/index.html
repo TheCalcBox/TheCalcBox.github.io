@@ -241,7 +241,9 @@ footer a:hover{color:#F3C969!important}
 /* ── 視覺化通用 ── */
 .viz{margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--border)}
 .viz-title{font-size:11px;font-weight:700;color:var(--hint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem}
-.viz svg{display:block;max-width:100%;height:auto}
+.viz svg{display:block;max-width:100%;height:auto;animation:vizIn .45s ease both}
+@keyframes vizIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.viz-legend span{display:inline-flex;align-items:center}
 .viz-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:var(--muted)}
 .viz-legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
 .viz-legend b{color:var(--text);font-weight:700}
@@ -1001,11 +1003,12 @@ function renderLicenseStep(type,cc,amt){
   let labels='';
   levels.forEach((lv,i)=>{ labels+=`<text x="${X(i).toFixed(1)}" y="${H-padB+20}" text-anchor="middle" font-size="9" fill="#98A4B3">${ccLab(lv)}</text>`; });
   stepEl.innerHTML=`<svg viewBox="0 0 ${W} ${H}">
-    <path d="${area}" fill="rgba(21,101,192,.10)"/>
-    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>
+    <defs><linearGradient id="stepg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1565C0" stop-opacity=".22"/><stop offset="1" stop-color="#1565C0" stop-opacity=".03"/></linearGradient></defs>
+    <rect x="${(X(curIdx)-plotW/(n-1)*0.33).toFixed(1)}" y="${padT}" width="${(plotW/(n-1)*0.66).toFixed(1)}" height="${plotH}" fill="#F3C969" fill-opacity=".32" rx="4"/>
+    <path d="${area}" fill="url(#stepg)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
     ${labels}
-    <line x1="${X(curIdx).toFixed(1)}" y1="${Y(vals[curIdx]).toFixed(1)}" x2="${X(curIdx).toFixed(1)}" y2="${padT+plotH}" stroke="#1565C0" stroke-dasharray="3 3" stroke-width="1"/>
-    <circle cx="${X(curIdx).toFixed(1)}" cy="${Y(vals[curIdx]).toFixed(1)}" r="5" fill="#1565C0" stroke="#fff" stroke-width="2"/>
+    <circle cx="${X(curIdx).toFixed(1)}" cy="${Y(vals[curIdx]).toFixed(1)}" r="5.5" fill="#1565C0" stroke="#fff" stroke-width="2.5"/>
     <text x="${X(curIdx).toFixed(1)}" y="${(Y(vals[curIdx])-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#1565C0" font-family="'Space Grotesk',sans-serif">${fmt(vals[curIdx])}</text>
   </svg>`;
   let html=`你的級距稅額 <b>${fmt(amt)} 元/年</b>。`;
@@ -1024,7 +1027,7 @@ function renderFuelDonut(license,fuel){
   const segs=[['牌照稅',license,'#1565C0'],['燃料費',fuel,'#64B5F6']].filter(s=>s[1]>0);
   let off=0,arcs='';
   segs.forEach(([n,v,col])=>{ const len=v/total*C;
-    arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;
+    {const dl=Math.max(len-4,0.5);arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${dl.toFixed(2)} ${(C-dl).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;}
     off+=len; });
   dEl.innerHTML=`<svg viewBox="0 0 150 150" style="width:148px">
     <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EEF3F9" stroke-width="${sw}"/>${arcs}
@@ -1037,15 +1040,18 @@ function renderFuelDonut(license,fuel){
 /* ── 強制險：保障盾牌 ── */
 function renderInsuranceShield(premium){
   const viz=document.getElementById('ins-viz');
-  document.getElementById('ins-shield').innerHTML=`<svg viewBox="0 0 120 140" style="width:104px">
+  document.getElementById('ins-shield').innerHTML=`<svg viewBox="0 0 120 142" style="width:108px">
     <defs><linearGradient id="shg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#42A5F5"/><stop offset="1" stop-color="#1565C0"/></linearGradient></defs>
-    <path d="M60 6 L108 24 V70 C108 104 88 124 60 134 C32 124 12 104 12 70 V24 Z" fill="url(#shg)"/>
+    <path d="M60 4 L110 23 V70 C110 105 89 126 60 137 C31 126 10 105 10 70 V23 Z" fill="#BBD9F5"/>
+    <path d="M60 9 L105 26 V70 C105 101 86 119 60 129 C34 119 15 101 15 70 V26 Z" fill="url(#shg)"/>
     <path d="M40 66 l13 13 l27 -30" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="60" y="114" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="'Space Grotesk',sans-serif">220萬</text></svg>`;
+    <text x="60" y="112" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="'Space Grotesk',sans-serif">強制保障</text></svg>`;
+  const row=(label,val,frac,col)=>`<div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px"><span style="color:var(--muted)">${label}</span><b style="color:#16212E">${val}</b></div><div style="height:9px;background:#EEF3F9;border-radius:4px;overflow:hidden"><div style="width:${(frac*100).toFixed(0)}%;height:100%;background:${col};border-radius:4px"></div></div></div>`;
   document.getElementById('ins-legend').innerHTML=
-    `<span><i style="background:#1565C0"></i>死亡／失能 <b>最高 220 萬</b></span>`+
-    `<span><i style="background:#42A5F5"></i>傷害醫療 <b>最高 20 萬</b></span>`+
-    `<span><i style="background:#90CAF9"></i>年保費 <b>${fmt(premium)}</b> 元</span>`;
+    `<div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:9px">`+
+    row('死亡／失能','最高 220 萬',1,'#1565C0')+
+    row('傷害醫療','最高 20 萬',20/220,'#42A5F5')+
+    `<div style="font-size:12px;color:var(--muted);margin-top:2px">年保費約 <b style="color:var(--accent-mid)">${fmt(premium)}</b> 元</div></div>`;
   viz.style.display='block';
 }
 
@@ -1080,8 +1086,9 @@ function renderDepreciationCurve(price,rate,age,kmAdj,value){
   for(let t=0;t<=maxAge;t+=xs) xl+=`<text x="${X(t).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${t}年</text>`;
   const mx=X(Math.min(age,maxAge)), my=Y(value);
   document.getElementById('dp-curve').innerHTML=`<svg viewBox="0 0 ${W} ${H}">
-    ${grid}<path d="${area}" fill="rgba(21,101,192,.10)"/>
-    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>${xl}
+    <defs><linearGradient id="dpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1565C0" stop-opacity=".20"/><stop offset="1" stop-color="#1565C0" stop-opacity=".02"/></linearGradient></defs>
+    ${grid}<path d="${area}" fill="url(#dpg)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${xl}
     <line x1="${mx.toFixed(1)}" y1="${padT}" x2="${mx.toFixed(1)}" y2="${padT+plotH}" stroke="#C62828" stroke-dasharray="3 3" stroke-width="1"/>
     <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="#C62828" stroke="#fff" stroke-width="2"/>
     <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#C62828" font-family="'Space Grotesk',sans-serif">${value.toFixed(1)}萬</text></svg>`;
@@ -1123,8 +1130,9 @@ function renderFuelPriceCurve(km,kmpl,price){
   let xl=''; for(let p=pMin;p<=pMax;p+=5) xl+=`<text x="${X(p).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${p}元</text>`;
   const pc=Math.min(Math.max(price,pMin),pMax), mx=X(pc), my=Y(cost(pc));
   document.getElementById('fc-curve').innerHTML=`<svg viewBox="0 0 ${W} ${H}">
-    ${grid}<path d="${area}" fill="rgba(21,101,192,.10)"/>
-    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round"/>${xl}
+    <defs><linearGradient id="fpg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1565C0" stop-opacity=".20"/><stop offset="1" stop-color="#1565C0" stop-opacity=".02"/></linearGradient></defs>
+    ${grid}<path d="${area}" fill="url(#fpg)"/>
+    <path d="${d}" fill="none" stroke="#1565C0" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${xl}
     <line x1="${mx.toFixed(1)}" y1="${padT}" x2="${mx.toFixed(1)}" y2="${padT+plotH}" stroke="#C62828" stroke-dasharray="3 3" stroke-width="1"/>
     <circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="#C62828" stroke="#fff" stroke-width="2"/>
     <text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="800" fill="#C62828" font-family="'Space Grotesk',sans-serif">${fmt(cost(pc))}</text></svg>`;
@@ -1139,22 +1147,47 @@ function _show(id){document.getElementById(id).classList.add('show');}
 function _leg(id,items){document.getElementById(id).innerHTML=items.map(a=>`<span><i style="background:${a[1]}"></i>${a[0]}</span>`).join('');}
 function _co(id,html){document.getElementById(id).innerHTML=html;}
 function fmtHours(h){if(h<1)return Math.round(h*60)+' 分鐘';const H=Math.floor(h),M=Math.round((h-H)*60);return H+' 小時'+(M?' '+M+' 分':'');}
-/* 共用折線圖（1–2 條線、可標記與垂直導引） */
+/* 共用折線圖（1–2 條線、區域填色、差距帶、自動交叉點、標記與導引） */
 function drawLineChart(cid,o){
-  const W=440,H=190,padL=o.padL||52,padR=14,padT=16,padB=34;
+  const W=440,H=190,padL=o.padL||52,padR=14,padT=18,padB=34;
   const plotW=W-padL-padR,plotH=H-padT-padB,xMax=o.xMax||1;
   let yMax=0;
   o.series.forEach(s=>{for(let i=0;i<=30;i++){yMax=Math.max(yMax,s.f(xMax*i/30));}});
   (o.markers||[]).forEach(m=>yMax=Math.max(yMax,m.y));
   yMax=(yMax*1.08)||1;
   const X=x=>padL+x/xMax*plotW, Y=y=>padT+plotH-(y/yMax)*plotH;
+  const SAMP=48;
+  // grid + y labels
   let grid='';
   for(let k=0;k<=2;k++){const v=yMax*k/2,y=Y(v);grid+=`<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="#EDF1F7"/><text x="${padL-5}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#98A4B3">${o.yFmt?o.yFmt(v):Math.round(v)}</text>`;}
+  // 差距帶（兩線之間）
+  let band='';
+  if(o.band&&o.series.length>=2){
+    const f0=o.series[0].f,f1=o.series[1].f; let p='M ';
+    for(let i=0;i<=SAMP;i++){const x=xMax*i/SAMP;p+=(i?'L ':'')+X(x).toFixed(1)+' '+Y(f0(x)).toFixed(1)+' ';}
+    for(let i=SAMP;i>=0;i--){const x=xMax*i/SAMP;p+='L '+X(x).toFixed(1)+' '+Y(f1(x)).toFixed(1)+' ';}
+    band=`<path d="${p}Z" fill="#1565C0" fill-opacity=".07" fill-rule="evenodd"/>`;
+  }
+  // 區域填色
+  let areas='';
+  if(o.fill){o.series.forEach(s=>{let d='M '+X(0).toFixed(1)+' '+(padT+plotH);for(let i=0;i<=SAMP;i++){const x=xMax*i/SAMP;d+=' L '+X(x).toFixed(1)+' '+Y(s.f(x)).toFixed(1);}d+=' L '+X(xMax).toFixed(1)+' '+(padT+plotH)+' Z';areas+=`<path d="${d}" fill="${s.color}" fill-opacity=".09"/>`;});}
+  // 垂直導引
   let guides='';(o.vGuides||[]).forEach(g=>{const gx=X(Math.min(g.x,xMax));guides+=`<line x1="${gx.toFixed(1)}" y1="${padT}" x2="${gx.toFixed(1)}" y2="${padT+plotH}" stroke="${g.color}" stroke-dasharray="3 3" stroke-width="1"/>`;});
-  let lines='';o.series.forEach(s=>{let d='';for(let i=0;i<=30;i++){const x=xMax*i/30;d+=(i?' L ':'M ')+X(x).toFixed(1)+' '+Y(s.f(x)).toFixed(1);}lines+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round"/>`;});
+  // 折線
+  let lines='';o.series.forEach(s=>{let d='';for(let i=0;i<=SAMP;i++){const x=xMax*i/SAMP;d+=(i?' L ':'M ')+X(x).toFixed(1)+' '+Y(s.f(x)).toFixed(1);}lines+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;});
+  // x 軸刻度
   let xl='';(o.xTicks||[]).forEach(t=>{xl+=`<text x="${X(t.x).toFixed(1)}" y="${H-padB+16}" text-anchor="middle" font-size="9" fill="#98A4B3">${t.label}</text>`;});
+  // 自動交叉點
+  let cross='';
+  if(o.crossover&&o.series.length>=2){
+    const f0=o.series[0].f,f1=o.series[1].f;let xp=0,gp=f0(0)-f1(0),xc=null;
+    for(let i=1;i<=120;i++){const x=xMax*i/120,gg=f0(x)-f1(x);if(gg===0||(gg<0)!==(gp<0)){const t=gp/(gp-gg);xc=xp+(x-xp)*t;break;}xp=x;gp=gg;}
+    if(xc!=null&&xc>0&&xc<xMax){const xcx=X(xc),yc=Y(f0(xc));
+      cross=`<line x1="${xcx.toFixed(1)}" y1="${padT}" x2="${xcx.toFixed(1)}" y2="${padT+plotH}" stroke="#0E2A47" stroke-dasharray="3 3" stroke-width="1"/><circle cx="${xcx.toFixed(1)}" cy="${yc.toFixed(1)}" r="6" fill="#fff" stroke="#0E2A47" stroke-width="2.5"/>`+(o.crossLabel?`<rect x="${(xcx-30).toFixed(1)}" y="${(padT-15).toFixed(1)}" width="60" height="15" rx="4" fill="#0E2A47"/><text x="${xcx.toFixed(1)}" y="${(padT-4).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff">${o.crossLabel}</text>`:'');}
+  }
+  // 標記點
   let mk='';(o.markers||[]).forEach(m=>{const mx=X(Math.min(m.x,xMax)),my=Y(m.y);mk+=`<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5" fill="${m.color}" stroke="#fff" stroke-width="2"/>`+(m.label?`<text x="${mx.toFixed(1)}" y="${(my-9).toFixed(1)}" text-anchor="middle" font-size="10.5" font-weight="800" fill="${m.color}" font-family="'Space Grotesk',sans-serif">${m.label}</text>`:'');});
-  document.getElementById(cid).innerHTML=`<svg viewBox="0 0 ${W} ${H}">${grid}${guides}${lines}${xl}${mk}</svg>`;
+  document.getElementById(cid).innerHTML=`<svg viewBox="0 0 ${W} ${H}">${grid}${areas}${band}${guides}${lines}${xl}${cross}${mk}</svg>`;
 }
 
 /* ── 電動車 vs 油車 ── */
@@ -1175,12 +1208,10 @@ function renderEVCurve(fyear,eyear,pdWan,payback){
   const pd=pdWan*10000, saveY=fyear-eyear;
   let xMax=payback?Math.min(Math.ceil(payback)+3,15):8; xMax=Math.max(xMax,6);
   const series=[{name:'油車',color:'#C62828',f:t=>fyear*t},{name:'電車',color:'#1565C0',f:t=>pd+eyear*t}];
-  const markers=[],guides=[];
-  if(payback&&payback<=xMax){markers.push({x:payback,y:fyear*payback,color:'#1976D2',label:payback.toFixed(1)+'年'});guides.push({x:payback,color:'#1976D2'});}
   const xTicks=[],step=Math.max(1,Math.ceil(xMax/6));for(let t=0;t<=xMax;t+=step)xTicks.push({x:t,label:t+'年'});
-  drawLineChart('ev-curve',{xMax,series,markers,xTicks,vGuides:guides,yFmt:v=>fmt(v/10000)+'萬'});
+  drawLineChart('ev-curve',{xMax,series,xTicks,fill:true,band:true,crossover:!!payback,crossLabel:payback?'回本 '+payback.toFixed(1)+'年':'',yFmt:v=>fmt(v/10000)+'萬'});
   _leg('ev-legend',[['油車累積','#C62828'],['電車累積','#1565C0']]);
-  _co('ev-callout', payback?`電車多付 <b>${pdWan} 萬</b>，靠每年省下的 <b>${fmt(saveY)} 元</b>能源費，約 <b>${payback.toFixed(1)} 年</b>回本，之後越開越省。`:(pd>0?`目前設定下電車能源費未明顯較低，車價差難以回本。`:`未輸入車價差：純看能源費，電車每年省 <b>${fmt(saveY)} 元</b>，里程越高越划算。`));
+  _co('ev-callout', payback?`電車多付 <b>${pdWan} 萬</b>，靠每年省下的 <b>${fmt(saveY)} 元</b>能源費，約 <b>${payback.toFixed(1)} 年</b>回本（圖中交叉點），之後越開越省。`:(pd>0?`目前設定下電車能源費未明顯較低，車價差難以回本。`:`未輸入車價差：純看能源費，電車每年省 <b>${fmt(saveY)} 元</b>，里程越高越划算。`));
 }
 
 /* ── 充電 ── */
@@ -1197,18 +1228,24 @@ function calcCharging(){
   _show('charging-result');
 }
 function renderBattery(start,target){
-  const W=300,H=92,bx=10,by=16,bw=255,bh=54;
+  const W=300,H=104,bx=10,by=16,bw=255,bh=54;
   const ix=bx+5,iy=by+5,iw=bw-10,ih=bh-10;
   const sw0=iw*start/100, swAdd=iw*(target-start)/100;
+  const x80=ix+iw*0.8;
+  const ticks=[0,50,80,100].map(p=>{const tx=ix+iw*p/100;return `<text x="${tx.toFixed(1)}" y="${by+bh+30}" text-anchor="middle" font-size="9" fill="#98A4B3">${p}%</text>`;}).join('');
   document.getElementById('ch-battery').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="max-width:320px">
+    <defs><linearGradient id="batg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1E88E5"/><stop offset="1" stop-color="#1565C0"/></linearGradient></defs>
     <rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="9" fill="#F4F6F9" stroke="#CBD7E6" stroke-width="2"/>
     <rect x="${bx+bw}" y="${by+bh/2-11}" width="9" height="22" rx="3" fill="#CBD7E6"/>
-    <rect x="${ix}" y="${iy}" width="${sw0.toFixed(1)}" height="${ih}" rx="4" fill="#90CAF9"/>
-    <rect x="${(ix+sw0).toFixed(1)}" y="${iy}" width="${swAdd.toFixed(1)}" height="${ih}" rx="4" fill="#1565C0"/>
+    <rect x="${ix}" y="${iy}" width="${sw0.toFixed(1)}" height="${ih}" rx="4" fill="#BBD9F5"/>
+    <rect x="${(ix+sw0).toFixed(1)}" y="${iy}" width="${swAdd.toFixed(1)}" height="${ih}" rx="4" fill="url(#batg)"/>
+    <line x1="${x80.toFixed(1)}" y1="${by-3}" x2="${x80.toFixed(1)}" y2="${by+bh+3}" stroke="#E65100" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="${x80.toFixed(1)}" y="${by-6}" text-anchor="middle" font-size="9" font-weight="700" fill="#E65100">快充建議 80%</text>
     <text x="${ix+iw/2}" y="${by+bh/2+6}" text-anchor="middle" font-size="16" font-weight="800" fill="#0E2A47" font-family="'Space Grotesk',sans-serif">${target}%</text>
-    <text x="${bx}" y="${by+bh+18}" font-size="11" fill="#98A4B3">起始 ${start}%</text>
-    <text x="${bx+bw}" y="${by+bh+18}" text-anchor="end" font-size="11" fill="#1565C0" font-weight="700">補充 ${target-start}%</text></svg>`;
-  _co('ch-callout','深藍為本次補充的電量、淺藍為原有電量。直流快充在 80% 以上會明顯降速，長途建議充到 80% 即可。');
+    ${ticks}
+    <text x="${bx}" y="${by+bh+16}" font-size="11" fill="#98A4B3">起始 ${start}%</text>
+    <text x="${bx+bw}" y="${by+bh+16}" text-anchor="end" font-size="11" fill="#1565C0" font-weight="700">補充 ${target-start}%</text></svg>`;
+  _co('ch-callout','深藍為本次補充的電量、淺藍為原有電量。橘線為直流快充建議上限：超過 80% 後充電會明顯降速，長途建議充到 80% 即可上路。');
   document.getElementById('ch-viz').style.display='block';
 }
 
@@ -1230,7 +1267,7 @@ function renderTCODonut(parts){
   parts=parts.filter(p=>p[1]>0);
   const total=parts.reduce((s,p)=>s+p[1],0)||1, cx=75,cy=75,r=54,sw=22,C=2*Math.PI*r;
   let off=0,arcs='';
-  parts.forEach(([n,v,col])=>{const len=v/total*C;arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(2)} ${(C-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;off+=len;});
+  parts.forEach(([n,v,col])=>{const len=v/total*C;const dl=Math.max(len-4,0.5);arcs+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${sw}" stroke-dasharray="${dl.toFixed(2)} ${(C-dl).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${cx} ${cy})"/>`;off+=len;});
   document.getElementById('tc-donut').innerHTML=`<svg viewBox="0 0 150 150" style="width:148px"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#EEF3F9" stroke-width="${sw}"/>${arcs}<text x="${cx}" y="${cy-2}" text-anchor="middle" font-size="17" font-weight="800" fill="#16212E" font-family="'Space Grotesk',sans-serif">${fmt(total)}</text><text x="${cx}" y="${cy+15}" text-anchor="middle" font-size="9.5" fill="#98A4B3">每月總成本</text></svg>`;
   document.getElementById('tc-legend').innerHTML=parts.map(([n,v,col])=>`<span><i style="background:${col}"></i>${n} <b>${fmt(v)}</b>（${(v/total*100).toFixed(0)}%）</span>`).join('');
   document.getElementById('tc-viz').style.display='block';
@@ -1253,11 +1290,10 @@ function renderOwnRentCurve(fixed,varc,taxi,km,be){
   xMax=Math.ceil(xMax/200)*200;
   const series=[{name:'養車',color:'#1565C0',f:x=>fixed+varc*x},{name:'搭車',color:'#E65100',f:x=>taxi*x}];
   const markers=[{x:km,y:fixed+varc*km,color:'#1976D2',label:'你'}],guides=[{x:km,color:'#1976D2'}];
-  if(isFinite(be)&&be<=xMax){markers.push({x:be,y:taxi*be,color:'#C62828',label:''});guides.push({x:be,color:'#C62828'});}
   const xTicks=[],step=xMax/5;for(let i=0;i<=5;i++)xTicks.push({x:step*i,label:fmt(step*i)});
-  drawLineChart('or-curve',{xMax,series,markers,xTicks,vGuides:guides,yFmt:v=>fmt(v)});
+  drawLineChart('or-curve',{xMax,series,markers,xTicks,vGuides:guides,fill:true,band:true,crossover:isFinite(be),crossLabel:isFinite(be)?'平衡 '+fmt(be)+'km':'',yFmt:v=>fmt(v)});
   _leg('or-legend',[['養車','#1565C0'],['搭車','#E65100']]);
-  _co('or-callout', isFinite(be)?`損益平衡里程約 <b>${fmt(be)} 公里/月</b>。你目前 ${fmt(km)} 公里，${km<be?'低於門檻 → <b>搭車較省</b>':'高於門檻 → <b>養車較省</b>'}。`:`搭車每公里低於自駕變動成本，養車幾乎總是較貴。`);
+  _co('or-callout', isFinite(be)?`損益平衡里程約 <b>${fmt(be)} 公里/月</b>（圖中交叉點）。你目前 ${fmt(km)} 公里，${km<be?'低於門檻 → <b>搭車較省</b>':'高於門檻 → <b>養車較省</b>'}。`:`搭車每公里低於自駕變動成本，養車幾乎總是較貴。`);
 }
 
 /* 初始化：設定牌照稅車種對應欄位（新聞改為點選分頁才載入） */
