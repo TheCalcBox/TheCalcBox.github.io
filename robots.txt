@@ -29,4 +29,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://thecalcbox.github.io/sitemap.xml
+Sitemap: https://thecalcbox.com/sitemap.xml
