@@ -3,431 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>TheCalcBox SMC 交易劇本分析器｜K線量價結構策略規劃</title>
-  <meta name="description" content="TheCalcBox SMC 交易劇本分析器，支援上傳日K、小時K與量價截圖，整理市場結構、SMC 流動性、Order Block、FVG、量價關係與交易劇本。" />
-  <meta name="keywords" content="SMC, Smart Money Concept, 量價分析, 技術分析, K線分析, Order Block, FVG, BOS, CHoCH, 交易劇本, TheCalcBox" />
+  <title>TheCalcBox SMC 交易劇本分析器｜Ctrl+V 貼圖與 AI 自動分析</title>
+  <meta name="description" content="TheCalcBox SMC 交易劇本分析器，支援 Ctrl+V 貼上日K與小時K截圖，量價直接從同張K線圖判讀，可接 AI Vision 後端自動分析 BOS、CHoCH、Order Block、FVG 與流動性區。」" />
+  <meta name="keywords" content="SMC, Smart Money Concept, Ctrl V貼圖, K線截圖分析, 量價分析, 技術分析, Order Block, FVG, BOS, CHoCH, 交易劇本, TheCalcBox" />
   <meta name="theme-color" content="#111827" />
   <style>
-    :root {
-      --bg: #f6f7fb;
-      --card: rgba(255,255,255,.92);
-      --text: #111827;
-      --muted: #6b7280;
-      --line: rgba(17,24,39,.11);
-      --primary: #111827;
-      --primary2: #374151;
-      --accent: #2563eb;
-      --good: #059669;
-      --bad: #dc2626;
-      --warn: #d97706;
-      --shadow: 0 18px 45px rgba(15, 23, 42, .09);
-      --radius: 22px;
-      --radius2: 16px;
-      --safe: env(safe-area-inset-bottom, 0px);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 32%),
-        radial-gradient(circle at top right, rgba(5,150,105,.12), transparent 30%),
-        var(--bg);
-      min-height: 100vh;
-    }
-    a { color: inherit; }
-    .wrap { width: min(1120px, 100%); margin: 0 auto; padding: 18px 14px 96px; }
-    header {
-      position: sticky; top: 0; z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(246,247,251,.78);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav {
-      width: min(1120px, 100%); margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 14px;
-      gap: 10px;
-    }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.02em; }
-    .logo {
-      width: 38px; height: 38px; border-radius: 14px;
-      background: linear-gradient(135deg,#111827,#2563eb);
-      box-shadow: 0 10px 22px rgba(37,99,235,.28);
-      color: white; display: grid; place-items: center; font-size: 16px;
-    }
-    .pill {
-      border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px;
-      font-size: 12px; color: var(--muted); background: rgba(255,255,255,.72);
-      white-space: nowrap;
-    }
-    .hero { padding: 22px 0 14px; }
-    .hero-card {
-      border: 1px solid var(--line); border-radius: 30px; padding: 24px;
-      background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
-      box-shadow: var(--shadow); overflow: hidden; position: relative;
-    }
-    .hero-card:after {
-      content: ""; position: absolute; right: -80px; top: -90px; width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(37,99,235,.18), transparent 70%);
-    }
-    h1 { margin: 0; font-size: clamp(30px, 8vw, 58px); line-height: 1.02; letter-spacing: -.065em; max-width: 820px; }
-    .lead { margin: 14px 0 0; color: var(--muted); font-size: 16px; line-height: 1.72; max-width: 760px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-    .badge { font-size: 12px; padding: 8px 10px; border-radius: 999px; background: #f3f4f6; border: 1px solid var(--line); color: #374151; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
-    @media (min-width: 900px) { .grid { grid-template-columns: .95fr 1.05fr; align-items: start; } }
-    .card {
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 16px; box-shadow: 0 12px 28px rgba(15, 23, 42, .055);
-    }
-    .card h2 { margin: 0 0 12px; font-size: 20px; letter-spacing: -.03em; }
-    .card h3 { margin: 16px 0 8px; font-size: 15px; }
-    .muted { color: var(--muted); }
-    .small { font-size: 12px; line-height: 1.6; }
-    label { display: block; font-size: 13px; font-weight: 800; margin: 12px 0 7px; }
-    input, select, textarea {
-      width: 100%; border: 1px solid var(--line); background: #fff; border-radius: 15px;
-      padding: 13px 14px; font: inherit; outline: none; color: var(--text);
-    }
-    textarea { min-height: 95px; resize: vertical; line-height: 1.55; }
-    input:focus, select:focus, textarea:focus { border-color: rgba(37,99,235,.65); box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
-    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    @media (min-width: 640px) { .row.two { grid-template-columns: 1fr 1fr; } }
-    .upload-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    @media (min-width: 640px) { .upload-grid { grid-template-columns: repeat(3, 1fr); } }
-    .upload {
-      border: 1px dashed rgba(17,24,39,.26); border-radius: var(--radius2); background: #fff;
-      padding: 12px; min-height: 180px; display: flex; flex-direction: column; gap: 9px;
-    }
-    .upload-title { font-weight: 900; font-size: 13px; }
-    .preview {
-      flex: 1; min-height: 118px; border-radius: 13px; background: #f3f4f6;
-      display: grid; place-items: center; overflow: hidden; color: var(--muted); font-size: 12px; text-align: center; padding: 8px;
-    }
-    .preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .btns { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
-    @media (min-width: 640px) { .btns { grid-template-columns: 1.2fr 1fr 1fr; } }
-    button {
-      border: 0; border-radius: 16px; padding: 14px 16px; font: inherit; font-weight: 900;
-      cursor: pointer; transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
-    }
-    button:active { transform: scale(.985); }
-    .primary { background: var(--primary); color: #fff; box-shadow: 0 12px 26px rgba(17,24,39,.22); }
-    .secondary { background: #fff; color: var(--text); border: 1px solid var(--line); }
-    .blue { background: var(--accent); color: #fff; }
-    .result-top { display: grid; grid-template-columns: 1fr; gap: 10px; }
-    @media (min-width: 640px) { .result-top { grid-template-columns: repeat(3, 1fr); } }
-    .metric { border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 13px; }
-    .metric span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
-    .metric b { font-size: 20px; letter-spacing: -.04em; }
-    .report {
-      white-space: pre-wrap; line-height: 1.75; background: #0b1220; color: #e5e7eb;
-      border-radius: 18px; padding: 16px; margin-top: 12px; overflow-x: auto;
-      font-size: 14px;
-    }
-    .notice { border-radius: 18px; padding: 13px; background: #fffbeb; border: 1px solid rgba(217,119,6,.25); color: #92400e; margin-top: 12px; }
-    .info { border-radius: 18px; padding: 13px; background: #eff6ff; border: 1px solid rgba(37,99,235,.18); color: #1e3a8a; margin-top: 12px; }
-    .steps { display: grid; gap: 8px; }
-    .step { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 15px; background: #fff; border: 1px solid var(--line); }
-    .num { width: 25px; height: 25px; border-radius: 9px; background: #111827; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 900; flex: 0 0 auto; }
-    .bottom-bar {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 14px calc(10px + var(--safe));
-      background: rgba(246,247,251,.85); backdrop-filter: blur(16px); border-top: 1px solid var(--line);
-      display: none;
-    }
-    .bottom-bar .inner { width: min(1120px, 100%); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    @media (max-width: 760px) { .bottom-bar { display: block; } .wrap { padding-bottom: 112px; } }
-    .seo { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
-    .hidden-text { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    :root{--bg:#f6f7fb;--card:rgba(255,255,255,.94);--text:#111827;--muted:#6b7280;--line:rgba(17,24,39,.11);--primary:#111827;--accent:#2563eb;--good:#059669;--bad:#dc2626;--warn:#d97706;--shadow:0 18px 45px rgba(15,23,42,.09);--radius:22px;--radius2:16px;--safe:env(safe-area-inset-bottom,0px)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;color:var(--text);background:radial-gradient(circle at top left,rgba(37,99,235,.15),transparent 32%),radial-gradient(circle at top right,rgba(5,150,105,.12),transparent 30%),var(--bg);min-height:100vh}a{color:inherit}.wrap{width:min(1120px,100%);margin:0 auto;padding:18px 14px 96px}
+    header{position:sticky;top:0;z-index:20;backdrop-filter:blur(18px);background:rgba(246,247,251,.82);border-bottom:1px solid var(--line)}.nav{width:min(1120px,100%);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;gap:10px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.02em}.logo{width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#111827,#2563eb);box-shadow:0 10px 22px rgba(37,99,235,.28);color:#fff;display:grid;place-items:center;font-size:16px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-size:12px;color:var(--muted);background:rgba(255,255,255,.72);white-space:nowrap}
+    .hero{padding:22px 0 14px}.hero-card{border:1px solid var(--line);border-radius:30px;padding:24px;background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(255,255,255,.72));box-shadow:var(--shadow);overflow:hidden;position:relative}.hero-card:after{content:"";position:absolute;right:-80px;top:-90px;width:240px;height:240px;background:radial-gradient(circle,rgba(37,99,235,.18),transparent 70%)}h1{margin:0;font-size:clamp(30px,8vw,58px);line-height:1.02;letter-spacing:-.065em;max-width:860px}.lead{margin:14px 0 0;color:var(--muted);font-size:16px;line-height:1.72;max-width:810px}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.badge{font-size:12px;padding:8px 10px;border-radius:999px;background:#f3f4f6;border:1px solid var(--line);color:#374151}
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}@media(min-width:920px){.grid{grid-template-columns:.95fr 1.05fr;align-items:start}}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:0 12px 28px rgba(15,23,42,.055)}.card h2{margin:0 0 12px;font-size:20px;letter-spacing:-.03em}.card h3{margin:16px 0 8px;font-size:15px}.muted{color:var(--muted)}.small{font-size:12px;line-height:1.6}label{display:block;font-size:13px;font-weight:850;margin:12px 0 7px}input,select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px 14px;font:inherit;outline:none;color:var(--text)}textarea{min-height:88px;resize:vertical;line-height:1.55}input:focus,select:focus,textarea:focus{border-color:rgba(37,99,235,.65);box-shadow:0 0 0 4px rgba(37,99,235,.1)}.row{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:640px){.row.two{grid-template-columns:1fr 1fr}.row.three{grid-template-columns:1fr 1fr 1fr}}
+    .upload-grid{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:720px){.upload-grid{grid-template-columns:1fr 1fr}}.upload{border:1px dashed rgba(17,24,39,.26);border-radius:var(--radius2);background:#fff;padding:12px;min-height:245px;display:flex;flex-direction:column;gap:9px;transition:.16s ease}.upload.active{border-color:rgba(37,99,235,.88);box-shadow:0 0 0 4px rgba(37,99,235,.1)}.upload.drag{border-color:rgba(5,150,105,.9);background:#ecfdf5}.upload-title{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:950;font-size:13px}.upload-title span:last-child{font-weight:800;color:var(--muted);font-size:11px}.preview{flex:1;min-height:160px;border-radius:13px;background:#f3f4f6;display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:12px;text-align:center;padding:8px;cursor:pointer}.preview img{width:100%;height:100%;object-fit:contain;display:block}.file-line{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.tiny-btn{padding:11px 12px;border-radius:13px;background:#f3f4f6;border:1px solid var(--line);font-size:12px}.paste-help{border-radius:16px;background:#eef2ff;border:1px solid rgba(37,99,235,.16);padding:11px;color:#1e3a8a}
+    .toggle{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:640px){.toggle{grid-template-columns:1fr 1fr}}.switch-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px}.switch-card b{display:block;margin-bottom:5px}.api-panel{display:none;border-radius:18px;background:#f8fafc;border:1px solid var(--line);padding:12px;margin-top:10px}.api-panel.show{display:block}.btns{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}@media(min-width:640px){.btns{grid-template-columns:1.2fr 1fr 1fr}}button{border:0;border-radius:16px;padding:14px 16px;font:inherit;font-weight:950;cursor:pointer;transition:transform .12s ease,opacity .12s ease,box-shadow .12s ease}button:active{transform:scale(.985)}button:disabled{opacity:.62;cursor:not-allowed}.primary{background:var(--primary);color:#fff;box-shadow:0 12px 26px rgba(17,24,39,.22)}.secondary{background:#fff;color:var(--text);border:1px solid var(--line)}.blue{background:var(--accent);color:#fff}.danger{background:#fee2e2;color:#991b1b;border:1px solid rgba(220,38,38,.14)}
+    .result-top{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:640px){.result-top{grid-template-columns:repeat(3,1fr)}}.metric{border:1px solid var(--line);background:#fff;border-radius:18px;padding:13px}.metric span{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.metric b{font-size:20px;letter-spacing:-.04em}.report{white-space:pre-wrap;line-height:1.75;background:#0b1220;color:#e5e7eb;border-radius:18px;padding:16px;margin-top:12px;overflow-x:auto;font-size:14px}.notice{border-radius:18px;padding:13px;background:#fffbeb;border:1px solid rgba(217,119,6,.25);color:#92400e;margin-top:12px}.info{border-radius:18px;padding:13px;background:#eff6ff;border:1px solid rgba(37,99,235,.18);color:#1e3a8a;margin-top:12px}.ok{border-radius:18px;padding:13px;background:#ecfdf5;border:1px solid rgba(5,150,105,.2);color:#065f46;margin-top:12px}.steps{display:grid;gap:8px}.step{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:15px;background:#fff;border:1px solid var(--line)}.num{width:25px;height:25px;border-radius:9px;background:#111827;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900;flex:0 0 auto}.bottom-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 14px calc(10px + var(--safe));background:rgba(246,247,251,.85);backdrop-filter:blur(16px);border-top:1px solid var(--line);display:none}.bottom-bar .inner{width:min(1120px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:760px){.bottom-bar{display:block}.wrap{padding-bottom:112px}}.seo{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.7}.hidden-text{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav">
-      <div class="brand"><div class="logo">TC</div><div>TheCalcBox SMC Lab</div></div>
-      <div class="pill">量價結構｜SMC｜交易劇本</div>
+<header><div class="nav"><div class="brand"><div class="logo">TC</div><div>TheCalcBox SMC Lab</div></div><div class="pill">Ctrl+V貼圖｜AI Vision Ready</div></div></header>
+<main class="wrap">
+  <section class="hero"><div class="hero-card"><h1>Ctrl+V 貼上 K 線圖，自動整理 SMC 交易劇本</h1><p class="lead">新版只需要日K與小時K兩張圖，成交量直接看同一張截圖下方量價。不必另外上傳量價圖。可先用本地半自動模式產生劇本，也可接自己的 AI Vision 後端做真正讀圖分析。</p><div class="badges"><span class="badge">Ctrl+V貼圖</span><span class="badge">拖曳上傳</span><span class="badge">日K + 1H</span><span class="badge">量價同圖判讀</span><span class="badge">BOS / CHoCH</span><span class="badge">OB / FVG</span><span class="badge">Liquidity</span></div></div></section>
+
+  <section class="grid" id="app">
+    <div class="card">
+      <h2>1. 貼圖與分析設定</h2>
+      <p class="muted small">點選「日K」或「1H」框後，直接按 Ctrl+V / Command+V 貼上截圖。手機可用上傳或相簿選圖。</p>
+      <div class="paste-help small" id="pasteHelp">目前貼圖目標：<b id="activeSlotText">日K線圖</b>。你也可以把圖片拖進框內。</div>
+
+      <div class="row two">
+        <div><label for="symbol">標的名稱</label><input id="symbol" placeholder="例如：台積電、BTC、ETH、NASDAQ" /></div>
+        <div><label for="priceNow">目前價格</label><input id="priceNow" placeholder="例如：152.5" inputmode="decimal" /></div>
+      </div>
+      <div class="row two">
+        <div><label for="risk">單筆最大風險</label><select id="risk"><option value="保守：單筆風險 0.5% 以內">保守 0.5%</option><option value="標準：單筆風險 1% 以內">標準 1%</option><option value="積極：單筆風險 2% 以內">積極 2%</option></select></div>
+        <div><label for="analysisMode">分析模式</label><select id="analysisMode"><option value="local">本地半自動劇本</option><option value="api">AI Vision 後端自動分析</option></select></div>
+      </div>
+
+      <label>貼上 / 上傳圖片</label>
+      <div class="upload-grid">
+        <div class="upload active" data-slot="daily">
+          <div class="upload-title"><span>日K線圖</span><span>含成交量</span></div>
+          <div class="preview" id="previewDaily">點我後 Ctrl+V 貼上日K截圖<br>或拖曳圖片到這裡</div>
+          <div class="file-line"><input type="file" accept="image/*" data-slot="daily" /><button class="tiny-btn danger" type="button" data-clear="daily">清除</button></div>
+        </div>
+        <div class="upload" data-slot="hour">
+          <div class="upload-title"><span>小時K線圖 / 1H</span><span>含成交量</span></div>
+          <div class="preview" id="previewHour">點我後 Ctrl+V 貼上1H截圖<br>或拖曳圖片到這裡</div>
+          <div class="file-line"><input type="file" accept="image/*" data-slot="hour" /><button class="tiny-btn danger" type="button" data-clear="hour">清除</button></div>
+        </div>
+      </div>
+
+      <div class="api-panel" id="apiPanel">
+        <h3>AI Vision 後端設定</h3>
+        <p class="muted small">純前端不要直接放 OpenAI API Key。建議用 Cloudflare Worker / Vercel API 做後端，這裡只填你的後端 Endpoint。</p>
+        <label for="apiEndpoint">API Endpoint</label>
+        <input id="apiEndpoint" placeholder="例如：https://你的worker.workers.dev/analyze-smc" />
+      </div>
+
+      <h3>半自動輔助判斷</h3>
+      <p class="muted small">若尚未接 AI 後端，這些欄位可讓報告更像你的真實盤感。接後端後可由 AI 自動產生。</p>
+      <div class="row three">
+        <div><label for="dailyTrend">日K結構</label><select id="dailyTrend"><option>尚未判斷</option><option>多方 HH/HL</option><option>空方 LH/LL</option><option>區間震盪</option><option>高檔壓力</option><option>低檔築底</option></select></div>
+        <div><label for="hourStructure">1H結構</label><select id="hourStructure"><option>尚未判斷</option><option>BOS 向上</option><option>BOS 向下</option><option>CHoCH 向上</option><option>CHoCH 向下</option><option>區間盤整</option></select></div>
+        <div><label for="volumeSignal">量價訊號</label><select id="volumeSignal"><option>尚未判斷</option><option>突破放量</option><option>突破量縮</option><option>回測縮量</option><option>高檔爆量不漲</option><option>低檔放量止跌</option></select></div>
+      </div>
+      <div class="row two">
+        <div><label for="zone">目前位置</label><select id="zone"><option>尚未判斷</option><option>Premium 高位區</option><option>Discount 低位區</option><option>區間中間</option><option>接近上方流動性</option><option>接近下方流動性</option></select></div>
+        <div><label for="marketBias">主觀方向</label><select id="marketBias"><option>尚未判斷</option><option>偏多</option><option>偏空</option><option>震盪</option></select></div>
+      </div>
+
+      <label for="notes">你的觀察重點</label><textarea id="notes" placeholder="例如：剛突破前高、上方有壓力、成交量沒有放大、想等回測 OB 再進場..."></textarea>
+      <label for="levels">關鍵價位</label><textarea id="levels" placeholder="例如：壓力 155 / 160，支撐 148 / 142，前高 158，前低 145"></textarea>
+
+      <div class="btns"><button class="primary" id="generateBtn" onclick="generateReport()">產生 / 自動分析</button><button class="secondary" onclick="copyReport()">複製報告</button><button class="blue" onclick="downloadReport()">下載 TXT</button></div>
+      <div class="notice small">免責聲明：本工具僅供教育、紀錄與策略整理使用，不構成投資建議、招攬或保證獲利。交易前請自行判斷並控管風險。</div>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-card">
-        <h1>上傳 K 線截圖，整理你的 SMC 交易劇本</h1>
-        <p class="lead">這是一版可直接部署的 MVP。先用日K、小時K與成交量截圖，加上你的價格觀察，快速產生市場結構、量價判斷、進出場條件與風險控管清單。</p>
-        <div class="badges">
-          <span class="badge">日K趨勢</span><span class="badge">1H結構</span><span class="badge">BOS / CHoCH</span><span class="badge">Order Block</span><span class="badge">FVG</span><span class="badge">Liquidity</span><span class="badge">風險報酬比</span>
-        </div>
-      </div>
-    </section>
+    <div class="card" id="resultCard">
+      <h2>2. 分析結果</h2>
+      <div class="result-top"><div class="metric"><span>方向判斷</span><b id="mBias">等待輸入</b></div><div class="metric"><span>策略狀態</span><b id="mStatus">未產生</b></div><div class="metric"><span>風險等級</span><b id="mRisk">-</b></div></div>
+      <div class="report" id="report">請先貼上日K與1H圖片，然後點選「產生 / 自動分析」。
 
-    <section class="grid" id="app">
-      <div class="card">
-        <h2>1. 上傳與輸入</h2>
-        <p class="muted small">目前是純前端版本，圖片會在你的瀏覽器預覽，不會上傳到伺服器。之後可接 OpenAI Vision API 做真正圖片判讀。</p>
-
-        <div class="row two">
-          <div>
-            <label for="symbol">標的名稱</label>
-            <input id="symbol" placeholder="例如：台積電、BTC、ETH、NASDAQ" />
-          </div>
-          <div>
-            <label for="marketBias">你目前主觀方向</label>
-            <select id="marketBias">
-              <option value="尚未判斷">尚未判斷</option>
-              <option value="偏多">偏多</option>
-              <option value="偏空">偏空</option>
-              <option value="震盪">震盪</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="row two">
-          <div>
-            <label for="priceNow">目前價格</label>
-            <input id="priceNow" placeholder="例如：152.5" inputmode="decimal" />
-          </div>
-          <div>
-            <label for="risk">單筆最大風險</label>
-            <select id="risk">
-              <option value="保守：單筆風險 0.5% 以內">保守 0.5%</option>
-              <option value="標準：單筆風險 1% 以內">標準 1%</option>
-              <option value="積極：單筆風險 2% 以內">積極 2%</option>
-            </select>
-          </div>
-        </div>
-
-        <label>上傳圖片</label>
-        <div class="upload-grid">
-          <div class="upload">
-            <div class="upload-title">日K線圖</div>
-            <div class="preview" id="previewDaily">點選下方上傳</div>
-            <input type="file" accept="image/*" data-preview="previewDaily" />
-          </div>
-          <div class="upload">
-            <div class="upload-title">小時K線圖</div>
-            <div class="preview" id="previewHour">點選下方上傳</div>
-            <input type="file" accept="image/*" data-preview="previewHour" />
-          </div>
-          <div class="upload">
-            <div class="upload-title">成交量 / 籌碼圖</div>
-            <div class="preview" id="previewVolume">點選下方上傳</div>
-            <input type="file" accept="image/*" data-preview="previewVolume" />
-          </div>
-        </div>
-
-        <label for="notes">你的觀察重點</label>
-        <textarea id="notes" placeholder="例如：剛突破前高、上方有壓力、成交量沒有放大、想等回測 OB 再進場..."></textarea>
-
-        <label for="levels">關鍵價位</label>
-        <textarea id="levels" placeholder="例如：壓力 155 / 160，支撐 148 / 142，前高 158，前低 145"></textarea>
-
-        <div class="btns">
-          <button class="primary" onclick="generateReport()">產生交易劇本</button>
-          <button class="secondary" onclick="copyReport()">複製報告</button>
-          <button class="blue" onclick="downloadReport()">下載 TXT</button>
-        </div>
-
-        <div class="notice small">免責聲明：本工具僅供教育、紀錄與策略整理使用，不構成投資建議、招攬或保證獲利。交易前請自行判斷並控管風險。</div>
-      </div>
-
-      <div class="card" id="resultCard">
-        <h2>2. 分析結果</h2>
-        <div class="result-top">
-          <div class="metric"><span>方向判斷</span><b id="mBias">等待輸入</b></div>
-          <div class="metric"><span>策略狀態</span><b id="mStatus">未產生</b></div>
-          <div class="metric"><span>風險等級</span><b id="mRisk">-</b></div>
-        </div>
-        <div class="report" id="report">請先上傳圖片並填寫觀察重點，然後點選「產生交易劇本」。
-
-這版 MVP 會先根據你的文字輸入與圖片上傳狀態，產出標準化 SMC 分析報告。下一版可接 AI Vision，自動讀取截圖中的 K 線、量能與關鍵結構。</div>
-      </div>
-    </section>
-
-    <section class="grid">
-      <div class="card">
-        <h2>3. 交易檢查流程</h2>
-        <div class="steps">
-          <div class="step"><div class="num">1</div><div><b>先看日K方向</b><br><span class="muted small">確認大週期是多方、空方或震盪，不逆著大結構硬做。</span></div></div>
-          <div class="step"><div class="num">2</div><div><b>再看小時結構</b><br><span class="muted small">找 BOS、CHoCH、前高前低、盤整區與關鍵回測區。</span></div></div>
-          <div class="step"><div class="num">3</div><div><b>標出流動性</b><br><span class="muted small">觀察 Buy Side Liquidity、Sell Side Liquidity、Equal High / Equal Low。</span></div></div>
-          <div class="step"><div class="num">4</div><div><b>只做條件成立</b><br><span class="muted small">沒有回測、沒有量價確認、沒有風險報酬比，就不交易。</span></div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h2>4. 下一版 AI Vision 後端 Prompt</h2>
-        <p class="muted small">未來接 API 時，可把這段放到後端，讓 AI 依圖片與輸入資料自動分析。</p>
-        <div class="info small" id="apiPrompt">你是一位技術分析、量價結構與 SMC 策略分析師。請根據使用者上傳的日K、小時K與成交量圖片，分析目前大週期方向、小週期結構、BOS、CHoCH、流動性區、Order Block、FVG、量價是否配合、進場條件、停損位置、目標區、風險報酬比、不交易條件與策略信心分數。請以風險控管為優先，避免保證獲利語氣。</div>
-      </div>
-    </section>
-
-    <section class="seo">
-      <p><b>SEO plain text：</b>SMC 交易策略分析器、Smart Money Concept、量價結構、K線截圖分析、日K分析、小時K分析、Order Block、Fair Value Gap、BOS、CHoCH、流動性掃單、交易劇本規劃、風險報酬比、TheCalcBox trading calculator。</p>
-    </section>
-
-    <div class="hidden-text">
-      TheCalcBox SMC Strategy Lab is a trading planning tool for price action, volume analysis, market structure, order block, fair value gap, BOS, CHoCH and liquidity zone analysis. This page helps users organize trading scenarios with risk management and no financial advice.
+本地模式：根據你選的結構、量價與關鍵價位產生交易劇本。
+AI Vision 模式：會把兩張圖片送到你設定的後端 Endpoint，由 AI 自動讀圖分析。</div>
     </div>
-  </main>
+  </section>
 
-  <div class="bottom-bar">
-    <div class="inner">
-      <button class="primary" onclick="generateReport()">產生劇本</button>
-      <button class="secondary" onclick="document.getElementById('resultCard').scrollIntoView({behavior:'smooth'})">看結果</button>
-    </div>
-  </div>
+  <section class="grid">
+    <div class="card"><h2>3. 這版可以做到什麼？</h2><div class="steps"><div class="step"><div class="num">1</div><div><b>直接 Ctrl+V 貼圖</b><br><span class="muted small">適合 TradingView、券商 App、幣圈交易所截圖。</span></div></div><div class="step"><div class="num">2</div><div><b>量價不用另外上傳</b><br><span class="muted small">日K與1H圖下方若已有成交量，AI 後端可一起判讀。</span></div></div><div class="step"><div class="num">3</div><div><b>可接真正自動分析</b><br><span class="muted small">靜態網頁負責上傳與顯示，AI 後端負責讀圖與產生策略。</span></div></div><div class="step"><div class="num">4</div><div><b>不直接喊單</b><br><span class="muted small">輸出條件式劇本、風險報酬比與不交易條件。</span></div></div></div></div>
+    <div class="card"><h2>4. 後端接收格式</h2><p class="muted small">AI Vision Endpoint 建議接受 JSON，回傳 result 文字。</p><div class="info small">POST /analyze-smc<br>{ symbol, priceNow, risk, notes, levels, images: [{ timeframe: 'D', dataUrl }, { timeframe: '1H', dataUrl }] }<br><br>回傳：{ result: '完整 SMC 分析報告文字' }</div><div class="ok small">安全建議：OpenAI API Key 不要放前端 HTML，請放在 Cloudflare Worker、Vercel Function 或自己的後端環境變數。</div></div>
+  </section>
 
+  <section class="seo"><p><b>SEO plain text：</b>SMC 交易策略分析器、Smart Money Concept、Ctrl+V 貼上 K 線圖、K線截圖分析、日K分析、小時K分析、量價結構、Order Block、Fair Value Gap、BOS、CHoCH、流動性掃單、交易劇本規劃、風險報酬比、TheCalcBox trading calculator。</p></section>
+  <div class="hidden-text">TheCalcBox SMC Strategy Lab supports paste image upload for daily chart and hourly chart screenshots, volume analysis in the same chart, price action, market structure, order block, fair value gap, BOS, CHoCH and liquidity zone analysis. This page helps users organize trading scenarios with risk management and no financial advice.</div>
+</main>
+<div class="bottom-bar"><div class="inner"><button class="primary" onclick="generateReport()">產生劇本</button><button class="secondary" onclick="document.getElementById('resultCard').scrollIntoView({behavior:'smooth'})">看結果</button></div></div>
 <script>
-  const $ = (id) => document.getElementById(id);
-  let imageState = { daily: false, hour: false, volume: false };
+const $ = (id)=>document.getElementById(id);
+const slotMeta = { daily:{label:'日K線圖', preview:'previewDaily', tf:'D'}, hour:{label:'小時K線圖 / 1H', preview:'previewHour', tf:'1H'} };
+let activeSlot = 'daily';
+let imageState = { daily:null, hour:null };
 
-  document.querySelectorAll('input[type="file"]').forEach((input, index) => {
-    input.addEventListener('change', (event) => {
-      const file = event.target.files && event.target.files[0];
-      const previewId = event.target.dataset.preview;
-      const preview = $(previewId);
-      const keys = ['daily', 'hour', 'volume'];
-      if (!file) return;
-      if (!file.type.startsWith('image/')) {
-        preview.textContent = '請上傳圖片檔';
-        return;
-      }
-      const reader = new FileReader();
-      reader.onload = () => {
-        preview.innerHTML = `<img src="${reader.result}" alt="uploaded chart preview">`;
-        imageState[keys[index]] = true;
-      };
-      reader.readAsDataURL(file);
-    });
-  });
+function setActiveSlot(slot){ activeSlot = slot; document.querySelectorAll('.upload').forEach(el=>el.classList.toggle('active', el.dataset.slot===slot)); $('activeSlotText').textContent = slotMeta[slot].label; }
+function safeText(value, fallback){ const v=String(value||'').trim(); return v||fallback; }
+function countImages(){ return Object.values(imageState).filter(Boolean).length; }
+function setPreview(slot, dataUrl){ imageState[slot]=dataUrl; $(slotMeta[slot].preview).innerHTML = `<img src="${dataUrl}" alt="${slotMeta[slot].label} preview">`; }
+function clearSlot(slot){ imageState[slot]=null; $(slotMeta[slot].preview).innerHTML = slot==='daily' ? '點我後 Ctrl+V 貼上日K截圖<br>或拖曳圖片到這裡' : '點我後 Ctrl+V 貼上1H截圖<br>或拖曳圖片到這裡'; }
+function readFileToSlot(file, slot){ if(!file || !file.type.startsWith('image/')){ alert('請貼上或上傳圖片檔'); return; } const reader=new FileReader(); reader.onload=()=>setPreview(slot, reader.result); reader.readAsDataURL(file); }
 
-  function safeText(value, fallback) {
-    const v = String(value || '').trim();
-    return v || fallback;
-  }
+document.querySelectorAll('.upload').forEach(box=>{ const slot=box.dataset.slot; box.addEventListener('click',()=>setActiveSlot(slot)); box.addEventListener('dragover',e=>{e.preventDefault(); box.classList.add('drag'); setActiveSlot(slot);}); box.addEventListener('dragleave',()=>box.classList.remove('drag')); box.addEventListener('drop',e=>{e.preventDefault(); box.classList.remove('drag'); const file=e.dataTransfer.files && e.dataTransfer.files[0]; readFileToSlot(file,slot);}); });
+document.querySelectorAll('input[type="file"]').forEach(input=>input.addEventListener('change',e=>readFileToSlot(e.target.files && e.target.files[0], e.target.dataset.slot)));
+document.querySelectorAll('[data-clear]').forEach(btn=>btn.addEventListener('click',e=>{e.stopPropagation(); clearSlot(btn.dataset.clear);}));
+document.addEventListener('paste', e=>{ const items = e.clipboardData && e.clipboardData.items; if(!items) return; for(const item of items){ if(item.type && item.type.startsWith('image/')){ const file=item.getAsFile(); const target = imageState[activeSlot] ? (activeSlot==='daily' && !imageState.hour ? 'hour' : activeSlot) : activeSlot; readFileToSlot(file,target); setActiveSlot(target); e.preventDefault(); return; } } });
+$('analysisMode').addEventListener('change',()=>$('apiPanel').classList.toggle('show',$('analysisMode').value==='api'));
 
-  function countImages() {
-    return Object.values(imageState).filter(Boolean).length;
-  }
-
-  function generateReport() {
-    const symbol = safeText($('symbol').value, '未填寫標的');
-    const bias = $('marketBias').value;
-    const priceNow = safeText($('priceNow').value, '未填寫');
-    const risk = $('risk').value;
-    const notes = safeText($('notes').value, '尚未輸入觀察重點');
-    const levels = safeText($('levels').value, '尚未輸入關鍵價位');
-    const imgs = countImages();
-
-    const status = imgs >= 2 ? '可初步規劃' : '資料不足';
-    const riskLabel = risk.includes('保守') ? '低' : risk.includes('標準') ? '中' : '高';
-    $('mBias').textContent = bias;
-    $('mStatus').textContent = status;
-    $('mRisk').textContent = riskLabel;
-
-    const missing = [];
-    if (!imageState.daily) missing.push('日K線圖');
-    if (!imageState.hour) missing.push('小時K線圖');
-    if (!imageState.volume) missing.push('成交量 / 籌碼圖');
-
-    const report = `【TheCalcBox SMC 交易劇本分析】
-
-標的：${symbol}
-目前價格：${priceNow}
-主觀方向：${bias}
-風險設定：${risk}
-圖片完整度：已上傳 ${imgs}/3${missing.length ? `，缺少：${missing.join('、')}` : '，資料完整'}
-
-一、市場結構初判
-1. 日K：先確認是否仍維持 HH / HL，或已經跌破前低轉為 LH / LL。
-2. 小時K：觀察是否出現 BOS 或 CHoCH，避免在結構未確認時追價。
-3. 若價格位於區間中間，優先判定為低勝率位置，不急著進場。
-
-二、使用者觀察
-${notes}
-
-三、關鍵價位
-${levels}
-
-四、SMC 檢查清單
-□ 是否掃過 Buy Side Liquidity 後快速跌回？
-□ 是否掃過 Sell Side Liquidity 後快速收回？
-□ 是否存在明顯 Bullish / Bearish Order Block？
-□ 是否留下 Fair Value Gap，且價格尚未回補？
-□ 目前價格位於 Premium 還是 Discount Zone？
-□ 回測區是否靠近前高、前低、OB、FVG 或成交量密集區？
-
-五、量價判斷
-1. 突破需要放量，否則容易是假突破。
-2. 回測若縮量，代表賣壓或買壓暫時減弱，可等待下一次動能確認。
-3. 高檔爆量不漲，要小心出貨或誘多。
-4. 低檔放量止跌，要觀察是否形成掃流動性後反轉。
-
-六、多方劇本
-條件：
-- 價格回測支撐、Bullish OB 或 FVG 區域不破。
-- 小週期出現 CHoCH 向上或 BOS 向上。
-- 回測縮量，重新上攻放量。
-
-進場方式：
-- 不追高，等待回測確認後分批。
-- 停損放在最近掃流動性低點或 OB 下緣外側。
-- 第一目標看前高，第二目標看 Buy Side Liquidity，第三目標看日K壓力區。
-
-七、空方劇本
-條件：
-- 價格掃過前高後快速跌回區間。
-- 高檔出現爆量不漲或長上影線。
-- 小時K跌破前低形成 BOS 向下。
-
-進場方式：
-- 等待回測 Bearish OB 或破位區。
-- 停損放在掃高點上方。
-- 第一目標看區間中線，第二目標看 Sell Side Liquidity，第三目標看日K支撐區。
-
-八、不交易條件
-- 價格在區間中間。
-- 上方壓力太近，下方支撐太近，風險報酬比不足 1:2。
-- 沒有 BOS / CHoCH。
-- 量價不配合。
-- 只有主觀想法，沒有明確觸發條件。
-
-九、執行建議
-目前建議：${imgs >= 2 ? '可以先列入觀察，但仍需等待價格觸發條件。' : '資料不足，建議至少補上日K與小時K圖片。'}
-策略核心：先等流動性被掃，再等結構確認，不在中間價位硬做。
-
-十、風險提醒
-本報告僅供交易紀錄、技術分析練習與策略整理，不構成投資建議。任何交易都需要自行承擔風險。`;
-
-    $('report').textContent = report;
-    $('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  async function copyReport() {
-    const text = $('report').textContent;
-    try {
-      await navigator.clipboard.writeText(text);
-      alert('已複製報告');
-    } catch (e) {
-      alert('複製失敗，請手動選取報告內容');
-    }
-  }
-
-  function downloadReport() {
-    const symbol = safeText($('symbol').value, 'SMC_Report');
-    const blob = new Blob([$('report').textContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${symbol}_SMC_交易劇本.txt`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
+function inferDirection(dailyTrend,hourStructure,volumeSignal,zone,bias){
+  let score=0; if(dailyTrend.includes('多方')||dailyTrend.includes('築底')) score+=2; if(dailyTrend.includes('空方')||dailyTrend.includes('高檔')) score-=2; if(hourStructure.includes('向上')) score+=2; if(hourStructure.includes('向下')) score-=2; if(volumeSignal.includes('突破放量')||volumeSignal.includes('低檔放量止跌')) score+=1; if(volumeSignal.includes('高檔爆量不漲')||volumeSignal.includes('突破量縮')) score-=1; if(zone.includes('Premium')||zone.includes('上方流動性')) score-=1; if(zone.includes('Discount')||zone.includes('下方流動性')) score+=1; if(bias==='偏多') score+=1; if(bias==='偏空') score-=1; if(score>=3) return '偏多觀察'; if(score<=-3) return '偏空觀察'; return '等待確認';
+}
+async function generateReport(){
+  const btn=$('generateBtn'); const mode=$('analysisMode').value; if(mode==='api'){ await generateApiReport(btn); return; }
+  generateLocalReport();
+}
+async function generateApiReport(btn){
+  const endpoint=safeText($('apiEndpoint').value,''); if(!endpoint){ alert('請先填入 AI Vision 後端 Endpoint'); return; } if(countImages()<2){ alert('AI 自動分析建議至少貼上日K與1H兩張圖'); return; }
+  btn.disabled=true; btn.textContent='AI 分析中...'; $('report').textContent='AI Vision 後端分析中，請勿關閉頁面...';
+  const payload={ symbol:safeText($('symbol').value,'未填寫標的'), priceNow:safeText($('priceNow').value,'未填寫'), risk:$('risk').value, notes:safeText($('notes').value,''), levels:safeText($('levels').value,''), images:[{timeframe:'D',dataUrl:imageState.daily},{timeframe:'1H',dataUrl:imageState.hour}] };
+  try{ const res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); if(!res.ok) throw new Error('HTTP '+res.status); const data=await res.json(); const text=data.result || data.report || data.text || JSON.stringify(data,null,2); $('report').textContent=text; $('mBias').textContent='AI自動分析'; $('mStatus').textContent='已完成'; $('mRisk').textContent=$('risk').value.includes('保守')?'低':$('risk').value.includes('標準')?'中':'高'; $('resultCard').scrollIntoView({behavior:'smooth',block:'start'}); }
+  catch(err){ $('report').textContent='AI 後端連線失敗：'+err.message+'\n\n請確認 Endpoint 是否支援 CORS、POST JSON，以及是否回傳 { result: "..." }。'; }
+  finally{ btn.disabled=false; btn.textContent='產生 / 自動分析'; }
+}
+function generateLocalReport(){
+  const symbol=safeText($('symbol').value,'未填寫標的'), priceNow=safeText($('priceNow').value,'未填寫'), risk=$('risk').value, bias=$('marketBias').value, dailyTrend=$('dailyTrend').value, hourStructure=$('hourStructure').value, volumeSignal=$('volumeSignal').value, zone=$('zone').value, notes=safeText($('notes').value,'尚未輸入觀察重點'), levels=safeText($('levels').value,'尚未輸入關鍵價位'), imgs=countImages();
+  const direction=inferDirection(dailyTrend,hourStructure,volumeSignal,zone,bias); const status=imgs>=2?'圖片完整':'建議補圖'; const riskLabel=risk.includes('保守')?'低':risk.includes('標準')?'中':'高'; $('mBias').textContent=direction; $('mStatus').textContent=status; $('mRisk').textContent=riskLabel;
+  const missing=[]; if(!imageState.daily) missing.push('日K線圖'); if(!imageState.hour) missing.push('1H小時K線圖');
+  const tradeBias = direction.includes('多')?'多方優先，但不追高':direction.includes('空')?'空方優先，但不追空':'等待 BOS / CHoCH 確認';
+  const report=`【TheCalcBox SMC 交易劇本分析】\n\n標的：${symbol}\n目前價格：${priceNow}\n模式：本地半自動劇本\n圖片狀態：已貼上 ${imgs}/2${missing.length?`，缺少：${missing.join('、')}`:'，日K與1H完整'}\n風險設定：${risk}\n\n一、快速結論\n方向：${direction}\n策略：${tradeBias}\n目前位置：${zone}\n量價訊號：${volumeSignal}\n\n二、多週期結構\n日K結構：${dailyTrend}\n1H結構：${hourStructure}\n主觀方向：${bias}\n\n判讀重點：\n1. 日K決定大方向，只在大結構沒有被破壞時順勢操作。\n2. 1H用來找 BOS / CHoCH 與進場觸發。\n3. 若價格在區間中間或 Premium 追高區，優先等待，不硬做。\n\n三、量價與流動性\n量價：${volumeSignal}\nSMC位置：${zone}\n\n檢查清單：\n□ 是否掃過 Buy Side Liquidity 後快速跌回？\n□ 是否掃過 Sell Side Liquidity 後快速收回？\n□ 是否有清楚 Bullish / Bearish Order Block？\n□ 是否留下 FVG，且尚未完全回補？\n□ 回測區是否同時接近 OB、FVG、前高前低或成交量密集區？\n\n四、你的觀察\n${notes}\n\n五、關鍵價位\n${levels}\n\n六、多方劇本\n適用條件：\n- 日K維持多方或低檔築底。\n- 1H出現 CHoCH 向上或 BOS 向上。\n- 回測支撐、Bullish OB 或 FVG 不破。\n- 回測縮量，重新上攻放量。\n\n執行方式：\n- 不追高，等回測確認後分批。\n- 停損放在最近掃流動性低點或 OB 下緣外側。\n- 第一目標看前高，第二目標看 Buy Side Liquidity，第三目標看日K壓力。\n\n七、空方劇本\n適用條件：\n- 價格掃過前高後快速跌回區間。\n- 高檔爆量不漲、突破量縮，或出現長上影線。\n- 1H跌破前低形成 BOS 向下。\n\n執行方式：\n- 等待回測 Bearish OB 或破位區。\n- 停損放在掃高點上方。\n- 第一目標看區間中線，第二目標看 Sell Side Liquidity，第三目標看日K支撐。\n\n八、不交易條件\n- 日K與1H方向互相衝突。\n- 價格在區間中間，風險報酬比不足 1:2。\n- 只有想法，沒有 BOS / CHoCH 或量價確認。\n- 突破沒有量，或回測沒有守住關鍵位。\n\n九、下一步\n建議等待「流動性被掃 + 小週期結構確認 + 量價配合」三個條件同時出現，再規劃進場。\n\n十、風險提醒\n本報告僅供交易紀錄、技術分析練習與策略整理，不構成投資建議。任何交易都需要自行承擔風險。`;
+  $('report').textContent=report; $('resultCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function copyReport(){ try{ await navigator.clipboard.writeText($('report').textContent); alert('已複製報告'); }catch(e){ alert('複製失敗，請手動選取報告內容'); } }
+function downloadReport(){ const symbol=safeText($('symbol').value,'SMC_Report'); const blob=new Blob([$('report').textContent],{type:'text/plain;charset=utf-8'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=`${symbol}_SMC_交易劇本.txt`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url); }
 </script>
 </body>
 </html>
