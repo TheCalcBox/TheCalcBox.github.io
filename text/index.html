@@ -1,744 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YSWRYYKD44"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YSWRYYKD44');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
-<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="CalcBox">
-<meta name="theme-color" content="#1B3A5C">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<title>CalcBox 工具站 — 免費生活計算機目錄｜貸款、稅務、健康、退休試算</title>
-<link rel="canonical" href="https://thecalcbox.com/">
-<meta name="description" content="CalcBox 免費線上計算機：行事曆、匯率、貸款、稅務、退休、健康、孕產、投資、房產、學生工具。免註冊免下載，開啟即用。">
-<meta name="keywords" content="2026行事曆,匯率換算,房貸試算,所得稅計算,BMI計算,退休金試算,免費計算機">
-<meta name="google-site-verification" content="ndLPqcm96ahzjZOcmJX0ny3eywO74LF7Y3N6_FWm9R0">
-<meta property="og:title" content="CalcBox 工具站 — 生活所有的數字都讓 CalcBox 替你算">
-<meta property="og:description" content="122+ 個免費計算工具，22 大主題：房貸、所得稅、BMI、退休金、匯率、行事曆、統計品管，免註冊開啟即用。">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="CalcBox">
-<meta property="og:locale" content="zh_TW">
-<meta property="og:url" content="https://thecalcbox.com/">
-<meta property="og:image" content="https://thecalcbox.com/og/home.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="CalcBox 工具站 — 122+ 免費計算工具">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="CalcBox 工具站 — 免費生活計算機目錄">
-<meta name="twitter:description" content="122+ 個免費計算工具，22 大主題：房貸、所得稅、BMI、退休金、匯率、行事曆、統計品管，免註冊開啟即用。">
-<meta name="twitter:image" content="https://thecalcbox.com/og/home.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://thecalcbox.com/#website","name":"CalcBox 工具站","url":"https://thecalcbox.com/","description":"台灣免費線上計算機目錄，涵蓋貸款、稅務、健康、退休、匯率、統計品管等 122+ 個工具。","inLanguage":"zh-TW","publisher":{"@id":"https://thecalcbox.com/#org"}},{"@type":"Organization","@id":"https://thecalcbox.com/#org","name":"CalcBox","url":"https://thecalcbox.com/","logo":"https://thecalcbox.com/icons/icon-512.png"},{"@type":"ItemList","name":"CalcBox 計算工具分類","itemListOrder":"https://schema.org/ItemListOrderAscending","numberOfItems":22,"itemListElement":[{"@type":"ListItem","position":1,"name":"行事曆工具","url":"https://thecalcbox.com/calendar/"},{"@type":"ListItem","position":2,"name":"即時匯率","url":"https://thecalcbox.com/fx/"},{"@type":"ListItem","position":3,"name":"貸款試算","url":"https://thecalcbox.com/loan/"},{"@type":"ListItem","position":4,"name":"稅務薪資","url":"https://thecalcbox.com/tax/"},{"@type":"ListItem","position":5,"name":"退休理財","url":"https://thecalcbox.com/retire/"},{"@type":"ListItem","position":6,"name":"投資試算","url":"https://thecalcbox.com/invest/"},{"@type":"ListItem","position":7,"name":"房產試算","url":"https://thecalcbox.com/property/"},{"@type":"ListItem","position":8,"name":"生活費用","url":"https://thecalcbox.com/bill/"},{"@type":"ListItem","position":9,"name":"汽機車","url":"https://thecalcbox.com/car/"},{"@type":"ListItem","position":10,"name":"健康計算","url":"https://thecalcbox.com/health/"},{"@type":"ListItem","position":11,"name":"營養飲食","url":"https://thecalcbox.com/nutrition/"},{"@type":"ListItem","position":12,"name":"孕產育兒","url":"https://thecalcbox.com/baby/"},{"@type":"ListItem","position":13,"name":"學生工具","url":"https://thecalcbox.com/student/"},{"@type":"ListItem","position":14,"name":"日期時間","url":"https://thecalcbox.com/date/"},{"@type":"ListItem","position":15,"name":"單位換算","url":"https://thecalcbox.com/convert/"},{"@type":"ListItem","position":16,"name":"電子電路","url":"https://thecalcbox.com/electronics/"},{"@type":"ListItem","position":17,"name":"醫療護理","url":"https://thecalcbox.com/medical/"},{"@type":"ListItem","position":18,"name":"物流運費","url":"https://thecalcbox.com/logistics/"},{"@type":"ListItem","position":19,"name":"建築裝潢","url":"https://thecalcbox.com/construction/"},{"@type":"ListItem","position":20,"name":"人資 HR","url":"https://thecalcbox.com/hr/"},{"@type":"ListItem","position":21,"name":"法律合約","url":"https://thecalcbox.com/legal/"},{"@type":"ListItem","position":22,"name":"統計品管","url":"https://thecalcbox.com/statistics/"}]}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0E2A47;--ink-soft:#57697F;--paper:#E9EDF4;--card:#FFFFFF;
-  --line:#DCE3EC;--radius:18px;
-  --gold:#C28A1A;--gold-deep:#9A6A0C;--gold-text:#B07A14;--gold-soft:#FBEED3;--gold-hi:#F3C969;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans TC',sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
-svg{display:block}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
-
-/* ══ Header ══ */
-header{background:rgba(233,237,244,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(14,42,71,.06);position:sticky;top:0;z-index:300}
-.hdr{max-width:1020px;margin:0 auto;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem}
-.logo{font-size:18px;font-weight:900;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
-.logo-mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(160deg,#25507F,#0E2A47 58%,#081B30);color:#F3C969;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;
-  box-shadow:0 4px 10px -3px rgba(14,42,71,.55),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -2px 4px rgba(0,0,0,.28)}
-.logo em{font-style:normal;color:var(--gold-text)}
-.lang-select{height:34px;padding:0 11px;border:1px solid rgba(255,255,255,.9);border-radius:10px;background:linear-gradient(#fff,#F2F5FA);font-size:13px;font-weight:600;color:var(--ink);font-family:inherit;cursor:pointer;-webkit-appearance:none;box-shadow:0 2px 6px -2px rgba(14,42,71,.14),inset 0 1px 0 #fff}
-.hdr-right{display:flex;align-items:center;gap:8px}
-.add-home-btn{display:inline-flex;align-items:center;gap:5px;height:34px;padding:0 13px;border:none;border-radius:10px;background:linear-gradient(160deg,#255082,#0E2A47 60%,#0A2038);color:#F3C969;font-size:12.5px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap;transition:transform .15s,box-shadow .15s;
-  box-shadow:0 5px 12px -4px rgba(14,42,71,.5),inset 0 1px 0 rgba(255,255,255,.2),inset 0 -2px 4px rgba(0,0,0,.3)}
-.add-home-btn:hover{transform:translateY(-1px);box-shadow:0 8px 16px -5px rgba(14,42,71,.55),inset 0 1px 0 rgba(255,255,255,.2),inset 0 -2px 4px rgba(0,0,0,.3)}
-.add-home-btn:active{transform:translateY(1px)}
-.add-home-btn svg{width:15px;height:15px}
-@media(max-width:480px){
-  .add-home-btn{height:38px;padding:0 14px;font-size:14px;gap:7px}
-  .add-home-btn svg{width:19px;height:19px}
-}
-/* iOS 教學彈窗 */
-.a2hs-mask{position:fixed;inset:0;background:rgba(14,42,71,.55);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}
-.a2hs-mask.show{display:flex}
-.a2hs-sheet{background:#fff;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:24px 22px 30px;animation:a2hsUp .28s ease}
-@keyframes a2hsUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.a2hs-sheet h3{font-size:17px;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:7px}
-.a2hs-sheet .a2hs-lead{font-size:13px;color:#5A6E84;line-height:1.6;margin-bottom:18px}
-.a2hs-step{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
-.a2hs-step .n{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E2A47;color:#F3C969;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
-.a2hs-step .t{font-size:13.5px;color:var(--ink);line-height:1.5}
-.a2hs-step .t b{color:#0E2A47}
-.a2hs-step svg{width:20px;height:20px;flex-shrink:0;color:#1565C0}
-.a2hs-close{width:100%;height:46px;margin-top:18px;border:none;border-radius:12px;background:#0E2A47;color:#fff;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer}
-.lang-select:focus{outline:none;border-color:var(--gold)}
-
-/* ══ Hero：深藍 3D 舞台 ══ */
-.hero{position:relative;overflow:hidden;color:#fff;
-  background:
-    radial-gradient(900px 420px at 50% -140px,rgba(58,110,168,.55),transparent 70%),
-    radial-gradient(620px 340px at 82% 8%,rgba(194,138,26,.22),transparent 65%),
-    radial-gradient(520px 300px at 12% 30%,rgba(38,86,140,.4),transparent 70%),
-    linear-gradient(178deg,#12365C 0%,#0E2A47 46%,#091D33 100%)}
-/* 透視地板網格 */
-.hero::before{content:'';position:absolute;left:-30%;right:-30%;bottom:-6%;height:62%;
-  background:
-    linear-gradient(rgba(243,201,105,.12) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(243,201,105,.12) 1px,transparent 1px);
-  background-size:56px 44px;
-  transform:perspective(620px) rotateX(63deg);transform-origin:50% 100%;
-  -webkit-mask-image:linear-gradient(transparent 0%,#000 45%,#000 82%,transparent 100%);
-  mask-image:linear-gradient(transparent 0%,#000 45%,#000 82%,transparent 100%);
-  pointer-events:none}
-/* 底部霧面接地光 */
-.hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:120px;
-  background:radial-gradient(60% 130px at 50% 115%,rgba(243,201,105,.2),transparent 75%);pointer-events:none}
-.hero-in{max-width:1020px;margin:0 auto;padding:58px 1.5rem 46px;text-align:center;position:relative;z-index:2}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.16em;color:#F3C969;background:rgba(243,201,105,.12);border:1px solid rgba(243,201,105,.32);padding:5px 14px;border-radius:999px;margin-bottom:16px;font-family:'Space Grotesk',sans-serif;backdrop-filter:blur(3px)}
-.eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold-hi);box-shadow:0 0 8px rgba(243,201,105,.9);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
-.hero h1{font-size:clamp(27px,4.6vw,46px);font-weight:900;line-height:1.28;letter-spacing:-.4px;text-shadow:0 2px 18px rgba(4,16,30,.5)}
-.hero h1 em{font-style:normal;background:linear-gradient(105deg,#F8DA8E 8%,#E4AC3B 48%,#C28A1A 82%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 3px 8px rgba(194,138,26,.4))}
-.hero p{margin-top:11px;color:rgba(224,234,246,.82);font-size:14px;max-width:480px;margin-left:auto;margin-right:auto}
-
-/* 3D 漂浮 icon 磚（訊號元素） */
-.orbit{position:absolute;inset:0;pointer-events:none;z-index:1;perspective:900px}
-.otile{position:absolute;width:var(--s,58px);height:var(--s,58px);border-radius:26%;
-  background:linear-gradient(158deg,#FFFFFF 0%,#EEF2F8 62%,#DDE4EE 100%);
-  box-shadow:
-    0 22px 34px -14px rgba(3,12,24,.65),
-    0 8px 14px -8px rgba(3,12,24,.5),
-    inset 0 1.5px 0 rgba(255,255,255,.95),
-    inset 0 -3px 6px rgba(120,140,168,.32);
-  display:flex;align-items:center;justify-content:center;
-  animation:bob var(--d,7s) ease-in-out var(--dl,0s) infinite;
-  will-change:transform}
-.otile svg{width:52%;height:52%;fill:none;stroke:var(--c,#2D6CB5);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1.5px 1px rgba(14,42,71,.28))}
-.otile.dim{opacity:.55;filter:blur(.6px)}
-@keyframes bob{0%,100%{transform:translate3d(0,0,0) rotate(var(--r,-6deg))}50%{transform:translate3d(0,-14px,0) rotate(calc(var(--r,-6deg) + 4deg))}}
-
-/* 熱搜捷徑（玻璃 chip） */
-.hot{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px;position:relative;z-index:2}
-.hot span{font-size:11px;color:rgba(224,234,246,.6);align-self:center}
-.hot a{font-size:12px;font-weight:600;color:#EAF1F9;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);padding:5px 14px;border-radius:99px;text-decoration:none;transition:all .18s;backdrop-filter:blur(4px);box-shadow:0 3px 10px -5px rgba(3,12,24,.6),inset 0 1px 0 rgba(255,255,255,.14)}
-.hot a:hover{color:#0E2A47;background:linear-gradient(160deg,#F8DA8E,#E4AC3B);border-color:transparent;transform:translateY(-2px);box-shadow:0 8px 18px -6px rgba(194,138,26,.55)}
-
-/* 統計玻璃卡 */
-.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px;position:relative;z-index:2}
-.hstat{background:linear-gradient(165deg,rgba(255,255,255,.13),rgba(255,255,255,.05));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.22);border-radius:15px;padding:12px 26px;
-  box-shadow:0 12px 26px -12px rgba(3,12,24,.7),inset 0 1px 0 rgba(255,255,255,.25)}
-.hstat .n{font-size:26px;font-weight:700;font-family:'Space Grotesk',sans-serif;color:#fff;text-shadow:0 2px 10px rgba(3,12,24,.5)}
-.hstat .n::after{content:'+';color:var(--gold-hi);font-size:18px;margin-left:1px}
-.hstat .l{font-size:10px;color:rgba(224,234,246,.72);margin-top:1px;letter-spacing:.05em}
-.hstat-ig{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:10px 24px;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s}
-.hstat-ig:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(3,12,24,.8),inset 0 1px 0 rgba(255,255,255,.25)}
-.ig-box{width:27px;height:27px;border-radius:8px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 10px -3px rgba(221,42,123,.55),inset 0 1px 0 rgba(255,255,255,.35)}
-.ig-box svg{width:16px;height:16px}
-
-/* ══ Section wrapper ══ */
-.wrap{max-width:1020px;margin:0 auto;padding:34px 1.5rem 64px}
-
-/* ══ Block 區塊 ══ */
-.block{margin-bottom:44px}
-.block-hdr{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.block-ico{width:42px;height:42px;border-radius:26%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  background:linear-gradient(158deg,#FFFFFF 0%,#F0F3F9 60%,#E0E7F0 100%);
-  box-shadow:0 8px 16px -7px rgba(14,42,71,.35),0 2px 4px -2px rgba(14,42,71,.2),inset 0 1.5px 0 #fff,inset 0 -3px 5px rgba(120,140,168,.25)}
-.block-ico svg{width:20px;height:20px;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1.5px 1px rgba(14,42,71,.22))}
-.block-title{font-size:17px;font-weight:900;letter-spacing:-.2px}
-.block-sub{font-size:11px;color:var(--ink-soft);margin-top:1px}
-.block-divider{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);margin-left:4px}
-.block-cnt{font-size:11px;font-weight:700;color:var(--ink-soft);background:linear-gradient(#fff,#EEF1F6);padding:4px 11px;border-radius:99px;white-space:nowrap;font-family:'Space Grotesk',sans-serif;box-shadow:0 2px 5px -2px rgba(14,42,71,.15),inset 0 1px 0 #fff}
-
-.bl-life .block-ico svg{stroke:#9A6A0C}.bl-life .block-title{color:#7B4F00}
-.bl-edu .block-ico svg{stroke:#2E7D32}.bl-edu .block-title{color:#1B5E20}
-.bl-pro .block-ico svg{stroke:#1565C0}.bl-pro .block-title{color:#0D3464}
-
-/* ══ 卡片 Grid ══ */
-.theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:1100px}
-
-.tc{
-  position:relative;background:linear-gradient(168deg,#FFFFFF 0%,#FBFCFE 55%,#F2F5FA 100%);
-  border:1px solid rgba(255,255,255,.9);
-  border-radius:var(--radius);padding:17px 18px 15px;
-  min-height:142px;
-  text-decoration:none;color:var(--ink);overflow:hidden;
-  box-shadow:
-    0 2px 3px -1px rgba(14,42,71,.1),
-    0 14px 30px -18px rgba(14,42,71,.3),
-    inset 0 1.5px 0 #fff;
-  transition:box-shadow .25s,border-color .2s;
-  display:block;
-  transform-style:preserve-3d;
-  opacity:0;transform:translateY(16px);
-  will-change:transform;
-}
-.tc.in{animation:rise .55s cubic-bezier(.2,.7,.3,1) forwards}
-@keyframes rise{to{opacity:1;transform:translateY(0)}}
-.tc.in{transition:transform .18s ease-out,box-shadow .25s,border-color .2s}
-.tc:hover{box-shadow:
-    0 3px 5px -2px rgba(14,42,71,.14),
-    0 30px 50px -22px color-mix(in srgb,var(--accent,#2D6CB5) 42%,rgba(14,42,71,.4)),
-    inset 0 1.5px 0 #fff;
-  border-color:color-mix(in srgb,var(--accent,#2D6CB5) 35%,#fff)}
-.tc:active{transform:scale(.985)!important}
-
-/* 頂部色光 */
-.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--accent,#ccc),transparent);opacity:0;transition:opacity .25s}
-.tc:hover::before{opacity:.9}
-/* 掃光 */
-.tc::after{content:'';position:absolute;top:-60%;left:-80%;width:55%;height:220%;transform:rotate(22deg);
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);opacity:0;pointer-events:none;transition:left .6s ease,opacity .3s}
-.tc:hover::after{left:130%;opacity:1}
-
-/* 卡片內容 */
-.tc-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-/* 3D App icon 磚 */
-.tc-icon{width:44px;height:44px;border-radius:27%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;
-  background:linear-gradient(158deg,#FFFFFF 0%,#F2F5FA 58%,color-mix(in srgb,var(--accent-soft,#E4EAF2) 75%,#D8E0EB) 100%);
-  box-shadow:
-    0 9px 16px -7px color-mix(in srgb,var(--accent,#2D6CB5) 48%,rgba(14,42,71,.3)),
-    0 2px 4px -2px rgba(14,42,71,.22),
-    inset 0 1.5px 0 rgba(255,255,255,.98),
-    inset 0 -3px 6px color-mix(in srgb,var(--accent,#7A8CA5) 15%,rgba(120,140,168,.24));
-  transform:translateZ(26px);
-  transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s}
-.tc:hover .tc-icon{transform:translateZ(40px) scale(1.06);
-  box-shadow:
-    0 15px 24px -9px color-mix(in srgb,var(--accent,#2D6CB5) 58%,rgba(14,42,71,.34)),
-    0 3px 6px -2px rgba(14,42,71,.25),
-    inset 0 1.5px 0 rgba(255,255,255,.98),
-    inset 0 -3px 6px color-mix(in srgb,var(--accent,#7A8CA5) 15%,rgba(120,140,168,.24))}
-.tc-icon svg{width:21px;height:21px;fill:none;stroke:var(--accent,#0FA47A);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1.5px 1px color-mix(in srgb,var(--accent,#0E2A47) 40%,transparent))}
-
-/* 背景浮水印 icon（由 JS 複製產生） */
-.tc-ghost{position:absolute;right:-16px;bottom:-20px;width:110px;height:110px;opacity:.05;transform:rotate(-10deg) translateZ(4px);pointer-events:none;transition:transform .4s cubic-bezier(.2,.7,.3,1),opacity .4s;z-index:0}
-.tc-ghost svg{width:100%;height:100%;fill:none;stroke:var(--accent,#888);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.tc:hover .tc-ghost{transform:rotate(-4deg) scale(1.08) translateZ(4px);opacity:.095}
-.tc-row1,.tc-name,.tc-tags,.tc-cta,.tc-body{position:relative;z-index:1;transform:translateZ(12px)}
-.tc-calc{font-size:10px;font-weight:700;color:var(--accent,#0FA47A);background:linear-gradient(#fff,var(--accent-soft,#E4F4EE));padding:3px 10px;border-radius:99px;white-space:nowrap;font-family:'Space Grotesk',sans-serif;letter-spacing:.02em;
-  box-shadow:0 2px 5px -2px color-mix(in srgb,var(--accent,#888) 40%,transparent),inset 0 1px 0 #fff}
-
-.tc-name{font-size:14.5px;font-weight:800;margin-bottom:4px;line-height:1.3}
-.tc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
-.tc-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:7px;background:linear-gradient(#F7F9FC,#EEF1F6);color:var(--ink-soft);border:1px solid rgba(255,255,255,.8);box-shadow:0 1px 2px rgba(14,42,71,.06);transition:all .15s}
-.tc:hover .tc-tag{border-color:color-mix(in srgb,var(--accent,#ccc) 40%,#fff);color:var(--accent,var(--ink-soft));background:var(--accent-soft,#F4F6F9)}
-
-.tc-cta{font-size:11px;font-weight:700;color:var(--accent,#0FA47A);display:inline-flex;align-items:center;gap:3px;transition:gap .15s}
-.tc:hover .tc-cta{gap:7px}
-
-/* ══ Featured 大卡 ══ */
-.tc.featured{grid-column:1/-1;min-height:0;padding:19px 22px;
-  display:flex;align-items:center;gap:19px;
-  background:linear-gradient(115deg,color-mix(in srgb,var(--accent-soft,#E4F4EE) 88%,#fff) 0%,#FFFFFF 46%,#F4F7FB 100%)}
-.tc.featured .tc-icon{width:62px;height:62px;border-radius:24%;
-  background:linear-gradient(158deg,#FFFFFF 0%,#F4F7FB 55%,color-mix(in srgb,var(--accent-soft,#E4EAF2) 80%,#D8E0EB) 100%);
-  box-shadow:
-    0 14px 24px -9px color-mix(in srgb,var(--accent,#2D6CB5) 55%,rgba(14,42,71,.3)),
-    0 3px 6px -3px rgba(14,42,71,.28),
-    inset 0 2px 0 rgba(255,255,255,.98),
-    inset 0 -4px 8px color-mix(in srgb,var(--accent,#7A8CA5) 16%,rgba(120,140,168,.26))}
-.tc.featured .tc-ghost{width:150px;height:150px;right:64px;bottom:-50px}
-.tc.featured .tc-icon svg{width:29px;height:29px}
-.tc.featured .tc-body{flex:1;min-width:0}
-.tc.featured .tc-name{font-size:16.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}
-.tc.featured .tc-tags{margin-bottom:0}
-.tc.featured .tc-cta{flex-shrink:0}
-.fbadge{font-size:10px;font-weight:800;color:#fff;background:linear-gradient(160deg,color-mix(in srgb,var(--accent,#0FA47A) 78%,#fff),var(--accent,#0FA47A));padding:2px 10px;border-radius:99px;letter-spacing:.04em;
-  box-shadow:0 3px 8px -3px color-mix(in srgb,var(--accent,#0FA47A) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
-
-/* ══ Footer ══ */
-footer{background:linear-gradient(178deg,#0F2C4B,#091D33);padding:28px 1.5rem;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
-footer p{font-size:12px;color:rgba(255,255,255,.78);line-height:2}
-footer a{color:rgba(255,255,255,.92);text-decoration:none}
-footer a:hover{color:#F3C969}
-
-/* ══ RWD ══ */
-@media(max-width:900px){
-  .otile{--s:46px}
-}
-@media(max-width:560px){
-  .hero-in{padding:44px 1rem 32px}
-  .wrap{padding:22px 1rem 44px}
-  .theme-grid{gap:10px}
-  .otile{display:none}
-  .otile.m-keep{display:flex;--s:42px;opacity:.5;filter:blur(.4px)}
-  .tc-ghost{width:86px;height:86px;right:-14px;bottom:-16px}
-  .tc.featured .tc-ghost{width:112px;height:112px;right:-22px;bottom:-30px}
-  .tc{padding:14px 14px 12px;min-height:150px;display:flex;flex-direction:column}
-  .tc .tc-cta{margin-top:auto}
-  .tc-icon{width:40px;height:40px}
-  .tc-icon svg{width:19px;height:19px}
-  .tc-name{font-size:13px}
-  .tc-tag{font-size:9.5px;padding:2px 7px}
-  .block-sub{display:none}
-  .tc.featured{padding:16px 16px;gap:14px}
-  .tc.featured .tc-icon{width:50px;height:50px}
-  .tc.featured .tc-icon svg{width:24px;height:24px}
-  .tc.featured .tc-cta{display:none}
-  .hot span{display:none}
-}
-
-/* 動畫偏好 */
-@media(prefers-reduced-motion:reduce){
-  .tc{opacity:1;transform:none;animation:none!important;transition:none}
-  .tc::after{display:none}
-  .otile{animation:none}
-  .eyebrow::before{animation:none}
-  html{scroll-behavior:auto}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>TheCalcBox SMC 交易劇本分析器｜K線量價結構策略規劃</title>
+  <meta name="description" content="TheCalcBox SMC 交易劇本分析器，支援上傳日K、小時K與量價截圖，整理市場結構、SMC 流動性、Order Block、FVG、量價關係與交易劇本。" />
+  <meta name="keywords" content="SMC, Smart Money Concept, 量價分析, 技術分析, K線分析, Order Block, FVG, BOS, CHoCH, 交易劇本, TheCalcBox" />
+  <meta name="theme-color" content="#111827" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: rgba(255,255,255,.92);
+      --text: #111827;
+      --muted: #6b7280;
+      --line: rgba(17,24,39,.11);
+      --primary: #111827;
+      --primary2: #374151;
+      --accent: #2563eb;
+      --good: #059669;
+      --bad: #dc2626;
+      --warn: #d97706;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .09);
+      --radius: 22px;
+      --radius2: 16px;
+      --safe: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.15), transparent 32%),
+        radial-gradient(circle at top right, rgba(5,150,105,.12), transparent 30%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 100%); margin: 0 auto; padding: 18px 14px 96px; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(246,247,251,.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav {
+      width: min(1120px, 100%); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px;
+      gap: 10px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; letter-spacing: -.02em; }
+    .logo {
+      width: 38px; height: 38px; border-radius: 14px;
+      background: linear-gradient(135deg,#111827,#2563eb);
+      box-shadow: 0 10px 22px rgba(37,99,235,.28);
+      color: white; display: grid; place-items: center; font-size: 16px;
+    }
+    .pill {
+      border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px;
+      font-size: 12px; color: var(--muted); background: rgba(255,255,255,.72);
+      white-space: nowrap;
+    }
+    .hero { padding: 22px 0 14px; }
+    .hero-card {
+      border: 1px solid var(--line); border-radius: 30px; padding: 24px;
+      background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
+      box-shadow: var(--shadow); overflow: hidden; position: relative;
+    }
+    .hero-card:after {
+      content: ""; position: absolute; right: -80px; top: -90px; width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(37,99,235,.18), transparent 70%);
+    }
+    h1 { margin: 0; font-size: clamp(30px, 8vw, 58px); line-height: 1.02; letter-spacing: -.065em; max-width: 820px; }
+    .lead { margin: 14px 0 0; color: var(--muted); font-size: 16px; line-height: 1.72; max-width: 760px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .badge { font-size: 12px; padding: 8px 10px; border-radius: 999px; background: #f3f4f6; border: 1px solid var(--line); color: #374151; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: .95fr 1.05fr; align-items: start; } }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 16px; box-shadow: 0 12px 28px rgba(15, 23, 42, .055);
+    }
+    .card h2 { margin: 0 0 12px; font-size: 20px; letter-spacing: -.03em; }
+    .card h3 { margin: 16px 0 8px; font-size: 15px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; line-height: 1.6; }
+    label { display: block; font-size: 13px; font-weight: 800; margin: 12px 0 7px; }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--line); background: #fff; border-radius: 15px;
+      padding: 13px 14px; font: inherit; outline: none; color: var(--text);
+    }
+    textarea { min-height: 95px; resize: vertical; line-height: 1.55; }
+    input:focus, select:focus, textarea:focus { border-color: rgba(37,99,235,.65); box-shadow: 0 0 0 4px rgba(37,99,235,.1); }
+    .row { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 640px) { .row.two { grid-template-columns: 1fr 1fr; } }
+    .upload-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 640px) { .upload-grid { grid-template-columns: repeat(3, 1fr); } }
+    .upload {
+      border: 1px dashed rgba(17,24,39,.26); border-radius: var(--radius2); background: #fff;
+      padding: 12px; min-height: 180px; display: flex; flex-direction: column; gap: 9px;
+    }
+    .upload-title { font-weight: 900; font-size: 13px; }
+    .preview {
+      flex: 1; min-height: 118px; border-radius: 13px; background: #f3f4f6;
+      display: grid; place-items: center; overflow: hidden; color: var(--muted); font-size: 12px; text-align: center; padding: 8px;
+    }
+    .preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .btns { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 14px; }
+    @media (min-width: 640px) { .btns { grid-template-columns: 1.2fr 1fr 1fr; } }
+    button {
+      border: 0; border-radius: 16px; padding: 14px 16px; font: inherit; font-weight: 900;
+      cursor: pointer; transition: transform .12s ease, opacity .12s ease, box-shadow .12s ease;
+    }
+    button:active { transform: scale(.985); }
+    .primary { background: var(--primary); color: #fff; box-shadow: 0 12px 26px rgba(17,24,39,.22); }
+    .secondary { background: #fff; color: var(--text); border: 1px solid var(--line); }
+    .blue { background: var(--accent); color: #fff; }
+    .result-top { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    @media (min-width: 640px) { .result-top { grid-template-columns: repeat(3, 1fr); } }
+    .metric { border: 1px solid var(--line); background: #fff; border-radius: 18px; padding: 13px; }
+    .metric span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+    .metric b { font-size: 20px; letter-spacing: -.04em; }
+    .report {
+      white-space: pre-wrap; line-height: 1.75; background: #0b1220; color: #e5e7eb;
+      border-radius: 18px; padding: 16px; margin-top: 12px; overflow-x: auto;
+      font-size: 14px;
+    }
+    .notice { border-radius: 18px; padding: 13px; background: #fffbeb; border: 1px solid rgba(217,119,6,.25); color: #92400e; margin-top: 12px; }
+    .info { border-radius: 18px; padding: 13px; background: #eff6ff; border: 1px solid rgba(37,99,235,.18); color: #1e3a8a; margin-top: 12px; }
+    .steps { display: grid; gap: 8px; }
+    .step { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border-radius: 15px; background: #fff; border: 1px solid var(--line); }
+    .num { width: 25px; height: 25px; border-radius: 9px; background: #111827; color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 900; flex: 0 0 auto; }
+    .bottom-bar {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 14px calc(10px + var(--safe));
+      background: rgba(246,247,251,.85); backdrop-filter: blur(16px); border-top: 1px solid var(--line);
+      display: none;
+    }
+    .bottom-bar .inner { width: min(1120px, 100%); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 760px) { .bottom-bar { display: block; } .wrap { padding-bottom: 112px; } }
+    .seo { margin-top: 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .hidden-text { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="hdr">
-    <a class="logo" href="/"><span class="logo-mark">C</span>Calc<em>Box</em></a>
-    <div class="hdr-right">
-      <button class="add-home-btn" id="addHomeBtn" onclick="handleAddHome()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2.5"/><line x1="12" y1="18" x2="12" y2="18"/><line x1="12" y1="7" x2="12" y2="13"/><line x1="9" y1="10" x2="15" y2="10"/></svg>
-        <span>加到桌面</span>
-      </button>
-      <select class="lang-select" onchange="if(this.value)location.href=this.value" aria-label="選擇地區">
-        <option value="/" selected>🇹🇼 台灣</option>
-        <option value="/US/">🇺🇸 美國（建置中）</option>
-        <option value="" disabled>🇯🇵 日本（準備中）</option>
-        <option value="" disabled>🇻🇳 越南（準備中）</option>
-        <option value="" disabled>🇮🇩 印尼（準備中）</option>
-      </select>
+  <header>
+    <div class="nav">
+      <div class="brand"><div class="logo">TC</div><div>TheCalcBox SMC Lab</div></div>
+      <div class="pill">量價結構｜SMC｜交易劇本</div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- iOS 加到桌面教學彈窗 -->
-<div class="a2hs-mask" id="a2hsMask" onclick="if(event.target===this)closeA2HS()">
-  <div class="a2hs-sheet">
-    <h3>📲 把 CalcBox 加到桌面</h3>
-    <p class="a2hs-lead">加到主畫面後，像 App 一樣一點就開，免下載、不佔空間。</p>
-    <div class="a2hs-step">
-      <span class="n">1</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
-      <span class="t">點一下瀏覽器下方的<b>「分享」</b>按鈕</span>
-    </div>
-    <div class="a2hs-step">
-      <span class="n">2</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      <span class="t">往下找到並點選<b>「加入主畫面」</b></span>
-    </div>
-    <div class="a2hs-step">
-      <span class="n">3</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      <span class="t">按右上角<b>「加入」</b>，桌面就會出現 CalcBox 圖示 🎉</span>
-    </div>
-    <button class="a2hs-close" onclick="closeA2HS()">我知道了</button>
-  </div>
-</div>
-
-<div class="hero" id="hero">
-  <div class="orbit" id="orbit" aria-hidden="true">
-    <div class="otile m-keep" data-p="18" style="--s:60px;--c:#3A7FCC;--r:-8deg;--d:7.5s;--dl:0s;left:7%;top:18%"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-    <div class="otile m-keep" data-p="26" style="--s:54px;--c:#1B6B4A;--r:7deg;--d:8.5s;--dl:.8s;right:8%;top:14%"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-    <div class="otile" data-p="34" style="--s:64px;--c:#C58A12;--r:-5deg;--d:9s;--dl:1.6s;left:14%;bottom:16%"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M4 10h16"/><path d="M5 10l7-6 7 6"/><path d="M6 10v11"/><path d="M18 10v11"/><path d="M10 14v3"/><path d="M14 14v3"/></svg></div>
-    <div class="otile" data-p="30" style="--s:56px;--c:#0FA47A;--r:9deg;--d:8s;--dl:.4s;right:13%;bottom:20%"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 22l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/><polyline points="6 12 9 12 11 8.5 13 15 14.8 12 18 12"/></svg></div>
-    <div class="otile dim" data-p="12" style="--s:42px;--c:#6A4FB5;--r:-12deg;--d:10s;--dl:2.2s;left:24%;top:8%"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M20 12c0 1.66-3.58 3-8 3s-8-1.34-8-3"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/></svg></div>
-    <div class="otile dim" data-p="14" style="--s:40px;--c:#2D6CB5;--r:11deg;--d:9.5s;--dl:1.2s;right:23%;top:6%"><svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
-  </div>
-  <div class="hero-in">
-    <span class="eyebrow">FREE CALCULATOR HUB</span>
-    <h1>生活所有的數字<br>都讓 <em>CalcBox</em> 替你算</h1>
-    <p>免費計算工具庫 · 免註冊 · 開啟即用</p>
-
-    <div class="hot">
-      <span>熱搜：</span>
-      <a href="/calendar/">2026行事曆</a>
-      <a href="/loan/">房貸試算</a>
-      <a href="/health/">BMI</a>
-      <a href="/fx/">台幣換日幣</a>
-      <a href="/tax/">所得稅</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hstat"><div class="n" data-to="122">122</div><div class="l">線上工具</div></div>
-      <div class="hstat"><div class="n" data-to="22">22</div><div class="l">主題分類</div></div>
-      <a class="hstat hstat-ig" href="https://www.instagram.com/thecalcbox?igsh=aXI0d2w3aTVoYXI3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="追蹤 CalcBox Instagram">
-        <div class="ig-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>上傳 K 線截圖，整理你的 SMC 交易劇本</h1>
+        <p class="lead">這是一版可直接部署的 MVP。先用日K、小時K與成交量截圖，加上你的價格觀察，快速產生市場結構、量價判斷、進出場條件與風險控管清單。</p>
+        <div class="badges">
+          <span class="badge">日K趨勢</span><span class="badge">1H結構</span><span class="badge">BOS / CHoCH</span><span class="badge">Order Block</span><span class="badge">FVG</span><span class="badge">Liquidity</span><span class="badge">風險報酬比</span>
         </div>
-        <div class="l">Instagram</div>
-      </a>
-    </div>
-  </div>
-</div>
-
-<div class="wrap">
-
-<div class="block bl-life">
-  <div class="block-hdr">
-    <div class="block-ico"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="14" rx="3"/><path d="M2 11h20"/><path d="M6 16h4"/></svg></div>
-    <div class="block-meta">
-      <div class="block-title">生活與理財</div>
-      <div class="block-sub">依台灣搜尋熱度排序</div>
-    </div>
-    <div class="block-divider"></div>
-    <span class="block-cnt">9 個主題</span>
-  </div>
-  <div class="theme-grid">
-
-    <a class="tc featured" href="/calendar/" style="--accent:#3A7FCC;--accent-soft:#EAF1F9">
-      <div class="tc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-      <div class="tc-body">
-        <div class="tc-name">行事曆工具 <span class="fbadge">人氣 No.1</span> <span class="tc-calc">4 CALC</span></div>
-        <div class="tc-tags"><span class="tc-tag">2026行事曆</span><span class="tc-tag">連假計算</span><span class="tc-tag">農曆換算</span><span class="tc-tag">上班天數</span></div>
       </div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+    </section>
 
-    <a class="tc" href="/fx/" style="--accent:#1B6B4A;--accent-soft:#E4F4EE">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="tc-calc">3 CALC</span></div>
-      <div class="tc-name">即時匯率</div>
-      <div class="tc-tags"><span class="tc-tag">台幣換日幣</span><span class="tc-tag">台幣換美金</span><span class="tc-tag">港幣</span><span class="tc-tag">走勢圖</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+    <section class="grid" id="app">
+      <div class="card">
+        <h2>1. 上傳與輸入</h2>
+        <p class="muted small">目前是純前端版本，圖片會在你的瀏覽器預覽，不會上傳到伺服器。之後可接 OpenAI Vision API 做真正圖片判讀。</p>
 
-    <a class="tc" href="/loan/" style="--accent:#C58A12;--accent-soft:#FDF3DD">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M4 10h16"/><path d="M5 10l7-6 7 6"/><path d="M6 10v11"/><path d="M18 10v11"/><path d="M10 14v3"/><path d="M14 14v3"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">貸款試算</div>
-      <div class="tc-tags"><span class="tc-tag">房貸試算</span><span class="tc-tag">車貸計算</span><span class="tc-tag">信貸APR</span><span class="tc-tag">攤還表</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <div class="row two">
+          <div>
+            <label for="symbol">標的名稱</label>
+            <input id="symbol" placeholder="例如：台積電、BTC、ETH、NASDAQ" />
+          </div>
+          <div>
+            <label for="marketBias">你目前主觀方向</label>
+            <select id="marketBias">
+              <option value="尚未判斷">尚未判斷</option>
+              <option value="偏多">偏多</option>
+              <option value="偏空">偏空</option>
+              <option value="震盪">震盪</option>
+            </select>
+          </div>
+        </div>
 
-    <a class="tc" href="/tax/" style="--accent:#2D6CB5;--accent-soft:#EAF1F9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div><span class="tc-calc">7 CALC</span></div>
-      <div class="tc-name">稅務薪資</div>
-      <div class="tc-tags"><span class="tc-tag">所得稅</span><span class="tc-tag">加班費</span><span class="tc-tag">年終獎金</span><span class="tc-tag">健保費</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <div class="row two">
+          <div>
+            <label for="priceNow">目前價格</label>
+            <input id="priceNow" placeholder="例如：152.5" inputmode="decimal" />
+          </div>
+          <div>
+            <label for="risk">單筆最大風險</label>
+            <select id="risk">
+              <option value="保守：單筆風險 0.5% 以內">保守 0.5%</option>
+              <option value="標準：單筆風險 1% 以內">標準 1%</option>
+              <option value="積極：單筆風險 2% 以內">積極 2%</option>
+            </select>
+          </div>
+        </div>
 
-    <a class="tc" href="/retire/" style="--accent:#6A4FB5;--accent-soft:#EFEAF9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M20 12c0 1.66-3.58 3-8 3s-8-1.34-8-3"/><path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">退休理財</div>
-      <div class="tc-tags"><span class="tc-tag">勞保退休金</span><span class="tc-tag">複利計算</span><span class="tc-tag">4%法則</span><span class="tc-tag">定期定額</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <label>上傳圖片</label>
+        <div class="upload-grid">
+          <div class="upload">
+            <div class="upload-title">日K線圖</div>
+            <div class="preview" id="previewDaily">點選下方上傳</div>
+            <input type="file" accept="image/*" data-preview="previewDaily" />
+          </div>
+          <div class="upload">
+            <div class="upload-title">小時K線圖</div>
+            <div class="preview" id="previewHour">點選下方上傳</div>
+            <input type="file" accept="image/*" data-preview="previewHour" />
+          </div>
+          <div class="upload">
+            <div class="upload-title">成交量 / 籌碼圖</div>
+            <div class="preview" id="previewVolume">點選下方上傳</div>
+            <input type="file" accept="image/*" data-preview="previewVolume" />
+          </div>
+        </div>
 
-    <a class="tc" href="/invest/" style="--accent:#2E7D32;--accent-soft:#E8F5E9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">投資試算</div>
-      <div class="tc-tags"><span class="tc-tag">股利試算</span><span class="tc-tag">ETF定期定額</span><span class="tc-tag">FIRE</span><span class="tc-tag">定存比較</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <label for="notes">你的觀察重點</label>
+        <textarea id="notes" placeholder="例如：剛突破前高、上方有壓力、成交量沒有放大、想等回測 OB 再進場..."></textarea>
 
-    <a class="tc" href="/property/" style="--accent:#546E7A;--accent-soft:#ECEFF1">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 3l9 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 20Z"/><path d="M9 21.5v-8h6v8"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">房產試算</div>
-      <div class="tc-tags"><span class="tc-tag">房屋稅</span><span class="tc-tag">地價稅</span><span class="tc-tag">租售比</span><span class="tc-tag">實坪計算</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <label for="levels">關鍵價位</label>
+        <textarea id="levels" placeholder="例如：壓力 155 / 160，支撐 148 / 142，前高 158，前低 145"></textarea>
 
-    <a class="tc" href="/bill/" style="--accent:#E65100;--accent-soft:#FFF3E0">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span class="tc-calc">8 CALC</span></div>
-      <div class="tc-name">生活費用</div>
-      <div class="tc-tags"><span class="tc-tag">電費試算</span><span class="tc-tag">油耗計算</span><span class="tc-tag">停車費</span><span class="tc-tag">分帳</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+        <div class="btns">
+          <button class="primary" onclick="generateReport()">產生交易劇本</button>
+          <button class="secondary" onclick="copyReport()">複製報告</button>
+          <button class="blue" onclick="downloadReport()">下載 TXT</button>
+        </div>
 
-    <a class="tc" href="/car/" style="--accent:#1976D2;--accent-soft:#E3F2FD">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M5 16l1.6-4.8A2 2 0 0 1 8.5 9.8h7a2 2 0 0 1 1.9 1.4L19 16"/><rect x="3" y="16" width="18" height="4" rx="1.5"/><circle cx="7.5" cy="20" r="1.4"/><circle cx="16.5" cy="20" r="1.4"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">汽機車</div>
-      <div class="tc-tags"><span class="tc-tag">牌照稅</span><span class="tc-tag">燃料稅</span><span class="tc-tag">強制險</span><span class="tc-tag">折舊試算</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-  </div>
-</div>
-
-<div class="block bl-edu">
-  <div class="block-hdr">
-    <div class="block-ico"><svg viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div>
-    <div class="block-meta">
-      <div class="block-title">健康與學習</div>
-      <div class="block-sub">依台灣搜尋熱度排序</div>
-    </div>
-    <div class="block-divider"></div>
-    <span class="block-cnt">6 個主題</span>
-  </div>
-  <div class="theme-grid">
-
-    <a class="tc featured" href="/health/" style="--accent:#0FA47A;--accent-soft:#E4F4EE">
-      <div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 22l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/><polyline points="6 12 9 12 11 8.5 13 15 14.8 12 18 12"/></svg></div>
-      <div class="tc-body">
-        <div class="tc-name">健康計算 <span class="fbadge">人氣 No.1</span> <span class="tc-calc">8 CALC</span></div>
-        <div class="tc-tags"><span class="tc-tag">BMI</span><span class="tc-tag">每日熱量TDEE</span><span class="tc-tag">體脂率</span><span class="tc-tag">理想體重</span></div>
+        <div class="notice small">免責聲明：本工具僅供教育、紀錄與策略整理使用，不構成投資建議、招攬或保證獲利。交易前請自行判斷並控管風險。</div>
       </div>
-      <span class="tc-cta">進入 →</span>
-    </a>
 
-    <a class="tc" href="/nutrition/" style="--accent:#388E3C;--accent-soft:#E8F5E9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 6V3.5"/><path d="M12 3.5c2.2-.3 3.5.8 3.5.8"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">營養飲食</div>
-      <div class="tc-tags"><span class="tc-tag">熱量赤字</span><span class="tc-tag">巨量營養素</span><span class="tc-tag">食物熱量</span><span class="tc-tag">含糖量</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+      <div class="card" id="resultCard">
+        <h2>2. 分析結果</h2>
+        <div class="result-top">
+          <div class="metric"><span>方向判斷</span><b id="mBias">等待輸入</b></div>
+          <div class="metric"><span>策略狀態</span><b id="mStatus">未產生</b></div>
+          <div class="metric"><span>風險等級</span><b id="mRisk">-</b></div>
+        </div>
+        <div class="report" id="report">請先上傳圖片並填寫觀察重點，然後點選「產生交易劇本」。
 
-    <a class="tc" href="/baby/" style="--accent:#C2356B;--accent-soft:#FBEAF1">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M8.5 14.5s1.3 1.8 3.5 1.8 3.5-1.8 3.5-1.8"/><line x1="9" y1="9.5" x2="9.01" y2="9.5"/><line x1="15" y1="9.5" x2="15.01" y2="9.5"/></svg></div><span class="tc-calc">6 CALC</span></div>
-      <div class="tc-name">孕產育兒</div>
-      <div class="tc-tags"><span class="tc-tag">預產期</span><span class="tc-tag">排卵期</span><span class="tc-tag">懷孕週數</span><span class="tc-tag">育兒津貼</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+這版 MVP 會先根據你的文字輸入與圖片上傳狀態，產出標準化 SMC 分析報告。下一版可接 AI Vision，自動讀取截圖中的 K 線、量能與關鍵結構。</div>
+      </div>
+    </section>
 
-    <a class="tc" href="/student/" style="--accent:#3949AB;--accent-soft:#E8EAF6">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11.5V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.5"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">學生工具</div>
-      <div class="tc-tags"><span class="tc-tag">GPA計算</span><span class="tc-tag">加權平均</span><span class="tc-tag">成績換算</span><span class="tc-tag">讀書計畫</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+    <section class="grid">
+      <div class="card">
+        <h2>3. 交易檢查流程</h2>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><div><b>先看日K方向</b><br><span class="muted small">確認大週期是多方、空方或震盪，不逆著大結構硬做。</span></div></div>
+          <div class="step"><div class="num">2</div><div><b>再看小時結構</b><br><span class="muted small">找 BOS、CHoCH、前高前低、盤整區與關鍵回測區。</span></div></div>
+          <div class="step"><div class="num">3</div><div><b>標出流動性</b><br><span class="muted small">觀察 Buy Side Liquidity、Sell Side Liquidity、Equal High / Equal Low。</span></div></div>
+          <div class="step"><div class="num">4</div><div><b>只做條件成立</b><br><span class="muted small">沒有回測、沒有量價確認、沒有風險報酬比，就不交易。</span></div></div>
+        </div>
+      </div>
 
-    <a class="tc" href="/date/" style="--accent:#3E8E9C;--accent-soft:#E7F3F5">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><polyline points="12 6.5 12 12 15.5 14"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">日期時間</div>
-      <div class="tc-tags"><span class="tc-tag">年齡計算</span><span class="tc-tag">工作天</span><span class="tc-tag">相隔天數</span><span class="tc-tag">倒數日</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+      <div class="card">
+        <h2>4. 下一版 AI Vision 後端 Prompt</h2>
+        <p class="muted small">未來接 API 時，可把這段放到後端，讓 AI 依圖片與輸入資料自動分析。</p>
+        <div class="info small" id="apiPrompt">你是一位技術分析、量價結構與 SMC 策略分析師。請根據使用者上傳的日K、小時K與成交量圖片，分析目前大週期方向、小週期結構、BOS、CHoCH、流動性區、Order Block、FVG、量價是否配合、進場條件、停損位置、目標區、風險報酬比、不交易條件與策略信心分數。請以風險控管為優先，避免保證獲利語氣。</div>
+      </div>
+    </section>
 
-    <a class="tc" href="/convert/" style="--accent:#8A5A2B;--accent-soft:#F6EEE3">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><polyline points="17 2 21 6 17 10"/><path d="M21 6H8a4 4 0 0 0-4 4v1"/><polyline points="7 22 3 18 7 14"/><path d="M3 18h13a4 4 0 0 0 4-4v-1"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">單位換算</div>
-      <div class="tc-tags"><span class="tc-tag">坪數換算</span><span class="tc-tag">台斤換算</span><span class="tc-tag">溫度換算</span><span class="tc-tag">容量換算</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
+    <section class="seo">
+      <p><b>SEO plain text：</b>SMC 交易策略分析器、Smart Money Concept、量價結構、K線截圖分析、日K分析、小時K分析、Order Block、Fair Value Gap、BOS、CHoCH、流動性掃單、交易劇本規劃、風險報酬比、TheCalcBox trading calculator。</p>
+    </section>
 
-  </div>
-</div>
-
-<div class="block bl-pro">
-  <div class="block-hdr">
-    <div class="block-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/></svg></div>
-    <div class="block-meta">
-      <div class="block-title">專業工具</div>
-      <div class="block-sub">各行各業專用計算器，持續上線中</div>
+    <div class="hidden-text">
+      TheCalcBox SMC Strategy Lab is a trading planning tool for price action, volume analysis, market structure, order block, fair value gap, BOS, CHoCH and liquidity zone analysis. This page helps users organize trading scenarios with risk management and no financial advice.
     </div>
-    <div class="block-divider"></div>
-    <span class="block-cnt">7 個主題</span>
+  </main>
+
+  <div class="bottom-bar">
+    <div class="inner">
+      <button class="primary" onclick="generateReport()">產生劇本</button>
+      <button class="secondary" onclick="document.getElementById('resultCard').scrollIntoView({behavior:'smooth'})">看結果</button>
+    </div>
   </div>
-  <div class="theme-grid">
-
-    <a class="tc" href="/electronics/" style="--accent:#1565C0;--accent-soft:#E3F0FC">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9.5" y="9.5" width="5" height="5"/><line x1="9" y1="2" x2="9" y2="5"/><line x1="15" y1="2" x2="15" y2="5"/><line x1="9" y1="19" x2="9" y2="22"/><line x1="15" y1="19" x2="15" y2="22"/><line x1="19" y1="9" x2="22" y2="9"/><line x1="19" y1="15" x2="22" y2="15"/><line x1="2" y1="9" x2="5" y2="9"/><line x1="2" y1="15" x2="5" y2="15"/></svg></div><span class="tc-calc">6 CALC</span></div>
-      <div class="tc-name">電子電路</div>
-      <div class="tc-tags"><span class="tc-tag">歐姆定律</span><span class="tc-tag">LED限流</span><span class="tc-tag">dB換算</span><span class="tc-tag">電阻分壓</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/medical/" style="--accent:#C62828;--accent-soft:#FFEBEE">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><span class="tc-calc">6 CALC</span></div>
-      <div class="tc-name">醫療護理</div>
-      <div class="tc-tags"><span class="tc-tag">藥物劑量</span><span class="tc-tag">GFR腎功能</span><span class="tc-tag">血壓分級</span><span class="tc-tag">點滴滴速</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/logistics/" style="--accent:#4E342E;--accent-soft:#EFEBE9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.3 7 12 12 20.7 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">物流運費</div>
-      <div class="tc-tags"><span class="tc-tag">材積重</span><span class="tc-tag">CBM換算</span><span class="tc-tag">台灣運費</span><span class="tc-tag">貨櫃裝載</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/construction/" style="--accent:#6A1B9A;--accent-soft:#F3E5F5">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><span class="tc-calc">6 CALC</span></div>
-      <div class="tc-name">建築裝潢</div>
-      <div class="tc-tags"><span class="tc-tag">油漆用量</span><span class="tc-tag">磁磚試算</span><span class="tc-tag">混凝土配比</span><span class="tc-tag">樓梯尺寸</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/hr/" style="--accent:#2E7D32;--accent-soft:#E8F5E9">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">人資 HR</div>
-      <div class="tc-tags"><span class="tc-tag">資遣費計算</span><span class="tc-tag">年資換算</span><span class="tc-tag">人力成本</span><span class="tc-tag">特休試算</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/legal/" style="--accent:#7B1FA2;--accent-soft:#F3E5F5">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="20"/><path d="M5 7h14"/><path d="M5 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L5 7z"/><path d="M19 7l-2.8 5.8a3.3 3.3 0 0 0 5.6 0L19 7z"/><path d="M8 21h8"/></svg></div><span class="tc-calc">5 CALC</span></div>
-      <div class="tc-name">法律合約</div>
-      <div class="tc-tags"><span class="tc-tag">違約金計算</span><span class="tc-tag">訴訟費用</span><span class="tc-tag">民法利息</span><span class="tc-tag">勞資爭議</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-    <a class="tc" href="/statistics/" style="--accent:#00695C;--accent-soft:#E0F2F1">
-      <div class="tc-row1"><div class="tc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><span class="tc-calc">7 CALC</span></div>
-      <div class="tc-name">統計品管</div>
-      <div class="tc-tags"><span class="tc-tag">Cp/Cpk</span><span class="tc-tag">QC抽樣表</span><span class="tc-tag">樣本數計算</span><span class="tc-tag">NPS淨推薦值</span></div>
-      <span class="tc-cta">進入 →</span>
-    </a>
-
-  </div>
-</div>
-
-</div><!-- /wrap -->
-
-<footer>
-  <p>CalcBox 工具站 · 所有計算結果僅供參考，不構成醫療或財務建議<br>
-  <a href="/loan/">貸款</a> · <a href="/tax/">稅務</a> · <a href="/health/">健康</a> · <a href="/retire/">退休</a> · <a href="/fx/">匯率</a> · <a href="/calendar/">行事曆</a> · <a href="/US/">🇺🇸 English</a><br><a href="/about/">關於</a> · <a href="/privacy/">隱私權政策</a> · <a href="/disclaimer/">免責聲明</a> · <a href="/contact/">聯絡我們</a></p>
-</footer>
 
 <script>
-var reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (id) => document.getElementById(id);
+  let imageState = { daily: false, hour: false, volume: false };
 
-// ── 加到桌面 ──
-let deferredPrompt = null;
-const addBtn = document.getElementById('addHomeBtn');
-window.addEventListener('beforeinstallprompt', (e)=>{
-  e.preventDefault();
-  deferredPrompt = e;
-});
-function isStandalone(){
-  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-}
-if(isStandalone() && addBtn){ addBtn.style.display='none'; }
-function isIOS(){
-  return /iphone|ipad|ipod/i.test(navigator.userAgent) ||
-    (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
-}
-function handleAddHome(){
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.finally(()=>{ deferredPrompt=null; });
-  }else{
-    document.getElementById('a2hsMask').classList.add('show');
+  document.querySelectorAll('input[type="file"]').forEach((input, index) => {
+    input.addEventListener('change', (event) => {
+      const file = event.target.files && event.target.files[0];
+      const previewId = event.target.dataset.preview;
+      const preview = $(previewId);
+      const keys = ['daily', 'hour', 'volume'];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        preview.textContent = '請上傳圖片檔';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        preview.innerHTML = `<img src="${reader.result}" alt="uploaded chart preview">`;
+        imageState[keys[index]] = true;
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  function safeText(value, fallback) {
+    const v = String(value || '').trim();
+    return v || fallback;
   }
-}
-function closeA2HS(){
-  document.getElementById('a2hsMask').classList.remove('show');
-}
-window.addEventListener('appinstalled', ()=>{ if(addBtn)addBtn.style.display='none'; deferredPrompt=null; });
 
-// ── 數字滾動 ──
-function countUp(el){
-  var to=+el.dataset.to;
-  if(reduceMotion){el.textContent=to;return}
-  var t0=performance.now(),D=1100;
-  function tick(t){var p=Math.min((t-t0)/D,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(tick);}
-  requestAnimationFrame(tick);
-}
-document.querySelectorAll('[data-to]').forEach(function(el){setTimeout(function(){countUp(el)},400)});
+  function countImages() {
+    return Object.values(imageState).filter(Boolean).length;
+  }
 
-// ── 卡片進場動畫 ──
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      var grid=e.target.closest('.theme-grid');
-      var cards=grid?Array.prototype.slice.call(grid.querySelectorAll('.tc')):[];
-      var i=cards.indexOf(e.target);
-      e.target.style.animationDelay=(i%2)*0.08+'s';
-      e.target.classList.add('in');
-      io.unobserve(e.target);
+  function generateReport() {
+    const symbol = safeText($('symbol').value, '未填寫標的');
+    const bias = $('marketBias').value;
+    const priceNow = safeText($('priceNow').value, '未填寫');
+    const risk = $('risk').value;
+    const notes = safeText($('notes').value, '尚未輸入觀察重點');
+    const levels = safeText($('levels').value, '尚未輸入關鍵價位');
+    const imgs = countImages();
+
+    const status = imgs >= 2 ? '可初步規劃' : '資料不足';
+    const riskLabel = risk.includes('保守') ? '低' : risk.includes('標準') ? '中' : '高';
+    $('mBias').textContent = bias;
+    $('mStatus').textContent = status;
+    $('mRisk').textContent = riskLabel;
+
+    const missing = [];
+    if (!imageState.daily) missing.push('日K線圖');
+    if (!imageState.hour) missing.push('小時K線圖');
+    if (!imageState.volume) missing.push('成交量 / 籌碼圖');
+
+    const report = `【TheCalcBox SMC 交易劇本分析】
+
+標的：${symbol}
+目前價格：${priceNow}
+主觀方向：${bias}
+風險設定：${risk}
+圖片完整度：已上傳 ${imgs}/3${missing.length ? `，缺少：${missing.join('、')}` : '，資料完整'}
+
+一、市場結構初判
+1. 日K：先確認是否仍維持 HH / HL，或已經跌破前低轉為 LH / LL。
+2. 小時K：觀察是否出現 BOS 或 CHoCH，避免在結構未確認時追價。
+3. 若價格位於區間中間，優先判定為低勝率位置，不急著進場。
+
+二、使用者觀察
+${notes}
+
+三、關鍵價位
+${levels}
+
+四、SMC 檢查清單
+□ 是否掃過 Buy Side Liquidity 後快速跌回？
+□ 是否掃過 Sell Side Liquidity 後快速收回？
+□ 是否存在明顯 Bullish / Bearish Order Block？
+□ 是否留下 Fair Value Gap，且價格尚未回補？
+□ 目前價格位於 Premium 還是 Discount Zone？
+□ 回測區是否靠近前高、前低、OB、FVG 或成交量密集區？
+
+五、量價判斷
+1. 突破需要放量，否則容易是假突破。
+2. 回測若縮量，代表賣壓或買壓暫時減弱，可等待下一次動能確認。
+3. 高檔爆量不漲，要小心出貨或誘多。
+4. 低檔放量止跌，要觀察是否形成掃流動性後反轉。
+
+六、多方劇本
+條件：
+- 價格回測支撐、Bullish OB 或 FVG 區域不破。
+- 小週期出現 CHoCH 向上或 BOS 向上。
+- 回測縮量，重新上攻放量。
+
+進場方式：
+- 不追高，等待回測確認後分批。
+- 停損放在最近掃流動性低點或 OB 下緣外側。
+- 第一目標看前高，第二目標看 Buy Side Liquidity，第三目標看日K壓力區。
+
+七、空方劇本
+條件：
+- 價格掃過前高後快速跌回區間。
+- 高檔出現爆量不漲或長上影線。
+- 小時K跌破前低形成 BOS 向下。
+
+進場方式：
+- 等待回測 Bearish OB 或破位區。
+- 停損放在掃高點上方。
+- 第一目標看區間中線，第二目標看 Sell Side Liquidity，第三目標看日K支撐區。
+
+八、不交易條件
+- 價格在區間中間。
+- 上方壓力太近，下方支撐太近，風險報酬比不足 1:2。
+- 沒有 BOS / CHoCH。
+- 量價不配合。
+- 只有主觀想法，沒有明確觸發條件。
+
+九、執行建議
+目前建議：${imgs >= 2 ? '可以先列入觀察，但仍需等待價格觸發條件。' : '資料不足，建議至少補上日K與小時K圖片。'}
+策略核心：先等流動性被掃，再等結構確認，不在中間價位硬做。
+
+十、風險提醒
+本報告僅供交易紀錄、技術分析練習與策略整理，不構成投資建議。任何交易都需要自行承擔風險。`;
+
+    $('report').textContent = report;
+    $('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function copyReport() {
+    const text = $('report').textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('已複製報告');
+    } catch (e) {
+      alert('複製失敗，請手動選取報告內容');
     }
-  });
-},{threshold:.1});
-document.querySelectorAll('.tc').forEach(function(c){io.observe(c)});
-
-// ── 背景浮水印 icon ──
-document.querySelectorAll('.tc').forEach(function(c){
-  var s=c.querySelector('.tc-icon svg');
-  if(!s)return;
-  var g=document.createElement('div');
-  g.className='tc-ghost';
-  g.setAttribute('aria-hidden','true');
-  g.appendChild(s.cloneNode(true));
-  c.insertBefore(g,c.firstChild);
-});
-
-// ── Icon 漸層描邊（3D 質感）──
-(function(){
-  function shade(hex,amt){
-    var n=parseInt(hex.slice(1),16),
-        r=Math.min(255,Math.max(0,(n>>16)+amt)),
-        g=Math.min(255,Math.max(0,(n>>8&255)+amt)),
-        b=Math.min(255,Math.max(0,(n&255)+amt));
-    return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
   }
-  var gi=0;
-  document.querySelectorAll('.tc').forEach(function(c){
-    var ac=(getComputedStyle(c).getPropertyValue('--accent')||'').trim();
-    if(!/^#[0-9a-fA-F]{6}$/.test(ac))return;
-    var svg=c.querySelector('.tc-icon svg');
-    if(!svg)return;
-    var id='ig'+(gi++);
-    var NS='http://www.w3.org/2000/svg';
-    var defs=document.createElementNS(NS,'defs');
-    var lg=document.createElementNS(NS,'linearGradient');
-    lg.setAttribute('id',id);
-    lg.setAttribute('x1','0');lg.setAttribute('y1','0');
-    lg.setAttribute('x2','0');lg.setAttribute('y2','1');
-    var s1=document.createElementNS(NS,'stop');
-    s1.setAttribute('offset','0');s1.setAttribute('stop-color',shade(ac,55));
-    var s2=document.createElementNS(NS,'stop');
-    s2.setAttribute('offset','1');s2.setAttribute('stop-color',shade(ac,-28));
-    lg.appendChild(s1);lg.appendChild(s2);defs.appendChild(lg);
-    svg.insertBefore(defs,svg.firstChild);
-    svg.style.stroke='url(#'+id+')';
-  });
-})();
 
-// ── 卡片 3D 傾斜（桌機、精準指標限定）──
-if(!reduceMotion && matchMedia('(pointer:fine)').matches){
-  document.querySelectorAll('.tc').forEach(function(c){
-    var raf=null;
-    c.addEventListener('pointermove',function(ev){
-      if(raf)return;
-      raf=requestAnimationFrame(function(){
-        raf=null;
-        var r=c.getBoundingClientRect(),
-            px=(ev.clientX-r.left)/r.width-.5,
-            py=(ev.clientY-r.top)/r.height-.5;
-        c.style.transform='translateY(-4px) rotateX('+(-py*6).toFixed(2)+'deg) rotateY('+(px*7).toFixed(2)+'deg)';
-      });
-    });
-    c.addEventListener('pointerleave',function(){
-      if(raf){cancelAnimationFrame(raf);raf=null;}
-      c.style.transform='';
-    });
-  });
-
-  // Hero 漂浮磚視差
-  var hero=document.getElementById('hero'),orbit=document.getElementById('orbit');
-  if(hero&&orbit){
-    var tiles=orbit.querySelectorAll('.otile'),hraf=null;
-    hero.addEventListener('pointermove',function(ev){
-      if(hraf)return;
-      hraf=requestAnimationFrame(function(){
-        hraf=null;
-        var r=hero.getBoundingClientRect(),
-            px=(ev.clientX-r.left)/r.width-.5,
-            py=(ev.clientY-r.top)/r.height-.5;
-        tiles.forEach(function(t){
-          var p=+t.dataset.p||16;
-          t.style.marginLeft=(px*p)+'px';
-          t.style.marginTop=(py*p)+'px';
-        });
-      });
-    });
-    hero.addEventListener('pointerleave',function(){
-      tiles.forEach(function(t){t.style.marginLeft='';t.style.marginTop='';});
-    });
+  function downloadReport() {
+    const symbol = safeText($('symbol').value, 'SMC_Report');
+    const blob = new Blob([$('report').textContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${symbol}_SMC_交易劇本.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   }
-}
 </script>
 </body>
 </html>
