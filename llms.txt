@@ -1,6 +1,6 @@
 # CalcBox — 台灣免費線上計算機工具站
 # https://thecalcbox.com/
-# Last updated: 2026-06-12
+# Last updated: 2026-07-04
 
 ## 站點簡介
 CalcBox 是台灣免費線上計算機工具庫，提供生活財務、稅務薪資、健康營養、孕產育兒、學生、日期、單位換算與專業工作場景的計算工具。所有工具免註冊、免下載、開啟即用。
@@ -33,6 +33,7 @@ CalcBox 是台灣免費線上計算機工具庫，提供生活財務、稅務薪
 - /construction/ — 建築裝潢計算機
 - /hr/ — 人資 HR 計算機
 - /legal/ — 法律合約計算機
+- /statistics/ — 統計品管計算機
 
 ## 技術資訊
 - 靜態 HTML，GitHub Pages 托管。
