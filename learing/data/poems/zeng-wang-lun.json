@@ -1,0 +1,122 @@
+{
+  "id": "zeng-wang-lun",
+  "title": "贈汪倫",
+  "author": "李白",
+  "dynasty": "唐",
+  "form": "七言絕句",
+  "grade": "國小",
+  "difficulty": 1,
+  "summary": "以桃花潭千尺水比喻朋友送別的深厚情誼。",
+  "background": "《贈汪倫》寫朋友汪倫踏歌送別李白。前兩句是生活場景，後兩句以潭水深度比友情，語言直白而情感真摯。",
+  "authorBio": "李白的友情詩自然率真，常以山水景物寄託感情。",
+  "mood": [
+    "友情",
+    "惜別"
+  ],
+  "season": "春",
+  "time": "白晝",
+  "scene": "桃花潭岸",
+  "lines": [
+    {
+      "text": "李白乘舟將欲行",
+      "pinyin": "lǐ bái chéng zhōu jiāng yù xíng",
+      "translation": "李白乘船正準備離開。",
+      "explain": "直接交代送別情境，畫面簡潔明快。",
+      "english": "Li Bai boards his boat, about to depart.",
+      "image": "/assets/images/zeng-wang-lun/scene-01.webp",
+      "audio": "/assets/audio/zeng-wang-lun/line-01.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 李白乘舟將欲行. 李白乘船正準備離開。 Setting: 桃花潭岸, 春 season, 白晝, mood: 友情 and 惜別.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 李白乘舟將欲行"
+    },
+    {
+      "text": "忽聞岸上踏歌聲",
+      "pinyin": "hū wén àn shàng tà gē shēng",
+      "translation": "忽然聽見岸上傳來踏歌聲。",
+      "explain": "「忽聞」寫出驚喜，朋友以歌聲前來送行。",
+      "english": "Suddenly he hears singing and footsteps on the shore.",
+      "image": "/assets/images/zeng-wang-lun/scene-02.webp",
+      "audio": "/assets/audio/zeng-wang-lun/line-02.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 忽聞岸上踏歌聲. 忽然聽見岸上傳來踏歌聲。 Setting: 桃花潭岸, 春 season, 白晝, mood: 友情 and 惜別.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 忽聞岸上踏歌聲"
+    },
+    {
+      "text": "桃花潭水深千尺",
+      "pinyin": "táo huā tán shuǐ shēn qiān chǐ",
+      "translation": "桃花潭水即使深達千尺。",
+      "explain": "誇張潭水深度，為下一句友情作鋪墊。",
+      "english": "Though Peach Blossom Pool is a thousand feet deep.",
+      "image": "/assets/images/zeng-wang-lun/scene-03.webp",
+      "audio": "/assets/audio/zeng-wang-lun/line-03.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 桃花潭水深千尺. 桃花潭水即使深達千尺。 Setting: 桃花潭岸, 春 season, 白晝, mood: 友情 and 惜別.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 桃花潭水深千尺"
+    },
+    {
+      "text": "不及汪倫送我情",
+      "pinyin": "bù jí wāng lún sòng wǒ qíng",
+      "translation": "也比不上汪倫送別我的情意。",
+      "explain": "以水深比情深，將抽象友情化為具體可感的形象。",
+      "english": "It cannot match Wang Lun's affection in seeing me off.",
+      "image": "/assets/images/zeng-wang-lun/scene-04.webp",
+      "audio": "/assets/audio/zeng-wang-lun/line-04.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 不及汪倫送我情. 也比不上汪倫送別我的情意。 Setting: 桃花潭岸, 春 season, 白晝, mood: 友情 and 惜別.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 不及汪倫送我情"
+    }
+  ],
+  "slug": "zeng-wang-lun",
+  "tags": [
+    "唐詩",
+    "七言絕句",
+    "友情",
+    "惜別",
+    "春"
+  ],
+  "storyMode": [
+    {
+      "scene": 1,
+      "narration": "李白乘船正準備離開。 直接交代送別情境，畫面簡潔明快。"
+    },
+    {
+      "scene": 2,
+      "narration": "忽然聽見岸上傳來踏歌聲。 「忽聞」寫出驚喜，朋友以歌聲前來送行。"
+    },
+    {
+      "scene": 3,
+      "narration": "桃花潭水即使深達千尺。 誇張潭水深度，為下一句友情作鋪墊。"
+    },
+    {
+      "scene": 4,
+      "narration": "也比不上汪倫送別我的情意。 以水深比情深，將抽象友情化為具體可感的形象。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "《贈汪倫》是誰寫的？",
+      "a": "《贈汪倫》的作者是唐代詩人李白。"
+    },
+    {
+      "q": "《贈汪倫》表達什麼情感？",
+      "a": "全詩主要表達「友情、惜別」的情感與意境。"
+    },
+    {
+      "q": "《贈汪倫》是什麼詩體？",
+      "a": "《贈汪倫》屬於七言絕句。"
+    },
+    {
+      "q": "《贈汪倫》適合哪個年級學習？",
+      "a": "本頁建議難度為 1 級，適合國小程度閱讀。"
+    }
+  ],
+  "seo": {
+    "title": "贈汪倫｜原文、翻譯、朗讀、水墨插畫與賞析 — CalcBox",
+    "description": "李白《贈汪倫》沉浸式詩詞劇場：逐句朗讀、水墨插畫、白話翻譯、拼音、英文翻譯、創作背景與詩句解析。",
+    "keywords": [
+      "贈汪倫",
+      "贈汪倫原文",
+      "贈汪倫翻譯",
+      "贈汪倫朗讀",
+      "李白"
+    ]
+  },
+  "musicPrompt": "guzheng and xiao, flowing water, broad natural ambience",
+  "music": "/assets/audio/zeng-wang-lun/background.mp3"
+}

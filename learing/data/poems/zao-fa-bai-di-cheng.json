@@ -1,0 +1,122 @@
+{
+  "id": "zao-fa-bai-di-cheng",
+  "title": "早發白帝城",
+  "author": "李白",
+  "dynasty": "唐",
+  "form": "七言絕句",
+  "grade": "國小",
+  "difficulty": 2,
+  "summary": "清晨離開白帝城，乘舟穿越三峽，表現輕快自由的心情。",
+  "background": "這首詩寫李白離開白帝城順流東下的旅程。色彩、聲音、速度與空間高度集中，讓讀者感受到船行千里的暢快。",
+  "authorBio": "李白的山水行旅詩常把真實景物與豪邁心情融合，形成飛動明亮的節奏。",
+  "mood": [
+    "輕快",
+    "自由"
+  ],
+  "season": "不限定",
+  "time": "清晨",
+  "scene": "三峽江行",
+  "lines": [
+    {
+      "text": "朝辭白帝彩雲間",
+      "pinyin": "zhāo cí bái dì cǎi yún jiān",
+      "translation": "清晨告別彩雲繚繞的白帝城。",
+      "explain": "「彩雲間」寫出白帝城地勢高峻，也帶出明麗色彩。",
+      "english": "At dawn I leave White Emperor City amid colored clouds.",
+      "image": "/assets/images/zao-fa-bai-di-cheng/scene-01.webp",
+      "audio": "/assets/audio/zao-fa-bai-di-cheng/line-01.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 朝辭白帝彩雲間. 清晨告別彩雲繚繞的白帝城。 Setting: 三峽江行, 不限定 season, 清晨, mood: 輕快 and 自由.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 朝辭白帝彩雲間"
+    },
+    {
+      "text": "千里江陵一日還",
+      "pinyin": "qiān lǐ jiāng líng yí rì huán",
+      "translation": "千里之外的江陵，一天之內便能到達。",
+      "explain": "以距離與時間對比，突出順流而下的快速。",
+      "english": "A thousand miles to Jiangling, reached within a day.",
+      "image": "/assets/images/zao-fa-bai-di-cheng/scene-02.webp",
+      "audio": "/assets/audio/zao-fa-bai-di-cheng/line-02.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 千里江陵一日還. 千里之外的江陵，一天之內便能到達。 Setting: 三峽江行, 不限定 season, 清晨, mood: 輕快 and 自由.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 千里江陵一日還"
+    },
+    {
+      "text": "兩岸猿聲啼不住",
+      "pinyin": "liǎng àn yuán shēng tí bú zhù",
+      "translation": "兩岸猿猴的叫聲接連不斷。",
+      "explain": "用連續聲音表現船行途中景物迅速掠過。",
+      "english": "Apes cry endlessly from both riverbanks.",
+      "image": "/assets/images/zao-fa-bai-di-cheng/scene-03.webp",
+      "audio": "/assets/audio/zao-fa-bai-di-cheng/line-03.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 兩岸猿聲啼不住. 兩岸猿猴的叫聲接連不斷。 Setting: 三峽江行, 不限定 season, 清晨, mood: 輕快 and 自由.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 兩岸猿聲啼不住"
+    },
+    {
+      "text": "輕舟已過萬重山",
+      "pinyin": "qīng zhōu yǐ guò wàn chóng shān",
+      "translation": "輕快的小船早已穿過重重山嶺。",
+      "explain": "「輕舟」既寫船快，也象徵詩人心情的解放。",
+      "english": "The light boat has passed ten thousand mountains.",
+      "image": "/assets/images/zao-fa-bai-di-cheng/scene-04.webp",
+      "audio": "/assets/audio/zao-fa-bai-di-cheng/line-04.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 輕舟已過萬重山. 輕快的小船早已穿過重重山嶺。 Setting: 三峽江行, 不限定 season, 清晨, mood: 輕快 and 自由.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 輕舟已過萬重山"
+    }
+  ],
+  "slug": "zao-fa-bai-di-cheng",
+  "tags": [
+    "唐詩",
+    "七言絕句",
+    "輕快",
+    "自由",
+    "不限定"
+  ],
+  "storyMode": [
+    {
+      "scene": 1,
+      "narration": "清晨告別彩雲繚繞的白帝城。 「彩雲間」寫出白帝城地勢高峻，也帶出明麗色彩。"
+    },
+    {
+      "scene": 2,
+      "narration": "千里之外的江陵，一天之內便能到達。 以距離與時間對比，突出順流而下的快速。"
+    },
+    {
+      "scene": 3,
+      "narration": "兩岸猿猴的叫聲接連不斷。 用連續聲音表現船行途中景物迅速掠過。"
+    },
+    {
+      "scene": 4,
+      "narration": "輕快的小船早已穿過重重山嶺。 「輕舟」既寫船快，也象徵詩人心情的解放。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "《早發白帝城》是誰寫的？",
+      "a": "《早發白帝城》的作者是唐代詩人李白。"
+    },
+    {
+      "q": "《早發白帝城》表達什麼情感？",
+      "a": "全詩主要表達「輕快、自由」的情感與意境。"
+    },
+    {
+      "q": "《早發白帝城》是什麼詩體？",
+      "a": "《早發白帝城》屬於七言絕句。"
+    },
+    {
+      "q": "《早發白帝城》適合哪個年級學習？",
+      "a": "本頁建議難度為 2 級，適合國小程度閱讀。"
+    }
+  ],
+  "seo": {
+    "title": "早發白帝城｜原文、翻譯、朗讀、水墨插畫與賞析 — CalcBox",
+    "description": "李白《早發白帝城》沉浸式詩詞劇場：逐句朗讀、水墨插畫、白話翻譯、拼音、英文翻譯、創作背景與詩句解析。",
+    "keywords": [
+      "早發白帝城",
+      "早發白帝城原文",
+      "早發白帝城翻譯",
+      "早發白帝城朗讀",
+      "李白"
+    ]
+  },
+  "musicPrompt": "soft guzheng, bamboo flute, morning birds, light breeze",
+  "music": "/assets/audio/zao-fa-bai-di-cheng/background.mp3"
+}
