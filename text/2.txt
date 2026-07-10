@@ -1,0 +1,968 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © alonsolu0204
+
+//@version=6
+indicator("TheCalcBox SMC 合併版 V5｜同向過濾＋EMA趨勢保護", overlay=true, max_labels_count=500)
+
+// ==========================
+// 模式設定
+// ==========================
+tradeMode = input.string("自動判斷", "交易模式", options=["自動判斷", "日K波段", "短線高勝率"])
+
+autoShort = timeframe.isintraday and timeframe.multiplier <= 60
+
+isShortMode =
+     tradeMode == "短線高勝率" or
+     (tradeMode == "自動判斷" and autoShort)
+
+isSwingMode = not isShortMode
+
+// ==========================
+// 顯示設定
+// ==========================
+showStopLabel   = input.bool(true, "顯示停損標記")
+showTakeProfit  = input.bool(true, "顯示停利標記")
+showReason      = input.bool(true, "顯示訊號原因")
+showWarn        = input.bool(false, "顯示弱勢提醒")
+showEarlyExit   = input.bool(true, "顯示技術出場 / 提前放棄")
+useVWAPFilter   = input.bool(true, "短線模式啟用 VWAP 過濾")
+useMTFFilter    = input.bool(true, "啟用日K + 1H 同向過濾")
+
+// ==========================
+// 技術出場參數
+// ==========================
+earlyExitVolRatio = input.float(1.20, "技術出場量比門檻", minval=0.8, step=0.05)
+earlyExitBars     = input.int(2, "連續轉弱/轉強K數", minval=1, maxval=5)
+
+// ==========================
+// 趨勢保護參數
+// ==========================
+useTrendProtect = input.bool(true, "啟用5日/10日趨勢保護")
+trendProtectTF  = input.timeframe("D", "趨勢保護週期")
+protectMaType   = input.string("SMA", "趨勢保護均線類型", options=["SMA", "EMA"])
+protectFastLen  = input.int(5, "短趨勢保護均線", minval=2, maxval=30)
+protectSlowLen  = input.int(10, "長趨勢保護均線", minval=3, maxval=60)
+
+// ==========================
+// EMA 快慢線保護參數
+// ==========================
+useEmaProtect = input.bool(true, "啟用EMA快慢線保護")
+emaProtectMode = input.string("快線或慢線", "EMA保護方式", options=["只看快線", "只看慢線", "快線或慢線", "快線和慢線"])
+
+// ==========================
+// 日K / 週K 波段參數
+// ==========================
+swingLenSwing       = 6
+softVolSwing        = 1.10
+strongVolSwing      = 1.50
+extremeVolSwing     = 2.00
+emaFastSwing        = 20
+emaSlowSwing        = 50
+breakLenSwing       = 12
+pullbackLenSwing    = 8
+slBufferSwing       = 0.25
+tp1Swing            = 1.5
+tp2Swing            = 3.0
+minGapSwing         = 10
+bodyAtrSwing        = 0.30
+closePowerSwing     = 0.65
+wickRatioSwing      = 1.5
+
+// ==========================
+// 1H / 30分 / 15分 短線參數
+// ==========================
+swingLenShort       = 3
+softVolShort        = 1.05
+strongVolShort      = 1.35
+extremeVolShort     = 2.00
+emaFastShort        = 9
+emaSlowShort        = 21
+breakLenShort       = 6
+pullbackLenShort    = 4
+slBufferShort       = 0.12
+tp1Short            = 1.0
+tp2Short            = 1.8
+minGapShort         = 4
+bodyAtrShort        = 0.20
+closePowerShort     = 0.60
+wickRatioShort      = 1.4
+
+// ==========================
+// 啟用參數
+// ==========================
+swingLen        = isShortMode ? swingLenShort : swingLenSwing
+softVolRatio    = isShortMode ? softVolShort : softVolSwing
+strongVolRatio  = isShortMode ? strongVolShort : strongVolSwing
+extremeVolRatio = isShortMode ? extremeVolShort : extremeVolSwing
+emaFastLen      = isShortMode ? emaFastShort : emaFastSwing
+emaSlowLen      = isShortMode ? emaSlowShort : emaSlowSwing
+breakLen        = isShortMode ? breakLenShort : breakLenSwing
+pullbackLen     = isShortMode ? pullbackLenShort : pullbackLenSwing
+slBuffer        = isShortMode ? slBufferShort : slBufferSwing
+tp1R            = isShortMode ? tp1Short : tp1Swing
+tp2R            = isShortMode ? tp2Short : tp2Swing
+minGap          = isShortMode ? minGapShort : minGapSwing
+bodyAtrMin      = isShortMode ? bodyAtrShort : bodyAtrSwing
+closePower      = isShortMode ? closePowerShort : closePowerSwing
+wickRatio       = isShortMode ? wickRatioShort : wickRatioSwing
+
+// 固定參數
+volLen = input.int(20, "成交量均線", minval=5, maxval=100)
+atrLen = input.int(14, "ATR 長度", minval=5, maxval=50)
+
+// ==========================
+// 基礎計算
+// ==========================
+atr   = ta.atr(atrLen)
+volMA = ta.sma(volume, volLen)
+
+volRatio = volMA > 0 ? volume / volMA : 1.0
+
+lowVol     = volRatio < 0.8
+normalVol  = volRatio >= 1.0
+softVol    = volRatio >= softVolRatio
+strongVol  = volRatio >= strongVolRatio
+extremeVol = volRatio >= extremeVolRatio
+
+emaFast = ta.ema(close, emaFastLen)
+emaSlow = ta.ema(close, emaSlowLen)
+vwapVal = ta.vwap(hlc3)
+
+bullCandle = close > open
+bearCandle = close < open
+
+body = math.abs(close - open)
+barRange = high - low
+upperWick = high - math.max(open, close)
+lowerWick = math.min(open, close) - low
+
+rangeSafe = barRange > 0 ? barRange : syminfo.mintick
+closePos = (close - low) / rangeSafe
+
+// ==========================
+// 5日 / 10日 趨勢保護線
+// ==========================
+protectFast =
+     protectMaType == "SMA" ?
+     request.security(syminfo.tickerid, trendProtectTF, ta.sma(close, protectFastLen)) :
+     request.security(syminfo.tickerid, trendProtectTF, ta.ema(close, protectFastLen))
+
+protectSlow =
+     protectMaType == "SMA" ?
+     request.security(syminfo.tickerid, trendProtectTF, ta.sma(close, protectSlowLen)) :
+     request.security(syminfo.tickerid, trendProtectTF, ta.ema(close, protectSlowLen))
+
+protectClose =
+     request.security(syminfo.tickerid, trendProtectTF, close)
+
+longTrendStillOK =
+     useTrendProtect and
+     protectClose > protectFast and
+     protectClose > protectSlow and
+     protectFast >= protectSlow
+
+shortTrendStillOK =
+     useTrendProtect and
+     protectClose < protectFast and
+     protectClose < protectSlow and
+     protectFast <= protectSlow
+
+// ==========================
+// EMA 快慢線趨勢保護
+// ==========================
+longEmaTrendStillOK =
+     useEmaProtect and
+     (
+         emaProtectMode == "只看快線" ? close > emaFast :
+         emaProtectMode == "只看慢線" ? close > emaSlow :
+         emaProtectMode == "快線或慢線" ? (close > emaFast or close > emaSlow) :
+         emaProtectMode == "快線和慢線" ? (close > emaFast and close > emaSlow) :
+         false
+     )
+
+shortEmaTrendStillOK =
+     useEmaProtect and
+     (
+         emaProtectMode == "只看快線" ? close < emaFast :
+         emaProtectMode == "只看慢線" ? close < emaSlow :
+         emaProtectMode == "快線或慢線" ? (close < emaFast or close < emaSlow) :
+         emaProtectMode == "快線和慢線" ? (close < emaFast and close < emaSlow) :
+         false
+     )
+
+// ==========================
+// 日K + 1H 同向趨勢過濾
+// ==========================
+dailyClose = request.security(syminfo.tickerid, "D", close)
+dailyEma20 = request.security(syminfo.tickerid, "D", ta.ema(close, 20))
+dailyEma50 = request.security(syminfo.tickerid, "D", ta.ema(close, 50))
+
+hourClose = request.security(syminfo.tickerid, "60", close)
+hourEma20 = request.security(syminfo.tickerid, "60", ta.ema(close, 20))
+hourEma50 = request.security(syminfo.tickerid, "60", ta.ema(close, 50))
+
+dailyBull = dailyClose > dailyEma20 and dailyEma20 > dailyEma50
+dailyBear = dailyClose < dailyEma20 and dailyEma20 < dailyEma50
+
+hourBull = hourClose > hourEma20 and hourEma20 > hourEma50
+hourBear = hourClose < hourEma20 and hourEma20 < hourEma50
+
+mtfLongOK =
+     not useMTFFilter or
+     dailyBull and hourBull
+
+mtfShortOK =
+     not useMTFFilter or
+     dailyBear and hourBear
+
+// ==========================
+// K線強弱判斷
+// ==========================
+bigBody = body > atr * bodyAtrMin
+
+strongBullK =
+     bullCandle and
+     bigBody and
+     closePos >= closePower and
+     normalVol
+
+strongBearK =
+     bearCandle and
+     bigBody and
+     closePos <= 1 - closePower and
+     normalVol
+
+longLowerWick =
+     lowerWick > body * wickRatio and
+     closePos >= 0.55
+
+longUpperWick =
+     upperWick > body * wickRatio and
+     closePos <= 0.45
+
+weakBullK =
+     bullCandle and
+     longUpperWick and
+     not strongVol
+
+weakBearK =
+     bearCandle and
+     longLowerWick and
+     not strongVol
+
+// ==========================
+// SMC Swing 結構
+// ==========================
+ph = ta.pivothigh(high, swingLen, swingLen)
+pl = ta.pivotlow(low, swingLen, swingLen)
+
+var float lastHigh = na
+var float lastLow  = na
+var float prevHigh = na
+var float prevLow  = na
+
+var int bias = 0
+
+if not na(ph)
+    prevHigh := lastHigh
+    lastHigh := ph
+
+if not na(pl)
+    prevLow := lastLow
+    lastLow := pl
+
+bullBreak = not na(lastHigh) and close > lastHigh and close[1] <= lastHigh
+bearBreak = not na(lastLow) and close < lastLow and close[1] >= lastLow
+
+bullChoch = bias == -1 and bullBreak
+bearChoch = bias == 1 and bearBreak
+
+sweepHigh =
+     not na(lastHigh) and
+     high > lastHigh and
+     close < lastHigh
+
+sweepLow =
+     not na(lastLow) and
+     low < lastLow and
+     close > lastLow
+
+if bullBreak
+    bias := 1
+
+if bearBreak
+    bias := -1
+
+// ==========================
+// 趨勢與突破
+// ==========================
+trendBull = close > emaFast and emaFast > emaSlow
+trendBear = close < emaFast and emaFast < emaSlow
+
+aboveVWAP = close > vwapVal
+belowVWAP = close < vwapVal
+
+longAllowed =
+     not isShortMode or
+     not useVWAPFilter or
+     aboveVWAP
+
+shortAllowed =
+     not isShortMode or
+     not useVWAPFilter or
+     belowVWAP
+
+recentHigh = ta.highest(high[1], breakLen)
+recentLow  = ta.lowest(low[1], breakLen)
+
+breakUp = close > recentHigh
+breakDown = close < recentLow
+
+// ==========================
+// 日K / 波段邏輯
+// ==========================
+swingVolumeBreakBuy =
+     breakUp and
+     softVol and
+     strongBullK
+
+swingVolumeBreakSell =
+     breakDown and
+     softVol and
+     strongBearK
+
+swingStrongVolumeBreakBuy =
+     breakUp and
+     strongVol and
+     strongBullK
+
+swingStrongVolumeBreakSell =
+     breakDown and
+     strongVol and
+     strongBearK
+
+swingLowVolPullbackBuy =
+     trendBull and
+     low <= emaFast and
+     close > emaFast and
+     bullCandle and
+     lowVol
+
+swingLowVolPullbackSell =
+     trendBear and
+     high >= emaFast and
+     close < emaFast and
+     bearCandle and
+     lowVol
+
+swingPullbackBuy =
+     trendBull and
+     low <= emaFast and
+     close > emaFast and
+     (strongBullK or longLowerWick) and
+     normalVol
+
+swingPullbackSell =
+     trendBear and
+     high >= emaFast and
+     close < emaFast and
+     (strongBearK or longUpperWick) and
+     normalVol
+
+swingTrendContinueBuy =
+     trendBull and
+     breakUp and
+     strongBullK and
+     normalVol
+
+swingTrendContinueSell =
+     trendBear and
+     breakDown and
+     strongBearK and
+     normalVol
+
+// ==========================
+// 短線高勝率邏輯
+// ==========================
+shortVolumeBreakBuy =
+     longAllowed and
+     breakUp and
+     softVol and
+     strongBullK and
+     trendBull
+
+shortVolumeBreakSell =
+     shortAllowed and
+     breakDown and
+     softVol and
+     strongBearK and
+     trendBear
+
+shortPullbackBuy =
+     longAllowed and
+     trendBull and
+     (low <= emaFast or low <= vwapVal) and
+     close > emaFast and
+     close > vwapVal and
+     (strongBullK or longLowerWick) and
+     normalVol
+
+shortPullbackSell =
+     shortAllowed and
+     trendBear and
+     (high >= emaFast or high >= vwapVal) and
+     close < emaFast and
+     close < vwapVal and
+     (strongBearK or longUpperWick) and
+     normalVol
+
+shortLowVolPullbackBuy =
+     longAllowed and
+     trendBull and
+     low <= emaFast and
+     close > emaFast and
+     bullCandle and
+     lowVol
+
+shortLowVolPullbackSell =
+     shortAllowed and
+     trendBear and
+     high >= emaFast and
+     close < emaFast and
+     bearCandle and
+     lowVol
+
+// ==========================
+// SMC 共用邏輯
+// ==========================
+strongBottomSupport =
+     strongVol and
+     longLowerWick and
+     closePos > 0.55
+
+dangerTopVolume =
+     extremeVol and
+     longUpperWick and
+     closePos < 0.60
+
+dangerBottomPanic =
+     extremeVol and
+     longLowerWick and
+     closePos > 0.45
+
+validBullPower =
+     strongBullK and
+     softVol and
+     not longUpperWick
+
+validBearPower =
+     strongBearK and
+     softVol and
+     not longLowerWick
+
+smcBuy =
+     longAllowed and
+     sweepLow and
+     (longLowerWick or strongBottomSupport or validBullPower) and
+     normalVol
+
+smcSell =
+     shortAllowed and
+     sweepHigh and
+     (longUpperWick or validBearPower) and
+     normalVol
+
+structureBuy =
+     longAllowed and
+     (bullBreak or bullChoch) and
+     validBullPower
+
+structureSell =
+     shortAllowed and
+     (bearBreak or bearChoch) and
+     validBearPower
+
+// ==========================
+// 根據模式選擇邏輯
+// ==========================
+volumeTrendBuy =
+     isShortMode ?
+     (shortVolumeBreakBuy or shortPullbackBuy or shortLowVolPullbackBuy) :
+     (swingVolumeBreakBuy or swingStrongVolumeBreakBuy or swingPullbackBuy or swingLowVolPullbackBuy or swingTrendContinueBuy)
+
+volumeTrendSell =
+     isShortMode ?
+     (shortVolumeBreakSell or shortPullbackSell or shortLowVolPullbackSell) :
+     (swingVolumeBreakSell or swingStrongVolumeBreakSell or swingPullbackSell or swingLowVolPullbackSell or swingTrendContinueSell)
+
+rawBuy =
+     smcBuy or
+     structureBuy or
+     volumeTrendBuy
+
+rawSell =
+     smcSell or
+     structureSell or
+     volumeTrendSell
+
+// ==========================
+// 風險過濾
+// ==========================
+buySignal =
+     rawBuy and
+     not weakBullK and
+     not dangerTopVolume
+
+sellSignal =
+     rawSell and
+     not weakBearK and
+     not dangerBottomPanic
+
+buySignalRaw = buySignal and not sellSignal
+sellSignalRaw = sellSignal and not buySignal
+
+var int lastSignalBar = na
+canSignal = na(lastSignalBar) or bar_index - lastSignalBar >= minGap
+
+finalBuy =
+     buySignalRaw and
+     canSignal and
+     mtfLongOK
+
+finalSell =
+     sellSignalRaw and
+     canSignal and
+     mtfShortOK
+
+if finalBuy or finalSell
+    lastSignalBar := bar_index
+
+// ==========================
+// 停損與停利
+// ==========================
+recentStopLow = ta.lowest(low, pullbackLen)
+recentStopHigh = ta.highest(high, pullbackLen)
+
+nearestLongBase =
+     not na(lastLow) and lastLow < close ?
+     math.max(lastLow, recentStopLow) :
+     recentStopLow
+
+nearestShortBase =
+     not na(lastHigh) and lastHigh > close ?
+     math.min(lastHigh, recentStopHigh) :
+     recentStopHigh
+
+longSL = nearestLongBase - atr * slBuffer
+shortSL = nearestShortBase + atr * slBuffer
+
+longRisk = close - longSL
+shortRisk = shortSL - close
+
+longTP1 = close + longRisk * tp1R
+longTP2 = close + longRisk * tp2R
+
+shortTP1 = close - shortRisk * tp1R
+shortTP2 = close - shortRisk * tp2R
+
+// ==========================
+// 技術出場 / 提前放棄單狀態
+// ==========================
+var bool inTrade = false
+var int tradeDir = 0
+var float activeEntry = na
+var float activeSL = na
+var float activeTP1 = na
+var float activeTP2 = na
+var int entryBar = na
+
+if finalBuy and longRisk > 0
+    inTrade := true
+    tradeDir := 1
+    activeEntry := close
+    activeSL := longSL
+    activeTP1 := longTP1
+    activeTP2 := longTP2
+    entryBar := bar_index
+
+if finalSell and shortRisk > 0
+    inTrade := true
+    tradeDir := -1
+    activeEntry := close
+    activeSL := shortSL
+    activeTP1 := shortTP1
+    activeTP2 := shortTP2
+    entryBar := bar_index
+
+longTradeFinished =
+     inTrade and
+     tradeDir == 1 and
+     (low <= activeSL or high >= activeTP2)
+
+shortTradeFinished =
+     inTrade and
+     tradeDir == -1 and
+     (high >= activeSL or low <= activeTP2)
+
+if longTradeFinished or shortTradeFinished
+    inTrade := false
+    tradeDir := 0
+    activeEntry := na
+    activeSL := na
+    activeTP1 := na
+    activeTP2 := na
+    entryBar := na
+
+// ==========================
+// 連續轉弱 / 轉強計算
+// ==========================
+var int downCloseCount = 0
+var int upCloseCount = 0
+
+downCloseCount :=
+     close < close[1] ?
+     downCloseCount + 1 :
+     0
+
+upCloseCount :=
+     close > close[1] ?
+     upCloseCount + 1 :
+     0
+
+longConsecutiveWeak =
+     inTrade and
+     tradeDir == 1 and
+     bar_index > entryBar and
+     downCloseCount >= earlyExitBars
+
+shortConsecutiveWeak =
+     inTrade and
+     tradeDir == -1 and
+     bar_index > entryBar and
+     upCloseCount >= earlyExitBars
+
+// ==========================
+// 提前放棄條件
+// ==========================
+longMomentumWeak =
+     inTrade and
+     tradeDir == 1 and
+     bar_index > entryBar and
+     close < emaFast and
+     bearCandle and
+     volRatio >= 1.0
+
+longDistribution =
+     inTrade and
+     tradeDir == 1 and
+     bar_index > entryBar and
+     volRatio >= earlyExitVolRatio and
+     longUpperWick and
+     closePos < 0.60
+
+longStructureFail =
+     inTrade and
+     tradeDir == 1 and
+     bar_index > entryBar and
+     (bearBreak or bearChoch)
+
+longMTFFail =
+     inTrade and
+     tradeDir == 1 and
+     bar_index > entryBar and
+     useMTFFilter and
+     not mtfLongOK
+
+longEarlyExit =
+     showEarlyExit and
+     not longTrendStillOK and
+     not longEmaTrendStillOK and
+     (
+         longMomentumWeak or
+         longConsecutiveWeak or
+         longDistribution or
+         longStructureFail or
+         longMTFFail
+     )
+
+shortMomentumWeak =
+     inTrade and
+     tradeDir == -1 and
+     bar_index > entryBar and
+     close > emaFast and
+     bullCandle and
+     volRatio >= 1.0
+
+shortAccumulation =
+     inTrade and
+     tradeDir == -1 and
+     bar_index > entryBar and
+     volRatio >= earlyExitVolRatio and
+     longLowerWick and
+     closePos > 0.40
+
+shortStructureFail =
+     inTrade and
+     tradeDir == -1 and
+     bar_index > entryBar and
+     (bullBreak or bullChoch)
+
+shortMTFFail =
+     inTrade and
+     tradeDir == -1 and
+     bar_index > entryBar and
+     useMTFFilter and
+     not mtfShortOK
+
+shortEarlyExit =
+     showEarlyExit and
+     not shortTrendStillOK and
+     not shortEmaTrendStillOK and
+     (
+         shortMomentumWeak or
+         shortConsecutiveWeak or
+         shortAccumulation or
+         shortStructureFail or
+         shortMTFFail
+     )
+
+// ==========================
+// 訊號原因
+// ==========================
+buyReason =
+     smcBuy ? "掃低承接" :
+     structureBuy ? "結構轉多" :
+     isShortMode and shortVolumeBreakBuy ? "短線放量突破" :
+     isShortMode and shortPullbackBuy ? "回測轉強" :
+     isShortMode and shortLowVolPullbackBuy ? "量縮回測" :
+     isSwingMode and swingStrongVolumeBreakBuy ? "強量突破" :
+     isSwingMode and swingVolumeBreakBuy ? "放量突破" :
+     isSwingMode and swingLowVolPullbackBuy ? "量縮回測" :
+     isSwingMode and swingPullbackBuy ? "回測轉強" :
+     isSwingMode and swingTrendContinueBuy ? "趨勢延續" :
+     "買進"
+
+sellReason =
+     smcSell ? "掃高轉弱" :
+     structureSell ? "結構轉空" :
+     isShortMode and shortVolumeBreakSell ? "短線放量跌破" :
+     isShortMode and shortPullbackSell ? "反彈轉弱" :
+     isShortMode and shortLowVolPullbackSell ? "量縮反彈" :
+     isSwingMode and swingStrongVolumeBreakSell ? "強量跌破" :
+     isSwingMode and swingVolumeBreakSell ? "放量跌破" :
+     isSwingMode and swingLowVolPullbackSell ? "量縮反彈" :
+     isSwingMode and swingPullbackSell ? "反彈轉弱" :
+     isSwingMode and swingTrendContinueSell ? "趨勢延續" :
+     "賣出"
+
+// ==========================
+// 顯示買進 / 賣出 / 停損 / 停利
+// ==========================
+modeText = isShortMode ? "短線" : "波段"
+mtfTextBuy = useMTFFilter ? "\n日K+1H多頭" : ""
+mtfTextSell = useMTFFilter ? "\n日K+1H空頭" : ""
+
+if finalBuy and longRisk > 0
+    label.new(
+         bar_index,
+         low,
+         showReason ? "買進｜" + modeText + "\n" + buyReason + "\n量比 " + str.tostring(volRatio, "#.##") + mtfTextBuy : "買進",
+         style=label.style_label_up,
+         color=color.new(color.green, 0),
+         textcolor=color.white,
+         size=size.normal
+    )
+
+    if showStopLabel
+        label.new(
+             bar_index,
+             longSL,
+             "停損\n" + str.tostring(longSL, format.mintick),
+             style=label.style_label_down,
+             color=color.new(color.red, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+    if showTakeProfit
+        label.new(
+             bar_index,
+             longTP1,
+             "停利1\n先出一半\n" + str.tostring(longTP1, format.mintick),
+             style=label.style_label_down,
+             color=color.new(color.blue, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+        label.new(
+             bar_index,
+             longTP2,
+             "停利2\n剩餘出場\n" + str.tostring(longTP2, format.mintick),
+             style=label.style_label_down,
+             color=color.new(color.purple, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+if finalSell and shortRisk > 0
+    label.new(
+         bar_index,
+         high,
+         showReason ? "賣出｜" + modeText + "\n" + sellReason + "\n量比 " + str.tostring(volRatio, "#.##") + mtfTextSell : "賣出",
+         style=label.style_label_down,
+         color=color.new(color.red, 0),
+         textcolor=color.white,
+         size=size.normal
+    )
+
+    if showStopLabel
+        label.new(
+             bar_index,
+             shortSL,
+             "空單停損\n" + str.tostring(shortSL, format.mintick),
+             style=label.style_label_up,
+             color=color.new(color.orange, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+    if showTakeProfit
+        label.new(
+             bar_index,
+             shortTP1,
+             "停利1\n回補一半\n" + str.tostring(shortTP1, format.mintick),
+             style=label.style_label_up,
+             color=color.new(color.blue, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+        label.new(
+             bar_index,
+             shortTP2,
+             "停利2\n剩餘回補\n" + str.tostring(shortTP2, format.mintick),
+             style=label.style_label_up,
+             color=color.new(color.purple, 0),
+             textcolor=color.white,
+             size=size.tiny
+        )
+
+// ==========================
+// 顯示提前放棄 / 技術出場
+// ==========================
+if longEarlyExit
+    exitReason =
+         longDistribution ? "疑似出貨" :
+         longStructureFail ? "結構轉弱" :
+         longMTFFail ? "週期失效" :
+         longMomentumWeak ? "動能轉弱" :
+         longConsecutiveWeak ? "連續轉弱" :
+         "走勢不如預期"
+
+    label.new(
+         bar_index,
+         high,
+         "提前放棄多單\n" + exitReason,
+         style=label.style_label_down,
+         color=color.new(color.orange, 0),
+         textcolor=color.white,
+         size=size.normal
+    )
+
+    inTrade := false
+    tradeDir := 0
+    activeEntry := na
+    activeSL := na
+    activeTP1 := na
+    activeTP2 := na
+    entryBar := na
+
+if shortEarlyExit
+    exitReason =
+         shortAccumulation ? "疑似承接" :
+         shortStructureFail ? "結構轉強" :
+         shortMTFFail ? "週期失效" :
+         shortMomentumWeak ? "動能轉強" :
+         shortConsecutiveWeak ? "連續轉強" :
+         "走勢不如預期"
+
+    label.new(
+         bar_index,
+         low,
+         "提前放棄空單\n" + exitReason,
+         style=label.style_label_up,
+         color=color.new(color.orange, 0),
+         textcolor=color.white,
+         size=size.normal
+    )
+
+    inTrade := false
+    tradeDir := 0
+    activeEntry := na
+    activeSL := na
+    activeTP1 := na
+    activeTP2 := na
+    entryBar := na
+
+// ==========================
+// 弱勢提醒
+// ==========================
+if showWarn and dangerTopVolume
+    label.new(
+         bar_index,
+         high,
+         "高位爆量\n小心出貨",
+         style=label.style_label_down,
+         color=color.new(color.orange, 0),
+         textcolor=color.white,
+         size=size.tiny
+    )
+
+if showWarn and dangerBottomPanic
+    label.new(
+         bar_index,
+         low,
+         "低位爆量\n勿追空",
+         style=label.style_label_up,
+         color=color.new(color.orange, 0),
+         textcolor=color.white,
+         size=size.tiny
+    )
+
+// ==========================
+// Screener / Data Window 輸出
+// ==========================
+signalValue = finalBuy ? 1 : finalSell ? -1 : 0
+modeValue = isShortMode ? 2 : 1
+mtfTrendValue = dailyBull and hourBull ? 1 : dailyBear and hourBear ? -1 : 0
+earlyExitValue = longEarlyExit ? 1 : shortEarlyExit ? -1 : 0
+trendProtectValue = longTrendStillOK ? 1 : shortTrendStillOK ? -1 : 0
+emaProtectValue = longEmaTrendStillOK ? 1 : shortEmaTrendStillOK ? -1 : 0
+
+plot(signalValue, title="訊號值 1買 -1賣 0無", display=display.data_window)
+plot(finalBuy ? 1 : 0, title="買進訊號", display=display.data_window)
+plot(finalSell ? 1 : 0, title="賣出訊號", display=display.data_window)
+plot(earlyExitValue, title="提前放棄 1多單 -1空單", display=display.data_window)
+plot(trendProtectValue, title="5/10趨勢保護 1多 -1空", display=display.data_window)
+plot(emaProtectValue, title="EMA趨勢保護 1多 -1空", display=display.data_window)
+plot(volRatio, title="成交量比", display=display.data_window)
+plot(modeValue, title="模式 1波段 2短線", display=display.data_window)
+plot(mtfTrendValue, title="日K+1H趨勢 1多 -1空 0不一致", display=display.data_window)
+plot(finalBuy ? longSL : finalSell ? shortSL : na, title="停損價", display=display.data_window)
+plot(finalBuy ? longTP1 : finalSell ? shortTP1 : na, title="停利1", display=display.data_window)
+plot(finalBuy ? longTP2 : finalSell ? shortTP2 : na, title="停利2", display=display.data_window)
+
+plot(emaFast, title="EMA快線", display=display.none)
+plot(emaSlow, title="EMA慢線", display=display.none)
+plot(vwapVal, title="VWAP", display=display.none)
+plot(protectFast, title="趨勢保護短均線", display=display.none)
+plot(protectSlow, title="趨勢保護長均線", display=display.none)
+
+// ==========================
+// 警示
+// ==========================
+alertcondition(finalBuy, title="買進訊號", message="TheCalcBox SMC 合併版 V5：日K+1H同向，出現買進訊號")
+alertcondition(finalSell, title="賣出訊號", message="TheCalcBox SMC 合併版 V5：日K+1H同向，出現賣出訊號")
+alertcondition(longEarlyExit, title="提前放棄多單", message="TheCalcBox SMC 合併版 V5：多單動能轉弱或疑似出貨，提前放棄")
+alertcondition(shortEarlyExit, title="提前放棄空單", message="TheCalcBox SMC 合併版 V5：空單動能轉強或疑似承接，提前放棄")

@@ -1,0 +1,500 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © alonsolu0204
+
+//@version=6
+strategy("TheCalcBox SMC 流動性獵手 V1｜掃蕩進場+流動性目標",
+     overlay=true,
+     initial_capital=1000000,
+     default_qty_type=strategy.percent_of_equity,
+     default_qty_value=20,
+     commission_type=strategy.commission.percent,
+     commission_value=0.1585,
+     slippage=1,
+     process_orders_on_close=true,
+     max_boxes_count=100,
+     max_lines_count=300,
+     max_labels_count=500)
+
+// =====================================================
+// 核心邏輯(流動性地圖的進出場版):
+// 【做多】價格刺穿下方流動性池(SSL/EQL)收割停損
+//         → 收回站上該水位(假跌破確認)
+//         → 加分:落在需求OB內 / EQL肥單 / 量能 / 日K順勢
+//         → 進場,停損=掃蕩低點下方
+//         → TP1=上方最近流動性(獵物),TP2=更遠流動性
+// 【做空】鏡像:掃上方BSL/EQH後收回跌破
+// 目標價不是猜的,是「對面停損單聚集的地方」
+// =====================================================
+
+// ==========================
+// 自動週期參數
+// ==========================
+isDaily = timeframe.isdaily or timeframe.isweekly or timeframe.ismonthly
+is60 = timeframe.isintraday and timeframe.multiplier >= 45 and timeframe.multiplier <= 120
+
+swingLen = isDaily ? 7 : is60 ? 5 : 4
+dispMult = isDaily ? 1.4 : is60 ? 1.2 : 1.1
+obAge    = isDaily ? 90 : 120
+liqAge   = isDaily ? 120 : 160
+
+// ==========================
+// 輸入
+// ==========================
+startDate = input.time(timestamp("2023-01-01"), "回測開始日")
+endDate   = input.time(timestamp("2027-01-01"), "回測結束日")
+inRange   = time >= startDate and time <= endDate
+
+enableLong  = input.bool(true, "允許做多")
+enableShort = input.bool(false, "允許做空(台股現股請關)")
+
+grpSig = "進場條件"
+minScore  = input.int(3, "掃蕩單最低分數(掃蕩+收回為必要2分,滿分6)", minval=2, maxval=6, group=grpSig)
+useTrendModule = input.bool(true, "啟用趨勢回踩OB模組(吃主升段)", group=grpSig, tooltip="趨勢中回踩需求OB+確認K即進場,不需掃蕩。獵手原版只有掃蕩單,單邊趨勢會整段錯過")
+reqOB     = input.bool(false, "掃蕩單強制要求落在OB內", group=grpSig)
+dispVolMult = input.float(1.15, "位移K量能門檻", minval=0.8, step=0.05, group=grpSig)
+eqTolAtr  = input.float(0.25, "等高低容差(×ATR)", minval=0.05, step=0.05, group=grpSig)
+
+grpFilter = "過濾器"
+dailyFilterMode = input.string("寬鬆(站上EMA50)", "日K趨勢過濾", options=["標準(EMA20>EMA50)", "寬鬆(站上EMA50)", "關閉"], group=grpFilter)
+useLiqFilter = input.bool(true, "成交金額過濾", group=grpFilter)
+minTurnover  = input.float(30, "最低成交金額(百萬)", minval=0, group=grpFilter) * 1000000
+
+grpExit = "出場"
+slAtrBuf = input.float(0.3, "停損緩衝(掃蕩低點再往下×ATR)", minval=0, step=0.05, group=grpExit)
+fallbackTp1R = input.float(1.5, "無流動性目標時 TP1(R)", minval=0.5, step=0.1, group=grpExit)
+fallbackTp2R = input.float(3.0, "無流動性目標時 TP2(R)", minval=1.0, step=0.1, group=grpExit)
+minTp1R  = input.float(1.0, "TP1最低賺賠比(流動性太近則不進場)", minval=0.3, step=0.1, group=grpExit)
+useBreakEven = input.bool(true, "TP1後停損移保本", group=grpExit)
+
+grpShow = "顯示"
+showMap = input.bool(true, "顯示地圖(OB+流動性線)", group=grpShow)
+showScoreDetail = input.bool(true, "標籤顯示計分明細", group=grpShow)
+
+volLen = 20
+atrLen = 14
+atr = ta.atr(atrLen)
+volMA = ta.sma(volume, volLen)
+volRatio = volMA > 0 ? volume / volMA : 1.0
+
+body = math.abs(close - open)
+barRange = high - low
+rangeSafe = barRange > 0 ? barRange : syminfo.mintick
+bodyPct = body / rangeSafe
+closePos = (close - low) / rangeSafe
+bullCandle = close > open
+bearCandle = close < open
+
+nearLimitUp   = close >= close[1] * 1.095
+nearLimitDown = close <= close[1] * 0.905
+liqOK = not useLiqFilter or (close * volume >= minTurnover)
+
+dailyClose = request.security(syminfo.tickerid, "D", close[1],            lookahead=barmerge.lookahead_off)
+dailyEma20 = request.security(syminfo.tickerid, "D", ta.ema(close,20)[1], lookahead=barmerge.lookahead_off)
+dailyEma50 = request.security(syminfo.tickerid, "D", ta.ema(close,50)[1], lookahead=barmerge.lookahead_off)
+dTrendLongOK  = dailyFilterMode == "關閉" ? true : dailyFilterMode == "寬鬆(站上EMA50)" ? dailyClose > dailyEma50 : (dailyClose > dailyEma20 and dailyEma20 > dailyEma50)
+dTrendShortOK = dailyFilterMode == "關閉" ? true : dailyFilterMode == "寬鬆(站上EMA50)" ? dailyClose < dailyEma50 : (dailyClose < dailyEma20 and dailyEma20 < dailyEma50)
+
+// ==========================
+// 位移 + 訂單塊
+// ==========================
+swingH5 = ta.highest(high[1], 5)
+swingL5 = ta.lowest(low[1], 5)
+dispUp = bullCandle and barRange > atr * dispMult and bodyPct >= 0.55 and volRatio >= dispVolMult and close > swingH5
+dispDn = bearCandle and barRange > atr * dispMult and bodyPct >= 0.55 and volRatio >= dispVolMult and close < swingL5
+
+var array<box>   bullObBox = array.new<box>()
+var array<float> bullObTop = array.new<float>()
+var array<float> bullObBot = array.new<float>()
+var array<int>   bullObBar = array.new<int>()
+var array<box>   bearObBox = array.new<box>()
+var array<float> bearObTop = array.new<float>()
+var array<float> bearObBot = array.new<float>()
+var array<int>   bearObBar = array.new<int>()
+
+f_lastBear() =>
+    int idx = na
+    for i = 1 to 4
+        if close[i] < open[i]
+            idx := i
+            break
+    idx
+
+f_lastBull() =>
+    int idx = na
+    for i = 1 to 4
+        if close[i] > open[i]
+            idx := i
+            break
+    idx
+
+if dispUp
+    i = f_lastBear()
+    if not na(i)
+        bx = showMap ? box.new(bar_index - i, high[i], bar_index, low[i], border_color=color.new(#26a69a, 30), bgcolor=color.new(#26a69a, 85), extend=extend.right) : box(na)
+        array.push(bullObBox, bx)
+        array.push(bullObTop, high[i])
+        array.push(bullObBot, low[i])
+        array.push(bullObBar, bar_index)
+        if array.size(bullObTop) > 5
+            box.delete(array.shift(bullObBox))
+            array.shift(bullObTop)
+            array.shift(bullObBot)
+            array.shift(bullObBar)
+
+if dispDn
+    i = f_lastBull()
+    if not na(i)
+        bx = showMap ? box.new(bar_index - i, high[i], bar_index, low[i], border_color=color.new(#ef5350, 30), bgcolor=color.new(#ef5350, 85), extend=extend.right) : box(na)
+        array.push(bearObBox, bx)
+        array.push(bearObTop, high[i])
+        array.push(bearObBot, low[i])
+        array.push(bearObBar, bar_index)
+        if array.size(bearObTop) > 5
+            box.delete(array.shift(bearObBox))
+            array.shift(bearObTop)
+            array.shift(bearObBot)
+            array.shift(bearObBar)
+
+if array.size(bullObTop) > 0
+    for i = array.size(bullObTop) - 1 to 0
+        if close < array.get(bullObBot, i) or bar_index - array.get(bullObBar, i) > obAge
+            box.delete(array.get(bullObBox, i))
+            array.remove(bullObBox, i)
+            array.remove(bullObTop, i)
+            array.remove(bullObBot, i)
+            array.remove(bullObBar, i)
+
+if array.size(bearObTop) > 0
+    for i = array.size(bearObTop) - 1 to 0
+        if close > array.get(bearObTop, i) or bar_index - array.get(bearObBar, i) > obAge
+            box.delete(array.get(bearObBox, i))
+            array.remove(bearObBox, i)
+            array.remove(bearObTop, i)
+            array.remove(bearObBot, i)
+            array.remove(bearObBar, i)
+
+// 是否在需求/供給OB內(含0.2ATR容差)
+f_inBullOB() =>
+    bool hit = false
+    if array.size(bullObTop) > 0
+        for i = 0 to array.size(bullObTop) - 1
+            if low <= array.get(bullObTop, i) and low >= array.get(bullObBot, i) - atr * 0.2
+                hit := true
+    hit
+
+f_inBearOB() =>
+    bool hit = false
+    if array.size(bearObTop) > 0
+        for i = 0 to array.size(bearObTop) - 1
+            if high >= array.get(bearObBot, i) and high <= array.get(bearObTop, i) + atr * 0.2
+                hit := true
+    hit
+
+// 命中OB並回傳區間(趨勢模組停損用),要求OB成立至少2根K(避免當根位移K自己觸發)
+f_hitBullOBZone() =>
+    float t = na
+    float b = na
+    if array.size(bullObTop) > 0
+        for i = 0 to array.size(bullObTop) - 1
+            fresh = bar_index - array.get(bullObBar, i) >= 2
+            if fresh and low <= array.get(bullObTop, i) and low >= array.get(bullObBot, i) - atr * 0.2 and na(t)
+                t := array.get(bullObTop, i)
+                b := array.get(bullObBot, i)
+    [t, b]
+
+f_hitBearOBZone() =>
+    float t = na
+    float b = na
+    if array.size(bearObTop) > 0
+        for i = 0 to array.size(bearObTop) - 1
+            fresh = bar_index - array.get(bearObBar, i) >= 2
+            if fresh and high >= array.get(bearObBot, i) and high <= array.get(bearObTop, i) + atr * 0.2 and na(t)
+                t := array.get(bearObTop, i)
+                b := array.get(bearObBot, i)
+    [t, b]
+
+// 本週期趨勢(趨勢模組用)
+emaF = ta.ema(close, 20)
+emaS = ta.ema(close, 50)
+tfTrendUp = close > emaF and emaF > emaS
+tfTrendDn = close < emaF and emaF < emaS
+
+// ==========================
+// 流動性池
+// ==========================
+ph = ta.pivothigh(high, swingLen, swingLen)
+pl = ta.pivotlow(low, swingLen, swingLen)
+
+var array<line>  bslLine = array.new<line>()
+var array<float> bslLvl  = array.new<float>()
+var array<int>   bslBar  = array.new<int>()
+var array<bool>  bslEQ   = array.new<bool>()
+var array<line>  sslLine = array.new<line>()
+var array<float> sslLvl  = array.new<float>()
+var array<int>   sslBar  = array.new<int>()
+var array<bool>  sslEQ   = array.new<bool>()
+
+if not na(ph)
+    isEQ = false
+    if array.size(bslLvl) > 0
+        for i = 0 to array.size(bslLvl) - 1
+            if math.abs(ph - array.get(bslLvl, i)) <= atr * eqTolAtr
+                isEQ := true
+                array.set(bslEQ, i, true)
+    ln = showMap ? line.new(bar_index - swingLen, ph, bar_index, ph, color=isEQ ? color.new(#ff7043, 0) : color.new(#ffb74d, 40), width=isEQ ? 2 : 1, extend=extend.right) : line(na)
+    array.push(bslLine, ln)
+    array.push(bslLvl, ph)
+    array.push(bslBar, bar_index - swingLen)
+    array.push(bslEQ, isEQ)
+    if array.size(bslLvl) > 8
+        line.delete(array.shift(bslLine))
+        array.shift(bslLvl)
+        array.shift(bslBar)
+        array.shift(bslEQ)
+
+if not na(pl)
+    isEQ = false
+    if array.size(sslLvl) > 0
+        for i = 0 to array.size(sslLvl) - 1
+            if math.abs(pl - array.get(sslLvl, i)) <= atr * eqTolAtr
+                isEQ := true
+                array.set(sslEQ, i, true)
+    ln = showMap ? line.new(bar_index - swingLen, pl, bar_index, pl, color=isEQ ? color.new(#42a5f5, 0) : color.new(#90caf9, 40), width=isEQ ? 2 : 1, extend=extend.right) : line(na)
+    array.push(sslLine, ln)
+    array.push(sslLvl, pl)
+    array.push(sslBar, bar_index - swingLen)
+    array.push(sslEQ, isEQ)
+    if array.size(sslLvl) > 8
+        line.delete(array.shift(sslLine))
+        array.shift(sslLvl)
+        array.shift(sslBar)
+        array.shift(sslEQ)
+
+// ==========================
+// 掃蕩偵測(進場核心)
+// ==========================
+// 本根K:刺穿某條SSL(低點<水位)但收盤收回其上 = 掃低收回
+var bool sweptSSL = false
+var bool sweptSSLisEQ = false
+var float sweepLowLvl = na
+sweptSSL := false
+sweptSSLisEQ := false
+sweepLowLvl := na
+if array.size(sslLvl) > 0
+    for i = array.size(sslLvl) - 1 to 0
+        lvl = array.get(sslLvl, i)
+        expired = bar_index - array.get(sslBar, i) > liqAge
+        pierced = low < lvl
+        reclaimed = close > lvl
+        if pierced and reclaimed and not expired
+            sweptSSL := true
+            sweptSSLisEQ := array.get(sslEQ, i) or sweptSSLisEQ
+            sweepLowLvl := na(sweepLowLvl) ? lvl : math.min(sweepLowLvl, lvl)
+        // 真跌破(收盤也破)或過期 → 移除該流動性
+        if (pierced and not reclaimed) or expired
+            line.delete(array.get(sslLine, i))
+            array.remove(sslLine, i)
+            array.remove(sslLvl, i)
+            array.remove(sslBar, i)
+            array.remove(sslEQ, i)
+        else if pierced and reclaimed
+            // 已被掃過:移除(流動性被吃掉了)
+            line.delete(array.get(sslLine, i))
+            array.remove(sslLine, i)
+            array.remove(sslLvl, i)
+            array.remove(sslBar, i)
+            array.remove(sslEQ, i)
+
+var bool sweptBSL = false
+var bool sweptBSLisEQ = false
+var float sweepHighLvl = na
+sweptBSL := false
+sweptBSLisEQ := false
+sweepHighLvl := na
+if array.size(bslLvl) > 0
+    for i = array.size(bslLvl) - 1 to 0
+        lvl = array.get(bslLvl, i)
+        expired = bar_index - array.get(bslBar, i) > liqAge
+        pierced = high > lvl
+        rejected = close < lvl
+        if pierced and rejected and not expired
+            sweptBSL := true
+            sweptBSLisEQ := array.get(bslEQ, i) or sweptBSLisEQ
+            sweepHighLvl := na(sweepHighLvl) ? lvl : math.max(sweepHighLvl, lvl)
+        if (pierced and not rejected) or expired
+            line.delete(array.get(bslLine, i))
+            array.remove(bslLine, i)
+            array.remove(bslLvl, i)
+            array.remove(bslBar, i)
+            array.remove(bslEQ, i)
+        else if pierced and rejected
+            line.delete(array.get(bslLine, i))
+            array.remove(bslLine, i)
+            array.remove(bslLvl, i)
+            array.remove(bslBar, i)
+            array.remove(bslEQ, i)
+
+// ==========================
+// 目標:對面最近/次近的流動性
+// ==========================
+f_liqTargetsAbove() =>
+    float t1 = na
+    float t2 = na
+    if array.size(bslLvl) > 0
+        for i = 0 to array.size(bslLvl) - 1
+            v = array.get(bslLvl, i)
+            if v > close
+                if na(t1) or v < t1
+                    t2 := t1
+                    t1 := v
+                else if na(t2) or v < t2
+                    t2 := v
+    [t1, t2]
+
+f_liqTargetsBelow() =>
+    float t1 = na
+    float t2 = na
+    if array.size(sslLvl) > 0
+        for i = 0 to array.size(sslLvl) - 1
+            v = array.get(sslLvl, i)
+            if v < close
+                if na(t1) or v > t1
+                    t2 := t1
+                    t1 := v
+                else if na(t2) or v > t2
+                    t2 := v
+    [t1, t2]
+
+// ==========================
+// 計分(滿分6):掃蕩收回=2(必要) + 確認K強度1 + OB匯合1 + EQ肥單1 + 量能1
+// ==========================
+confirmL = closePos >= 0.55 or (close > open and bodyPct >= 0.4)
+confirmS = closePos <= 0.45 or (close < open and bodyPct >= 0.4)
+inOBL = f_inBullOB()
+inOBS = f_inBearOB()
+volOKL = volRatio >= 1.0 or volRatio[1] < 0.85
+volOKS = volRatio >= 1.0 or volRatio[1] < 0.85
+
+scoreL = (sweptSSL ? 2 : 0) + (confirmL ? 1 : 0) + (inOBL ? 1 : 0) + (sweptSSLisEQ ? 1 : 0) + (volOKL ? 1 : 0)
+scoreS = (sweptBSL ? 2 : 0) + (confirmS ? 1 : 0) + (inOBS ? 1 : 0) + (sweptBSLisEQ ? 1 : 0) + (volOKS ? 1 : 0)
+
+obGateL = not reqOB or inOBL
+obGateS = not reqOB or inOBS
+
+// ==========================
+// 趨勢回踩OB模組(不需掃蕩,吃主升段)
+// ==========================
+[tObTop, tObBot] = f_hitBullOBZone()
+[sObTop, sObBot] = f_hitBearOBZone()
+
+// 多:本週期趨勢向上 + 回踩需求OB + 收盤收回OB上緣 + 確認K + 量能
+trendBuyRaw = useTrendModule and tfTrendUp and not na(tObTop) and close > tObTop and confirmL and volOKL
+trendSellRaw = useTrendModule and tfTrendDn and not na(sObBot) and close < sObBot and confirmS and volOKS
+
+// 掃蕩單條件(原邏輯)
+sweepBuyRaw = sweptSSL and confirmL and scoreL >= minScore and obGateL
+sweepSellRaw = sweptBSL and confirmS and scoreS >= minScore and obGateS
+
+// 各自的停損
+sweepLongSL = low - atr * slAtrBuf
+trendLongSL = not na(tObBot) ? tObBot - atr * slAtrBuf : low - atr * slAtrBuf
+sweepShortSL = high + atr * slAtrBuf
+trendShortSL = not na(sObTop) ? sObTop + atr * slAtrBuf : high + atr * slAtrBuf
+
+isTrendEntryL = trendBuyRaw and not sweepBuyRaw
+isTrendEntryS = trendSellRaw and not sweepSellRaw
+
+longSL = isTrendEntryL ? trendLongSL : sweepLongSL
+shortSL = isTrendEntryS ? trendShortSL : sweepShortSL
+longRisk = close - longSL
+shortRisk = shortSL - close
+
+[tgtUp1, tgtUp2] = f_liqTargetsAbove()
+[tgtDn1, tgtDn2] = f_liqTargetsBelow()
+
+longTP1 = not na(tgtUp1) ? tgtUp1 : close + longRisk * fallbackTp1R
+longTP2 = not na(tgtUp2) ? tgtUp2 : close + longRisk * fallbackTp2R
+shortTP1 = not na(tgtDn1) ? tgtDn1 : close - shortRisk * fallbackTp1R
+shortTP2 = not na(tgtDn2) ? tgtDn2 : close - shortRisk * fallbackTp2R
+
+// 賺賠比守門:TP1太近不值得進
+rrL = longRisk > 0 ? (longTP1 - close) / longRisk : 0
+rrS = shortRisk > 0 ? (close - shortTP1) / shortRisk : 0
+
+finalBuy = (sweepBuyRaw or trendBuyRaw) and rrL >= minTp1R and dTrendLongOK and not nearLimitUp and liqOK and inRange and enableLong and strategy.position_size <= 0 and longRisk > 0
+finalSell = (sweepSellRaw or trendSellRaw) and rrS >= minTp1R and dTrendShortOK and not nearLimitDown and liqOK and inRange and enableShort and strategy.position_size >= 0 and shortRisk > 0
+
+// TP2也不能比TP1近
+longTP2 := math.max(longTP2, longTP1 + syminfo.mintick)
+shortTP2 := math.min(shortTP2, shortTP1 - syminfo.mintick)
+
+// ==========================
+// 下單
+// ==========================
+var float slHold = na
+var float tp2Hold = na
+
+if finalBuy
+    strategy.entry("L", strategy.long, comment=(isTrendEntryL ? "趨勢多|回踩OB" : "掃低多|" + str.tostring(scoreL) + "分"))
+    slHold := longSL
+    tp2Hold := longTP2
+    strategy.exit("L-TP1", "L", qty_percent=50, limit=longTP1, stop=longSL, comment_profit="TP1吃流動性", comment_loss="停損")
+
+if finalSell
+    strategy.entry("S", strategy.short, comment=(isTrendEntryS ? "趨勢空|反彈OB" : "掃高空|" + str.tostring(scoreS) + "分"))
+    slHold := shortSL
+    tp2Hold := shortTP2
+    strategy.exit("S-TP1", "S", qty_percent=50, limit=shortTP1, stop=shortSL, comment_profit="TP1吃流動性", comment_loss="停損")
+
+tp1Done = strategy.position_size != 0 and strategy.position_size[1] != 0 and math.abs(strategy.position_size) < math.abs(strategy.position_size[1])
+
+if strategy.position_size > 0
+    if tp1Done and useBreakEven
+        slHold := math.max(slHold, strategy.position_avg_price)
+    strategy.exit("L-TP2", "L", qty_percent=100, limit=tp2Hold, stop=slHold, comment_profit="TP2吃流動性", comment_loss=tp1Done and useBreakEven ? "保本出" : "停損")
+
+if strategy.position_size < 0
+    if tp1Done and useBreakEven
+        slHold := math.min(slHold, strategy.position_avg_price)
+    strategy.exit("S-TP2", "S", qty_percent=100, limit=tp2Hold, stop=slHold, comment_profit="TP2吃流動性", comment_loss=tp1Done and useBreakEven ? "保本出" : "停損")
+
+// ==========================
+// 標籤
+// ==========================
+if finalBuy
+    detail = showScoreDetail ? (isTrendEntryL ? "\n──趨勢單──\n✓趨勢向上+回踩需求OB" + (volOKL ? "\n✓量能確認" : "") :
+         "\n──計分 " + str.tostring(scoreL) + "/6──" +
+         "\n✓掃低收回" + (sweptSSLisEQ ? "(EQL肥單!)" : "") +
+         (inOBL ? "\n✓需求OB匯合" : "") +
+         (volOKL ? "\n✓量能確認" : "")) : ""
+    tpNote = not na(tgtUp1) ? "(上方流動性)" : "(R倍數)"
+    label.new(bar_index, low - atr * 0.4,
+         (isTrendEntryL ? "▲ 趨勢回踩買進" : "▲ 掃低買進") + "\n進場 " + str.tostring(close, format.mintick) +
+         "\n停損 " + str.tostring(longSL, format.mintick) +
+         "\nTP1 " + str.tostring(longTP1, format.mintick) + tpNote +
+         "\nTP2 " + str.tostring(longTP2, format.mintick) + detail,
+         style=label.style_label_up, color=isTrendEntryL ? color.new(#e67e22, 0) : color.new(#c0392b, 0), textcolor=color.white, size=size.normal)
+
+if finalSell
+    detail = showScoreDetail ? (isTrendEntryS ? "\n──趨勢單──\n✓趨勢向下+反彈供給OB" + (volOKS ? "\n✓量能確認" : "") :
+         "\n──計分 " + str.tostring(scoreS) + "/6──" +
+         "\n✓掃高轉弱" + (sweptBSLisEQ ? "(EQH肥單!)" : "") +
+         (inOBS ? "\n✓供給OB匯合" : "") +
+         (volOKS ? "\n✓量能確認" : "")) : ""
+    tpNote = not na(tgtDn1) ? "(下方流動性)" : "(R倍數)"
+    label.new(bar_index, high + atr * 0.4,
+         (isTrendEntryS ? "▼ 趨勢反彈賣出" : "▼ 掃高賣出") + "\n進場 " + str.tostring(close, format.mintick) +
+         "\n停損 " + str.tostring(shortSL, format.mintick) +
+         "\nTP1 " + str.tostring(shortTP1, format.mintick) + tpNote +
+         "\nTP2 " + str.tostring(shortTP2, format.mintick) + detail,
+         style=label.style_label_down, color=isTrendEntryS ? color.new(#8e44ad, 0) : color.new(#1e8449, 0), textcolor=color.white, size=size.normal)
+
+inPos = strategy.position_size != 0
+plot(inPos ? slHold : na, "停損線", color=color.new(color.red, 0), style=plot.style_linebr, linewidth=2)
+plot(inPos ? tp2Hold : na, "TP2線", color=color.new(color.purple, 0), style=plot.style_linebr, linewidth=1)
+
+// ==========================
+// 警示
+// ==========================
+alertcondition(finalBuy, "掃低買進訊號", "SMC獵手:掃低收回買進,查看圖表標籤")
+alertcondition(finalSell, "掃高賣出訊號", "SMC獵手:掃高轉弱賣出,查看圖表標籤")
