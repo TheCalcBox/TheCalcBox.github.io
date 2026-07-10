@@ -1,0 +1,122 @@
+{
+  "id": "jiu-yue-jiu-ri-yi-shan-dong-xiong-di",
+  "title": "九月九日憶山東兄弟",
+  "author": "王維",
+  "dynasty": "唐",
+  "form": "七言絕句",
+  "grade": "國小高年級",
+  "difficulty": 2,
+  "summary": "重陽佳節身在異鄉，格外思念遠方家人。",
+  "background": "重陽節有登高、插茱萸等習俗。王維少年離鄉，在節日時想到家鄉兄弟，寫下這首真摯含蓄的思親詩。",
+  "authorBio": "王維（701－761），盛唐山水田園詩人兼畫家，作品兼具畫意、禪意與音樂感。",
+  "mood": [
+    "思親",
+    "孤獨"
+  ],
+  "season": "秋",
+  "time": "節日",
+  "scene": "異鄉重陽",
+  "lines": [
+    {
+      "text": "獨在異鄉為異客",
+      "pinyin": "dú zài yì xiāng wéi yì kè",
+      "translation": "獨自生活在外地，成為異鄉客。",
+      "explain": "兩個「異」字強調陌生與孤單，「獨」字奠定全詩情緒。",
+      "english": "Alone in a foreign land, a stranger far from home.",
+      "image": "assets/images/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/scene-01.webp",
+      "audio": "assets/audio/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/line-01.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 獨在異鄉為異客. 獨自生活在外地，成為異鄉客。 Setting: 異鄉重陽, 秋 season, 節日, mood: 思親 and 孤獨.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 獨在異鄉為異客"
+    },
+    {
+      "text": "每逢佳節倍思親",
+      "pinyin": "měi féng jiā jié bèi sī qīn",
+      "translation": "每逢節日，就更加思念親人。",
+      "explain": "「倍」字寫出節日使思念加深，成為千古名句。",
+      "english": "At every festival, I miss my family all the more.",
+      "image": "assets/images/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/scene-02.webp",
+      "audio": "assets/audio/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/line-02.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 每逢佳節倍思親. 每逢節日，就更加思念親人。 Setting: 異鄉重陽, 秋 season, 節日, mood: 思親 and 孤獨.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 每逢佳節倍思親"
+    },
+    {
+      "text": "遙知兄弟登高處",
+      "pinyin": "yáo zhī xiōng dì dēng gāo chù",
+      "translation": "遠遠想像兄弟們正在登高。",
+      "explain": "由自己的思念轉寫故鄉親人的行動，擴大空間感。",
+      "english": "From afar I know my brothers climb the heights.",
+      "image": "assets/images/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/scene-03.webp",
+      "audio": "assets/audio/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/line-03.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 遙知兄弟登高處. 遠遠想像兄弟們正在登高。 Setting: 異鄉重陽, 秋 season, 節日, mood: 思親 and 孤獨.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 遙知兄弟登高處"
+    },
+    {
+      "text": "遍插茱萸少一人",
+      "pinyin": "biàn chā zhū yú shǎo yì rén",
+      "translation": "大家插著茱萸，卻少了我一個人。",
+      "explain": "不直接說自己想家，而從家人的缺席感反寫思念。",
+      "english": "All wear dogwood sprigs, but one person is missing.",
+      "image": "assets/images/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/scene-04.webp",
+      "audio": "assets/audio/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/line-04.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 遍插茱萸少一人. 大家插著茱萸，卻少了我一個人。 Setting: 異鄉重陽, 秋 season, 節日, mood: 思親 and 孤獨.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 遍插茱萸少一人"
+    }
+  ],
+  "slug": "jiu-yue-jiu-ri-yi-shan-dong-xiong-di",
+  "tags": [
+    "唐詩",
+    "七言絕句",
+    "思親",
+    "孤獨",
+    "秋"
+  ],
+  "storyMode": [
+    {
+      "scene": 1,
+      "narration": "獨自生活在外地，成為異鄉客。 兩個「異」字強調陌生與孤單，「獨」字奠定全詩情緒。"
+    },
+    {
+      "scene": 2,
+      "narration": "每逢節日，就更加思念親人。 「倍」字寫出節日使思念加深，成為千古名句。"
+    },
+    {
+      "scene": 3,
+      "narration": "遠遠想像兄弟們正在登高。 由自己的思念轉寫故鄉親人的行動，擴大空間感。"
+    },
+    {
+      "scene": 4,
+      "narration": "大家插著茱萸，卻少了我一個人。 不直接說自己想家，而從家人的缺席感反寫思念。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "《九月九日憶山東兄弟》是誰寫的？",
+      "a": "《九月九日憶山東兄弟》的作者是唐代詩人王維。"
+    },
+    {
+      "q": "《九月九日憶山東兄弟》表達什麼情感？",
+      "a": "全詩主要表達「思親、孤獨」的情感與意境。"
+    },
+    {
+      "q": "《九月九日憶山東兄弟》是什麼詩體？",
+      "a": "《九月九日憶山東兄弟》屬於七言絕句。"
+    },
+    {
+      "q": "《九月九日憶山東兄弟》適合哪個年級學習？",
+      "a": "本頁建議難度為 2 級，適合國小高年級程度閱讀。"
+    }
+  ],
+  "seo": {
+    "title": "九月九日憶山東兄弟｜原文、翻譯、朗讀、水墨插畫與賞析 — CalcBox",
+    "description": "王維《九月九日憶山東兄弟》沉浸式詩詞劇場：逐句朗讀、水墨插畫、白話翻譯、拼音、英文翻譯、創作背景與詩句解析。",
+    "keywords": [
+      "九月九日憶山東兄弟",
+      "九月九日憶山東兄弟原文",
+      "九月九日憶山東兄弟翻譯",
+      "九月九日憶山東兄弟朗讀",
+      "王維"
+    ]
+  },
+  "musicPrompt": "warm guqin and xiao, distant festive ambience, restrained emotion",
+  "music": "assets/audio/jiu-yue-jiu-ri-yi-shan-dong-xiong-di/background.mp3"
+}

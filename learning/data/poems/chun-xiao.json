@@ -1,0 +1,122 @@
+{
+  "id": "chun-xiao",
+  "title": "春曉",
+  "author": "孟浩然",
+  "dynasty": "唐",
+  "form": "五言絕句",
+  "grade": "國小",
+  "difficulty": 1,
+  "summary": "春日清晨醒來，聽見鳥鳴並憐惜一夜風雨後的落花。",
+  "background": "《春曉》從春眠、鳥鳴、風雨和落花四個感官片段展開。詩人沒有直接描寫春景全貌，而以醒來後的聽覺與想像，表現對春天的喜愛與惜花之情。",
+  "authorBio": "孟浩然（689－740），唐代山水田園詩人，作品語言清淡自然，擅長描寫田園、山水與隱逸生活。",
+  "mood": [
+    "清新",
+    "惜春"
+  ],
+  "season": "春",
+  "time": "清晨",
+  "scene": "春日庭院",
+  "lines": [
+    {
+      "text": "春眠不覺曉",
+      "pinyin": "chūn mián bù jué xiǎo",
+      "translation": "春天睡得香甜，不知不覺天已亮。",
+      "explain": "以春眠寫出春日氣候宜人，也帶出剛醒來的朦朧感。",
+      "english": "In spring sleep, dawn arrives unnoticed.",
+      "image": "assets/images/chun-xiao/scene-01.webp",
+      "audio": "assets/audio/chun-xiao/line-01.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 春眠不覺曉. 春天睡得香甜，不知不覺天已亮。 Setting: 春日庭院, 春 season, 清晨, mood: 清新 and 惜春.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 春眠不覺曉"
+    },
+    {
+      "text": "處處聞啼鳥",
+      "pinyin": "chù chù wén tí niǎo",
+      "translation": "到處都能聽見鳥兒鳴叫。",
+      "explain": "用聽覺展開春天的生機，讓畫面由室內延伸到戶外。",
+      "english": "Everywhere I hear birds singing.",
+      "image": "assets/images/chun-xiao/scene-02.webp",
+      "audio": "assets/audio/chun-xiao/line-02.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 處處聞啼鳥. 到處都能聽見鳥兒鳴叫。 Setting: 春日庭院, 春 season, 清晨, mood: 清新 and 惜春.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 處處聞啼鳥"
+    },
+    {
+      "text": "夜來風雨聲",
+      "pinyin": "yè lái fēng yǔ shēng",
+      "translation": "想起昨夜曾傳來風雨聲。",
+      "explain": "從眼前鳥鳴回想到夜間風雨，情緒開始轉折。",
+      "english": "Last night came the sound of wind and rain.",
+      "image": "assets/images/chun-xiao/scene-03.webp",
+      "audio": "assets/audio/chun-xiao/line-03.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 夜來風雨聲. 想起昨夜曾傳來風雨聲。 Setting: 春日庭院, 春 season, 清晨, mood: 清新 and 惜春.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 夜來風雨聲"
+    },
+    {
+      "text": "花落知多少",
+      "pinyin": "huā luò zhī duō shǎo",
+      "translation": "不知有多少花被風雨吹落。",
+      "explain": "以疑問收尾，不只寫落花，也寄託對美好春光消逝的惋惜。",
+      "english": "How many blossoms have fallen, I wonder?",
+      "image": "assets/images/chun-xiao/scene-04.webp",
+      "audio": "assets/audio/chun-xiao/line-04.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 花落知多少. 不知有多少花被風雨吹落。 Setting: 春日庭院, 春 season, 清晨, mood: 清新 and 惜春.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 花落知多少"
+    }
+  ],
+  "slug": "chun-xiao",
+  "tags": [
+    "唐詩",
+    "五言絕句",
+    "清新",
+    "惜春",
+    "春"
+  ],
+  "storyMode": [
+    {
+      "scene": 1,
+      "narration": "春天睡得香甜，不知不覺天已亮。 以春眠寫出春日氣候宜人，也帶出剛醒來的朦朧感。"
+    },
+    {
+      "scene": 2,
+      "narration": "到處都能聽見鳥兒鳴叫。 用聽覺展開春天的生機，讓畫面由室內延伸到戶外。"
+    },
+    {
+      "scene": 3,
+      "narration": "想起昨夜曾傳來風雨聲。 從眼前鳥鳴回想到夜間風雨，情緒開始轉折。"
+    },
+    {
+      "scene": 4,
+      "narration": "不知有多少花被風雨吹落。 以疑問收尾，不只寫落花，也寄託對美好春光消逝的惋惜。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "《春曉》是誰寫的？",
+      "a": "《春曉》的作者是唐代詩人孟浩然。"
+    },
+    {
+      "q": "《春曉》表達什麼情感？",
+      "a": "全詩主要表達「清新、惜春」的情感與意境。"
+    },
+    {
+      "q": "《春曉》是什麼詩體？",
+      "a": "《春曉》屬於五言絕句。"
+    },
+    {
+      "q": "《春曉》適合哪個年級學習？",
+      "a": "本頁建議難度為 1 級，適合國小程度閱讀。"
+    }
+  ],
+  "seo": {
+    "title": "春曉｜原文、翻譯、朗讀、水墨插畫與賞析 — CalcBox",
+    "description": "孟浩然《春曉》沉浸式詩詞劇場：逐句朗讀、水墨插畫、白話翻譯、拼音、英文翻譯、創作背景與詩句解析。",
+    "keywords": [
+      "春曉",
+      "春曉原文",
+      "春曉翻譯",
+      "春曉朗讀",
+      "孟浩然"
+    ]
+  },
+  "musicPrompt": "soft guzheng, bamboo flute, morning birds, light breeze",
+  "music": "assets/audio/chun-xiao/background.mp3"
+}

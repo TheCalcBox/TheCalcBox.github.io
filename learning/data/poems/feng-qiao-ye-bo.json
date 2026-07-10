@@ -1,0 +1,122 @@
+{
+  "id": "feng-qiao-ye-bo",
+  "title": "楓橋夜泊",
+  "author": "張繼",
+  "dynasty": "唐",
+  "form": "七言絕句",
+  "grade": "國中",
+  "difficulty": 3,
+  "summary": "夜泊楓橋，在月落、烏啼、霜天與鐘聲中寫出旅愁。",
+  "background": "詩人夜泊蘇州楓橋附近，以所見所聞組成完整夜景。最後寒山寺鐘聲穿過夜色抵達客船，使孤寂情緒達到高潮。",
+  "authorBio": "張繼，唐代詩人，傳世作品不多，《楓橋夜泊》因景物精準、聲畫交融而千古傳誦。",
+  "mood": [
+    "旅愁",
+    "孤寂"
+  ],
+  "season": "秋",
+  "time": "深夜",
+  "scene": "江南夜泊",
+  "lines": [
+    {
+      "text": "月落烏啼霜滿天",
+      "pinyin": "yuè luò wū tí shuāng mǎn tiān",
+      "translation": "月亮西沉，烏鴉啼叫，寒霜彷彿布滿夜空。",
+      "explain": "把月色、鳥聲與寒意結合，形成清冷緊張的夜景。",
+      "english": "The moon sets, crows cry, frost fills the sky.",
+      "image": "assets/images/feng-qiao-ye-bo/scene-01.webp",
+      "audio": "assets/audio/feng-qiao-ye-bo/line-01.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 月落烏啼霜滿天. 月亮西沉，烏鴉啼叫，寒霜彷彿布滿夜空。 Setting: 江南夜泊, 秋 season, 深夜, mood: 旅愁 and 孤寂.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 月落烏啼霜滿天"
+    },
+    {
+      "text": "江楓漁火對愁眠",
+      "pinyin": "jiāng fēng yú huǒ duì chóu mián",
+      "translation": "對著江邊楓樹與漁火，帶著愁緒難以入眠。",
+      "explain": "冷暗的夜色中，漁火成為微弱亮點，也映照旅人愁眠。",
+      "english": "River maples and fishing lights face my sorrowful sleep.",
+      "image": "assets/images/feng-qiao-ye-bo/scene-02.webp",
+      "audio": "assets/audio/feng-qiao-ye-bo/line-02.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 江楓漁火對愁眠. 對著江邊楓樹與漁火，帶著愁緒難以入眠。 Setting: 江南夜泊, 秋 season, 深夜, mood: 旅愁 and 孤寂.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 江楓漁火對愁眠"
+    },
+    {
+      "text": "姑蘇城外寒山寺",
+      "pinyin": "gū sū chéng wài hán shān sì",
+      "translation": "姑蘇城外的寒山寺。",
+      "explain": "鏡頭由近處客船拉遠到城外古寺，準備引出鐘聲。",
+      "english": "Outside Gusu City stands Cold Mountain Temple.",
+      "image": "assets/images/feng-qiao-ye-bo/scene-03.webp",
+      "audio": "assets/audio/feng-qiao-ye-bo/line-03.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 姑蘇城外寒山寺. 姑蘇城外的寒山寺。 Setting: 江南夜泊, 秋 season, 深夜, mood: 旅愁 and 孤寂.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 姑蘇城外寒山寺"
+    },
+    {
+      "text": "夜半鐘聲到客船",
+      "pinyin": "yè bàn zhōng shēng dào kè chuán",
+      "translation": "半夜裡鐘聲傳到了旅客的船上。",
+      "explain": "鐘聲穿越空間抵達客船，把寂靜、旅愁與時間凝聚在一起。",
+      "english": "At midnight, its bell reaches the traveler's boat.",
+      "image": "assets/images/feng-qiao-ye-bo/scene-04.webp",
+      "audio": "assets/audio/feng-qiao-ye-bo/line-04.mp3",
+      "imagePrompt": "CalcBox Ink Style, cinematic Chinese ink wash painting, refined blue-green landscape palette, elegant negative space, delicate mineral pigments, subtle paper texture, atmospheric depth, historically inspired Tang dynasty clothing and architecture, restrained facial detail, 16:9, no text, no watermark. Scene inspired by the poem line: 夜半鐘聲到客船. 半夜裡鐘聲傳到了旅客的船上。 Setting: 江南夜泊, 秋 season, 深夜, mood: 旅愁 and 孤寂.",
+      "voicePrompt": "Professional Mandarin Chinese narration, Taiwan accent, calm literary delivery, clear diction, moderate-slow pace. Read exactly: 夜半鐘聲到客船"
+    }
+  ],
+  "slug": "feng-qiao-ye-bo",
+  "tags": [
+    "唐詩",
+    "七言絕句",
+    "旅愁",
+    "孤寂",
+    "秋"
+  ],
+  "storyMode": [
+    {
+      "scene": 1,
+      "narration": "月亮西沉，烏鴉啼叫，寒霜彷彿布滿夜空。 把月色、鳥聲與寒意結合，形成清冷緊張的夜景。"
+    },
+    {
+      "scene": 2,
+      "narration": "對著江邊楓樹與漁火，帶著愁緒難以入眠。 冷暗的夜色中，漁火成為微弱亮點，也映照旅人愁眠。"
+    },
+    {
+      "scene": 3,
+      "narration": "姑蘇城外的寒山寺。 鏡頭由近處客船拉遠到城外古寺，準備引出鐘聲。"
+    },
+    {
+      "scene": 4,
+      "narration": "半夜裡鐘聲傳到了旅客的船上。 鐘聲穿越空間抵達客船，把寂靜、旅愁與時間凝聚在一起。"
+    }
+  ],
+  "faq": [
+    {
+      "q": "《楓橋夜泊》是誰寫的？",
+      "a": "《楓橋夜泊》的作者是唐代詩人張繼。"
+    },
+    {
+      "q": "《楓橋夜泊》表達什麼情感？",
+      "a": "全詩主要表達「旅愁、孤寂」的情感與意境。"
+    },
+    {
+      "q": "《楓橋夜泊》是什麼詩體？",
+      "a": "《楓橋夜泊》屬於七言絕句。"
+    },
+    {
+      "q": "《楓橋夜泊》適合哪個年級學習？",
+      "a": "本頁建議難度為 3 級，適合國中程度閱讀。"
+    }
+  ],
+  "seo": {
+    "title": "楓橋夜泊｜原文、翻譯、朗讀、水墨插畫與賞析 — CalcBox",
+    "description": "張繼《楓橋夜泊》沉浸式詩詞劇場：逐句朗讀、水墨插畫、白話翻譯、拼音、英文翻譯、創作背景與詩句解析。",
+    "keywords": [
+      "楓橋夜泊",
+      "楓橋夜泊原文",
+      "楓橋夜泊翻譯",
+      "楓橋夜泊朗讀",
+      "張繼"
+    ]
+  },
+  "musicPrompt": "low guqin, distant temple bell, quiet water, night insects",
+  "music": "assets/audio/feng-qiao-ye-bo/background.mp3"
+}
