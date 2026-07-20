@@ -516,16 +516,7 @@ footer a:hover{color:var(--gold-mid)}
       <h2>台電電費試算</h2>
       <p>依台電住宅「非時間電價」累進費率試算每期（兩個月）電費</p>
     </div>
-    <div class="card-body">
-      <div class="scope-card" aria-label="電費試算適用範圍">
-        <h3>適用範圍｜請先確認你的電價方案</h3>
-        <div class="scope-grid">
-          <div class="scope-col ok"><strong>✓ 本工具適用</strong><ul><li>台灣一般住宅表燈非營業用</li><li>住宅非時間電價、六段累進費率</li><li>兩個月一期，且整期同屬夏月或非夏月的概算</li></ul></div>
-          <div class="scope-col no"><strong>✕ 本工具不適用</strong><ul><li>住宅時間電價、營業用電</li><li>契約容量、高壓用電、公共用電</li><li>跨夏月／非夏月或非標準帳期</li></ul></div>
-        </div>
-        <div class="scope-foot">本工具估算累進電能費，未納入帳單中的代收、補貼、最低計費或其他特殊項目；實際金額以台電正式帳單為準。</div>
-      </div>
-      <div class="fields">
+    <div class="card-body"><div class="fields">
         <div class="field"><label>本期用電度數（兩個月總度數）</label><input type="number" id="el-kwh" placeholder="例：600" inputmode="numeric"></div>
         <div class="field"><label>計費月份</label>
           <select id="el-season"><option value="summer">夏月（6–9月）</option><option value="nonsummer" selected>非夏月（其餘月份）</option></select></div>
@@ -541,7 +532,20 @@ footer a:hover{color:var(--gold-mid)}
       <button class="calc-btn" onclick="calcElec()">試算電費</button>
       <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9610" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 
-      <div class="result" id="electric-result">
+<div class="scope-card" aria-label="電費試算適用範圍">
+  <h3>ℹ️ 適用範圍</h3>
+  <p><strong>本工具適用於台灣住宅非時間電價（表燈非營業用）電費試算。</strong></p>
+  <ul style="margin:10px 0 0 18px;line-height:1.8;">
+    <li>✅ 一般住宅（表燈非營業用）</li>
+    <li>✅ 六段累進電價</li>
+    <li>✅ 夏月（6–9 月）／非夏月</li>
+    <li>✅ 兩個月一期帳單估算</li>
+  </ul>
+  <small style="display:block;margin-top:10px;color:#666;">實際電費仍以台灣電力公司正式帳單為準。</small>
+</div>
+
+
+      <div class="result" id="electric-result">,
         <div class="result-hero" style="background:linear-gradient(135deg,#7B2D00 0%,#E65100 100%)">
           <div class="result-hero-label">本期電費（兩個月）</div>
           <div class="result-number"><sup>NT$</sup><span id="el-bill">—</span></div>
@@ -610,15 +614,15 @@ footer a:hover{color:var(--gold-mid)}
     <div class="card-band" style="--accent:#0277BD;--accent-2:#29B6F6"></div>
     <div class="card-head">
       <h2>台水水費計算</h2>
-      <p>依台灣自來水公司最新家庭用水費率試算每月水費</p>
+      <p>依台灣自來水公司家庭用水費率試算每期水費</p>
     </div>
     <div class="card-body">
       <div class="fields">
-        <div class="field"><label>每月用水量（度）</label><input type="number" id="wt-usage" placeholder="例：20" inputmode="numeric"></div>
-        <div class="field"><label>用水戶別</label>
-          <select id="wt-type">
-            <option value="house" selected>家庭用水</option>
-            <option value="business">營業用水</option>
+        <div class="field"><label>本期用水量（度）</label><input type="number" id="wt-usage" placeholder="例：40" inputmode="numeric"></div>
+        <div class="field"><label>帳單期間</label>
+          <select id="wt-months">
+            <option value="1">1 個月一期</option>
+            <option value="2" selected>2 個月一期</option>
           </select></div>
       </div>
       <button class="calc-btn" onclick="calcWater()">試算水費</button>
@@ -626,30 +630,30 @@ footer a:hover{color:var(--gold-mid)}
 
       <div class="result" id="water-result">
         <div class="result-hero" style="background:linear-gradient(135deg,#01427A 0%,#0277BD 100%)">
-          <div class="result-hero-label">本月水費</div>
+          <div class="result-hero-label">本期水費</div>
           <div class="result-number"><sup>NT$</sup><span id="wt-bill">—</span></div>
-          <div class="result-unit">元 / 月（含基本費）</div>
+          <div class="result-unit" id="wt-unit-label">元 / 期（含基本費）</div>
           <div class="result-badge" id="wt-badge"></div>
         </div>
         <div class="result-grid">
           <div class="result-cell" style="--accent:#0277BD"><div class="lbl">每度均價</div><div class="val" id="wt-avg">—</div></div>
           <div class="result-cell" style="--accent:#0277BD"><div class="lbl">每日用水</div><div class="val" id="wt-daily">—</div></div>
-          <div class="result-cell" style="--accent:#0277BD"><div class="lbl">每年水費</div><div class="val red" id="wt-yearly">—</div></div>
+          <div class="result-cell" style="--accent:#0277BD"><div class="lbl">本期基本費</div><div class="val" id="wt-basic">—</div></div>
         </div>
         <div class="chart-section">
           <div class="chart-box">
             <div class="chart-title">各級距水費分布</div>
-            <div class="chart-sub">累進費率：用越多每度越貴（含 50 元基本費）</div>
+            <div class="chart-sub">累進費率依月平均用量計算；本期費用含基本費</div>
             <canvas id="water-chart" width="700" height="280"></canvas>
           </div>
         </div>
         <div class="result-note" id="wt-note"></div>
-        <div class="result-disclaimer">依台灣自來水公司家庭用水費率試算，另有污水下水道費率加成（依地區），實際以帳單為準。</div>
+        <div class="result-disclaimer">本工具以台灣自來水公司供水區的家庭用水方式概算。臺北自來水事業處、離島或其他供水單位的基本費與費率可能不同；污水下水道使用費等附加項目亦依地區而異，實際以帳單為準。</div>
       </div>
 
       <div class="seo-box">
         <h3>台灣水費怎麼算？</h3>
-        <p>台灣自來水公司家庭用水採五段累進費率：10度以下6.00元/度、11–25度7.75元/度、26–50度9.10元/度、51–100度12.60元/度、101度以上19.30元/度，另加基本費50元。一般家庭每月約15–30度，水費約150–350元。</p>
+        <p>台灣自來水公司家庭用水採五段累進費率：10度以下6.00元/度、11–25度7.75元/度、26–50度9.10元/度、51–100度12.60元/度、101度以上19.30元/度，另加基本費50元。一般家庭每月用量常見約15–30度，實際每期金額依帳期、用量與附加費用而異。</p>
       </div>
       <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9620" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     </div>
@@ -1228,7 +1232,7 @@ function drawWaterChart(usage) {
   });
 
   ctx.fillStyle = C.navyMid; ctx.font = 'bold 11px "Noto Sans TC",sans-serif'; ctx.textAlign = 'left';
-  ctx.fillText('各級距水費分布（月用水 ' + usage + ' 度）', padL, 20);
+  ctx.fillText('各級距水費分布（月平均用水 ' + usage + ' 度）', padL, 20);
 }
 
 /* ═════ 旅遊分帳 bar chart ═════ */
@@ -1425,28 +1429,38 @@ const WATER_RATES_HOUSE = [[10,6.00],[25,7.75],[50,9.10],[100,12.60],[Infinity,1
 const WATER_RATES_BIZ   = [[Infinity, 14.50]]; // 營業用水均一費率近似
 
 function calcWater() {
-  const usage = parseFloat(document.getElementById('wt-usage').value);
-  if (!usage || usage <= 0) { alert('請輸入用水量'); return; }
-  const type = document.getElementById('wt-type').value;
-  const rates = type === 'house' ? WATER_RATES_HOUSE : WATER_RATES_BIZ;
-  const basicFee = 50;
+  const periodUsage = parseFloat(document.getElementById('wt-usage').value);
+  const months = parseInt(document.getElementById('wt-months').value, 10) || 2;
+  if (!periodUsage || periodUsage <= 0) { alert('請輸入本期用水量'); return; }
 
-  let cost = 0, prev = 0;
+  const monthlyUsage = periodUsage / months;
+  const rates = WATER_RATES_HOUSE;
+  const basicFeePerMonth = 50;
+
+  let monthlyCost = 0, prev = 0;
   for (const [lim, rate] of rates) {
-    if (usage > prev) { cost += (Math.min(usage, lim) - prev) * rate; prev = lim; }
-    if (usage <= lim) break;
+    if (monthlyUsage > prev) {
+      monthlyCost += (Math.min(monthlyUsage, lim) - prev) * rate;
+      prev = lim;
+    }
+    if (monthlyUsage <= lim) break;
   }
-  const bill = Math.round(cost + basicFee);
+
+  const periodWaterCost = monthlyCost * months;
+  const periodBasicFee = basicFeePerMonth * months;
+  const bill = Math.round(periodWaterCost + periodBasicFee);
+  const days = months * 30;
 
   document.getElementById('wt-bill').textContent = fmt(bill);
-  document.getElementById('wt-avg').textContent = (bill / usage).toFixed(2) + ' 元/度';
-  document.getElementById('wt-daily').textContent = (usage / 30).toFixed(1) + ' 度/天';
-  document.getElementById('wt-yearly').textContent = '$' + fmt(bill * 12) + ' 元';
-  document.getElementById('wt-badge').textContent = type === 'house' ? '家庭五段累進' : '營業用水';
-  document.getElementById('wt-note').textContent = `每月用水 ${usage} 度，水費約 ${fmt(bill)} 元（含基本費 ${basicFee} 元，用水費 ${fmt(Math.round(cost))} 元）。每年水費約 ${fmt(bill * 12)} 元。`;
+  document.getElementById('wt-avg').textContent = (bill / periodUsage).toFixed(2) + ' 元/度';
+  document.getElementById('wt-daily').textContent = (periodUsage / days).toFixed(2) + ' 度/天';
+  document.getElementById('wt-basic').textContent = '$' + fmt(periodBasicFee) + ' 元';
+  document.getElementById('wt-badge').textContent = months + ' 個月一期・家庭累進費率';
+  document.getElementById('wt-unit-label').textContent = '元 / 期（' + months + ' 個月，含基本費）';
+  document.getElementById('wt-note').textContent = `本期 ${months} 個月共用水 ${periodUsage} 度，月平均 ${monthlyUsage.toFixed(1)} 度；估算本期水費約 ${fmt(bill)} 元（用水費 ${fmt(Math.round(periodWaterCost))} 元、基本費 ${fmt(periodBasicFee)} 元）。`;
   document.getElementById('water-result').classList.add('show');
-  if (type === 'house') requestAnimationFrame(() => drawWaterChart(usage));
-  gtag && gtag('event', 'calculate', { tool: 'bill-water' });
+  requestAnimationFrame(() => drawWaterChart(monthlyUsage));
+  gtag && gtag('event', 'calculate', { tool: 'bill-water', billing_months: months });
 }
 
 /* 油費費率 */
