@@ -41,7 +41,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebApplication","name":"旅遊分帳計算機","url":"https://thecalcbox.com/bill/#trip","description":"多人旅遊分帳，自動算出最簡轉帳方案。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
-{"@type":"WebApplication","name":"台電電費試算","url":"https://thecalcbox.com/bill/#electric","description":"依台電2025/10/1起累進費率試算每期電費，含住宅與小型商業。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
+{"@type":"WebApplication","name":"台電電費試算","url":"https://thecalcbox.com/bill/#electric","description":"依台電住宅非時間電價累進費率試算每期電費。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"台水水費計算","url":"https://thecalcbox.com/bill/#water","description":"依台灣自來水公司家庭費率試算每月水費。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"油耗計算機","url":"https://thecalcbox.com/bill/#fuel","description":"計算每月油費與每公里成本。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
 {"@type":"WebApplication","name":"停車費試算","url":"https://thecalcbox.com/bill/#parking","description":"時數計費與月租費比較試算。","applicationCategory":"UtilityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}},
@@ -535,7 +535,7 @@ footer a:hover{color:var(--gold-mid)}
     <div class="card-band" style="--accent:#E65100;--accent-2:#FF8F00"></div>
     <div class="card-head">
       <h2>台電電費試算</h2>
-      <p>依台電 2025/10/1 起累進費率試算每期（兩個月）電費，支援住宅與小型商業</p>
+      <p>依台電住宅「非時間電價」累進費率試算每期（兩個月）電費</p>
     </div>
     <div class="card-body">
       <div class="fields">
@@ -544,11 +544,12 @@ footer a:hover{color:var(--gold-mid)}
           <select id="el-season"><option value="summer">夏月（6–9月）</option><option value="nonsummer" selected>非夏月（其餘月份）</option></select></div>
       </div>
       <div class="fields one">
-        <div class="field"><label>用電戶別</label>
-          <select id="el-type">
-            <option value="house" selected>住宅用電（一般家庭，六段累進）</option>
-            <option value="small">小型商業用電（兩段式）</option>
-          </select></div>
+        <div class="field"><label>適用電價方案</label>
+          <select id="el-type" disabled aria-label="目前僅支援住宅非時間電價">
+            <option value="house" selected>住宅非時間電價（六段累進）</option>
+          </select>
+          <div style="font-size:11px;color:var(--hint);margin-top:5px;line-height:1.6">目前僅試算一般住宅非時間電價；時間電價、營業用電及契約容量用電不適用。</div>
+        </div>
       </div>
       <button class="calc-btn" onclick="calcElec()">試算電費</button>
       <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9610" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
@@ -564,7 +565,7 @@ footer a:hover{color:var(--gold-mid)}
           <div class="result-cell" style="--accent:#E65100"><div class="lbl">每度均價</div><div class="val" id="el-avg">—</div></div>
           <div class="result-cell" style="--accent:#E65100"><div class="lbl">最高適用費率</div><div class="val" id="el-tier">—</div></div>
           <div class="result-cell" style="--accent:#E65100"><div class="lbl">每月平均電費</div><div class="val" id="el-monthly">—</div></div>
-          <div class="result-cell" style="--accent:#E65100"><div class="lbl">住宅基本電費</div><div class="val" id="el-basic-fee">—</div></div>
+          <div class="result-cell" style="--accent:#E65100"><div class="lbl">固定基本費</div><div class="val" id="el-basic-fee">—</div></div>
         </div>
         <div class="chart-section">
           <div class="chart-box">
@@ -574,7 +575,7 @@ footer a:hover{color:var(--gold-mid)}
           </div>
         </div>
         <div class="result-note" id="el-note"></div>
-        <div class="result-disclaimer">依台電 2025/10/1 起費率試算（住宅無基本電費，商業含基本電費），實際以帳單為準。</div>
+        <div class="result-disclaimer">本工具僅依一般住宅非時間電價之用電度數與累進級距估算「電能費」。智慧電表是計量設備，不代表一定採時間電價；時間電價、營業用電、契約容量及其他帳單項目不在本工具試算範圍，實際金額以台電帳單為準。</div>
       </div>
 
       <div class="seo-box">
@@ -596,8 +597,8 @@ footer a:hover{color:var(--gold-mid)}
   <section class="faq2">
     <h2>電費常見問題</h2>
     <details><summary>台電電費怎麼計算？</summary><div class="faq2-a">住宅採六段累進電價，用電越多超出部分單價越高。帳單通常兩個月一期，計費時換算成每月平均度數套用級距，夏月（6–9月）費率高於非夏月。</div></details>
-    <details><summary>為什麼住宅基本電費是 0 元？</summary><div class="faq2-a">一般住宅使用的「表燈非時間電價」主要依實際用電度數採累進計費，帳單不另外列收固定基本電費，因此工具顯示 0 元。這不代表供電成本免費，而是相關成本已反映在每度電價中；若使用時間電價、契約容量或其他用電方案，計費方式會不同。</div></details>
-    <details><summary>小型商業用電和住宅用電費率一樣嗎？</summary><div class="faq2-a">不一樣。小型商業用電採兩段式費率，並含每期基本電費，計算方式和住宅六段累進不同。本工具支援兩種戶別，請依實際情況選擇。</div></details>
+    <details><summary>為什麼這裡顯示固定基本費 0 元？</summary><div class="faq2-a">因本工具目前只試算一般住宅「非時間電價」的累進電能費，計算式中不另外加一筆固定基本費，所以顯示 0 元。這不表示所有台電方案都沒有基本費；時間電價、營業用電、契約容量或其他方案可能有不同的基本費、約定容量費或最低計費規則，應依實際電價方案與帳單為準。</div></details>
+    <details><summary>裝智慧電表就會多收基本費嗎？</summary><div class="faq2-a">不一定。智慧電表是記錄用電量與用電時段的計量設備，是否有基本費取決於你實際申請的電價方案，而不是單看電表種類。即使已安裝智慧電表，仍可能沿用住宅非時間電價；只有改申請時間電價或其他方案時，才依該方案的費率與計費規則計算。</div></details>
     <details><summary>怎麼降低電費？</summary><div class="faq2-a">控制每月用電量避免衝上高級距、汰換為能效一級電器、減少待機耗電、分散高耗電時段，都能有效降低電費。</div></details>
   </section>
   <section class="faq2 electric-card-gallery">
@@ -1529,8 +1530,8 @@ function calcElec() {
   const totalKwh = parseFloat(document.getElementById('el-kwh').value);
   if (!totalKwh || totalKwh <= 0) { alert('請輸入用電度數'); return; }
   const season = document.getElementById('el-season').value;
-  const type = document.getElementById('el-type').value;
-  const rates = ELEC_RATE[type][season];
+  const type = 'house';
+  const rates = ELEC_RATE.house[season];
   const monthlyKwh = totalKwh / 2;
 
   let monthCost = 0, tier = '', prev = 0;
@@ -1544,8 +1545,7 @@ function calcElec() {
     if (monthlyKwh <= limit) break;
   }
 
-  let basicFee = 0;
-  if (type === 'small') basicFee = 75 * 2; // 小型商業每月基本費約75元
+  const basicFee = 0; // 本工具僅試算住宅非時間電價，不另加固定基本費
 
   const periodTotal = Math.round(monthCost * 2 + basicFee);
   const monthTotal = Math.round(monthCost + basicFee / 2);
@@ -1554,10 +1554,10 @@ function calcElec() {
   document.getElementById('el-avg').textContent = (periodTotal / totalKwh).toFixed(2) + ' 元/度';
   document.getElementById('el-tier').textContent = tier;
   document.getElementById('el-monthly').textContent = '$' + fmt(monthTotal) + ' 元';
-  document.getElementById('el-basic-fee').textContent = basicFee ? ('$' + fmt(basicFee) + ' / 期') : '$0（未另收）';
-  document.getElementById('el-badge').textContent = (season === 'summer' ? '夏月費率' : '非夏月費率') + '　' + (type === 'house' ? '住宅六段累進' : '小型商業兩段式');
-  document.getElementById('el-unit-label').textContent = '元 / 期（兩個月）' + (basicFee ? '，已含基本電費' : '，住宅未另收基本電費');
-  document.getElementById('el-note').textContent = `本期（兩個月）用電 ${fmt(totalKwh)} 度，電費約 ${fmt(periodTotal)} 元；平均每月約 ${fmt(Math.round(monthlyKwh))} 度、${fmt(monthTotal)} 元。${type === 'house' ? '一般住宅非時間電價未另外列收基本電費，費用已透過各級距每度電價計收。' : `本期已計入基本電費 ${fmt(basicFee)} 元。`} 每度均價 ${(periodTotal / totalKwh).toFixed(2)} 元。`;
+  document.getElementById('el-basic-fee').textContent = '$0（本試算不另加）';
+  document.getElementById('el-badge').textContent = (season === 'summer' ? '夏月費率' : '非夏月費率') + '　住宅非時間電價';
+  document.getElementById('el-unit-label').textContent = '元 / 期（兩個月）・未另加固定基本費';
+  document.getElementById('el-note').textContent = `本期（兩個月）用電 ${fmt(totalKwh)} 度，依住宅非時間電價累進級距估算約 ${fmt(periodTotal)} 元；平均每月約 ${fmt(Math.round(monthlyKwh))} 度、${fmt(monthTotal)} 元。本試算未另加固定基本費，也未納入時間電價、營業用電、契約容量及帳單其他項目。每度均價約 ${(periodTotal / totalKwh).toFixed(2)} 元。`;
   document.getElementById('electric-result').classList.add('show');
   requestAnimationFrame(() => drawElecChart(monthlyKwh, season, ELEC_RATE.house[season]));
   gtag && gtag('event', 'calculate', { tool: 'bill-electric' });
