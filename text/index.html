@@ -54,7 +54,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"旅遊分帳怎麼算最公平？","acceptedAnswer":{"@type":"Answer","text":"逐筆記錄每筆消費並勾選實際分攤對象，沒參與的人不分擔。系統計算每人淨收支後，用最少轉帳讓該付錢的人直接轉給該收錢的人。"}},
 {"@type":"Question","name":"台電電費怎麼計算？","acceptedAnswer":{"@type":"Answer","text":"住宅採六段累進費率，用電越多超出部分單價越高。帳單通常兩個月一期，計費時換算成每月平均度數套用級距，夏月（6至9月）費率高於非夏月。"}},
-{"@type":"Question","name":"台灣水費怎麼算？","acceptedAnswer":{"@type":"Answer","text":"台灣自來水公司採五段累進費率，家庭用水每月用量越多，超出部分每度越貴，並另加基本費50元。"}},
+{"@type":"Question","name":"台灣水費怎麼算？","acceptedAnswer":{"@type":"Answer","text":"台灣自來水公司採五段累進費率，家庭用水每月用量越多，超出部分每度越貴，並另依水表口徑及帳單期間計收基本費。"}},
 {"@type":"Question","name":"手機綁約和自購哪個划算？","acceptedAnswer":{"@type":"Answer","text":"比較總成本：綁約等於月租乘綁約月數加手機補貼價；自購等於手機原價加低資費月租乘同月數。通常手機越貴、綁越久，自購搭配低資費越划算。"}},
 {"@type":"Question","name":"折扣的8折和20%off一樣嗎？","acceptedAnswer":{"@type":"Answer","text":"結果一樣，都是付原價80%，但方向相反：台灣8折指付80%，歐美20%off指省20%。"}},
 {"@type":"Question","name":"停車費時數計費和月租哪個划算？","acceptedAnswer":{"@type":"Answer","text":"看每月停車天數與時數。天天通勤、固定停同處的人月租通常較省；偶爾開車的人按時計費較彈性。"}}
@@ -613,18 +613,52 @@ footer a:hover{color:var(--gold-mid)}
   <div class="tool-card">
     <div class="card-band" style="--accent:#0277BD;--accent-2:#29B6F6"></div>
     <div class="card-head">
-      <h2>台水水費計算</h2>
-      <p>依台灣自來水公司家庭用水費率試算每期水費</p>
+      <h2>台灣水費計算</h2>
+      <p>依供水地區、住宅類型、水表口徑與帳單期間試算每期水費</p>
     </div>
     <div class="card-body">
       <div class="fields">
-        <div class="field"><label>本期用水量（度）</label><input type="number" id="wt-usage" placeholder="例：40" inputmode="numeric"></div>
+        <div class="field"><label>供水地區</label>
+          <select id="wt-provider">
+            <option value="twc" selected>台灣自來水（多數縣市）</option>
+            <option value="twd">台北自來水（雙北部分區域）</option>
+          </select>
+          <small style="display:block;margin-top:6px;color:#667085;line-height:1.5;">台北市及新北部分區域選「台北自來水」，其他地區通常選「台灣自來水」。</small>
+        </div>
+        <div class="field"><label>住宅類型</label>
+          <select id="wt-home-type" onchange="syncWaterMeterFromHome()">
+            <option value="20" selected>一般住宅、公寓（推薦）</option>
+            <option value="25">透天住宅</option>
+            <option value="13">舊住宅／小用水戶</option>
+            <option value="40">大型住宅／商辦</option>
+          </select>
+          <small style="display:block;margin-top:6px;color:#667085;line-height:1.5;">系統會自動推估水表口徑，一般住宅預設為 20 mm。</small>
+        </div>
+      </div>
+      <div class="fields">
         <div class="field"><label>帳單期間</label>
           <select id="wt-months">
-            <option value="1">1 個月一期</option>
-            <option value="2" selected>2 個月一期</option>
-          </select></div>
+            <option value="1">每月一期</option>
+            <option value="2" selected>每兩個月一期</option>
+          </select>
+        </div>
+        <div class="field"><label>本期用水量（度）</label>
+          <input type="number" id="wt-usage" placeholder="例：40" inputmode="numeric">
+        </div>
       </div>
+      <details style="margin:4px 0 16px;border:1px solid #DDE7F0;border-radius:12px;padding:12px 14px;background:#F8FBFE;">
+        <summary style="cursor:pointer;font-weight:700;color:#24506F;">進階設定：我知道水表口徑</summary>
+        <div class="field" style="margin-top:12px;">
+          <label>水表口徑</label>
+          <select id="wt-meter">
+            <option value="13">13 mm</option>
+            <option value="20" selected>20 mm</option>
+            <option value="25">25 mm</option>
+            <option value="40">40 mm</option>
+          </select>
+          <small style="display:block;margin-top:6px;color:#667085;line-height:1.5;">展開並修改後，試算將以此口徑為準。</small>
+        </div>
+      </details>
       <button class="calc-btn" onclick="calcWater()">試算水費</button>
       <div class="ad-below-btn"><span class="ad-label">廣告</span><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9619" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 
@@ -637,7 +671,7 @@ footer a:hover{color:var(--gold-mid)}
         </div>
         <div class="result-grid">
           <div class="result-cell" style="--accent:#0277BD"><div class="lbl">每度均價</div><div class="val" id="wt-avg">—</div></div>
-          <div class="result-cell" style="--accent:#0277BD"><div class="lbl">每日用水</div><div class="val" id="wt-daily">—</div></div>
+          <div class="result-cell" style="--accent:#0277BD"><div class="lbl">本期用水費</div><div class="val" id="wt-water-fee">—</div></div>
           <div class="result-cell" style="--accent:#0277BD"><div class="lbl">本期基本費</div><div class="val" id="wt-basic">—</div></div>
         </div>
         <div class="chart-section">
@@ -648,12 +682,12 @@ footer a:hover{color:var(--gold-mid)}
           </div>
         </div>
         <div class="result-note" id="wt-note"></div>
-        <div class="result-disclaimer">本工具以台灣自來水公司供水區的家庭用水方式概算。臺北自來水事業處、離島或其他供水單位的基本費與費率可能不同；污水下水道使用費等附加項目亦依地區而異，實際以帳單為準。</div>
+        <div class="result-disclaimer">本工具依所選供水單位、水表口徑及帳期概算。基本費已依口徑與帳期計算；污水下水道使用費、水源保育費、公共用水分攤及其他代收項目未必包含，實際仍以正式帳單為準。</div>
       </div>
 
       <div class="seo-box">
         <h3>台灣水費怎麼算？</h3>
-        <p>台灣自來水公司家庭用水採五段累進費率：10度以下6.00元/度、11–25度7.75元/度、26–50度9.10元/度、51–100度12.60元/度、101度以上19.30元/度，另加基本費50元。一般家庭每月用量常見約15–30度，實際每期金額依帳期、用量與附加費用而異。</p>
+        <p>家庭用水通常採累進費率，另依供水單位、水表口徑及抄表週期收取基本費。本工具將一般住宅預設為20 mm水表，也可依住宅類型快速推估，或在進階設定自行選擇口徑。</p>
       </div>
       <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9509448455103495" data-ad-slot="9620" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
     </div>
@@ -662,14 +696,16 @@ footer a:hover{color:var(--gold-mid)}
     <h2>台灣水費怎麼算？台水累進費率完整解析</h2>
     <p class="lead-card">台灣水費相對便宜，但同樣採累進費率，用越多每度越貴。一般家庭每月15–30度，水費約150–350元，算清楚才能評估節水效果。</p>
     <h3>台水五段累進費率</h3>
-    <p>家庭用水分五段：前10度最便宜（6元/度），超過100度的部分每度高達19.30元。另加基本費50元。多口之家若用水量大，節水設備的投資回報較快。</p>
+    <p>家庭用水分五段：前10度最便宜（6元/度），超過100度的部分每度高達19.30元。另依水表口徑及帳單期間計收基本費。多口之家若用水量大，節水設備的投資回報較快。</p>
     <h3>影響水費的因素</h3>
     <p>部分縣市有污水下水道接管費率加成（約10–20%），實際費率請查詢當地自來水公司說明。洗碗機、節水馬桶、省水標章蓮蓬頭都能有效降低用水量。</p>
-    <div class="lead-card">📌 <b>一句話總結</b>：台水五段累進費率，用越多每度越貴 → 含基本費50元 → 節水設備有助降低落入高級距的用量。</div>
+    <div class="lead-card">📌 <b>一句話總結</b>：台水五段累進費率，用越多每度越貴 → 含依口徑與帳期計算的基本費 → 節水設備有助降低落入高級距的用量。</div>
   </article>
   <section class="faq2">
     <h2>水費常見問題</h2>
-    <details><summary>台灣水費怎麼計算？</summary><div class="faq2-a">台水家庭用水採五段累進費率（6.00–19.30元/度），另加基本費50元。用水量越多，超出部分每度越貴。</div></details>
+    <details><summary>台灣水費怎麼計算？</summary><div class="faq2-a">台水家庭用水採五段累進費率（6.00–19.30元/度），另依水表口徑及帳單期間計收基本費。用水量越多，超出部分每度越貴。</div></details>
+    <details><summary>我不知道家裡的水表口徑怎麼辦？</summary><div class="faq2-a">一般住宅、公寓或大樓可先選「一般住宅、公寓」，系統會以20 mm估算；透天住宅可先選25 mm。若帳單或水表上有標示，展開進階設定改成實際口徑會更準確。</div></details>
+    <details><summary>台水與北水的基本費一樣嗎？</summary><div class="faq2-a">不完全相同。兩個供水單位都會依水表口徑與抄表週期計收基本費，但金額略有差異，因此本工具提供供水地區選擇。</div></details>
     <details><summary>為什麼帳單上水費比試算的高？</summary><div class="faq2-a">部分縣市有污水下水道接管費率加成（約10–20%），另有水源保育費，加計後實際帳單會略高於本工具試算值。</div></details>
     <details><summary>怎麼省水費？</summary><div class="faq2-a">更換省水標章水龍頭和蓮蓬頭、縮短淋浴時間、改用節水馬桶，可顯著降低每月用水度數，省下較多落入高費率區間的費用。</div></details>
   </section>
@@ -1428,16 +1464,36 @@ function calcElec() {
 const WATER_RATES_HOUSE = [[10,6.00],[25,7.75],[50,9.10],[100,12.60],[Infinity,19.30]];
 const WATER_RATES_BIZ   = [[Infinity, 14.50]]; // 營業用水均一費率近似
 
+function syncWaterMeterFromHome() {
+  const homeType = document.getElementById('wt-home-type');
+  const meter = document.getElementById('wt-meter');
+  if (homeType && meter) meter.value = homeType.value;
+}
+
 function calcWater() {
   const periodUsage = parseFloat(document.getElementById('wt-usage').value);
   const months = parseInt(document.getElementById('wt-months').value, 10) || 2;
-  if (!periodUsage || periodUsage <= 0) { alert('請輸入本期用水量'); return; }
+  const provider = document.getElementById('wt-provider').value;
+  const meter = parseInt(document.getElementById('wt-meter').value, 10) || 20;
+
+  if (!periodUsage || periodUsage <= 0) {
+    alert('請輸入本期用水量');
+    return;
+  }
 
   const monthlyUsage = periodUsage / months;
   const rates = WATER_RATES_HOUSE;
-  const basicFeePerMonth = 50;
 
-  let monthlyCost = 0, prev = 0;
+  // 基本費：使用者提供之含稅費率；每月抄表為1期，隔月抄表為2期。
+  const basicFeeTable = {
+    twc: {13: 17.85, 20: 35.70, 25: 66.15, 40: 196.35},
+    twd: {13: 17.00, 20: 34.00, 25: 68.00, 40: 204.00}
+  };
+  const providerName = provider === 'twd' ? '台北自來水' : '台灣自來水';
+  const basicFeePerMonth = basicFeeTable[provider][meter];
+
+  let monthlyCost = 0;
+  let prev = 0;
   for (const [lim, rate] of rates) {
     if (monthlyUsage > prev) {
       monthlyCost += (Math.min(monthlyUsage, lim) - prev) * rate;
@@ -1453,14 +1509,25 @@ function calcWater() {
 
   document.getElementById('wt-bill').textContent = fmt(bill);
   document.getElementById('wt-avg').textContent = (bill / periodUsage).toFixed(2) + ' 元/度';
-  document.getElementById('wt-daily').textContent = (periodUsage / days).toFixed(2) + ' 度/天';
-  document.getElementById('wt-basic').textContent = '$' + fmt(periodBasicFee) + ' 元';
-  document.getElementById('wt-badge').textContent = months + ' 個月一期・家庭累進費率';
-  document.getElementById('wt-unit-label').textContent = '元 / 期（' + months + ' 個月，含基本費）';
-  document.getElementById('wt-note').textContent = `本期 ${months} 個月共用水 ${periodUsage} 度，月平均 ${monthlyUsage.toFixed(1)} 度；估算本期水費約 ${fmt(bill)} 元（用水費 ${fmt(Math.round(periodWaterCost))} 元、基本費 ${fmt(periodBasicFee)} 元）。`;
+  document.getElementById('wt-water-fee').textContent = '$' + fmt(Math.round(periodWaterCost)) + ' 元';
+  document.getElementById('wt-basic').textContent = '$' + periodBasicFee.toFixed(2) + ' 元';
+  document.getElementById('wt-badge').textContent = providerName + '・' + meter + ' mm・' + months + ' 個月一期';
+  document.getElementById('wt-unit-label').textContent = '元 / 期（含基本費）';
+  document.getElementById('wt-note').textContent =
+    `本期共用水 ${periodUsage} 度，月平均 ${monthlyUsage.toFixed(1)} 度、每日約 ${(periodUsage / days).toFixed(2)} 度；` +
+    `${providerName} ${meter} mm 水表基本費 ${periodBasicFee.toFixed(2)} 元，` +
+    `估算用水費 ${fmt(Math.round(periodWaterCost))} 元，本期合計約 ${fmt(bill)} 元。`;
+
   document.getElementById('water-result').classList.add('show');
   requestAnimationFrame(() => drawWaterChart(monthlyUsage));
-  gtag && gtag('event', 'calculate', { tool: 'bill-water', billing_months: months });
+  if (typeof gtag === 'function') {
+    gtag('event', 'calculate', {
+      tool: 'bill-water',
+      provider: provider,
+      meter_mm: meter,
+      billing_months: months
+    });
+  }
 }
 
 /* 油費費率 */
