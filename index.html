@@ -444,26 +444,74 @@ footer a:hover{color:#F3C969}
   </div>
 </header>
 
-<!-- iOS 加到桌面教學彈窗 -->
+<!-- 加到桌面教學彈窗（依平台顯示：iOS／Android／電腦／已安裝） -->
 <div class="a2hs-mask" id="a2hsMask" onclick="if(event.target===this)closeA2HS()">
   <div class="a2hs-sheet">
     <h3>📲 把 TheCalcBox 加到桌面</h3>
     <p class="a2hs-lead">加到主畫面後，像 App 一樣一點就開，免下載、不佔空間。</p>
-    <div class="a2hs-step">
-      <span class="n">1</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
-      <span class="t">點一下瀏覽器下方的<b>「分享」</b>按鈕</span>
+
+    <div id="a2hsIos" style="display:none">
+      <div class="a2hs-step">
+        <span class="n">1</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
+        <span class="t">點一下瀏覽器下方的<b>「分享」</b>按鈕</span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">2</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span class="t">往下找到並點選<b>「加入主畫面」</b></span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">3</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="t">按右上角<b>「加入」</b>，桌面就會出現 TheCalcBox 圖示 🎉</span>
+      </div>
     </div>
-    <div class="a2hs-step">
-      <span class="n">2</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      <span class="t">往下找到並點選<b>「加入主畫面」</b></span>
+
+    <div id="a2hsAndroid" style="display:none">
+      <div class="a2hs-step">
+        <span class="n">1</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+        <span class="t">點右上角的<b>「⋮」選單</b></span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">2</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span class="t">點選<b>「加到主畫面」</b>（或「安裝應用程式」）</span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">3</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="t">按<b>「新增／安裝」</b>，桌面就會出現 TheCalcBox 圖示 🎉</span>
+      </div>
     </div>
-    <div class="a2hs-step">
-      <span class="n">3</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-      <span class="t">按右上角<b>「加入」</b>，桌面就會出現 TheCalcBox 圖示 🎉</span>
+
+    <div id="a2hsDesktop" style="display:none">
+      <div class="a2hs-step">
+        <span class="n">1</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>
+        <span class="t">使用 <b>Chrome 或 Edge</b>：點網址列右側的<b>「安裝」圖示</b>（螢幕＋向下箭頭）</span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">2</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+        <span class="t">沒有圖示的話：<b>「⋮」選單 → 傳送、儲存及分享 → 安裝 TheCalcBox</b></span>
+      </div>
+      <div class="a2hs-step">
+        <span class="n">3</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="t">Firefox／Safari 不支援桌面安裝，可<b>加入書籤（Ctrl／⌘＋D）</b>快速開啟</span>
+      </div>
     </div>
+
+    <div id="a2hsInstalled" style="display:none">
+      <div class="a2hs-step">
+        <span class="n">✓</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span class="t"><b>你已經安裝過 TheCalcBox 了！</b><br>手機請從桌面圖示開啟；電腦可點網址列右側的「在應用程式中開啟」，或從開始選單找到 TheCalcBox。</span>
+      </div>
+    </div>
+
     <button class="a2hs-close" onclick="closeA2HS()">我知道了</button>
   </div>
 </div>
@@ -742,17 +790,39 @@ function isStandalone(){
   return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 }
 if(isStandalone() && addBtn){ addBtn.style.display='none'; }
-function isIOS(){
-  return /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+function detectPlatform(){
+  var ua = navigator.userAgent;
+  var iOS = /iphone|ipad|ipod/i.test(ua) ||
     (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  if(iOS) return 'ios';
+  if(/android/i.test(ua)) return 'android';
+  return 'desktop';
+}
+function showA2HSGroup(id){
+  ['a2hsIos','a2hsAndroid','a2hsDesktop','a2hsInstalled'].forEach(function(g){
+    var el = document.getElementById(g);
+    if(el) el.style.display = (g === id) ? 'block' : 'none';
+  });
+  document.getElementById('a2hsMask').classList.add('show');
 }
 function handleAddHome(){
+  // 1) Chrome/Edge 有攔到安裝事件 → 原生安裝視窗
   if(deferredPrompt){
     deferredPrompt.prompt();
     deferredPrompt.userChoice.finally(()=>{ deferredPrompt=null; });
-  }else{
-    document.getElementById('a2hsMask').classList.add('show');
+    return;
   }
+  var p = detectPlatform();
+  // 2) 電腦版 Chromium 卻沒有安裝事件 → 幾乎都是「已安裝過」
+  var isChromium = !!window.chrome && /chrome|edg/i.test(navigator.userAgent);
+  if(p === 'desktop' && isChromium){
+    showA2HSGroup('a2hsInstalled');
+    return;
+  }
+  // 3) 其餘依平台顯示對應教學
+  if(p === 'ios')          showA2HSGroup('a2hsIos');
+  else if(p === 'android') showA2HSGroup('a2hsAndroid');
+  else                     showA2HSGroup('a2hsDesktop');
 }
 function closeA2HS(){
   document.getElementById('a2hsMask').classList.remove('show');
