@@ -1,8 +1,8 @@
 {
   "source": "臺灣銀行牌告匯率",
-  "updateTime": "2026/07/29 03:02:00",
+  "updateTime": "2026/07/29 04:42:00",
   "quoteTimeSource": "bot-page",
-  "generatedAt": "2026-07-28T19:44:41.520Z",
+  "generatedAt": "2026-07-28T20:51:40.264Z",
   "details": {
     "USD": {
       "cash": {
@@ -156,7 +156,7 @@
     },
     "KRW": {
       "cash": {
-        "buy": 0.02049,
+        "buy": 0.0205,
         "sell": 0
       },
       "spot": {
