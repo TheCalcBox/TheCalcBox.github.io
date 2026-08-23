@@ -1,8 +1,8 @@
 {
   "source": "臺灣銀行牌告匯率",
-  "updateTime": "2026/08/24 07:31:00",
+  "updateTime": "2026/08/24 07:51:00",
   "quoteTimeSource": "bot-page",
-  "generatedAt": "2026-08-23T23:31:46.485Z",
+  "generatedAt": "2026-08-23T23:53:26.392Z",
   "details": {
     "USD": {
       "cash": {
@@ -176,7 +176,7 @@
     },
     "MYR": {
       "cash": {
-        "buy": 6.861,
+        "buy": 6.845,
         "sell": 0
       },
       "spot": {
