@@ -1,8 +1,8 @@
 {
   "source": "臺灣銀行牌告匯率",
-  "updateTime": "2026/08/26 06:51:00",
+  "updateTime": "2026/08/26 07:31:00",
   "quoteTimeSource": "bot-page",
-  "generatedAt": "2026-08-25T23:12:57.813Z",
+  "generatedAt": "2026-08-25T23:41:59.216Z",
   "details": {
     "USD": {
       "cash": {
@@ -126,7 +126,7 @@
     },
     "PHP": {
       "cash": {
-        "buy": 0.4512,
+        "buy": 0.4508,
         "sell": 0
       },
       "spot": {
