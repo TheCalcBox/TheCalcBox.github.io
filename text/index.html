@@ -19,7 +19,9 @@
       radial-gradient(circle at 90% 80%, rgba(46,92,80,0.10), transparent 45%);
     color:var(--ink); font-family:'Noto Sans TC', sans-serif; line-height:1.65;
   }
-  .wrap{max-width:960px; margin:0 auto; padding:32px 20px 90px;}
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  .wrap{max-width:960px; margin:0 auto; padding:32px 20px 90px; overflow-x:hidden;}
   header.hero{
     position:relative; padding:52px 26px 36px; border:1px solid var(--paper-line);
     border-radius:4px; background:linear-gradient(180deg, rgba(27,36,48,0.02), transparent);
@@ -75,6 +77,8 @@
   .timeline .fee{display:inline-block; margin-top:3px; font-size:11.5px; color:var(--lacquer); font-weight:700;}
 
   table.foodtable{width:100%; border-collapse:collapse; font-size:13px; margin-bottom:4px;}
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin-bottom:4px; border-radius:4px;}
+  .table-scroll table.foodtable{min-width:480px; margin-bottom:0;}
   table.foodtable th{text-align:left; font-size:11px; color:#8892a0; font-weight:700; padding:4px 8px 6px 0; border-bottom:1px solid var(--paper-line);}
   table.foodtable td{padding:7px 8px 7px 0; border-bottom:1px dashed var(--paper-line); vertical-align:top;}
   table.foodtable td.price{color:var(--lacquer); font-weight:700; white-space:nowrap;}
@@ -88,9 +92,10 @@
 
   .map-link{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:13px; font-weight:700; color:var(--jade); text-decoration:none; border-bottom:1px solid var(--jade);}
 
-  .budgetline{display:flex; justify-content:space-between; font-size:13px; padding:5px 0; border-top:1px dashed var(--paper-line);}
+  .budgetline{display:flex; justify-content:space-between; gap:10px; font-size:13px; padding:5px 0; border-top:1px dashed var(--paper-line);}
   .budgetline:first-child{border-top:none;}
-  .budgetline .val{color:var(--lacquer); font-weight:700;}
+  .budgetline span:first-child{min-width:0; flex:1 1 auto;}
+  .budgetline .val{color:var(--lacquer); font-weight:700; white-space:nowrap; flex:0 0 auto;}
 
   .budgettotal{margin-top:16px; padding:22px 24px; border-radius:4px; background:var(--ink); color:var(--paper);}
   .budgettotal h3{font-family:'Noto Serif TC', serif; margin:0 0 14px; font-size:18px; color:var(--gold);}
@@ -174,13 +179,13 @@
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單（豫園商圈）</div>
-        <table class="foodtable">
+        <div class="table-scroll"><table class="foodtable">
           <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
           <tr><td>首選</td><td class="name">萊萊小籠</td><td>蟹粉小籠包（皮薄餡多、湯汁濃郁）</td><td>天津路504號</td><td class="price">¥20–40/籠</td><td><a href="https://maps.google.com/?cid=17297651906908957208" target="_blank">📍</a></td></tr>
           <tr><td>備選</td><td class="name">南翔饅頭店</td><td>鮮肉小籠／蟹粉灌湯包</td><td>豫園四牌樓（總店）</td><td class="price">¥25–50/籠</td><td><a href="https://maps.google.com/?cid=3125114918805040430" target="_blank">📍</a></td></tr>
           <tr><td>備選</td><td class="name">寧波湯糰店</td><td>黑芝麻湯圓</td><td>豫園商圈</td><td class="price">¥15–25/碗</td><td>—</td></tr>
           <tr><td>備選</td><td class="name">春風松月樓</td><td>素菜包</td><td>豫園商圈</td><td class="price">¥20–30/籠</td><td>—</td></tr>
-        </table>
+        </table></div>
         <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 黃河路美食街（佳家湯包、大壺春、沈大成）改排到Day4傍晚回程順路吃，第一天先輕鬆逛飯店旁的豫園就好，剛下飛機不用跑遠。</p>
 
         <div class="photo-row">
@@ -222,12 +227,12 @@
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單</div>
-        <table class="foodtable">
+        <div class="table-scroll"><table class="foodtable">
           <tr><th>品項</th><th>說明</th><th>價位</th></tr>
           <tr><td class="name">阿婆粽</td><td>朱家角招牌手工粽，北大街上必買</td><td class="price">¥8–15/顆</td></tr>
           <tr><td class="name">古鎮湯圓</td><td>現包現煮，鹹甜口味都有</td><td class="price">¥15–20/碗</td></tr>
           <tr><td class="name">醬豬蹄</td><td>滷味代表，邊走邊啃</td><td class="price">¥20–35/份</td></tr>
-        </table>
+        </table></div>
 
         <div class="photo-row one">
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDATFlqO-K6Egy5X4Lhb3Rd5W6rAtWNV3jt02iYvfQEMZOQsWc0Tj7zP4HnLbr8o8l8Wjl11b2BhOwUJGmK4UIOtfofs3y3DLkc_KvZvlhTV-FvSwbnYINefvynZtk16AQ_S-_Mw0jPu2UK2NVDxVUAPQ=s800-w800-h600" alt="朱家角古鎮水鄉">
@@ -279,7 +284,7 @@
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單（武康路＋新天地＋田子坊）</div>
-        <table class="foodtable">
+        <div class="table-scroll"><table class="foodtable">
           <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
           <tr><td>首選</td><td class="name">Wo café</td><td>手沖咖啡，武康大樓對面拍照熱點</td><td>武康路376號</td><td class="price">¥30–45/杯</td><td>—</td></tr>
           <tr><td>首選</td><td class="name">大象三明治</td><td>迷你日式三明治（下午茶）</td><td>南京西路696號附近</td><td class="price">¥25–40/份</td><td>—<span style="color:#8a6c1f;font-size:11px;"> 定位待確認</span></td></tr>
@@ -288,7 +293,7 @@
           <tr><td>備選</td><td class="name">上海老味道</td><td>鹹豆花、老虎腳爪</td><td>田子坊弄堂內</td><td class="price">¥10–20/份</td><td>—</td></tr>
           <tr><td>備選</td><td class="name">味香齋</td><td>芝麻醬拌麵（米其林指南推薦）</td><td>田子坊周邊</td><td class="price">¥20–30/碗</td><td>—</td></tr>
           <tr><td>備選</td><td class="name">很久以前羊肉串</td><td>現烤羊肉串，店員代烤</td><td>連鎖多分店</td><td class="price">¥8–15/串</td><td>—</td></tr>
-        </table>
+        </table></div>
         <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 左庭右院實際查到是打浦橋店，剛好在田子坊附近，動線更順；建議這天晚餐直接排這家。</p>
 
         <div class="photo-row">
@@ -338,12 +343,12 @@
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單（黃河路美食街，回程順路）</div>
-        <table class="foodtable">
+        <div class="table-scroll"><table class="foodtable">
           <tr><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
           <tr><td class="name">佳家湯包</td><td>蟹粉湯包／鮮肉湯包</td><td>黃河路90號</td><td class="price">¥32–108/籠</td><td><a href="https://maps.google.com/?cid=4297225289912619030" target="_blank">📍</a></td></tr>
           <tr><td class="name">大壺春</td><td>老式生煎包（底脆多汁）</td><td>雲南南路71號</td><td class="price">¥20–30/份</td><td><a href="https://maps.google.com/?cid=5187286143178230284" target="_blank">📍</a></td></tr>
           <tr><td class="name">沈大成</td><td>青團、条头糕、蟹粉小籠</td><td>南京東路636號</td><td class="price">¥8–20/份</td><td><a href="https://maps.google.com/?cid=7047290204891388972" target="_blank">📍</a></td></tr>
-        </table>
+        </table></div>
         <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 豫園已經在Day1晚上去過了，這天不用再重複繞回去，回程直接在南京東路吃晚餐再回酒店即可，行程更緊湊。</p>
 
         <div class="photo-row">
@@ -384,11 +389,11 @@
         </ul>
 
         <div class="subhead">🍜 美食＆採買清單（豫園商圈）</div>
-        <table class="foodtable">
+        <div class="table-scroll"><table class="foodtable">
           <tr><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th></tr>
           <tr><td class="name">星巴克豫園店</td><td>百年建築特色門店，拍照氛圍佳</td><td>豫園商圈</td><td class="price">¥30–45/杯</td></tr>
           <tr><td class="name">四美齋南貨店</td><td>蜜餞、話梅等伴手禮</td><td>豫園商圈</td><td class="price">¥20–50/包</td></tr>
-        </table>
+        </table></div>
 
         <div class="budgetline"><span>早午餐＋伴手禮</span><span class="val">約 ¥50–90</span></div>
         <div class="budgetline"><span>機場交通（地鐵）</span><span class="val">約 ¥8–9</span></div>
