@@ -32,23 +32,25 @@
   .meta-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;}
   .meta-chip{font-size:13px; font-weight:500; padding:6px 14px; border-radius:100px; border:1px solid var(--paper-line); background:rgba(255,255,255,0.5);}
 
-  .hotelbox{
-    margin-bottom:32px; padding:22px 24px; border-radius:4px;
-    background:rgba(200,161,69,0.08); border:1px solid rgba(200,161,69,0.35);
-  }
-  .hotelbox h2{font-family:'Noto Serif TC', serif; font-size:19px; margin:0 0 14px; display:flex; align-items:center; gap:8px;}
-  .hotel-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .hotelbox{margin-bottom:32px; padding:22px 24px; border-radius:4px; background:rgba(200,161,69,0.08); border:1px solid rgba(200,161,69,0.35);}
+  .hotelbox h2{font-family:'Noto Serif TC', serif; font-size:19px; margin:0 0 14px;}
+  .hotel-grid{display:grid; grid-template-columns:1fr; gap:14px;}
   .hotel-card{background:rgba(255,255,255,0.6); border:1px solid var(--paper-line); border-radius:4px; padding:14px 16px;}
   .hotel-card .tier{font-size:11px; font-weight:700; color:var(--lacquer); letter-spacing:0.05em; text-transform:uppercase;}
   .hotel-card .name{font-family:'Noto Serif TC', serif; font-weight:700; font-size:15.5px; margin:4px 0 6px;}
   .hotel-card .price{font-size:13px; color:var(--jade); font-weight:700; margin-bottom:6px;}
   .hotel-card .desc{font-size:12.5px; color:#4a5568;}
 
+  .infobox{margin-top:0; margin-bottom:32px; padding:22px 24px; border-radius:4px; background:rgba(46,92,80,0.06); border:1px solid rgba(46,92,80,0.18);}
+  .infobox h3{font-family:'Noto Serif TC', serif; margin:0 0 10px; font-size:17px;}
+  .infobox ul{margin:0; padding-left:20px;}
+  .infobox li{margin-bottom:6px; font-size:14px;}
+
   .section-title{font-family:'Noto Serif TC', serif; font-weight:700; font-size:22px; margin:44px 0 16px; display:flex; align-items:baseline; gap:12px;}
   .section-title .rule{flex:1; height:1px; background:var(--paper-line);}
 
   .day-card{position:relative; border:1px solid var(--paper-line); border-radius:4px; background:rgba(255,255,255,0.55); margin-bottom:26px; overflow:hidden;}
-  .day-top{display:grid; grid-template-columns:76px 1fr; }
+  .day-top{display:grid; grid-template-columns:76px 1fr;}
   .day-tag{background:var(--ink); color:var(--paper); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:18px 6px; text-align:center;}
   .day-tag .num{font-family:'Noto Serif TC', serif; font-size:28px; font-weight:900; line-height:1;}
   .day-tag .date{font-size:10.5px; opacity:0.75; margin-top:6px;}
@@ -84,15 +86,11 @@
   .photo-row.one{grid-template-columns:1fr;}
   .photo-row.one img{height:165px;}
 
+  .map-link{display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:13px; font-weight:700; color:var(--jade); text-decoration:none; border-bottom:1px solid var(--jade);}
+
   .budgetline{display:flex; justify-content:space-between; font-size:13px; padding:5px 0; border-top:1px dashed var(--paper-line);}
   .budgetline:first-child{border-top:none;}
   .budgetline .val{color:var(--lacquer); font-weight:700;}
-  .budgetsum{display:flex; justify-content:space-between; font-size:14px; font-weight:700; padding-top:8px; margin-top:6px; border-top:1px solid var(--paper-line);}
-
-  .infobox{margin-top:36px; padding:22px 24px; border-radius:4px; background:rgba(46,92,80,0.06); border:1px solid rgba(46,92,80,0.18);}
-  .infobox h3{font-family:'Noto Serif TC', serif; margin:0 0 10px; font-size:17px;}
-  .infobox ul{margin:0; padding-left:20px;}
-  .infobox li{margin-bottom:6px; font-size:14px;}
 
   .budgettotal{margin-top:16px; padding:22px 24px; border-radius:4px; background:var(--ink); color:var(--paper);}
   .budgettotal h3{font-family:'Noto Serif TC', serif; margin:0 0 14px; font-size:18px; color:var(--gold);}
@@ -102,7 +100,6 @@
   .budgettotal tr.total td{border-top:1px solid var(--gold); border-bottom:none; font-weight:900; font-size:15px; padding-top:12px;}
 
   @media (max-width:640px){
-    .hotel-grid{grid-template-columns:1fr;}
     .day-top{grid-template-columns:56px 1fr;}
     .day-tag .num{font-size:22px;}
     .day-budget{margin-left:0; width:100%;}
@@ -116,38 +113,36 @@
   <header class="hero">
     <div class="eyebrow">上海 · 自由行詳細規劃</div>
     <h1>五日申城漫遊（詳細版）</h1>
-    <p class="subtitle">含住宿選擇、地鐵搭乘細節、餐廳與小吃清單、門票費用、每日預估花費。所有價格為2026年參考行情，實際依匯率與現場公告為準。</p>
+    <p class="subtitle">機票＋酒店為骨架，兩天交給KKday一日遊，其餘天數地鐵自由行。住宿改到豫園站旁，全程都在浦西，不用再過江。</p>
     <div class="meta-row">
       <span class="meta-chip">11/12（四）— 11/16（一）</span>
       <span class="meta-chip">4 晚 5 天</span>
-      <span class="meta-chip">貨幣：人民幣（RMB）</span>
-      <span class="meta-chip">建議支付：支付寶/微信支付＋現金備用</span>
+      <span class="meta-chip">機場：浦東機場</span>
+      <span class="meta-chip">住宿：上海外灘盎格酒店（豫園站）</span>
     </div>
   </header>
 
   <div class="hotelbox">
-    <h2>🏨 住宿建議（人民廣場／南京東路商圈）</h2>
-    <p style="font-size:13.5px;color:#4a5568;margin-top:0;">此區地鐵1/2/8號線交會，機場地鐵可直達不用轉車，下樓就是步行街、百貨與宵夜選擇，適合全程都住這一家，五天不用換飯店。</p>
+    <h2>🏨 住宿資訊（已更新：盎格酒店）</h2>
+    <p style="font-size:13.5px;color:#4a5568;margin-top:0;">上海外灘盎格酒店（豫園地鐵站店），地址：黃浦區麗水路88號。緊鄰地鐵10號線豫園站，步行1分鐘到豫園，步行約10分鐘（約800公尺）到外灘，步行可達城隍廟、南京東路步行街。<b>這家在浦西</b>，剛好落在豫園／外灘／南京路／新天地／田子坊的核心範圍內，這次不用再過江，行程動線比之前簡單很多。</p>
     <div class="hotel-grid">
       <div class="hotel-card">
-        <div class="tier">平價實惠</div>
-        <div class="name">全季酒店（上海南京東路步行街店）</div>
-        <div class="price">約 ¥450–650／晚</div>
-        <div class="desc">連鎖商務酒店，房間乾淨機能齊全，位置就在步行街中段，距南京東路站步行5分鐘內。</div>
-      </div>
-      <div class="hotel-card">
-        <div class="tier">中高階首選</div>
-        <div class="name">麗笙精選海侖賓館</div>
-        <div class="price">約 ¥700–1,000／晚</div>
-        <div class="desc">位在南京路步行街正中央，法航機組員指定飯店，左右步行可達人民廣場站與南京東路站，性價比高。</div>
-      </div>
-      <div class="hotel-card">
-        <div class="tier">奢華升級</div>
-        <div class="name">和平飯店（费尔蒙）／上海康萊德</div>
-        <div class="price">約 ¥1,800 起／晚</div>
-        <div class="desc">外灘江景第一排，適合想睡醒推窗看外灘或想體驗老上海Art Deco氛圍的旅人。</div>
+        <div class="tier">確定入住</div>
+        <div class="name">上海外灘盎格酒店（豫園地鐵站店）</div>
+        <div class="price">約 ¥500–700／晚</div>
+        <div class="desc">地址：黃浦區麗水路88號。步行1分鐘到豫園、10分鐘到外灘，地鐵10號線豫園站直達，全程5晚都住這一家。<br><a href="https://www.google.com/maps/search/?api=1&query=31.228288,121.490395&query_place_id=ChIJg4V7719wsjURavPxANj4G6M" target="_blank" style="color:var(--jade);font-weight:700;">📍 在地圖上查看酒店位置</a></div>
       </div>
     </div>
+  </div>
+
+  <div class="infobox">
+    <h3>✈️ 機票與交通重點（浦東機場版）</h3>
+    <ul>
+      <li>浦東機場搭地鐵2號線至南京東路站，轉10號線一站到豫園站，全程約75–90分鐘（2號線全長較長，是主要耗時原因）<span style="color:var(--lacquer);font-weight:700;">，車資約¥8–9</span>。</li>
+      <li>不想搭地鐵轉車，也可以直接打車，車程約45–60分鐘（視路況），費用約¥180–220。</li>
+      <li>這次飯店離豫園、外灘、南京路都在步行範圍內，Day3（宮宴/新天地/田子坊）與Day4（東方明珠/豫園）動線都在浦西範圍內，不用再過江或擔心末班車問題。</li>
+      <li>如果之後改機票飛虹橋機場，車程會更短（地鐵約35–45分鐘），但目前先以浦東機場規劃。</li>
+    </ul>
   </div>
 
   <div class="section-title">Day by Day 詳細行程<span class="rule"></span></div>
@@ -160,30 +155,30 @@
         <div class="day-head">
           <span class="day-title">抵達上海・南京路美食街・外灘夜色</span>
           <span class="badge free">自由行</span>
-          <span class="day-budget">當日預估 ¥170–220／人</span>
+          <span class="day-budget">當日預估 ¥150–200／人</span>
         </div>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=31.228288,121.490395&destination=31.2419109,121.4898903&travelmode=walking" target="_blank">📍 在Google地圖開啟本日路線（酒店→外灘）</a>
 
         <div class="subhead">🚇 交通細節</div>
         <ul class="timeline">
-          <li><span class="time">機場→酒店</span><span class="note">虹橋機場T2航廈 搭地鐵2號線或10號線 → 人民廣場站／南京東路站，車程約30–40分鐘<span class="tip">若飛浦東機場：搭地鐵2號線直達，車程約90分鐘，或磁浮列車到龍陽路（單程¥50，8分鐘）再轉2號線</span><span class="fee">地鐵票價 ¥5–8</span></span></li>
+          <li><span class="time">機場→酒店</span><span class="note">浦東機場搭地鐵2號線至南京東路站，轉10號線一站到豫園站，全程約75–90分鐘<span class="tip">不想轉車也可直接打車，車程約45–60分鐘</span><span class="fee">地鐵¥8–9／計程車約¥180–220</span></span></li>
         </ul>
 
         <div class="subhead">📍 行程與景點</div>
         <ul class="timeline">
-          <li><span class="time">午後</span><span class="note">飯店辦理入住，放行李稍作休息</span></li>
-          <li><span class="time">17:30</span><span class="note">步行至黃河路美食街（人民廣場站9號口出來對面）覓食晚餐</span></li>
-          <li><span class="time">19:30</span><span class="note">南京東路步行街散步、逛百貨、買伴手禮<span class="tip">地鐵2號線南京東路站直達</span></span></li>
-          <li><span class="time">20:30</span><span class="note">步行約10分鐘到外灘看萬國建築群夜景與浦東天際線<span class="tip">建議站在延安東路至南京東路之間的觀景平台，視野最開闊</span></span></li>
+          <li><span class="time">午後</span><span class="note">飯店辦理入住，稍作休息</span></li>
+          <li><span class="time">17:30</span><span class="note">步行或搭地鐵至南京東路步行街／黃河路美食街覓食晚餐<span class="tip">豫園站搭10號線轉2號線至南京東路站，約10分鐘</span></span></li>
+          <li><span class="time">19:30</span><span class="note">步行約10分鐘到外灘看萬國建築群夜景與浦東天際線<span class="tip">從飯店直接步行過去即可，不用再搭車</span></span></li>
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單</div>
         <table class="foodtable">
-          <tr><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th></tr>
-          <tr><td class="name">佳家湯包</td><td>蟹粉湯包／鮮肉湯包</td><td>黃河路127號</td><td class="price">¥32–108/籠</td></tr>
-          <tr><td class="name">大壺春</td><td>老式生煎包（底脆多汁）</td><td>雲南南路本店</td><td class="price">¥20–30/份</td></tr>
-          <tr><td class="name">小楊生煎</td><td>生煎包（連鎖，較易找）</td><td>南京東路周邊多家分店</td><td class="price">¥20–25/份</td></tr>
-          <tr><td class="name">沈大成</td><td>青團、条头糕、蟹粉小籠</td><td>南京東路本店（1875）</td><td class="price">¥8–20/份</td></tr>
-          <tr><td class="name">國際飯店</td><td>蝴蝶酥（伴手禮）</td><td>南京西路170號</td><td class="price">¥40–60/盒</td></tr>
+          <tr><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
+          <tr><td class="name">佳家湯包</td><td>蟹粉湯包／鮮肉湯包</td><td>黃河路90號</td><td class="price">¥32–108/籠</td><td><a href="https://maps.google.com/?cid=4297225289912619030" target="_blank">📍</a></td></tr>
+          <tr><td class="name">大壺春</td><td>老式生煎包（底脆多汁）</td><td>雲南南路71號</td><td class="price">¥20–30/份</td><td><a href="https://maps.google.com/?cid=5187286143178230284" target="_blank">📍</a></td></tr>
+          <tr><td class="name">小楊生煎</td><td>生煎包（連鎖，較易找）</td><td>南京東路周邊多家分店</td><td class="price">¥20–25/份</td><td>—</td></tr>
+          <tr><td class="name">沈大成</td><td>青團、条头糕、蟹粉小籠</td><td>南京東路636號</td><td class="price">¥8–20/份</td><td><a href="https://maps.google.com/?cid=7047290204891388972" target="_blank">📍</a></td></tr>
+          <tr><td class="name">國際飯店</td><td>蝴蝶酥（伴手禮）</td><td>南京西路170號</td><td class="price">¥40–60/盒</td><td>—</td></tr>
         </table>
 
         <div class="photo-row">
@@ -192,7 +187,7 @@
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDHBZZJ4Q5-yfK6y6mC6N4IbehtMhTXmQSJ_tGrLSLHpFq10hs3sx1wCYvYGj573j43S6QS16iBDDsS4LiSLdp1tTjNLi6N5MabRHGyKXamvFDNqovsRA1-64bQE9ZiHseH0UB189XGvadGavs=s800-w800-h600" alt="南京路步行街">
         </div>
 
-        <div class="budgetline"><span>地鐵（機場→酒店）</span><span class="val">¥5–8</span></div>
+        <div class="budgetline"><span>地鐵（機場→酒店）</span><span class="val">¥8–9</span></div>
         <div class="budgetline"><span>晚餐＋小吃（黃河路＋沈大成）</span><span class="val">¥100–150</span></div>
         <div class="budgetline"><span>伴手禮蝴蝶酥（可選）</span><span class="val">¥40–60</span></div>
       </div>
@@ -205,44 +200,40 @@
       <div class="day-tag"><div class="num">02</div><div class="date">11/13 五</div></div>
       <div class="day-body">
         <div class="day-head">
-          <span class="day-title">KKday①・烏鎮古鎮一日遊</span>
+          <span class="day-title">KKday①・朱家角古鎮一日遊（白天）</span>
           <span class="badge kkday">KKday包車</span>
-          <span class="day-budget">當日預估 ¥600–750／人</span>
+          <span class="day-budget">當日預估 ¥450–550／人</span>
         </div>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=31.228288,121.490395&destination=31.111324,121.05471&travelmode=driving" target="_blank">📍 在Google地圖開啟本日路線（酒店→朱家角）</a>
 
         <div class="subhead">🚇 交通細節</div>
         <ul class="timeline">
-          <li><span class="time">上午</span><span class="note">KKday指定時間於飯店大廳集合，專車接送，車程約1.5–2小時（走滬渝高速）直達烏鎮景區</span></li>
-          <li><span class="time">傍晚</span><span class="note">原車接回，送達市區飯店<span class="tip">回程遇車流尖峰可能延長至2.5小時，建議晚餐留在市區解決</span></span></li>
+          <li><span class="time">上午</span><span class="note">KKday指定時間於飯店大廳集合，專車接送，車程約1–1.5小時直達朱家角古鎮<span class="tip">飯店位在市中心豫園站，多數集合點都涵蓋這一區，不用擔心接送範圍問題</span></span></li>
+          <li><span class="time">傍晚</span><span class="note">原車接回飯店</span></li>
         </ul>
 
         <div class="subhead">📍 行程與景點</div>
         <ul class="timeline">
-          <li><span class="time">上午</span><span class="note">抵達後先遊西柵，逛老街、女紅街、古戲台<span class="fee">門票約¥150（西柵單票，視KKday行程是否已含）</span></span></li>
-          <li><span class="time">午後</span><span class="note">搭烏篷船遊河，參觀香山堂、宏源泰染坊<span class="tip">船票另計約¥30–60/人，KKday行程有時已包含</span></span></li>
-          <li><span class="time">傍晚</span><span class="note">留在西柵看華燈初上的水鄉夜景，是烏鎮最美的時刻</span></li>
+          <li><span class="time">上午</span><span class="note">走馬觀花逛北大街、南大街，古鎮本身免費入內<span class="fee">小景點需另購票：四景點聯票¥30，八景點聯票¥60</span></span></li>
+          <li><span class="time">午後</span><span class="note">課植園（園林建築代表，較推薦單買）、放生橋（江南最大五孔石橋）拍照<span class="fee">課植園門票約¥25，或含在聯票內</span></span></li>
+          <li><span class="time">午後</span><span class="note">搭手搖船遊河<span class="fee">約¥65/船（15分鐘，可乘6人）</span></span></li>
         </ul>
 
         <div class="subhead">🍜 美食＆小吃清單</div>
         <table class="foodtable">
           <tr><th>品項</th><th>說明</th><th>價位</th></tr>
-          <tr><td class="name">姑嫂餅</td><td>烏鎮傳統酥餅，伴手禮首選</td><td class="price">¥15–25/盒</td></tr>
-          <tr><td class="name">白水魚</td><td>烏鎮河鮮代表菜</td><td class="price">¥60–90/份</td></tr>
-          <tr><td class="name">定勝糕</td><td>粉紅色米糕，邊走邊吃小點</td><td class="price">¥5–10/個</td></tr>
-          <tr><td class="name">烏鎮啤酒／三白酒</td><td>當地自釀，可小酌</td><td class="price">¥10–20/杯</td></tr>
+          <tr><td class="name">阿婆粽</td><td>朱家角招牌手工粽，北大街上必買</td><td class="price">¥8–15/顆</td></tr>
+          <tr><td class="name">古鎮湯圓</td><td>現包現煮，鹹甜口味都有</td><td class="price">¥15–20/碗</td></tr>
+          <tr><td class="name">醬豬蹄</td><td>滷味代表，邊走邊啃</td><td class="price">¥20–35/份</td></tr>
         </table>
 
         <div class="photo-row one">
-          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDDysENWvIa7eO0w5CEOd3ZdqapxS8WrlXekpMFzqRccyJ4FPDIVOghCZBrXxJ1ixxKMQqIzeuzxQm4koNfbMMH5ofHUyHm-5D-A2iobCjMJ772uxJ_JNHr09lLh1DA3M0NQlvK-1zP_5Pshg=s800-w800-h600" alt="烏鎮水鄉夜景">
-        </div>
-        <div class="photo-row two" style="margin-top:8px;">
-          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDiMBkp1C5xtUkVINMc_2f3klo7cVXnACaJUoefaPrdxuwAQWjZ0i1kZdGt7Dn5Q7b0nLQBddIb85DHDX2tk4FCKpcZPHdd8eS4HEm1plmOj6uMTc-0G5_pz2RdGj9ECYBIbwtr9xF4wQPkOQ=s800-w800-h600" alt="烏鎮古鎮">
-          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBnSWPX3pPR2BWr0wiyywVoWnPDYn-qezNXebYprIsNW8DRVR82j51dSY2ySC8wdfRlXcwV49xb6P9zAwG1Qd3wsEnVNKMT0sISGF9-96wlg1ATBUYdg7GYkjuGoRVCRh2pysQqrHx1J6QpMCA=s800-w800-h600" alt="烏鎮橋">
+          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDATFlqO-K6Egy5X4Lhb3Rd5W6rAtWNV3jt02iYvfQEMZOQsWc0Tj7zP4HnLbr8o8l8Wjl11b2BhOwUJGmK4UIOtfofs3y3DLkc_KvZvlhTV-FvSwbnYINefvynZtk16AQ_S-_Mw0jPu2UK2NVDxVUAPQ=s800-w800-h600" alt="朱家角古鎮水鄉">
         </div>
 
-        <div class="budgetline"><span>KKday烏鎮包車一日遊</span><span class="val">約 ¥350–450</span></div>
-        <div class="budgetline"><span>景區門票（如未含在套裝內）</span><span class="val">約 ¥100–150</span></div>
-        <div class="budgetline"><span>午餐＋小吃</span><span class="val">約 ¥100–150</span></div>
+        <div class="budgetline"><span>KKday朱家角包車一日遊</span><span class="val">約 ¥250–350</span></div>
+        <div class="budgetline"><span>景點聯票（如需要）</span><span class="val">約 ¥30–60</span></div>
+        <div class="budgetline"><span>午餐＋小吃</span><span class="val">約 ¥80–120</span></div>
       </div>
     </div>
   </div>
@@ -253,47 +244,61 @@
       <div class="day-tag"><div class="num">03</div><div class="date">11/14 六</div></div>
       <div class="day-body">
         <div class="day-head">
-          <span class="day-title">宮宴沉浸式宮廷宴・新天地・田子坊</span>
+          <span class="day-title">宮宴沉浸式宮廷宴・武康路・新天地・田子坊</span>
           <span class="badge free">自由行</span>
           <span class="badge hot">網紅必吃</span>
-          <span class="day-budget">當日預估 ¥550–650／人</span>
+          <span class="day-budget">當日預估 ¥580–690／人</span>
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=31.228288,121.490395&destination=31.208812,121.468898&waypoints=31.22689,121.44765|31.20844,121.4404|31.2191884,121.4752537&travelmode=transit" target="_blank">📍 在Google地圖開啟本日路線（酒店→宮宴→武康路→新天地→田子坊）</a>
+        <div style="margin-top:6px;font-size:12.5px;">單點標記：
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E5%AE%AE%E5%AE%B4+%E5%8C%97%E4%BA%AC%E8%A5%BF%E8%B7%AF1485%E8%99%9F" target="_blank">宮宴</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E6%AD%A6%E5%BA%B7%E8%B7%AF+%E4%B8%8A%E6%B5%B7" target="_blank">武康路</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%A4%A9%E5%9C%B0+%E4%B8%8A%E6%B5%B7" target="_blank">新天地</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E7%94%B0%E5%AD%90%E5%9D%8A+%E4%B8%8A%E6%B5%B7" target="_blank">田子坊</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://maps.google.com/?cid=17298288613978956886" target="_blank">左庭右院</a>
         </div>
 
         <div class="subhead">🚇 交通細節</div>
         <ul class="timeline">
-          <li><span class="time">酒店→宮宴</span><span class="note">地鐵2號線南京東路站→靜安寺站（約4站），3號出口步行5分鐘<span class="fee">¥4</span></span></li>
-          <li><span class="time">宮宴→新天地</span><span class="note">地鐵2號線靜安寺站→南京西路站轉10/13號線至新天地站，或直接打車約15–20分鐘<span class="fee">地鐵¥5／滴滴約¥25–35</span></span></li>
+          <li><span class="time">酒店→宮宴</span><span class="note">豫園站搭10號線轉2號線至靜安寺站，3號出口步行5分鐘，約25分鐘<span class="fee">¥5</span></span></li>
+          <li><span class="time">宮宴→武康路</span><span class="note">靜安寺搭地鐵7號線轉11號線至江蘇路站，或直接打車，車程約10–15分鐘<span class="fee">地鐵¥4／計程車約¥20–25</span></span></li>
+          <li><span class="time">武康路→新天地</span><span class="note">地鐵11號線江蘇路站轉10號線至新天地站，約20分鐘<span class="fee">¥5</span></span></li>
           <li><span class="time">新天地→田子坊</span><span class="note">地鐵10號線至陝西南路轉9號線至打浦橋站，步行5分鐘<span class="fee">¥4</span></span></li>
+          <li><span class="time">田子坊→酒店</span><span class="note">9號線打浦橋站轉乘回豫園站，約20分鐘</span></li>
         </ul>
 
         <div class="subhead">📍 行程與景點</div>
         <ul class="timeline">
           <li><span class="time">10:30</span><span class="note">抵達「宮宴」建議提早1–1.5小時到場（可加購妝造）<span class="tip">務必提前1個月線上小程式／KKday/Klook預約＋付訂金，位子如劇場般搶手</span></span></li>
           <li><span class="time">午膳</span><span class="note">古風宮廷菜＋沉浸式演出，全程約2小時<span class="fee">午膳¥398/人起（比晚膳¥498便宜、菜色差異不大），另加10%服務費</span></span></li>
-          <li><span class="time">14:30</span><span class="note">新天地喝咖啡、拍老石庫門建築照</span></li>
-          <li><span class="time">17:00</span><span class="note">田子坊逛巷弄小店、晚餐</span></li>
+          <li><span class="time">13:30</span><span class="note">武康路散策，武康大樓拍照、喝咖啡（跟靜安寺同屬西區，順路過去）</span></li>
+          <li><span class="time">15:30</span><span class="note">新天地喝咖啡、拍老石庫門建築照</span></li>
+          <li><span class="time">17:00</span><span class="note">田子坊逛巷弄小店，晚餐吃左庭右院（打浦橋店，就在附近）</span></li>
         </ul>
 
-        <div class="subhead">🍜 美食＆小吃清單（新天地＋田子坊）</div>
+        <div class="subhead">🍜 美食＆小吃清單（武康路＋新天地＋田子坊）</div>
         <table class="foodtable">
-          <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th></tr>
-          <tr><td>首選</td><td class="name">大象三明治</td><td>迷你日式三明治（早餐／下午茶）</td><td>陝西北路與新閘路口（靜安寺往宮宴路上）</td><td class="price">¥25–40/份</td></tr>
-          <tr><td>首選</td><td class="name">左庭右院</td><td>潮汕鮮牛肉火鍋（現切牛肉、蟹籽鮮蝦滑）</td><td>新天地廣場6樓（淮海中路333號）</td><td class="price">¥100–150/人</td></tr>
-          <tr><td>備選</td><td class="name">老大昌</td><td>鮮肉月餅（現烤，酥皮多汁）</td><td>建國西路店（田子坊旁）</td><td class="price">¥8–12/個</td></tr>
-          <tr><td>備選</td><td class="name">上海老味道</td><td>鹹豆花、老虎腳爪</td><td>田子坊弄堂內</td><td class="price">¥10–20/份</td></tr>
-          <tr><td>備選</td><td class="name">味香齋</td><td>芝麻醬拌麵（米其林指南推薦）</td><td>田子坊周邊</td><td class="price">¥20–30/碗</td></tr>
-          <tr><td>備選</td><td class="name">很久以前羊肉串</td><td>現烤羊肉串，店員代烤</td><td>日月光中心店（打浦橋站對面）</td><td class="price">¥8–15/串</td></tr>
+          <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
+          <tr><td>首選</td><td class="name">Wo café</td><td>手沖咖啡，武康大樓對面拍照熱點</td><td>武康路376號</td><td class="price">¥30–45/杯</td><td>—</td></tr>
+          <tr><td>首選</td><td class="name">大象三明治</td><td>迷你日式三明治（下午茶）</td><td>南京西路696號附近</td><td class="price">¥25–40/份</td><td>—<span style="color:#8a6c1f;font-size:11px;"> 定位待確認</span></td></tr>
+          <tr><td>首選</td><td class="name">左庭右院</td><td>潮汕鮮牛肉火鍋（現切牛肉、蟹籽鮮蝦滑）</td><td>徐家匯路618號（打浦橋，近田子坊）</td><td class="price">¥100–150/人</td><td><a href="https://maps.google.com/?cid=17298288613978956886" target="_blank">📍</a></td></tr>
+          <tr><td>備選</td><td class="name">老大昌</td><td>鮮肉月餅（現烤，酥皮多汁）</td><td>連鎖多分店，此為田林路店</td><td class="price">¥8–12/個</td><td>—<span style="color:#8a6c1f;font-size:11px;"> 分店多，建議現場搜尋最近店</span></td></tr>
+          <tr><td>備選</td><td class="name">上海老味道</td><td>鹹豆花、老虎腳爪</td><td>田子坊弄堂內</td><td class="price">¥10–20/份</td><td>—</td></tr>
+          <tr><td>備選</td><td class="name">味香齋</td><td>芝麻醬拌麵（米其林指南推薦）</td><td>田子坊周邊</td><td class="price">¥20–30/碗</td><td>—</td></tr>
+          <tr><td>備選</td><td class="name">很久以前羊肉串</td><td>現烤羊肉串，店員代烤</td><td>連鎖多分店</td><td class="price">¥8–15/串</td><td>—</td></tr>
         </table>
-        <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 左庭右院剛好在新天地商場內，可以取代原本喝咖啡的行程直接當晚餐；大象三明治順路排在靜安寺往宮宴的路上，當早餐或宮宴後的小點都適合。</p>
+        <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 左庭右院實際查到是打浦橋店，剛好在田子坊附近，動線更順；建議這天晚餐直接排這家。</p>
 
-        <div class="photo-row two">
+        <div class="photo-row">
+          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDUGzdv5ZxNx6qufuMx0zfseRb7j9xke_j_v3O8tY-h-EAjjCMKSRobKqPgb5i73Z2WmqngJwKfwAHbmM6TQTu7ESxm6kNhm-O6_2aREecryC9f4DWqpAF7T3_hHx-DafvUtwrfSMqL0pDWmR8=s800-w800-h600" alt="武康路">
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjArw7Lgrir5iwP91ckLNKrrStI-fEIqUyXA_AWRHE0GaNgU6_DJV5W_ycAD51jjV6gn2CeKHDIX2HXqBGLqD34q3YsS8bPljbUlqxF1rUnJdLOTi6bZHpH_vrvXFgbGrua5Z79vEGmCXRoipJs=s800-w800-h600" alt="新天地">
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDox_n5hV2thL_-x1tI5YL2wp3Df2WTNMnPldGztUndtMAN_Z2xob5eF1_tQSFat_qrZd4JZQ6iJ-siBV1FB14uxDxbJyyj5A5au-pXVJqtxsJSaL9X9yTLI5zSb5pK2V5_0zernYj2n15uMQ=s800-w800-h600" alt="田子坊">
         </div>
 
         <div class="budgetline"><span>宮宴午膳（含10%服務費）</span><span class="val">約 ¥438</span></div>
-        <div class="budgetline"><span>市內交通</span><span class="val">約 ¥15–20</span></div>
-        <div class="budgetline"><span>新天地咖啡＋田子坊小吃晚餐</span><span class="val">約 ¥80–120</span></div>
+        <div class="budgetline"><span>市內交通（含武康路段）</span><span class="val">約 ¥18–25</span></div>
+        <div class="budgetline"><span>武康路咖啡＋新天地咖啡</span><span class="val">約 ¥60–90</span></div>
+        <div class="budgetline"><span>田子坊晚餐（左庭右院）</span><span class="val">約 ¥100–150</span></div>
       </div>
     </div>
   </div>
@@ -304,35 +309,43 @@
       <div class="day-tag"><div class="num">04</div><div class="date">11/15 日</div></div>
       <div class="day-body">
         <div class="day-head">
-          <span class="day-title">豫園散策・KKday②東方明珠＋浦江遊覽</span>
+          <span class="day-title">KKday②東方明珠＋浦江遊覽・豫園夜遊（就在飯店旁）</span>
           <span class="badge kkday">KKday套裝</span>
-          <span class="day-budget">當日預估 ¥380–480／人</span>
+          <span class="day-budget">當日預估 ¥400–500／人</span>
+        </div>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&origin=31.228288,121.490395&destination=31.22535,121.48776&waypoints=31.2396889,121.4997553&travelmode=transit" target="_blank">📍 在Google地圖開啟本日路線（酒店→東方明珠→豫園）</a>
+        <div style="margin-top:6px;font-size:12.5px;">單點標記：
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E6%96%B9%E6%98%8E%E7%8F%A0" target="_blank">東方明珠</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://www.google.com/maps/search/?api=1&query=%E8%B1%AB%E5%9C%92+%E4%B8%8A%E6%B5%B7" target="_blank">豫園</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://maps.google.com/?cid=17297651906908957208" target="_blank">萊萊小籠</a> ·
+          <a class="map-link" style="margin-top:0;" href="https://maps.google.com/?cid=3125114918805040430" target="_blank">南翔饅頭店</a>
         </div>
 
         <div class="subhead">🚇 交通細節</div>
         <ul class="timeline">
-          <li><span class="time">酒店→豫園</span><span class="note">地鐵10號線南京東路站→豫園站，1號出口即達<span class="fee">¥3</span></span></li>
-          <li><span class="time">豫園→東方明珠</span><span class="note">地鐵10號線豫園站→南京東路站轉2號線→陸家嘴站，2號出口步行可達，約15–20分鐘<span class="fee">¥4</span></span></li>
+          <li><span class="time">酒店→東方明珠</span><span class="note">豫園站搭10號線轉2號線至陸家嘴站，2號出口步行可達，約20分鐘<span class="fee">¥5</span></span></li>
+          <li><span class="time">東方明珠→豫園</span><span class="note">原路搭地鐵2號線轉10號線回豫園站，約20分鐘<span class="fee">¥5</span></span></li>
+          <li><span class="time">豫園→酒店</span><span class="note">步行1分鐘即到，不用再搭車</span></li>
         </ul>
 
         <div class="subhead">📍 行程與景點</div>
         <ul class="timeline">
-          <li><span class="time">09:00</span><span class="note">豫園、城隍廟逛江南園林與傳統市集<span class="fee">豫園門票約¥40</span></span></li>
-          <li><span class="time">11:00</span><span class="note">南翔饅頭店午餐（豫園商圈九曲橋畔）</span></li>
-          <li><span class="time">12:30</span><span class="note">東方明珠8號門集合，KKday套裝行程<span class="fee">若自行購票：二球門票¥199、三球¥299，另加黃浦江遊船約¥100–150（45分鐘）</span></span></li>
+          <li><span class="time">中午</span><span class="note">東方明珠8號門集合，KKday套裝行程<span class="fee">若自行購票：二球門票¥199、三球¥299，另加黃浦江遊船約¥100–150（45分鐘）</span></span></li>
           <li><span class="time">下午</span><span class="note">263米主觀光層→267米旋轉餐廳（可選）→259米全透明懸空觀光廊，飽覽陸家嘴「三件套」與外灘全景</span></li>
+          <li><span class="time">傍晚</span><span class="note">搭地鐵回豫園，趁華燈初上時逛城隍廟、九曲橋，燈籠與飛簷夜景是豫園最美的時刻，逛完直接走回飯店<span class="fee">豫園門票約¥40（夜間仍需購票，開放至約20:30，實際依當日公告）</span></span></li>
+          <li><span class="time">晚餐</span><span class="note">在豫園商圈吃晚餐，南翔饅頭店、萊萊小籠晚上都有營業</span></li>
         </ul>
 
-        <div class="subhead">🍜 美食＆小吃清單（豫園商圈）</div>
+        <div class="subhead">🍜 美食＆小吃清單（豫園商圈・夜間營業）</div>
         <table class="foodtable">
-          <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th></tr>
-          <tr><td>首選</td><td class="name">萊萊小籠</td><td>蟹粉小籠包（皮薄餡多、湯汁濃郁）</td><td>豫園商圈</td><td class="price">¥20–40/籠</td></tr>
-          <tr><td>備選</td><td class="name">南翔饅頭店</td><td>鮮肉小籠／蟹粉灌湯包</td><td>豫園九曲橋畔（總店）</td><td class="price">¥25–50/籠</td></tr>
-          <tr><td>備選</td><td class="name">寧波湯糰店</td><td>黑芝麻湯圓</td><td>豫園商圈</td><td class="price">¥15–25/碗</td></tr>
-          <tr><td>備選</td><td class="name">春風松月樓</td><td>素菜包</td><td>豫園商圈</td><td class="price">¥20–30/籠</td></tr>
-          <tr><td>備選</td><td class="name">綠波廊</td><td>精緻上海點心套餐（較高檔）</td><td>南翔饅頭店對面</td><td class="price">¥150–300/人</td></tr>
+          <tr><th>優先</th><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th><th>地圖</th></tr>
+          <tr><td>首選</td><td class="name">萊萊小籠</td><td>蟹粉小籠包（皮薄餡多、湯汁濃郁）</td><td>天津路504號</td><td class="price">¥20–40/籠</td><td><a href="https://maps.google.com/?cid=17297651906908957208" target="_blank">📍</a></td></tr>
+          <tr><td>備選</td><td class="name">南翔饅頭店</td><td>鮮肉小籠／蟹粉灌湯包</td><td>豫園四牌樓（總店）</td><td class="price">¥25–50/籠</td><td><a href="https://maps.google.com/?cid=3125114918805040430" target="_blank">📍</a></td></tr>
+          <tr><td>備選</td><td class="name">寧波湯糰店</td><td>黑芝麻湯圓</td><td>豫園商圈</td><td class="price">¥15–25/碗</td><td>—</td></tr>
+          <tr><td>備選</td><td class="name">春風松月樓</td><td>素菜包</td><td>豫園商圈</td><td class="price">¥20–30/籠</td><td>—</td></tr>
+          <tr><td>備選</td><td class="name">綠波廊</td><td>精緻上海點心套餐（較高檔）</td><td>南翔饅頭店對面</td><td class="price">¥150–300/人</td><td>—</td></tr>
         </table>
-        <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 萊萊小籠與南翔饅頭店都在豫園商圈內，可以「一鹹一鮮」兩家都吃：萊萊小籠吃蟹粉、南翔饅頭店吃鮮肉，兩家步行可達。</p>
+        <p style="font-size:12px;color:#8a6c1f;margin:2px 0 0;">💡 這家酒店就在豫園旁，晚餐吃完直接走回房間休息，這天不用再擔心過江和末班車時間。</p>
 
         <div class="photo-row">
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjBsEtdzL_yjTyB3oleJMblWc-qvYkpo9v2fBNmQF36cvh323qLDdSy0ntTJFhGyWtXZgTABgYYK-1mtit1Wm-hTZJn9u0eZQOj3ySbW8ESxgwwocpd4zlPQB8ybmqSIS4nG8b0-QX0MY1f-nlQ=s800-w800-h600" alt="豫園城隍廟">
@@ -340,10 +353,10 @@
           <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjApcvz_BwDWR1RuG-woCr22pkL54VTsvaM4wiLPyqt0XcN4sEqsVpg932G7aNEWqf673UcupEtE-EocP_B9IKi8KCpqSc_EzjipenkTa_Rr1DoBN3fCDNs51SSCuIcED7Ywz8nwVktukECbwn-KpNIA=s800-w800-h600" alt="浦江遊覽">
         </div>
 
-        <div class="budgetline"><span>豫園門票</span><span class="val">約 ¥40</span></div>
-        <div class="budgetline"><span>南翔饅頭店午餐</span><span class="val">約 ¥60–100</span></div>
-        <div class="budgetline"><span>市內交通</span><span class="val">約 ¥7</span></div>
         <div class="budgetline"><span>東方明珠＋浦江遊覽（KKday套裝或自購）</span><span class="val">約 ¥280–350</span></div>
+        <div class="budgetline"><span>豫園門票</span><span class="val">約 ¥40</span></div>
+        <div class="budgetline"><span>晚餐（萊萊小籠等）</span><span class="val">約 ¥60–100</span></div>
+        <div class="budgetline"><span>市內交通</span><span class="val">約 ¥10</span></div>
       </div>
     </div>
   </div>
@@ -354,38 +367,32 @@
       <div class="day-tag"><div class="num">05</div><div class="date">11/16 一</div></div>
       <div class="day-body">
         <div class="day-head">
-          <span class="day-title">武康路散策・退房返程</span>
+          <span class="day-title">悠閒退房・豫園周邊採買・返程</span>
           <span class="badge free">自由行</span>
-          <span class="day-budget">當日預估 ¥50–150／人</span>
+          <span class="day-budget">當日預估 ¥58–99／人</span>
         </div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%B1%AB%E5%9C%92+%E4%B8%8A%E6%B5%B7" target="_blank">📍 在Google地圖開啟酒店周邊（豫園商圈）</a>
 
         <div class="subhead">🚇 交通細節</div>
         <ul class="timeline">
-          <li><span class="time">酒店→武康路</span><span class="note">地鐵11號線江蘇路站，或1號線衡山路站，步行約8–10分鐘<span class="fee">¥5</span></span></li>
-          <li><span class="time">→機場</span><span class="note">虹橋機場：地鐵2/10號線約30–40分鐘（¥5–7）；浦東機場：地鐵2號線約90分鐘（¥7–8）或計程車約¥180–220（60–90分鐘，視路況）</span></li>
+          <li><span class="time">→機場</span><span class="note">浦東機場：地鐵10號線轉2號線約75–90分鐘（¥8–9），或打車約45–60分鐘（¥180–220）；虹橋機場：地鐵約35–45分鐘（¥6–8）</span></li>
         </ul>
 
         <div class="subhead">📍 行程與景點</div>
         <ul class="timeline">
-          <li><span class="time">上午</span><span class="note">退房前先寄放行李，前往武康路拍武康大樓、喝咖啡</span></li>
-          <li><span class="time">中午</span><span class="note">武康路周邊覓食，回酒店取行李</span></li>
-          <li><span class="time">下午</span><span class="note">視班機時間預留車程前往機場<span class="tip">建議提前3小時到，市區到機場尖峰時段（17:00–19:00）易塞車</span></span></li>
+          <li><span class="time">上午</span><span class="note">不用再跑遠，飯店旁的豫園商圈、南京東路步行街第一天已經逛過，今天可以睡晚一點，退房前悠閒吃早午餐、補買伴手禮</span></li>
+          <li><span class="time">中午</span><span class="note">取行李，視班機時間預留車程前往機場<span class="tip">浦東機場車程較長，建議提前3.5小時出發較保險</span></span></li>
         </ul>
 
-        <div class="subhead">🍜 美食＆咖啡清單</div>
+        <div class="subhead">🍜 美食＆採買清單（豫園商圈）</div>
         <table class="foodtable">
           <tr><th>店名</th><th>推薦品項</th><th>位置</th><th>價位</th></tr>
-          <tr><td class="name">Wo café</td><td>手沖咖啡，武康大樓對面拍照熱點</td><td>武康路376號</td><td class="price">¥30–45/杯</td></tr>
-          <tr><td class="name">PS Café / Rosе'n</td><td>早午餐、甜點</td><td>武康路周邊</td><td class="price">¥60–100/人</td></tr>
+          <tr><td class="name">星巴克豫園店</td><td>百年建築特色門店，拍照氛圍佳</td><td>豫園商圈</td><td class="price">¥30–45/杯</td></tr>
+          <tr><td class="name">四美齋南貨店</td><td>蜜餞、話梅等伴手禮</td><td>豫園商圈</td><td class="price">¥20–50/包</td></tr>
         </table>
 
-        <div class="photo-row two">
-          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjDUGzdv5ZxNx6qufuMx0zfseRb7j9xke_j_v3O8tY-h-EAjjCMKSRobKqPgb5i73Z2WmqngJwKfwAHbmM6TQTu7ESxm6kNhm-O6_2aREecryC9f4DWqpAF7T3_hHx-DafvUtwrfSMqL0pDWmR8=s800-w800-h600" alt="武康路">
-          <img src="https://lh3.googleusercontent.com/place-photos/AG9NLjCS6Zl0gU3ySnGi-qh5vlcR3l5PXmhbL5m5Cft8zZ3b2R4-3Yck5s4nIp8NKFEXKVriVqhysNu0runiojynJ8_oCx9rBz7Xlyu0n_YwfMLsYoT8TA2kbAG1eeyVQjo5NjSO-4FGZXG7kbeQFVrnJRPN=s800-w800-h600" alt="虹橋機場">
-        </div>
-
-        <div class="budgetline"><span>咖啡＋早午餐</span><span class="val">約 ¥60–100</span></div>
-        <div class="budgetline"><span>機場交通（地鐵或計程車）</span><span class="val">約 ¥7–220</span></div>
+        <div class="budgetline"><span>早午餐＋伴手禮</span><span class="val">約 ¥50–90</span></div>
+        <div class="budgetline"><span>機場交通（地鐵）</span><span class="val">約 ¥8–9</span></div>
       </div>
     </div>
   </div>
@@ -393,24 +400,24 @@
   <div class="budgettotal">
     <h3>💰 5天預估總花費（不含機票／酒店，每人）</h3>
     <table>
-      <tr><td>Day1 抵達＋美食</td><td class="val">¥170–220</td></tr>
-      <tr><td>Day2 KKday烏鎮一日遊</td><td class="val">¥600–750</td></tr>
-      <tr><td>Day3 宮宴＋新天地＋田子坊</td><td class="val">¥550–650</td></tr>
-      <tr><td>Day4 豫園＋KKday東方明珠套裝</td><td class="val">¥380–480</td></tr>
-      <tr><td>Day5 武康路＋機場交通（地鐵計）</td><td class="val">¥60–110</td></tr>
-      <tr class="total"><td>合計（不含機票酒店）</td><td class="val">約 ¥1,760–2,210</td></tr>
+      <tr><td>Day1 抵達＋美食</td><td class="val">¥146–218</td></tr>
+      <tr><td>Day2 KKday朱家角一日遊</td><td class="val">¥360–530</td></tr>
+      <tr><td>Day3 宮宴＋武康路＋新天地＋田子坊</td><td class="val">¥596–685</td></tr>
+      <tr><td>Day4 KKday東方明珠套裝＋豫園夜遊</td><td class="val">¥390–500</td></tr>
+      <tr><td>Day5 豫園周邊早午餐＋機場交通</td><td class="val">¥58–99</td></tr>
+      <tr class="total"><td>合計（不含機票酒店）</td><td class="val">約 ¥1,550–2,032</td></tr>
     </table>
   </div>
 
-  <div class="infobox">
+  <div class="infobox" style="margin-top:32px;">
     <h3>安排邏輯 &amp; 提醒</h3>
     <ul>
-      <li>兩個KKday行程排在「出市區較遠」（烏鎮）與「排隊耗時」（東方明珠+浦江遊船）的天數，市區步行景點留給自由行天。</li>
+      <li>武康路跟宮宴（靜安寺）地理位置相近，併進Day3一起逛，省下Day5再跑一趟西區的交通時間；Day5改成貼著酒店周邊悠閒退房，直接前往機場。</li>
+      <li>換到豫園站旁的飯店後，Day3、Day4都不用再過江，交通時間比之前縮短不少，總花費也比浦東方案省了約¥300–450。</li>
       <li>「宮宴」超熱門，建議出發前至少1個月上網／小程式預約並付訂金，午膳比晚膳便宜約¥100、菜色差異不大。</li>
       <li>市區移動以地鐵為主，避開早晚尖峰（約7:30–9:30／17:30–19:00）人潮與塞車。</li>
-      <li>建議下載「隨申行」App 或用支付寶／微信支付掃碼搭地鐵、付款，免現金找零麻煩；地鐵單程票¥3起跳，多依里程計費。</li>
-      <li>虹橋機場交通最便利（地鐵直達市區僅30–40分鐘），若班機只能選浦東，市區來回建議抓90分鐘以上車程或改搭磁浮列車。</li>
-      <li>南翔饅頭店、佳家湯包等排隊名店建議避開12:00–13:00與18:00–19:00用餐尖峰，改在開店前後或下午茶時段前往。</li>
+      <li>建議下載「隨申行」App 或用支付寶／微信支付掃碼搭地鐵、付款；地鐵單程票¥3起跳，多依里程計費。</li>
+      <li>虹橋機場交通最便利（地鐵直達飯店僅35–45分鐘），若機票已訂浦東也沒問題，一樣搭地鐵即可，不用再繞去磁浮站。</li>
       <li>行前記得辦好台胞證／通行證有效期確認，KKday行程與宮宴訂位建議出發前3–5天再次確認訂單狀態。</li>
     </ul>
   </div>
